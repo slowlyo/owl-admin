@@ -42,7 +42,7 @@ JS;
 let inner = document.getElementById('root')
 
 let myJs = document.createElement('script')
-myJs.innerText = 'alert("Hello")'
+myJs.innerText = ''
 
 inner.appendChild(myJs)
 JS

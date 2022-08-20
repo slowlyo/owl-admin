@@ -16,10 +16,12 @@ class Html extends BaseRenderer
     public function html($html)
     {
 
-        $js = Str::between($html, '<script', '</script>');
-        $js = '<script ' . $js . '</script>';
-        dd($js);
+        // $js = Str::between($html, '<script', '</script>');
+        // $js = '<script ' . $js . '</script>';
+        // dd($js);
 
         $this->html = $html;
+
+        return $this;
     }
 }
