@@ -1,0 +1,40 @@
+{
+    "name": "slowlyo/slow-admin",
+    "description": "slow admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Slowlyo",
+            "email": "slowlyo_email@163.com",
+            "homepage": "https://github.com/Slowlyo"
+        }
+    ],
+    "homepage": "https://github.com/Slowlyo/slow-admin",
+    "keywords": [
+        "Laravel",
+        "SlowAdmin",
+        "Admin"
+    ],
+    "require": {
+        "php": ">=8.0",
+        "illuminate/support": "~9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slowlyo\\SlowAdmin\\": "src/"
+        },
+        "files": [
+            "src/Libs/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Slowlyo\\SlowAdmin\\SlowAdminServiceProvider"
+            ],
+            "aliases": {
+                "SlowAdmin": "Slowlyo\\SlowAdmin\\Facades\\SlowAdmin"
+            }
+        }
+    }
+}

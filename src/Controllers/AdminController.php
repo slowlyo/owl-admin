@@ -1,0 +1,168 @@
+<?php
+
+namespace Slowlyo\SlowAdmin\Controllers;
+
+use Illuminate\Http\Request;
+use Slowlyo\SlowAdmin\SlowAdmin;
+use App\Http\Controllers\Controller;
+use Slowlyo\SlowAdmin\Traits\Uploader;
+use Slowlyo\SlowAdmin\Traits\QueryPath;
+use Slowlyo\SlowAdmin\Traits\PageElement;
+use Slowlyo\SlowAdmin\Services\AdminService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+abstract class AdminController extends Controller
+{
+    use QueryPath;
+    use PageElement;
+    use Uploader;
+
+    protected AdminService $service;
+
+    /** @var string $queryPath 路径 */
+    protected string $queryPath;
+
+    /** @var string|\Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed $adminPrefix 路由前缀 */
+    protected string $adminPrefix;
+
+    /** @var string $pageTitle 页面标题 */
+    protected string $pageTitle;
+
+    public function __construct()
+    {
+        if (property_exists($this, 'serviceName')) {
+            $this->service = $this->serviceName::make();
+        }
+
+        $this->adminPrefix = config('admin.route.prefix');
+    }
+
+    public function user(): \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|null
+    {
+        return SlowAdmin::user();
+    }
+
+    public function actionOfGetData(): bool
+    {
+        return request()->_action == 'getData';
+    }
+
+    /**
+     * @param $request
+     *
+     * @return mixed
+     */
+    public function getPrimaryValue($request): mixed
+    {
+        return $request->id;
+    }
+
+    protected function response(): \Slowlyo\SlowAdmin\Libs\JsonResponse
+    {
+        return SlowAdmin::response();
+    }
+
+    protected function autoResponse($flag, $text = '操作'): JsonResponse|JsonResource
+    {
+        if ($flag) {
+            return $this->response()->successMessage($text . '成功');
+        }
+
+        return $this->response()->fail($this->service->getError() ?? $text . '失败');
+    }
+
+    /**
+     * 获取新增页面
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function create(): JsonResponse|JsonResource
+    {
+        $form = $this->form()->api($this->getStorePath());
+
+        $page = $this->basePage()->subTitle('新增')->body($form)->toolbar([$this->backListButton()]);
+
+        return $this->response()->success($page);
+    }
+
+    /**
+     * 新增保存
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function store(Request $request): JsonResponse|JsonResource
+    {
+        return $this->autoResponse($this->service->store($request->all()), '保存');
+    }
+
+    /**
+     * 详情
+     *
+     * @param $id
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function show($id): JsonResponse|JsonResource
+    {
+        if ($this->actionOfGetData()) {
+            return $this->response()->success($this->service->getDetail($id));
+        }
+
+        $page = $this->basePage()->subTitle('详情')->toolbar([$this->backListButton()])->body($this->detail($id));
+
+        return $this->response()->success($page);
+    }
+
+    /**
+     * 获取编辑页面
+     *
+     * @param $id
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function edit($id): JsonResponse|JsonResource
+    {
+        if ($this->actionOfGetData()) {
+            return $this->response()->success($this->service->getEditData($id));
+        }
+
+        $form = $this->form()
+            ->api($this->getUpdatePath($id))
+            ->initApi($this->getEditGetDataPath($id));
+
+        $page = $this->basePage()->subTitle('编辑')->toolbar([$this->backListButton()])->body($form);
+
+        return $this->response()->success($page);
+    }
+
+    /**
+     * 编辑保存
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function update(Request $request): JsonResponse|JsonResource
+    {
+        $result = $this->service->update($this->getPrimaryValue($request), $request->all());
+
+        return $this->autoResponse($result, '保存');
+    }
+
+    /**
+     * 删除
+     *
+     * @param $ids
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function destroy($ids): JsonResponse|JsonResource
+    {
+        $rows = $this->service->delete($ids);
+
+        return $this->autoResponse($rows, '删除');
+    }
+}

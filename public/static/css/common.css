@@ -1,0 +1,98 @@
+:root {
+    --Layout-brand-bg: #021428;
+    --Layout-aside-bg: #021428;
+    --Layout-aside-subList-bg: #021428;
+    --primary: #358ffd;
+    --Layout-asideLink-fontSize: 0.8rem;
+}
+
+html, body, .app-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-default {
+    background: #f0f2f5;
+}
+
+/*隐藏原有的面包屑*/
+.cxd-AppBcn {
+    display: none;
+}
+
+/*自适应顶部菜单丢失问题*/
+@media (max-width: 767px) {
+    .amis-scope .cxd-Layout-headerBar {
+        display: flex;
+    }
+
+    .amis-scope .cxd-Layout-content {
+        margin-top: var(--Layout-header-height);
+    }
+
+    .cxd-Layout-headerBar {
+        background: var(--Layout-header-bg);
+        box-shadow: var(--Layout-header-boxShadow);
+        height: var(--Layout-header-height);
+    }
+
+    .cxd-Layout-headerBar {
+        width: 100%;
+    }
+
+    .cxd-AppFoldBtn {
+        display: none;
+    }
+
+    .amis-scope .cxd-Layout--offScreen .cxd-Layout-aside {
+        z-index: 1200;
+    }
+
+    .amis-scope .cxd-Layout--offScreen .cxd-Layout-body, .amis-scope .cxd-Layout--offScreen .cxd-Layout-footer {
+        padding-top: 100px;
+    }
+}
+
+/*菜单选中样式*/
+.amis-scope .cxd-AsideNav-item.is-active > a {
+    background: var(--primary);
+    color: #fff;
+}
+
+/*菜单悬浮样式*/
+.amis-scope .cxd-AsideNav-item a:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.amis-scope .cxd-AsideNav-item.is-active > a:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.amis-scope .cxd-AsideNav-item a:hover .cxd-AsideNav-itemIcon {
+    color: #fff;
+}
+
+.amis-scope .cxd-Layout-brand img {
+    max-height: 999px;
+    height: 30px;
+    width: 30px;
+}
+
+.amis-scope .cxd-Layout-brand {
+    font-size: var(--fontSizeLg);
+    font-weight: 600;
+}
+
+.admin-user-info {
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.admin-user-info:hover {
+    color: var(--black) !important;
+}

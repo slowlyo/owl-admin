@@ -1,0 +1,14 @@
+<?php
+
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
+
+Route::group([
+    'domain'     => config('admin.route.domain'),
+    'prefix'     => config('admin.route.prefix'),
+    'middleware' => config('admin.route.middleware'),
+], function (Router $router) {
+
+    $router->resource('home', \{{Namespace}}\HomeController::class);
+
+});
