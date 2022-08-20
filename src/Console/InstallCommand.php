@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class InstallCommand extends Command
 {
-    protected $signature = 'slow:install';
+    protected $signature = 'admin:install';
 
     protected $description = '安装 SlowAdmin';
 
