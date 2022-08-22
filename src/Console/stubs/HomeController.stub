@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace {{Namespace}};
 
 use GuzzleHttp\Client;
 use Illuminate\Http\JsonResponse;
@@ -14,6 +14,7 @@ use Slowlyo\SlowAdmin\Renderers\Action;
 use Slowlyo\SlowAdmin\Renderers\Wrapper;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Slowlyo\SlowAdmin\Controllers\AdminController;
 
 class HomeController extends AdminController
 {

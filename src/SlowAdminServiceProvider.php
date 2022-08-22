@@ -29,7 +29,7 @@ class SlowAdminServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->loadAdminAuthConfig();
         $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
@@ -41,10 +41,14 @@ class SlowAdminServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        if (file_exists($routes = admin_path('routes.php'))) {
+            $this->loadRoutesFrom($routes);
+        }
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'slow-admin');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         if ($this->app->runningInConsole()) {
             $this->commands([

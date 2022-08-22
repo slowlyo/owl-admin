@@ -16,6 +16,7 @@ trait Assets
     private static array $js = [
         'vendor/admin/static/amis/sdk.js',
         'vendor/admin/static/js/history.js',
+        'vendor/admin/static/js/jquery.js',
         'vendor/admin/static/js/axios.min.js',
     ];
 
@@ -31,7 +32,7 @@ trait Assets
         if (is_array($css)) {
             static::$css = array_merge(static::$css, $css);
         } else {
-            array_push(static::$css, $css);
+            static::$css[] = $css;
         }
     }
 
@@ -45,7 +46,7 @@ trait Assets
         if (is_array($js)) {
             static::$js = array_merge(static::$js, $js);
         } else {
-            array_push(static::$js, $js);
+            static::$js[] = $js;
         }
     }
 

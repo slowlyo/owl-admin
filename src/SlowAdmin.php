@@ -82,9 +82,11 @@ class SlowAdmin
                 if (!empty($children)) {
                     $_temp['children'] = [
                         [
-                            'label'    => $item->title,
-                            'icon'     => $item->icon,
-                            'children' => $children,
+                            'label'     => $item->title,
+                            'icon'      => $item->icon,
+                            'children'  => $children,
+                            'className' => $item->class_name,
+                            'visible'   => (bool)$item->visible,
                         ],
                     ];
 
@@ -93,9 +95,10 @@ class SlowAdmin
                     }
                 } else {
                     $_temp['children'] = [
-                        'label'   => $item->title,
-                        'icon'    => $item->icon,
-                        'visible' => (bool)$item->visible,
+                        'label'     => $item->title,
+                        'icon'      => $item->icon,
+                        'visible'   => (bool)$item->visible,
+                        'className' => $item->class_name,
                     ];
 
                     // 外链 || 路由

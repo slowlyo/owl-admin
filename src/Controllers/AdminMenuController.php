@@ -9,7 +9,6 @@ use Slowlyo\SlowAdmin\Renderers\Html;
 use Slowlyo\SlowAdmin\Renderers\Column;
 use Slowlyo\SlowAdmin\Models\AdminMenu;
 use Slowlyo\SlowAdmin\Renderers\Form\Form;
-use Slowlyo\SlowAdmin\Renderers\Component;
 use Slowlyo\SlowAdmin\Renderers\Form\Group;
 use Slowlyo\SlowAdmin\Renderers\Form\InputText;
 use Slowlyo\SlowAdmin\Services\AdminMenuService;

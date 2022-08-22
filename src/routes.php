@@ -11,6 +11,7 @@
     $router->get('/logout', [\Slowlyo\SlowAdmin\Controllers\AuthController::class, 'logout']);
 
     $router->get('/base', [\Slowlyo\SlowAdmin\Controllers\IndexController::class, 'base']);
+    $router->get('/no-content', [\Slowlyo\SlowAdmin\Controllers\IndexController::class, 'noContent']);
 
     // 用户设置
     $router->get('/user_setting', [\Slowlyo\SlowAdmin\Controllers\AuthController::class, 'userSetting']);

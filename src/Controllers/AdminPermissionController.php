@@ -93,7 +93,10 @@ class AdminPermissionController extends AdminController
                 ->label('路由')
                 ->searchable(true)
                 ->multiple(true)
-                ->options($this->getRoutes()),
+                ->options($this->getRoutes())
+                ->autoCheckChildren(false)
+                ->joinValues(false)
+                ->extractValue(true),
             TreeSelect::make()
                 ->name('menus')
                 ->label('菜单')

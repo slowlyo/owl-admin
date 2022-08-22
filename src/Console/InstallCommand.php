@@ -3,6 +3,8 @@
 namespace Slowlyo\SlowAdmin\Console;
 
 use Illuminate\Console\Command;
+use Slowlyo\SlowAdmin\Models\AdminUser;
+use Slowlyo\SlowAdmin\Models\AdminTablesSeeder;
 
 class InstallCommand extends Command
 {
@@ -12,7 +14,17 @@ class InstallCommand extends Command
 
     public function handle()
     {
+        $this->initDatabase();
         $this->initAdminDirectory();
+    }
+
+    public function initDatabase(): void
+    {
+        $this->call('migrate');
+
+        if (AdminUser::count() == 0) {
+            $this->call('db:seed', ['--class' => AdminTablesSeeder::class]);
+        }
     }
 
     protected function setDirectory()
@@ -39,6 +51,7 @@ class InstallCommand extends Command
         $this->createAuthController();
         $this->createBootstrapFile();
         $this->createRoutesFile();
+        $this->createHomeController();
     }
 
     protected function makeDir($path = '')
@@ -74,6 +87,17 @@ class InstallCommand extends Command
         $this->laravel['files']->put($file,
             str_replace('{{Namespace}}', $this->getNamespace('Controllers'), $contents));
         $this->line('<info>Routes file was created:</info> ' . str_replace(base_path(), '', $file));
+    }
+
+    public function createHomeController(): void
+    {
+        $homeController = $this->directory . '/Controllers/HomeController.php';
+        $contents       = $this->getStub('HomeController');
+        $this->laravel['files']->put(
+            $homeController,
+            str_replace('{{Namespace}}', config('admin.route.namespace'), $contents)
+        );
+        $this->line('<info>HomeController file was created:</info> ' . str_replace(base_path(), '', $homeController));
     }
 
     protected function getNamespace($name = null): string

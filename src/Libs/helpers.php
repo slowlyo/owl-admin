@@ -48,7 +48,7 @@ if (!function_exists('arr2tree')) {
 }
 
 if (!function_exists('admin_resource_full_path')) {
-    function admin_resource_full_path($path, $server = null)
+    function admin_resource_full_path($path, $server = null): array|string|null
     {
         if (!$path) {
             return '';
@@ -70,8 +70,11 @@ if (!function_exists('admin_resource_full_path')) {
         if (config('admin.https', false)) {
             $scheme = 'https:';
         }
-        $src = preg_replace('/^http[s]{0,1}:/', $scheme, $src, 1);
-
-        return $src;
+        return preg_replace('/^http[s]{0,1}:/', $scheme, $src, 1);
     }
+}
+
+function admin_path($path = ''): string
+{
+    return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
 }

@@ -22,6 +22,10 @@ class AdminRoleService extends AdminService
 
     public function store($data): bool
     {
+        if ($this->hasRepeated($data)) {
+            return false;
+        }
+
         $model = $this->getModel();
 
         $permissions = Arr::pull($data, 'permissions');
@@ -41,6 +45,10 @@ class AdminRoleService extends AdminService
 
     public function update($primaryKey, $data): bool
     {
+        if ($this->hasRepeated($data, $primaryKey)) {
+            return false;
+        }
+
         $model = $this->query()->whereKey($primaryKey)->first();
 
         $permissions = Arr::pull($data, 'permissions');
@@ -52,6 +60,23 @@ class AdminRoleService extends AdminService
         if ($model->save()) {
             $model->permissions()->sync(Arr::has($permissions, '0.id') ? Arr::pluck($permissions, 'id') : $permissions);
 
+            return true;
+        }
+
+        return false;
+    }
+
+    public function hasRepeated($data, $id = 0): bool
+    {
+        $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
+
+        if ((clone $query)->where('name', $data['name'])->exists()) {
+            $this->setError('角色名称重复');
+            return true;
+        }
+
+        if ((clone $query)->where('slug', $data['slug'])->exists()) {
+            $this->setError('角色标识重复');
             return true;
         }
 

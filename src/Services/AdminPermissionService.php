@@ -44,6 +44,10 @@ class AdminPermissionService extends AdminService
 
     public function store($data): bool
     {
+        if($this->hasRepeated($data)){
+            return false;
+        }
+
         $model = $this->getModel();
 
         $menus = Arr::pull($data, 'menus');
@@ -63,6 +67,10 @@ class AdminPermissionService extends AdminService
 
     public function update($primaryKey, $data): bool
     {
+        if($this->hasRepeated($data, $primaryKey)){
+            return false;
+        }
+
         $parent_id = Arr::get($data, 'parent_id');
         if ($parent_id != 0) {
             if ($this->parentIsChild($primaryKey, $parent_id)) {
@@ -82,6 +90,23 @@ class AdminPermissionService extends AdminService
         if ($model->save()) {
             $model->menus()->sync(Arr::has($menus, '0.id') ? Arr::pluck($menus, 'id') : $menus);
 
+            return true;
+        }
+
+        return false;
+    }
+
+    public function hasRepeated($data, $id = 0): bool
+    {
+        $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
+
+        if ((clone $query)->where('name', $data['name'])->exists()) {
+            $this->setError('权限名称重复');
+            return true;
+        }
+
+        if ((clone $query)->where('slug', $data['slug'])->exists()) {
+            $this->setError('权限标识重复');
             return true;
         }
 

@@ -22,6 +22,11 @@ class AdminUserService extends AdminService
 
     public function store($data): bool
     {
+        if ($this->checkUsernameUnique($data['username'])) {
+            $this->setError('用户名已存在');
+            return false;
+        }
+
         if (!$this->passwordHandler($data)) {
             return false;
         }
@@ -45,6 +50,11 @@ class AdminUserService extends AdminService
 
     public function update($primaryKey, $data): bool
     {
+        if ($this->checkUsernameUnique($data['username'], $primaryKey)) {
+            $this->setError('用户名已存在');
+            return false;
+        }
+
         if (!$this->passwordHandler($data)) {
             return false;
         }
@@ -64,6 +74,14 @@ class AdminUserService extends AdminService
         }
 
         return false;
+    }
+
+    public function checkUsernameUnique($username, $id = 0): bool
+    {
+        return $this->query()
+            ->where('username', $username)
+            ->when($id, fn($query) => $query->where('id', '<>', $id))
+            ->exists();
     }
 
     public function updateUserSetting($primaryKey, $data): bool
