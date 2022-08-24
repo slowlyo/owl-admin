@@ -3,12 +3,11 @@
 namespace Slowlyo\SlowAdmin\Models;
 
 use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class AdminUser extends Model implements AuthenticatableContract
+class AdminUser extends BaseModel implements AuthenticatableContract
 {
     use Authenticatable;
 

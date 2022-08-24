@@ -2,10 +2,9 @@
 
 namespace Slowlyo\SlowAdmin\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class AdminMenu extends Model
+class AdminMenu extends BaseModel
 {
     const TYPE_ROUTE = 1;
     const TYPE_LINK  = 2;

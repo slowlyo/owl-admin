@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ Namespace }};
+
+use {{ UseModel }};
+use Slowlyo\SlowAdmin\Services\AdminService;
+
+class {{ ClassName }} extends AdminService
+{
+    protected string $modelName = {{ ModelName }}::class;
+}

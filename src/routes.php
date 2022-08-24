@@ -32,4 +32,10 @@
     $router->resource('admin_roles', \Slowlyo\SlowAdmin\Controllers\AdminRoleController::class);
     // 权限
     $router->resource('admin_permissions', \Slowlyo\SlowAdmin\Controllers\AdminPermissionController::class);
+
+    // 开发工具
+    $router->group(['prefix' => 'dev_tools'], function (\Illuminate\Routing\Router $router) {
+        // 代码生成器
+        $router->resource('code_generator', \Slowlyo\SlowAdmin\Controllers\DevTools\CodeGeneratorController::class);
+    });
 });

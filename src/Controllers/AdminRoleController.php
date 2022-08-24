@@ -10,7 +10,6 @@ use Slowlyo\SlowAdmin\Renderers\Form\Form;
 use Slowlyo\SlowAdmin\Renderers\Form\InputText;
 use Slowlyo\SlowAdmin\Services\AdminRoleService;
 use Slowlyo\SlowAdmin\Renderers\Form\TreeSelect;
-use Slowlyo\SlowAdmin\Renderers\Form\InputStatic;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\SlowAdmin\Services\AdminPermissionService;
 

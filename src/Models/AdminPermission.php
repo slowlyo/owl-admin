@@ -4,10 +4,9 @@ namespace Slowlyo\SlowAdmin\Models;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class AdminPermission extends Model
+class AdminPermission extends BaseModel
 {
     public static array $httpMethods = [
         'GET',

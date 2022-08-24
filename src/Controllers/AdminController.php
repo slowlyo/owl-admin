@@ -4,12 +4,12 @@ namespace Slowlyo\SlowAdmin\Controllers;
 
 use Illuminate\Http\Request;
 use Slowlyo\SlowAdmin\SlowAdmin;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Slowlyo\SlowAdmin\Traits\Uploader;
 use Slowlyo\SlowAdmin\Traits\QueryPath;
 use Slowlyo\SlowAdmin\Traits\PageElement;
 use Slowlyo\SlowAdmin\Services\AdminService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class AdminController extends Controller
@@ -38,12 +38,12 @@ abstract class AdminController extends Controller
         $this->adminPrefix = config('admin.route.prefix');
     }
 
-    public function user(): \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|null
+    public function user()
     {
         return SlowAdmin::user();
     }
 
-    public function actionOfGetData(): bool
+    public function actionOfGetData()
     {
         return request()->_action == 'getData';
     }
@@ -58,12 +58,12 @@ abstract class AdminController extends Controller
         return $request->id;
     }
 
-    protected function response(): \Slowlyo\SlowAdmin\Libs\JsonResponse
+    protected function response()
     {
         return SlowAdmin::response();
     }
 
-    protected function autoResponse($flag, $text = '操作'): JsonResponse|JsonResource
+    protected function autoResponse($flag, $text = '操作')
     {
         if ($flag) {
             return $this->response()->successMessage($text . '成功');
@@ -77,7 +77,7 @@ abstract class AdminController extends Controller
      *
      * @return JsonResponse|JsonResource
      */
-    public function create(): JsonResponse|JsonResource
+    public function create()
     {
         $form = $this->form()->api($this->getStorePath());
 
@@ -93,7 +93,7 @@ abstract class AdminController extends Controller
      *
      * @return JsonResponse|JsonResource
      */
-    public function store(Request $request): JsonResponse|JsonResource
+    public function store(Request $request)
     {
         return $this->autoResponse($this->service->store($request->all()), '保存');
     }
@@ -105,7 +105,7 @@ abstract class AdminController extends Controller
      *
      * @return JsonResponse|JsonResource
      */
-    public function show($id): JsonResponse|JsonResource
+    public function show($id)
     {
         if ($this->actionOfGetData()) {
             return $this->response()->success($this->service->getDetail($id));
@@ -123,7 +123,7 @@ abstract class AdminController extends Controller
      *
      * @return JsonResponse|JsonResource
      */
-    public function edit($id): JsonResponse|JsonResource
+    public function edit($id)
     {
         if ($this->actionOfGetData()) {
             return $this->response()->success($this->service->getEditData($id));
@@ -145,7 +145,7 @@ abstract class AdminController extends Controller
      *
      * @return JsonResponse|JsonResource
      */
-    public function update(Request $request): JsonResponse|JsonResource
+    public function update(Request $request)
     {
         $result = $this->service->update($this->getPrimaryValue($request), $request->all());
 
@@ -159,7 +159,7 @@ abstract class AdminController extends Controller
      *
      * @return JsonResponse|JsonResource
      */
-    public function destroy($ids): JsonResponse|JsonResource
+    public function destroy($ids)
     {
         $rows = $this->service->delete($ids);
 

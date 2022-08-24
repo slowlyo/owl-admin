@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 
 if (!function_exists('admin_url')) {
-    function admin_url($path = null): string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
+    function admin_url($path = null)
     {
         return url(config('admin.route.prefix') . '/' . $path);
     }
@@ -17,7 +17,7 @@ if (!function_exists('table_columns')) {
      *
      * @return array
      */
-    function table_columns($tableName): array
+    function table_columns($tableName)
     {
         return Schema::getColumnListing($tableName);
     }
@@ -32,7 +32,7 @@ if (!function_exists('arr2tree')) {
      *
      * @return array
      */
-    function array2tree(array $list, int $parentId = 0): array
+    function array2tree(array $list, int $parentId = 0)
     {
         $data = [];
         foreach ($list as $key => $item) {
@@ -48,7 +48,7 @@ if (!function_exists('arr2tree')) {
 }
 
 if (!function_exists('admin_resource_full_path')) {
-    function admin_resource_full_path($path, $server = null): array|string|null
+    function admin_resource_full_path($path, $server = null)
     {
         if (!$path) {
             return '';
@@ -74,7 +74,7 @@ if (!function_exists('admin_resource_full_path')) {
     }
 }
 
-function admin_path($path = ''): string
+function admin_path($path = '')
 {
     return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
 }

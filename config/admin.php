@@ -61,4 +61,6 @@ return [
     ],
 
     'https' => false,
+
+    'show_development_tools' => true,
 ];
