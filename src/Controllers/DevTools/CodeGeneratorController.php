@@ -75,12 +75,18 @@ class CodeGeneratorController extends AdminController
                             ['label' => '创建模型', 'value' => 'need_model'],
                             ['label' => '创建控制器', 'value' => 'need_controller'],
                             ['label' => '创建Service', 'value' => 'need_service'],
-                        ])->value(['need_model', 'need_controller', 'need_service']),
+                        ])->value([
+                            'need_database_migration',
+                            'need_create_table',
+                            'need_model',
+                            'need_controller',
+                            'need_service',
+                        ]),
                 ]),
                 Group::make()->direction('vertical')->body([
                     InputText::make()->label('功能名称')->name('title')->value('${' . $nameHandler . '}'),
                     Checkbox::make()->name('need_timestamps')->option('CreatedAt & UpdatedAt')->value(1),
-                    Checkbox::make()->name('soft_delete')->option('软删除'),
+                    Checkbox::make()->name('soft_delete')->option('软删除')->value(1),
                 ]),
             ]),
             InputTable::make()
