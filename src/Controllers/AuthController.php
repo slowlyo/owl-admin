@@ -4,8 +4,10 @@ namespace Slowlyo\SlowAdmin\Controllers;
 
 use Illuminate\Http\Request;
 use Slowlyo\SlowAdmin\SlowAdmin;
+use Illuminate\Contracts\View\View;
 use Slowlyo\SlowAdmin\Renderers\Card;
 use Slowlyo\SlowAdmin\Renderers\Page;
+use Illuminate\Contracts\View\Factory;
 use Slowlyo\SlowAdmin\Renderers\Button;
 use Slowlyo\SlowAdmin\Renderers\Wrapper;
 use Illuminate\Support\Facades\Validator;
@@ -13,12 +15,10 @@ use Slowlyo\SlowAdmin\Renderers\Form\Form;
 use Slowlyo\SlowAdmin\Renderers\Form\Checkbox;
 use Symfony\Component\HttpFoundation\Response;
 use Slowlyo\SlowAdmin\Renderers\Form\InputText;
-use Illuminate\Contracts\View\View;
 use Slowlyo\SlowAdmin\Renderers\Form\InputImage;
 use Slowlyo\SlowAdmin\Services\AdminUserService;
-use Slowlyo\SlowAdmin\Renderers\Form\InputPassword;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
+use Slowlyo\SlowAdmin\Renderers\Form\InputPassword;
 
 class AuthController extends AdminController
 {
@@ -161,7 +161,7 @@ class AuthController extends AdminController
 
     public function saveUserSetting($id): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
-        $result = $this->service->updateUserSetting($id, request()->all());
+        $result = $this->service->updateUserSetting($id, request()->only(['avatar', 'name']));
 
         return $this->autoResponse($result);
     }
