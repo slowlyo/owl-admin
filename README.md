@@ -11,6 +11,14 @@ Laravel 是一个全栈Web应用程序框架，具有富有表现力、优雅的
 
 amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可以减少页面开发工作量，极大提升效率。
 
+## 文档
+
+***
+
+- [《Laravel 9 中文文档》](https://learnku.com/docs/laravel/9.x/installation/12200)
+- [《amis》](https://aisuda.bce.baidu.com/amis/zh-CN/docs/index)
+- [《Slow Admin》](https://learnku.com/docs/slow-admin)
+
 ## 功能
 
 ***
