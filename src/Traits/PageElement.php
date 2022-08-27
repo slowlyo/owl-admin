@@ -183,6 +183,7 @@ JS
             ->perPage(20)
             ->affixHeader(false)
             ->filterTogglable(true)
+            ->filterDefaultVisible(false)
             ->api($this->getListGetDataPath())
             ->bulkActions([$this->bulkDeleteButton()])
             ->perPageAvailable([10, 20, 30, 50, 100, 200])
