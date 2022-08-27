@@ -81,8 +81,14 @@ function admin_path($path = '')
 
 
 if (!function_exists('amis')) {
-    function amis($type): \Slowlyo\SlowAdmin\Renderers\Component
+    function amis($type = null): \Slowlyo\SlowAdmin\Renderers\Component
     {
-        return \Slowlyo\SlowAdmin\Renderers\Component::make()->setType($type);
+        $component = \Slowlyo\SlowAdmin\Renderers\Component::make();
+
+        if ($type) {
+            $component->setType($type);
+        }
+
+        return $component;
     }
 }
