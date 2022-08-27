@@ -78,3 +78,11 @@ function admin_path($path = '')
 {
     return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
 }
+
+
+if (!function_exists('amis')) {
+    function amis($type): \Slowlyo\SlowAdmin\Renderers\Component
+    {
+        return \Slowlyo\SlowAdmin\Renderers\Component::make()->setType($type);
+    }
+}

@@ -4,6 +4,11 @@ namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
  * @method className($value)
+ * @method x($value)
+ * @method y($value)
+ * @method w($value)
+ * @method h($value)
+ * @method data($value)
  */
 class BaseRenderer implements \JsonSerializable
 {

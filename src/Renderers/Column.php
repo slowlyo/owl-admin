@@ -2,8 +2,6 @@
 
 namespace Slowlyo\SlowAdmin\Renderers;
 
-use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
-
 /**
  *
  * @method self label($value) 表头文本内容
@@ -16,6 +14,7 @@ use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
  * @method self searchable($value) 是否可快速搜索
  * @method self width($value) 列宽
  * @method self remark($value) 提示信息
+ * @method self type($value)
  */
 class Column extends BaseRenderer
 {
