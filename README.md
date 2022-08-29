@@ -36,6 +36,9 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
     - 创建Service
 - `Amis` 全组件封装
 
+## demo
+[Demo 地址](http://slow-demo.kmhnkj.cn)
+
 ## 截图
 
 ***
