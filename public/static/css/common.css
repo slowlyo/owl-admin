@@ -23,6 +23,18 @@ html, body, .app-wrapper {
     display: none;
 }
 
+.antd-AppBcn {
+    display: none;
+}
+
+.a-AppBcn {
+    display: none;
+}
+
+.dark-AppBcn {
+    display: none;
+}
+
 /*自适应顶部菜单丢失问题*/
 @media (max-width: 767px) {
     .amis-scope .cxd-Layout-headerBar {
@@ -84,6 +96,39 @@ html, body, .app-wrapper {
 }
 
 .amis-scope .cxd-Layout-brand {
+    font-size: var(--fontSizeLg);
+    font-weight: 600;
+}
+
+.amis-scope .antd-Layout-brand img {
+    max-height: 999px;
+    height: 30px;
+    width: 30px;
+}
+
+.amis-scope .antd-Layout-brand {
+    font-size: var(--fontSizeLg);
+    font-weight: 600;
+}
+
+.amis-scope .a-Layout-brand img {
+    max-height: 999px;
+    height: 30px;
+    width: 30px;
+}
+
+.amis-scope .a-Layout-brand {
+    font-size: var(--fontSizeLg);
+    font-weight: 600;
+}
+
+.amis-scope .dark-Layout-brand img {
+    max-height: 999px;
+    height: 30px;
+    width: 30px;
+}
+
+.amis-scope .dark-Layout-brand {
     font-size: var(--fontSizeLg);
     font-weight: 600;
 }

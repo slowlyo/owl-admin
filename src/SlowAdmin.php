@@ -37,6 +37,12 @@ class SlowAdmin
         $this->setVariable('css', static::getCss());
         $this->setVariable('js', static::getJs());
 
+        $theme = config('admin.layout.theme');
+        if (!$theme || $theme == 'default') {
+            $theme = '';
+        }
+        $this->setVariable('systemTheme', $theme);
+
         return view($view, static::$variable);
     }
 

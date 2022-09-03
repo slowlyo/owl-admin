@@ -5,7 +5,7 @@ namespace Slowlyo\SlowAdmin\Traits;
 trait Assets
 {
     private static array $css = [
-        'vendor/admin/static/amis/sdk.css',
+        // 'vendor/admin/static/amis/sdk.css',
         'vendor/admin/static/amis/helper.css',
         'vendor/admin/static/amis/iconfont.css',
         'vendor/admin/static/css/animate.min.css',
@@ -38,6 +38,13 @@ trait Assets
 
     public function getCss(): array
     {
+        $theme = config('admin.layout.theme');
+        if (!$theme || $theme == 'default') {
+            $theme = 'sdk';
+        }
+
+        array_unshift(self::$css, "vendor/admin/static/amis/{$theme}.css");
+
         return static::$css;
     }
 

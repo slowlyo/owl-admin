@@ -32,6 +32,7 @@
             {!! $app !!},
             {location: history.location},
             {
+                theme: '{{ $systemTheme }}',
                 watchRouteChange: fn => {
                     return history.listen(fn)
                 },

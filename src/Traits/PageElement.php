@@ -25,13 +25,18 @@ trait PageElement
 
         // 注入js
         if ($assets) {
-            $script = collect($assets)->pluck('script')->implode('');
+            $script      = collect($assets)->pluck('script')->implode('');
+            $systemTheme = config('admin.layout.theme');
+            $className   = $systemTheme . '-Page';
+            if (!$systemTheme || $systemTheme == 'default') {
+                $className = 'cxd-Page';
+            }
             $page->initApi(url(config('admin.route.prefix') . '/no-content'))->onEvent([
                 'inited' => [
                     'actions' => [
                         'actionType' => 'custom',
                         'script'     => <<<JS
-let inner = document.getElementsByClassName('cxd-Page');
+let inner = document.getElementsByClassName('{$className}');
 let myJs = document.createElement('script');
 myJs.innerHTML = `$script`;
 inner[0].appendChild(myJs);

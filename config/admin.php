@@ -56,6 +56,8 @@ return [
 
     // 布局相关
     'layout' => [
+        // amis主题  default/ang/antd/dark
+        'theme'            => 'default',
         // 是否启用默认用户菜单
         'enable_user_menu' => true,
     ],
