@@ -10,7 +10,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  *
  * @method self className($value) 外层 Dom 的类名
  * @method self bodyClassName($value) 容器内容区的类名
- * @method self wrapperComponent($value) "div" 容器标签名
+ * @method self wrapperComponent($value = 'div') 容器标签名
  * @method self style($value) 自定义样式
  * @method self body($value) 容器内容
  */

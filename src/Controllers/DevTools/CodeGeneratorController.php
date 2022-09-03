@@ -38,14 +38,14 @@ class CodeGeneratorController extends AdminController
         $nameHandler =
             'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
 
-        return Form::make()->title('')->mode('horizontal')->resetAfterSubmit(true)->api($this->getStorePath())->body([
+        return Form::make()->title('')->mode('horizontal')->resetAfterSubmit()->api($this->getStorePath())->body([
             Group::make()->body([
                 Group::make()->direction('vertical')->body([
                     InputText::make()
                         ->label('表名')
                         ->name('table_name')
                         ->value('')
-                        ->required(true),
+                        ->required(),
                     InputText::make()
                         ->label('模型')
                         ->name('model_name')
@@ -65,7 +65,7 @@ class CodeGeneratorController extends AdminController
                         ->name('primary_key')
                         ->value('id')
                         ->description('使用 increments 方法')
-                        ->required(true),
+                        ->required(),
                     Checkboxes::make()->name('needs')->label('可选项')->inline(false)
                         ->joinValues(false)
                         ->extractValue(true)
@@ -105,7 +105,7 @@ class CodeGeneratorController extends AdminController
                     ],
                 ])
                 ->columns([
-                    InputText::make()->name('name')->label('字段名')->required(true),
+                    InputText::make()->name('name')->label('字段名')->required(),
                     Select::make()
                         ->name('type')
                         ->label('类型')

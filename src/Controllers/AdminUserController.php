@@ -13,8 +13,8 @@ use Slowlyo\SlowAdmin\Renderers\Form\InputText;
 use Slowlyo\SlowAdmin\Services\AdminUserService;
 use Slowlyo\SlowAdmin\Services\AdminRoleService;
 use Slowlyo\SlowAdmin\Renderers\Form\InputImage;
-use Slowlyo\SlowAdmin\Renderers\Form\InputPassword;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Slowlyo\SlowAdmin\Renderers\Form\InputPassword;
 
 class AdminUserController extends AdminController
 {
@@ -66,8 +66,8 @@ class AdminUserController extends AdminController
     {
         return $this->baseForm()->body([
             InputImage::make()->label('头像')->name('avatar')->receiver($this->uploadImagePath()),
-            InputText::make()->label('用户名')->name('username')->required(true),
-            InputText::make()->label('名称')->name('name')->required(true),
+            InputText::make()->label('用户名')->name('username')->required(),
+            InputText::make()->label('名称')->name('name')->required(),
             InputPassword::make()->label('密码')->name('password'),
             InputPassword::make()
                 ->label('确认密码')

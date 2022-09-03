@@ -9,10 +9,10 @@ use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
  *
  * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-table
  *
- * @method self addable($value) 是否可增加一行
- * @method self editable($value) 是否可编辑
- * @method self removable($value) 是否可删除
- * @method self showAddBtn($value) 是否显示添加按钮
+ * @method self addable($value = true) 是否可增加一行
+ * @method self editable($value = true) 是否可编辑
+ * @method self removable($value = true) 是否可删除
+ * @method self showAddBtn($value =true) 是否显示添加按钮
  * @method self addApi($value) 新增时提交的 API
  * @method self updateApi($value) 修改时提交的 API
  * @method self deleteApi($value) 删除时提交的 API

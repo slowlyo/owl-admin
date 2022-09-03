@@ -15,9 +15,9 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self shortcuts($value) 日期快捷键
  * @method self minDate($value) 限制最小日期
  * @method self maxDate($value) 限制最大日期
- * @method self utc($value) 保存 utc 值
- * @method self clearable($value) 是否可清除
- * @method self embed($value) 是否内联模式
+ * @method self utc($value = true) 保存 utc 值
+ * @method self clearable($value = true) 是否可清除
+ * @method self embed($value = true) 是否内联模式
  */
 class InputDate extends FormItem
 {

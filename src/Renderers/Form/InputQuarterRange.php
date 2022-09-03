@@ -14,9 +14,9 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self maxDate($value) 限制最大日期，用法同 限制范围
  * @method self minDuration($value) 限制最小跨度，如： 2quarter
  * @method self maxDuration($value) 限制最大跨度，如：4quarter
- * @method self utc($value) 保存 UTC 值
- * @method self clearable($value) 是否可清除
- * @method self embed($value) 是否内联模式
+ * @method self utc($value = true) 保存 UTC 值
+ * @method self clearable($value = true) 是否可清除
+ * @method self embed($value = true) 是否内联模式
  */
 class InputQuarterRange extends FormItem
 {

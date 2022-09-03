@@ -9,9 +9,9 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-array
  *
  * @method self items($value) 配置单项表单类型
- * @method self addable($value) 是否可新增。
- * @method self removable($value) 是否可删除
- * @method self draggable($value) 是否可以拖动排序, 需要注意的是当启用拖动排序的时候，会多一个$id 字段
+ * @method self addable($value = true) 是否可新增。
+ * @method self removable($value = true) 是否可删除
+ * @method self draggable($value = true) 是否可以拖动排序, 需要注意的是当启用拖动排序的时候，会多一个$id 字段
  * @method self draggableTip($value) 可拖拽的提示文字，默认为："可通过拖动每行中的【交换】按钮进行顺序调整"
  * @method self addButtonText($value) 新增按钮文字
  * @method self minLength($value) 限制最小长度

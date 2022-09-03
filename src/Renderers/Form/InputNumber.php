@@ -17,7 +17,6 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self kilobitSeparator($value) 千分分隔
  * @method self keyboard($value) 键盘事件（方向上下）
  * @method self displayMode($value) 样式类型
- * @method self displayMode($value) 样式类型
  */
 class InputNumber extends FormItem
 {

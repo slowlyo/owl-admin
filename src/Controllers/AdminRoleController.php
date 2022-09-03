@@ -55,8 +55,8 @@ class AdminRoleController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            InputText::make()->label('名称')->name('name')->required(true),
-            InputText::make()->label('标识')->name('slug')->description('角色的唯一标识, 不可重复')->required(true),
+            InputText::make()->label('名称')->name('name')->required(),
+            InputText::make()->label('标识')->name('slug')->description('角色的唯一标识, 不可重复')->required(),
             TreeSelect::make()
                 ->name('permissions')
                 ->label('权限')

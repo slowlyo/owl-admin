@@ -14,7 +14,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self delimiter($value) 分隔符，当 value 为字符串时，用该值进行分隔拆分
  * @method self src($value) 预览图地址，支持数据映射获取对象中图片变量
  * @method self originalSrc($value) 原图地址，支持数据映射获取对象中图片变量
- * @method self enlargeAble($value) 支持放大预览
+ * @method self enlargeAble($value = true) 支持放大预览
  * @method self thumbMode($value) 预览图模式，可选：'w-full', 'h-full', 'contain', 'cover'
  * @method self thumbRatio($value) 预览图比例，可选：'1:1', '4:3', '16:9'
  */

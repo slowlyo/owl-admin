@@ -3,7 +3,6 @@
 namespace Slowlyo\SlowAdmin\Controllers;
 
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\SlowAdmin\Renderers\Tag;
 use Slowlyo\SlowAdmin\Renderers\Page;
@@ -15,9 +14,9 @@ use Slowlyo\SlowAdmin\Renderers\Form\InputText;
 use Slowlyo\SlowAdmin\Renderers\Form\Checkboxes;
 use Slowlyo\SlowAdmin\Renderers\Form\TreeSelect;
 use Slowlyo\SlowAdmin\Services\AdminMenuService;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\SlowAdmin\Renderers\Form\InputNumber;
 use Slowlyo\SlowAdmin\Services\AdminPermissionService;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class AdminPermissionController extends AdminController
 {
@@ -27,7 +26,7 @@ class AdminPermissionController extends AdminController
 
     protected string $pageTitle = '权限';
 
-    public function index(Request $request): JsonResponse|JsonResource
+    public function index(): JsonResponse|JsonResource
     {
         if ($this->actionOfGetData()) {
             $items = $this->service->getTree();
@@ -64,8 +63,8 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            InputText::make()->name('name')->label('名称')->required(true),
-            InputText::make()->name('slug')->label('标识')->required(true),
+            InputText::make()->name('name')->label('名称')->required(),
+            InputText::make()->name('slug')->label('标识')->required(),
             TreeSelect::make()
                 ->name('parent_id')
                 ->label('父级')
@@ -83,7 +82,7 @@ class AdminPermissionController extends AdminController
             InputNumber::make()
                 ->name('order')
                 ->label('排序')
-                ->required(true)
+                ->required()
                 ->labelRemark('大的在前')
                 ->displayMode('enhance')
                 ->min(0)

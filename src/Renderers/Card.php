@@ -19,11 +19,11 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self secondary($value) 次要说明
  * @method self toolbar($value) 工具栏按钮
  * @method self dragging($value) 是否显示拖拽图标
- * @method self selectable($value) 卡片是否可选
- * @method self checkable($value) 卡片选择按钮是否禁用
- * @method self selected($value) 卡片选择按钮是否选中
- * @method self hideCheckToggler($value) 卡片选择按钮是否隐藏
- * @method self multiple($value) 卡片是否为多选
+ * @method self selectable($value = true) 卡片是否可选
+ * @method self checkable($value = true) 卡片选择按钮是否禁用
+ * @method self selected($value = true) 卡片选择按钮是否选中
+ * @method self hideCheckToggler($value = true) 卡片选择按钮是否隐藏
+ * @method self multiple($value = true) 卡片是否为多选
  * @method self useCardLabel($value) 卡片内容区的表单项 label 是否使用 Card 内部的样式
  */
 class Card extends BaseRenderer

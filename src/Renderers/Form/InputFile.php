@@ -14,13 +14,13 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self asBlob($value) 将文件以二进制的形式，赋值给当前组件
  * @method self maxSize($value) 默认没有限制，当设置后，文件大小大于此值将不允许上传。单位为B
  * @method self maxLength($value) 默认没有限制，当设置后，一次只允许上传指定数量文件。
- * @method self multiple($value) 是否多选。
- * @method self drag($value) 是否为拖拽上传
- * @method self joinValues($value) 拼接值
- * @method self extractValue($value) 提取值
+ * @method self multiple($value = true) 是否多选。
+ * @method self drag($value = true) 是否为拖拽上传
+ * @method self joinValues($value = true) 拼接值
+ * @method self extractValue($value = true) 提取值
  * @method self delimiter($value) 拼接符
- * @method self autoUpload($value) 否选择完就自动开始上传
- * @method self hideUploadButton($value) 隐藏上传按钮
+ * @method self autoUpload($value = true) 否选择完就自动开始上传
+ * @method self hideUploadButton($value = true) 隐藏上传按钮
  * @method self stateTextMap($value) 上传状态文案
  * @method self fileField($value) 如果你不想自己存储，则可以忽略此属性。
  * @method self nameField($value) 接口返回哪个字段用来标识文件名

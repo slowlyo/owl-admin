@@ -12,9 +12,9 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self btnLabel($value) 按钮默认名称
  * @method self minLength($value) 限制最小个数。
  * @method self maxLength($value) 限制最大个数。
- * @method self draggable($value) 是否可拖拽排序
- * @method self addable($value) 是否可新增
- * @method self removable($value) 是否可删除
+ * @method self draggable($value = true) 是否可拖拽排序
+ * @method self addable($value = true) 是否可新增
+ * @method self removable($value = true) 是否可删除
  * @method self addButtonClassName($value) 新增按钮 CSS 类名
  * @method self itemClassName($value) 值元素 CSS 类名
  * @method self itemsClassName($value) 值包裹元素 CSS 类名

@@ -21,13 +21,13 @@ use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
  * @method self body($value) Form 表单项集合
  * @method self actions($value) Form 提交按钮，成员为 Action
  * @method self messages($value) 消息提示覆写，默认消息读取的是 API 返回的消息，但是在此可以覆写它。
- * @method self wrapWithPanel($value) 是否让 Form 用 panel 包起来，设置为 false 后，actions 将无效。
+ * @method self wrapWithPanel($value = true) 是否让 Form 用 panel 包起来，设置为 false 后，actions 将无效。
  * @method self panelClassName($value) 外层 panel 的类名
  * @method self api($value) Form 用来保存数据的 api。
  * @method self initApi($value) Form 用来获取初始数据的 api。
  * @method self rules($value) 表单组合校验规则
  * @method self interval($value) 刷新时间(最低 3000)
- * @method self silentPolling($value) 配置刷新时是否显示加载动画
+ * @method self silentPolling($value = true) 配置刷新时是否显示加载动画
  * @method self stopAutoRefreshWhen($value) 通过表达式 来配置停止刷新的条件
  * @method self initAsyncApi($value) Form 用来获取初始数据的 api, 与 initApi 不同的是，会一直轮询请求该接口，直到返回 finished 属性为 true 才 结束。
  * @method self initFetch($value) 设置了 initApi 或者 initAsyncApi 后，默认会开始就发请求，设置为 false 后就不会起始就请求接口
@@ -39,16 +39,16 @@ use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
  * @method self finishedField($value) 如果决定结束的字段名不是 finished 请设置此属性，比如 is_success
  * @method self submitOnChange($value) 表单修改即提交
  * @method self submitOnInit($value) 初始就提交一次
- * @method self resetAfterSubmit($value) 提交后是否重置表单
+ * @method self resetAfterSubmit($value = true) 提交后是否重置表单
  * @method self primaryField($value) 设置主键 id, 当设置后，检测表单是否完成时（asyncApi），只会携带此数据。
  * @method self target($value) 默认表单提交自己会通过发送 api 保存数据，但是也可以设定另外一个 form 的 name 值，或者另外一个 CRUD 模型的 name 值。 如果 target 目标是一个 Form ，则目标 Form 会重新触发 initApi，api 可以拿到当前 form 数据。如果目标是一个 CRUD 模型，则目标模型会重新触发搜索，参数为当前 Form 数据。当目标是 window 时，会把当前表单的数据附带到页面地址上。
  * @method self redirect($value) 设置此属性后，Form 保存成功后，自动跳转到指定页面。支持相对地址，和绝对地址（相对于组内的）。
  * @method self reload($value) 操作完后刷新目标对象。请填写目标组件设置的 name 值，如果填写为 window 则让当前页面整体刷新。
- * @method self autoFocus($value) 是否自动聚焦。
+ * @method self autoFocus($value = true) 是否自动聚焦。
  * @method self canAccessSuperData($value) 指定是否可以自动获取上层的数据并映射到表单项上
  * @method self persistData($value) 指定一个唯一的 key，来配置当前表单是否开启本地缓存
- * @method self clearPersistDataAfterSubmit($value) 指定表单提交成功后是否清除本地缓存
- * @method self preventEnterSubmit($value) 禁用回车提交表单
+ * @method self clearPersistDataAfterSubmit($value = true) 指定表单提交成功后是否清除本地缓存
+ * @method self preventEnterSubmit($value = true) 禁用回车提交表单
  * @method self trimValues($value) trim 当前表单项的每一个值
  * @method self promptPageLeave($value) form 还没保存，即将离开页面前是否弹框确认。
  * @method self columnCount($value) 表单项显示为几列

@@ -9,7 +9,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  *
  * @method self title($value) 标题
  * @method self source($value) 数据源, 绑定当前环境变量
- * @method self affixHeader($value) 是否固定表头
+ * @method self affixHeader($value = true) 是否固定表头
  * @method self columnsTogglable($value) 展示列显示开关, 自动即：列数量大于或等于 5 个时自动开启
  * @method self placeholder($value) 当没数据的时候的文字提示
  * @method self className($value) 外层 CSS 类名
@@ -29,9 +29,9 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self affixRow($value) 底部总结行
  * @method self itemBadge($value) 行角标配置
  * @method self autoFillHeight($value) 内容区域自适应高度
- * @method self resizable($value) 列宽度是否支持调整
- * @method self selectable($value) 支持勾选
- * @method self multiple($value) 勾选icon是否为多选样式checkbox， 默认为radio
+ * @method self resizable($value = true) 列宽度是否支持调整
+ * @method self selectable($value = true) 支持勾选
+ * @method self multiple($value = true) 勾选icon是否为多选样式checkbox， 默认为radio
  */
 class Table extends BaseRenderer
 {

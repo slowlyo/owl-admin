@@ -22,9 +22,9 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self silentPolling($value) 配置刷新时是否隐藏加载动画
  * @method self stopAutoRefreshWhen($value) 通过表达式来配置停止刷新的条件
  * @method self stopAutoRefreshWhenModalIsOpen($value) 当有弹框时关闭自动刷新，关闭弹框又恢复
- * @method self syncLocation($value) 是否将过滤条件的参数同步到地址栏
- * @method self draggable($value) 是否可通过拖拽排序
- * @method self resizable($value) 是否可以调整列宽度
+ * @method self syncLocation($value = true) 是否将过滤条件的参数同步到地址栏
+ * @method self draggable($value = true) 是否可通过拖拽排序
+ * @method self resizable($value = true) 是否可以调整列宽度
  * @method self itemDraggableOn($value) 用表达式来配置是否可拖拽排序
  * @method self saveOrderApi($value) 保存排序的 api。
  * @method self quickSaveApi($value) 快速编辑后用来批量保存的 API。
@@ -47,9 +47,9 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self labelTpl($value) 单条描述模板，keepItemSelectionOnPageChange设置为true后会把所有已选择条目列出来，此选项可以用来定制条目展示文案。
  * @method self headerToolbar($value) 顶部工具栏配置
  * @method self footerToolbar($value) 底部工具栏配置
- * @method self alwaysShowPagination($value) 是否总是显示分页
- * @method self affixHeader($value) 是否固定表头(table 下)
- * @method self autoGenerateFilter($value) 是否开启查询区域，开启后会根据列元素的 searchable 属性值，自动生成查询条件表单
+ * @method self alwaysShowPagination($value = true) 是否总是显示分页
+ * @method self affixHeader($value = true) 是否固定表头(table 下)
+ * @method self autoGenerateFilter($value = true) 是否开启查询区域，开启后会根据列元素的 searchable 属性值，自动生成查询条件表单
  * @method self columns($value)
  * @method self checkOnItemClick($value)
  */
