@@ -1,9 +1,34 @@
 :root {
-    --Layout-brand-bg: #021428;
-    --Layout-aside-bg: #021428;
-    --Layout-aside-subList-bg: #021428;
-    --primary: #358ffd;
+    --slow-bg: #f6f7fa;
+    --slow-menu-bg: #eaf4ff;
+    --slow-shadow: 2px 0 8px #1d23290d;
+
+    --primary: #409EFF;
+    --success: #67C23A;
+    --warning: #E6A23C;
+    --danger: #F56C6C;
+    --info: #909399;
+
+    --body-bg: var(--slow-bg);
+    --Layout-brand-bg: var(--white);
+    --Layout-brand-color: var(--dark);
+    --Layout-aside-bg: var(--white);
+    --Layout-aside-color: var(--dark);
+    --Layout-asideLink-color: var(--dark);
+    --Layout-asideLink-iconColor: var(--dark);
+    --Layout-aside-subList-bg: var(--white);
+    --Layout-asideLink-onActive-arrowColor: var(--dark);
     --Layout-asideLink-fontSize: 0.8rem;
+    --Layout-header-bg: var(--white);
+    --Layout-aside-width: 220px;
+    --Page-main-bg: var(--slow-bg);
+    --Panel-borderWidth: 0;
+    --Panel-bodyPadding: 2rem .75rem;
+    --Panel-border: none;
+    --Panel-boxShadow: var(--slow-shadow);
+    --Page-title-fontSize: 18px;
+    --Page-title-lineHeight: 1;
+    --DropDown-menu-borderWidth: 0;
 }
 
 html, body, .app-wrapper {
@@ -12,6 +37,52 @@ html, body, .app-wrapper {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.amis-scope .cxd-Page-headerRow {
+    padding: 15px 0 5px 0;
+}
+
+.amis-scope .cxd-Page-header {
+    display: flex;
+    align-items: end;
+}
+
+.amis-scope .cxd-Page-subTitle {
+    padding-left: 12px;
+}
+
+.amis-scope .cxd-Page {
+    background: var(--slow-bg);
+}
+
+.amis-scope .cxd-Page-main > .cxd-Page-header {
+    border-bottom: 0;
+}
+
+.amis-scope .cxd-Page-headerRow {
+    border-bottom: 0;
+}
+
+.amis-scope .antd-Page-main > .antd-Page-header {
+    border-bottom: 0;
+}
+
+.amis-scope .antd-Page-headerRow {
+    border-bottom: 0;
+}
+
+.amis-scope .cxd-Layout--asideFixed .cxd-Layout-asideWrap {
+    box-shadow: var(--slow-shadow);
+}
+
+.amis-scope .cxd-Layout .cxd-Layout-header {
+    box-shadow: var(--slow-shadow);
+    z-index: 1201;
+}
+
+.amis-scope .cxd-AsideNav-list {
+    padding: 8px 0;
 }
 
 .bg-default {
@@ -70,23 +141,89 @@ html, body, .app-wrapper {
 
 /*菜单选中样式*/
 .amis-scope .cxd-AsideNav-item.is-active > a {
-    background: var(--primary);
-    color: #fff;
+    background: var(--slow-menu-bg);
+    color: var(--primary);
+    margin: 3px 10px;
+    border-radius: var(--borderRadius);
+}
+
+.amis-scope .cxd-AsideNav-itemArrow:empty:before {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzUiIGhlaWdodD0iMTUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoKIDxnPgogIDx0aXRsZT5MYXllciAxPC90aXRsZT4KICA8ZyBzdHJva2U9Im51bGwiIHN0cm9rZS13aWR0aD0iMCI+CiAgIDxwYXRoIHN0cm9rZT0ibnVsbCIgZmlsbD0iIzM0M2E0MCIgcC1pZD0iNDY4NiIgZD0ibTE4LjIzNjQ0LDEzNy44NDk5N2wtOC40MDM4MSwtOS42MTk3OWwzOS43OTAzOCwtNTIuNTc0MjZsLTM5Ljg0MzAyLC01NC4wMjQzNmw4LjUwOTA4LC05LjQ4MTU0bDQ2LjkzMDkyLDYzLjYyOTQ0bC00Ni45ODM1Niw2Mi4wNzA1MXoiLz4KICA8L2c+CiA8L2c+Cjwvc3ZnPg==);
+    background-size: 100% 100%;
+    width: 0.525rem;
+    height: 0.725rem;
+}
+
+.amis-scope .cxd-AsideNav-item.is-active > a .cxd-AsideNav-itemArrow {
+    color: var(--dark);
+}
+
+.amis-scope .cxd-AsideNav-item.is-active > a .cxd-AsideNav-itemIcon {
+    color: var(--primary);
+}
+
+.amis-scope .cxd-AsideNav-item a {
+    margin: 3px 10px;
+}
+
+.amis-scope .antd-AsideNav-item.is-active > a {
+    background: var(--slow-menu-bg);
+    color: var(--primary);
+    margin: 3px 10px;
+    border-radius: var(--borderRadius);
+}
+
+.amis-scope .antd-AsideNav-itemArrow:empty:before {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzUiIGhlaWdodD0iMTUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoKIDxnPgogIDx0aXRsZT5MYXllciAxPC90aXRsZT4KICA8ZyBzdHJva2U9Im51bGwiIHN0cm9rZS13aWR0aD0iMCI+CiAgIDxwYXRoIHN0cm9rZT0ibnVsbCIgZmlsbD0iIzM0M2E0MCIgcC1pZD0iNDY4NiIgZD0ibTE4LjIzNjQ0LDEzNy44NDk5N2wtOC40MDM4MSwtOS42MTk3OWwzOS43OTAzOCwtNTIuNTc0MjZsLTM5Ljg0MzAyLC01NC4wMjQzNmw4LjUwOTA4LC05LjQ4MTU0bDQ2LjkzMDkyLDYzLjYyOTQ0bC00Ni45ODM1Niw2Mi4wNzA1MXoiLz4KICA8L2c+CiA8L2c+Cjwvc3ZnPg==);
+    background-size: 100% 100%;
+    width: 0.525rem;
+    height: 0.725rem;
+}
+
+.amis-scope .antd-AsideNav-item.is-active > a .cxd-AsideNav-itemArrow {
+    color: var(--dark);
+}
+
+.amis-scope .antd-AsideNav-item.is-active > a .antd-AsideNav-itemIcon {
+    color: var(--primary);
+}
+
+
+.amis-scope .antd-AsideNav-item a {
+    margin: 3px 10px;
 }
 
 /*菜单悬浮样式*/
 .amis-scope .cxd-AsideNav-item a:hover {
-    background: var(--primary);
-    color: #fff;
+    background: var(--slow-menu-bg);
+    color: var(--primary);
+    border-radius: var(--borderRadius);
 }
 
 .amis-scope .cxd-AsideNav-item.is-active > a:hover {
-    background: var(--primary);
-    color: #fff;
+    background: var(--slow-menu-bg);
+    color: var(--primary);
+    border-radius: var(--borderRadius);
 }
 
 .amis-scope .cxd-AsideNav-item a:hover .cxd-AsideNav-itemIcon {
-    color: #fff;
+    color: var(--primary);
+}
+
+.amis-scope .antd-AsideNav-item a:hover {
+    background: var(--slow-menu-bg);
+    color: var(--primary);
+    border-radius: var(--borderRadius);
+}
+
+.amis-scope .antd-AsideNav-item.is-active > a:hover {
+    background: var(--slow-menu-bg);
+    color: var(--primary);
+    border-radius: var(--borderRadius);
+}
+
+.amis-scope .antd-AsideNav-item a:hover .cxd-AsideNav-itemIcon {
+    color: var(--primary);
 }
 
 .amis-scope .cxd-Layout-brand img {
@@ -140,4 +277,94 @@ html, body, .app-wrapper {
 
 .admin-user-info:hover {
     color: var(--black) !important;
+}
+
+.amis-scope .cxd-Crud {
+    padding: 15px;
+    background: white;
+    border-radius: var(--borderRadius);
+    box-shadow: var(--slow-shadow);
+}
+
+.amis-scope .antd-Crud {
+    padding: 15px;
+    background: white;
+    border-radius: var(--borderRadius);
+    box-shadow: var(--slow-shadow);
+}
+
+.amis-scope .cxd-Card {
+    box-shadow: var(--slow-shadow);
+    border: none;
+}
+
+.amis-scope .antd-Card {
+    box-shadow: var(--slow-shadow);
+    border: none;
+}
+
+.amis-scope .cxd-Layout--folded .cxd-AsideNav-subList {
+    border-radius: var(--borderRadius);
+    box-shadow: var(--slow-shadow);
+}
+
+/**滚动条**/
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    width: 6px;
+    background: rgba(#101F1C, 0.1);
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(187 187 187 / 50%);
+    background-clip: padding-box;
+    min-height: 28px;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+    transition: background-color .3s;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(144, 147, 153, .3);
+}
+
+/**滚动条 end**/
+
+
+.amis-scope .dark-Layout-aside {
+    background: var(--dark);
+}
+
+.amis-scope .dark-Layout-brand {
+    background: var(--dark);
+    color: #b4b6bd;
+}
+
+.amis-scope .dark-AsideNav-subList{
+    background: var(--dark);
+}
+.amis-scope .dark-AsideNav-item a{
+    color: #b4b6bd;
+}
+.amis-scope .dark-AsideNav-itemIcon{
+    color: #b4b6bd;
+}
+
+.amis-scope .dark-Layout .dark-Layout-header{
+    background: var(--dark);
+    color: #b4b6bd;
+}
+
+.amis-scope .dark-Page{
+    background: var(--dark);
 }
