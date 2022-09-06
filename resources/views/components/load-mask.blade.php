@@ -14,7 +14,7 @@
 </style>
 
 <div id="load-mask">
-    <img src="{{ asset('vendor/admin/loading.svg') }}" alt="">
+    <img src="{{ asset('vendor/admin/static/loading.svg') }}" alt="">
 </div>
 
 <script>
