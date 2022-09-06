@@ -16,7 +16,6 @@ trait Assets
     private static array $js = [
         'vendor/admin/static/amis/sdk.js',
         'vendor/admin/static/js/history.js',
-        'vendor/admin/static/js/jquery.js',
         'vendor/admin/static/js/axios.min.js',
     ];
 

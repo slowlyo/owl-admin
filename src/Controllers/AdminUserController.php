@@ -56,7 +56,10 @@ class AdminUserController extends AdminController
                     Tag::make()->label('${name}')->className('my-1')
                 ),
                 Column::make()->label('创建时间')->name('created_at')->type('datetime')->sortable(true),
-                $this->rowActionsOnlyEditAndDelete(),
+                amis('operation')->label('操作')->buttons([
+                    $this->rowEditButton(),
+                    $this->rowDeleteButton()->visibleOn('${id != 1}'),
+                ]),
             ]);
 
         return $this->baseList($crud);
