@@ -23,12 +23,29 @@
     --Layout-aside-width: 220px;
     --Page-main-bg: var(--slow-bg);
     --Panel-borderWidth: 0;
-    --Panel-bodyPadding: 2rem .75rem;
     --Panel-border: none;
     --Panel-boxShadow: var(--slow-shadow);
     --Page-title-fontSize: 18px;
     --Page-title-lineHeight: 1;
     --DropDown-menu-borderWidth: 0;
+    --Form-input-onHover-borderColor: var(--primary);
+    --Form-input-onFocused-borderColor: var(--primary);
+    --Form-select-onFocused-borderColor: var(--primary);
+    --Form-select-onFocused-color: var(--primary);
+    --ColorPicker-onFocused-borderColor: var(--primary);
+    --DatePicker-onFocused-borderColor: var(--primary);
+    --InputGroup-select-onFocused-color: var(--primary);
+    --Panel--default-bg: transparent;
+    --Panel--default-headingBorderColor: transparent;
+    --Panel-titleFontSize: var(--fontSizeLg);
+    --ListControl-item-onActive-color: var(--primary);
+    --ListControl-item-onActive-borderColor: var(--primary);
+    --ListControl-item-onActive-before-bg: var(--primary);
+    --Switch-checked-onHover-bgColor: var(--primary);
+    --Switch-checked-onActive-bgColor: var(--primary);
+    --Combo-addBtn-onHover-bg: var(--primary);
+    --Combo-addBtn-onActive-bg: var(--primary);
+    --Form-select-menu-onActive-color: var(--primary);
 }
 
 html, body, .app-wrapper {
@@ -350,21 +367,27 @@ html, body, .app-wrapper {
     color: #b4b6bd;
 }
 
-.amis-scope .dark-AsideNav-subList{
+.amis-scope .dark-AsideNav-subList {
     background: var(--dark);
 }
-.amis-scope .dark-AsideNav-item a{
-    color: #b4b6bd;
-}
-.amis-scope .dark-AsideNav-itemIcon{
+
+.amis-scope .dark-AsideNav-item a {
     color: #b4b6bd;
 }
 
-.amis-scope .dark-Layout .dark-Layout-header{
+.amis-scope .dark-AsideNav-itemIcon {
+    color: #b4b6bd;
+}
+
+.amis-scope .dark-Layout .dark-Layout-header {
     background: var(--dark);
     color: #b4b6bd;
 }
 
-.amis-scope .dark-Page{
+.amis-scope .dark-Page {
     background: var(--dark);
+}
+
+.amis-scope .cxd-Remark > span {
+    border-radius: 50%;
 }
