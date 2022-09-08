@@ -217,7 +217,7 @@ JS
      */
     protected function baseDetail($id): Form
     {
-        return Form::make()->mode('horizontal')->wrapWithPanel(false)->initApi($this->getShowGetDataPath($id));
+        return Form::make()->mode('horizontal')->title('')->actions([])->initApi($this->getShowGetDataPath($id));
     }
 
     /**
