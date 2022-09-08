@@ -38,7 +38,7 @@ class CodeGeneratorController extends AdminController
         $nameHandler =
             'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
 
-        return Form::make()->title('')->mode('horizontal')->resetAfterSubmit()->api($this->getStorePath())->body([
+        return Form::make()->title(' ')->mode('horizontal')->resetAfterSubmit()->api($this->getStorePath())->body([
             Group::make()->body([
                 Group::make()->direction('vertical')->body([
                     InputText::make()

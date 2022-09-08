@@ -172,10 +172,11 @@ JS
     protected function baseFilter(): Form
     {
         return Form::make()
+            ->panelClassName('base-filter')
             ->title('')
             ->actions([
-                Component::make()->type('reset')->label('重置'),
-                Component::make()->type('submit')->label('搜索')->level('primary'),
+                amis('reset')->label('重置'),
+                amis('submit')->label('搜索')->level('primary'),
             ]);
     }
 
@@ -207,7 +208,7 @@ JS
      */
     protected function baseForm(): Form
     {
-        return Form::make()->title('')->mode('horizontal')->redirect($this->getListPath());
+        return Form::make()->panelClassName('px-48')->title(' ')->mode('horizontal')->redirect($this->getListPath());
     }
 
     /**
@@ -217,7 +218,7 @@ JS
      */
     protected function baseDetail($id): Form
     {
-        return Form::make()->mode('horizontal')->title('')->actions([])->initApi($this->getShowGetDataPath($id));
+        return Form::make()->panelClassName('px-48')->title(' ')->mode('horizontal')->actions([])->initApi($this->getShowGetDataPath($id));
     }
 
     /**

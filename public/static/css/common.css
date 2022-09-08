@@ -3,11 +3,11 @@
     --slow-menu-bg: #eaf4ff;
     --slow-shadow: 2px 0 8px #1d23290d;
 
-    --primary: #409EFF;
-    --success: #67C23A;
-    --warning: #E6A23C;
-    --danger: #F56C6C;
-    --info: #409EFF;
+    --primary: #3580ee;
+    --success: #1da05a;
+    --warning: #eda02c;
+    --danger: #ce3151;
+    --info: #3580ee;
 
     --body-bg: var(--slow-bg);
     --Layout-brand-bg: var(--white);
@@ -46,6 +46,29 @@
     --Combo-addBtn-onHover-bg: var(--primary);
     --Combo-addBtn-onActive-bg: var(--primary);
     --Form-select-menu-onActive-color: var(--primary);
+    --Button--default-onHover-color: var(--primary);
+    --Button--default-onActive-color: var(--primary);
+    --Button--default-onActive-border: var(--primary);
+    --primary-onActive: var(--primary);
+    --info-onHover: var(--info);
+    --info-onActive: var(--info);
+    --link-onClick-color: var(--primary);
+    --Button--info-onActive-bg: var(--info);
+    --Button--info-onActive-border: var(--info);
+    --Button--info-onHover-bg: var(--info);
+    --Button--info-onHover-border: var(--info);
+    --Calendar-btn-onActive-bg: var(--primary);
+    --Calendar-btn-onActive-border: var(--primary);
+    --Calendar-btn-onHover-bg: var(--primary);
+    --Calendar-btn-onHover-border: var(--primary);
+    --Calendar-shortcut-onHover-color: var(--primary);
+    --DatePicker-header-onHover-color: var(--primary);
+    --PickerColumns-confirmAction-color: var(--primary);
+    --Button-paddingX: 14px;
+    --Page-content-paddingY: .5rem;
+    --Page-content-paddingX: .5rem;
+    --Panel-footerPadding: 1rem var(--gap-base);
+    --Panel-headingPadding: var(--gap-base);
 }
 
 html, body, .app-wrapper {
@@ -390,4 +413,13 @@ html, body, .app-wrapper {
 
 .amis-scope .cxd-Remark > span {
     border-radius: 50%;
+}
+
+.bg-slow {
+    background: var(--slow-bg) !important;
+}
+
+.base-filter{
+    background: #f7f7f9 !important;
+    box-shadow: 0 0 0 0 !important;
 }

@@ -27,15 +27,17 @@ class AdminUserController extends AdminController
     public function index(Request $request): JsonResponse|JsonResource
     {
         if ($this->actionOfGetData()) {
-            $username = $request->username;
+            $keyword = $request->keyword;
 
-            $items = $this->service
+            $query = $this->service
                 ->query()
                 ->with('roles')
-                ->when($username, fn($query) => $query->where('username', 'like', "%$username%"))
-                ->paginate($request->input('perPage', 20))
-                ->items();
-            $total = $this->service->query()->count();
+                ->when($keyword, function ($query) use ($keyword) {
+                    $query->where('username', 'like', "%{$keyword}%")->orWhere('name', 'like', "%{$keyword}%");
+                });
+
+            $items = $query->paginate($request->input('perPage', 20))->items();
+            $total = $query->count();
 
             return $this->response()->success(compact('items', 'total'));
         }
@@ -46,7 +48,9 @@ class AdminUserController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
-            ->filterTogglable(false)
+            ->filter($this->baseFilter()->body(
+                InputText::make()->name('keyword')->label('关键字')->size('md')->placeholder('搜索用户名/名称')
+            ))
             ->columns([
                 Column::make()->label('ID')->name('id')->sortable(true),
                 Column::make()->label('头像')->name('avatar')->type('avatar')->src('${avatar}'),
