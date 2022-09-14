@@ -21,13 +21,13 @@ use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
  * @method self labelRemark($value) 表单项标签描述
  * @method self description($value) 表单项描述
  * @method self placeholder($value) 表单项描述
- * @method self inline($value = true) 是否为 内联 模式
- * @method self submitOnChange($value = true) 是否该表单项值发生变化时就提交当前表单。
- * @method self disabled($value = true) 当前表单项是否是禁用状态
+ * @method self inline($value) 是否为 内联 模式
+ * @method self submitOnChange($value) 是否该表单项值发生变化时就提交当前表单。
+ * @method self disabled($value) 当前表单项是否是禁用状态
  * @method self disabledOn($value) 当前表单项是否禁用的条件
  * @method self visible($value) 当前表单项是否禁用的条件
  * @method self visibleOn($value) 当前表单项是否禁用的条件
- * @method self required($value = true) 是否为必填。
+ * @method self required($value) 是否为必填。
  * @method self requiredOn($value) 通过表达式来配置当前表单项是否为必填。
  * @method self validations($value) 表单项值格式验证，支持设置多个，多个规则用英文逗号隔开。
  * @method self validateApi($value) 表单校验接口

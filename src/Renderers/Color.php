@@ -11,7 +11,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self value($value) 显示的颜色值
  * @method self name($value) 在其他组件中，时，用作变量映射
  * @method self defaultColor($value) 默认颜色值
- * @method self showValue($value = true) 是否显示右边的颜色值
+ * @method self showValue($value) 是否显示右边的颜色值
  */
 class Color extends BaseRenderer
 {

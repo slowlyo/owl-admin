@@ -7,7 +7,7 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  *
  * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-rich-text
  *
- * @method self saveAsUbb($value = true) 是否保存为 ubb 格式
+ * @method self saveAsUbb($value) 是否保存为 ubb 格式
  * @method self receiver($value) 默认的图片保存 API
  * @method self videoReceiver($value) 默认的视频保存 API
  * @method self fileField($value) 上传文件时的字段名

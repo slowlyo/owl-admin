@@ -63,8 +63,8 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            InputText::make()->name('name')->label('名称')->required(),
-            InputText::make()->name('slug')->label('标识')->required(),
+            InputText::make()->name('name')->label('名称')->required(true),
+            InputText::make()->name('slug')->label('标识')->required(true),
             TreeSelect::make()
                 ->name('parent_id')
                 ->label('父级')
@@ -82,7 +82,7 @@ class AdminPermissionController extends AdminController
             InputNumber::make()
                 ->name('order')
                 ->label('排序')
-                ->required()
+                ->required(true)
                 ->labelRemark('大的在前')
                 ->displayMode('enhance')
                 ->min(0)

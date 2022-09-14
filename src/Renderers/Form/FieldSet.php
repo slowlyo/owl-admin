@@ -16,8 +16,8 @@ use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
  * @method self title($value) 标题
  * @method self body($value) 表单项集合
  * @method self mode($value) 展示默认，同 Form 中的模式
- * @method self collapsable($value = true) 是否可折叠
- * @method self collapsed($value = true) 默认是否折叠
+ * @method self collapsable($value) 是否可折叠
+ * @method self collapsed($value) 默认是否折叠
  * @method self collapseTitle($value) 收起的标题
  */
 class FieldSet extends BaseRenderer

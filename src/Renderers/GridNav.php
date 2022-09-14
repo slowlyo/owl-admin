@@ -11,11 +11,11 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self itemClassName($value) 列表项 css 类名
  * @method self value($value) 图片数组
  * @method self source($value) 数据源
- * @method self square($value = true) 是否将列表项固定为正方形
- * @method self center($value = true) 是否将列表项内容居中显示
- * @method self border($value = true) 是否显示列表项边框
+ * @method self square($value) 是否将列表项固定为正方形
+ * @method self center($value) 是否将列表项内容居中显示
+ * @method self border($value) 是否显示列表项边框
  * @method self gutter($value) 列表项之间的间距，默认单位为px
- * @method self reverse($value = true) 是否调换图标和文本的位置
+ * @method self reverse($value) 是否调换图标和文本的位置
  * @method self iconRatio($value) 图标宽度占比，单位%
  * @method self direction($value) 列表项内容排列的方向，可选值为 horizontal 、vertical
  * @method self columnNum($value) 列数

@@ -10,11 +10,11 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self options($value) 选项组
  * @method self source($value) 动态选项组
  * @method self delimeter($value) 拼接符
- * @method self joinValues($value = true) 拼接值
- * @method self extractValue($value = true) 提取值
+ * @method self joinValues($value) 拼接值
+ * @method self extractValue($value) 提取值
  * @method self searchApi($value) 如果想通过接口检索，可以设置这个 api。
  * @method self resultListModeFollowSelect($value) 结果面板跟随模式，目前只支持list、table、tree（tree 目前只支持非延时加载的tree）
- * @method self statistics($value = true) 是否显示统计数据
+ * @method self statistics($value) 是否显示统计数据
  * @method self selectTitle($value) 左侧的标题文字
  * @method self resultTitle($value) 右侧结果的标题文字
  * @method self sortable($value) 结果可以进行拖拽排序（结果列表为树时，不支持排序）

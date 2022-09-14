@@ -11,8 +11,8 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self className($value) 外层 CSS 类名
  * @method self value($value) 进度值
  * @method self placeholder($value) 占位文本
- * @method self showLabel($value = true) 是否展示进度文本
- * @method self stripe($value = true) 背景是否显示条纹
+ * @method self showLabel($value) 是否展示进度文本
+ * @method self stripe($value) 背景是否显示条纹
  * @method self animate($value) type 为 line，可支持动画
  * @method self map($value) 进度颜色映射
  * @method self valueTpl($value) 自定义格式化内容

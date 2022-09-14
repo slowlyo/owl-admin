@@ -19,11 +19,11 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self unmountOnExit($value) 切换 tab 的时候销毁
  * @method self addable($value) 是否支持新增
  * @method self addBtnText($value) 增加    新增按钮文案
- * @method self closable($value = true) 是否支持删除
- * @method self draggable($value = true) 是否支持拖拽
- * @method self showTip($value = true) 是否支持提示
+ * @method self closable($value) 是否支持删除
+ * @method self draggable($value) 是否支持拖拽
+ * @method self showTip($value) 是否支持提示
  * @method self showTipClassName($value) 提示的类
- * @method self editable($value = true) 收否可编辑标签名
+ * @method self editable($value) 收否可编辑标签名
  * @method self scrollable($value =true) 是否导航支持内容溢出滚动。（属性废弃）
  * @method self sidePosition($value) sidebar 模式下，标签栏位置 (left / right)
  */

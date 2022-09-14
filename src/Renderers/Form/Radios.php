@@ -13,7 +13,7 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self labelField($value) 选项标签字段
  * @method self valueField($value) 选项值字段
  * @method self columnsCount($value) 选项按几列显示，默认为一列
- * @method self inline($value = true) 是否显示为一行
+ * @method self inline($value) 是否显示为一行
  * @method self selectFirst($value) 是否默认选中第一个
  * @method self autoFill($value) 自动填充
  */

@@ -73,8 +73,8 @@ class AdminUserController extends AdminController
     {
         return $this->baseForm()->body([
             InputImage::make()->label('头像')->name('avatar')->receiver($this->uploadImagePath()),
-            InputText::make()->label('用户名')->name('username')->required(),
-            InputText::make()->label('名称')->name('name')->required(),
+            InputText::make()->label('用户名')->name('username')->required(true),
+            InputText::make()->label('名称')->name('name')->required(true),
             InputPassword::make()->label('密码')->name('password'),
             InputPassword::make()
                 ->label('确认密码')

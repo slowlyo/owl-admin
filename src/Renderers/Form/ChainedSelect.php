@@ -13,8 +13,8 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self delimiter($value) 拼接符
  * @method self labelField($value) 选项标签字段
  * @method self valueField($value) 选项值字段
- * @method self joinValues($value = true) 拼接值
- * @method self extractValue($value = true) 提取值
+ * @method self joinValues($value) 拼接值
+ * @method self extractValue($value) 提取值
  */
 class ChainedSelect extends FormItem
 {

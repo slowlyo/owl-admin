@@ -64,11 +64,11 @@ class AdminMenuController extends AdminController
     {
         return $this->baseForm()->body([
             Group::make()->body([
-                InputText::make()->name('title')->label('名称')->required(),
+                InputText::make()->name('title')->label('名称')->required(true),
                 InputText::make()
                     ->name('icon')
                     ->label('图标')
-                    ->required()
+                    ->required(true)
                     ->placeholder('eg: fa fa-xxx')
                     ->description('可以使用<a href="https://fontawesome.com/search?m=free" target="_blank">Font Awesome</a>图标'),
             ]),
@@ -83,13 +83,13 @@ class AdminMenuController extends AdminController
                 InputNumber::make()
                     ->name('order')
                     ->label('排序')
-                    ->required()
+                    ->required(true)
                     ->labelRemark('大的在前')
                     ->displayMode('enhance')
                     ->min(0)
                     ->value(0),
             ]),
-            InputText::make()->name('url')->label('链接')->required()->placeholder('eg: /admin_menus'),
+            InputText::make()->name('url')->label('链接')->required(true)->placeholder('eg: /admin_menus'),
             ListSelect::make()
                 ->name('url_type')
                 ->label('类型')
@@ -98,7 +98,7 @@ class AdminMenuController extends AdminController
             InputText::make()
                 ->name('api')
                 ->label('页面Api')
-                ->required()
+                ->required(true)
                 ->labelRemark('schemaApi, 页面初始化请求的api, 需要与Controller中的queryPath一致'),
             InputSwitch::make()->name('visible')->label('是否可见')->onText('可见')->offText('不可见')->value(1),
             InputText::make()->name('class_name')->label('类名')->labelRemark('菜单的CSS类名, 一般用于自定义样式'),

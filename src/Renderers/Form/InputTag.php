@@ -13,9 +13,9 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self delimiter($value) 拼接符
  * @method self labelField($value) 选项标签字段
  * @method self valueField($value) 选项值字段
- * @method self joinValues($value = true) 拼接值
- * @method self extractValue($value = true) 提取值
- * @method self clearable($value = true) 在有值的时候是否显示一个删除图标在右侧。
+ * @method self joinValues($value) 拼接值
+ * @method self extractValue($value) 提取值
+ * @method self clearable($value) 在有值的时候是否显示一个删除图标在右侧。
  * @method self resetValue($value) 删除后设置此配置项给定的值。
  * @method self max($value) 允许添加的标签的最大数量
  * @method self maxTagLength($value) 单个标签的最大文本长度

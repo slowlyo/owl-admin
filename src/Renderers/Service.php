@@ -17,7 +17,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self initFetchSchema($value) 是否默认拉取 Schema
  * @method self messages($value) 消息提示覆写，默认消息读取的是接口返回的 toast 提示文字，但是在此可以覆写它。
  * @method self interval($value) 轮询时间间隔，单位 ms(最低 1000)
- * @method self silentPolling($value = true) 配置轮询时是否显示加载动画
+ * @method self silentPolling($value) 配置轮询时是否显示加载动画
  * @method self stopAutoRefreshWhen($value) 配置停止轮询的条件
  */
 class Service extends BaseRenderer

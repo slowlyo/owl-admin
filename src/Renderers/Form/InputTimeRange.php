@@ -11,8 +11,8 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @method self format($value) 时间范围选择器值格式
  * @method self inputFormat($value) 时间范围选择器显示格式
  * @method self placeholder($value) 占位文本
- * @method self clearable($value = true) 是否可清除
- * @method self embed($value = true) 是否内联模式
+ * @method self clearable($value) 是否可清除
+ * @method self embed($value) 是否内联模式
  */
 class InputTimeRange extends FormItem
 {

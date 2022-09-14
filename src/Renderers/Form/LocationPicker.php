@@ -9,7 +9,7 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  *
  * @method self vendor($value) 地图厂商，目前只实现了百度地图
  * @method self ak($value) 百度地图的 ak
- * @method self clearable($value = true) 输入框是否可清空
+ * @method self clearable($value) 输入框是否可清空
  * @method self placeholder($value) 默认提示
  * @method self coordinatesType($value) 默为百度坐标，可设置为'gcj02'
  */

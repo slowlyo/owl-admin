@@ -13,7 +13,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self language($value) 所使用的高亮语言，默认是 plaintext
  * @method self tabSize($value) 默认 tab 大小
  * @method self editorTheme($value) 主题，还有 'vs-dark'
- * @method self wordWrap($value = true) 是否折行
+ * @method self wordWrap($value) 是否折行
  */
 class Code extends BaseRenderer
 {

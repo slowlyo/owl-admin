@@ -15,7 +15,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self className($value) 自定义类名
  * @method self mode($value) 指定步骤条方向。目前支持水平（horizontal）和竖直（vertical）两种方向
  * @method self labelPlacement($value) 指定标签放置位置，默认水平放图标右侧，可选 (vertical) 放图标下方
- * @method self progressDot($value = true) 点状步骤条
+ * @method self progressDot($value) 点状步骤条
  */
 class Steps extends BaseRenderer
 {

@@ -9,7 +9,7 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/form/chart-radios
  *
  * @method self config($value) 图表配置
- * @method self showTooltipOnHighlight($value = true) 高亮的时候是否显示 tooltip
+ * @method self showTooltipOnHighlight($value) 高亮的时候是否显示 tooltip
  * @method self chartValueField($value) 图表数值字段名
  */
 class ChartRadios extends FormItem

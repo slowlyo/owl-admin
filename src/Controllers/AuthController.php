@@ -49,8 +49,8 @@ class AuthController extends AdminController
                 ),
             ])
             ->body([
-                InputText::make()->name('username')->label('用户名')->required(),
-                InputPassword::make()->name('password')->label('密码')->required(),
+                InputText::make()->name('username')->label('用户名')->required(true),
+                InputPassword::make()->name('password')->label('密码')->required(true),
                 $remember,
             ]);
 
@@ -147,7 +147,7 @@ class AuthController extends AdminController
             ->api('put:' . $this->adminPrefix . '/user_setting' . '/' . $user->id)
             ->body([
                 InputImage::make()->label('头像')->name('avatar')->receiver($this->uploadImagePath()),
-                InputText::make()->label('名称')->name('name')->required(),
+                InputText::make()->label('名称')->name('name')->required(true),
                 InputPassword::make()->label('密码')->name('password'),
                 InputPassword::make()
                     ->label('确认密码')

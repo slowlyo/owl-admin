@@ -15,7 +15,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self position($value) 角标位置， 可以是 top-right/top-left/bottom-right/bottom-left
  * @method self offset($value) 角标位置，offset 相对于 position 位置进行水平、垂直偏移
  * @method self className($value) 外层 dom 的类名
- * @method self animation($value = true) 角标是否显示动画
+ * @method self animation($value) 角标是否显示动画
  * @method self style($value) 角标的自定义样式
  * @method self visibleOn($value) 控制角标的显示隐藏
  */

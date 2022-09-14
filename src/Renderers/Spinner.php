@@ -8,7 +8,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  *
  * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/spinner
  *
- * @method self show($value = true) 是否显示 spinner 组件
+ * @method self show($value) 是否显示 spinner 组件
  * @method self className($value) 图标父级标签的自定义 class
  * @method self spinnerClassName($value) 组件中 icon 所在标签的自定义 class
  * @method self spinnerWrapClassName($value) 作为容器使用时组件最外层标签的自定义 class

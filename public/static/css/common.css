@@ -3,11 +3,11 @@
     --slow-menu-bg: #eaf4ff;
     --slow-shadow: 2px 0 8px #1d23290d;
 
-    --primary: #3580ee;
-    --success: #1da05a;
-    --warning: #eda02c;
-    --danger: #ce3151;
-    --info: #3580ee;
+    --primary: #358ffd;
+    --success: #03b431;
+    --warning: #fc7e19;
+    --danger: #f24242;
+    --info: #358ffd;
 
     --body-bg: var(--slow-bg);
     --Layout-brand-bg: var(--white);
@@ -64,7 +64,7 @@
     --Calendar-shortcut-onHover-color: var(--primary);
     --DatePicker-header-onHover-color: var(--primary);
     --PickerColumns-confirmAction-color: var(--primary);
-    --Button-paddingX: 14px;
+    --Button-paddingX: 15px;
     --Page-content-paddingY: .5rem;
     --Page-content-paddingX: .5rem;
     --Panel-footerPadding: 1rem var(--gap-base);
