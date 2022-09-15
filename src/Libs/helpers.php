@@ -92,3 +92,19 @@ if (!function_exists('amis')) {
         return $component;
     }
 }
+
+if (!function_exists('admin_encode')) {
+    function admin_encode($str, $key = null)
+    {
+        return base64_encode(openssl_encrypt($str, 'DES-ECB', $key ?? config('app.key')));
+    }
+}
+
+if (!function_exists('admin_decode')) {
+    function admin_decode($decodeStr, $key = null)
+    {
+        $str = openssl_decrypt(base64_decode($decodeStr), 'DES-ECB', $key ?? config('app.key'));
+
+        return $str ?: '';
+    }
+}

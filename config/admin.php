@@ -39,9 +39,11 @@ return [
             ],
         ],
         'remember'   => true,
+        'captcha'    => true,
         'except'     => [
             'login',
             'logout',
+            'login/reload-captcha',
         ],
     ],
 

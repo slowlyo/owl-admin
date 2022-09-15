@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Slowlyo\SlowAdmin\Libs;
 
 use Slowlyo\SlowAdmin\Renderers\BaseRenderer;

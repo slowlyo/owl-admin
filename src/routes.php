@@ -9,6 +9,7 @@
     $router->get('/login', [\Slowlyo\SlowAdmin\Controllers\AuthController::class, 'index']);
     $router->post('/login', [\Slowlyo\SlowAdmin\Controllers\AuthController::class, 'login']);
     $router->get('/logout', [\Slowlyo\SlowAdmin\Controllers\AuthController::class, 'logout']);
+    $router->get('/login/reload-captcha', [\Slowlyo\SlowAdmin\Controllers\AuthController::class, 'reloadCaptcha']);
 
     $router->get('/base', [\Slowlyo\SlowAdmin\Controllers\IndexController::class, 'base']);
     $router->get('/no-content', [\Slowlyo\SlowAdmin\Controllers\IndexController::class, 'noContent']);
