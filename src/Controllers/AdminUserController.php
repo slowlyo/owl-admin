@@ -32,12 +32,13 @@ class AdminUserController extends AdminController
             $query = $this->service
                 ->query()
                 ->with('roles')
+                ->select(['id', 'name', 'username', 'avatar', 'created_at'])
                 ->when($keyword, function ($query) use ($keyword) {
                     $query->where('username', 'like', "%{$keyword}%")->orWhere('name', 'like', "%{$keyword}%");
                 });
 
-            $items = $query->paginate($request->input('perPage', 20))->items();
-            $total = $query->count();
+            $items = (clone $query)->paginate($request->input('perPage', 20))->items();
+            $total = (clone $query)->count();
 
             return $this->response()->success(compact('items', 'total'));
         }
@@ -61,7 +62,7 @@ class AdminUserController extends AdminController
                 ),
                 Column::make()->label('创建时间')->name('created_at')->type('datetime')->sortable(true),
                 amis('operation')->label('操作')->buttons([
-                    $this->rowEditButton(),
+                    $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${id != 1}'),
                 ]),
             ]);

@@ -47,7 +47,7 @@ class AdminRoleController extends AdminController
                 Column::make()->label('创建时间')->name('created_at')->type('datetime')->sortable(true),
                 Column::make()->label('更新时间')->name('updated_at')->type('datetime')->sortable(true),
                 amis('operation')->label('操作')->buttons([
-                    $this->rowEditButton(),
+                    $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${slug != "administrator"}'),
                 ]),
             ]);

@@ -6,6 +6,7 @@ use Slowlyo\SlowAdmin\Renderers\Page;
 use Slowlyo\SlowAdmin\Renderers\CRUD;
 use Slowlyo\SlowAdmin\Renderers\Button;
 use Slowlyo\SlowAdmin\Renderers\Action;
+use Slowlyo\SlowAdmin\Renderers\Dialog;
 use Slowlyo\SlowAdmin\Renderers\Component;
 use Slowlyo\SlowAdmin\Renderers\Form\Form;
 use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
@@ -55,14 +56,13 @@ JS
      *
      * @return Action
      */
-    protected function backListButton(): Action
+    protected function backButton(): Action
     {
         return Button::make()
-            ->label('列表')
-            ->icon('fa fa-list')
+            ->label('返回')
+            ->icon('fa-solid fa-chevron-left')
             ->level('primary')
-            ->actionType('link')
-            ->link($this->getListPath());
+            ->onClick('window.history.back()');
     }
 
     /**
@@ -83,46 +83,74 @@ JS
     /**
      * 新增按钮
      *
+     * @param bool $dialog
+     *
      * @return Action
      */
-    protected function createButton(): Action
+    protected function createButton($dialog = false): Action
     {
-        return Button::make()
+        $form = $this->form()->api($this->getStorePath());
+
+        $button = Button::make()
             ->label('新增')
             ->icon('fa fa-add')
-            ->level('primary')
-            ->actionType('link')
-            ->link($this->getCreatePath());
+            ->level('primary');
+
+        if ($dialog) {
+            $button->actionType('dialog')->dialog(Dialog::make()->title('新增')->body($form));
+        } else {
+            $button = $button->actionType('link')->link($this->getCreatePath());
+        }
+
+        return $button;
     }
 
     /**
      * 行编辑按钮
      *
+     * @param bool $dialog
+     *
      * @return Action
      */
-    protected function rowEditButton(): Action
+    protected function rowEditButton($dialog = false): Action
     {
-        return Button::make()
+        $button = Button::make()
             ->label('编辑')
             ->icon('fa-regular fa-pen-to-square')
-            ->level('link')
-            ->actionType('link')
-            ->link($this->getEditPath());
+            ->level('link');
+
+        if ($dialog) {
+            $form = $this->form()->api($this->getUpdatePath('$id'))->initApi($this->getEditGetDataPath('$id'));
+
+            $button = $button->actionType('dialog')->dialog(Dialog::make()->title('编辑')->body($form));
+        } else {
+            $button = $button->actionType('link')->link($this->getEditPath());
+        }
+
+        return $button;
     }
 
     /**
      * 行详情按钮
      *
+     * @param bool $dialog
+     *
      * @return Action
      */
-    protected function rowShowButton(): Action
+    protected function rowShowButton($dialog = false): Action
     {
-        return Button::make()
+        $button = Button::make()
             ->label('详情')
             ->icon('fa-regular fa-eye')
-            ->level('link')
-            ->actionType('link')
-            ->link($this->getShowPath());
+            ->level('link');
+
+        if ($dialog) {
+            $button = $button->actionType('dialog')->dialog(Dialog::make()->title('详情')->body($this->detail('$id')));
+        } else {
+            $button = $button->actionType('link')->link($this->getShowPath());
+        }
+
+        return $button;
     }
 
     /**
@@ -145,21 +173,23 @@ JS
     /**
      * 操作列
      *
+     * @param bool $dialog
+     *
      * @return BaseRenderer
      */
-    protected function rowActions(): BaseRenderer
+    protected function rowActions($dialog = false): BaseRenderer
     {
         return Component::make()->setType('operation')->label('操作')->buttons([
-            $this->rowShowButton(),
-            $this->rowEditButton(),
+            $this->rowShowButton($dialog),
+            $this->rowEditButton($dialog),
             $this->rowDeleteButton(),
         ]);
     }
 
-    protected function rowActionsOnlyEditAndDelete(): BaseRenderer
+    protected function rowActionsOnlyEditAndDelete($dialog = false): BaseRenderer
     {
         return Component::make()->setType('operation')->label('操作')->buttons([
-            $this->rowEditButton(),
+            $this->rowEditButton($dialog),
             $this->rowDeleteButton(),
         ]);
     }
@@ -175,7 +205,7 @@ JS
             ->panelClassName('base-filter')
             ->title('')
             ->actions([
-                amis('reset')->label('重置'),
+                Button::make()->label('重置')->actionType('clear-and-submit'),
                 amis('submit')->label('搜索')->level('primary'),
             ]);
     }
@@ -218,7 +248,12 @@ JS
      */
     protected function baseDetail($id): Form
     {
-        return Form::make()->panelClassName('px-48')->title(' ')->mode('horizontal')->actions([])->initApi($this->getShowGetDataPath($id));
+        return Form::make()
+            ->panelClassName('px-48')
+            ->title(' ')
+            ->mode('horizontal')
+            ->actions([])
+            ->initApi($this->getShowGetDataPath($id));
     }
 
     /**
