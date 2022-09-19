@@ -57,7 +57,7 @@ class AdminPermissionController extends AdminController
                 $this->rowActionsOnlyEditAndDelete(true),
             ]);
 
-        return $this->baseList($crud);
+        return $this->baseList($crud)->toolbar([$this->createButton(true)]);
     }
 
     public function form(): Form

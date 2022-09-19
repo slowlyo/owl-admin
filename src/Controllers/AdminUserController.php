@@ -67,7 +67,7 @@ class AdminUserController extends AdminController
                 ]),
             ]);
 
-        return $this->baseList($crud);
+        return $this->baseList($crud)->toolbar([$this->createButton(true)]);
     }
 
     public function form(): Form
