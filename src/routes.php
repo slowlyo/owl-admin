@@ -29,6 +29,8 @@
     $router->resource('admin_users', \Slowlyo\SlowAdmin\Controllers\AdminUserController::class);
     // 菜单
     $router->resource('admin_menus', \Slowlyo\SlowAdmin\Controllers\AdminMenuController::class);
+    // 快速编辑
+    $router->post('admin_menu_quick_save', [\Slowlyo\SlowAdmin\Controllers\AdminMenuController::class, 'quickEdit']);
     // 角色
     $router->resource('admin_roles', \Slowlyo\SlowAdmin\Controllers\AdminRoleController::class);
     // 权限

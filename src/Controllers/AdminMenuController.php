@@ -40,9 +40,9 @@ class AdminMenuController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
-            ->expandConfig(['expand' => 'all'])
             ->filterTogglable(false)
             ->footerToolbar(['statistics'])
+            ->quickSaveApi(admin_url('admin_menu_quick_save'))
             ->bulkActions([$this->bulkDeleteButton()->reload('window')])
             ->columns([
                 Column::make()->label('ID')->name('id')->sortable(true),
@@ -52,10 +52,13 @@ class AdminMenuController extends AdminController
                     '${icon}',
                 ]),
                 Column::make()->label('链接')->name('url'),
+                Column::make()->label('排序')->name('order')->quickEdit(
+                    InputNumber::make()->min(0)
+                ),
                 Column::make()->label('可见')->name('visible')->type('status'),
                 Column::make()->label('创建时间')->name('created_at')->type('datetime')->sortable(true),
                 $this->rowActionsOnlyEditAndDelete(),
-            ]);
+            ])->expandConfig(['expand' => 'all']);
 
         return $this->baseList($crud);
     }
@@ -115,5 +118,16 @@ class AdminMenuController extends AdminController
     public function detail($id): Form
     {
         return $this->baseDetail($id)->body([]);
+    }
+
+    public function quickEdit()
+    {
+        $data = request()->rows;
+
+        foreach ($data as $item) {
+            $this->service->update($item['id'], $item);
+        }
+
+        return $this->autoResponse(true);
     }
 }
