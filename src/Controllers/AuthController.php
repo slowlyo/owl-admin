@@ -79,9 +79,9 @@ class AuthController extends AdminController
             ->body(
                 Wrapper::make()->size('none')->className('w-96 pb-60')->body([
                     Wrapper::make()
-                        ->className('w-full flex justify-end p-5 text-2xl')
+                        ->className('w-full flex justify-center p-5 text-2xl')
                         ->size('none')
-                        ->body('Slow Admin'),
+                        ->body(config('admin.name')),
                     Card::make()->body($form),
                 ])
             );
