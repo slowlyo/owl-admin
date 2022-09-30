@@ -412,7 +412,7 @@ html, body, .app-wrapper {
 }
 
 .amis-scope .cxd-Remark > span {
-    border-radius: 50%;
+    background: transparent;
 }
 
 .bg-slow {

@@ -214,12 +214,14 @@ class AuthController extends AdminController
 
         $form = Form::make()
             ->title('')
+            ->panelClassName('px-64')
             ->mode('horizontal')
             ->data($user)
             ->api('put:' . $this->adminPrefix . '/user_setting' . '/' . $user->id)
             ->body([
                 InputImage::make()->label('头像')->name('avatar')->receiver($this->uploadImagePath()),
                 InputText::make()->label('名称')->name('name')->required(true),
+                InputPassword::make()->label('原密码')->name('old_password'),
                 InputPassword::make()->label('密码')->name('password'),
                 InputPassword::make()
                     ->label('确认密码')
@@ -233,7 +235,14 @@ class AuthController extends AdminController
 
     public function saveUserSetting($id): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
-        $result = $this->service->updateUserSetting($id, request()->only(['avatar', 'name']));
+        $result = $this->service->updateUserSetting($id,
+            request()->only([
+                'avatar',
+                'name',
+                'old_password',
+                'password',
+                'confirm_password',
+            ]));
 
         return $this->autoResponse($result);
     }

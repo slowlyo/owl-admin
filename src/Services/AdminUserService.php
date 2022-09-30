@@ -3,6 +3,7 @@
 namespace Slowlyo\SlowAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 use Slowlyo\SlowAdmin\Models\AdminUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -86,25 +87,36 @@ class AdminUserService extends AdminService
 
     public function updateUserSetting($primaryKey, $data): bool
     {
-        if (!$this->passwordHandler($data)) {
+        if (!$this->passwordHandler($primaryKey, $data)) {
             return false;
         }
 
         return parent::update($primaryKey, $data);
     }
 
-    public function passwordHandler(&$data): bool
+    public function passwordHandler($id, &$data): bool
     {
         $password = Arr::get($data, 'password');
 
         if ($password) {
             if ($password !== Arr::get($data, 'confirm_password')) {
-                $this->setError('两次输入密码不一致');
-                return false;
+                return $this->setError('两次输入密码不一致');
+            }
+
+            if (!Arr::get($data, 'old_password')) {
+                return $this->setError('请输入原密码');
+            }
+
+            $oldPassword = $this->query()->where('id', $id)->value('password');
+
+            if (!Hash::check($data['old_password'], $oldPassword)) {
+                return $this->setError('密码错误');
             }
 
             $data['password'] = bcrypt($password);
+
             unset($data['confirm_password']);
+            unset($data['old_password']);
         }
 
         return true;
