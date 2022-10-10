@@ -2,14 +2,16 @@
 
 return [
     // 应用名称
-    'name' => 'Slow Admin',
+    'name'           => 'Slow Admin',
 
     // 应用 logo
-    'logo' => 'vendor/admin/logo.png',
+    'logo'           => 'vendor/admin/logo.png',
 
+    // 默认头像
     'default_avatar' => 'vendor/admin/default-avatar.png',
 
-    'debug' => true,
+    // amis debug
+    'debug'          => true,
 
     'directory' => app_path('Admin'),
 
@@ -66,5 +68,8 @@ return [
 
     'https' => false,
 
-    'show_development_tools' => true,
+    'show_development_tools'               => true,
+
+    // 是否显示 [权限] 功能中的自动生成按钮
+    'show_auto_generate_permission_button' => true,
 ];

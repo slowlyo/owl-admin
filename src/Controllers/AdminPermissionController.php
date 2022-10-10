@@ -4,9 +4,12 @@ namespace Slowlyo\SlowAdmin\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Slowlyo\SlowAdmin\Renderers\Tag;
 use Slowlyo\SlowAdmin\Renderers\Page;
 use Slowlyo\SlowAdmin\Renderers\Column;
+use Slowlyo\SlowAdmin\Renderers\Action;
+use Slowlyo\SlowAdmin\Models\AdminMenu;
 use Slowlyo\SlowAdmin\Renderers\Form\Form;
 use Slowlyo\SlowAdmin\Renderers\Form\Select;
 use Slowlyo\SlowAdmin\Models\AdminPermission;
@@ -40,9 +43,26 @@ class AdminPermissionController extends AdminController
 
     public function list(): Page
     {
+        $autoBtn = '';
+        if (config('admin.show_auto_generate_permission_button')) {
+            $autoBtn = Action::make()
+                ->label('自动生成')
+                ->level('success')
+                ->confirmText('权限信息会在 截断权限表&权限菜单关联表 后重新生成, 是否继续操作 ?')
+                ->actionType('ajax')
+                ->api(admin_url('_admin_permissions_auto_generate'))
+                ->align('right');
+        }
+
         $crud = $this->baseCRUD()
             ->filterTogglable(false)
             ->expandConfig(['expand' => 'all'])
+            ->headerToolbar([
+                'filter-toggler',
+                'bulkActions',
+                amis('reload')->align('right'),
+                $autoBtn,
+            ])
             ->columns([
                 Column::make()->label('ID')->name('id')->sortable(true),
                 Column::make()->label('名称')->name('name'),
@@ -154,5 +174,60 @@ class AdminPermissionController extends AdminController
                 'label' => $method,
             ];
         })->values()->all();
+    }
+
+    public function autoGenerate()
+    {
+        $menus = AdminMenu::all()->toArray();
+
+        $permissions = [];
+        foreach ($menus as $menu) {
+            $_httpPath = $this->getHttpPath($menu['api']);
+
+            $permissions[] = [
+                'id'         => $menu['id'],
+                'name'       => $menu['title'],
+                'slug'       => (string)Str::uuid(),
+                'http_path'  => json_encode($_httpPath ? [$_httpPath] : ''),
+                'order'      => $menu['order'],
+                'parent_id'  => $menu['parent_id'],
+                'created_at' => $menu['created_at'],
+                'updated_at' => $menu['updated_at'],
+            ];
+        }
+
+        AdminPermission::truncate();
+        AdminPermission::insert($permissions);
+
+        DB::table('admin_permission_menu')->truncate();
+        foreach ($permissions as $item) {
+            $query = DB::table('admin_permission_menu');
+            $query->insert([
+                'permission_id' => $item['id'],
+                'menu_id'       => $item['id'],
+            ]);
+            if ($item['parent_id'] != 0) {
+                $query->insert([
+                    'permission_id' => $item['id'],
+                    'menu_id'       => $item['parent_id'],
+                ]);
+            }
+        }
+
+        return $this->response()->success('自动生成成功');
+    }
+
+    private function getHttpPath($uri)
+    {
+        $excepts = ['/', '', '-'];
+        if (in_array($uri, $excepts)) {
+            return '';
+        }
+
+        if (!str_starts_with($uri, '/')) {
+            $uri = '/' . $uri;
+        }
+
+        return $uri . '*';
     }
 }

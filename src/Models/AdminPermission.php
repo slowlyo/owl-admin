@@ -23,6 +23,8 @@ class AdminPermission extends BaseModel
         'http_path'   => 'array',
     ];
 
+    protected $fillable = ['sign'];
+
     public function menus(): BelongsToMany
     {
         return $this->belongsToMany(AdminMenu::class, 'admin_permission_menu', 'permission_id', 'menu_id')
