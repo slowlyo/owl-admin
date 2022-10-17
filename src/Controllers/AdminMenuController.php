@@ -23,7 +23,14 @@ class AdminMenuController extends AdminController
 
     protected string $queryPath = 'admin_menus';
 
-    protected string $pageTitle = '菜单';
+    protected string $pageTitle;
+
+    public function __construct()
+    {
+        $this->pageTitle = __('admin.admin_menus');
+
+        parent::__construct();
+    }
 
     public function index(): JsonResponse|JsonResource
     {
@@ -46,17 +53,22 @@ class AdminMenuController extends AdminController
             ->bulkActions([$this->bulkDeleteButton()->reload('window')])
             ->columns([
                 Column::make()->label('ID')->name('id')->sortable(true),
-                Column::make()->label('名称')->name('title'),
-                Column::make()->label('图标')->name('icon')->type('flex')->justify('start')->items([
-                    Html::make()->html('<i class="${icon} mr-2"></i>'),
-                    '${icon}',
-                ]),
-                Column::make()->label('链接')->name('url'),
-                Column::make()->label('排序')->name('order')->quickEdit(
+                Column::make()->label(__('admin.admin_menu.title'))->name('title'),
+                Column::make()
+                    ->label(__('admin.admin_menu.icon'))
+                    ->name('icon')
+                    ->type('flex')
+                    ->justify('start')
+                    ->items([
+                        Html::make()->html('<i class="${icon} mr-2"></i>'),
+                        '${icon}',
+                    ]),
+                Column::make()->label(__('admin.admin_menu.url'))->name('url'),
+                Column::make()->label(__('admin.admin_menu.order'))->name('order')->quickEdit(
                     InputNumber::make()->min(0)
                 ),
-                Column::make()->label('可见')->name('visible')->type('status'),
-                Column::make()->label('创建时间')->name('created_at')->type('datetime')->sortable(true),
+                Column::make()->label(__('admin.admin_menu.visible'))->name('visible')->type('status'),
+                Column::make()->label(__('admin.created_at'))->name('created_at')->type('datetime')->sortable(true),
                 $this->rowActionsOnlyEditAndDelete(),
             ])->expandConfig(['expand' => 'all']);
 
@@ -67,44 +79,59 @@ class AdminMenuController extends AdminController
     {
         return $this->baseForm()->body([
             Group::make()->body([
-                InputText::make()->name('title')->label('名称')->required(true),
+                InputText::make()->name('title')->label(__('admin.admin_menu.title'))->required(true),
                 InputText::make()
                     ->name('icon')
-                    ->label('图标')
+                    ->label(__('admin.admin_menu.icon'))
                     ->required(true)
                     ->placeholder('eg: fa fa-xxx')
-                    ->description('可以使用<a href="https://fontawesome.com/search?m=free" target="_blank">Font Awesome</a>图标'),
+                    ->description(
+                        __('admin.admin_menu.icon_description') .
+                        '<a href="https://fontawesome.com/search?m=free" target="_blank">Font Awesome</a>'
+                    ),
             ]),
             Group::make()->body([
                 TreeSelect::make()
                     ->name('parent_id')
-                    ->label('父级')
+                    ->label(__('admin.admin_menu.parent_id'))
                     ->labelField('title')
                     ->valueField('id')
                     ->value(0)
                     ->options($this->service->getTree()),
                 InputNumber::make()
                     ->name('order')
-                    ->label('排序')
+                    ->label(__('admin.admin_menu.order'))
                     ->required(true)
-                    ->labelRemark('大的在前')
+                    ->labelRemark(__('admin.order_desc'))
                     ->displayMode('enhance')
                     ->min(0)
                     ->value(0),
             ]),
-            InputText::make()->name('url')->label('链接')->required(true)->placeholder('eg: /admin_menus'),
+            InputText::make()
+                ->name('url')
+                ->label(__('admin.admin_menu.url'))
+                ->required(true)
+                ->placeholder('eg: /admin_menus'),
             ListSelect::make()
                 ->name('url_type')
-                ->label('类型')
+                ->label(__('admin.admin_menu.type'))
                 ->options(AdminMenu::getType())
                 ->value(AdminMenu::TYPE_ROUTE),
             InputText::make()
                 ->name('api')
-                ->label('页面Api')
+                ->label(__('admin.admin_menu.api'))
                 ->required(true)
-                ->labelRemark('schemaApi, 页面初始化请求的api, 需要与Controller中的queryPath一致'),
-            InputSwitch::make()->name('visible')->label('是否可见')->onText('可见')->offText('不可见')->value(1),
-            InputText::make()->name('class_name')->label('类名')->labelRemark('菜单的CSS类名, 一般用于自定义样式'),
+                ->labelRemark(__('admin.admin_menu.api_description')),
+            InputSwitch::make()
+                ->name('visible')
+                ->label(__('admin.admin_menu.visible'))
+                ->onText(__('admin.admin_menu.show'))
+                ->offText(__('admin.admin_menu.hide'))
+                ->value(1),
+            InputText::make()
+                ->name('class_name')
+                ->label(__('admin.admin_menu.class_name'))
+                ->labelRemark(__('admin.admin_menu.class_name_description')),
         ])->onEvent([
             'submitSucc' => [
                 'actions' => [

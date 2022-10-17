@@ -47,11 +47,11 @@ class IndexController extends AdminController
         return [
             'children' => [
                 [
-                    'label'    => '开发',
+                    'label'    => __('admin.developer'),
                     'icon'     => 'fa-brands fa-dev',
                     'children' => [
                         [
-                            'label'     => '代码生成器',
+                            'label'     => __('admin.code_generator'),
                             'icon'      => 'fa-solid fa-robot',
                             'url'       => '/dev_tools/code_generator',
                             'schemaApi' => config('admin.route.prefix') . '/dev_tools/code_generator',

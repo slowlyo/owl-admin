@@ -63,13 +63,17 @@ abstract class AdminController extends Controller
         return SlowAdmin::response();
     }
 
-    protected function autoResponse($flag, $text = '操作')
+    protected function autoResponse($flag, $text = '')
     {
-        if ($flag) {
-            return $this->response()->successMessage($text . '成功');
+        if (!$text) {
+            $text = __('admin.actions');
         }
 
-        return $this->response()->fail($this->service->getError() ?? $text . '失败');
+        if ($flag) {
+            return $this->response()->successMessage($text . __('admin.successfully'));
+        }
+
+        return $this->response()->fail($this->service->getError() ?? $text . __('admin.failed'));
     }
 
     /**
@@ -81,7 +85,7 @@ abstract class AdminController extends Controller
     {
         $form = $this->form()->api($this->getStorePath());
 
-        $page = $this->basePage()->subTitle('新增')->body($form)->toolbar([$this->backButton()]);
+        $page = $this->basePage()->subTitle(__('admin.create'))->body($form)->toolbar([$this->backButton()]);
 
         return $this->response()->success($page);
     }
@@ -95,7 +99,7 @@ abstract class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->autoResponse($this->service->store($request->all()), '保存');
+        return $this->autoResponse($this->service->store($request->all()), __('admin.save'));
     }
 
     /**
@@ -111,7 +115,10 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getDetail($id));
         }
 
-        $page = $this->basePage()->subTitle('详情')->toolbar([$this->backButton()])->body($this->detail($id));
+        $page = $this->basePage()
+            ->subTitle(__('admin.detail'))
+            ->toolbar([$this->backButton()])
+            ->body($this->detail($id));
 
         return $this->response()->success($page);
     }
@@ -133,7 +140,7 @@ abstract class AdminController extends Controller
             ->api($this->getUpdatePath($id))
             ->initApi($this->getEditGetDataPath($id));
 
-        $page = $this->basePage()->subTitle('编辑')->toolbar([$this->backButton()])->body($form);
+        $page = $this->basePage()->subTitle(__('admin.edit'))->toolbar([$this->backButton()])->body($form);
 
         return $this->response()->success($page);
     }
@@ -149,7 +156,7 @@ abstract class AdminController extends Controller
     {
         $result = $this->service->update($this->getPrimaryValue($request), $request->all());
 
-        return $this->autoResponse($result, '保存');
+        return $this->autoResponse($result, __('admin.save'));
     }
 
     /**
@@ -163,6 +170,6 @@ abstract class AdminController extends Controller
     {
         $rows = $this->service->delete($ids);
 
-        return $this->autoResponse($rows, '删除');
+        return $this->autoResponse($rows, __('admin.delete'));
     }
 }

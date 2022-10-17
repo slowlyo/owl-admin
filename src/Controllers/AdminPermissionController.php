@@ -27,7 +27,14 @@ class AdminPermissionController extends AdminController
 
     protected string $queryPath = 'admin_permissions';
 
-    protected string $pageTitle = '权限';
+    protected string $pageTitle;
+
+    public function __construct()
+    {
+        $this->pageTitle = __('admin.admin_permissions');
+
+        parent::__construct();
+    }
 
     public function index(): JsonResponse|JsonResource
     {
@@ -46,9 +53,9 @@ class AdminPermissionController extends AdminController
         $autoBtn = '';
         if (config('admin.show_auto_generate_permission_button')) {
             $autoBtn = Action::make()
-                ->label('自动生成')
+                ->label(__('admin.admin_permission.auto_generate'))
                 ->level('success')
-                ->confirmText('权限信息会在 截断权限表&权限菜单关联表 后重新生成, 是否继续操作 ?')
+                ->confirmText(__('admin.admin_permission.auto_generate_confirm'))
                 ->actionType('ajax')
                 ->api(admin_url('_admin_permissions_auto_generate'))
                 ->align('right');
@@ -65,15 +72,23 @@ class AdminPermissionController extends AdminController
             ])
             ->columns([
                 Column::make()->label('ID')->name('id')->sortable(true),
-                Column::make()->label('名称')->name('name'),
-                Column::make()->label('标识')->name('slug'),
-                Column::make()->label('请求方式')->name('http_method')->type('each')->items(Tag::make()
-                    ->label('${item}')
-                    ->className('my-1'))
+                Column::make()->label(__('admin.admin_permission.name'))->name('name'),
+                Column::make()->label(__('admin.admin_permission.slug'))->name('slug'),
+                Column::make()
+                    ->label(__('admin.admin_permission.http_method'))
+                    ->name('http_method')
+                    ->type('each')
+                    ->items(Tag::make()
+                        ->label('${item}')
+                        ->className('my-1'))
                     ->placeholder(Tag::make()->label('ANY')),
-                Column::make()->label('路由')->name('http_path')->type('each')->items(Tag::make()
-                    ->label('${item}')
-                    ->className('my-1')),
+                Column::make()
+                    ->label(__('admin.admin_permission.http_path'))
+                    ->name('http_path')
+                    ->type('each')
+                    ->items(Tag::make()
+                        ->label('${item}')
+                        ->className('my-1')),
                 $this->rowActionsOnlyEditAndDelete(true),
             ]);
 
@@ -83,33 +98,33 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            InputText::make()->name('name')->label('名称')->required(true),
-            InputText::make()->name('slug')->label('标识')->required(true),
+            InputText::make()->name('name')->label(__('admin.admin_permission.name'))->required(true),
+            InputText::make()->name('slug')->label(__('admin.admin_permission.slug'))->required(true),
             TreeSelect::make()
                 ->name('parent_id')
-                ->label('父级')
+                ->label(__('admin.parent'))
                 ->labelField('name')
                 ->valueField('id')
                 ->value(0)
                 ->options($this->service->getTree()),
             Checkboxes::make()
                 ->name('http_method')
-                ->label('请求方式')
+                ->label(__('admin.admin_permission.http_method'))
                 ->options($this->getHttpMethods())
-                ->description('不选则为ANY')
+                ->description(__('admin.admin_permission.http_method_description'))
                 ->joinValues(false)
                 ->extractValue(true),
             InputNumber::make()
                 ->name('order')
-                ->label('排序')
+                ->label(__('admin.order'))
                 ->required(true)
-                ->labelRemark('大的在前')
+                ->labelRemark(__('admin.order_desc'))
                 ->displayMode('enhance')
                 ->min(0)
                 ->value(0),
             Select::make()
                 ->name('http_path')
-                ->label('路由')
+                ->label(__('admin.admin_permission.http_path'))
                 ->searchable(true)
                 ->multiple(true)
                 ->options($this->getRoutes())
@@ -118,7 +133,7 @@ class AdminPermissionController extends AdminController
                 ->extractValue(true),
             TreeSelect::make()
                 ->name('menus')
-                ->label('菜单')
+                ->label(__('admin.menus'))
                 ->searchable(true)
                 ->multiple(true)
                 ->options(AdminMenuService::make()->getTree())
@@ -214,7 +229,9 @@ class AdminPermissionController extends AdminController
             }
         }
 
-        return $this->response()->success('自动生成成功');
+        return $this->response()->success(
+            __('admin.successfully_message', ['attribute' => __('admin.admin_permission.auto_generate')])
+        );
     }
 
     private function getHttpPath($uri)

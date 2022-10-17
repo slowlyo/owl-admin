@@ -32,7 +32,7 @@ trait Uploader
         $file = request()->file('file');
 
         if (!$file) {
-            return $this->response()->fail('上传文件错误！');
+            return $this->response()->fail(__('admin.upload_file_error'));
         }
 
         $path = $file->store(config('admin.upload.directory.' . $type), config('admin.upload.disk'));

@@ -23,7 +23,7 @@ trait ErrorTrait
      */
     protected function setError(string $error): bool
     {
-        $this->error = $error ?: '未知错误';
+        $this->error = $error ?: __('admin.unknown_error');
         return false;
     }
 
