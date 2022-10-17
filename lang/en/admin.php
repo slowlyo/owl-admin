@@ -29,7 +29,7 @@ return [
     'list'             => 'List',
     'add'              => 'Add',
     'save'             => 'Save',
-    'detail' => 'Detail',
+    'detail'           => 'Detail',
 
     'developer'            => 'Developer',
     'code_generator'       => 'Code Generator',
@@ -72,6 +72,7 @@ return [
         'index'                     => 'Index',
         'default_value'             => 'Default Value',
         'comment'                   => 'Comment',
+        'exists_table'              => 'Exists Table',
     ],
 
     'admin_users' => 'Admin Users',

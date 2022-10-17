@@ -106,7 +106,7 @@ class CodeGeneratorController extends AdminController
                     ]),
                     Group::make()->direction('vertical')->body([
                         Select::make()
-                            ->label('已有数据表')
+                            ->label(__('admin.code_generators.exists_table'))
                             ->name('exists_table')
                             ->searchable(true)
                             ->clearable(true)

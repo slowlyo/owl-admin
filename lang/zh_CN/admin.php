@@ -29,7 +29,7 @@ return [
     'list'             => '列表',
     'add'              => '新增',
     'save'             => '保存',
-    'detail' => '详情',
+    'detail'           => '详情',
 
     'developer'            => '开发',
     'code_generator'       => '代码生成器',
@@ -74,6 +74,7 @@ return [
         'index'                     => '索引',
         'default_value'             => '默认值',
         'comment'                   => '注释',
+        'exists_table'              => '已有数据表',
     ],
 
     'admin_users' => '管理员',
