@@ -77,7 +77,7 @@ class MigrationGenerator extends BaseMigrationCreator
                 $column .= "->default({$default})";
             }
 
-            if (Arr::get($field, 'nullable') == 'on') {
+            if (Arr::get($field, 'nullable', false)) {
                 $column .= '->nullable()';
             } else if (!$hasDefault && $field['type'] === 'string') {
                 $column .= "->default('')";
