@@ -25,9 +25,14 @@ class CodeGeneratorController extends AdminController
     public function index(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
         $page = Page::make()
-            ->title('代码生成器')
+            ->title(__('admin.code_generator'))
             ->body($this->form())
-            ->remark("额外参数请参考<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>数据库迁移</a>, 多个参数使用英文逗号分割");
+            ->remark(
+                __('admin.code_generators.remark1') .
+                "<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>" .
+                __('admin.code_generators.remark2') .
+                "</a>, " . __('admin.code_generators.remark3')
+            );
 
         return $this->response()->success($page);
     }
@@ -42,39 +47,42 @@ class CodeGeneratorController extends AdminController
             Group::make()->body([
                 Group::make()->direction('vertical')->body([
                     InputText::make()
-                        ->label('表名')
+                        ->label(__('admin.code_generators.table_name'))
                         ->name('table_name')
                         ->value('')
                         ->required(true),
                     InputText::make()
-                        ->label('模型')
+                        ->label(__('admin.code_generators.model_name'))
                         ->name('model_name')
                         ->value($this->getNamespace('Models', 1) . '${' . $nameHandler . '}'),
                     InputText::make()
-                        ->label('控制器')
+                        ->label(__('admin.code_generators.controller_name'))
                         ->name('controller_name')
                         ->value($this->getNamespace('Controllers') . '${' . $nameHandler . '}Controller'),
                     InputText::make()
-                        ->label('Service')
+                        ->label(__('admin.code_generators.service_name'))
                         ->name('service_name')
                         ->value($this->getNamespace('Services', 1) . '${' . $nameHandler . '}Service'),
                 ]),
                 Group::make()->direction('vertical')->body([
                     InputText::make()
-                        ->label('主键名称')
+                        ->label(__('admin.code_generators.primary_key'))
                         ->name('primary_key')
                         ->value('id')
-                        ->description('使用 increments 方法')
+                        ->description(__('admin.code_generators.primary_key_description'))
                         ->required(true),
-                    Checkboxes::make()->name('needs')->label('可选项')->inline(false)
+                    Checkboxes::make()->name('needs')->label(__('admin.code_generators.options'))->inline(false)
                         ->joinValues(false)
                         ->extractValue(true)
                         ->options([
-                            ['label' => '创建数据迁移文件', 'value' => 'need_database_migration'],
-                            ['label' => '创建数据表', 'value' => 'need_create_table'],
-                            ['label' => '创建模型', 'value' => 'need_model'],
-                            ['label' => '创建控制器', 'value' => 'need_controller'],
-                            ['label' => '创建Service', 'value' => 'need_service'],
+                            [
+                                'label' => __('admin.code_generators.create_database_migration'),
+                                'value' => 'need_database_migration',
+                            ],
+                            ['label' => __('admin.code_generators.create_table'), 'value' => 'need_create_table'],
+                            ['label' => __('admin.code_generators.create_model'), 'value' => 'need_model'],
+                            ['label' => __('admin.code_generators.create_controller'), 'value' => 'need_controller'],
+                            ['label' => __('admin.code_generators.create_service'), 'value' => 'need_service'],
                         ])->value([
                             'need_database_migration',
                             'need_create_table',
@@ -84,9 +92,12 @@ class CodeGeneratorController extends AdminController
                         ]),
                 ]),
                 Group::make()->direction('vertical')->body([
-                    InputText::make()->label('功能名称')->name('title')->value('${' . $nameHandler . '}'),
+                    InputText::make()
+                        ->label(__('admin.code_generators.app_title'))
+                        ->name('title')
+                        ->value('${' . $nameHandler . '}'),
                     Checkbox::make()->name('need_timestamps')->option('CreatedAt & UpdatedAt')->value(1),
-                    Checkbox::make()->name('soft_delete')->option('软删除')->value(1),
+                    Checkbox::make()->name('soft_delete')->option(__('admin.soft_delete'))->value(1),
                 ]),
             ]),
             InputTable::make()
@@ -105,27 +116,33 @@ class CodeGeneratorController extends AdminController
                     ],
                 ])
                 ->columns([
-                    InputText::make()->name('name')->label('字段名')->required(true),
+                    InputText::make()->name('name')->label(__('admin.code_generators.column_name'))->required(true),
                     Select::make()
                         ->name('type')
-                        ->label('类型')
+                        ->label(__('admin.code_generators.type'))
                         ->options($this->availableFieldTypes())
                         ->searchable(true)
                         ->value('string')
                         ->required(true),
                     InputText::make()
                         ->name('additional')
-                        ->label('额外参数')
+                        ->label(__('admin.code_generators.extra_params'))
                         ->width(160)
                         ->size('sm'),
-                    Checkbox::make()->name('nullable')->label('允许空值')->width(60),
-                    Select::make()->name('index')->label('索引')->size('sm')->width(160)->options(
-                        collect(['index', 'unique'])->map(fn($value) => [
-                            'label' => $value,
-                            'value' => $value,
-                        ]))->clearable(true),
-                    InputText::make()->name('default')->label('默认值'),
-                    InputText::make()->name('comment')->label('注释'),
+                    Checkbox::make()->name('nullable')->label(__('admin.code_generators.nullable'))->width(60),
+                    Select::make()
+                        ->name('index')
+                        ->label(__('admin.code_generators.index'))
+                        ->size('sm')
+                        ->width(160)
+                        ->options(
+                            collect(['index', 'unique'])->map(fn($value) => [
+                                'label' => $value,
+                                'value' => $value,
+                            ]))
+                        ->clearable(true),
+                    InputText::make()->name('default')->label(__('admin.code_generators.default_value')),
+                    InputText::make()->name('comment')->label(__('admin.code_generators.comment')),
                 ]),
         ]);
     }

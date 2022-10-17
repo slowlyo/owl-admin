@@ -55,6 +55,7 @@ class SlowAdminServiceProvider extends ServiceProvider
                 InstallCommand::class,
             ]);
             $this->publishes([__DIR__ . '/../public' => public_path('vendor/admin')], 'public');
+            $this->publishes([__DIR__ . '/../lang' => lang_path()], 'lang');
             $this->publishes([__DIR__ . '/../config/admin.php' => config_path('admin.php')]);
         }
     }

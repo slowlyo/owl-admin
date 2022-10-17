@@ -38,7 +38,7 @@ class AuthController extends AdminController
     {
         $remember = '';
         if (config('admin.auth.remember')) {
-            $remember = Checkbox::make()->name('remember')->label(" ")->option('记住我');
+            $remember = Checkbox::make()->name('remember')->label(" ")->option(__('admin.remember_me'));
         }
         $form = Form::make()
             ->title('')
@@ -48,14 +48,14 @@ class AuthController extends AdminController
                 Wrapper::make()->size('none')->className('pt-3')->body(
                     Button::make()
                         ->actionType('submit')
-                        ->label('登 录')
+                        ->label(__('admin.login'))
                         ->level('primary')
                         ->className('w-24')
                 ),
             ])
             ->body([
-                InputText::make()->name('username')->label('用户名')->required(true),
-                InputPassword::make()->name('password')->label('密码')->required(true),
+                InputText::make()->name('username')->label(__('admin.username'))->required(true),
+                InputPassword::make()->name('password')->label(__('admin.password'))->required(true),
                 $this->captcha(),
                 $remember,
             ]);
@@ -129,7 +129,7 @@ class AuthController extends AdminController
             ])->body(
                 Flex::make()->justify('space-between')->alignItems('center')->items([
                     Hidden::make()->name('sys_captcha')->value('${sys_captcha}'),
-                    InputText::make()->name('captcha')->label('验证码')->required(true)->size('sm'),
+                    InputText::make()->name('captcha')->label(__('admin.captcha'))->required(true)->size('sm'),
                     Image::make()->src('${captcha_img}')->className('cursor-pointer')->clickAction([
                         'actionType' => 'reload',
                         'target'     => 'captcha-service',
@@ -151,7 +151,7 @@ class AuthController extends AdminController
     public function login(Request $request)
     {
         if (strtolower(admin_decode($request->sys_captcha)) != strtolower($request->captcha) && config('admin.auth.captcha')) {
-            return $this->response()->fail('验证码有误');
+            return $this->response()->fail(__('admin.captcha_error'));
         }
 
         try {
@@ -159,8 +159,8 @@ class AuthController extends AdminController
                 $this->username() => 'required',
                 'password'        => 'required',
             ], [
-                $this->username() . '.required' => '请填写用户名',
-                'password.required'             => '请填写密码',
+                $this->username() . '.required' => __('admin.required', ['attribute' => __('admin.username')]),
+                'password.required'             => __('admin.required', ['attribute' => __('admin.password')]),
             ]);
 
             if ($validator->fails()) {
@@ -173,10 +173,10 @@ class AuthController extends AdminController
             if ($this->guard()->attempt($credentials, $remember)) {
                 $request->session()->regenerate();
 
-                return $this->response()->successMessage("登录成功");
+                return $this->response()->successMessage(__('admin.login_successful'));
             }
 
-            abort(Response::HTTP_BAD_REQUEST, "用户名或密码错误");
+            abort(Response::HTTP_BAD_REQUEST, __('admin.login_failed'));
         } catch (\Exception $e) {
             return $this->response()->fail($e->getMessage());
         }
@@ -219,16 +219,17 @@ class AuthController extends AdminController
             ->data($user)
             ->api('put:' . $this->adminPrefix . '/user_setting' . '/' . $user->id)
             ->body([
-                InputImage::make()->label('头像')->name('avatar')->receiver($this->uploadImagePath()),
-                InputText::make()->label('名称')->name('name')->required(true),
-                InputPassword::make()->label('原密码')->name('old_password'),
-                InputPassword::make()->label('密码')->name('password'),
-                InputPassword::make()
-                    ->label('确认密码')
-                    ->name('confirm_password'),
+                InputImage::make()
+                    ->label(__('admin.admin_user.avatar'))
+                    ->name('avatar')
+                    ->receiver($this->uploadImagePath()),
+                InputText::make()->label(__('admin.admin_user.name'))->name('name')->required(true),
+                InputPassword::make()->label(__('admin.old_password'))->name('old_password'),
+                InputPassword::make()->label(__('admin.password'))->name('password'),
+                InputPassword::make()->label(__('admin.confirm_password'))->name('confirm_password'),
             ]);
 
-        $page = Page::make()->title('个人设置')->body($form);
+        $page = Page::make()->title(__('admin.user_setting'))->body($form);
 
         return $this->response()->success($page);
     }

@@ -27,10 +27,17 @@
         // const history = History.createBrowserHistory();
         const history = History.createHashHistory()
 
+        let locale = '{{ config('app.locale', 'zh_CN') }}'
+
+        locale = locale == 'en' ? 'en-US' : locale
+
         let amisInstance = amis.embed(
             '#root',
             {!! $app !!},
-            {location: history.location},
+            {
+                location: history.location,
+                locale
+            },
             {
                 theme: '{{ $systemTheme }}',
                 watchRouteChange: fn => {
@@ -127,7 +134,7 @@
 
                     return axios[method](url, data, config)
                 },
-                isCurrentUrl: isCurrentUrl,
+                isCurrentUrl: isCurrentUrl
             }
         )
 

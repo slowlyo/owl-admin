@@ -8,7 +8,6 @@ use Slowlyo\SlowAdmin\Renderers\Avatar;
 use Slowlyo\SlowAdmin\Renderers\Button;
 use Slowlyo\SlowAdmin\Renderers\Wrapper;
 use Slowlyo\SlowAdmin\Renderers\Component;
-use Slowlyo\SlowAdmin\Renderers\Breadcrumb;
 use Slowlyo\SlowAdmin\Renderers\DropDownButton;
 
 trait Layouts
@@ -48,7 +47,7 @@ trait Layouts
             Avatar::make()
                 ->size('small')
                 ->src(SlowAdmin::user()->avatar),
-            DropDownButton::make()->label(SlowAdmin::user()?->name ?? '管理员')
+            DropDownButton::make()->label(SlowAdmin::user()?->name ?? __('admin.administrator'))
                 ->trigger('hover')
                 ->btnClassName('admin-user-info')
                 ->hideCaret(true)
@@ -58,10 +57,13 @@ trait Layouts
                     Button::make()
                         ->icon('fa-solid fa-user-gear')
                         ->iconClassName('mr-2')
-                        ->label('个人设置')
+                        ->label(__('admin.user_setting'))
                         ->actionType('link')
                         ->link('/user_setting'),
-                    Button::make()->icon('fa-solid fa-arrow-right-from-bracket')->iconClassName('mr-2')->label('退出登录')
+                    Button::make()
+                        ->icon('fa-solid fa-arrow-right-from-bracket')
+                        ->iconClassName('mr-2')
+                        ->label(' '.__('admin.logout'))
                         ->actionType('ajax')
                         ->api('get:' . url(config('admin.route.prefix') . '/logout'))
                         ->redirect(url(config('admin.route.prefix') . '/login')),

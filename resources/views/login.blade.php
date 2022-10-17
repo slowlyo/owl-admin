@@ -28,7 +28,10 @@
 
 @include('slow-admin::components.js')
 <script type="text/javascript">
-    amisRequire('amis/embed').embed('#root', {!! $page !!}, {}, {
+    let locale = '{{ config('app.locale', 'zh_CN') }}'
+    locale = locale == 'en' ? 'en-US' : locale
+
+    amisRequire('amis/embed').embed('#root', {!! $page !!}, {locale}, {
         fetcher: ({
                       url, // 接口地址
                       method, // 请求方法 get、post、put、delete

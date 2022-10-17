@@ -59,7 +59,7 @@ JS
     protected function backButton(): Action
     {
         return Button::make()
-            ->label('返回')
+            ->label(__('admin.back'))
             ->icon('fa-solid fa-chevron-left')
             ->level('primary')
             ->onClick('window.history.back()');
@@ -76,8 +76,8 @@ JS
             ->actionType('ajax')
             ->api($this->getBulkDeletePath())
             ->icon('fa fa-trash-o')
-            ->label('删除')
-            ->confirmText('确认删除选中数据?');
+            ->label(__('admin.delete'))
+            ->confirmText(__('admin.confirm_delete'));
     }
 
     /**
@@ -92,12 +92,12 @@ JS
         $form = $this->form()->api($this->getStorePath());
 
         $button = Button::make()
-            ->label('新增')
+            ->label(__('admin.create'))
             ->icon('fa fa-add')
             ->level('primary');
 
         if ($dialog) {
-            $button->actionType('dialog')->dialog(Dialog::make()->title('新增')->body($form));
+            $button->actionType('dialog')->dialog(Dialog::make()->title(__('admin.create'))->body($form));
         } else {
             $button = $button->actionType('link')->link($this->getCreatePath());
         }
@@ -115,14 +115,14 @@ JS
     protected function rowEditButton($dialog = false): Action
     {
         $button = Button::make()
-            ->label('编辑')
+            ->label(__('admin.edit'))
             ->icon('fa-regular fa-pen-to-square')
             ->level('link');
 
         if ($dialog) {
             $form = $this->form()->api($this->getUpdatePath('$id'))->initApi($this->getEditGetDataPath('$id'));
 
-            $button = $button->actionType('dialog')->dialog(Dialog::make()->title('编辑')->body($form));
+            $button = $button->actionType('dialog')->dialog(Dialog::make()->title(__('admin.edit'))->body($form));
         } else {
             $button = $button->actionType('link')->link($this->getEditPath());
         }
@@ -140,12 +140,14 @@ JS
     protected function rowShowButton($dialog = false): Action
     {
         $button = Button::make()
-            ->label('详情')
+            ->label(__('admin.show'))
             ->icon('fa-regular fa-eye')
             ->level('link');
 
         if ($dialog) {
-            $button = $button->actionType('dialog')->dialog(Dialog::make()->title('详情')->body($this->detail('$id')));
+            $button = $button->actionType('dialog')->dialog(Dialog::make()
+                ->title(__('admin.show'))
+                ->body($this->detail('$id')));
         } else {
             $button = $button->actionType('link')->link($this->getShowPath());
         }
@@ -161,12 +163,12 @@ JS
     protected function rowDeleteButton(): Action
     {
         return Button::make()
-            ->label('删除')
+            ->label(__('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
             ->className('text-danger')
             ->actionType('ajax')
-            ->confirmText('确认删除该条数据?')
+            ->confirmText(__('admin.confirm_delete'))
             ->api($this->getDeletePath());
     }
 
@@ -179,7 +181,7 @@ JS
      */
     protected function rowActions($dialog = false): BaseRenderer
     {
-        return Component::make()->setType('operation')->label('操作')->buttons([
+        return Component::make()->setType('operation')->label(__('admin.actions'))->buttons([
             $this->rowShowButton($dialog),
             $this->rowEditButton($dialog),
             $this->rowDeleteButton(),
@@ -188,7 +190,7 @@ JS
 
     protected function rowActionsOnlyEditAndDelete($dialog = false): BaseRenderer
     {
-        return Component::make()->setType('operation')->label('操作')->buttons([
+        return Component::make()->setType('operation')->label(__('admin.actions'))->buttons([
             $this->rowEditButton($dialog),
             $this->rowDeleteButton(),
         ]);
@@ -205,8 +207,8 @@ JS
             ->panelClassName('base-filter')
             ->title('')
             ->actions([
-                Button::make()->label('重置')->actionType('clear-and-submit'),
-                amis('submit')->label('搜索')->level('primary'),
+                Button::make()->label(__('admin.reset'))->actionType('clear-and-submit'),
+                amis('submit')->label(__('admin.search'))->level('primary'),
             ]);
     }
 
@@ -265,6 +267,6 @@ JS
      */
     protected function baseList($crud): Page
     {
-        return $this->basePage()->subTitle('列表')->toolbar([$this->createButton()])->body($crud);
+        return $this->basePage()->subTitle(__('admin.list'))->toolbar([$this->createButton()])->body($crud);
     }
 }

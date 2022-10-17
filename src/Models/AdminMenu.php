@@ -2,6 +2,7 @@
 
 namespace Slowlyo\SlowAdmin\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AdminMenu extends BaseModel
@@ -12,8 +13,8 @@ class AdminMenu extends BaseModel
     public static function getType(): array
     {
         return [
-            self::TYPE_ROUTE => '路由',
-            self::TYPE_LINK  => '外链',
+            self::TYPE_ROUTE => __('admin.admin_menu.route'),
+            self::TYPE_LINK  => __('admin.admin_menu.link'),
         ];
     }
 
@@ -25,5 +26,12 @@ class AdminMenu extends BaseModel
     public function parent(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function title(): Attribute
+    {
+        return Attribute::get(function ($value){
+            return __("menu.{$value}") == "menu.{$value}" ? $value : __("menu.{$value}");
+        });
     }
 }
