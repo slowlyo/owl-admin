@@ -4,8 +4,6 @@ namespace Slowlyo\SlowAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Slowlyo\SlowAdmin\Models\AdminMenu;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class AdminMenuService extends AdminService
 {

@@ -2,7 +2,6 @@
 
 namespace Slowlyo\SlowAdmin\Controllers;
 
-use Slowlyo\SlowAdmin\Admin;
 use Slowlyo\SlowAdmin\SlowAdmin;
 use Slowlyo\SlowAdmin\Renderers\Component;
 
