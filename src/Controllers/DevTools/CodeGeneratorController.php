@@ -81,7 +81,7 @@ class CodeGeneratorController extends AdminController
             ->resetAfterSubmit(true)
             ->api($this->getStorePath())
             ->data([
-                'table_info' => $this->getDatabaseColumns()->first(),
+                'table_info' => $this->getDatabaseColumns(),
             ])
             ->body([
                 Group::make()->body([
@@ -110,13 +110,19 @@ class CodeGeneratorController extends AdminController
                             ->name('exists_table')
                             ->searchable(true)
                             ->clearable(true)
+                            ->selectMode('group')
                             ->options(
-                                $this->getDatabaseColumns()->first()->keys()->map(function ($item) {
+                                $this->getDatabaseColumns()->map(function ($item, $index) {
                                     return [
-                                        'value' => $item,
-                                        'label' => $item,
+                                        'label'    => $index,
+                                        'children' => $item->keys()->map(function ($item) use ($index) {
+                                            return [
+                                                'value' => $item . '-' . $index,
+                                                'label' => $item,
+                                            ];
+                                        }),
                                     ];
-                                })
+                                })->values()
                             )
                             ->onEvent([
                                 'change' => [
@@ -127,7 +133,7 @@ class CodeGeneratorController extends AdminController
                                             'componentId' => 'code_generator_form',
                                             'args'        => [
                                                 'value' => [
-                                                    'table_name' => '${event.data.value}',
+                                                    'table_name' => '${SPLIT(event.data.value, "-")[1]}',
                                                 ],
                                             ],
                                         ],
@@ -136,7 +142,7 @@ class CodeGeneratorController extends AdminController
                                             'componentId' => 'code_generator_form',
                                             'args'        => [
                                                 'value' => [
-                                                    'columns' => '${table_info[event.data.value]}',
+                                                    'columns' => '${table_info[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
                                                 ],
                                             ],
                                         ],
