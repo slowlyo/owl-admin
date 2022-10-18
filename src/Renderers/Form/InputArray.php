@@ -19,5 +19,5 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  */
 class InputArray extends FormItem
 {
-    public string $type = 'array';
+    public string $type = 'input-array';
 }
