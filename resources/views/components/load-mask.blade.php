@@ -9,7 +9,7 @@
         top: 0;
         left: 0;
         z-index: 2022;
-        background: #fff;
+        background: var(--slow-bg);
     }
 </style>
 

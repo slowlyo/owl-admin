@@ -45,11 +45,11 @@ trait Layouts
 
         self::appendRightHeader(
             Avatar::make()
-                ->size('small')
+                ->size(30)
                 ->src(SlowAdmin::user()->avatar),
             DropDownButton::make()->label(SlowAdmin::user()?->name ?? __('admin.administrator'))
                 ->trigger('hover')
-                ->btnClassName('admin-user-info')
+                ->btnClassName('admin-user-info mr-2')
                 ->hideCaret(true)
                 ->align('right')
                 ->size('sm')
@@ -63,7 +63,7 @@ trait Layouts
                     Button::make()
                         ->icon('fa-solid fa-arrow-right-from-bracket')
                         ->iconClassName('mr-2')
-                        ->label(' '.__('admin.logout'))
+                        ->label(' ' . __('admin.logout'))
                         ->actionType('ajax')
                         ->api('get:' . url(config('admin.route.prefix') . '/logout'))
                         ->redirect(url(config('admin.route.prefix') . '/login')),
@@ -105,5 +105,4 @@ trait Layouts
                 ),
             ]);
     }
-
 }

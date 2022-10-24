@@ -18,7 +18,7 @@ return [
     'updated_at'       => '更新时间',
     'deleted_at'       => '删除时间',
     'actions'          => '操作',
-    'create'           => '创建',
+    'create'           => '新增',
     'edit'             => '编辑',
     'show'             => '查看',
     'delete'           => '删除',

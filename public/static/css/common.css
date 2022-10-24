@@ -1,7 +1,7 @@
 :root {
     --slow-bg: #f6f7fa;
     --slow-menu-bg: #eaf4ff;
-    --slow-shadow: 2px 0 8px #1d23290d;
+    --slow-shadow: 0 1px 4px rgb(0 21 41 / 8%);
 
     --primary: #358ffd;
     --success: #03b431;
@@ -20,7 +20,7 @@
     --Layout-asideLink-onActive-arrowColor: var(--dark);
     --Layout-asideLink-fontSize: 0.8rem;
     --Layout-header-bg: var(--white);
-    --Layout-aside-width: 220px;
+    --Layout-aside-width: 230px;
     --Page-main-bg: var(--slow-bg);
     --Panel-borderWidth: 0;
     --Panel-border: none;
@@ -53,6 +53,8 @@
     --info-onHover: var(--info);
     --info-onActive: var(--info);
     --link-onClick-color: var(--primary);
+    --Button--primary-onHover-border: var(--primary);
+    --Button--primary-onHover-bg: var(--primary);
     --Button--info-onActive-bg: var(--info);
     --Button--info-onActive-border: var(--info);
     --Button--info-onHover-bg: var(--info);
@@ -69,6 +71,7 @@
     --Page-content-paddingX: .5rem;
     --Panel-footerPadding: 1rem var(--gap-base);
     --Panel-headingPadding: var(--gap-base);
+    --Layout-header-height: 60px !important;
 }
 
 html, body, .app-wrapper {
@@ -81,6 +84,11 @@ html, body, .app-wrapper {
 
 .amis-scope .cxd-Page-headerRow {
     padding: 15px 0 5px 0;
+}
+
+.amis-scope .cxd-AppFoldBtn{
+    color: var(--text-color);
+    padding: 0.625rem 1.5rem;
 }
 
 .amis-scope .cxd-Page-header {
@@ -146,44 +154,11 @@ html, body, .app-wrapper {
     display: none;
 }
 
-/*自适应顶部菜单丢失问题*/
-@media (max-width: 767px) {
-    .amis-scope .cxd-Layout-headerBar {
-        display: flex;
-    }
-
-    .amis-scope .cxd-Layout-content {
-        margin-top: var(--Layout-header-height);
-    }
-
-    .cxd-Layout-headerBar {
-        background: var(--Layout-header-bg);
-        box-shadow: var(--Layout-header-boxShadow);
-        height: var(--Layout-header-height);
-    }
-
-    .cxd-Layout-headerBar {
-        width: 100%;
-    }
-
-    .cxd-AppFoldBtn {
-        display: none;
-    }
-
-    .amis-scope .cxd-Layout--offScreen .cxd-Layout-aside {
-        z-index: 1200;
-    }
-
-    .amis-scope .cxd-Layout--offScreen .cxd-Layout-body, .amis-scope .cxd-Layout--offScreen .cxd-Layout-footer {
-        padding-top: 100px;
-    }
-}
-
 /*菜单选中样式*/
 .amis-scope .cxd-AsideNav-item.is-active > a {
     background: var(--slow-menu-bg);
     color: var(--primary);
-    margin: 3px 10px;
+    margin: 6px 10px;
     border-radius: var(--borderRadius);
 }
 
@@ -203,13 +178,13 @@ html, body, .app-wrapper {
 }
 
 .amis-scope .cxd-AsideNav-item a {
-    margin: 3px 10px;
+    margin: 6px 10px;
 }
 
 .amis-scope .antd-AsideNav-item.is-active > a {
     background: var(--slow-menu-bg);
     color: var(--primary);
-    margin: 3px 10px;
+    margin: 6px 10px;
     border-radius: var(--borderRadius);
 }
 
@@ -268,46 +243,59 @@ html, body, .app-wrapper {
 
 .amis-scope .cxd-Layout-brand img {
     max-height: 999px;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
 }
 
 .amis-scope .cxd-Layout-brand {
-    font-size: var(--fontSizeLg);
-    font-weight: 600;
+    font-size: 21px;
+    font-weight: 550;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .amis-scope .antd-Layout-brand img {
     max-height: 999px;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
 }
 
 .amis-scope .antd-Layout-brand {
-    font-size: var(--fontSizeLg);
-    font-weight: 600;
+    font-size: 21px;
+    font-weight: 550;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
 }
 
 .amis-scope .a-Layout-brand img {
     max-height: 999px;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
 }
 
 .amis-scope .a-Layout-brand {
-    font-size: var(--fontSizeLg);
-    font-weight: 600;
+    font-size: 21px;
+    font-weight: 550;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
 }
 
 .amis-scope .dark-Layout-brand img {
     max-height: 999px;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
 }
 
 .amis-scope .dark-Layout-brand {
-    font-size: var(--fontSizeLg);
-    font-weight: 600;
+    font-size: 21px;
+    font-weight: 550;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
 }
 
 .admin-user-info {

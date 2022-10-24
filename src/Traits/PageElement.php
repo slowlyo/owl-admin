@@ -227,9 +227,10 @@ JS
             ->perPageAvailable([10, 20, 30, 50, 100, 200])
             ->footerToolbar(['switch-per-page', 'statistics', 'pagination'])
             ->headerToolbar([
-                'filter-toggler',
+                $this->createButton(true),
                 'bulkActions',
-                Component::make()->setType('reload')->align('right'),
+                amis('reload')->align('right'),
+                amis('filter-toggler')->align('right'),
             ]);
     }
 
@@ -267,6 +268,6 @@ JS
      */
     protected function baseList($crud): Page
     {
-        return $this->basePage()->subTitle(__('admin.list'))->toolbar([$this->createButton()])->body($crud);
+        return $this->basePage()->subTitle(__('admin.list'))->body($crud);
     }
 }

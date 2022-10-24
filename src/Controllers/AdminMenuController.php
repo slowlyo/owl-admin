@@ -47,6 +47,16 @@ class AdminMenuController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
+            ->headerToolbar([
+                $this->createButton(true)->dialog(
+                    amis('dialog')->title(__('admin.create'))->body(
+                        $this->form()->api($this->getStorePath())
+                    )->size('lg')
+                ),
+                'bulkActions',
+                amis('reload')->align('right'),
+                amis('filter-toggler')->align('right'),
+            ])
             ->filterTogglable(false)
             ->footerToolbar(['statistics'])
             ->quickSaveApi(admin_url('admin_menu_quick_save'))
@@ -69,7 +79,16 @@ class AdminMenuController extends AdminController
                 ),
                 Column::make()->label(__('admin.admin_menu.visible'))->name('visible')->type('status'),
                 Column::make()->label(__('admin.created_at'))->name('created_at')->type('datetime')->sortable(true),
-                $this->rowActionsOnlyEditAndDelete(),
+                amis('operation')->label(__('admin.actions'))->buttons([
+                    $this->rowEditButton(true)->dialog(
+                        amis('dialog')->title(__('admin.edit'))->body(
+                            $this->form()
+                                ->api($this->getUpdatePath('$id'))
+                                ->initApi($this->getEditGetDataPath('$id'))
+                        )->size('lg')
+                    ),
+                    $this->rowDeleteButton(),
+                ]),
             ])->expandConfig(['expand' => 'all']);
 
         return $this->baseList($crud);

@@ -57,18 +57,18 @@ class AdminPermissionController extends AdminController
                 ->level('success')
                 ->confirmText(__('admin.admin_permission.auto_generate_confirm'))
                 ->actionType('ajax')
-                ->api(admin_url('_admin_permissions_auto_generate'))
-                ->align('right');
+                ->api(admin_url('_admin_permissions_auto_generate'));
         }
 
         $crud = $this->baseCRUD()
             ->filterTogglable(false)
             ->expandConfig(['expand' => 'all'])
             ->headerToolbar([
-                'filter-toggler',
+                $this->createButton(true),
                 'bulkActions',
-                amis('reload')->align('right'),
                 $autoBtn,
+                amis('reload')->align('right'),
+                amis('filter-toggler')->align('right'),
             ])
             ->columns([
                 Column::make()->label('ID')->name('id')->sortable(true),
@@ -92,7 +92,7 @@ class AdminPermissionController extends AdminController
                 $this->rowActionsOnlyEditAndDelete(true),
             ]);
 
-        return $this->baseList($crud)->toolbar([$this->createButton(true)]);
+        return $this->baseList($crud);
     }
 
     public function form(): Form
