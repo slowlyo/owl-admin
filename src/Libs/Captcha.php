@@ -43,24 +43,12 @@ class Captcha
 
     private function setDisturb()
     {
-        $area       = ($this->width * $this->height) / 20;
+        $area       = ($this->width * $this->height) / 90;
         $disturbNum = ($area > 250) ? 250 : $area;
         //加入点干扰
         for ($i = 0; $i < $disturbNum; $i++) {
             $color = imagecolorallocate($this->im, rand(0, 255), rand(0, 255), rand(0, 255));
             imagesetpixel($this->im, rand(1, $this->width - 2), rand(1, $this->height - 2), $color);
-        }
-        //加入弧线
-        for ($i = 0; $i <= 5; $i++) {
-            $color = imagecolorallocate($this->im, rand(128, 255), rand(125, 255), rand(100, 255));
-            imagearc($this->im,
-                rand(0, $this->width),
-                rand(0, $this->height),
-                rand(30, 300),
-                rand(20, 200),
-                50,
-                30,
-                $color);
         }
     }
 

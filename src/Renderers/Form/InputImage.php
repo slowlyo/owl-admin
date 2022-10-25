@@ -2,6 +2,8 @@
 
 namespace Slowlyo\SlowAdmin\Renderers\Form;
 
+use Slowlyo\SlowAdmin\Traits\Uploader;
+
 /**
  * <b>InputImage 图片</b><br/>
  * 图片格式输入，需要实现接收器，提交时将以 url 的方式提交，如果需要以表单方式提交请使用 InputFile。
@@ -30,5 +32,12 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  */
 class InputImage extends FormItem
 {
+    use Uploader;
+
     public string $type = 'input-image';
+
+    public function __construct()
+    {
+        $this->receiver($this->uploadImagePath());
+    }
 }

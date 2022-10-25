@@ -42,7 +42,7 @@ class {{ ClassName }} extends AdminController
             ->filterTogglable(false)
             ->columns([
                 {{ ListContent }}
-                $this->rowActions(),
+                $this->rowActions(true),
             ]);
 
         return $this->baseList($crud);
