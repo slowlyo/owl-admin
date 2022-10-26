@@ -9,11 +9,12 @@ import {
 } from '@ant-design/pro-components'
 import {FormattedMessage, history, useIntl, useModel} from '@umijs/max'
 import {Alert, message} from 'antd'
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {flushSync} from 'react-dom'
 import styles from './index.less'
 
 import {adminService} from '@/services/admin'
+import {setToken} from "@/utils/user"
 
 const LoginMessage: React.FC<{
     content: string;
@@ -31,18 +32,15 @@ const LoginMessage: React.FC<{
 }
 
 const Login: React.FC = () => {
-    const {token,setTokenValue} = useModel('adminModel')
-
     const [errorMessage, setErrorMessage] = useState<string>('')
     const {initialState, setInitialState} = useModel('@@initialState')
 
     const intl = useIntl()
 
     const fetchUserInfo = async () => {
-        // const userInfo = await initialState?.fetchUserInfo?.()
-        console.log('read',token)
-        let userInfo = {}
-        if (userInfo) {
+        const userInfo = await initialState?.fetchUserInfo?.()
+
+        if (userInfo && false) {
             flushSync(() => {
                 setInitialState((s) => ({
                     ...s,
@@ -62,7 +60,7 @@ const Login: React.FC = () => {
                 return
             }
 
-            setTokenValue(result.data.token)
+            setToken(result.data.token)
 
             message.success(result.msg)
 

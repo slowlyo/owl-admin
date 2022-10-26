@@ -13,6 +13,8 @@ class Authenticate
             $redirectTo = config('admin.route.prefix') . '/login';
 
             if (!$this->shouldPassThrough($request) && SlowAdmin::guard()->guest()) {
+                dump(auth('sanctum')->user());
+                dd(auth('sanctum')->user());
                 return redirect()->guest($redirectTo);
             }
         }
