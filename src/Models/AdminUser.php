@@ -2,14 +2,21 @@
 
 namespace Slowlyo\SlowAdmin\Models;
 
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Collection;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Foundation\Auth\User;
 
-class AdminUser extends BaseModel implements AuthenticatableContract
+class AdminUser extends User implements AuthenticatableContract
 {
-    use Authenticatable;
+    use Authenticatable, HasApiTokens;
+
+    protected function serializeDate(\DateTimeInterface $date): string
+    {
+        return $date->format($this->getDateFormat());
+    }
 
     public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -35,9 +42,9 @@ class AdminUser extends BaseModel implements AuthenticatableContract
     }
 
 
-    public function can($ability): bool
+    public function can($abilities, $arguments = []): bool
     {
-        if (empty($ability)) {
+        if (empty($abilities)) {
             return true;
         }
 
@@ -45,12 +52,7 @@ class AdminUser extends BaseModel implements AuthenticatableContract
             return true;
         }
 
-        return $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($ability);
-    }
-
-    public function cannot(string $permission): bool
-    {
-        return !$this->can($permission);
+        return $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($abilities);
     }
 
     public function isAdministrator(): bool

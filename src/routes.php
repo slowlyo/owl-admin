@@ -12,6 +12,7 @@ use \Slowlyo\SlowAdmin\Controllers;
     $router->post('/login', [Controllers\AuthController::class, 'login']);
     $router->get('/logout', [Controllers\AuthController::class, 'logout']);
     $router->get('/login/reload-captcha', [Controllers\AuthController::class, 'reloadCaptcha']);
+    $router->get('/current-user', [Controllers\AuthController::class, 'currentUser']);
 
     $router->get('/base', [Controllers\IndexController::class, 'base']);
     $router->get('/no-content', [Controllers\IndexController::class, 'noContent']);

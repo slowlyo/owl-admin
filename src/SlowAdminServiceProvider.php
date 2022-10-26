@@ -21,6 +21,11 @@ class SlowAdminServiceProvider extends ServiceProvider
             'admin.bootstrap',
             'admin.session',
             'admin.permission',
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 

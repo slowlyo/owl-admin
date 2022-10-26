@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use Slowlyo\SlowAdmin\SlowAdmin;
 use Illuminate\Contracts\View\View;
 use Slowlyo\SlowAdmin\Libs\Captcha;
+use Illuminate\Support\Facades\Hash;
 use Slowlyo\SlowAdmin\Renderers\Card;
 use Slowlyo\SlowAdmin\Renderers\Page;
 use Slowlyo\SlowAdmin\Renderers\Flex;
 use Illuminate\Contracts\View\Factory;
 use Slowlyo\SlowAdmin\Renderers\Image;
 use Slowlyo\SlowAdmin\Renderers\Button;
+use Slowlyo\SlowAdmin\Models\AdminUser;
 use Slowlyo\SlowAdmin\Renderers\Wrapper;
 use Slowlyo\SlowAdmin\Renderers\Service;
 use Illuminate\Support\Facades\Validator;
@@ -156,24 +158,27 @@ class AuthController extends AdminController
 
         try {
             $validator = Validator::make($request->all(), [
-                $this->username() => 'required',
-                'password'        => 'required',
+                'username' => 'required',
+                'password' => 'required',
             ], [
-                $this->username() . '.required' => __('admin.required', ['attribute' => __('admin.username')]),
-                'password.required'             => __('admin.required', ['attribute' => __('admin.password')]),
+                'username' . '.required' => __('admin.required', ['attribute' => __('admin.username')]),
+                'password.required'      => __('admin.required', ['attribute' => __('admin.password')]),
             ]);
 
             if ($validator->fails()) {
                 abort(Response::HTTP_BAD_REQUEST, $validator->errors()->first());
             }
 
-            $credentials = $request->only([$this->username(), 'password']);
-            $remember    = $request->get('remember', false);
+            $credentials = $request->only(['username', 'password']);
+            $remember    = $request->get('autoLogin', false);
 
-            if ($this->guard()->attempt($credentials, $remember)) {
-                $request->session()->regenerate();
+            $user = AdminUser::where('username', $request->username)->first();
 
-                return $this->response()->successMessage(__('admin.login_successful'));
+            if ($user && Hash::check($request->password, $user->password)) {
+                // $request->session()->regenerate();
+                $token = $user->createToken('admin')->plainTextToken;
+
+                return $this->response()->success(compact('token'), __('admin.login_successful'));
             }
 
             abort(Response::HTTP_BAD_REQUEST, __('admin.login_failed'));
@@ -191,14 +196,14 @@ class AuthController extends AdminController
         return $this->response()->successMessage('');
     }
 
-    protected function username(): string
-    {
-        return 'username';
-    }
-
     protected function guard(): \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
     {
         return SlowAdmin::guard();
+    }
+
+    public function currentUser()
+    {
+        return $this->response()->success(SlowAdmin::user());
     }
 
     public function userSetting(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
