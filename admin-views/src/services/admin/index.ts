@@ -13,6 +13,8 @@ const post = (url: string, options?: any) => request(url, {method: 'POST', ...(o
 
 export const adminService = {
     login: async (data: any) => post('/admin/login', {data}),
+    logout: async () => get('/admin/logout'),
     queryCurrentUser: async () => get('/admin/current-user'),
+    queryMenu: async () => get('/admin/menus'),
     captcha: async (options?: any) => get('/admin/login/reload-captcha', options),
 }

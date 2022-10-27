@@ -40,7 +40,7 @@ const Login: React.FC = () => {
     const fetchUserInfo = async () => {
         const userInfo = await initialState?.fetchUserInfo?.()
 
-        if (userInfo && false) {
+        if (userInfo) {
             flushSync(() => {
                 setInitialState((s) => ({
                     ...s,
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
                 return
             }
 
-            setToken(result.data.token)
+            setToken(result.data.token, values.autoLogin)
 
             message.success(result.msg)
 

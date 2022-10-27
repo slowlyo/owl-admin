@@ -5,7 +5,6 @@ import type {RunTimeLayoutConfig} from '@umijs/max'
 import {history} from '@umijs/max'
 import defaultSettings from '../config/defaultSettings'
 import {errorConfig} from './requestErrorConfig'
-import {currentUser as queryCurrentUser} from './services/ant-design-pro/api'
 import {adminService} from "@/services/admin"
 
 // const isDev = process.env.NODE_ENV === 'development';
@@ -23,18 +22,14 @@ export async function getInitialState(): Promise<{
     const fetchUserInfo = async () => {
         try {
             const result = await adminService.queryCurrentUser()
-            console.log('currentUser', result)
 
-            return undefined
-            const msg = await queryCurrentUser({
-                skipErrorHandler: true,
-            })
-            return msg.data
+            return result.data
         } catch (error) {
             history.push(loginPath)
         }
         return undefined
     }
+
     // 如果不是登录页面，执行
     if (window.location.pathname !== loginPath) {
         const currentUser = await fetchUserInfo()
@@ -48,6 +43,20 @@ export async function getInitialState(): Promise<{
         fetchUserInfo,
         settings: defaultSettings,
     }
+}
+
+let extraRoutes
+
+export function patchClientRoutes({routes}) {
+    // 根据 extraRoutes 对 routes 做一些修改
+    routes.unshift(...extraRoutes)
+}
+
+export function render(oldRender) {
+    adminService.queryMenu().then((res) => {
+        extraRoutes = res.data
+        oldRender()
+    })
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
@@ -95,6 +104,13 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
         },
         title: 'Slow Admin',
         logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+        menu: {
+            request: async () => {
+                const menu = await adminService.queryMenu()
+
+                return menu.data
+            }
+        },
         ...initialState?.settings,
     }
 }

@@ -10,12 +10,8 @@ class Authenticate
     public function handle($request, Closure $next)
     {
         if (config('admin.auth.enable')) {
-            $redirectTo = config('admin.route.prefix') . '/login';
-
             if (!$this->shouldPassThrough($request) && SlowAdmin::guard()->guest()) {
-                dump(auth('sanctum')->user());
-                dd(auth('sanctum')->user());
-                return redirect()->guest($redirectTo);
+                return SlowAdmin::response()->additional(['code' => '401'])->fail('请先登录');
             }
         }
 

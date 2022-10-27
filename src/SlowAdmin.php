@@ -73,60 +73,21 @@ class SlowAdmin
     {
         $data = [];
         foreach ($list as $key => $item) {
-            if ($item->parent_id == $parentId) {
-                $children = $this->list2Menu($list, (int)$item->id);
-                $_temp    = [];
+            if ($item['parent_id'] == $parentId) {
+                $children = $this->list2Menu($list, (int)$item['id']);
+
+                $_temp = [
+                    'name' => $item['title'],
+                    'path' => $item['url'],
+                ];
 
                 if (!empty($children)) {
-                    $needShow = collect($children)->where('visible', true)->count();
-                    if ($needShow == 0) {
-                        array_push($data, ...$children);
-                        $children = null;
-                    }
+                    $_temp['routes'] = $children;
                 }
 
-                if (!empty($children)) {
-                    $_temp['children'] = [
-                        [
-                            'label'     => $item->title,
-                            'icon'      => $item->icon,
-                            'children'  => $children,
-                            'className' => $item->class_name,
-                            'visible'   => (bool)$item->visible,
-                        ],
-                    ];
 
-                    if ($item->parent_id != 0) {
-                        $_temp = $_temp['children'][0];
-                    }
-                } else {
-                    $_temp['children'] = [
-                        'label'     => $item->title,
-                        'icon'      => $item->icon,
-                        'visible'   => (bool)$item->visible,
-                        'className' => $item->class_name,
-                    ];
-
-                    // 外链 || 路由
-                    if ($item->url_type == AdminMenu::TYPE_LINK) {
-                        $_temp['children']['link'] = $item->url;
-                    } else {
-                        $_temp['children']['url']       = $item->url;
-                        $_temp['children']['schemaApi'] = url(config('admin.route.prefix') . $item->api);
-                    }
-
-                    $menus = $this->generateMenus($item->url);
-
-                    if ($item->parent_id == 0) {
-                        $_temp['children'] = [$_temp['children']];
-                        $menus             = array_map(fn($value) => ['children' => [$value]], $menus);
-                    } else {
-                        $_temp = $_temp['children'];
-                    }
-                    array_push($data, ...$menus);
-                }
                 $data[] = $_temp;
-                unset($list[$key], $_temp);
+                unset($list[$key]);
             }
         }
         return $data;
@@ -138,17 +99,17 @@ class SlowAdmin
 
         return [
             [
-                'url'       => $url . "/create",
+                'path'      => $url . "/create",
                 'visible'   => false,
                 'schemaApi' => url($prefix . $url . '/create'),
             ],
             [
-                'url'       => $url . '/:id',
+                'path'      => $url . '/:id',
                 'visible'   => false,
                 'schemaApi' => url($prefix . $url . '/${params.id}'),
             ],
             [
-                'url'       => $url . '/:id/edit',
+                'path'      => $url . '/:id/edit',
                 'visible'   => false,
                 'schemaApi' => url($prefix . $url . '/${params.id}/edit'),
             ],

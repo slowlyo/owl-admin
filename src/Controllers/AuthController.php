@@ -189,9 +189,7 @@ class AuthController extends AdminController
 
     public function logout(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
+        $this->guard()->user()->currentAccessToken()->delete();
 
         return $this->response()->successMessage('');
     }
@@ -203,7 +201,7 @@ class AuthController extends AdminController
 
     public function currentUser()
     {
-        return $this->response()->success(SlowAdmin::user());
+        return $this->response()->success(SlowAdmin::user()->only(['id', 'name', 'avatar']));
     }
 
     public function userSetting(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource

@@ -37,6 +37,29 @@ class IndexController extends AdminController
         return $this->response()->success($component);
     }
 
+    public function menus()
+    {
+        return $this->response()->success(SlowAdmin::make()->getMenus());
+        $menus = [
+            [
+                'path'      => '/',
+                'redirect' => '/dashboard',
+            ],
+            [
+                'path'       => '/user_setting',
+                'schemaApi' => config('admin.route.prefix') . '/user_setting',
+            ],
+        ];
+
+        array_push($menus, ...SlowAdmin::make()->getMenus());
+
+        if (config('admin.show_development_tools')) {
+            $menus[] = $this->devTools();
+        }
+
+        return $this->response()->success($menus);
+    }
+
     public function noContent(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
         return $this->response()->successMessage();
