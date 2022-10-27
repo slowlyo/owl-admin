@@ -39,14 +39,13 @@ class IndexController extends AdminController
 
     public function menus()
     {
-        return $this->response()->success(SlowAdmin::make()->getMenus());
         $menus = [
+            // [
+            //     'path'      => '/',
+            //     'redirect' => '/dashboard',
+            // ],
             [
-                'path'      => '/',
-                'redirect' => '/dashboard',
-            ],
-            [
-                'path'       => '/user_setting',
+                'path'      => '/user_setting',
                 'schemaApi' => config('admin.route.prefix') . '/user_setting',
             ],
         ];
@@ -68,18 +67,13 @@ class IndexController extends AdminController
     public function devTools(): array
     {
         return [
-            'children' => [
+            'name'   => __('admin.developer'),
+            'path'   => '/dev_tools',
+            'routes' => [
                 [
-                    'label'    => __('admin.developer'),
-                    'icon'     => 'fa-brands fa-dev',
-                    'children' => [
-                        [
-                            'label'     => __('admin.code_generator'),
-                            'icon'      => 'fa-solid fa-robot',
-                            'url'       => '/dev_tools/code_generator',
-                            'schemaApi' => config('admin.route.prefix') . '/dev_tools/code_generator',
-                        ],
-                    ],
+                    'name'      => __('admin.code_generator'),
+                    'path'      => '/dev_tools/code_generator',
+                    'schemaApi' => config('admin.route.prefix') . '/dev_tools/code_generator',
                 ],
             ],
         ];

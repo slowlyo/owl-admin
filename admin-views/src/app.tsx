@@ -6,6 +6,7 @@ import {history} from '@umijs/max'
 import defaultSettings from '../config/defaultSettings'
 import {errorConfig} from './requestErrorConfig'
 import {adminService} from "@/services/admin"
+import {parseRoutes} from "@/utils/dynamicRoutes"
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login'
@@ -45,14 +46,14 @@ export async function getInitialState(): Promise<{
     }
 }
 
-let extraRoutes
+let extraRoutes: any
 
-export function patchClientRoutes({routes}) {
+export function patchClientRoutes({routes}: any) {
     // 根据 extraRoutes 对 routes 做一些修改
-    routes.unshift(...extraRoutes)
+    parseRoutes(extraRoutes, routes)
 }
 
-export function render(oldRender) {
+export function render(oldRender: any) {
     adminService.queryMenu().then((res) => {
         extraRoutes = res.data
         oldRender()
@@ -63,9 +64,6 @@ export function render(oldRender) {
 export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => {
     return {
         rightContentRender: () => <RightContent/>,
-        waterMarkProps: {
-            content: initialState?.currentUser?.name,
-        },
         // 这里是 jio 如果你需要可以自行打开
         // footerRender: () => <Footer />,
         onPageChange: () => {
@@ -105,6 +103,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
         title: 'Slow Admin',
         logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
         menu: {
+            locale: false,
             request: async () => {
                 const menu = await adminService.queryMenu()
 

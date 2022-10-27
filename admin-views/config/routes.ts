@@ -49,7 +49,7 @@ export default [
     {
         name: 'list.table-list',
         icon: 'table',
-        path: '/dashboard',
+        path: '/TableList',
         component: './TableList',
     },
     {

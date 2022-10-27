@@ -77,8 +77,9 @@ class SlowAdmin
                 $children = $this->list2Menu($list, (int)$item['id']);
 
                 $_temp = [
-                    'name' => $item['title'],
-                    'path' => $item['url'],
+                    'name'      => $item['title'],
+                    'path'      => $item['url'],
+                    'component' => 'Amis.tsx'
                 ];
 
                 if (!empty($children)) {
