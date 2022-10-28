@@ -87,7 +87,6 @@ class SlowAdmin
                     $_temp['routes'] = $children;
                 }
 
-
                 $data[] = $_temp;
                 array_push($data, ...$this->generateMenus($_temp['path']));
                 unset($list[$key]);
@@ -98,7 +97,9 @@ class SlowAdmin
 
     public function generateMenus($url): array
     {
-        $prefix = config('admin.route.prefix');
+        if(!$url){
+            return [];
+        }
 
         return [
             [

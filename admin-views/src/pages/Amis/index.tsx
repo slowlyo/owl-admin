@@ -7,6 +7,9 @@ import {useLocation} from '@umijs/max'
 import {render as renderAmis} from 'amis'
 import {adminService} from "@/services/admin"
 import {useEffect, useState} from 'react'
+import axios from "axios"
+import copy from 'copy-to-clipboard'
+import {message} from 'antd'
 
 export default () => {
     const location = useLocation()
@@ -27,14 +30,15 @@ export default () => {
         <>
             {
                 renderAmis(schema, {}, {
-                    fetcher: ({
-                                  url, // 接口地址
-                                  method, // 请求方法 get、post、put、delete
-                                  data, // 请求数据
-                              }) => {
+                    fetcher: ({url, method, data}) => {
                         return adminService.request(url, method, data)
                     },
                     updateLocation: () => {
+                    },
+                    isCancel: (value: any) => (axios as any).isCancel(value),
+                    copy: content => {
+                        copy(content as any)
+                        message.success('内容已复制到粘贴板').then()
                     },
                 })
             }
