@@ -79,7 +79,8 @@ class SlowAdmin
                 $_temp = [
                     'name'      => $item['title'],
                     'path'      => $item['url'],
-                    'component' => 'Amis.tsx'
+                    'icon'      => $item['icon'],
+                    'component' => 'Amis',
                 ];
 
                 if (!empty($children)) {
@@ -88,6 +89,7 @@ class SlowAdmin
 
 
                 $data[] = $_temp;
+                array_push($data, ...$this->generateMenus($_temp['path']));
                 unset($list[$key]);
             }
         }
@@ -101,18 +103,15 @@ class SlowAdmin
         return [
             [
                 'path'      => $url . "/create",
-                'visible'   => false,
-                'schemaApi' => url($prefix . $url . '/create'),
+                'component' => 'Amis',
             ],
             [
                 'path'      => $url . '/:id',
-                'visible'   => false,
-                'schemaApi' => url($prefix . $url . '/${params.id}'),
+                'component' => 'Amis',
             ],
             [
                 'path'      => $url . '/:id/edit',
-                'visible'   => false,
-                'schemaApi' => url($prefix . $url . '/${params.id}/edit'),
+                'component' => 'Amis',
             ],
         ];
     }

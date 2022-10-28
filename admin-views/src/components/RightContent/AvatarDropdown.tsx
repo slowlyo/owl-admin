@@ -46,7 +46,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({menu}) => {
                 loginOut()
                 return
             }
-            history.push(`/account/${key}`)
+            history.push(key)
         },
         [setInitialState],
     )
@@ -75,7 +75,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({menu}) => {
 
     const menuItems: ItemType[] = [
         {
-            key: 'settings',
+            key: '/user_setting',
             icon: <SettingOutlined/>,
             label: '个人设置',
         },

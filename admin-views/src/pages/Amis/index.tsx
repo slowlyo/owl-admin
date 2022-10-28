@@ -1,6 +1,8 @@
 import 'amis/lib/themes/cxd.css'
 import 'amis/lib/helper.css'
 import 'amis/sdk/iconfont.css'
+import './index.less'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import {useLocation} from '@umijs/max'
 import {render as renderAmis} from 'amis'
 import {adminService} from "@/services/admin"

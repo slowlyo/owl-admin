@@ -28,7 +28,7 @@ use \Slowlyo\SlowAdmin\Controllers;
     $router->any('upload_file', [Controllers\IndexController::class, 'uploadFile']);
 
     // 主页
-    $router->resource('home', Controllers\HomeController::class);
+    $router->resource('dashboard', Controllers\HomeController::class);
     // 管理员
     $router->resource('admin_users', Controllers\AdminUserController::class);
     // 菜单

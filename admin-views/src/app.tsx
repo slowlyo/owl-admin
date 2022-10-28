@@ -105,9 +105,17 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
         menu: {
             locale: false,
             request: async () => {
-                const menu = await adminService.queryMenu()
+                const result: any = await adminService.queryMenu()
 
-                return menu.data
+                const menu = result.data
+
+                menu.forEach((item: any) => {
+                    if (item?.icon) {
+                        item.icon = (<i className={item.icon}></i>)
+                    }
+                })
+
+                return menu
             }
         },
         ...initialState?.settings,

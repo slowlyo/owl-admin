@@ -17,7 +17,7 @@ export const adminService = {
     logout: async () => get('/admin/logout'),
     queryCurrentUser: async () => get('/admin/current-user'),
     queryMenu: async () => get('/admin/menus'),
-    initPage: async (path: string) => get('/admin/' + path),
+    initPage: async (path: string) => get('/admin' + path),
 
     captcha: async (options?: any) => get('/admin/login/reload-captcha', options),
 }

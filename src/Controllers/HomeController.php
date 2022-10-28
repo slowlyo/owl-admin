@@ -17,7 +17,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class HomeController extends AdminController
 {
-    protected string $queryPath = 'home';
+    protected string $queryPath = 'dashboard';
 
     protected string $pageTitle = '首页';
 

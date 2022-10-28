@@ -46,7 +46,7 @@ class IndexController extends AdminController
             // ],
             [
                 'path'      => '/user_setting',
-                'schemaApi' => config('admin.route.prefix') . '/user_setting',
+                'component' => 'Amis'
             ],
         ];
 
@@ -69,11 +69,13 @@ class IndexController extends AdminController
         return [
             'name'   => __('admin.developer'),
             'path'   => '/dev_tools',
+            'icon'     => 'fa-brands fa-dev',
             'routes' => [
                 [
                     'name'      => __('admin.code_generator'),
                     'path'      => '/dev_tools/code_generator',
-                    'schemaApi' => config('admin.route.prefix') . '/dev_tools/code_generator',
+                    'icon'      => 'fa-solid fa-robot',
+                    'component' => 'Amis'
                 ],
             ],
         ];
