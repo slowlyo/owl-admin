@@ -94,7 +94,7 @@ class AdminUserService extends AdminService
         return parent::update($primaryKey, $data);
     }
 
-    public function passwordHandler($id, &$data): bool
+    public function passwordHandler(&$data, $id = null): bool
     {
         $password = Arr::get($data, 'password');
 
@@ -103,14 +103,16 @@ class AdminUserService extends AdminService
                 return $this->setError('两次输入密码不一致');
             }
 
-            if (!Arr::get($data, 'old_password')) {
-                return $this->setError('请输入原密码');
-            }
+            if ($id) {
+                if (!Arr::get($data, 'old_password')) {
+                    return $this->setError('请输入原密码');
+                }
 
-            $oldPassword = $this->query()->where('id', $id)->value('password');
+                $oldPassword = $this->query()->where('id', $id)->value('password');
 
-            if (!Hash::check($data['old_password'], $oldPassword)) {
-                return $this->setError('密码错误');
+                if (!Hash::check($data['old_password'], $oldPassword)) {
+                    return $this->setError('密码错误');
+                }
             }
 
             $data['password'] = bcrypt($password);

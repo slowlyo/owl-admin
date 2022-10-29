@@ -133,7 +133,7 @@ class CodeGeneratorController extends AdminController
                                             'componentId' => 'code_generator_form',
                                             'args'        => [
                                                 'value' => [
-                                                    'table_name' => '${SPLIT(event.data.value, "-")[1]}',
+                                                    'table_name' => '${SPLIT(event.data.value, "-")[0]}',
                                                 ],
                                             ],
                                         ],

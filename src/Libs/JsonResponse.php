@@ -32,7 +32,7 @@ class JsonResponse
      *
      * @return \Illuminate\Http\JsonResponse|JsonResource
      */
-    public function success($data = null, string $message = 'OK'): \Illuminate\Http\JsonResponse|JsonResource
+    public function success($data = null, string $message = ''): \Illuminate\Http\JsonResponse|JsonResource
     {
         $this->setSuccessMsg($message);
 
@@ -56,7 +56,7 @@ class JsonResponse
      *
      * @return \Illuminate\Http\JsonResponse|JsonResource
      */
-    public function successMessage($message = 'OK'): \Illuminate\Http\JsonResponse|JsonResource
+    public function successMessage($message = ''): \Illuminate\Http\JsonResponse|JsonResource
     {
         return $this->success([], $message);
     }

@@ -108,7 +108,7 @@ return [
         'order'                  => 'Order',
         'title'                  => 'Title',
         'icon'                   => 'Icon',
-        'icon_description'       => 'Please refer to ',
+        'icon_description'       => 'Only the level-1 menu takes effect, Please refer to ',
         'url'                    => 'Url',
         'visible'                => 'Visible',
         'type'                   => 'Type',

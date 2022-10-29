@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 if (!function_exists('admin_url')) {
     function admin_url($path = null)
     {
-        return url(config('admin.route.prefix') . '/' . $path);
+        return url(config('admin.route.prefix') . '/' . trim($path, '/'));
     }
 }
 

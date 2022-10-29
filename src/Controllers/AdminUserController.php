@@ -56,6 +56,12 @@ class AdminUserController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
+            ->headerToolbar([
+                $this->createButton(true),
+                'bulkActions',
+                amis('reload')->align('right'),
+                amis('filter-toggler')->align('right'),
+            ])
             ->filter($this->baseFilter()->body(
                 InputText::make()
                     ->name('keyword')

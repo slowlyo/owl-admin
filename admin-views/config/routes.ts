@@ -11,7 +11,7 @@
 export default [
     {
         path: '/',
-        redirect: '/welcome',
+        redirect: '/dashboard',
     },
     {
         path: '/user',
@@ -23,34 +23,6 @@ export default [
                 component: './User/Login',
             },
         ],
-    },
-    {
-        path: '/welcome',
-        name: 'welcome',
-        icon: 'smile',
-        component: './Welcome',
-    },
-    {
-        path: '/admin',
-        name: 'admin',
-        icon: 'crown',
-        routes: [
-            {
-                path: '/admin',
-                redirect: '/admin/sub-page',
-            },
-            {
-                path: '/admin/sub-page',
-                name: 'sub-page',
-                component: './Admin',
-            },
-        ],
-    },
-    {
-        name: 'list.table-list',
-        icon: 'table',
-        path: '/TableList',
-        component: './TableList',
     },
     {
         path: '*',

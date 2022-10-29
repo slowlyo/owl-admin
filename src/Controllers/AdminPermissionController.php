@@ -229,7 +229,7 @@ class AdminPermissionController extends AdminController
             }
         }
 
-        return $this->response()->success(
+        return $this->response()->successMessage(
             __('admin.successfully_message', ['attribute' => __('admin.admin_permission.auto_generate')])
         );
     }

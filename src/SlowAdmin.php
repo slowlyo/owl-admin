@@ -97,7 +97,7 @@ class SlowAdmin
 
     public function generateMenus($url): array
     {
-        if(!$url){
+        if (!$url) {
             return [];
         }
 

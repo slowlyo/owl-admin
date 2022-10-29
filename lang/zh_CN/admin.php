@@ -110,7 +110,7 @@ return [
         'order'                  => '排序',
         'title'                  => '名称',
         'icon'                   => '图标',
-        'icon_description'       => '请参考',
+        'icon_description'       => '仅一级菜单生效, 请参考',
         'url'                    => '链接',
         'visible'                => '可见',
         'type'                   => '类型',

@@ -2,9 +2,9 @@ import {Outlet} from '@umijs/max'
 import {lazy} from "react"
 
 export const parseRoutes = (extraRoutes: any[], routes: any[]) => {
-    routes.forEach((item: any) => {
+    routes?.forEach((item: any) => {
         if (item.isLayout) {
-            Object.assign(item.children, handleData(extraRoutes, item.id))
+            item.children.push(...handleData(extraRoutes, item.id))
         }
     })
 }
@@ -12,7 +12,7 @@ export const parseRoutes = (extraRoutes: any[], routes: any[]) => {
 const handleData = (item: any, parentId: any) => {
     let result: any = []
 
-    item.forEach((val: any, index: number) => {
+    item?.forEach((val: any, index: number) => {
         let _item: any = {
             id: parentId + '-' + index,
             name: parentId + '-' + index,

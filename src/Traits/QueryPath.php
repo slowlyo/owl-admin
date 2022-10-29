@@ -11,7 +11,7 @@ trait QueryPath
      */
     public function getListGetDataPath(): string
     {
-        return $this->adminPrefix . '/' . $this->queryPath . '?_action=getData';
+        return admin_url($this->queryPath . '?_action=getData');
     }
 
     /**
@@ -21,7 +21,7 @@ trait QueryPath
      */
     public function getDeletePath(): string
     {
-        return 'delete:' . $this->adminPrefix . '/' . $this->queryPath . '/${id}';
+        return 'delete:' . admin_url($this->queryPath . '/${id}');
     }
 
     /**
@@ -31,7 +31,7 @@ trait QueryPath
      */
     public function getBulkDeletePath(): string
     {
-        return 'delete:' . $this->adminPrefix . '/' . $this->queryPath . '/${ids}';
+        return 'delete:' . admin_url($this->queryPath . '/${ids}');
     }
 
     /**
@@ -53,7 +53,7 @@ trait QueryPath
      */
     public function getEditGetDataPath($id): string
     {
-        return $this->adminPrefix . '/' . $this->queryPath . '/' . $id . '/edit?_action=getData';
+        return admin_url($this->queryPath . '/' . $id . '/edit?_action=getData');
     }
 
     /**
@@ -75,7 +75,7 @@ trait QueryPath
      */
     public function getUpdatePath($id): string
     {
-        return 'put:' . $this->adminPrefix . '/' . $this->queryPath . '/' . $id;
+        return 'put:' . admin_url($this->queryPath . '/' . $id);
     }
 
     /**
@@ -87,7 +87,7 @@ trait QueryPath
      */
     public function getShowGetDataPath($id): string
     {
-        return $this->adminPrefix . '/' . $this->queryPath . '/' . $id . '?_action=getData';
+        return admin_url($this->queryPath . '/' . $id . '?_action=getData');
     }
 
     /**
@@ -107,7 +107,7 @@ trait QueryPath
      */
     public function getStorePath(): string
     {
-        return 'post:' . $this->adminPrefix . '/' . $this->queryPath;
+        return 'post:' . admin_url($this->queryPath);
     }
 
     /**

@@ -140,8 +140,8 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $list->push("Column::make()->name('created_at')->label('创建时间')->sortable(true)");
-            $list->push("Column::make()->name('updated_at')->label('更新时间')->sortable(true)");
+            $list->push("Column::make()->name('created_at')->label('创建时间')->type('datetime')->sortable(true)");
+            $list->push("Column::make()->name('updated_at')->label('更新时间')->type('datetime')->sortable(true)");
         }
 
         $list = $list->implode(",\n\t\t\t\t") . ',';

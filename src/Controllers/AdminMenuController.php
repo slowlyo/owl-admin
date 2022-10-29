@@ -102,7 +102,6 @@ class AdminMenuController extends AdminController
                 InputText::make()
                     ->name('icon')
                     ->label(__('admin.admin_menu.icon'))
-                    ->required(true)
                     ->placeholder('eg: fa fa-xxx')
                     ->description(
                         __('admin.admin_menu.icon_description') .

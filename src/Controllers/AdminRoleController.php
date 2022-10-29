@@ -46,6 +46,12 @@ class AdminRoleController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
+            ->headerToolbar([
+                $this->createButton(true),
+                'bulkActions',
+                amis('reload')->align('right'),
+                amis('filter-toggler')->align('right'),
+            ])
             ->filterTogglable(false)
             ->columns([
                 Column::make()->label('ID')->name('id')->sortable(true),

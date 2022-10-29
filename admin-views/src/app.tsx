@@ -22,7 +22,12 @@ export async function getInitialState(): Promise<{
 }> {
     const fetchUserInfo = async () => {
         try {
-            const result = await adminService.queryCurrentUser()
+            const result: any = await adminService.queryCurrentUser()
+
+            if (result?.code == 401) {
+                history.push(loginPath)
+                return
+            }
 
             return result.data
         } catch (error) {

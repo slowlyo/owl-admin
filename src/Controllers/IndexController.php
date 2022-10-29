@@ -40,10 +40,10 @@ class IndexController extends AdminController
     public function menus()
     {
         $menus = [
-            // [
-            //     'path'      => '/',
-            //     'redirect' => '/dashboard',
-            // ],
+            [
+                'path'      => '/',
+                'redirect' => '/dashboard',
+            ],
             [
                 'path'      => '/user_setting',
                 'component' => 'Amis'
