@@ -17,7 +17,7 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 
 - [《Laravel 9 中文文档》](https://learnku.com/docs/laravel/9.x/installation/12200)
 - [《amis》](https://aisuda.bce.baidu.com/amis/zh-CN/docs/index)
-- [《Slow Admin》](https://learnku.com/docs/slow-admin)
+- [《Slow Admin》](https://slowlyo.gitee.io/slow-admin-doc/)
 
 ## 功能
 
@@ -37,7 +37,7 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 - `Amis` 全组件封装
 
 ## demo
-[Demo 地址](http://slow-demo.kmhnkj.cn)
+[Demo 地址](http://admin-demo.slowlyo.top)
 
 ## 截图
 
