@@ -109,7 +109,9 @@ export const errorConfig: RequestConfig = {
             const {data} = response as unknown as ResponseStructure
 
             if (data?.status === 1) {
-                message.error(data?.msg || '请求失败！')
+                if (!(window.location.pathname == '/user/login' && data?.code == 401)) {
+                    message.error(data?.msg || '请求失败！')
+                }
             } else {
                 if (data?.msg) {
                     message.success(data?.msg)

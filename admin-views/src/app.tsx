@@ -1,5 +1,5 @@
 import RightContent from '@/components/RightContent'
-import type {Settings as LayoutSettings} from '@ant-design/pro-components'
+import {Settings as LayoutSettings} from '@ant-design/pro-components'
 import {SettingDrawer} from '@ant-design/pro-components'
 import type {RunTimeLayoutConfig} from '@umijs/max'
 import {history} from '@umijs/max'

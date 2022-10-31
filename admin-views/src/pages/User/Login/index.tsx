@@ -7,7 +7,7 @@ import {
     ProFormCheckbox,
     ProFormText,
 } from '@ant-design/pro-components'
-import {FormattedMessage, history, useIntl, useModel} from '@umijs/max'
+import {FormattedMessage, useIntl, useModel} from '@umijs/max'
 import {Alert, message} from 'antd'
 import React, {useState} from 'react'
 import {flushSync} from 'react-dom'
@@ -62,13 +62,13 @@ const Login: React.FC = () => {
 
             setToken(result.data.token, values.autoLogin)
 
-            message.success(result.msg)
-
             await fetchUserInfo()
 
             const urlParams = new URL(window.location.href).searchParams
 
-            history.push(urlParams.get('redirect') || '/')
+            // history.push(urlParams.get('redirect') || '/')
+            // 更新路由数据
+            window.location.href = urlParams.get('redirect') || '/'
         } catch (error) {
             console.log(error)
             message.error('登录失败，请重试！')
