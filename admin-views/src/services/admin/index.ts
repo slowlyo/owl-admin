@@ -1,4 +1,5 @@
 import {request} from '@umijs/max'
+import {getToken} from "@/utils/user"
 
 export async function base(options?: { [key: string]: any }) {
     return request('/admin/base', {
@@ -15,8 +16,20 @@ export const adminService = {
 
     login: async (data: any) => post('/admin/login', {data}),
     logout: async () => get('/admin/logout'),
-    queryCurrentUser: async () => get('/admin/current-user'),
-    queryMenu: async () => get('/admin/menus'),
+    queryCurrentUser: async () => {
+        if (!getToken()) {
+            return null
+        }
+
+        return get('/admin/current-user')
+    },
+    queryMenu: async () => {
+        if (!getToken()) {
+            return null
+        }
+
+        return get('/admin/menus')
+    },
     initPage: async (path: string) => get('/admin' + path),
 
     captcha: async (options?: any) => get('/admin/login/reload-captcha', options),

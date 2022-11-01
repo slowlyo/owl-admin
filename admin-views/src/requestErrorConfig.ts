@@ -91,9 +91,12 @@ export const errorConfig: RequestConfig = {
     requestInterceptors: [
         (config: RequestOptions) => {
             // 拦截请求配置，进行个性化处理。
-            config.headers = {
-                Authorization: 'Bearer ' + getToken(),
-                ...config.headers
+            const token = getToken()
+            if (token) {
+                config.headers = {
+                    Authorization: 'Bearer ' + token,
+                    ...config.headers
+                }
             }
 
             const url = config?.url

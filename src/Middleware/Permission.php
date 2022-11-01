@@ -63,24 +63,31 @@ class Permission
 
         $excepts = config('admin.auth.except', []);
 
-        return collect($excepts)
-            ->map(function ($path) {
-                $prefix = '/' . trim(config('admin.route.prefix'), '/');
+        $devTools = [];
+        if (config('admin.show_development_tools')) {
+            $devTools = ['/dev_tools*'];
+        }
 
-                $prefix = ($prefix === '/') ? '' : $prefix;
+        return collect($excepts)->merge([
+            'menus',
+            'current-user',
+            ...$devTools
+        ])->map(function ($path) {
+            $prefix = '/' . trim(config('admin.route.prefix'), '/');
 
-                $path = trim($path, '/');
+            $prefix = ($prefix === '/') ? '' : $prefix;
 
-                if (is_null($path) || $path === '') {
-                    return $prefix ?: '/';
-                }
-                return $prefix . '/' . $path;
-            })
-            ->contains(function ($except) use ($request) {
-                if ($except !== '/') {
-                    $except = trim($except, '/');
-                }
-                return $request->is($except);
-            });
+            $path = trim($path, '/');
+
+            if (is_null($path) || $path === '') {
+                return $prefix ?: '/';
+            }
+            return $prefix . '/' . $path;
+        })->contains(function ($except) use ($request) {
+            if ($except !== '/') {
+                $except = trim($except, '/');
+            }
+            return $request->is($except);
+        });
     }
 }

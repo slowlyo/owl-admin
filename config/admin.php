@@ -27,25 +27,13 @@ return [
     'auth' => [
         'enable'     => true,
         'controller' => \Slowlyo\SlowAdmin\Controllers\AuthController::class,
-        'guard'      => 'admin',
-        'guards'     => [
-            'admin' => [
-                'driver'   => 'session',
-                'provider' => 'admin',
-            ],
-        ],
-        'providers'  => [
-            'admin' => [
-                'driver' => 'eloquent',
-                'model'  => \Slowlyo\SlowAdmin\Models\AdminUser::class,
-            ],
-        ],
+        'guard'      => 'sanctum',
         'remember'   => true,
-        'captcha'    => true,
+        'captcha'    => false,
         'except'     => [
             'login',
             'logout',
-            'login/reload-captcha',
+            'no-content'
         ],
     ],
 

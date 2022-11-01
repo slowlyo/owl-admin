@@ -60,7 +60,7 @@ export function patchClientRoutes({routes}: any) {
 
 export function render(oldRender: any) {
     adminService.queryMenu().then((res) => {
-        extraRoutes = res.data
+        extraRoutes = res?.data
         oldRender()
     })
 }
@@ -106,7 +106,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
             )
         },
         title: 'Slow Admin',
-        logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+        logo: '/logo.png',
         menu: {
             locale: false,
             request: async () => {
