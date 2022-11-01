@@ -172,7 +172,7 @@ class AuthController extends AdminController
             $credentials = $request->only(['username', 'password']);
             $remember    = $request->get('autoLogin', false);
 
-            $user = AdminUser::where('username', $request->username)->first();
+            $user = AdminUser::query()->where('username', $request->username)->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
                 // $request->session()->regenerate();
@@ -187,11 +187,11 @@ class AuthController extends AdminController
         }
     }
 
-    public function logout(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+    public function logout(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
         $this->guard()->user()->currentAccessToken()->delete();
 
-        return $this->response()->successMessage('');
+        return $this->response()->successMessage();
     }
 
     protected function guard(): \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard

@@ -56,7 +56,7 @@ class JsonResponse
      *
      * @return \Illuminate\Http\JsonResponse|JsonResource
      */
-    public function successMessage($message = ''): \Illuminate\Http\JsonResponse|JsonResource
+    public function successMessage(string $message = ''): \Illuminate\Http\JsonResponse|JsonResource
     {
         return $this->success([], $message);
     }

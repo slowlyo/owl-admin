@@ -5,7 +5,6 @@ namespace Slowlyo\SlowAdmin;
 use Slowlyo\SlowAdmin\Traits\Assets;
 use Illuminate\Support\Facades\Auth;
 use Slowlyo\SlowAdmin\Traits\Layouts;
-use Slowlyo\SlowAdmin\Models\AdminMenu;
 use Slowlyo\SlowAdmin\Models\AdminUser;
 use Slowlyo\SlowAdmin\Libs\JsonResponse;
 use Illuminate\Contracts\View\Factory;

@@ -2,9 +2,6 @@
 
 namespace Slowlyo\SlowAdmin\Traits;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
-
 trait Uploader
 {
     public function uploadImagePath(): string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application

@@ -22,7 +22,7 @@ class InstallCommand extends Command
     {
         $this->call('migrate');
 
-        if (AdminUser::count() == 0) {
+        if (AdminUser::query()->count() == 0) {
             $this->call('db:seed', ['--class' => AdminTablesSeeder::class]);
         }
     }

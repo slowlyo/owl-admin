@@ -1,6 +1,6 @@
 <?php
 
-use \Slowlyo\SlowAdmin\Controllers;
+use Slowlyo\SlowAdmin\Controllers;
 
 \Illuminate\Support\Facades\Route::group([
     'domain'     => config('admin.route.domain'),
