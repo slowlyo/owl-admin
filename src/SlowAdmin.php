@@ -2,9 +2,7 @@
 
 namespace Slowlyo\SlowAdmin;
 
-use Slowlyo\SlowAdmin\Traits\Assets;
 use Illuminate\Support\Facades\Auth;
-use Slowlyo\SlowAdmin\Traits\Layouts;
 use Slowlyo\SlowAdmin\Models\AdminUser;
 use Slowlyo\SlowAdmin\Libs\JsonResponse;
 use Illuminate\Contracts\View\Factory;
@@ -14,35 +12,9 @@ use Slowlyo\SlowAdmin\Services\AdminMenuService;
 
 class SlowAdmin
 {
-    use Assets, Layouts;
-
-    /** @var array 页面参数 */
-    private static array $variable = [];
-
     public static function make(): static
     {
         return new static();
-    }
-
-    public function setVariable($key, $value): static
-    {
-        static::$variable[$key] = $value;
-
-        return $this;
-    }
-
-    public function render($view = 'slow-admin::index'): Factory|View|Application
-    {
-        $this->setVariable('css', static::getCss());
-        $this->setVariable('js', static::getJs());
-
-        $theme = config('admin.layout.theme');
-        if (!$theme || $theme == 'default') {
-            $theme = '';
-        }
-        $this->setVariable('systemTheme', $theme);
-
-        return view($view, static::$variable);
     }
 
     public static function response(): JsonResponse

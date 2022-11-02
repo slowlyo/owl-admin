@@ -3,50 +3,22 @@
 namespace Slowlyo\SlowAdmin\Controllers;
 
 use Slowlyo\SlowAdmin\SlowAdmin;
-use Slowlyo\SlowAdmin\Renderers\Component;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class IndexController extends AdminController
 {
-    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-    {
-        return SlowAdmin::make()->baseApp()->render();
-    }
-
-
-    public function base(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+    public function menus(): JsonResponse|JsonResource
     {
         $menus = [
             [
-                'url'      => '/',
-                'redirect' => '/dashboard',
-            ],
-            [
-                'url'       => '/user_setting',
-                'schemaApi' => config('admin.route.prefix') . '/user_setting',
-            ],
-        ];
-
-        array_push($menus, ...SlowAdmin::make()->getMenus());
-
-        if (config('admin.show_development_tools')) {
-            $menus[] = $this->devTools();
-        }
-
-        $component = Component::make()->setType('app')->pages($menus)->id('base-app-reload');
-
-        return $this->response()->success($component);
-    }
-
-    public function menus()
-    {
-        $menus = [
-            [
-                'path'      => '/',
+                'path'     => '/',
                 'redirect' => '/dashboard',
             ],
             [
                 'path'      => '/user_setting',
-                'component' => 'Amis'
+                'component' => 'Amis',
             ],
         ];
 
@@ -59,7 +31,7 @@ class IndexController extends AdminController
         return $this->response()->success($menus);
     }
 
-    public function noContent(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+    public function noContent(): JsonResponse|JsonResource
     {
         return $this->response()->successMessage();
     }
@@ -69,15 +41,25 @@ class IndexController extends AdminController
         return [
             'name'   => __('admin.developer'),
             'path'   => '/dev_tools',
-            'icon'     => 'fa-brands fa-dev',
+            'icon'   => 'fa-brands fa-dev',
             'routes' => [
                 [
                     'name'      => __('admin.code_generator'),
                     'path'      => '/dev_tools/code_generator',
                     'icon'      => 'fa-solid fa-robot',
-                    'component' => 'Amis'
+                    'component' => 'Amis',
                 ],
             ],
         ];
+    }
+
+    public function settings(): JsonResponse|JsonResource
+    {
+        $settings = [
+            'app_name'     => config('admin.name'),
+            'logo'         => url(config('admin.logo')),
+        ];
+
+        return $this->response()->success($settings);
     }
 }

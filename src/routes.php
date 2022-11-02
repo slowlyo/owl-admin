@@ -7,16 +7,14 @@ use Slowlyo\SlowAdmin\Controllers;
     'prefix'     => config('admin.route.prefix'),
     'middleware' => config('admin.route.middleware'),
 ], function (\Illuminate\Routing\Router $router) {
-    $router->get('/', [Controllers\IndexController::class, 'index']);
-    $router->get('/login', [Controllers\AuthController::class, 'index']);
     $router->post('/login', [Controllers\AuthController::class, 'login']);
     $router->get('/logout', [Controllers\AuthController::class, 'logout']);
-    $router->get('/login/reload-captcha', [Controllers\AuthController::class, 'reloadCaptcha']);
     $router->get('/current-user', [Controllers\AuthController::class, 'currentUser']);
+    $router->get('/_settings', [Controllers\IndexController::class, 'settings']);
 
-    $router->get('/base', [Controllers\IndexController::class, 'base']);
     $router->get('/no-content', [Controllers\IndexController::class, 'noContent']);
     $router->get('/menus', [Controllers\IndexController::class, 'menus']);
+    $router->get('/_settings', [Controllers\IndexController::class, 'settings']);
 
     // 用户设置
     $router->get('/user_setting', [Controllers\AuthController::class, 'userSetting']);

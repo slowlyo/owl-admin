@@ -15,6 +15,7 @@ import styles from './index.less'
 
 import {adminService} from '@/services/admin'
 import {setToken} from "@/utils/user"
+import {getSettingItem} from "@/utils/setting"
 
 const LoginMessage: React.FC<{
     content: string;
@@ -75,11 +76,13 @@ const Login: React.FC = () => {
         }
     }
 
+    const logoPath = getSettingItem('logo')
+
     return (
         <div className={styles.container}>
             <div className={styles.content}>
                 <LoginForm
-                    logo={<img alt="logo" src="/logo.png"/>}
+                    logo={<img alt="logo" src={logoPath}/>}
                     title="Slow Admin"
                     subTitle=" "
                     initialValues={{

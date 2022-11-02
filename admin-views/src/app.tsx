@@ -7,9 +7,12 @@ import defaultSettings from '../config/defaultSettings'
 import {errorConfig} from './requestErrorConfig'
 import {adminService} from "@/services/admin"
 import {parseRoutes} from "@/utils/dynamicRoutes"
+import {getSettingItem, saveSetting} from '@/utils/setting'
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login'
+// 是启用主题修改工具
+const showSettingDrawer = true
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -59,6 +62,13 @@ export function patchClientRoutes({routes}: any) {
 }
 
 export function render(oldRender: any) {
+    adminService.getSettings().then((result) => {
+        if (result.status == 0) {
+            saveSetting(result.data)
+        }
+    })
+
+
     adminService.queryMenu().then((res) => {
         extraRoutes = res?.data
         oldRender()
@@ -80,16 +90,15 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
         },
         layoutBgImgList: [],
         links: [],
+        breadcrumbRender: () => undefined,
         menuHeaderRender: undefined,
         // 自定义 403 页面
         // unAccessible: <div>unAccessible</div>,
-        // 增加一个 loading 的状态
         childrenRender: (children, props) => {
-            // if (initialState?.loading) return <PageLoading />;
             return (
                 <>
                     {children}
-                    {!props.location?.pathname?.includes('/login') && (
+                    {(!props.location?.pathname?.includes('/login') && showSettingDrawer) && (
                         <SettingDrawer
                             disableUrlParams
                             enableDarkTheme
@@ -105,8 +114,8 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
                 </>
             )
         },
-        title: 'Slow Admin',
-        logo: '/logo.png',
+        title: getSettingItem('app_name'),
+        logo: getSettingItem('logo'),
         menu: {
             locale: false,
             request: async () => {
