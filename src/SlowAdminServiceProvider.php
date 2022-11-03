@@ -13,7 +13,7 @@ class SlowAdminServiceProvider extends ServiceProvider
         'admin.bootstrap'  => Middleware\Bootstrap::class,
         'admin.session'    => Middleware\Session::class,
         'admin.permission' => Middleware\Permission::class,
-        'sanctum'          => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        'sanctum'          => Middleware\EnsureFrontendRequestsAreStateful::class,
         'substitute'       => \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ];
 

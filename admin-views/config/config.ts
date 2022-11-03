@@ -9,7 +9,7 @@ const {REACT_APP_ENV} = process.env
 
 export default defineConfig({
     // 打包后放置的目录
-    base: '/admin/',
+    // base: '/admin/',
     publicPath: '/admin/',
     history: {
         type: 'hash'

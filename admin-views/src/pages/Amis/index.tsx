@@ -44,7 +44,7 @@ export default () => {
                         message.success('内容已复制到粘贴板').then()
                     },
                     jumpTo: (location: string) => {
-                        history.push(location)
+                        history.push(location.startsWith('/') ? location : '/' + location)
                     }
                 })
             }

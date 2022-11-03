@@ -10,18 +10,18 @@ import {parseRoutes} from "@/utils/dynamicRoutes"
 import {getSettingItem, saveSetting} from '@/utils/setting'
 
 // const isDev = process.env.NODE_ENV === 'development';
-const loginPath = '/user/login'
+const loginPath = '#/user/login'
 // 是启用主题修改工具
-const showSettingDrawer = true
+const showSettingDrawer = false
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
 export async function getInitialState(): Promise<{
     settings?: Partial<LayoutSettings>;
-    currentUser?: API.CurrentUser;
+    currentUser?: any;
     loading?: boolean;
-    fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
+    fetchUserInfo?: () => Promise<any>;
 }> {
     const fetchUserInfo = async () => {
         try {
@@ -40,7 +40,7 @@ export async function getInitialState(): Promise<{
     }
 
     // 如果不是登录页面，执行
-    if (window.location.pathname !== loginPath) {
+    if (window.location.hash !== loginPath) {
         const currentUser = await fetchUserInfo()
         return {
             fetchUserInfo,

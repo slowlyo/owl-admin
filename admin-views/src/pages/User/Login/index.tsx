@@ -65,11 +65,8 @@ const Login: React.FC = () => {
 
             await fetchUserInfo()
 
-            const urlParams = new URL(window.location.href).searchParams
-
-            // history.push(urlParams.get('redirect') || '/')
-            // 更新路由数据
-            window.location.href = urlParams.get('redirect') || '/'
+            // // 更新路由数据
+            window.location.href = '/admin'
         } catch (error) {
             console.log(error)
             message.error('登录失败，请重试！')
@@ -77,13 +74,14 @@ const Login: React.FC = () => {
     }
 
     const logoPath = getSettingItem('logo')
+    const appName = getSettingItem('app_name')
 
     return (
         <div className={styles.container}>
             <div className={styles.content}>
                 <LoginForm
                     logo={<img alt="logo" src={logoPath}/>}
-                    title="Slow Admin"
+                    title={appName}
                     subTitle=" "
                     initialValues={{
                         autoLogin: true,
