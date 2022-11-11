@@ -8,8 +8,7 @@ import routes from './routes'
 const {REACT_APP_ENV} = process.env
 
 export default defineConfig({
-    // 打包后放置的目录
-    // base: '/admin/',
+    // 打包后放置的目录, 打包的时候才需要
     publicPath: '/admin/',
     history: {
         type: 'hash'
@@ -139,4 +138,7 @@ export default defineConfig({
     mfsu: {
         exclude: ['@playwright/test']
     },
+    headScripts: [
+        {src: './SlowAdminConfig.js', type: 'text/javascript'}
+    ],
 })

@@ -11,8 +11,8 @@ import {getSettingItem, saveSetting} from '@/utils/setting'
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '#/user/login'
-// 是启用主题修改工具
-const showSettingDrawer = false
+// @ts-ignore 是否启用主题修改工具
+const showSettingDrawer = window.slowAdminConfig.themeSettingDrawer
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -28,13 +28,13 @@ export async function getInitialState(): Promise<{
             const result: any = await adminService.queryCurrentUser()
 
             if (result?.code == 401) {
-                history.push(loginPath)
+                window.location.href = loginPath
                 return
             }
 
             return result.data
         } catch (error) {
-            history.push(loginPath)
+            window.location.href = loginPath
         }
         return undefined
     }
@@ -68,7 +68,6 @@ export function render(oldRender: any) {
         }
     })
 
-
     adminService.queryMenu().then((res) => {
         extraRoutes = res?.data
         oldRender()
@@ -85,7 +84,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
             const {location} = history
             // 如果没有登录，重定向到 login
             if (!initialState?.currentUser && location.pathname !== loginPath) {
-                history.push(loginPath)
+                window.location.href = loginPath
             }
         },
         layoutBgImgList: [],

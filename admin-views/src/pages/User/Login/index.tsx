@@ -51,7 +51,7 @@ const Login: React.FC = () => {
         }
     }
 
-    const handleSubmit = async (values: API.LoginParams) => {
+    const handleSubmit = async (values: any) => {
         try {
             const result: any = await adminService.login(values)
 
@@ -65,8 +65,8 @@ const Login: React.FC = () => {
 
             await fetchUserInfo()
 
-            // // 更新路由数据
-            window.location.href = '/admin'
+            // @ts-ignore 更新路由数据
+            window.location.href = window.slowAdminConfig.loginSuccessRedirect
         } catch (error) {
             console.log(error)
             message.error('登录失败，请重试！')
@@ -77,7 +77,10 @@ const Login: React.FC = () => {
     const appName = getSettingItem('app_name')
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{
+            // @ts-ignore
+            backgroundImage: `url(${window.slowAdminConfig.loginBackground})`
+        }}>
             <div className={styles.content}>
                 <LoginForm
                     logo={<img alt="logo" src={logoPath}/>}
@@ -88,7 +91,7 @@ const Login: React.FC = () => {
                     }}
                     actions={[]}
                     onFinish={async (values) => {
-                        await handleSubmit(values as API.LoginParams)
+                        await handleSubmit(values)
                     }}
                 >
                     {errorMessage && (

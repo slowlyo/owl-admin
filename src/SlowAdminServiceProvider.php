@@ -5,6 +5,7 @@ namespace Slowlyo\SlowAdmin;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use Slowlyo\SlowAdmin\Console\InstallCommand;
+use Slowlyo\SlowAdmin\Console\PublishCommand;
 
 class SlowAdminServiceProvider extends ServiceProvider
 {
@@ -57,10 +58,12 @@ class SlowAdminServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 InstallCommand::class,
+                PublishCommand::class,
             ]);
-            $this->publishes([__DIR__ . '/../public' => public_path('vendor/admin')], 'public');
-            $this->publishes([__DIR__ . '/../lang' => lang_path()], 'lang');
-            $this->publishes([__DIR__ . '/../config/admin.php' => config_path('admin.php')]);
+            $this->publishes([__DIR__ . '/../admin-views/dist' => public_path('admin')], 'admin-assets');
+            $this->publishes([__DIR__ . '/../lang' => lang_path()], 'admin-lang');
+            $this->publishes([__DIR__ . '/../config/admin.php' => config_path('admin.php')], 'admin-config');
+            $this->publishes([__DIR__ . '/../admin-views' => resource_path('admin-views')], 'admin-views');
         }
     }
 

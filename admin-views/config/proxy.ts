@@ -21,6 +21,7 @@ export default {
         },
         '/admin-api/': {
             // 要代理的地址
+            // 开发的时候你需要配置一下
             // target: 'http://slow-admin.test',
             target: '',
             // 配置了这个可以从 http 代理到 https

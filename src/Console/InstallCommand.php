@@ -10,7 +10,7 @@ class InstallCommand extends Command
 {
     protected $signature = 'admin:install';
 
-    protected $description = '安装 SlowAdmin';
+    protected $description = 'Install SlowAdmin';
 
     public function handle()
     {

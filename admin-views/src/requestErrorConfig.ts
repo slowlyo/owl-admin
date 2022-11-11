@@ -112,8 +112,10 @@ export const errorConfig: RequestConfig = {
             const {data} = response as unknown as ResponseStructure
 
             if (data?.status === 1) {
-                if (!(window.location.hash == '#/user/login' && data?.code == 401)) {
-                    message.error(data?.msg || '请求失败！')
+                if(window.location.hash){
+                    if (!(window.location.hash == '#/user/login' && data?.code == 401)) {
+                        message.error(data?.msg || '请求失败！')
+                    }
                 }
             } else {
                 if (data?.msg) {
