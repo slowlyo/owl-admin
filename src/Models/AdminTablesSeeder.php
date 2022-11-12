@@ -72,42 +72,36 @@ class AdminTablesSeeder extends Seeder
                 'title'     => 'dashboard',
                 'icon'      => 'fa-solid fa-chart-line',
                 'url'       => '/dashboard',
-                'api'       => '/home',
             ],
             [
                 'parent_id' => 0,
                 'title'     => 'admin_system',
                 'icon'      => 'fa-solid fa-screwdriver-wrench',
                 'url'       => '',
-                'api'       => '',
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_users',
                 'icon'      => 'fa-solid fa-user',
                 'url'       => '/admin_users',
-                'api'       => '/admin_users',
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_roles',
                 'icon'      => 'fa-solid fa-circle-notch',
                 'url'       => '/admin_roles',
-                'api'       => '/admin_roles',
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_permission',
                 'icon'      => 'fa-solid fa-user-shield',
                 'url'       => '/admin_permissions',
-                'api'       => '/admin_permissions',
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_menu',
                 'icon'      => 'fa-solid fa-bars',
                 'url'       => '/admin_menus',
-                'api'       => '/admin_menus',
             ],
         ]);
     }
