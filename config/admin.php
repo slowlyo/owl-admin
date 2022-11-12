@@ -5,10 +5,13 @@ return [
     'name'           => 'Slow Admin',
 
     // 应用 logo
-    'logo'           => 'vendor/admin/logo.png',
+    'logo'           => '/logo.png',
 
     // 默认头像
-    'default_avatar' => 'vendor/admin/default-avatar.png',
+    'default_avatar' => '/default-avatar.png',
+
+    // amis debug
+    'debug'          => true,
 
     'directory' => app_path('Admin'),
 
@@ -29,13 +32,13 @@ return [
             'login',
             'logout',
             'no-content',
-            '_settings',
+            '_settings'
         ],
     ],
 
     'upload' => [
         'disk'      => 'public',
-        // 文件上传路径
+        // Image and file upload path under the disk above.
         'directory' => [
             'image' => 'images',
             'file'  => 'files',
