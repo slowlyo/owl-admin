@@ -16,39 +16,11 @@ trait PageElement
     /**
      * 基础页面
      *
-     * @param mixed ...$assets
-     *
      * @return Page
      */
-    protected function basePage(...$assets): Page
+    protected function basePage(): Page
     {
-        $page = Page::make()->title($this->pageTitle);
-
-        // 注入js
-        if ($assets) {
-            $script      = collect($assets)->pluck('script')->implode('');
-            $systemTheme = config('admin.layout.theme');
-            $className   = $systemTheme . '-Page';
-            if (!$systemTheme || $systemTheme == 'default') {
-                $className = 'cxd-Page';
-            }
-            $page->initApi(url(config('admin.route.prefix') . '/no-content'))->onEvent([
-                'inited' => [
-                    'actions' => [
-                        'actionType' => 'custom',
-                        'script'     => <<<JS
-let inner = document.getElementsByClassName('{$className}');
-let myJs = document.createElement('script');
-myJs.innerHTML = `$script`;
-inner[0].appendChild(myJs);
-JS
-                        ,
-                    ],
-                ],
-            ]);
-        }
-
-        return $page;
+        return Page::make()->title($this->pageTitle);
     }
 
     /**

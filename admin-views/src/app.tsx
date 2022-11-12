@@ -8,6 +8,7 @@ import {errorConfig} from './requestErrorConfig'
 import {adminService} from "@/services/admin"
 import {parseRoutes} from "@/utils/dynamicRoutes"
 import {getSettingItem, saveSetting} from '@/utils/setting'
+import 'animate.css'
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '#/user/login'

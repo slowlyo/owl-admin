@@ -48,9 +48,7 @@ return new class extends Migration {
             $table->string('icon', 100)->nullable()->comment('菜单图标');
             $table->string('url')->nullable()->comment('菜单路由');
             $table->tinyInteger('url_type')->default(1)->comment('路由类型(1:路由,2:外链)');
-            $table->string('api')->nullable()->comment('schemaApi');
             $table->tinyInteger('visible')->default(1)->comment('是否可见');
-            $table->string('class_name')->nullable()->comment('菜单类名');
 
             $table->timestamps();
         });

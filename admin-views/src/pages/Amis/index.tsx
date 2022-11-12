@@ -43,8 +43,12 @@ export default () => {
                         copy(content as any)
                         message.success('内容已复制到粘贴板').then()
                     },
-                    jumpTo: (location: string) => {
-                        history.push(location.startsWith('/') ? location : '/' + location)
+                    jumpTo: (location: string, action, ctx) => {
+                        if (action?.blank) {
+                            window.open(location)
+                        } else {
+                            history.push(location.startsWith('/') ? location : '/' + location)
+                        }
                     }
                 })
             }

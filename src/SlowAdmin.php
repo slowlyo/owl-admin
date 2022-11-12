@@ -48,10 +48,11 @@ class SlowAdmin
                 $children = $this->list2Menu($list, (int)$item['id']);
 
                 $_temp = [
-                    'name'      => $item['title'],
-                    'path'      => $item['url'],
-                    'icon'      => $item['icon'],
-                    'component' => 'Amis',
+                    'name'       => $item['title'],
+                    'path'       => $item['url'],
+                    'icon'       => $item['icon'],
+                    'component'  => 'Amis',
+                    'hideInMenu' => $item['visible'] == 0,
                 ];
 
                 if (!empty($children)) {

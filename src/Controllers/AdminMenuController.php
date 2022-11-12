@@ -135,21 +135,12 @@ class AdminMenuController extends AdminController
                 ->label(__('admin.admin_menu.type'))
                 ->options(AdminMenu::getType())
                 ->value(AdminMenu::TYPE_ROUTE),
-            InputText::make()
-                ->name('api')
-                ->label(__('admin.admin_menu.api'))
-                ->required(true)
-                ->labelRemark(__('admin.admin_menu.api_description')),
             InputSwitch::make()
                 ->name('visible')
                 ->label(__('admin.admin_menu.visible'))
                 ->onText(__('admin.admin_menu.show'))
                 ->offText(__('admin.admin_menu.hide'))
                 ->value(1),
-            InputText::make()
-                ->name('class_name')
-                ->label(__('admin.admin_menu.class_name'))
-                ->labelRemark(__('admin.admin_menu.class_name_description')),
         ])->onEvent([
             'submitSucc' => [
                 'actions' => [
