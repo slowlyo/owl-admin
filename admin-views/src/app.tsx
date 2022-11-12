@@ -119,6 +119,12 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
         menu: {
             locale: false,
             request: async () => {
+                adminService.getSettings().then((result) => {
+                    if (result.status == 0) {
+                        saveSetting(result.data)
+                    }
+                })
+
                 const result: any = await adminService.queryMenu()
 
                 const menu = result.data
