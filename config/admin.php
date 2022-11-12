@@ -5,10 +5,10 @@ return [
     'name'           => 'Slow Admin',
 
     // 应用 logo
-    'logo'           => '/logo.png',
+    'logo'           => '/admin/logo.png',
 
     // 默认头像
-    'default_avatar' => '/default-avatar.png',
+    'default_avatar' => '/admin/default-avatar.png',
 
     // amis debug
     'debug'          => true,
