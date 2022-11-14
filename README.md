@@ -1,11 +1,14 @@
 # Slow Admin
 
 ***
-基于 `Laravel` 和 `amis` 开发的后台框架.
+基于 `Laravel` 、 `Ant Design Pro`、 `amis` 开发的后台框架.
 
 ### Laravel
 
 Laravel 是一个全栈Web应用程序框架，具有富有表现力、优雅的语法。
+
+### Ant Design Pro
+Ant Design Pro 是基于 Ant Design 和 umi 的封装的一整套企业级中后台前端/设计解决方案
 
 ### amis
 
@@ -17,7 +20,7 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 
 - [《Laravel 9 中文文档》](https://learnku.com/docs/laravel/9.x/installation/12200)
 - [《amis》](https://aisuda.bce.baidu.com/amis/zh-CN/docs/index)
-- [《Slow Admin》](https://slowlyo.gitee.io/slow-admin-doc/)
+- [《Slow Admin》](https://www.yuque.com/slowlyo/slow-admin-doc)
 
 ## 功能
 
@@ -42,9 +45,9 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 ## 截图
 
 ***
-![首页](https://cdn.learnku.com/uploads/images/202209/06/80143/UYXOi0rvQE.png!large)
-![管理员](https://cdn.learnku.com/uploads/images/202209/06/80143/pZlLduqM71.png!large)
-![代码生成器](https://cdn.learnku.com/uploads/images/202209/06/80143/lMX2seeU3Z.png!large)
+![首页](https://cdn.learnku.com/uploads/images/202211/12/80143/pMvP309qsl.png!large)
+![管理员](https://cdn.learnku.com/uploads/images/202211/12/80143/QX1aJissgK.png!large)
+![代码生成器](https://cdn.learnku.com/uploads/images/202211/12/80143/GYqUIenDBA.png!large)
 
 ## 环境
 
@@ -104,6 +107,7 @@ php artisan admin:install
 ***
 
 - [Laravel](https://laravel.com)
+- [Ant Design Pro](https://pro.ant.design)
 - [amis](https://github.com/baidu/amis)
 - [Laravel-admin](https://www.laravel-admin.org/)
 - [Dcat Admin](https://github.com/jqhph/dcat-admin)
