@@ -39,10 +39,7 @@ class AdminPermissionController extends AdminController
     public function index(): JsonResponse|JsonResource
     {
         if ($this->actionOfGetData()) {
-            $items = $this->service->getTree();
-            $total = $this->service->query()->count();
-
-            return $this->response()->success(compact('items', 'total'));
+            return $this->response()->success($this->service->list());
         }
 
         return $this->response()->success($this->list());
@@ -61,8 +58,9 @@ class AdminPermissionController extends AdminController
         }
 
         $crud = $this->baseCRUD()
+            ->loadDataOnce(true)
             ->filterTogglable(false)
-            ->expandConfig(['expand' => 'all'])
+            ->footerToolbar([])
             ->headerToolbar([
                 $this->createButton(true),
                 'bulkActions',

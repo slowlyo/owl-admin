@@ -35,10 +35,7 @@ class AdminMenuController extends AdminController
     public function index(): JsonResponse|JsonResource
     {
         if ($this->actionOfGetData()) {
-            $items = $this->service->getTree();
-            $total = $this->service->query()->count();
-
-            return $this->response()->success(compact('items', 'total'));
+            return $this->response()->success($this->service->list());
         }
 
         return $this->response()->success($this->list());
@@ -47,6 +44,8 @@ class AdminMenuController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
+            ->loadDataOnce(true)
+            ->footerToolbar([])
             ->headerToolbar([
                 $this->createButton(true)->dialog(
                     amis('dialog')->title(__('admin.create'))->body(
@@ -89,7 +88,7 @@ class AdminMenuController extends AdminController
                     ),
                     $this->rowDeleteButton(),
                 ]),
-            ])->expandConfig(['expand' => 'all']);
+            ]);
 
         return $this->baseList($crud);
     }

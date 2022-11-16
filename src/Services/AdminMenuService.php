@@ -43,4 +43,9 @@ class AdminMenuService extends AdminService
 
         return parent::update($primaryKey, $data);
     }
+
+    public function list()
+    {
+        return ['items' => $this->getTree()];
+    }
 }

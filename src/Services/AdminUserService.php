@@ -123,4 +123,22 @@ class AdminUserService extends AdminService
 
         return true;
     }
+
+    public function list()
+    {
+        $keyword = request()->keyword;
+
+        $query = $this
+            ->query()
+            ->with('roles')
+            ->select(['id', 'name', 'username', 'avatar', 'created_at'])
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('username', 'like', "%{$keyword}%")->orWhere('name', 'like', "%{$keyword}%");
+            });
+
+        $items = (clone $query)->paginate(request()->input('perPage', 20))->items();
+        $total = (clone $query)->count();
+
+        return compact('items', 'total');
+    }
 }

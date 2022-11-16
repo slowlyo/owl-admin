@@ -61,6 +61,19 @@ abstract class AdminService
     }
 
     /**
+     * 列表 获取数据
+     *
+     * @return array
+     */
+    public function list()
+    {
+        $items = $this->query()->paginate(request()->input('perPage', 20))->items();
+        $total = $this->query()->count();
+
+        return compact('items', 'total');
+    }
+
+    /**
      * 修改
      *
      * @param $primaryKey

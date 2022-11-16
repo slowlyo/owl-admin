@@ -2,7 +2,6 @@
 
 namespace Slowlyo\SlowAdmin\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\SlowAdmin\Renderers\Tag;
 use Slowlyo\SlowAdmin\Renderers\Page;
@@ -31,23 +30,10 @@ class AdminUserController extends AdminController
         parent::__construct();
     }
 
-    public function index(Request $request): JsonResponse|JsonResource
+    public function index(): JsonResponse|JsonResource
     {
         if ($this->actionOfGetData()) {
-            $keyword = $request->keyword;
-
-            $query = $this->service
-                ->query()
-                ->with('roles')
-                ->select(['id', 'name', 'username', 'avatar', 'created_at'])
-                ->when($keyword, function ($query) use ($keyword) {
-                    $query->where('username', 'like', "%{$keyword}%")->orWhere('name', 'like', "%{$keyword}%");
-                });
-
-            $items = (clone $query)->paginate($request->input('perPage', 20))->items();
-            $total = (clone $query)->count();
-
-            return $this->response()->success(compact('items', 'total'));
+            return $this->response()->success($this->service->list());
         }
 
         return $this->response()->success($this->list());

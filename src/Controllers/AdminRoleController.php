@@ -2,7 +2,6 @@
 
 namespace Slowlyo\SlowAdmin\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\SlowAdmin\Renderers\Page;
 use Slowlyo\SlowAdmin\Renderers\Column;
@@ -28,16 +27,10 @@ class AdminRoleController extends AdminController
         parent::__construct();
     }
 
-    public function index(Request $request): JsonResponse|JsonResource
+    public function index(): JsonResponse|JsonResource
     {
         if ($this->actionOfGetData()) {
-            $items = $this->service
-                ->query()
-                ->paginate($request->input('perPage', 20))
-                ->items();
-            $total = $this->service->query()->count();
-
-            return $this->response()->success(compact('items', 'total'));
+            return $this->response()->success($this->service->list());
         }
 
         return $this->response()->success($this->list());

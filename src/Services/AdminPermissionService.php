@@ -44,7 +44,7 @@ class AdminPermissionService extends AdminService
 
     public function store($data): bool
     {
-        if($this->hasRepeated($data)){
+        if ($this->hasRepeated($data)) {
             return false;
         }
 
@@ -67,7 +67,7 @@ class AdminPermissionService extends AdminService
 
     public function update($primaryKey, $data): bool
     {
-        if($this->hasRepeated($data, $primaryKey)){
+        if ($this->hasRepeated($data, $primaryKey)) {
             return false;
         }
 
@@ -111,5 +111,10 @@ class AdminPermissionService extends AdminService
         }
 
         return false;
+    }
+
+    public function list()
+    {
+        return ['items' => $this->getTree()];
     }
 }
