@@ -12,8 +12,14 @@ import 'animate.css'
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '#/user/login'
+
+// @ts-ignore
+const layoutSetting = window.slowAdminConfig.layoutSetting
 // @ts-ignore 是否启用主题修改工具
-const showSettingDrawer = window.slowAdminConfig.themeSettingDrawer
+const showSettingDrawer = slowAdminConfig.themeSettingDrawer
+
+// @ts-ignore 合并配置
+defaultSettings = {defaultSettings, ...layoutSetting}
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -99,18 +105,22 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
             return (
                 <>
                     {children}
-                    {(!props.location?.pathname?.includes('/login') && showSettingDrawer) && (
-                        <SettingDrawer
-                            disableUrlParams
-                            enableDarkTheme
-                            settings={initialState?.settings}
-                            onSettingChange={(settings) => {
-                                setInitialState((preInitialState) => ({
-                                    ...preInitialState,
-                                    settings,
-                                }))
-                            }}
-                        />
+                    {(!props.location?.pathname?.includes('/login')) && (
+                        <div style={{
+                            display: showSettingDrawer ? 'block' : 'none',
+                        }}>
+                            <SettingDrawer
+                                disableUrlParams
+                                enableDarkTheme
+                                settings={initialState?.settings}
+                                onSettingChange={(settings) => {
+                                    setInitialState((preInitialState) => ({
+                                        ...preInitialState,
+                                        settings,
+                                    }))
+                                }}
+                            />
+                        </div>
                     )}
                 </>
             )

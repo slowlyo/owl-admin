@@ -30,7 +30,7 @@ export default () => {
 
 
     return (
-        <PageContainer loading={loading} header={{title: ''}}>
+        <PageContainer loading={loading} header={{title: ''}} className="animate__animated animate__fadeIn">
             {
                 renderAmis(schema, {}, {
                     fetcher: ({url, method, data}) => {

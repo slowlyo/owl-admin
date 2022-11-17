@@ -111,6 +111,10 @@ export const errorConfig: RequestConfig = {
             // 拦截响应数据，进行个性化处理
             const {data} = response as unknown as ResponseStructure
 
+            if(data?.doNotDisplayToast == 1) {
+                return response
+            }
+
             if (data?.status === 1) {
                 if(window.location.hash){
                     if (!(window.location.hash == '#/user/login' && data?.code == 401)) {

@@ -9,8 +9,9 @@ class JsonResponse
 {
     /** @var array 额外参数 */
     private array $additionalData = [
-        'status' => 0,
-        'msg'    => '',
+        'status'            => 0,
+        'msg'               => '',
+        'doNotDisplayToast' => 0,
     ];
 
     /**
@@ -94,6 +95,18 @@ class JsonResponse
     public function additional(array $params = []): static
     {
         $this->additionalData = array_merge($this->additionalData, $params);
+
+        return $this;
+    }
+
+    /**
+     * 不显示弹框
+     *
+     * @return $this
+     */
+    public function doNotDisplayToast()
+    {
+        $this->additionalData['doNotDisplayToast'] = 1;
 
         return $this;
     }
