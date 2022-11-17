@@ -9,13 +9,14 @@ import {
 } from '@ant-design/pro-components'
 import {FormattedMessage, useIntl, useModel} from '@umijs/max'
 import {Alert, message} from 'antd'
-import React, {useState} from 'react'
+import React, {forwardRef, useState} from 'react'
 import {flushSync} from 'react-dom'
 import styles from './index.less'
 
 import {adminService} from '@/services/admin'
 import {setToken} from "@/utils/user"
 import {getSettingItem} from "@/utils/setting"
+import RcQueueAnim from "rc-queue-anim"
 
 const LoginMessage: React.FC<{
     content: string;
@@ -77,82 +78,92 @@ const Login: React.FC = () => {
     const appName = getSettingItem('app_name')
 
     return (
+        <div className={styles.content}>
+            <LoginForm
+                logo={<img alt="logo" src={logoPath}/>}
+                title={appName}
+                subTitle=" "
+                initialValues={{
+                    autoLogin: true,
+                }}
+                actions={[]}
+                onFinish={async (values) => {
+                    await handleSubmit(values)
+                }}
+            >
+                {errorMessage && (
+                    <LoginMessage content={errorMessage}/>
+                )}
+                <ProFormText
+                    name="username"
+                    fieldProps={{
+                        size: 'large',
+                        prefix: <UserOutlined className={styles.prefixIcon}/>,
+                    }}
+                    placeholder={intl.formatMessage({
+                        id: 'pages.login.username.placeholder',
+                        defaultMessage: '请输入用户名',
+                    })}
+                    rules={[
+                        {
+                            required: true,
+                            message: (
+                                <FormattedMessage
+                                    id="pages.login.username.required"
+                                    defaultMessage="请输入用户名!"
+                                />
+                            ),
+                        },
+                    ]}
+                />
+                <ProFormText.Password
+                    name="password"
+                    fieldProps={{
+                        size: 'large',
+                        prefix: <LockOutlined className={styles.prefixIcon}/>,
+                    }}
+                    placeholder={intl.formatMessage({
+                        id: 'pages.login.password.placeholder',
+                        defaultMessage: '请输入密码',
+                    })}
+                    rules={[
+                        {
+                            required: true,
+                            message: (
+                                <FormattedMessage
+                                    id="pages.login.password.required"
+                                    defaultMessage="请输入密码！"
+                                />
+                            ),
+                        },
+                    ]}
+                />
+
+                <div style={{marginBottom: 24}}>
+                    <ProFormCheckbox noStyle name="autoLogin">
+                        <FormattedMessage id="pages.login.rememberMe" defaultMessage="记住我"/>
+                    </ProFormCheckbox>
+                </div>
+            </LoginForm>
+        </div>
+        // {/*这个你可能需要*/}
+        // {/*<Footer/>*/}
+    )
+}
+
+// export default Login
+export default forwardRef((props, ref) => {
+    return (
         <div className={styles.container} style={{
             // @ts-ignore
             backgroundImage: `url(${window.slowAdminConfig.loginBackground})`
         }}>
-            <div className={styles.content}>
-                <LoginForm
-                    logo={<img alt="logo" src={logoPath}/>}
-                    title={appName}
-                    subTitle=" "
-                    initialValues={{
-                        autoLogin: true,
-                    }}
-                    actions={[]}
-                    onFinish={async (values) => {
-                        await handleSubmit(values)
-                    }}
-                >
-                    {errorMessage && (
-                        <LoginMessage content={errorMessage}/>
-                    )}
-                    <ProFormText
-                        name="username"
-                        fieldProps={{
-                            size: 'large',
-                            prefix: <UserOutlined className={styles.prefixIcon}/>,
-                        }}
-                        placeholder={intl.formatMessage({
-                            id: 'pages.login.username.placeholder',
-                            defaultMessage: '请输入用户名',
-                        })}
-                        rules={[
-                            {
-                                required: true,
-                                message: (
-                                    <FormattedMessage
-                                        id="pages.login.username.required"
-                                        defaultMessage="请输入用户名!"
-                                    />
-                                ),
-                            },
-                        ]}
-                    />
-                    <ProFormText.Password
-                        name="password"
-                        fieldProps={{
-                            size: 'large',
-                            prefix: <LockOutlined className={styles.prefixIcon}/>,
-                        }}
-                        placeholder={intl.formatMessage({
-                            id: 'pages.login.password.placeholder',
-                            defaultMessage: '请输入密码',
-                        })}
-                        rules={[
-                            {
-                                required: true,
-                                message: (
-                                    <FormattedMessage
-                                        id="pages.login.password.required"
-                                        defaultMessage="请输入密码！"
-                                    />
-                                ),
-                            },
-                        ]}
-                    />
-
-                    <div style={{marginBottom: 24}}>
-                        <ProFormCheckbox noStyle name="autoLogin">
-                            <FormattedMessage id="pages.login.rememberMe" defaultMessage="记住我"/>
-                        </ProFormCheckbox>
-                    </div>
-                </LoginForm>
-            </div>
-            {/*这个你可能需要*/}
-            {/*<Footer/>*/}
+            {/*alpha left right top bottom scale scaleBig scaleX scaleY*/}
+            <RcQueueAnim ref={ref} duration={650} type="top">
+                <div key={location.pathname}>
+                    <Login/>
+                </div>
+            </RcQueueAnim>
         </div>
     )
-}
-
-export default Login
+})

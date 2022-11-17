@@ -9,6 +9,8 @@ import {adminService} from "@/services/admin"
 import {parseRoutes} from "@/utils/dynamicRoutes"
 import {getSettingItem, saveSetting} from '@/utils/setting'
 import 'animate.css'
+import {forwardRef} from "react"
+import RcQueueAnim from "rc-queue-anim"
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '#/user/login'
@@ -102,9 +104,21 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
         // 自定义 403 页面
         // unAccessible: <div>unAccessible</div>,
         childrenRender: (children, props) => {
+            // 动画
+            const Anim = forwardRef((props, ref) => {
+                return (
+                    // alpha left right top bottom scale scaleBig scaleX scaleY
+                    <RcQueueAnim ref={ref} duration={650} type='top'>
+                        <div key={location.pathname}>
+                            {children}
+                        </div>
+                    </RcQueueAnim>
+                )
+            })
+
             return (
                 <>
-                    {children}
+                    <Anim/>
                     {(!props.location?.pathname?.includes('/login')) && (
                         <div style={{
                             display: showSettingDrawer ? 'block' : 'none',
