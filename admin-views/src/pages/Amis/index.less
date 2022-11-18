@@ -41,6 +41,11 @@
     --info-onActive: var(--info);
     --link-onClick-color: var(--primary);
     --Button--primary-onHover-border: var(--primary);
+    --button-primary-default-bg-color: var(--primary);
+    --button-primary-default-top-border-color: var(--primary);
+    --button-primary-default-bottom-border-color: var(--primary);
+    --button-primary-default-left-border-color: var(--primary);
+    --button-primary-default-right-border-color: var(--primary);
     --Button--primary-onHover-bg: var(--primary);
     --Button--info-onActive-bg: var(--info);
     --Button--info-onActive-border: var(--info);
@@ -54,10 +59,60 @@
     --DatePicker-header-onHover-color: var(--primary);
     --PickerColumns-confirmAction-color: var(--primary);
     --Button-paddingX: 15px;
+    --button-size-default-paddingRight: 15px;
+    --button-size-default-paddingLeft: 15px;
     --Panel-footerPadding: 1rem var(--gap-base);
     --Panel-headingPadding: var(--gap-base);
     --Panel-boxShadow: 0 0 0;
+
+    --button-link-default-font-color: var(--primary);
+    --colors-brand-5: var(--primary);
+    --button-default-hover-font-color: var(--primary);
+    --button-default-hover-top-border-color: var(--primary);
+    --button-default-hover-bottom-border-color: var(--primary);
+    --button-default-hover-left-border-color: var(--primary);
+    --button-default-hover-right-border-color: var(--primary);
+    --Avatar-bg: transparent;
+    --transfer-search-border-hover-color: var(--ant-primary-color-hover);
+    --button-default-default-bg-color: white;
+    --Panel-borderRadius: var(--borderRadius);
+    --button-primary-hover-bg-color: var(--ant-primary-color-hover);
+    --button-primary-hover-top-border-color: var(--ant-primary-color-hover);
+    --button-primary-hover-bottom-border-color: var(--ant-primary-color-hover);
+    --button-primary-hover-left-border-color: var(--ant-primary-color-hover);
+    --button-primary-hover-right-border-color: var(--ant-primary-color-hover);
+    --button-primary-active-bg-color: var(--ant-primary-color-active);
+    --button-primary-active-top-border-color: var(--ant-primary-color-active);
+    --button-primary-active-bottom-border-color: var(--ant-primary-color-active);
+    --button-primary-active-left-border-color: var(--ant-primary-color-active);
+    --button-primary-active-right-border-color: var(--ant-primary-color-active);
+    --button-link-hover-font-color: var(--ant-primary-color-hover);
+    --button-link-active-font-color: var(--ant-primary-color-active);
+    --button-default-active-font-color: var(--ant-primary-color-active);
+    --button-default-active-top-border-color: var(--ant-primary-color-active);
+    --button-default-active-bottom-border-color: var(--ant-primary-color-active);
+    --button-default-active-left-border-color: var(--ant-primary-color-active);
+    --button-default-active-right-border-color: var(--ant-primary-color-active);
 }
+
+//2.4.0 样式修复
+.cxd-Button--sm {
+    font-size: var(--button-size-sm-font-size);
+    line-height: var(--button-size-sm-font-lineHeight);
+    border-radius: var(--button-size-sm-top-right-border-radius) var(--button-size-sm-top-left-border-radius) var(--button-size-sm-bottom-right-border-radius) var(--button-size-sm-bottom-left-border-radius);
+    height: var(--button-size-sm-height);
+    padding: var(--button-size-sm-paddingTop) var(--button-size-sm-paddingRight) var(--button-size-sm-paddingBottom) var(--button-size-sm-paddingLeft);
+    margin: var(--button-size-sm-marginTop) var(--button-size-sm-marginRight) var(--button-size-sm-marginBottom) var(--button-size-sm-marginLeft);
+}
+
+.cxd-Button > svg {
+    margin-top: -4px;
+    width: 12px;
+    height: 12px;
+}
+
+// end
+
 
 .cxd-Page {
     height: auto;
