@@ -53,6 +53,7 @@ class HomeController extends AdminController
     {
         $client = new Client();
 
+        $result = null;
         try {
             $result = $client->request('GET', 'http://v1.hitokoto.cn?c=d&c=h&c=i&c=k&max_length=24');
         } catch (GuzzleException $e) {
@@ -63,8 +64,8 @@ class HomeController extends AdminController
             'from'     => 'Slowlyo',
         ];
 
-        if ($result->getStatusCode() == 200) {
-            $data = json_decode($result->getBody()->getContents(), true);
+        if ($result?->getStatusCode() == 200) {
+            $data = json_decode($result?->getBody()?->getContents(), true);
         }
 
         return Card::make()->className('h-full clear-card-mb')->header([

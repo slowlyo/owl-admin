@@ -31,9 +31,5 @@ window.slowAdminConfig = {
         fixedHeader: false,
         // 固定侧边栏
         fixSiderbar: true,
-        // 色弱模式
-        colorWeak: false,
-        pwa: false,
-        iconfontUrl: '',
     }
 }
