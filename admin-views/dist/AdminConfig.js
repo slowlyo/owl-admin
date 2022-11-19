@@ -31,5 +31,8 @@ window.slowAdminConfig = {
         fixedHeader: false,
         // 固定侧边栏
         fixSiderbar: true,
+        // 设置 token 可以更改 layout 样式
+        // 参考 https://procomponents.ant.design/components/layout/#layout-%E7%9A%84-token
+        // token: ''
     }
 }

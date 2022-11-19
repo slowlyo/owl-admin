@@ -139,6 +139,6 @@ export default defineConfig({
         exclude: ['@playwright/test']
     },
     headScripts: [
-        {src: './SlowAdminConfig.js', type: 'text/javascript'}
+        {src: './AdminConfig.js', type: 'text/javascript'}
     ],
 })

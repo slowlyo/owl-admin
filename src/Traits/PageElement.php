@@ -47,7 +47,7 @@ trait PageElement
         return Action::make()
             ->actionType('ajax')
             ->api($this->getBulkDeletePath())
-            ->icon('fa fa-trash-o')
+            ->icon('fa-solid fa-trash-can')
             ->label(__('admin.delete'))
             ->confirmText(__('admin.confirm_delete'));
     }

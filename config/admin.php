@@ -10,9 +10,6 @@ return [
     // 默认头像
     'default_avatar' => '/admin/default-avatar.png',
 
-    // amis debug
-    'debug'          => true,
-
     'directory' => app_path('Admin'),
 
     'bootstrap' => app_path('Admin/bootstrap.php'),
