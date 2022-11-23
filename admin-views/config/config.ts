@@ -1,11 +1,11 @@
 // https://umijs.org/config/
-import {defineConfig} from '@umijs/max'
-import {join} from 'path'
+import { defineConfig } from '@umijs/max'
+import { join } from 'path'
 import defaultSettings from './defaultSettings'
 import proxy from './proxy'
 import routes from './routes'
 
-const {REACT_APP_ENV} = process.env
+const { REACT_APP_ENV } = process.env
 
 export default defineConfig({
     // 打包后放置的目录, 打包的时候才需要
@@ -139,6 +139,6 @@ export default defineConfig({
         exclude: ['@playwright/test']
     },
     headScripts: [
-        {src: './AdminConfig.js', type: 'text/javascript'}
+        { src: '/admin/AdminConfig.js', type: 'text/javascript' }
     ],
 })
