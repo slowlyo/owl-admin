@@ -37,18 +37,4 @@ namespace Slowlyo\SlowAdmin\Renderers;
 class Page extends BaseRenderer
 {
     public string $type = 'page';
-
-    public string $view = 'slow-admin::index';
-
-    public function setView($view): static
-    {
-        $view && $this->view = $view;
-
-        return $this;
-    }
-
-    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-    {
-        return view($this->view, ['adminJson' => $this->toJson()]);
-    }
 }
