@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkslow_admin=self.webpackChunkslow_admin||[]).push([[6390],{96390:function(l,n,t){t.r(n),t.d(n,{default:function(){return E}});var O=t(67294),u=t(90905),s=t(85893);function E(){var o=(0,u.useOutletContext)();return(0,s.jsx)(u.Outlet,{context:o})}}}]);
