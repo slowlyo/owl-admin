@@ -120,7 +120,7 @@ JS
                             ->label('SlowAdmin 文档')
                             ->blank(true)
                             ->actionType('url')
-                            ->link('https://www.yuque.com/slowlyo/slow-admin-doc'),
+                            ->link('https://slowlyo.gitee.io/slow-admin-doc/'),
                         Action::make()
                             ->level('link')
                             ->label('Amis 文档')
