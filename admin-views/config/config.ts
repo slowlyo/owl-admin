@@ -7,7 +7,7 @@ import routes from './routes'
 
 const {REACT_APP_ENV} = process.env
 
-// 运行时用我
+// 运行时用我 (现在貌似不用换了, 如果不行再试试换这个)
 // const config = {
 //     publicPath:  '',
 //     adminConfigPath: './AdminConfig.js'

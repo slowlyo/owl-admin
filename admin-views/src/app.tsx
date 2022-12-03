@@ -83,6 +83,19 @@ export function render(oldRender: any) {
     })
 }
 
+// 处理菜单图标
+const menuIconHandler = (menu: any) => {
+    menu.forEach((item: any) => {
+        if (item?.icon) {
+            item.icon = (<i className={item.icon}></i>)
+        }
+        if (item?.routes) {
+            item.routes = menuIconHandler(item.routes)
+        }
+    })
+    return menu
+}
+
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => {
     return {
@@ -108,7 +121,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
             const Anim = forwardRef((props, ref) => {
                 return (
                     // alpha left right top bottom scale scaleBig scaleX scaleY
-                    <RcQueueAnim ref={ref} duration={650} type='top'>
+                    <RcQueueAnim ref={ref} duration={650} type="top">
                         <div key={location.pathname}>
                             {children}
                         </div>
@@ -152,15 +165,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
 
                 const result: any = await adminService.queryMenu()
 
-                const menu = result.data
-
-                menu.forEach((item: any) => {
-                    if (item?.icon) {
-                        item.icon = (<i className={item.icon}></i>)
-                    }
-                })
-
-                return menu
+                return menuIconHandler(result.data)
             }
         },
         ...initialState?.settings,
