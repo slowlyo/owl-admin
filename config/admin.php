@@ -29,7 +29,8 @@ return [
             'login',
             'logout',
             'no-content',
-            '_settings'
+            '_settings',
+            'upload_rich',
         ],
     ],
 
@@ -39,6 +40,7 @@ return [
         'directory' => [
             'image' => 'images',
             'file'  => 'files',
+            'rich'  => 'rich',
         ],
     ],
 

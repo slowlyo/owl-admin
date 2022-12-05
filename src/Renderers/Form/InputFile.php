@@ -2,6 +2,8 @@
 
 namespace Slowlyo\SlowAdmin\Renderers\Form;
 
+use Slowlyo\SlowAdmin\Traits\Uploader;
+
 /**
  * <b>InputFile 文件上传</b><br/>
  *
@@ -40,5 +42,12 @@ namespace Slowlyo\SlowAdmin\Renderers\Form;
  */
 class InputFile extends FormItem
 {
+    use Uploader;
+
     public string $type = 'input-file';
+
+    public function __construct()
+    {
+        $this->receiver($this->uploadFilePath());
+    }
 }

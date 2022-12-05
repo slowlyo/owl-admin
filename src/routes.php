@@ -24,6 +24,8 @@ use Slowlyo\SlowAdmin\Controllers;
     $router->any('upload_image', [Controllers\IndexController::class, 'uploadImage']);
     // 文件上传
     $router->any('upload_file', [Controllers\IndexController::class, 'uploadFile']);
+    // 富文本编辑器上传
+    $router->any('upload_rich', [Controllers\IndexController::class, 'uploadRich']);
 
     // 主页
     $router->resource('dashboard', Controllers\HomeController::class);
