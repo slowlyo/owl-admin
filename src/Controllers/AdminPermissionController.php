@@ -195,7 +195,7 @@ class AdminPermissionController extends AdminController
 
         $permissions = [];
         foreach ($menus as $menu) {
-            $_httpPath = $this->getHttpPath($menu['api']);
+            $_httpPath = $this->getHttpPath($menu['url']);
 
             $permissions[] = [
                 'id'         => $menu['id'],
