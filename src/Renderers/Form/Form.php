@@ -53,6 +53,7 @@ use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
  * @method self promptPageLeave($value) form 还没保存，即将离开页面前是否弹框确认。
  * @method self columnCount($value) 表单项显示为几列
  * @method self inheritData($value) 默认表单是采用数据链的形式创建个自己的数据域，表单提交的时候只会发送自己这个数据域的数据，如果希望共用上层数据域可以设置这个属性为 false，这样上层数据域的数据不需要在表单中用隐藏域或者显式映射才能发送了。
+ * @method self debug($value) 是否开启调试模式
  */
 class Form extends BaseRenderer
 {
