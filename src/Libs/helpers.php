@@ -108,3 +108,19 @@ if (!function_exists('admin_decode')) {
         return $str ?: '';
     }
 }
+
+
+/**
+ * 处理文件上传回显问题
+ *
+ * @return \Illuminate\Database\Eloquent\Casts\Attribute
+ */
+function file_upload_handle()
+{
+    $storage = Storage::disk(config('admin.upload.disk'));
+
+    return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+        get: fn($value) => $storage->url($value),
+        set: fn($value) => str_replace($storage->url(''), '', $value)
+    );
+}
