@@ -20,7 +20,7 @@ trait PageElement
      */
     protected function basePage(): Page
     {
-        return Page::make()->title($this->pageTitle);
+        return Page::make()->className('m:overflow-auto')->title($this->pageTitle);
     }
 
     /**
@@ -213,7 +213,7 @@ trait PageElement
      */
     protected function baseForm(): Form
     {
-        return Form::make()->panelClassName('px-48')->title(' ')->mode('horizontal')->redirect($this->getListPath());
+        return Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->redirect($this->getListPath());
     }
 
     /**
@@ -224,7 +224,7 @@ trait PageElement
     protected function baseDetail($id): Form
     {
         return Form::make()
-            ->panelClassName('px-48')
+            ->panelClassName('px-48 m:px-0')
             ->title(' ')
             ->mode('horizontal')
             ->actions([])
