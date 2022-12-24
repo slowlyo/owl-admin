@@ -7,18 +7,18 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\SlowAdmin\Renderers\Tag;
 use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Column;
+use Slowlyo\SlowAdmin\Renderers\Form;
 use Slowlyo\SlowAdmin\Renderers\Action;
 use Slowlyo\SlowAdmin\Models\AdminMenu;
-use Slowlyo\SlowAdmin\Renderers\Form\Form;
-use Slowlyo\SlowAdmin\Renderers\Form\Select;
+use Slowlyo\SlowAdmin\Renderers\TableColumn;
+use Slowlyo\SlowAdmin\Renderers\TextControl;
 use Slowlyo\SlowAdmin\Models\AdminPermission;
-use Slowlyo\SlowAdmin\Renderers\Form\InputText;
-use Slowlyo\SlowAdmin\Renderers\Form\Checkboxes;
-use Slowlyo\SlowAdmin\Renderers\Form\TreeSelect;
+use Slowlyo\SlowAdmin\Renderers\SelectControl;
+use Slowlyo\SlowAdmin\Renderers\NumberControl;
 use Slowlyo\SlowAdmin\Services\AdminMenuService;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Slowlyo\SlowAdmin\Renderers\Form\InputNumber;
+use Slowlyo\SlowAdmin\Renderers\CheckboxesControl;
+use Slowlyo\SlowAdmin\Renderers\TreeSelectControl;
 use Slowlyo\SlowAdmin\Services\AdminPermissionService;
 
 class AdminPermissionController extends AdminController
@@ -69,10 +69,10 @@ class AdminPermissionController extends AdminController
                 amis('filter-toggler')->align('right'),
             ])
             ->columns([
-                Column::make()->label('ID')->name('id')->sortable(true),
-                Column::make()->label(__('admin.admin_permission.name'))->name('name'),
-                Column::make()->label(__('admin.admin_permission.slug'))->name('slug'),
-                Column::make()
+                TableColumn::make()->label('ID')->name('id')->sortable(true),
+                TableColumn::make()->label(__('admin.admin_permission.name'))->name('name'),
+                TableColumn::make()->label(__('admin.admin_permission.slug'))->name('slug'),
+                TableColumn::make()
                     ->label(__('admin.admin_permission.http_method'))
                     ->name('http_method')
                     ->type('each')
@@ -80,7 +80,7 @@ class AdminPermissionController extends AdminController
                         ->label('${item}')
                         ->className('my-1'))
                     ->placeholder(Tag::make()->label('ANY')),
-                Column::make()
+                TableColumn::make()
                     ->label(__('admin.admin_permission.http_path'))
                     ->name('http_path')
                     ->type('each')
@@ -96,23 +96,23 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            InputText::make()->name('name')->label(__('admin.admin_permission.name'))->required(true),
-            InputText::make()->name('slug')->label(__('admin.admin_permission.slug'))->required(true),
-            TreeSelect::make()
+            TextControl::make()->name('name')->label(__('admin.admin_permission.name'))->required(true),
+            TextControl::make()->name('slug')->label(__('admin.admin_permission.slug'))->required(true),
+            SelectControl::make()
                 ->name('parent_id')
                 ->label(__('admin.parent'))
                 ->labelField('name')
                 ->valueField('id')
                 ->value(0)
                 ->options($this->service->getTree()),
-            Checkboxes::make()
+            CheckboxesControl::make()
                 ->name('http_method')
                 ->label(__('admin.admin_permission.http_method'))
                 ->options($this->getHttpMethods())
                 ->description(__('admin.admin_permission.http_method_description'))
                 ->joinValues(false)
                 ->extractValue(true),
-            InputNumber::make()
+            NumberControl::make()
                 ->name('order')
                 ->label(__('admin.order'))
                 ->required(true)
@@ -120,7 +120,7 @@ class AdminPermissionController extends AdminController
                 ->displayMode('enhance')
                 ->min(0)
                 ->value(0),
-            Select::make()
+            SelectControl::make()
                 ->name('http_path')
                 ->label(__('admin.admin_permission.http_path'))
                 ->searchable(true)
@@ -129,7 +129,7 @@ class AdminPermissionController extends AdminController
                 ->autoCheckChildren(false)
                 ->joinValues(false)
                 ->extractValue(true),
-            TreeSelect::make()
+            TreeSelectControl::make()
                 ->name('menus')
                 ->label(__('admin.menus'))
                 ->searchable(true)
@@ -209,8 +209,8 @@ class AdminPermissionController extends AdminController
             ];
         }
 
-        AdminPermission::truncate();
-        AdminPermission::insert($permissions);
+        AdminPermission::query()->truncate();
+        AdminPermission::query()->insert($permissions);
 
         DB::table('admin_permission_menu')->truncate();
         foreach ($permissions as $item) {

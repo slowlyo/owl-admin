@@ -3,26 +3,41 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>DropDownButton 下拉按钮</b><br/>
+ * 下拉按钮渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dropdown-button
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/dropdown-button
- *
- * @method self label($value) 按钮文本
- * @method self className($value) 外层 CSS 类名
- * @method self btnClassName($value) 按钮 CSS 类名
- * @method self menuClassName($value) 下拉菜单 CSS 类名
- * @method self block($value) 块状样式
- * @method self size($value) 尺寸，支持'xs'、'sm'、'md' 、'lg'
- * @method self align($value) 位置，可选'left'或'right'
- * @method self buttons($value) 配置下拉按钮
- * @method self iconOnly($value) 只显示 icon
- * @method self defaultIsOpened($value) 默认是否打开
- * @method self closeOnOutside($value) 点击外侧区域是否收起
- * @method self closeOnClick($value) 点击按钮后自动关闭下拉菜单
- * @method self trigger($value) 触发方式 (click/hover)
- * @method self hideCaret($value) 隐藏下拉图标
+ * @method self disabled($value) 是否禁用
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self type($value) 指定为 DropDown Button 类型
+ * @method self iconOnly($value) 是否只显示图标。
+ * @method self onEvent($value) 事件动作配置
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self block($value) 是否独占一行 `display: block`
+ * @method self closeOnClick($value) 点击内容是否关闭
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self closeOnOutside($value) 点击外部是否关闭
+ * @method self hideCaret($value) 是否显示下拉按钮
+ * @method self visible($value) 是否显示
+ * @method self static($value) 是否静态展示
+ * @method self trigger($value) 触发条件，默认是 click 可选值: click | hover | 
+ * @method self level($value) 按钮级别，样式 可选值: info | success | danger | warning | primary | link | 
+ * @method self rightIcon($value) 右侧图标
+ * @method self className($value) 容器 css 类名
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self btnClassName($value) 给 Button 配置 className。
+ * @method self buttons($value) 按钮集合，支持分组
+ * @method self hidden($value) 是否隐藏
+ * @method self menuClassName($value) 菜单 CSS 样式
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self staticSchema($value) 
+ * @method self label($value) 按钮文字
+ * @method self size($value) 按钮大小 可选值: xs | sm | md | lg | 
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self align($value) 对齐方式 可选值: left | right | 
  */
-class DropDownButton extends BaseRenderer
+class DropdownButton extends BaseRenderer
 {
     public string $type = 'dropdown-button';
 }

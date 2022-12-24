@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Slowlyo\SlowAdmin\Renderers\Page;
 use Slowlyo\SlowAdmin\Models\AdminUser;
 use Illuminate\Support\Facades\Validator;
-use Slowlyo\SlowAdmin\Renderers\Form\Form;
+use Slowlyo\SlowAdmin\Renderers\Form;
+use Slowlyo\SlowAdmin\Renderers\TextControl;
+use Slowlyo\SlowAdmin\Renderers\ImageControl;
 use Symfony\Component\HttpFoundation\Response;
-use Slowlyo\SlowAdmin\Renderers\Form\InputText;
-use Slowlyo\SlowAdmin\Renderers\Form\InputImage;
 use Slowlyo\SlowAdmin\Services\AdminUserService;
-use Slowlyo\SlowAdmin\Renderers\Form\InputPassword;
 
 class AuthController extends AdminController
 {
@@ -78,19 +77,19 @@ class AuthController extends AdminController
 
         $form = Form::make()
             ->title('')
-            ->panelClassName('px-64')
+            ->panelClassName('px-48 m:px-0')
             ->mode('horizontal')
             ->data($user)
             ->api('put:' . $this->adminPrefix . '/user_setting' . '/' . $user->id)
             ->body([
-                InputImage::make()
+                ImageControl::make()
                     ->label(__('admin.admin_user.avatar'))
                     ->name('avatar')
                     ->receiver($this->uploadImagePath()),
-                InputText::make()->label(__('admin.admin_user.name'))->name('name')->required(true),
-                InputPassword::make()->label(__('admin.old_password'))->name('old_password'),
-                InputPassword::make()->label(__('admin.password'))->name('password'),
-                InputPassword::make()->label(__('admin.confirm_password'))->name('confirm_password'),
+                TextControl::make()->label(__('admin.admin_user.name'))->name('name')->required(true),
+                TextControl::make()->type('input-password')->label(__('admin.old_password'))->name('old_password'),
+                TextControl::make()->type('input-password')->label(__('admin.password'))->name('password'),
+                TextControl::make()->type('input-password')->label(__('admin.confirm_password'))->name('confirm_password'),
             ]);
 
         $page = Page::make()->title(__('admin.user_setting'))->body($form);

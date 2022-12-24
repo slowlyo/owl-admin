@@ -5,9 +5,6 @@ namespace Slowlyo\SlowAdmin;
 use Illuminate\Support\Facades\Auth;
 use Slowlyo\SlowAdmin\Models\AdminUser;
 use Slowlyo\SlowAdmin\Libs\JsonResponse;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\Foundation\Application;
 use Slowlyo\SlowAdmin\Services\AdminMenuService;
 
 class SlowAdmin

@@ -3,23 +3,45 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Chart 图表</b><br/>
+ * Chart 图表渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/chart
- *
- * @method self className($value) 外层 Dom 的类名
- * @method self body($value) 内容容器
- * @method self api($value) 配置项接口地址
- * @method self source($value) 通过数据映射获取数据链中变量值作为配置
- * @method self initFetch($value) 组件初始化时，是否请求接口
- * @method self interval($value) 刷新时间(最小 1000)
- * @method self config($value) 设置 eschars 的配置项, 当为string的时候可以设置 function 等配置项
- * @method self style($value) 设置根元素的 style
- * @method self width($value) 设置根元素的宽度
- * @method self height($value) 设置根元素的高度
- * @method self replaceChartOption($value) 每次更新是完全覆盖配置项还是追加？
- * @method self trackExpression($value) 当这个表达式的值有变化时更新图表
- * @method self dataFilter($value) 自定义 echart config 转换，函数签名：function(config, echarts, data) '{return config;}' 配置时直接写函数体。其中 config 是当前 echart 配置，echarts 就是 echarts 对象，data 为上下文数据。
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self staticSchema($value) 
+ * @method self initFetchOn($value) 是否初始加载用表达式来配置
+ * @method self mapName($value) 地图名称
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self hidden($value) 是否隐藏
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self height($value) 高度设置
+ * @method self disabled($value) 是否禁用
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self type($value) 指定为 chart 类型
+ * @method self className($value) 容器 css 类名
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self api($value) 图表配置接口
+ * @method self disableDataMapping($value) 默认开启 Config 中的数据映射，如果想关闭，请开启此功能。
+ * @method self unMountOnHidden($value) 不可见的时候隐藏
+ * @method self mapURL($value) 获取 geo json 文件的地址
+ * @method self visible($value) 是否显示
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self config($value) 配置echart的config，支持数据映射。如果用了数据映射，为了同步更新，请设置 trackExpression
+ * @method self style($value) style样式
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self chartTheme($value) Chart 主题配置
+ * @method self initFetch($value) 是否初始加载。
+ * @method self trackExpression($value) 跟踪表达式，如果这个表达式的运行结果发生变化了，则会更新 Echart，当 config 中用了数据映射时有用。
+ * @method self width($value) 宽度设置
+ * @method self dataFilter($value) 
+ * @method self replaceChartOption($value) 默认配置时追加的，如果更新配置想完全替换配置请配置为 true.
+ * @method self interval($value) 刷新时间
+ * @method self onEvent($value) 事件动作配置
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self name($value) 
+ * @method self source($value) 
+ * @method self clickAction($value) 点击行为配置，可以用来满足下钻操作等。
+ * @method self loadBaiduMap($value) 加载百度地图
+ * @method self static($value) 是否静态展示
  */
 class Chart extends BaseRenderer
 {

@@ -4,10 +4,10 @@ namespace {{ Namespace }};
 
 use Illuminate\Http\JsonResponse;
 use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Column;
-use Slowlyo\SlowAdmin\Renderers\Form\Form;
-use Slowlyo\SlowAdmin\Renderers\Form\InputText;
-use Slowlyo\SlowAdmin\Renderers\Form\InputStatic;
+use Slowlyo\SlowAdmin\Renderers\Form;
+use Slowlyo\SlowAdmin\Renderers\TableColumn;
+use Slowlyo\SlowAdmin\Renderers\TextControl;
+use Slowlyo\SlowAdmin\Renderers\StaticExactControl;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\SlowAdmin\Controllers\AdminController;
 use {{ UseService }};

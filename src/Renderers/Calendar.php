@@ -3,14 +3,28 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Calendar 日历日程</b><br/>
- *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/calendar
- *
- * @method self schedules($value) 日历中展示日程，可设置静态数据或从上下文中取数据，startTime 和 endTime 格式参考文档，className 参考背景色
- * @method self scheduleClassNames($value) 日历中展示日程的颜色，参考背景色
- * @method self scheduleAction($value) 自定义日程展示
- * @method self largeMode($value) 放大模式
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self schedules($value) 日程
+ * @method self scheduleAction($value) 日程点击展示
+ * @method self todayActiveStyle($value) 今日激活时的自定义样式
+ * @method self disabled($value) 是否禁用
+ * @method self visible($value) 是否显示
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self type($value) 指定为日历选择控件
+ * @method self className($value) 容器 css 类名
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self static($value) 是否静态展示
+ * @method self staticSchema($value) 
+ * @method self hidden($value) 是否隐藏
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self onEvent($value) 事件动作配置
+ * @method self scheduleClassNames($value) 日程显示颜色自定义
+ * @method self largeMode($value) 是否开启放大模式
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
  */
 class Calendar extends BaseRenderer
 {

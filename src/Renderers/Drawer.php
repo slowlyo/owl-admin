@@ -3,27 +3,45 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Drawer 抽屉</b><br/>
+ * Drawer 抽出式弹框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/drawer
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/drawer
- *
- * @method self title($value) 弹出层标题
- * @method self body($value) 往 Drawer 内容区加内容
- * @method self size($value) 指定 Drawer 大小，支持: xs、sm、md、lg、xl
- * @method self position($value) 指定 Drawer 方向，支持: left、right、top、bottom
- * @method self className($value) Drawer 最外层容器的样式类名
- * @method self headerClassName($value) Drawer 头部 区域的样式类名
- * @method self bodyClassName($value) Drawer body 区域的样式类名
- * @method self footerClassName($value) Drawer 页脚 区域的样式类名
- * @method self showCloseButton($value) 是否展示关闭按钮，当值为 false 时，默认开启 closeOnOutside
- * @method self closeOnEsc($value) 是否支持按 Esc 关闭 Drawer
- * @method self closeOnOutside($value) 点击内容区外是否关闭 Drawer
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self staticSchema($value) 
+ * @method self type($value) 
+ * @method self actions($value) 默认不用填写，自动会创建确认和取消按钮。
+ * @method self headerClassName($value) 配置 头部 容器 className
+ * @method self title($value) 请通过配置 title 设置标题
+ * @method self disabled($value) 是否禁用
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self width($value) 抽屉的宽度 （当position为left | right时生效）
+ * @method self height($value) 抽屉的高度 （当position为top | bottom时生效）
+ * @method self header($value) 头部
+ * @method self resizable($value) 是否可以拖动弹窗大小
+ * @method self hidden($value) 是否隐藏
+ * @method self name($value) 
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self size($value) Dialog 大小 可选值: xs | sm | md | lg | full | 
+ * @method self showCloseButton($value) 是否展示关闭按钮 当值为false时，默认开启closeOnOutside
+ * @method self showErrorMsg($value) 是否显示错误信息
+ * @method self visible($value) 是否显示
+ * @method self position($value) 从什么位置弹出 可选值: left | right | top | bottom | 
+ * @method self closeOnOutside($value) 点击外部的时候是否关闭弹框。
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self body($value) 内容区域
+ * @method self static($value) 是否静态展示
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self footer($value) 底部
+ * @method self confirm($value) 影响自动生成的按钮，如果自己配置了按钮这个配置无效。
  * @method self overlay($value) 是否显示蒙层
- * @method self resizable($value) 是否可通过拖拽改变 Drawer 大小
- * @method self width($value) 容器的宽度，在 position 为 left 或 right 时生效
- * @method self height($value) 容器的高度，在 position 为 top 或 bottom 时生效
- * @method self actions($value) 【确认】和【取消】    可以不设置，默认只有两个按钮。
- * @method self data($value) 支持 数据映射，如果不设定将默认将触发按钮的上下文中继承数据。
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self closeOnEsc($value) 是否支持按 ESC 关闭 Dialog
+ * @method self className($value) 配置 外层 className
+ * @method self onEvent($value) 事件动作配置
+ * @method self footerClassName($value) 配置 头部 容器 className
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self bodyClassName($value) 配置 Body 容器 className
  */
 class Drawer extends BaseRenderer
 {

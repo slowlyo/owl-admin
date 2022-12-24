@@ -3,27 +3,42 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Wizard 向导</b><br/>
- * 表单向导，能够配置多个步骤引导用户一步一步完成表单提交。
+ * 表单向导 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/wizard
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/wizard
- *
- * @method self mode($value) 展示模式，选择：horizontal 或者 vertical
- * @method self api($value) 最后一步保存的接口。
- * @method self initApi($value) 初始化数据接口
- * @method self initFetch($value) 初始是否拉取数据。
- * @method self initFetchOn($value) 初始是否拉取数据，通过表达式来配置
- * @method self actionPrevLabel($value) 上一步按钮文本
- * @method self actionNextLabel($value) 下一步按钮文本
- * @method self actionNextSaveLabel($value) 保存并下一步按钮文本
- * @method self actionFinishLabel($value) 完成按钮文本
- * @method self className($value) 外层 CSS 类名
- * @method self actionClassName($value) 按钮 CSS 类名
- * @method self reload($value) 操作完后刷新目标对象。请填写目标组件设置的 name 值，如果填写为 window 则让当前页面整体刷新。
- * @method self redirect($value) 操作完后跳转。
- * @method self target($value) 可以把数据提交给别的组件而不是自己保存。请填写目标组件设置的 name 值，如果填写为 window 则把数据同步到地址栏上，同时依赖这些数据的组件会自动重新刷新。
- * @method self steps($value) 数组，配置步骤信息
- * @method self startStep($value) 起始默认值，从第几步开始。可支持模版，但是只有在组件创建时渲染模版并设置当前步数，在之后组件被刷新时，当前 step 不会根据 startStep 改变
+ * @method self static($value) 是否静态展示
+ * @method self actionNextSaveLabel($value) 下一步并且保存按钮的文字描述
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self visible($value) 是否显示
+ * @method self onEvent($value) 事件动作配置
+ * @method self target($value) 默认表单提交自己会通过发送 api 保存数据，但是也可以设定另外一个 form 的 name 值，或者另外一个 `CRUD` 模型的 name 值。 如果 target 目标是一个 `Form` ，则目标 `Form` 会重新触发 `initApi` 和 `schemaApi`，api 可以拿到当前 form 数据。如果目标是一个 `CRUD` 模型，则目标模型会重新触发搜索，参数为当前 Form 数据。
+ * @method self redirect($value) 保存完后，可以指定跳转地址，支持相对路径和组内绝对路径，同时可以通过 $xxx 使用变量
+ * @method self reload($value) 
+ * @method self actionPrevLabel($value) 上一步按钮的文字描述
+ * @method self disabled($value) 是否禁用
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self initApi($value) Wizard 用来获取初始数据的 api。
+ * @method self mode($value) 展示模式 可选值: vertical | horizontal | 
+ * @method self name($value) 
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self staticSchema($value) 
+ * @method self actionClassName($value) 配置按钮 className
+ * @method self api($value) Wizard 用来保存数据的 api。 [详情](https://baidu.github.io/amis/docs/api#wizard)
+ * @method self bulkSubmit($value) 是否合并后再提交
+ * @method self startStep($value) 
+ * @method self affixFooter($value) 是否将底部按钮固定在底部。
+ * @method self steps($value) 
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self actionFinishLabel($value) 完成按钮的文字描述
+ * @method self actionNextLabel($value) 下一步按钮的文字描述
+ * @method self type($value) 指定为表单向导
+ * @method self readOnly($value) 是否为只读模式。
+ * @method self className($value) 容器 css 类名
+ * @method self hidden($value) 是否隐藏
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
  */
 class Wizard extends BaseRenderer
 {

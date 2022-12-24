@@ -130,7 +130,7 @@ class ControllerGenerator extends BaseGenerator
 
             $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
 
-            $item .= "Column::make()->name('{$column['name']}')->label('{$label}')";
+            $item .= "TableColumn::make()->name('{$column['name']}')->label('{$label}')";
 
             if ($column['type'] == 'integer') {
                 $item .= '->sortable(true)';
@@ -140,8 +140,8 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $list->push("Column::make()->name('created_at')->label('创建时间')->type('datetime')->sortable(true)");
-            $list->push("Column::make()->name('updated_at')->label('更新时间')->type('datetime')->sortable(true)");
+            $list->push("TableColumn::make()->name('created_at')->label('创建时间')->type('datetime')->sortable(true)");
+            $list->push("TableColumn::make()->name('updated_at')->label('更新时间')->type('datetime')->sortable(true)");
         }
 
         $list = $list->implode(",\n\t\t\t\t") . ',';
@@ -160,7 +160,7 @@ class ControllerGenerator extends BaseGenerator
 
             $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
 
-            $item .= "InputText::make()->name('{$column['name']}')->label('{$label}')";
+            $item .= "TextControl::make()->name('{$column['name']}')->label('{$label}')";
 
             $form->push($item);
         });
@@ -176,21 +176,21 @@ class ControllerGenerator extends BaseGenerator
     {
         $detail = collect();
 
-        $detail->push("InputStatic::make()->name('id')->label('ID')");
+        $detail->push("StaticExactControl::make()->name('id')->label('ID')");
 
         $this->columns->map(function ($column) use (&$detail) {
             $item = '';
 
             $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
 
-            $item .= "InputStatic::make()->name('{$column['name']}')->label('{$label}')";
+            $item .= "StaticExactControl::make()->name('{$column['name']}')->label('{$label}')";
 
             $detail->push($item);
         });
 
         if ($this->needTimestamp) {
-            $detail->push("InputStatic::make()->name('created_at')->label('创建时间')");
-            $detail->push("InputStatic::make()->name('updated_at')->label('更新时间')");
+            $detail->push("StaticExactControl::make()->name('created_at')->label('创建时间')");
+            $detail->push("StaticExactControl::make()->name('updated_at')->label('更新时间')");
         }
 
         $detail = $detail->implode(",\n\t\t\t");

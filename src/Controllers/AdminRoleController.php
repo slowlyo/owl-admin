@@ -4,12 +4,13 @@ namespace Slowlyo\SlowAdmin\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Column;
-use Slowlyo\SlowAdmin\Renderers\Form\Form;
-use Slowlyo\SlowAdmin\Renderers\Form\InputText;
+use Slowlyo\SlowAdmin\Renderers\Form;
+use Slowlyo\SlowAdmin\Renderers\Operation;
+use Slowlyo\SlowAdmin\Renderers\TableColumn;
+use Slowlyo\SlowAdmin\Renderers\TextControl;
 use Slowlyo\SlowAdmin\Services\AdminRoleService;
-use Slowlyo\SlowAdmin\Renderers\Form\TreeSelect;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Slowlyo\SlowAdmin\Renderers\TreeSelectControl;
 use Slowlyo\SlowAdmin\Services\AdminPermissionService;
 
 class AdminRoleController extends AdminController
@@ -47,12 +48,12 @@ class AdminRoleController extends AdminController
             ])
             ->filterTogglable(false)
             ->columns([
-                Column::make()->label('ID')->name('id')->sortable(true),
-                Column::make()->label(__('admin.admin_role.name'))->name('name'),
-                Column::make()->label(__('admin.admin_role.slug'))->name('slug')->type('tag'),
-                Column::make()->label(__('admin.created_at'))->name('created_at')->type('datetime')->sortable(true),
-                Column::make()->label(__('admin.updated_at'))->name('updated_at')->type('datetime')->sortable(true),
-                amis('operation')->label(__('admin.actions'))->buttons([
+                TableColumn::make()->label('ID')->name('id')->sortable(true),
+                TableColumn::make()->label(__('admin.admin_role.name'))->name('name'),
+                TableColumn::make()->label(__('admin.admin_role.slug'))->name('slug')->type('tag'),
+                TableColumn::make()->label(__('admin.created_at'))->name('created_at')->type('datetime')->sortable(true),
+                TableColumn::make()->label(__('admin.updated_at'))->name('updated_at')->type('datetime')->sortable(true),
+                Operation::make()->label(__('admin.actions'))->buttons([
                     $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${slug != "administrator"}'),
                 ]),
@@ -64,18 +65,18 @@ class AdminRoleController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            InputText::make()->label(__('admin.admin_role.name'))->name('name')->required(true),
-            InputText::make()
+            TextControl::make()->label(__('admin.admin_role.name'))->name('name')->required(true),
+            TextControl::make()
                 ->label(__('admin.admin_role.slug'))
                 ->name('slug')
                 ->description(__('admin.admin_role.slug_description'))
                 ->required(true),
-            TreeSelect::make()
+            TreeSelectControl::make()
                 ->name('permissions')
                 ->label(__('admin.admin_role.permissions'))
-                ->searchable(true)
                 ->multiple(true)
                 ->options(AdminPermissionService::make()->getTree())
+                ->searchable(true)
                 ->labelField('name')
                 ->valueField('id')
                 ->autoCheckChildren(false)

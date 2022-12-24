@@ -3,22 +3,38 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Carousel 轮播图</b><br/>
+ * Carousel 轮播图渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
- *
- * @method self className($value) 外层 Dom 的类名
- * @method self options($value) 轮播面板数据
- * @method self itemSchema($value) 自定义schema来展示数据
- * @method self auto($value) 是否自动轮播
- * @method self interval($value) 切换动画间隔
- * @method self duration($value) 切换动画时长
- * @method self width($value) 宽度
- * @method self height($value) 高度
- * @method self controls($value) 显示左右箭头、底部圆点索引
- * @method self controlsTheme($value) 左右箭头、底部圆点索引颜色，默认light，另有dark模式
- * @method self animation($value) 切换动画效果，默认fade，另有slide模式
- * @method self thumbMode($value) 图片默认缩放模式
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self duration($value) 动画时长
+ * @method self auto($value) 是否自动播放
+ * @method self width($value) 设置宽度
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self static($value) 是否静态展示
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self staticSchema($value) 
+ * @method self interval($value) 轮播间隔时间
+ * @method self itemSchema($value) 配置单条呈现模板
+ * @method self name($value) 
+ * @method self options($value) 配置固定值
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self controlsTheme($value)  可选值: light | dark | 
+ * @method self thumbMode($value) 预览图模式 可选值: contain | cover | 
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self onEvent($value) 事件动作配置
+ * @method self height($value) 设置高度
+ * @method self visible($value) 是否显示
+ * @method self type($value) 指定为轮播图类型
+ * @method self animation($value) 动画类型 可选值: fade | slide | 
+ * @method self className($value) 容器 css 类名
+ * @method self disabled($value) 是否禁用
+ * @method self hidden($value) 是否隐藏
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self placeholder($value) 占位
+ * @method self controls($value) 配置控件内容
  */
 class Carousel extends BaseRenderer
 {

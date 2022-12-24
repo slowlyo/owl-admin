@@ -3,22 +3,42 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Dialog 对话框</b><br/>
+ * Dialog 弹框渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
- *
- * @method self className($value) 外层 Dom 的类名
- * @method self title($value) 弹出层标题
- * @method self body($value) 往 Dialog 内容区加内容
- * @method self size($value) 指定 dialog 大小，支持: xs、sm、md、lg、xl、full
- * @method self bodyClassName($value) Dialog body 区域的样式类名
- * @method self closeOnEsc($value) 是否支持按 Esc 关闭 Dialog
- * @method self showCloseButton($value) 是否显示右上角的关闭按钮
- * @method self showErrorMsg($value) 是否在弹框左下角显示报错信息
- * @method self showLoading($value) 是否在弹框左下角显示 loading 动画
- * @method self disabled($value) 如果设置此属性，则该 Dialog 只读没有提交操作。
- * @method self actions($value) 【确认】和【取消】    如果想不显示底部按钮，可以配置：[]
- * @method self data($value) 支持数据映射，如果不设定将默认将触发按钮的上下文中继承数据
+ * @method self type($value) 
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self title($value) 请通过配置 title 设置标题
+ * @method self header($value) 
+ * @method self className($value) 容器 css 类名
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self staticSchema($value) 
+ * @method self closeOnEsc($value) 是否支持按 ESC 关闭 Dialog
+ * @method self width($value) Dialog 宽度
+ * @method self showCloseButton($value) 是否显示关闭按钮
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self static($value) 是否静态展示
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self actions($value) 默认不用填写，自动会创建确认和取消按钮。
+ * @method self body($value) 内容区域
+ * @method self size($value) Dialog 大小 可选值: xs | sm | md | lg | xl | full | 
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self closeOnOutside($value) 是否支持点其它区域关闭 Dialog
+ * @method self name($value) 
+ * @method self footer($value) 
+ * @method self headerClassName($value) 
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self visible($value) 是否显示
+ * @method self onEvent($value) 事件动作配置
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self bodyClassName($value) 配置 Body 容器 className
+ * @method self height($value) Dialog 高度
+ * @method self hidden($value) 是否隐藏
+ * @method self showErrorMsg($value) 是否显示错误信息
+ * @method self showLoading($value) 是否显示 spinner
+ * @method self disabled($value) 是否禁用
+ * @method self confirm($value) 影响自动生成的按钮，如果自己配置了按钮这个配置无效。
  */
 class Dialog extends BaseRenderer
 {

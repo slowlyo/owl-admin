@@ -3,25 +3,39 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Avatar 头像</b><br/>
- *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/avaatar
- *
- * @method self className($value) 外层 dom 的类名
- * @method self style($value) 外层 dom 的样式
- * @method self fit($value) 具体细节可以参考 MDN 文档
+ * @method self size($value) 大小
+ * @method self text($value) 文本
+ * @method self crossOrigin($value) 图片CORS属性 可选值: anonymous | use-credentials |  | 
+ * @method self onError($value) 图片加载失败的是否默认处理，字符串函数
+ * @method self className($value) 类名
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self visible($value) 是否显示
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self badge($value) 角标
  * @method self src($value) 图片地址
- * @method self text($value) 文字
- * @method self icon($value) 图标
- * @method self shape($value) 形状，有三种 'circle' （圆形）、'square'（正方形）、'rounded'（圆角）
- * @method self size($value)
- * @method self gap($value) 控制字符类型距离左右两侧边界单位像素
- * @method self alt($value) 图像无法显示时的替代文本
+ * @method self fit($value) 图片相对于容器的缩放方式 可选值: fill | contain | cover | none | scale-down | 
  * @method self draggable($value) 图片是否允许拖动
- * @method self crossOrigin($value) 图片的 CORS 属性设置
- * @method self onError($value) 图片加载失败的字符串，这个字符串是一个New Function内部执行的字符串，参数是event（使用event.nativeEvent获取原生dom事件），这个字符串需要返回boolean值。设置 "return ture;" 会在图片加载失败后，使用 text 或者 icon 代表的信息来进行替换。目前图片加载失败默认是不进行置换。注意：图片加载失败，不包括$获取数据为空情况
+ * @method self icon($value) 图标
+ * @method self disabled($value) 是否禁用
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self onEvent($value) 事件动作配置
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self type($value) 
+ * @method self style($value) 自定义样式
+ * @method self shape($value) 形状 可选值: circle | square | rounded | 
+ * @method self hidden($value) 是否隐藏
+ * @method self staticSchema($value) 
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self alt($value) 图片无法显示时的替换文字地址
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self static($value) 是否静态展示
+ * @method self gap($value) 字符类型距离左右两侧边界单位像素
  */
 class Avatar extends BaseRenderer
 {
     public string $type = 'avatar';
+    public string $crossOrigin = 'anonymous';
 }

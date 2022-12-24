@@ -32,7 +32,7 @@ class PublishCommand extends Command
     protected $description = "Re-publish slow-admin's assets, configuration and language files. If you want overwrite the existing files, you can add the `--force` option";
 
     /**
-     * @var \Illuminate\Filesystem\Filesystem
+     * @var Filesystem
      */
     protected $files;
 
@@ -129,6 +129,8 @@ class PublishCommand extends Command
         }
 
         $this->error("Can't locate path: <{$from}>");
+
+        return null;
     }
 
     protected function publishFile($from, $to)

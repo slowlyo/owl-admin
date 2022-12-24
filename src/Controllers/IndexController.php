@@ -4,7 +4,6 @@ namespace Slowlyo\SlowAdmin\Controllers;
 
 use Slowlyo\SlowAdmin\SlowAdmin;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class IndexController extends AdminController

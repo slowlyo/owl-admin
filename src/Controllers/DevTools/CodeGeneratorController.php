@@ -7,15 +7,15 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\SlowAdmin\Renderers\Page;
+use Slowlyo\SlowAdmin\Renderers\Form;
 use Illuminate\Support\Facades\Artisan;
-use Slowlyo\SlowAdmin\Renderers\Form\Form;
-use Slowlyo\SlowAdmin\Renderers\Form\Group;
-use Slowlyo\SlowAdmin\Renderers\Form\Select;
-use Slowlyo\SlowAdmin\Renderers\Form\Checkbox;
-use Slowlyo\SlowAdmin\Renderers\Form\InputText;
-use Slowlyo\SlowAdmin\Renderers\Form\Checkboxes;
-use Slowlyo\SlowAdmin\Renderers\Form\InputTable;
+use Slowlyo\SlowAdmin\Renderers\TextControl;
+use Slowlyo\SlowAdmin\Renderers\GroupControl;
+use Slowlyo\SlowAdmin\Renderers\TableControl;
+use Slowlyo\SlowAdmin\Renderers\SelectControl;
+use Slowlyo\SlowAdmin\Renderers\CheckboxControl;
 use Slowlyo\SlowAdmin\Controllers\AdminController;
+use Slowlyo\SlowAdmin\Renderers\CheckboxesControl;
 use Slowlyo\SlowAdmin\Libs\CodeGenerator\ModelGenerator;
 use Slowlyo\SlowAdmin\Libs\CodeGenerator\ServiceGenerator;
 use Slowlyo\SlowAdmin\Libs\CodeGenerator\MigrationGenerator;
@@ -25,7 +25,7 @@ class CodeGeneratorController extends AdminController
 {
     protected string $queryPath = 'dev_tools/code_generator';
 
-    public static $dataTypeMap = [
+    public static array $dataTypeMap = [
         'int'                => 'integer',
         'int@unsigned'       => 'unsignedInteger',
         'tinyint'            => 'tinyInteger',
@@ -84,28 +84,28 @@ class CodeGeneratorController extends AdminController
                 'table_info' => $this->getDatabaseColumns(),
             ])
             ->body([
-                Group::make()->body([
-                    Group::make()->direction('vertical')->body([
-                        InputText::make()
+                GroupControl::make()->body([
+                    GroupControl::make()->direction('vertical')->body([
+                        TextControl::make()
                             ->label(__('admin.code_generators.table_name'))
                             ->name('table_name')
                             ->value('')
                             ->required(true),
-                        InputText::make()
+                        TextControl::make()
                             ->label(__('admin.code_generators.model_name'))
                             ->name('model_name')
                             ->value($this->getNamespace('Models', 1) . '${' . $nameHandler . '}'),
-                        InputText::make()
+                        TextControl::make()
                             ->label(__('admin.code_generators.controller_name'))
                             ->name('controller_name')
                             ->value($this->getNamespace('Controllers') . '${' . $nameHandler . '}Controller'),
-                        InputText::make()
+                        TextControl::make()
                             ->label(__('admin.code_generators.service_name'))
                             ->name('service_name')
                             ->value($this->getNamespace('Services', 1) . '${' . $nameHandler . '}Service'),
                     ]),
-                    Group::make()->direction('vertical')->body([
-                        Select::make()
+                    GroupControl::make()->direction('vertical')->body([
+                        SelectControl::make()
                             ->label(__('admin.code_generators.exists_table'))
                             ->name('exists_table')
                             ->searchable(true)
@@ -149,7 +149,10 @@ class CodeGeneratorController extends AdminController
                                     ],
                                 ],
                             ]),
-                        Checkboxes::make()->name('needs')->label(__('admin.code_generators.options'))->inline(false)
+                        CheckboxesControl::make()
+                            ->name('needs')
+                            ->label(__('admin.code_generators.options'))
+                            ->inline(false)
                             ->joinValues(false)
                             ->extractValue(true)
                             ->options([
@@ -164,7 +167,8 @@ class CodeGeneratorController extends AdminController
                                     'value' => 'need_controller',
                                 ],
                                 ['label' => __('admin.code_generators.create_service'), 'value' => 'need_service'],
-                            ])->value([
+                            ])
+                            ->value([
                                 'need_database_migration',
                                 'need_create_table',
                                 'need_model',
@@ -172,22 +176,22 @@ class CodeGeneratorController extends AdminController
                                 'need_service',
                             ]),
                     ]),
-                    Group::make()->direction('vertical')->body([
-                        InputText::make()
+                    GroupControl::make()->direction('vertical')->body([
+                        TextControl::make()
                             ->label(__('admin.code_generators.primary_key'))
                             ->name('primary_key')
                             ->value('id')
                             ->description(__('admin.code_generators.primary_key_description'))
                             ->required(true),
-                        InputText::make()
+                        TextControl::make()
                             ->label(__('admin.code_generators.app_title'))
                             ->name('title')
                             ->value('${' . $nameHandler . '}'),
-                        Checkbox::make()->name('need_timestamps')->option('CreatedAt & UpdatedAt')->value(1),
-                        Checkbox::make()->name('soft_delete')->option(__('admin.soft_delete'))->value(1),
+                        CheckboxControl::make()->name('need_timestamps')->option('CreatedAt & UpdatedAt')->value(1),
+                        CheckboxControl::make()->name('soft_delete')->option(__('admin.soft_delete'))->value(1),
                     ]),
                 ]),
-                InputTable::make()
+                TableControl::make()
                     ->name('columns')
                     ->addable(true)
                     ->needConfirm(false)
@@ -203,21 +207,27 @@ class CodeGeneratorController extends AdminController
                         ],
                     ])
                     ->columns([
-                        InputText::make()->name('name')->label(__('admin.code_generators.column_name'))->required(true),
-                        Select::make()
+                        TextControl::make()
+                            ->name('name')
+                            ->label(__('admin.code_generators.column_name'))
+                            ->required(true),
+                        SelectControl::make()
                             ->name('type')
                             ->label(__('admin.code_generators.type'))
                             ->options($this->availableFieldTypes())
                             ->searchable(true)
                             ->value('string')
                             ->required(true),
-                        InputText::make()
+                        TextControl::make()
                             ->name('additional')
                             ->label(__('admin.code_generators.extra_params'))
                             ->width(160)
                             ->size('sm'),
-                        Checkbox::make()->name('nullable')->label(__('admin.code_generators.nullable'))->width(60),
-                        Select::make()
+                        CheckboxControl::make()
+                            ->name('nullable')
+                            ->label(__('admin.code_generators.nullable'))
+                            ->width(60),
+                        SelectControl::make()
                             ->name('index')
                             ->label(__('admin.code_generators.index'))
                             ->size('sm')
@@ -228,8 +238,8 @@ class CodeGeneratorController extends AdminController
                                     'value' => $value,
                                 ]))
                             ->clearable(true),
-                        InputText::make()->name('default')->label(__('admin.code_generators.default_value')),
-                        InputText::make()->name('comment')->label(__('admin.code_generators.comment')),
+                        TextControl::make()->name('default')->label(__('admin.code_generators.default_value')),
+                        TextControl::make()->name('comment')->label(__('admin.code_generators.comment')),
                     ]),
             ]);
     }

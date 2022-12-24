@@ -3,17 +3,30 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>AnchorNav 锚点导航</b><br/>
- * 锚点导航容器组件。
+ * AnchorNav 锚点导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/anchor-nav
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/anchor-nav
- *
- * @method self className($value) 外层 Dom 的类名
- * @method self linkClassName($value) 导航 Dom 的类名
- * @method self sectionClassName($value) 锚点区域 Dom 的类名
- * @method self links($value) links 内容
- * @method self direction($value) 可以配置导航水平展示还是垂直展示。对应的配置项分别是：vertical、horizontal
- * @method self active($value) 需要定位的区域
+ * @method self onEvent($value) 事件动作配置
+ * @method self linkClassName($value) 导航样式名
+ * @method self sectionClassName($value) 楼层样式名
+ * @method self hidden($value) 是否隐藏
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self links($value) 楼层集合
+ * @method self visible($value) 是否显示
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self static($value) 是否静态展示
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * @method self active($value) 被激活（定位）的楼层
+ * @method self type($value) 指定为 AnchorNav 锚点导航渲染器
+ * @method self className($value) 样式名
+ * @method self disabled($value) 是否禁用
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self staticSchema($value) 
+ * @method self direction($value)  可选值: vertical | horizontal | 
  */
 class AnchorNav extends BaseRenderer
 {

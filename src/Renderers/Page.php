@@ -3,36 +3,56 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * <b>Page 页面</b> <br/>
- * Page 组件是 amis 页面 JSON 配置中顶级容器组件，是整个页面配置的入口组件。<br/>
+ * amis Page 渲染器。详情请见：https://aisuda.bce.baidu.com/amis/zh-CN/components/page
  *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/page
- *
- * @method self title($value) 页面标题
+ * @method self bodyClassName($value) 内容区 css 类名
+ * @method self data($value) 页面级别的初始数据
+ * @method self initFetchOn($value) 是否默认就拉取表达式
+ * @method self messages($value) 
+ * @method self name($value) 
+ * @method self style($value) 自定义样式
+ * @method self visible($value) 是否显示
+ * @method self staticPlaceholder($value) 静态展示空值占位
+ * @method self staticOn($value) 是否静态展示表达式
+ * @method self staticLabelClassName($value) 静态展示表单项Label类名
+ * @method self type($value) 指定为 page 渲染器。
  * @method self subTitle($value) 页面副标题
- * @method self remark($value) 标题附近会出现一个提示图标，鼠标放上去会提示该内容。
- * @method self aside($value) 往页面的边栏区域加内容
- * @method self asideResizor($value) 页面的边栏区域宽度是否可调整
- * @method self asideMinWidth($value) 页面边栏区域的最小宽度
- * @method self asideMaxWidth($value) 页面边栏区域的最大宽度
- * @method self asideSticky($value) 用来控制边栏固定与否
- * @method self toolbar($value) 往页面的右上角加内容，需要注意的是，当有 title 时，该区域在右上角，没有时该区域在顶部
- * @method self body($value) 往页面的内容区域加内容
- * @method self data($v)
- * @method self className($value) 外层 dom 类名
- * @method self cssVars($value) 自定义 CSS 变量
- * @method self toolbarClassName($value = 'v-middle wrapper text-right bg-light b-b') Toolbar dom 类名
- * @method self bodyClassName($value = 'wrapper') Body dom 类名
- * @method self asideClassName($value = 'w page-aside-region bg-auto') Aside dom 类名
- * @method self headerClassName($value = 'bg-light b-b wrapper') Header 区域 dom 类名
- * @method self initApi($value) Page 用来获取初始数据的 api。返回的数据可以整个 page 级别使用。
- * @method self initFetch($value) 是否起始拉取 initApi
- * @method self initFetchOn($value) 是否起始拉取 initApi, 通过表达式配置
- * @method self interval($value = 3000) 刷新时间(最小 1000)
- * @method self silentPolling($value) 配置刷新时是否显示加载动画
- * @method self stopAutoRefreshWhen($value) 通过表达式来配置停止刷新的条件
- * @method self pullRefresh($value) 下拉刷新配置（仅用于移动端）
- * @method self css($value)
+ * @method self asideResizor($value) 边栏是否允许拖动
+ * @method self mobileCSS($value) 移动端下的样式表
+ * @method self hidden($value) 是否隐藏
+ * @method self static($value) 是否静态展示
+ * @method self css($value) 自定义页面级别样式表
+ * @method self title($value) 页面标题
+ * @method self aside($value) 边栏区域
+ * @method self id($value) 组件唯一 id，主要用于日志采集
+ * @method self staticClassName($value) 静态展示表单项类名
+ * @method self body($value) 内容区域
+ * @method self asideSticky($value) 边栏内容是否粘住，即不跟随滚动。
+ * @method self asideClassName($value) 边栏区 css 类名
+ * @method self initFetch($value) 是否默认就拉取？
+ * @method self className($value) 配置容器 className
+ * @method self disabledOn($value) 是否禁用表达式
+ * @method self regions($value) 默认不设置自动感觉内容来决定要不要展示这些区域 如果配置了，以配置为主。
+ * @method self definitions($value) 
+ * @method self interval($value) 配置轮询间隔，配置后 initApi 将轮询加载。
+ * @method self showErrorMsg($value) 是否显示错误信息，默认是显示的。
+ * @method self cssVars($value) css 变量
+ * @method self remark($value) 页面描述, 标题旁边会出现个小图标，放上去会显示这个属性配置的内容。
+ * @method self headerClassName($value) 配置 header 容器 className
+ * @method self onEvent($value) 事件动作配置
+ * @method self staticSchema($value) 
+ * @method self asideMinWidth($value) 边栏最小宽度
+ * @method self initApi($value) 页面初始化的时候，可以设置一个 API 让其取拉取，发送数据会携带当前 data 数据（包含地址栏参数），获取得数据会合并到 data 中，供组件内使用。
+ * @method self disabled($value) 是否禁用
+ * @method self visibleOn($value) 是否显示表达式
+ * @method self toolbarClassName($value) 配置 toolbar 容器 className
+ * @method self silentPolling($value) 是否要静默加载，也就是说不显示进度
+ * @method self pullRefresh($value) 下拉刷新配置
+ * @method self asideMaxWidth($value) 边栏最小宽度
+ * @method self toolbar($value) 页面顶部区域，当存在 title 时在右上角显示。
+ * @method self stopAutoRefreshWhen($value) 配置停止轮询的条件。
+ * @method self hiddenOn($value) 是否隐藏表达式
+ * @method self staticInputClassName($value) 静态展示表单项Value类名
  */
 class Page extends BaseRenderer
 {

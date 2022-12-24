@@ -3,13 +3,15 @@
 namespace Slowlyo\SlowAdmin\Traits;
 
 use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\CRUD;
+use Slowlyo\SlowAdmin\Renderers\Form;
 use Slowlyo\SlowAdmin\Renderers\Button;
-use Slowlyo\SlowAdmin\Renderers\Action;
 use Slowlyo\SlowAdmin\Renderers\Dialog;
-use Slowlyo\SlowAdmin\Renderers\Component;
-use Slowlyo\SlowAdmin\Renderers\Form\Form;
-use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
+use Slowlyo\SlowAdmin\Renderers\CRUDTable;
+use Slowlyo\SlowAdmin\Renderers\Operation;
+use Slowlyo\SlowAdmin\Renderers\LinkAction;
+use Slowlyo\SlowAdmin\Renderers\AjaxAction;
+use Slowlyo\SlowAdmin\Renderers\OtherAction;
+use Slowlyo\SlowAdmin\Renderers\DialogAction;
 
 trait PageElement
 {
@@ -26,11 +28,11 @@ trait PageElement
     /**
      * 返回列表按钮
      *
-     * @return Action
+     * @return OtherAction
      */
-    protected function backButton(): Action
+    protected function backButton(): OtherAction
     {
-        return Button::make()
+        return OtherAction::make()
             ->label(__('admin.back'))
             ->icon('fa-solid fa-chevron-left')
             ->level('primary')
@@ -40,12 +42,11 @@ trait PageElement
     /**
      * 批量删除按钮
      *
-     * @return Action
+     * @return AjaxAction
      */
-    protected function bulkDeleteButton(): Action
+    protected function bulkDeleteButton(): AjaxAction
     {
-        return Action::make()
-            ->actionType('ajax')
+        return AjaxAction::make()
             ->api($this->getBulkDeletePath())
             ->icon('fa-solid fa-trash-can')
             ->label(__('admin.delete'))
@@ -57,24 +58,19 @@ trait PageElement
      *
      * @param bool $dialog
      *
-     * @return Action
+     * @return DialogAction|LinkAction
      */
-    protected function createButton($dialog = false): Action
+    protected function createButton(bool $dialog = false): DialogAction|LinkAction
     {
         $form = $this->form()->api($this->getStorePath());
 
-        $button = Button::make()
-            ->label(__('admin.create'))
-            ->icon('fa fa-add')
-            ->level('primary');
-
         if ($dialog) {
-            $button->actionType('dialog')->dialog(Dialog::make()->title(__('admin.create'))->body($form));
+            $button = DialogAction::make()->dialog(Dialog::make()->title(__('admin.create'))->body($form));
         } else {
-            $button = $button->actionType('link')->link($this->getCreatePath());
+            $button = LinkAction::make()->link($this->getCreatePath());
         }
 
-        return $button;
+        return $button->label(__('admin.create'))->icon('fa fa-add')->level('primary');
     }
 
     /**
@@ -82,24 +78,19 @@ trait PageElement
      *
      * @param bool $dialog
      *
-     * @return Action
+     * @return DialogAction|LinkAction
      */
-    protected function rowEditButton($dialog = false): Action
+    protected function rowEditButton(bool $dialog = false): DialogAction|LinkAction
     {
-        $button = Button::make()
-            ->label(__('admin.edit'))
-            ->icon('fa-regular fa-pen-to-square')
-            ->level('link');
-
         if ($dialog) {
             $form = $this->form()->api($this->getUpdatePath('$id'))->initApi($this->getEditGetDataPath('$id'));
 
-            $button = $button->actionType('dialog')->dialog(Dialog::make()->title(__('admin.edit'))->body($form));
+            $button = DialogAction::make()->dialog(Dialog::make()->title(__('admin.edit'))->body($form));
         } else {
-            $button = $button->actionType('link')->link($this->getEditPath());
+            $button = LinkAction::make()->link($this->getEditPath());
         }
 
-        return $button;
+        return $button->label(__('admin.edit'))->icon('fa-regular fa-pen-to-square')->level('link');
     }
 
     /**
@@ -107,34 +98,29 @@ trait PageElement
      *
      * @param bool $dialog
      *
-     * @return Action
+     * @return DialogAction|LinkAction
      */
-    protected function rowShowButton($dialog = false): Action
+    protected function rowShowButton(bool $dialog = false): DialogAction|LinkAction
     {
-        $button = Button::make()
-            ->label(__('admin.show'))
-            ->icon('fa-regular fa-eye')
-            ->level('link');
-
         if ($dialog) {
-            $button = $button->actionType('dialog')->dialog(Dialog::make()
+            $button = DialogAction::make()->dialog(Dialog::make()
                 ->title(__('admin.show'))
                 ->body($this->detail('$id')));
         } else {
-            $button = $button->actionType('link')->link($this->getShowPath());
+            $button = LinkAction::make()->link($this->getShowPath());
         }
 
-        return $button;
+        return $button->label(__('admin.show'))->icon('fa-regular fa-eye')->level('link');
     }
 
     /**
      * 行删除按钮
      *
-     * @return Action
+     * @return AjaxAction
      */
-    protected function rowDeleteButton(): Action
+    protected function rowDeleteButton(): AjaxAction
     {
-        return Button::make()
+        return AjaxAction::make()
             ->label(__('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
@@ -149,20 +135,20 @@ trait PageElement
      *
      * @param bool $dialog
      *
-     * @return BaseRenderer
+     * @return Operation
      */
-    protected function rowActions($dialog = false): BaseRenderer
+    protected function rowActions(bool $dialog = false): Operation
     {
-        return Component::make()->setType('operation')->label(__('admin.actions'))->buttons([
+        return Operation::make()->label(__('admin.actions'))->buttons([
             $this->rowShowButton($dialog),
             $this->rowEditButton($dialog),
             $this->rowDeleteButton(),
         ]);
     }
 
-    protected function rowActionsOnlyEditAndDelete($dialog = false): BaseRenderer
+    protected function rowActionsOnlyEditAndDelete($dialog = false): Operation
     {
-        return Component::make()->setType('operation')->label(__('admin.actions'))->buttons([
+        return Operation::make()->label(__('admin.actions'))->buttons([
             $this->rowEditButton($dialog),
             $this->rowDeleteButton(),
         ]);
@@ -185,11 +171,11 @@ trait PageElement
     }
 
     /**
-     * @return CRUD
+     * @return CRUDTable
      */
-    protected function baseCRUD(): CRUD
+    protected function baseCRUD(): CRUDTable
     {
-        return CRUD::make()
+        return CRUDTable::make()
             ->perPage(20)
             ->affixHeader(false)
             ->filterTogglable(true)
@@ -213,7 +199,11 @@ trait PageElement
      */
     protected function baseForm(): Form
     {
-        return Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->redirect($this->getListPath());
+        return Form::make()
+            ->panelClassName('px-48 m:px-0')
+            ->title(' ')
+            ->mode('horizontal')
+            ->redirect($this->getListPath());
     }
 
     /**
