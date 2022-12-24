@@ -3,8 +3,8 @@
 namespace Slowlyo\SlowAdmin\Renderers;
 
 /**
- * @method self name($value) 
  * @method self id($value) 
+ * @method self name($value) 
  */
 class IconChecked extends BaseRenderer
 {

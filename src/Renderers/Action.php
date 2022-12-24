@@ -15,6 +15,7 @@ namespace Slowlyo\SlowAdmin\Renderers;
  * @method self iconClassName($value) 给图标上添加类名。
  * @method self rightIcon($value) 在按钮文本右侧设置图标，例如fa fa-plus。
  * @method self rightIconClassName($value) 给右侧图标上添加类名。
+ * @method self className($value) 添加类名。
  * @method self active($value) 按钮是否高亮。
  * @method self activeLevel($value) 按钮高亮时的样式，配置支持同level。
  * @method self activeClassName($value) 给按钮高亮添加类名。
