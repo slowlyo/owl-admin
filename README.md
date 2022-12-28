@@ -86,7 +86,7 @@ composer require slowlyo/slow-admin
 4. 发布资源
 
 ```php
-php artisan vendor:publish --provider="Slowlyo\SlowAdmin\SlowAdminServiceProvider" --force
+php artisan admin:publish
 ```
 
 5. 安装

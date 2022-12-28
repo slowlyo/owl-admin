@@ -176,21 +176,21 @@ class ControllerGenerator extends BaseGenerator
     {
         $detail = collect();
 
-        $detail->push("StaticExactControl::make()->name('id')->label('ID')");
+        $detail->push("TextControl::make()->static(true)->name('id')->label('ID')");
 
         $this->columns->map(function ($column) use (&$detail) {
             $item = '';
 
             $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
 
-            $item .= "StaticExactControl::make()->name('{$column['name']}')->label('{$label}')";
+            $item .= "TextControl::make()->static(true)->name('{$column['name']}')->label('{$label}')";
 
             $detail->push($item);
         });
 
         if ($this->needTimestamp) {
-            $detail->push("StaticExactControl::make()->name('created_at')->label('创建时间')");
-            $detail->push("StaticExactControl::make()->name('updated_at')->label('更新时间')");
+            $detail->push("TextControl::make()->static(true)->name('created_at')->label('创建时间')");
+            $detail->push("TextControl::make()->static(true)->name('updated_at')->label('更新时间')");
         }
 
         $detail = $detail->implode(",\n\t\t\t");

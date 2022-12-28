@@ -45,7 +45,6 @@ class IndexController extends AdminController
                 [
                     'name'      => __('admin.code_generator'),
                     'path'      => '/dev_tools/code_generator',
-                    'icon'      => 'fa-solid fa-robot',
                     'component' => 'Amis',
                 ],
             ],

@@ -1,6 +1,6 @@
 {
     "name": "slowlyo/slow-admin",
-    "description": "slow admin",
+    "description": "基于 laravel 、Ant Design Pro 和 amis 的后台框架, 友好的组件使用体验, 可轻松实现复杂页面, 内置代码生成器, 低学习成本, 让开发者快速搭建后台管理系统",
     "license": "MIT",
     "authors": [
         {

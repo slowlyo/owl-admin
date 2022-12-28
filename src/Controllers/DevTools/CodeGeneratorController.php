@@ -8,12 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\SlowAdmin\Renderers\Page;
 use Slowlyo\SlowAdmin\Renderers\Form;
+use Slowlyo\SlowAdmin\Renderers\Card;
+use Slowlyo\SlowAdmin\Renderers\Flex;
+use Slowlyo\SlowAdmin\Renderers\Alert;
 use Illuminate\Support\Facades\Artisan;
 use Slowlyo\SlowAdmin\Renderers\TextControl;
 use Slowlyo\SlowAdmin\Renderers\GroupControl;
 use Slowlyo\SlowAdmin\Renderers\TableControl;
 use Slowlyo\SlowAdmin\Renderers\SelectControl;
+use Slowlyo\SlowAdmin\Renderers\VanillaAction;
 use Slowlyo\SlowAdmin\Renderers\CheckboxControl;
+use Slowlyo\SlowAdmin\Renderers\FieldSetControl;
 use Slowlyo\SlowAdmin\Controllers\AdminController;
 use Slowlyo\SlowAdmin\Renderers\CheckboxesControl;
 use Slowlyo\SlowAdmin\Libs\CodeGenerator\ModelGenerator;
@@ -76,6 +81,7 @@ class CodeGeneratorController extends AdminController
 
         return Form::make()
             ->id('code_generator_form')
+            ->wrapWithPanel(false)
             ->title(' ')
             ->mode('horizontal')
             ->resetAfterSubmit(true)
@@ -84,163 +90,200 @@ class CodeGeneratorController extends AdminController
                 'table_info' => $this->getDatabaseColumns(),
             ])
             ->body([
-                GroupControl::make()->body([
-                    GroupControl::make()->direction('vertical')->body([
-                        TextControl::make()
-                            ->label(__('admin.code_generators.table_name'))
-                            ->name('table_name')
-                            ->value('')
-                            ->required(true),
-                        TextControl::make()
-                            ->label(__('admin.code_generators.model_name'))
-                            ->name('model_name')
-                            ->value($this->getNamespace('Models', 1) . '${' . $nameHandler . '}'),
-                        TextControl::make()
-                            ->label(__('admin.code_generators.controller_name'))
-                            ->name('controller_name')
-                            ->value($this->getNamespace('Controllers') . '${' . $nameHandler . '}Controller'),
-                        TextControl::make()
-                            ->label(__('admin.code_generators.service_name'))
-                            ->name('service_name')
-                            ->value($this->getNamespace('Services', 1) . '${' . $nameHandler . '}Service'),
-                    ]),
-                    GroupControl::make()->direction('vertical')->body([
-                        SelectControl::make()
-                            ->label(__('admin.code_generators.exists_table'))
-                            ->name('exists_table')
-                            ->searchable(true)
-                            ->clearable(true)
-                            ->selectMode('group')
-                            ->options(
-                                $this->getDatabaseColumns()->map(function ($item, $index) {
-                                    return [
-                                        'label'    => $index,
-                                        'children' => $item->keys()->map(function ($item) use ($index) {
+                Card::make()->body(
+                    GroupControl::make()->body([
+                        GroupControl::make()->direction('vertical')->body([
+                            GroupControl::make()->body([
+                                TextControl::make()
+                                    ->label(__('admin.code_generators.app_title'))
+                                    ->name('title')
+                                    ->value('${' . $nameHandler . '}'),
+                                Flex::make()->justify('end')->items([
+                                    VanillaAction::make()
+                                        ->type('submit')
+                                        ->label('生成代码')
+                                        ->level('primary')
+                                        ->icon('fa-solid fa-terminal'),
+                                ]),
+                            ]),
+                            GroupControl::make()->body([
+                                TextControl::make()
+                                    ->label(__('admin.code_generators.table_name'))
+                                    ->name('table_name')
+                                    ->value('')
+                                    ->required(true),
+                                SelectControl::make()
+                                    ->label(__('admin.code_generators.exists_table'))
+                                    ->name('exists_table')
+                                    ->searchable(true)
+                                    ->clearable(true)
+                                    ->selectMode('group')
+                                    ->options(
+                                        $this->getDatabaseColumns()->map(function ($item, $index) {
                                             return [
-                                                'value' => $item . '-' . $index,
-                                                'label' => $item,
+                                                'label'    => $index,
+                                                'children' => $item->keys()->map(function ($item) use ($index) {
+                                                    return [
+                                                        'value' => $item . '-' . $index,
+                                                        'label' => $item,
+                                                    ];
+                                                }),
                                             ];
-                                        }),
-                                    ];
-                                })->values()
-                            )
-                            ->onEvent([
-                                'change' => [
-                                    'actions' => [
-                                        // 更新 table_name 的值
-                                        [
-                                            'actionType'  => 'setValue',
-                                            'componentId' => 'code_generator_form',
-                                            'args'        => [
-                                                'value' => [
-                                                    'table_name' => '${SPLIT(event.data.value, "-")[0]}',
+                                        })->values()
+                                    )
+                                    ->onEvent([
+                                        'change' => [
+                                            'actions' => [
+                                                // 更新 table_name 的值
+                                                [
+                                                    'actionType'  => 'setValue',
+                                                    'componentId' => 'code_generator_form',
+                                                    'args'        => [
+                                                        'value' => [
+                                                            'table_name' => '${SPLIT(event.data.value, "-")[0]}',
+                                                        ],
+                                                    ],
+                                                ],
+                                                [
+                                                    'actionType'  => 'setValue',
+                                                    'componentId' => 'code_generator_form',
+                                                    'args'        => [
+                                                        'value' => [
+                                                            'columns' => '${table_info[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
+                                                        ],
+                                                    ],
                                                 ],
                                             ],
                                         ],
-                                        [
-                                            'actionType'  => 'setValue',
-                                            'componentId' => 'code_generator_form',
-                                            'args'        => [
-                                                'value' => [
-                                                    'columns' => '${table_info[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
-                                                ],
-                                            ],
-                                        ],
+                                    ]),
+                            ]),
+                            CheckboxesControl::make()
+                                ->name('needs')
+                                ->label(__('admin.code_generators.options'))
+                                ->joinValues(false)
+                                ->extractValue(true)
+                                ->checkAll(true)
+                                ->defaultCheckAll(true)
+                                ->options([
+                                    [
+                                        'label' => __('admin.code_generators.create_database_migration'),
+                                        'value' => 'need_database_migration',
                                     ],
-                                ],
-                            ]),
-                        CheckboxesControl::make()
-                            ->name('needs')
-                            ->label(__('admin.code_generators.options'))
-                            ->inline(false)
-                            ->joinValues(false)
-                            ->extractValue(true)
-                            ->options([
-                                [
-                                    'label' => __('admin.code_generators.create_database_migration'),
-                                    'value' => 'need_database_migration',
-                                ],
-                                ['label' => __('admin.code_generators.create_table'), 'value' => 'need_create_table'],
-                                ['label' => __('admin.code_generators.create_model'), 'value' => 'need_model'],
-                                [
-                                    'label' => __('admin.code_generators.create_controller'),
-                                    'value' => 'need_controller',
-                                ],
-                                ['label' => __('admin.code_generators.create_service'), 'value' => 'need_service'],
-                            ])
-                            ->value([
-                                'need_database_migration',
-                                'need_create_table',
-                                'need_model',
-                                'need_controller',
-                                'need_service',
-                            ]),
+                                    [
+                                        'label' => __('admin.code_generators.create_table'),
+                                        'value' => 'need_create_table',
+                                    ],
+                                    [
+                                        'label' => __('admin.code_generators.create_model'),
+                                        'value' => 'need_model',
+                                    ],
+                                    [
+                                        'label' => __('admin.code_generators.create_controller'),
+                                        'value' => 'need_controller',
+                                    ],
+                                    [
+                                        'label' => __('admin.code_generators.create_service'),
+                                        'value' => 'need_service',
+                                    ],
+                                ]),
+                            FieldSetControl::make()
+                                ->title('展开更多设置')
+                                ->collapseTitle('收起设置')
+                                ->collapsable(true)
+                                ->collapsed(true)
+                                ->titlePosition('bottom')->body([
+                                    TextControl::make()
+                                        ->label(__('admin.code_generators.primary_key'))
+                                        ->name('primary_key')
+                                        ->value('id')
+                                        ->description(__('admin.code_generators.primary_key_description'))
+                                        ->required(true),
+                                    TextControl::make()
+                                        ->label(__('admin.code_generators.model_name'))
+                                        ->name('model_name')
+                                        ->value($this->getNamespace('Models', 1) . '${' . $nameHandler . '}'),
+                                    TextControl::make()
+                                        ->label(__('admin.code_generators.controller_name'))
+                                        ->name('controller_name')
+                                        ->value($this->getNamespace('Controllers') . '${' . $nameHandler . '}Controller'),
+                                    TextControl::make()
+                                        ->label(__('admin.code_generators.service_name'))
+                                        ->name('service_name')
+                                        ->value($this->getNamespace('Services',
+                                                1) . '${' . $nameHandler . '}Service'),
+                                    CheckboxControl::make()
+                                        ->name('need_timestamps')
+                                        ->option('CreatedAt & UpdatedAt')
+                                        ->value(1),
+                                    CheckboxControl::make()
+                                        ->name('soft_delete')
+                                        ->option(__('admin.soft_delete'))
+                                        ->value(1),
+                                ]),
+                        ]),
                     ]),
-                    GroupControl::make()->direction('vertical')->body([
-                        TextControl::make()
-                            ->label(__('admin.code_generators.primary_key'))
-                            ->name('primary_key')
-                            ->value('id')
-                            ->description(__('admin.code_generators.primary_key_description'))
-                            ->required(true),
-                        TextControl::make()
-                            ->label(__('admin.code_generators.app_title'))
-                            ->name('title')
-                            ->value('${' . $nameHandler . '}'),
-                        CheckboxControl::make()->name('need_timestamps')->option('CreatedAt & UpdatedAt')->value(1),
-                        CheckboxControl::make()->name('soft_delete')->option(__('admin.soft_delete'))->value(1),
-                    ]),
+                ),
+
+                Card::make()->body([
+                    Alert::make()
+                        ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/slow-admin-doc/issue#-%E7%BC%96%E8%BE%91--%E8%AF%A6%E6%83%85%E9%A1%B5%E9%9D%A2%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE%E5%A4%B1%E8%B4%A5' target='_blank'>查看详情</a> ")
+                        ->level('warning')
+                        ->showCloseButton(true)
+                        ->showIcon(true),
+                    TableControl::make()
+                        ->name('columns')
+                        ->label(false)
+                        ->addable(true)
+                        ->needConfirm(false)
+                        ->draggable(true)
+                        ->removable(true)
+                        ->columnsTogglable(false)
+                        ->value([
+                            [
+                                'name'       => '',
+                                'type'       => 'string',
+                                'additional' => 255,
+                                'index'      => '',
+                            ],
+                        ])
+                        ->columns([
+                            TextControl::make()
+                                ->name('name')
+                                ->label(__('admin.code_generators.column_name'))
+                                ->required(true),
+                            SelectControl::make()
+                                ->name('type')
+                                ->label(__('admin.code_generators.type'))
+                                ->options($this->availableFieldTypes())
+                                ->searchable(true)
+                                ->value('string')
+                                ->required(true),
+                            TextControl::make()
+                                ->name('additional')
+                                ->label(__('admin.code_generators.extra_params'))
+                                ->width(160)
+                                ->size('sm'),
+                            CheckboxControl::make()
+                                ->name('nullable')
+                                ->label(__('admin.code_generators.nullable'))
+                                ->width(60),
+                            SelectControl::make()
+                                ->name('index')
+                                ->label(__('admin.code_generators.index'))
+                                ->size('xs')
+                                ->width(90)
+                                ->options(
+                                    collect(['index', 'unique'])->map(fn($value) => [
+                                        'label' => $value,
+                                        'value' => $value,
+                                    ]))
+                                ->clearable(true),
+                            TextControl::make()->name('comment')->label(__('admin.code_generators.comment')),
+                            TextControl::make()
+                                ->name('default')
+                                ->label(__('admin.code_generators.default_value')),
+                        ]),
                 ]),
-                TableControl::make()
-                    ->name('columns')
-                    ->addable(true)
-                    ->needConfirm(false)
-                    ->draggable(true)
-                    ->removable(true)
-                    ->columnsTogglable(false)
-                    ->value([
-                        [
-                            'name'       => '',
-                            'type'       => 'string',
-                            'additional' => 255,
-                            'index'      => '',
-                        ],
-                    ])
-                    ->columns([
-                        TextControl::make()
-                            ->name('name')
-                            ->label(__('admin.code_generators.column_name'))
-                            ->required(true),
-                        SelectControl::make()
-                            ->name('type')
-                            ->label(__('admin.code_generators.type'))
-                            ->options($this->availableFieldTypes())
-                            ->searchable(true)
-                            ->value('string')
-                            ->required(true),
-                        TextControl::make()
-                            ->name('additional')
-                            ->label(__('admin.code_generators.extra_params'))
-                            ->width(160)
-                            ->size('sm'),
-                        CheckboxControl::make()
-                            ->name('nullable')
-                            ->label(__('admin.code_generators.nullable'))
-                            ->width(60),
-                        SelectControl::make()
-                            ->name('index')
-                            ->label(__('admin.code_generators.index'))
-                            ->size('sm')
-                            ->width(160)
-                            ->options(
-                                collect(['index', 'unique'])->map(fn($value) => [
-                                    'label' => $value,
-                                    'value' => $value,
-                                ]))
-                            ->clearable(true),
-                        TextControl::make()->name('default')->label(__('admin.code_generators.default_value')),
-                        TextControl::make()->name('comment')->label(__('admin.code_generators.comment')),
-                    ]),
             ]);
     }
 

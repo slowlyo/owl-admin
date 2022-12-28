@@ -18,6 +18,13 @@ class BaseRenderer implements \JsonSerializable
         return $this;
     }
 
+    public function set($name, $value)
+    {
+        $this->$name = $value;
+
+        return $this;
+    }
+
     public function jsonSerialize()
     {
         return get_object_vars($this);
