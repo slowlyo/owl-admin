@@ -98,7 +98,7 @@ class AdminPermissionController extends AdminController
         return $this->baseForm()->body([
             TextControl::make()->name('name')->label(__('admin.admin_permission.name'))->required(true),
             TextControl::make()->name('slug')->label(__('admin.admin_permission.slug'))->required(true),
-            SelectControl::make()
+            TreeSelectControl::make()
                 ->name('parent_id')
                 ->label(__('admin.parent'))
                 ->labelField('name')

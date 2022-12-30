@@ -101,7 +101,7 @@ class CodeGeneratorController extends AdminController
                                 Flex::make()->justify('end')->items([
                                     VanillaAction::make()
                                         ->type('submit')
-                                        ->label('生成代码')
+                                        ->label(__('admin.code_generators.generate_code'))
                                         ->level('primary')
                                         ->icon('fa-solid fa-terminal'),
                                 ]),
@@ -187,8 +187,8 @@ class CodeGeneratorController extends AdminController
                                     ],
                                 ]),
                             FieldSetControl::make()
-                                ->title('展开更多设置')
-                                ->collapseTitle('收起设置')
+                                ->title(__('admin.code_generators.expand_more_settings'))
+                                ->collapseTitle(__('admin.code_generators.collapse_settings'))
                                 ->collapsable(true)
                                 ->collapsed(true)
                                 ->titlePosition('bottom')->body([

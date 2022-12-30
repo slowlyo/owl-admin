@@ -10,7 +10,6 @@ use Slowlyo\SlowAdmin\Controllers;
     $router->post('/login', [Controllers\AuthController::class, 'login']);
     $router->get('/logout', [Controllers\AuthController::class, 'logout']);
     $router->get('/current-user', [Controllers\AuthController::class, 'currentUser']);
-    $router->get('/_settings', [Controllers\IndexController::class, 'settings']);
 
     $router->get('/no-content', [Controllers\IndexController::class, 'noContent']);
     $router->get('/menus', [Controllers\IndexController::class, 'menus']);
