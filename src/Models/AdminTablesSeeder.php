@@ -113,7 +113,7 @@ class AdminTablesSeeder extends Seeder
                 'parent_id' => 2,
                 'title'     => 'admin_setting',
                 'icon'      => 'fa-solid fa-gears',
-                'url'       => '/admin_setting',
+                'url'       => '/settings',
             ],
         ]);
     }
