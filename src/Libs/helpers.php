@@ -124,3 +124,29 @@ function file_upload_handle()
         set: fn($value) => str_replace($storage->url(''), '', $value)
     );
 }
+
+// 是否是json字符串
+if (!function_exists('is_json')) {
+    /**
+     * 是否是json字符串
+     *
+     * @param $string
+     *
+     * @return bool
+     */
+    function is_json($string)
+    {
+        if (!is_string($string)) {
+            return false;
+        }
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
+}
+
+if (!function_exists('settings')) {
+    function settings()
+    {
+        return \Slowlyo\SlowAdmin\Services\AdminSettingService::make();
+    }
+}

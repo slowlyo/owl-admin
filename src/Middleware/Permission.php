@@ -71,6 +71,11 @@ class Permission
         return collect($excepts)->merge([
             'menus',
             'current-user',
+            'login',
+            'logout',
+            'no-content',
+            '_settings',
+            'upload_rich',
             ...$devTools
         ])->map(function ($path) {
             $prefix = '/' . trim(config('admin.route.prefix'), '/');

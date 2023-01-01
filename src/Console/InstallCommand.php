@@ -52,6 +52,7 @@ class InstallCommand extends Command
         $this->createBootstrapFile();
         $this->createRoutesFile();
         $this->createHomeController();
+        $this->createSettingController();
     }
 
     protected function makeDir($path = '')
@@ -98,6 +99,19 @@ class InstallCommand extends Command
             str_replace('{{Namespace}}', config('admin.route.namespace'), $contents)
         );
         $this->line('<info>HomeController file was created:</info> ' . str_replace(base_path(), '', $homeController));
+    }
+
+    public function createSettingController()
+    {
+        $settingController = $this->directory . '/Controllers/SettingController.php';
+        $contents          = $this->getStub('SettingController');
+        $this->laravel['files']->put(
+            $settingController,
+            str_replace('{{Namespace}}', config('admin.route.namespace'), $contents)
+        );
+        $this->line('<info>SettingController file was created:</info> ' . str_replace(base_path(),
+                '',
+                $settingController));
     }
 
     protected function getNamespace($name = null): string

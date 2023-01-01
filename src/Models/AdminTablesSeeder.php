@@ -61,6 +61,12 @@ class AdminTablesSeeder extends Seeder
                 'http_path' => ["/menus*"],
                 "parent_id" => 2,
             ],
+            [
+                'name'      => '设置',
+                'slug'      => 'settings',
+                'http_path' => ["/settings*"],
+                "parent_id" => 2,
+            ],
         ])->each(fn($item) => AdminPermission::create($item));
 
         AdminRole::first()->permissions()->save(AdminPermission::first());
@@ -102,6 +108,12 @@ class AdminTablesSeeder extends Seeder
                 'title'     => 'admin_menu',
                 'icon'      => 'fa-solid fa-bars',
                 'url'       => '/admin_menus',
+            ],
+            [
+                'parent_id' => 2,
+                'title'     => 'admin_setting',
+                'icon'      => 'fa-solid fa-gears',
+                'url'       => '/admin_setting',
             ],
         ]);
     }

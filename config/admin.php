@@ -26,11 +26,7 @@ return [
         'controller' => \Slowlyo\SlowAdmin\Controllers\AuthController::class,
         'guard'      => 'sanctum',
         'except'     => [
-            'login',
-            'logout',
-            'no-content',
-            '_settings',
-            'upload_rich',
+
         ],
     ],
 

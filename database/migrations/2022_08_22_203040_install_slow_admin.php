@@ -73,6 +73,12 @@ return new class extends Migration {
             $table->index(['permission_id', 'menu_id']);
             $table->timestamps();
         });
+
+        Schema::create('admin_settings', function (Blueprint $table) {
+            $table->string('key');
+            $table->text('values');
+            $table->timestamps();
+        });
     }
 
     /**

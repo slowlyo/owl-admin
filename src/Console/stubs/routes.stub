@@ -9,6 +9,7 @@ Route::group([
     'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
 
-    $router->resource('home', \{{Namespace}}\HomeController::class);
+    $router->resource('dashboard', \{{Namespace}}\HomeController::class);
 
+    $router->resource('settings', \{{Namespace}}\SettingController::class);
 });

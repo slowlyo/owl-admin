@@ -20,12 +20,16 @@ class Authenticate
 
     protected function shouldPassThrough($request): bool
     {
-        $excepts = config('admin.auth.except', [
-            '/login',
-            '/logout',
-        ]);
+        $excepts = config('admin.auth.except', []);
 
         return collect($excepts)
+            ->merge([
+                'login',
+                'logout',
+                'no-content',
+                '_settings',
+                'upload_rich',
+            ])
             ->map(function ($path) {
                 $prefix = '/' . trim(config('admin.route.prefix'), '/');
 
