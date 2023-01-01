@@ -7,5 +7,5 @@ return [
     'admin_roles'      => '角色',
     'admin_permission' => '权限',
     'admin_menu'       => '菜单',
-    'admin_setting'    => '系统设置',
+    'admin_setting'    => '设置',
 ];
