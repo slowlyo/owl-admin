@@ -73,6 +73,9 @@ return [
         'default_value'             => 'Default Value',
         'comment'                   => 'Comment',
         'exists_table'              => 'Exists Table',
+        'generate_code'             => 'Generate Code',
+        'expand_more_settings'      => 'More Settings',
+        'collapse_settings'         => 'Collapse Settings',
     ],
 
     'admin_users' => 'Admin Users',
@@ -108,7 +111,7 @@ return [
         'order'                  => 'Order',
         'title'                  => 'Title',
         'icon'                   => 'Icon',
-        'icon_description'       => 'Only the level-1 menu takes effect, Please refer to ',
+        'icon_description'       => 'Please refer to ',
         'url'                    => 'Url',
         'visible'                => 'Visible',
         'type'                   => 'Type',

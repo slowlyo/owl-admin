@@ -75,6 +75,9 @@ return [
         'default_value'             => '默认值',
         'comment'                   => '注释',
         'exists_table'              => '已有数据表',
+        'generate_code'             => '生成代码',
+        'expand_more_settings'      => '更多设置',
+        'collapse_settings'         => '收起设置',
     ],
 
     'admin_users' => '管理员',
@@ -110,7 +113,7 @@ return [
         'order'                  => '排序',
         'title'                  => '名称',
         'icon'                   => '图标',
-        'icon_description'       => '仅一级菜单生效, 请参考',
+        'icon_description'       => '请参考',
         'url'                    => '链接',
         'visible'                => '可见',
         'type'                   => '类型',
