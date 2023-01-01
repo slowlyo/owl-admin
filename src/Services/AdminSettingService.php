@@ -38,7 +38,7 @@ class AdminSettingService extends AdminService
     }
 
     /**
-     * 保存多个设置
+     * 批量保存设置
      *
      * @param array $data
      *
@@ -65,7 +65,7 @@ class AdminSettingService extends AdminService
     }
 
     /**
-     * 保存多个设置项并返回后台响应格式数据
+     * 批量保存设置项并返回后台响应格式数据
      *
      * @param array $data
      *
