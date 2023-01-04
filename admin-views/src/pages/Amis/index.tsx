@@ -3,14 +3,13 @@ import 'amis/lib/helper.css'
 import 'amis/sdk/iconfont.css'
 import './index.less'
 import '@fortawesome/fontawesome-free/css/all.css'
-import {useLocation, history} from '@umijs/max'
-import {render as renderAmis} from 'amis'
-import {adminService} from "@/services/admin"
-import {useEffect, useState} from 'react'
 import axios from "axios"
 import copy from 'copy-to-clipboard'
-import {message} from 'antd'
+import {useEffect, useState} from 'react'
+import {adminService} from "@/services/admin"
+import {useLocation, history} from '@umijs/max'
 import {PageContainer} from "@ant-design/pro-components"
+import {AlertComponent, render as renderAmis, toast, ToastComponent} from 'amis'
 
 export default () => {
     const location = useLocation()
@@ -31,19 +30,17 @@ export default () => {
 
     return (
         <PageContainer loading={loading} header={{title: ''}} className="animate__animated animate__fadeIn">
+            <ToastComponent key='toast'/>
+            <AlertComponent key='alert'/>
             {
                 renderAmis(schema, {}, {
-                    fetcher: ({url, method, data}) => {
-                        return adminService.request(url, method, data)
-                    },
-                    updateLocation: () => {
-                    },
+                    fetcher: ({url, method, data}) => adminService.request(url, method, data),
                     isCancel: (value: any) => (axios as any).isCancel(value),
                     copy: content => {
                         copy(content as any)
-                        message.success('内容已复制到粘贴板').then()
+                        toast.success('内容已复制到粘贴板')
                     },
-                    jumpTo: (location: string, action, ctx) => {
+                    jumpTo: (location: string, action) => {
                         if (action?.blank) {
                             window.open(location)
                         } else {
