@@ -13,6 +13,8 @@ class AdminUser extends User implements AuthenticatableContract
 {
     use Authenticatable, HasApiTokens;
 
+    protected $guarded = [];
+
     protected function serializeDate(\DateTimeInterface $date): string
     {
         return $date->format($this->getDateFormat());

@@ -9,9 +9,9 @@ const post = (url: string, options?: any) => request(prefix + url, {method: 'POS
 export const adminService = {
     request: async (url: string, method: any, data: any) => request(url, {method, data}),
     getSettings: async () => get('/_settings'),
-
     login: async (data: any) => post('/login', {data}),
     logout: async () => get('/logout'),
+    captcha: async () => get('/captcha'),
     queryCurrentUser: async () => {
         if (!getToken()) {
             return null

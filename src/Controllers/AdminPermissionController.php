@@ -25,7 +25,7 @@ class AdminPermissionController extends AdminController
 {
     protected string $serviceName = AdminPermissionService::class;
 
-    protected string $queryPath = 'admin_permissions';
+    protected string $queryPath = 'system/admin_permissions';
 
     protected string $pageTitle;
 

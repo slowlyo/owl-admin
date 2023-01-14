@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AdminMenu extends BaseModel
 {
+    protected $guarded = [];
+
     const TYPE_ROUTE = 1;
     const TYPE_LINK  = 2;
 

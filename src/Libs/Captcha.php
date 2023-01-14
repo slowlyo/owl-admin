@@ -10,7 +10,7 @@ class Captcha
     private $code;
     private $im;
 
-    public function __construct($width = 80, $height = 25, $codeNum = 4)
+    public function __construct($width = 80, $height = 40, $codeNum = 4)
     {
         $this->width   = $width;
         $this->height  = $height;
@@ -37,18 +37,25 @@ class Captcha
     private function createImg()
     {
         $this->im = imagecreatetruecolor($this->width, $this->height);
-        $bgColor  = imagecolorallocate($this->im, 240, 242, 245);
+        $bgColor  = imagecolorallocate($this->im, 255, 255, 255);
         imagefill($this->im, 0, 0, $bgColor);
     }
 
     private function setDisturb()
     {
-        $area       = ($this->width * $this->height) / 90;
-        $disturbNum = ($area > 250) ? 250 : $area;
-        //加入点干扰
-        for ($i = 0; $i < $disturbNum; $i++) {
-            $color = imagecolorallocate($this->im, rand(0, 255), rand(0, 255), rand(0, 255));
-            imagesetpixel($this->im, rand(1, $this->width - 2), rand(1, $this->height - 2), $color);
+        $codeSet = '2345678abcdefhijkmnpqrstuvwxyz';
+        for ($i = 0; $i < 10; $i++) {
+            //杂点颜色
+            $noiseColor = imagecolorallocate($this->im, mt_rand(210, 240), mt_rand(210, 240), mt_rand(210, 240));
+            for ($j = 0; $j < 5; $j++) {
+                // 绘杂点
+                imagestring($this->im,
+                    3,
+                    mt_rand(-10, $this->width),
+                    mt_rand(-10, $this->height),
+                    $codeSet[mt_rand(0, 29)],
+                    $noiseColor);
+            }
         }
     }
 
@@ -67,10 +74,9 @@ class Captcha
 
         for ($i = 0; $i < $this->codeNum; $i++) {
             $color = imagecolorallocate($this->im, rand(0, 150), rand(0, 150), rand(0, 150));
-            $size  = rand(floor($this->height / 5), floor($this->height / 3));
             $x     = floor($this->width / $this->codeNum) * $i + 5;
             $y     = rand(0, $this->height - 20);
-            imagechar($this->im, $size, $x, $y, $this->code[$i], $color);
+            imagechar($this->im, 5, $x, $y, $this->code[$i], $color);
         }
     }
 

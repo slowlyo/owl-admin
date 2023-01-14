@@ -1,0 +1,15 @@
+<?php
+
+namespace {namespace}\Http\Controllers;
+
+use Slowlyo\SlowAdmin\Controllers\AdminController;
+
+class {className}Controller extends AdminController
+{
+    public function index()
+    {
+        $page = $this->basePage()->body('{className} Extension.');
+
+        return $this->response()->success($page);
+    }
+}

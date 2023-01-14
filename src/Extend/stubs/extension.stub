@@ -1,0 +1,31 @@
+<?php
+
+namespace {namespace};
+
+use Slowlyo\SlowAdmin\Renderers\TextControl;
+use Slowlyo\SlowAdmin\Extend\ServiceProvider;
+
+class {className}ServiceProvider extends ServiceProvider
+{
+	{property}
+
+	public function register()
+	{
+		//
+	}
+
+	public function init()
+	{
+		parent::init();
+
+		//
+		{registerTheme}
+	}
+
+	public function settingForm()
+	{
+	    return $this->baseSettingForm()->body([
+            TextControl::make()->name('value')->label('Value')->required(true),
+	    ]);
+	}
+}

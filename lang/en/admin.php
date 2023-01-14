@@ -47,6 +47,8 @@ return [
     'failed_message'       => ':attribute Failed',
     'action_success'       => 'Action Success',
     'action_failed'        => 'Action Failed',
+    'save_success'         => 'Save Success',
+    'save_failed'          => 'Save Failed',
 
     'code_generators' => [
         'remark1'                   => 'For more parameters, please refer to',
@@ -123,5 +125,51 @@ return [
         'class_name_description' => 'The CSS class name of the menu, which is typically used to customize styles',
         'show'                   => 'Show',
         'hide'                   => 'Hide',
+    ],
+
+    'extensions' => [
+        'menu'               => 'Extensions',
+        'page_title'         => 'Extensions',
+        'create'             => 'Create',
+        'install'            => 'Install',
+        'create_extension'   => 'Create Extension',
+        'create_tips'        => 'After the directory is created, a basic extended directory structure is created under the <br><b>:dir</b><br> directory',
+        'local_install'      => 'Local Install',
+        'more_extensions'    => 'More Extensions',
+        'setting'            => 'Setting',
+        'enable'             => 'Enable',
+        'enable_confirm'     => 'Are you sure to enable the extension?',
+        'disable'            => 'Disable',
+        'disable_confirm'    => 'Are you sure to disable the extension?',
+        'uninstall'          => 'Uninstall',
+        'uninstall_confirm'  => '
+<div class="text-danger">
+Confirm to uninstall the extension?<br>
+Uninstallation will delete all files and databases published after the extension is enabled and cannot be retrieved!!!<br>
+Backup important data before performing operations!!!<br>
+<span class="text-info">Extension package files will not be deleted, please manually delete them!!!</span>
+</div>
+',
+        'filter_placeholder' => 'Search by extension name',
+        'form'               => [
+            'create_extension'   => 'Create Extension',
+            'name'               => 'Name',
+            'namespace'          => 'Namespace',
+            'create_description' => 'It will be created in :dir Directory to create a basic extended directory structure',
+        ],
+        'card'               => [
+            'author'   => 'Author',
+            'version'  => 'Version',
+            'homepage' => 'Home',
+            'status'   => 'Status',
+        ],
+        'status_map'         => [
+            'enabled'  => 'Enabled',
+            'disabled' => 'Disabled',
+        ],
+        'validation'         => [
+            'file'            => 'Please select file',
+            'invalid_package' => 'Invalid extension package',
+        ],
     ],
 ];

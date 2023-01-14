@@ -1,5 +1,5 @@
 import {LogoutOutlined, SettingOutlined} from '@ant-design/icons'
-import {history, useModel} from '@umijs/max'
+import {FormattedMessage, history, useModel} from '@umijs/max'
 import {Avatar, Menu, Spin} from 'antd'
 import type {ItemType} from 'antd/es/menu/hooks/useItems'
 import type {MenuInfo} from 'rc-menu/lib/interface'
@@ -69,7 +69,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({menu}) => {
         {
             key: '/user_setting',
             icon: <SettingOutlined/>,
-            label: '个人设置',
+            label: <FormattedMessage id="layout.user.personal_setting"/>,
         },
         {
             type: 'divider' as const,
@@ -77,7 +77,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({menu}) => {
         {
             key: 'logout',
             icon: <LogoutOutlined/>,
-            label: '退出登录',
+            label: <FormattedMessage id="layout.user.logout"/>,
         },
     ]
 

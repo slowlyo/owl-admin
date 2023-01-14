@@ -8,7 +8,7 @@ import {
     ProFormText,
 } from '@ant-design/pro-components'
 import {FormattedMessage, useIntl, useModel} from '@umijs/max'
-import {Alert, message} from 'antd'
+import {Alert, Form, message} from 'antd'
 import React, {forwardRef, useState} from 'react'
 import {flushSync} from 'react-dom'
 import styles from './index.less'
@@ -17,6 +17,7 @@ import {adminService} from '@/services/admin'
 import {setToken} from "@/utils/user"
 import {getSettingItem} from "@/utils/setting"
 import RcQueueAnim from "rc-queue-anim"
+import {LoginCaptcha} from "@/components/LoginCaptcha";
 
 const LoginMessage: React.FC<{
     content: string;
@@ -38,6 +39,7 @@ const Login: React.FC = () => {
     const {initialState, setInitialState} = useModel('@@initialState')
 
     const intl = useIntl()
+    const [form] = Form.useForm()
 
     const fetchUserInfo = async () => {
         const userInfo = await initialState?.fetchUserInfo?.()
@@ -56,9 +58,10 @@ const Login: React.FC = () => {
         try {
             const result: any = await adminService.login(values)
 
-            if (result.status == 1) {
+            if (result.data?.status == 1) {
                 // 如果失败去设置用户错误信息
-                setErrorMessage(result.msg)
+                setErrorMessage(result.data.msg)
+
                 return
             }
 
@@ -80,6 +83,7 @@ const Login: React.FC = () => {
     return (
         <div className={styles.content}>
             <LoginForm
+                form={form}
                 logo={<img alt="logo" src={logoPath}/>}
                 title={appName}
                 subTitle=" "
@@ -138,6 +142,12 @@ const Login: React.FC = () => {
                         },
                     ]}
                 />
+
+                {
+                    getSettingItem('login_captcha') && (
+                        <LoginCaptcha form={form}/>
+                    )
+                }
 
                 <div style={{marginBottom: 24}}>
                     <ProFormCheckbox noStyle name="autoLogin">

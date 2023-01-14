@@ -11,5 +11,5 @@ Route::group([
 
     $router->resource('dashboard', \{{Namespace}}\HomeController::class);
 
-    $router->resource('settings', \{{Namespace}}\SettingController::class);
+    $router->resource('system/settings', \{{Namespace}}\SettingController::class);
 });

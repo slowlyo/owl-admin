@@ -23,7 +23,7 @@ if (!function_exists('table_columns')) {
     }
 }
 
-if (!function_exists('arr2tree')) {
+if (!function_exists('array2tree')) {
     /**
      * 生成树状数据
      *
@@ -74,9 +74,11 @@ if (!function_exists('admin_resource_full_path')) {
     }
 }
 
-function admin_path($path = '')
-{
-    return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+if (!function_exists('amis')) {
+    function admin_path($path = '')
+    {
+        return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+    }
 }
 
 
@@ -110,19 +112,21 @@ if (!function_exists('admin_decode')) {
 }
 
 
-/**
- * 处理文件上传回显问题
- *
- * @return \Illuminate\Database\Eloquent\Casts\Attribute
- */
-function file_upload_handle()
-{
-    $storage = Storage::disk(config('admin.upload.disk'));
+if (!function_exists('file_upload_handle')) {
+    /**
+     * 处理文件上传回显问题
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    function file_upload_handle()
+    {
+        $storage = Storage::disk(config('admin.upload.disk'));
 
-    return \Illuminate\Database\Eloquent\Casts\Attribute::make(
-        get: fn($value) => $storage->url($value),
-        set: fn($value) => str_replace($storage->url(''), '', $value)
-    );
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+            get: fn($value) => $storage->url($value),
+            set: fn($value) => str_replace($storage->url(''), '', $value)
+        );
+    }
 }
 
 // 是否是json字符串
@@ -148,5 +152,21 @@ if (!function_exists('settings')) {
     function settings()
     {
         return \Slowlyo\SlowAdmin\Services\AdminSettingService::make();
+    }
+}
+
+if (!function_exists('admin_extension_path')) {
+    /**
+     * @param string|null $path
+     *
+     * @return string
+     */
+    function admin_extension_path(?string $path = null)
+    {
+        $dir = rtrim(config('admin.extension.dir'), '/') ?: base_path('extensions');
+
+        $path = ltrim($path, '/');
+
+        return $path ? $dir . '/' . $path : $dir;
     }
 }

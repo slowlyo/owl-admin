@@ -12,7 +12,6 @@ const config = {
     adminConfigPath: '/admin/AdminConfig.js'
 }
 
-
 export default defineConfig({
     // 打包后放置的目录, 打包的时候才需要
     publicPath: config.publicPath,

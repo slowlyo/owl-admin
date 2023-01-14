@@ -11,6 +11,8 @@ import {getSettingItem, saveSetting} from '@/utils/setting'
 import 'animate.css'
 import {forwardRef} from "react"
 import RcQueueAnim from "rc-queue-anim"
+import {ToastComponent} from "amis";
+import {setLocale} from "@@/plugin-locale";
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '#/user/login'
@@ -74,11 +76,14 @@ export function render(oldRender: any) {
     adminService.getSettings().then((result) => {
         if (result.status == 0) {
             saveSetting(result.data)
+            setLocale(result.data.locale == 'en' ? 'en-US' : result.data.locale)
         }
     })
 
     adminService.queryMenu().then((res) => {
-        extraRoutes = res?.data
+        if(res?.data?.status != 1){
+            extraRoutes = res?.data
+        }
         oldRender()
     })
 }
@@ -131,6 +136,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
 
             return (
                 <>
+                    <ToastComponent key='toast'/>
                     <Anim/>
                     {(!props.location?.pathname?.includes('/login')) && (
                         <div style={{

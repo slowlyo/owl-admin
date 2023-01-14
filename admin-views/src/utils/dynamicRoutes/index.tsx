@@ -18,7 +18,7 @@ const handleData = (item: any, parentId: any) => {
             name: parentId + '-' + index,
             path: val.path,
             parentId: parentId,
-            element: <Outlet/>
+            element: <Outlet/>,
         }
 
         if (val.path) {

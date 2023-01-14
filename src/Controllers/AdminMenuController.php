@@ -23,7 +23,7 @@ class AdminMenuController extends AdminController
 {
     protected string $serviceName = AdminMenuService::class;
 
-    protected string $queryPath = 'admin_menus';
+    protected string $queryPath = 'system/admin_menus';
 
     protected string $pageTitle;
 

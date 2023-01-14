@@ -17,7 +17,7 @@ class AdminRoleController extends AdminController
 {
     protected string $serviceName = AdminRoleService::class;
 
-    protected string $queryPath = 'admin_roles';
+    protected string $queryPath = 'system/admin_roles';
 
     protected string $pageTitle;
 

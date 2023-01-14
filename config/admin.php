@@ -22,10 +22,11 @@ return [
     ],
 
     'auth' => [
-        'enable'     => true,
-        'controller' => \Slowlyo\SlowAdmin\Controllers\AuthController::class,
-        'guard'      => 'sanctum',
-        'except'     => [
+        'login_captcha' => true,
+        'enable'        => true,
+        'controller'    => \Slowlyo\SlowAdmin\Controllers\AuthController::class,
+        'guard'         => 'sanctum',
+        'except'        => [
 
         ],
     ],
@@ -46,4 +47,8 @@ return [
 
     // 是否显示 [权限] 功能中的自动生成按钮
     'show_auto_generate_permission_button' => true,
+
+    'extension' => [
+        'dir' => base_path('extensions'),
+    ],
 ];

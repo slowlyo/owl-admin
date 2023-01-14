@@ -49,6 +49,8 @@ return [
     'failed_message'       => ':attribute失败',
     'action_success'       => '操作成功',
     'action_failed'        => '操作失败',
+    'save_success'         => '保存成功',
+    'save_failed'          => '保存失败',
 
     'code_generators' => [
         'remark1'                   => '额外参数请参考',
@@ -125,5 +127,51 @@ return [
         'class_name_description' => '菜单的CSS类名, 一般用于自定义样式',
         'show'                   => '可见',
         'hide'                   => '隐藏',
+    ],
+
+    'extensions' => [
+        'menu'               => '扩展',
+        'page_title'         => '扩展',
+        'create'             => '创建',
+        'install'            => '安装',
+        'create_extension'   => '创建扩展',
+        'create_tips'        => '创建成功后会在<br><b>:dir</b><br>目录下创建基础的扩展目录结构',
+        'local_install'      => '本地安装',
+        'more_extensions'    => '更多扩展',
+        'setting'            => '设置',
+        'enable'             => '启用',
+        'enable_confirm'     => '确定要启用该扩展吗？',
+        'disable'            => '禁用',
+        'disable_confirm'    => '确定要禁用该扩展吗？',
+        'uninstall'          => '卸载',
+        'uninstall_confirm'  => '
+<div class="text-danger">
+确认卸载该扩展?<br>
+卸载将会删除启用扩展后发布的所有文件及数据库, 且不可找回!!!<br>
+如有重要数据请备份后再操作!!!<br>
+<span class="text-info">扩展包文件将不会被删除, 请手动删除!!!</span>
+</div>
+',
+        'filter_placeholder' => '输入扩展名称',
+        'form'               => [
+            'create_extension'   => '创建扩展',
+            'name'               => '名称',
+            'namespace'          => '命名空间',
+            'create_description' => '创建成功后会在 :dir 目录下创建基础的扩展目录结构',
+        ],
+        'card'               => [
+            'author'   => '作者',
+            'version'  => '版本',
+            'homepage' => '主页',
+            'status'   => '状态',
+        ],
+        'status_map'         => [
+            'enabled'  => '已启用',
+            'disabled' => '已禁用',
+        ],
+        'validation'         => [
+            'file'            => '请选择文件',
+            'invalid_package' => '无效的扩展包',
+        ],
     ],
 ];

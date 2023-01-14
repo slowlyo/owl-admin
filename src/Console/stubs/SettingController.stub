@@ -12,7 +12,7 @@ use Slowlyo\SlowAdmin\Controllers\AdminController;
 
 class SettingController extends AdminController
 {
-    protected string $queryPath = 'settings';
+    protected string $queryPath = 'system/settings';
 
     protected string $pageTitle = '系统设置';
 

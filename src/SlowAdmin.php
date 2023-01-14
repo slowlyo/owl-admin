@@ -2,10 +2,17 @@
 
 namespace Slowlyo\SlowAdmin;
 
+use Slowlyo\SlowAdmin\Libs\Context;
 use Illuminate\Support\Facades\Auth;
+use Slowlyo\SlowAdmin\Libs\Composer;
+use Slowlyo\SlowAdmin\Extend\Manager;
 use Slowlyo\SlowAdmin\Models\AdminUser;
 use Slowlyo\SlowAdmin\Libs\JsonResponse;
+use Slowlyo\SlowAdmin\Extend\ServiceProvider;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\SlowAdmin\Services\AdminMenuService;
+use Slowlyo\SlowAdmin\Services\AdminSettingService;
 
 class SlowAdmin
 {
@@ -103,5 +110,81 @@ class SlowAdmin
         if (is_file($file)) {
             require config('admin.bootstrap');
         }
+    }
+
+    /**
+     * @param string|null $name
+     *
+     * @return Manager|ServiceProvider|null
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public static function extension(?string $name = '')
+    {
+        if ($name) {
+            return app('admin.extend')->get($name);
+        }
+
+        return app('admin.extend');
+    }
+
+    public static function classLoader()
+    {
+        return Composer::loader();
+    }
+
+    /**
+     * 上下文管理.
+     *
+     * @return Context
+     */
+    public static function context()
+    {
+        return app('admin.context');
+    }
+
+    /**
+     * 往分组插入中间件.
+     *
+     * @param array $mix
+     */
+    public static function mixMiddlewareGroup(array $mix = [])
+    {
+        $router = app('router');
+        $group  = $router->getMiddlewareGroups()['admin'] ?? [];
+
+        if ($mix) {
+            $finalGroup = [];
+
+            foreach ($group as $i => $mid) {
+                $next = $i + 1;
+
+                $finalGroup[] = $mid;
+
+                if (!isset($group[$next]) || $group[$next] !== 'admin.permission') {
+                    continue;
+                }
+
+                $finalGroup = array_merge($finalGroup, $mix);
+
+                $mix = [];
+            }
+
+            if ($mix) {
+                $finalGroup = array_merge($finalGroup, $mix);
+            }
+
+            $group = $finalGroup;
+        }
+
+        $router->middlewareGroup('admin', $group);
+    }
+
+    /**
+     * @return AdminSettingService
+     */
+    public static function setting()
+    {
+        return app('admin.setting');
     }
 }

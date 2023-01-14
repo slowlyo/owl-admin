@@ -19,7 +19,7 @@ class AdminUserController extends AdminController
 {
     protected string $serviceName = AdminUserService::class;
 
-    protected string $queryPath = 'admin_users';
+    protected string $queryPath = 'system/admin_users';
 
     protected string $pageTitle;
 

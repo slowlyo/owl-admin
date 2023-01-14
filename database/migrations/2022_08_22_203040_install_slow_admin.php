@@ -49,6 +49,7 @@ return new class extends Migration {
             $table->string('url')->nullable()->comment('菜单路由');
             $table->tinyInteger('url_type')->default(1)->comment('路由类型(1:路由,2:外链)');
             $table->tinyInteger('visible')->default(1)->comment('是否可见');
+            $table->string('extension')->nullable()->comment('扩展');
 
             $table->timestamps();
         });
@@ -79,6 +80,13 @@ return new class extends Migration {
             $table->text('values');
             $table->timestamps();
         });
+
+        Schema::create('admin_extensions', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->string('name', 100)->unique();
+            $table->tinyInteger('is_enabled')->default(0);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -95,5 +103,7 @@ return new class extends Migration {
         Schema::dropIfExists('admin_role_users');
         Schema::dropIfExists('admin_role_permissions');
         Schema::dropIfExists('admin_permission_menu');
+        Schema::dropIfExists('admin_settings');
+        Schema::dropIfExists('admin_extensions');
     }
 };

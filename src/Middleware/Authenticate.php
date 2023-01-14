@@ -29,6 +29,7 @@ class Authenticate
                 'no-content',
                 '_settings',
                 'upload_rich',
+                'captcha',
             ])
             ->map(function ($path) {
                 $prefix = '/' . trim(config('admin.route.prefix'), '/');

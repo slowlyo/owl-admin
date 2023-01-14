@@ -226,7 +226,7 @@ class CodeGeneratorController extends AdminController
 
                 Card::make()->body([
                     Alert::make()
-                        ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/slow-admin-doc/issue#-%E7%BC%96%E8%BE%91--%E8%AF%A6%E6%83%85%E9%A1%B5%E9%9D%A2%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE%E5%A4%B1%E8%B4%A5' target='_blank'>查看详情</a> ")
+                        ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/slow-admin-doc/#/docs/issue?id=%f0%9f%90%9b-%e7%bc%96%e8%be%91-%e8%af%a6%e6%83%85%e9%a1%b5%e9%9d%a2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%98%be%e5%a4%b1%e8%b4%a5' target='_blank'>查看详情</a> ")
                         ->level('warning')
                         ->showCloseButton(true)
                         ->showIcon(true),
