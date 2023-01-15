@@ -58,7 +58,7 @@ trait Uploader
 
         $link = Storage::disk(config('admin.upload.disk'))->url($path);
 
-        return $this->response()->additional(compact('link'))->success();
+        return $this->response()->additional(compact('link'))->success(compact('link'));
     }
 
     protected function upload($type = 'file')

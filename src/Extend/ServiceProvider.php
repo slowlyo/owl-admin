@@ -102,6 +102,11 @@ abstract class ServiceProvider extends LaravelServiceProvider
         }
     }
 
+    public function settingForm()
+    {
+        return null;
+    }
+
     /**
      * @return void
      * @throws ContainerExceptionInterface
