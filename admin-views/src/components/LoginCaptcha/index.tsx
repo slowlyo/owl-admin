@@ -1,5 +1,4 @@
 import {ProFormText} from "@ant-design/pro-components";
-import {Space} from "antd";
 import {adminService} from "@/services/admin";
 import {useEffect, useState} from "react";
 import {FormattedMessage, useIntl} from "@umijs/max";
@@ -26,7 +25,7 @@ export const LoginCaptcha = (props: any) => {
     return (
         <div>
             <ProFormText name="sys_captcha" hidden/>
-            <Space align='start'>
+            <div className={styles.box}>
                 <ProFormText
                     name="captcha"
                     fieldProps={{
@@ -51,7 +50,7 @@ export const LoginCaptcha = (props: any) => {
                 <div className={styles.captchaImage}>
                     <img src={captcha} onClick={() => reloadCaptcha()} alt='' />
                 </div>
-            </Space>
+            </div>
         </div>
     );
 }

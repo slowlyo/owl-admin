@@ -9,12 +9,14 @@ class Captcha
     private $codeNum;
     private $code;
     private $im;
+    private $font;
 
-    public function __construct($width = 80, $height = 40, $codeNum = 4)
+    public function __construct($width = 80, $height = 32, $codeNum = 4)
     {
         $this->width   = $width;
         $this->height  = $height;
         $this->codeNum = $codeNum;
+        $this->font    = __DIR__ . '/Facon-2.ttf';
     }
 
     public function showImg()
@@ -46,15 +48,17 @@ class Captcha
         $codeSet = '2345678abcdefhijkmnpqrstuvwxyz';
         for ($i = 0; $i < 10; $i++) {
             //杂点颜色
-            $noiseColor = imagecolorallocate($this->im, mt_rand(210, 240), mt_rand(210, 240), mt_rand(210, 240));
+            $noiseColor = imagecolorallocate($this->im, mt_rand(150, 180), mt_rand(150, 180), mt_rand(150, 180));
             for ($j = 0; $j < 5; $j++) {
-                // 绘杂点
-                imagestring($this->im,
-                    3,
+                // 添加干扰字符
+                imagettftext($this->im,
+                    6,
+                    mt_rand(-30, 30),
                     mt_rand(-10, $this->width),
                     mt_rand(-10, $this->height),
-                    $codeSet[mt_rand(0, 29)],
-                    $noiseColor);
+                    $noiseColor,
+                    $this->font,
+                    $codeSet[mt_rand(0, 29)]);
             }
         }
     }
@@ -74,9 +78,10 @@ class Captcha
 
         for ($i = 0; $i < $this->codeNum; $i++) {
             $color = imagecolorallocate($this->im, rand(0, 150), rand(0, 150), rand(0, 150));
-            $x     = floor($this->width / $this->codeNum) * $i + 5;
-            $y     = rand(0, $this->height - 20);
-            imagechar($this->im, 5, $x, $y, $this->code[$i], $color);
+            $x     = floor($this->width / $this->codeNum) * $i + 3;
+            $y     = rand(15, $this->height - 5);
+            // 更大的字体
+            imagettftext($this->im, 15, rand(-30, 30), $x, $y, $color, $this->font, $this->code[$i]);
         }
     }
 
