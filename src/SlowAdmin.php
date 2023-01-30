@@ -35,10 +35,10 @@ class SlowAdmin
     {
         $user = self::user();
         if ($user->isAdministrator() || config('admin.auth.enable') === false) {
-            $list = AdminMenuService::make()->query()->orderByDesc('order')->get();
+            $list = AdminMenuService::make()->query()->orderBy('order')->get();
         } else {
             $user->load('roles.permissions.menus');
-            $list = $user->roles->pluck('permissions')->flatten()->pluck('menus')->flatten()->sortByDesc('order');
+            $list = $user->roles->pluck('permissions')->flatten()->pluck('menus')->flatten()->sortBy('order');
         }
 
         return $this->list2Menu($list);

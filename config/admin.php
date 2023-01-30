@@ -24,9 +24,9 @@ return [
     'auth' => [
         'login_captcha' => true,
         'enable'        => true,
+        'model'         => \Slowlyo\SlowAdmin\Models\AdminUser::class,
         'controller'    => \Slowlyo\SlowAdmin\Controllers\AuthController::class,
         'guard'         => 'sanctum',
-        'model'         => \Slowlyo\SlowAdmin\Models\AdminUser::class,
         'except'        => [
 
         ],
