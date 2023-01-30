@@ -125,7 +125,7 @@ class AdminMenuController extends AdminController
                     ->name('order')
                     ->label(__('admin.admin_menu.order'))
                     ->required(true)
-                    ->labelRemark(__('admin.order_desc'))
+                    ->labelRemark(__('admin.order_asc'))
                     ->displayMode('enhance')
                     ->min(0)
                     ->value(0),
