@@ -2,7 +2,6 @@
 
 namespace {{Namespace}};
 
-use GuzzleHttp\Client;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\SlowAdmin\Renderers\Card;
 use Slowlyo\SlowAdmin\Renderers\Flex;
@@ -13,7 +12,6 @@ use Slowlyo\SlowAdmin\Renderers\Image;
 use Slowlyo\SlowAdmin\Renderers\Action;
 use Slowlyo\SlowAdmin\Renderers\Custom;
 use Slowlyo\SlowAdmin\Renderers\Wrapper;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\SlowAdmin\Controllers\AdminController;
 
@@ -37,7 +35,7 @@ class HomeController extends AdminController
                 $this->lineChart()->md(8),
                 Flex::make()->className('h-full')->items([
                     $this->clock(),
-                    $this->hitokoto(),
+                    $this->giteeWidget(),
                 ])->direction('column'),
             ]),
         ]);
@@ -46,34 +44,53 @@ class HomeController extends AdminController
     }
 
     /**
-     * 一言
-     *
-     * @return Card
+     * gitee widget
      */
-    public function hitokoto(): Card
+    public function giteeWidget()
     {
-        $client = new Client();
+        return Card::make()
+            ->className('h-full clear-card-mb gitee-box overflow-auto')
+            ->body(
+                Custom::make()->id('osc-gitee-widget-tag')->onMount(<<<JS
+// 隐藏 gitee-box
+document.querySelector(".gitee-box").style.display = "none"
 
-        try {
-            $result = $client->request('GET', 'http://v1.hitokoto.cn?c=d&c=h&c=i&c=k&max_length=24');
-        } catch (GuzzleException $e) {
-        }
+// 引入 gitee-widget
+const script = document.createElement("script")
+script.src = "https://gitee.com/slowlyo/slow-admin/widget_preview"
+script.async = true
+script.defer = true
+document.body.appendChild(script)
 
-        $data = [
-            'hitokoto' => '海到无涯天作案，山登绝顶我为峰',
-            'from'     => 'Slowlyo',
-        ];
+// 隐藏元素
+const hideElementByClassName = (className) => {
+    const element = document.querySelector(className)
+    if (element) {
+        element.style.display = "none"
+    }
+}
 
-        if ($result->getStatusCode() == 200) {
-            $data = json_decode($result->getBody()->getContents(), true);
-        }
+setTimeout(() => {
+    // 移除 gitee-box 下的 cxd-Card-body 的 padding
+    const giteeBox = document.querySelector(".gitee-box")
+    if (giteeBox) {
+        giteeBox.querySelector(".cxd-Card-body").style.padding = "0"
+    }
 
-        return Card::make()->className('h-full clear-card-mb')->header([
-            'title' => 'Hitokoto',
-        ])->body([
-            Wrapper::make()->body('"' . $data['hitokoto'] . '"'),
-            Wrapper::make()->size('none')->className('text-right')->body('—— ' . $data['from']),
-        ]);
+    // 隐藏不需要的元素
+    let hideClassName = [".osc_git_info", ".osc_git_issuecommits", ".osc_git_copyright"]
+    hideClassName.forEach(className =>  hideElementByClassName(className) )
+
+    // 隐藏边框
+    const oscBorderColor = document.querySelectorAll(".osc_border_color")
+    oscBorderColor.forEach(element => element.style.borderColor = "transparent")
+
+    // 显示
+    giteeBox.style.display = "block"
+}, 1000)
+JS
+                )
+            );
     }
 
     public function clock(): Card
@@ -120,7 +137,7 @@ JS
                             ->label('SlowAdmin 文档')
                             ->blank(true)
                             ->actionType('url')
-                            ->link('https://learnku.com/docs/slow-admin'),
+                            ->link('https://slowlyo.gitee.io/slow-admin-doc/'),
                         Action::make()
                             ->level('link')
                             ->label('Amis 文档')
@@ -197,19 +214,8 @@ series: [
         return Card::make()->className('h-96 ml-4 w-8/12')->body(
             Html::make()->html(<<<HTML
 <style>
-    .cube-box{
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-  .cube {
-    width: 100px;
-    height: 100px;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: rotate 10s linear infinite;
-  }
+    .cube-box{ height: 300px; display: flex; align-items: center; justify-content: center; }
+  .cube { width: 100px; height: 100px; position: relative; transform-style: preserve-3d; animation: rotate 10s linear infinite; }
   .cube:after {
     content: '';
     width: 100%;
@@ -229,47 +235,18 @@ series: [
     border: 1px solid rgb(27, 99, 170);
     box-shadow: 0 0 60px rgba(64, 158, 255, 0.7);
   }
-  .cube div:nth-child(1) {
-    transform: translateZ(-50px);
-    animation: shade 10s -5s linear infinite;
-  }
-  .cube div:nth-child(2) {
-    transform: translateZ(50px) rotateY(180deg);
-    animation: shade 10s linear infinite;
-  }
-  .cube div:nth-child(3) {
-    transform-origin: right;
-    transform: translateZ(50px) rotateY(270deg);
-    animation: shade 10s -2.5s linear infinite;
-  }
-  .cube div:nth-child(4) {
-    transform-origin: left;
-    transform: translateZ(50px) rotateY(90deg);
-    animation: shade 10s -7.5s linear infinite;
-  }
-  .cube div:nth-child(5) {
-    transform-origin: bottom;
-    transform: translateZ(50px) rotateX(90deg);
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  .cube div:nth-child(6) {
-    transform-origin: top;
-    transform: translateZ(50px) rotateX(270deg);
-  }
+  .cube div:nth-child(1) { transform: translateZ(-50px); animation: shade 10s -5s linear infinite; }
+  .cube div:nth-child(2) { transform: translateZ(50px) rotateY(180deg); animation: shade 10s linear infinite; }
+  .cube div:nth-child(3) { transform-origin: right; transform: translateZ(50px) rotateY(270deg); animation: shade 10s -2.5s linear infinite; }
+  .cube div:nth-child(4) { transform-origin: left; transform: translateZ(50px) rotateY(90deg); animation: shade 10s -7.5s linear infinite; }
+  .cube div:nth-child(5) { transform-origin: bottom; transform: translateZ(50px) rotateX(90deg); background-color: rgba(0, 0, 0, 0.7); }
+  .cube div:nth-child(6) { transform-origin: top; transform: translateZ(50px) rotateX(270deg); }
 
   @keyframes rotate {
-    0% {
-      transform: rotateX(-15deg) rotateY(0deg);
-    }
-    100% {
-      transform: rotateX(-15deg) rotateY(360deg);
-    }
+    0% { transform: rotateX(-15deg) rotateY(0deg); }
+    100% { transform: rotateX(-15deg) rotateY(360deg); }
   }
-  @keyframes shade {
-    50% {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-  }
+  @keyframes shade { 50% { background-color: rgba(0, 0, 0, 0.7); } }
 </style>
 <div class="cube-box">
     <div class="cube">
