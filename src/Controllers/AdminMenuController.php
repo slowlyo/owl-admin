@@ -166,6 +166,10 @@ class AdminMenuController extends AdminController
         $data = request()->rows;
 
         foreach ($data as $item) {
+            if (isset($item['children'])) {
+                unset($item['children']);
+            }
+
             $this->service->update($item['id'], $item);
         }
 
