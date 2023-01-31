@@ -54,7 +54,7 @@ class AdminPermissionController extends AdminController
                 ->level('success')
                 ->confirmText(__('admin.admin_permission.auto_generate_confirm'))
                 ->actionType('ajax')
-                ->api(admin_url('_admin_permissions_auto_generate'));
+                ->api(admin_url('system/_admin_permissions_auto_generate'));
         }
 
         $crud = $this->baseCRUD()

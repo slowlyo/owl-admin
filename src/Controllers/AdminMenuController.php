@@ -60,7 +60,7 @@ class AdminMenuController extends AdminController
             ])
             ->filterTogglable(false)
             ->footerToolbar(['statistics'])
-            ->quickSaveApi(admin_url('admin_menu_quick_save'))
+            ->quickSaveApi(admin_url('system/admin_menu_quick_save'))
             ->bulkActions([$this->bulkDeleteButton()->reload('window')])
             ->columns([
                 TableColumn::make()->label('ID')->name('id')->sortable(true),
