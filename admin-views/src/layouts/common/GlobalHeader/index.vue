@@ -32,6 +32,7 @@ import {
 	UserAvatar
 } from "./components"
 import {settings} from "@/utils"
+import {computed} from "vue"
 
 defineOptions({name: "GlobalHeader"})
 
@@ -50,7 +51,7 @@ const theme = useThemeStore()
 const {isMobile} = useBasicLayout()
 
 // const showButton = import.meta.env.PROD && import.meta.env.VITE_VERCEL !== 'Y';
-const showButton = settings.setStore(useAppStore()).getSettingItem("show_development_tools")
+const showButton = computed(() => settings.setStore(useAppStore()).getSettingItem("show_development_tools"))
 </script>
 
 <style scoped>
