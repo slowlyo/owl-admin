@@ -119,7 +119,7 @@ class ExtensionController extends AdminController
                     'title'           => '${alias || "-" | truncate: 8}',
                     'subTitle'        => '${name}',
                     'avatar'          => '${logo || "https://slowlyo.gitee.io/slow-admin-doc/static/logo.png"}',
-                    'avatarClassName' => 'pull-left thumb-md avatar b-3x m-r',
+                    'avatarClassName' => 'pull-left thumb-md avatar m-r',
                 ])->body([
                     amis()->label(__('admin.extensions.card.author'))
                         ->type('tpl')

@@ -10,6 +10,8 @@ use Slowlyo\SlowAdmin\Traits\Uploader;
 use Slowlyo\SlowAdmin\Traits\QueryPath;
 use Slowlyo\SlowAdmin\Traits\PageElement;
 use Slowlyo\SlowAdmin\Services\AdminService;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class AdminController extends Controller
@@ -80,12 +82,18 @@ abstract class AdminController extends Controller
      * 获取新增页面
      *
      * @return JsonResponse|JsonResource
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function create()
     {
         $form = $this->form()->api($this->getStorePath());
 
-        $page = $this->basePage()->subTitle(__('admin.create'))->body($form)->toolbar([$this->backButton()]);
+        $page = $this->basePage()->body($form)->toolbar([$this->backButton()]);
+
+        if (!$this->isTabMode()) {
+            $page = $page->subTitle(__('admin.create'));
+        }
 
         return $this->response()->success($page);
     }
@@ -108,6 +116,8 @@ abstract class AdminController extends Controller
      * @param $id
      *
      * @return JsonResponse|JsonResource
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function show($id)
     {
@@ -115,10 +125,11 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getDetail($id));
         }
 
-        $page = $this->basePage()
-            ->subTitle(__('admin.detail'))
-            ->toolbar([$this->backButton()])
-            ->body($this->detail($id));
+        $page = $this->basePage()->toolbar([$this->backButton()])->body($this->detail($id));
+
+        if (!$this->isTabMode()) {
+            $page = $page->subTitle(__('admin.detail'));
+        }
 
         return $this->response()->success($page);
     }
@@ -129,6 +140,8 @@ abstract class AdminController extends Controller
      * @param $id
      *
      * @return JsonResponse|JsonResource
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function edit($id)
     {
@@ -136,11 +149,13 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getEditData($id));
         }
 
-        $form = $this->form()
-            ->api($this->getUpdatePath($id))
-            ->initApi($this->getEditGetDataPath($id));
+        $form = $this->form()->api($this->getUpdatePath($id))->initApi($this->getEditGetDataPath($id));
 
-        $page = $this->basePage()->subTitle(__('admin.edit'))->toolbar([$this->backButton()])->body($form);
+        $page = $this->basePage()->toolbar([$this->backButton()])->body($form);
+
+        if (!$this->isTabMode()) {
+            $page = $page->subTitle(__('admin.edit'));
+        }
 
         return $this->response()->success($page);
     }

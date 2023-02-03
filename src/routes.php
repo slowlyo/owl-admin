@@ -15,6 +15,7 @@ use Slowlyo\SlowAdmin\Controllers;
     $router->get('/no-content', [Controllers\IndexController::class, 'noContent']);
     $router->get('/menus', [Controllers\IndexController::class, 'menus']);
     $router->get('/_settings', [Controllers\IndexController::class, 'settings']);
+    $router->post('/_settings', [Controllers\IndexController::class, 'saveSettings']);
 
     // 用户设置
     $router->get('/user_setting', [Controllers\AuthController::class, 'userSetting']);

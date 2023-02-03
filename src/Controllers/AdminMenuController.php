@@ -8,6 +8,7 @@ use Slowlyo\SlowAdmin\Renderers\Html;
 use Slowlyo\SlowAdmin\Renderers\Form;
 use Slowlyo\SlowAdmin\Models\AdminMenu;
 use Slowlyo\SlowAdmin\Renderers\Dialog;
+use Slowlyo\SlowAdmin\Renderers\SvgIcon;
 use Slowlyo\SlowAdmin\Renderers\Operation;
 use Slowlyo\SlowAdmin\Renderers\TableColumn;
 use Slowlyo\SlowAdmin\Renderers\TextControl;
@@ -71,7 +72,7 @@ class AdminMenuController extends AdminController
                     ->type('flex')
                     ->justify('start')
                     ->items([
-                        Html::make()->html('<i class="${icon} mr-2"></i>'),
+                        SvgIcon::make()->icon('${icon}')->className('mr-1 text-15px'),
                         '${icon}',
                     ]),
                 TableColumn::make()->label(__('admin.admin_menu.url'))->name('url'),
@@ -79,6 +80,7 @@ class AdminMenuController extends AdminController
                     NumberControl::make()->min(0)
                 ),
                 TableColumn::make()->label(__('admin.admin_menu.visible'))->name('visible')->type('status'),
+                TableColumn::make()->label(__('admin.admin_menu.is_home'))->name('is_home')->type('status'),
                 TableColumn::make()
                     ->label(__('admin.created_at'))
                     ->name('created_at')
@@ -107,10 +109,9 @@ class AdminMenuController extends AdminController
                 TextControl::make()
                     ->name('icon')
                     ->label(__('admin.admin_menu.icon'))
-                    ->placeholder('eg: fa fa-xxx')
                     ->description(
                         __('admin.admin_menu.icon_description') .
-                        '<a href="https://fontawesome.com/search?m=free" target="_blank">Font Awesome</a>'
+                        '<a href="https://icones.js.org" target="_blank"> https://icones.js.org</a>'
                     ),
             ]),
             GroupControl::make()->body([
@@ -146,6 +147,13 @@ class AdminMenuController extends AdminController
                 ->onText(__('admin.admin_menu.show'))
                 ->offText(__('admin.admin_menu.hide'))
                 ->value(1),
+            SwitchControl::make()
+                ->name('is_home')
+                ->label(__('admin.admin_menu.is_home'))
+                ->onText(__('admin.yes'))
+                ->offText(__('admin.no'))
+                ->description(__('admin.admin_menu.is_home_description'))
+                ->value(0),
         ])->onEvent([
             'submitSucc' => [
                 'actions' => [

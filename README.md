@@ -1,18 +1,22 @@
 # Slow Admin
 
 ***
-基于 `Laravel` 、 `Ant Design Pro`、 `amis` 开发的后台框架.
+基于 `Laravel` 、 `amis` 开发的后台框架. 快速且灵活~
 
 ### Laravel
 
 Laravel 是一个全栈Web应用程序框架，具有富有表现力、优雅的语法。
 
-### Ant Design Pro
-Ant Design Pro 是基于 Ant Design 和 umi 的封装的一整套企业级中后台前端/设计解决方案
-
 ### amis
 
 amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可以减少页面开发工作量，极大提升效率。
+
+## 特点: 快速且灵活
+- 基于 amis 以 json 的方式构建页面，减少前端开发工作量，提升开发效率。
+- 在 amis 100多个组件都不满足的情况下, 可自行开发前端。
+- 框架为前后端分离 (不用再因为框架而束手束脚~)。
+- 前端基于 Soybean Admin 使用最新流行技术栈(Vue3、Vite3、TS、NaiveUI和UnoCSS等)。
+
 
 ## 文档
 
@@ -46,9 +50,8 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 ## 截图
 
 ***
-![首页](https://cdn.learnku.com/uploads/images/202211/12/80143/pMvP309qsl.png!large)
-![管理员](https://cdn.learnku.com/uploads/images/202211/12/80143/QX1aJissgK.png!large)
-![代码生成器](https://cdn.learnku.com/uploads/images/202211/12/80143/GYqUIenDBA.png!large)
+![登录](https://slowlyo.gitee.io/static/images/slow-admin/login-page.png)
+![首页](https://slowlyo.gitee.io/static/images/slow-admin/home-page.png)
 
 ## 环境
 
@@ -108,7 +111,7 @@ php artisan admin:install
 ***
 
 - [Laravel](https://laravel.com)
-- [Ant Design Pro](https://pro.ant.design)
+- [Soybean Admin](https://github.com/honghuangdc/soybean-admin)
 - [amis](https://github.com/baidu/amis)
 - [Laravel-admin](https://www.laravel-admin.org/)
 - [Dcat Admin](https://github.com/jqhph/dcat-admin)

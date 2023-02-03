@@ -51,6 +51,8 @@ return [
     'action_failed'        => '操作失败',
     'save_success'         => '保存成功',
     'save_failed'          => '保存失败',
+    'yes'                  => '是',
+    'no'                   => '否',
 
     'code_generators' => [
         'remark1'                   => '额外参数请参考',
@@ -127,6 +129,8 @@ return [
         'class_name_description' => '菜单的CSS类名, 一般用于自定义样式',
         'show'                   => '可见',
         'hide'                   => '隐藏',
+        'is_home'                => '首页',
+        'is_home_description'    => '在多页签卡模式下，页面标签将固定在左侧',
     ],
 
     'extensions' => [

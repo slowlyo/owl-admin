@@ -1,0 +1,11 @@
+<?php
+
+namespace Slowlyo\SlowAdmin\Renderers;
+
+/**
+ * @method self icon($value) 
+ * @method self position($value) 
+ */
+class IconItem extends BaseRenderer
+{
+}

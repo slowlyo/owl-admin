@@ -2,11 +2,13 @@
 
 namespace Slowlyo\SlowAdmin;
 
+use Illuminate\Support\Arr;
 use Slowlyo\SlowAdmin\Libs\Context;
 use Illuminate\Support\Facades\Auth;
 use Slowlyo\SlowAdmin\Libs\Composer;
 use Slowlyo\SlowAdmin\Extend\Manager;
 use Slowlyo\SlowAdmin\Models\AdminUser;
+use Slowlyo\SlowAdmin\Models\AdminMenu;
 use Slowlyo\SlowAdmin\Libs\JsonResponse;
 use Slowlyo\SlowAdmin\Extend\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
@@ -44,51 +46,85 @@ class SlowAdmin
         return $this->list2Menu($list);
     }
 
-    private function list2Menu($list, $parentId = 0): array
+    private function list2Menu($list, $parentId = 0, $parentName = ''): array
     {
         $data = [];
         foreach ($list as $key => $item) {
             if ($item['parent_id'] == $parentId) {
-                $children = $this->list2Menu($list, (int)$item['id']);
-
-                $_temp = [
-                    'name'       => $item['title'],
-                    'path'       => $item['url'],
-                    'icon'       => $item['icon'],
-                    'component'  => 'Amis',
-                    'hideInMenu' => $item['visible'] == 0,
+                $isLink = $item['url_type'] == AdminMenu::TYPE_LINK;
+                $_temp  = [
+                    'name'      => implode('-', array_filter([$parentName, "[{$item['id']}]"])),
+                    'path'      => $isLink ? '/_link' : $item['url'],
+                    'component' => 'amis',
+                    'is_home'   => $item['is_home'],
+                    'meta'      => [
+                        'href'         => $isLink ? $item['url'] : '',
+                        'title'        => $item['title'],
+                        'icon'         => $item['icon'],
+                        'hide'         => $item['visible'] == 0,
+                        'order'        => $item['order'],
+                        'singleLayout' => $parentId != 0 ? '' : 'basic',
+                    ],
                 ];
 
+                $children = $this->list2Menu($list, (int)$item['id'], $_temp['name']);
+
                 if (!empty($children)) {
-                    $_temp['routes'] = $children;
+                    $_temp['component']            = 'basic';
+                    $_temp['meta']['singleLayout'] = '';
+                    $_temp['children']             = $children;
                 }
 
                 $data[] = $_temp;
-                array_push($data, ...$this->generateMenus($_temp['path']));
+                array_push($data, ...$this->generateMenus($_temp));
                 unset($list[$key]);
             }
         }
         return $data;
     }
 
-    public function generateMenus($url): array
+    public function generateMenus($item): array
     {
+        $url = $item['path'] ?? '';
         if (!$url) {
             return [];
         }
 
+        $title = $item['meta']['title'] ?? '';
+
         return [
             [
+                'name'      => $item['name'] . '-create',
                 'path'      => $url . "/create",
-                'component' => 'Amis',
+                'component' => 'amis',
+                'meta'      => [
+                    'title'        => $title . '-' . __('admin.create'),
+                    'hide'         => true,
+                    'icon'         => Arr::get($item, 'meta.icon'),
+                    'singleLayout' => 'basic',
+                ],
             ],
             [
+                'name'      => $item['name'] . '-show',
                 'path'      => $url . '/:id',
-                'component' => 'Amis',
+                'component' => 'amis',
+                'meta'      => [
+                    'title'        => $title . '-' . __('admin.show'),
+                    'hide'         => true,
+                    'icon'         => Arr::get($item, 'meta.icon'),
+                    'singleLayout' => 'basic',
+                ],
             ],
             [
+                'name'      => $item['name'] . '-edit',
                 'path'      => $url . '/:id/edit',
-                'component' => 'Amis',
+                'component' => 'amis',
+                'meta'      => [
+                    'title'        => $title . '-' . __('admin.edit'),
+                    'hide'         => true,
+                    'icon'         => Arr::get($item, 'meta.icon'),
+                    'singleLayout' => 'basic',
+                ],
             ],
         ];
     }

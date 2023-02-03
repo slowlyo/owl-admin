@@ -2,6 +2,7 @@
 
 namespace Slowlyo\SlowAdmin\Traits;
 
+use Illuminate\Support\Arr;
 use Slowlyo\SlowAdmin\Renderers\Page;
 use Slowlyo\SlowAdmin\Renderers\Form;
 use Slowlyo\SlowAdmin\Renderers\Button;
@@ -12,26 +13,57 @@ use Slowlyo\SlowAdmin\Renderers\LinkAction;
 use Slowlyo\SlowAdmin\Renderers\AjaxAction;
 use Slowlyo\SlowAdmin\Renderers\OtherAction;
 use Slowlyo\SlowAdmin\Renderers\DialogAction;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
 
 trait PageElement
 {
     /**
+     * 是否为tab模式
+     *
+     * @return array|\ArrayAccess|mixed
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    protected function isTabMode()
+    {
+        $setting = app('admin.setting')->get('system_theme_setting');
+
+        return Arr::get(json_decode($setting, true), 'tab.visible', false);
+    }
+
+    /**
      * 基础页面
      *
      * @return Page
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     protected function basePage(): Page
     {
-        return Page::make()->className('m:overflow-auto')->title($this->pageTitle);
+        $page = Page::make()->className('m:overflow-auto');
+
+        // 如果不是tab模式，添加标题
+        if (!$this->isTabMode()) {
+            $page = $page->title($this->pageTitle);
+        }
+
+        return $page;
     }
 
     /**
      * 返回列表按钮
      *
-     * @return OtherAction
+     * @return OtherAction|null
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    protected function backButton(): OtherAction
+    protected function backButton(): OtherAction|null
     {
+        if ($this->isTabMode()) {
+            return null;
+        }
+
         return OtherAction::make()
             ->label(__('admin.back'))
             ->icon('fa-solid fa-chevron-left')
@@ -227,9 +259,17 @@ trait PageElement
      * @param $crud
      *
      * @return Page
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     protected function baseList($crud): Page
     {
-        return $this->basePage()->subTitle(__('admin.list'))->body($crud);
+        $list = $this->basePage()->body($crud);
+
+        if (!$this->isTabMode()) {
+            $list = $list->subTitle(__('admin.list'));
+        }
+
+        return $list;
     }
 }

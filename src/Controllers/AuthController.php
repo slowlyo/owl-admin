@@ -120,7 +120,11 @@ class AuthController extends AdminController
                     ->name('confirm_password'),
             ]);
 
-        $page = Page::make()->title(__('admin.user_setting'))->body($form);
+        $page = Page::make()->body($form);
+
+        if(!$this->isTabMode()){
+            $page = $page->title(__('admin.user_setting'));
+        }
 
         return $this->response()->success($page);
     }

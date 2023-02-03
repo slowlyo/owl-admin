@@ -2,6 +2,8 @@
 
 namespace Slowlyo\SlowAdmin\Controllers;
 
+use Illuminate\Http\Request;
+use Slowlyo\SlowAdmin\Admin;
 use Slowlyo\SlowAdmin\SlowAdmin;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\SlowAdmin\Models\Extension;
@@ -13,12 +15,15 @@ class IndexController extends AdminController
     {
         $menus = [
             [
-                'path'     => '/',
-                'redirect' => '/dashboard',
-            ],
-            [
+                'name'      => 'user_setting',
                 'path'      => '/user_setting',
-                'component' => 'Amis',
+                'component' => 'amis',
+                'meta'      => [
+                    'hide'         => true,
+                    'title'        => __('admin.user_setting'),
+                    'icon'         => 'carbon:user-avatar',
+                    'singleLayout' => 'basic',
+                ],
             ],
         ];
 
@@ -39,20 +44,31 @@ class IndexController extends AdminController
     public function devTools(): array
     {
         return [
-            'name'      => __('admin.developer'),
+            'name'      => 'dev_tools',
             'path'      => '/dev_tools',
-            'icon'      => 'fa-brands fa-dev',
-            'component' => 'Amis',
-            'routes'    => [
+            'component' => 'basic',
+            'meta'      => [
+                'title' => __('admin.developer'),
+                'icon'  => 'fluent:window-dev-tools-20-regular',
+            ],
+            'children'  => [
                 [
-                    'name'      => __('admin.code_generator'),
+                    'name'      => 'dev_tools_code_generator',
                     'path'      => '/dev_tools/code_generator',
-                    'component' => 'Amis',
+                    'component' => 'amis',
+                    'meta'      => [
+                        'title' => __('admin.code_generator'),
+                        'icon'  => 'material-symbols:code-rounded',
+                    ],
                 ],
                 [
-                    'name'      => __('admin.extensions.menu'),
+                    'name'      => 'dev_tools_extensions',
                     'path'      => '/dev_tools/extensions',
-                    'component' => 'Amis',
+                    'component' => 'amis',
+                    'meta'      => [
+                        'title' => __('admin.extensions.menu'),
+                        'icon'  => 'material-symbols:extension-outline-rounded',
+                    ],
                 ],
             ],
         ];
@@ -61,13 +77,29 @@ class IndexController extends AdminController
     public function settings(): JsonResponse|JsonResource
     {
         $settings = [
-            'app_name'           => config('admin.name'),
-            'logo'               => url(config('admin.logo')),
-            'enabled_extensions' => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
-            'locale'             => config('app.locale'),
-            'login_captcha'      => config('admin.auth.login_captcha'),
+            'app_name'               => config('admin.name'),
+            'logo'                   => url(config('admin.logo')),
+            'locale'                 => config('app.locale'),
+            'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
+            'login_captcha'          => config('admin.auth.login_captcha'),
+            'system_theme_setting'   => Admin::setting()->get('system_theme_setting'),
+            'show_development_tools' => config('admin.show_development_tools'),
         ];
 
         return $this->response()->success($settings);
+    }
+
+    /**
+     * 保存设置项
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function saveSettings(Request $request)
+    {
+        Admin::setting()->setMany($request->all());
+
+        return $this->response()->successMessage();
     }
 }

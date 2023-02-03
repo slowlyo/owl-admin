@@ -13,7 +13,7 @@ return [
     'required'         => ':attribute is required',
     'login_successful' => 'Login Success',
     'login_failed'     => 'Username Or Password Error',
-    'user_setting'     => 'User Setting',
+    'user_setting'     => 'User Settings',
     'created_at'       => 'Created At',
     'updated_at'       => 'Updated At',
     'deleted_at'       => 'Deleted At',
@@ -49,6 +49,8 @@ return [
     'action_failed'        => 'Action Failed',
     'save_success'         => 'Save Success',
     'save_failed'          => 'Save Failed',
+    'yes'                  => 'Yes',
+    'no'                   => 'No',
 
     'code_generators' => [
         'remark1'                   => 'For more parameters, please refer to',
@@ -125,6 +127,8 @@ return [
         'class_name_description' => 'The CSS class name of the menu, which is typically used to customize styles',
         'show'                   => 'Show',
         'hide'                   => 'Hide',
+        'is_home'                => 'Is Home',
+        'is_home_description'    => 'In multi-tab mode, the page label is fixed on the left',
     ],
 
     'extensions' => [

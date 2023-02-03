@@ -11,7 +11,7 @@ class Captcha
     private $im;
     private $font;
 
-    public function __construct($width = 80, $height = 32, $codeNum = 4)
+    public function __construct($width = 100, $height = 40, $codeNum = 4)
     {
         $this->width   = $width;
         $this->height  = $height;

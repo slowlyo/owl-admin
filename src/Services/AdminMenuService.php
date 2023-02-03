@@ -41,7 +41,37 @@ class AdminMenuService extends AdminService
             }
         }
 
-        return parent::update($primaryKey, $data);
+        $model = $this->query()->whereKey($primaryKey)->first();
+
+        foreach ($data as $k => $v) {
+            $model->setAttribute($k, $v);
+
+            if ($k == 'is_home' && $v == 1) {
+                $this->changeHomePage();
+            }
+        }
+
+        return $model->save();
+    }
+
+    public function store($data): bool
+    {
+        $model = $this->getModel();
+
+        foreach ($data as $k => $v) {
+            $model->setAttribute($k, $v);
+
+            if ($k == 'is_home' && $v == 1) {
+                $this->changeHomePage();
+            }
+        }
+
+        return $model->save();
+    }
+
+    public function changeHomePage($excludeId = 0)
+    {
+        $this->query()->where('id', '<>', $excludeId)->update(['is_home' => 0]);
     }
 
     public function list()

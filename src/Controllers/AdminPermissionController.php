@@ -134,6 +134,7 @@ class AdminPermissionController extends AdminController
                 ->label(__('admin.menus'))
                 ->searchable(true)
                 ->multiple(true)
+                ->showIcon(false)
                 ->options(AdminMenuService::make()->getTree())
                 ->labelField('title')
                 ->valueField('id')

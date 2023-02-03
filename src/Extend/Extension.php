@@ -27,7 +27,7 @@ class Extension
 
     protected array $dirs = [
         'database/migrations',
-        'resources/admin-views/extensions',
+        'resources/admin-views/src/extensions',
         'src/Models',
         'src/Http/Controllers',
         'src/Http/Middleware',
