@@ -266,25 +266,25 @@ HTML
     private function css(): array
     {
         return [
-            '.clear-card-mb'                 => [
+            '.amis-scope .clear-card-mb'                 => [
                 'margin-bottom' => '0 !important',
             ],
-            '.cxd-Image'                     => [
+            '.amis-scope .cxd-Image'                     => [
                 'border' => '0',
             ],
-            '.bg-blingbling'                 => [
+            '.amis-scope .bg-blingbling'                 => [
                 'color'             => '#fff',
                 'background'        => 'linear-gradient(to bottom right, #2C3E50, #FD746C, #FF8235, #ffff1c, #92FE9D, #00C9FF, #a044ff, #e73827)',
                 'background-repeat' => 'no-repeat',
                 'background-size'   => '1000% 1000%',
                 'animation'         => 'gradient 60s ease infinite',
             ],
-            '@keyframes gradient'            => [
+            '@keyframes gradient'                        => [
                 '0%{background-position:0% 0%}
                   50%{background-position:100% 100%}
                   100%{background-position:0% 0%}',
             ],
-            '.bg-blingbling .cxd-Card-title' => [
+            '.amis-scope .bg-blingbling .cxd-Card-title' => [
                 'color' => '#fff',
             ],
         ];
