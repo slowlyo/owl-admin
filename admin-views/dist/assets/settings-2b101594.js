@@ -1,0 +1,1 @@
+const a={setStore:o=>{const s=o,n=()=>s.$state.setting,i=t=>{let e=n();return e&&e[t]};return{getSettings:n,getSettingItem:i,extensionIsEnable:t=>{var e;return(e=i("enabled_extensions"))==null?void 0:e.includes(t)},setSettings:t=>s.setSetting(t)}}};export{a as s};
