@@ -60,7 +60,7 @@ class SlowAdmin
                     'meta'      => [
                         'href'         => $isLink ? $item['url'] : '',
                         'title'        => $item['title'],
-                        'icon'         => $item['icon'],
+                        'icon'         => $item['icon'] ?? ' ',
                         'hide'         => $item['visible'] == 0,
                         'order'        => $item['order'],
                         'singleLayout' => $parentId != 0 ? '' : 'basic',
@@ -70,7 +70,7 @@ class SlowAdmin
                 $children = $this->list2Menu($list, (int)$item['id'], $_temp['name']);
 
                 if (!empty($children)) {
-                    $_temp['component']            = 'basic';
+                    $_temp['component']            = $parentId == 0 ? 'basic' : 'multi';
                     $_temp['meta']['singleLayout'] = '';
                     $_temp['children']             = $children;
                 }
@@ -101,7 +101,7 @@ class SlowAdmin
                     'title'        => $title . '-' . __('admin.create'),
                     'hide'         => true,
                     'icon'         => Arr::get($item, 'meta.icon'),
-                    'singleLayout' => 'basic',
+                    'singleLayout' => Arr::get($item, 'meta.singleLayout'),
                 ],
             ],
             [
@@ -112,7 +112,7 @@ class SlowAdmin
                     'title'        => $title . '-' . __('admin.show'),
                     'hide'         => true,
                     'icon'         => Arr::get($item, 'meta.icon'),
-                    'singleLayout' => 'basic',
+                    'singleLayout' => Arr::get($item, 'meta.singleLayout'),
                 ],
             ],
             [
@@ -123,7 +123,7 @@ class SlowAdmin
                     'title'        => $title . '-' . __('admin.edit'),
                     'hide'         => true,
                     'icon'         => Arr::get($item, 'meta.icon'),
-                    'singleLayout' => 'basic',
+                    'singleLayout' => Arr::get($item, 'meta.singleLayout'),
                 ],
             ],
         ];
