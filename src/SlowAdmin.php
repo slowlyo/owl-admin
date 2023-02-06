@@ -52,8 +52,9 @@ class SlowAdmin
         foreach ($list as $key => $item) {
             if ($item['parent_id'] == $parentId) {
                 $isLink = $item['url_type'] == AdminMenu::TYPE_LINK;
+                $idStr  = "[{$item['id']}]";
                 $_temp  = [
-                    'name'      => implode('-', array_filter([$parentName, "[{$item['id']}]"])),
+                    'name'      => $parentName ? $parentName . '-' . $idStr : $idStr,
                     'path'      => $isLink ? '/_link' : $item['url'],
                     'component' => 'amis',
                     'is_home'   => $item['is_home'],
@@ -86,46 +87,27 @@ class SlowAdmin
     public function generateMenus($item): array
     {
         $url = $item['path'] ?? '';
-        if (!$url) {
+
+        if (!$url || array_key_exists('children', $item)) {
             return [];
         }
 
-        $title = $item['meta']['title'] ?? '';
+        $menu = fn($action, $path) => [
+            'name'      => $item['name'] . '-' . $action,
+            'path'      => $url . $path,
+            'component' => 'amis',
+            'meta'      => [
+                'title'        => Arr::get($item, 'meta.title') . '-' . __('admin.' . $action),
+                'hide'         => true,
+                'icon'         => Arr::get($item, 'meta.icon'),
+                'singleLayout' => Arr::get($item, 'meta.singleLayout'),
+            ],
+        ];
 
         return [
-            [
-                'name'      => $item['name'] . '-create',
-                'path'      => $url . "/create",
-                'component' => 'amis',
-                'meta'      => [
-                    'title'        => $title . '-' . __('admin.create'),
-                    'hide'         => true,
-                    'icon'         => Arr::get($item, 'meta.icon'),
-                    'singleLayout' => Arr::get($item, 'meta.singleLayout'),
-                ],
-            ],
-            [
-                'name'      => $item['name'] . '-show',
-                'path'      => $url . '/:id',
-                'component' => 'amis',
-                'meta'      => [
-                    'title'        => $title . '-' . __('admin.show'),
-                    'hide'         => true,
-                    'icon'         => Arr::get($item, 'meta.icon'),
-                    'singleLayout' => Arr::get($item, 'meta.singleLayout'),
-                ],
-            ],
-            [
-                'name'      => $item['name'] . '-edit',
-                'path'      => $url . '/:id/edit',
-                'component' => 'amis',
-                'meta'      => [
-                    'title'        => $title . '-' . __('admin.edit'),
-                    'hide'         => true,
-                    'icon'         => Arr::get($item, 'meta.icon'),
-                    'singleLayout' => Arr::get($item, 'meta.singleLayout'),
-                ],
-            ],
+            $menu('create', '/create'),
+            $menu('show', '/:id'),
+            $menu('edit', '/:id/edit'),
         ];
     }
 
