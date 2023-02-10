@@ -84,8 +84,9 @@ abstract class ServiceProvider extends LaravelServiceProvider
      * 初始化操作.
      *
      * @return void
-     * @throws \ReflectionException
-     * @throws \Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws \ReflectionException|\Exception
      */
     public function init()
     {
@@ -100,6 +101,8 @@ abstract class ServiceProvider extends LaravelServiceProvider
         if ($this->exceptRoutes) {
             $this->addExceptRoutes();
         }
+
+        $this->initRoutes();
     }
 
     public function settingForm()

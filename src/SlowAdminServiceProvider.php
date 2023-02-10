@@ -73,7 +73,6 @@ class SlowAdminServiceProvider extends ServiceProvider
         if (file_exists($routes = admin_path('routes.php'))) {
             $this->loadRoutesFrom($routes);
         }
-        $this->initExtensionRoutes();
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
@@ -132,15 +131,8 @@ class SlowAdminServiceProvider extends ServiceProvider
 
     /**
      * @return void
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws \ReflectionException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function initExtensionRoutes()
-    {
-        Admin::extension()->initRoutes();
-    }
-
     protected function registerRouteMiddleware(): void
     {
         $router = $this->app->make('router');
