@@ -255,6 +255,7 @@ class Manager
 
         $serviceProvider = $composerProperty->get('extra.slow-admin');
         $psr4            = $composerProperty->get('autoload.psr-4');
+        $files           = $composerProperty->get('autoload.files');
 
         if (!$serviceProvider || !$psr4) {
             return;
@@ -262,6 +263,7 @@ class Manager
 
         if ($addPsr4) {
             $this->registerPsr4($directory, $psr4);
+            $this->registerFiles($directory, $files);
         }
 
         $serviceProvider = new $serviceProvider($this->app);
@@ -510,6 +512,28 @@ class Manager
             $path = $directory . '/' . trim($path, '/') . '/';
 
             $classLoader->addPsr4($namespace, $path);
+        }
+    }
+
+    /**
+     * 注册文件.
+     *
+     * @param $directory
+     * @param $files
+     *
+     * @return void
+     */
+    protected function registerFiles($directory, $files)
+    {
+        if (empty($files)) {
+            return;
+        }
+
+        foreach ($files as $file) {
+            $_path = $directory . '/' . trim($file, '/');
+            if (is_file($_path)) {
+                require_once $_path;
+            }
         }
     }
 
