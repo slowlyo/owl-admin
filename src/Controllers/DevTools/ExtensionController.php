@@ -143,7 +143,7 @@ class ExtensionController extends AdminController
                                 ->actions([])
                                 ->closeOnOutside(true)
                                 ->closeOnEsc(true)
-                                ->body(Markdown::make()->name('${doc}')->options(['html' => true, 'breaks' => true]))
+                                ->body(Markdown::make()->name('${doc | raw}')->options(['html' => true, 'breaks' => true]))
                         )
                     ),
                     Divider::make(),

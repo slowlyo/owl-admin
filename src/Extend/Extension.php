@@ -27,7 +27,6 @@ class Extension
 
     protected array $dirs = [
         'database/migrations',
-        'resources/admin-views/src/extensions',
         'src/Models',
         'src/Http/Controllers',
         'src/Http/Middleware',
@@ -52,7 +51,7 @@ class Extension
             return $this->setError('无效的扩展名称');
         }
 
-        $this->dirs[] = 'resources/admin-views/extensions/' . $name;
+        $this->dirs[] = 'resources/admin-views/src/extensions/' . $name;
 
         $this->filesystem = app('files');
         $this->namespace  = $namespace;

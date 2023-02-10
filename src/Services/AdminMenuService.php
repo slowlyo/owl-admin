@@ -44,6 +44,8 @@ class AdminMenuService extends AdminService
         $model = $this->query()->whereKey($primaryKey)->first();
 
         foreach ($data as $k => $v) {
+            $v = $k == 'parent_id' ? intval($v) : $v;
+
             $model->setAttribute($k, $v);
 
             if ($k == 'is_home' && $v == 1) {
