@@ -41,7 +41,7 @@ trait QueryPath
      */
     public function getEditPath(): string
     {
-        return $this->queryPath . '/${id}/edit';
+        return trim($this->queryPath, '/') . '/${id}/edit';
     }
 
     /**
@@ -63,7 +63,7 @@ trait QueryPath
      */
     public function getShowPath(): string
     {
-        return $this->queryPath . '/${id}';
+        return trim($this->queryPath, '/') . '/${id}';
     }
 
     /**
@@ -97,7 +97,7 @@ trait QueryPath
      */
     public function getCreatePath(): string
     {
-        return $this->queryPath . '/create';
+        return trim($this->queryPath, '/') . '/create';
     }
 
     /**
@@ -117,7 +117,7 @@ trait QueryPath
      */
     public function getListPath(): string
     {
-        return '/' . $this->queryPath;
+        return '/' . trim($this->queryPath, '/');
     }
 
 }
