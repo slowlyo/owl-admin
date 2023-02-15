@@ -136,8 +136,8 @@ class AdminMenuController extends AdminController
                 ->label(__('admin.admin_menu.url'))
                 ->required(true)
                 ->validateOnChange(true)
-                ->validations(['matchRegexp'=>'/^(http(s)?\:\/)?(\/)+/'])
-                ->validationErrors(['matchRegexp'=>'必需包含 / '])
+                ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
+                ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
                 ->placeholder('eg: /admin_menus'),
             ListControl::make()
                 ->name('url_type')
