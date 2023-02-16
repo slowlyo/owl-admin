@@ -110,7 +110,7 @@ class ExtensionController extends AdminController
                 UrlAction::make()
                     ->icon('fa-regular fa-lightbulb')
                     ->label(__('admin.extensions.more_extensions'))
-                    ->link('https://slowlyo.gitee.io/slow-admin-doc/#/extensions/')
+                    ->link('https://slowlyo.gitee.io/slow-admin-doc/extensions/')
                     ->blank(true),
                 amis('reload')->align('right'),
                 amis('filter-toggler')->align('right'),
