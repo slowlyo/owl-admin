@@ -1,6 +1,6 @@
 <template>
 	<router-link :to="routeHomePath" class="flex-center w-full nowrap-hidden">
-		<system-logo class="h-45px"/>
+		<system-logo class="h-35px"/>
 		<h2 v-show="showTitle"
 		    class="pl-8px text-16px font-bold text-primary transition duration-300 ease-in-out"
 		    @click="toggleLocal">
