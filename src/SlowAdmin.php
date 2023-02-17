@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Slowlyo\SlowAdmin\Libs\Context;
 use Illuminate\Support\Facades\Auth;
 use Slowlyo\SlowAdmin\Libs\Composer;
+use Slowlyo\SlowAdmin\Traits\Assets;
 use Slowlyo\SlowAdmin\Extend\Manager;
 use Slowlyo\SlowAdmin\Models\AdminUser;
 use Slowlyo\SlowAdmin\Models\AdminMenu;
@@ -18,6 +19,8 @@ use Slowlyo\SlowAdmin\Services\AdminSettingService;
 
 class SlowAdmin
 {
+    use Assets;
+
     public static function make(): static
     {
         return new static();

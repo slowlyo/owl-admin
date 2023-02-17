@@ -84,6 +84,7 @@ class IndexController extends AdminController
             'login_captcha'          => config('admin.auth.login_captcha'),
             'system_theme_setting'   => Admin::setting()->get('system_theme_setting'),
             'show_development_tools' => config('admin.show_development_tools'),
+            'assets'                 => Admin::getAssets(),
         ];
 
         return $this->response()->success($settings);

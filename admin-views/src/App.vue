@@ -47,6 +47,8 @@ fetchSettings().then((res: any) => {
 		dateLocale.value = dateZhCN
 		setLocale("zh-CN")
 	}
+
+	settings.dynamicAssetsHandler(res?.data?.assets)
 })
 
 // 注册自定义组件

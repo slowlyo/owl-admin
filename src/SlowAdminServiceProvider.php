@@ -4,6 +4,7 @@ namespace Slowlyo\SlowAdmin;
 
 use Illuminate\Support\Arr;
 use Slowlyo\SlowAdmin\Console;
+use Slowlyo\SlowAdmin\Libs\Asset;
 use Slowlyo\SlowAdmin\Libs\Context;
 use Slowlyo\SlowAdmin\Extend\Manager;
 use Illuminate\Support\ServiceProvider;
@@ -106,6 +107,7 @@ class SlowAdminServiceProvider extends ServiceProvider
         $this->app->singleton('admin.extend', Manager::class);
         $this->app->singleton('admin.context', Context::class);
         $this->app->singleton('admin.setting', fn() => settings());
+        $this->app->singleton('admin.asset', Asset::class);
     }
 
     /**
