@@ -404,7 +404,6 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     public function install()
     {
-        $this->publishable();
         $this->runMigrations();
     }
 
@@ -417,56 +416,8 @@ abstract class ServiceProvider extends LaravelServiceProvider
     public function uninstall()
     {
         $this->flushMenu();
-        $this->unpublishable();
         $this->runMigrations(true);
         \Slowlyo\SlowAdmin\Models\Extension::query()->where('name', $this->getName())->delete();
-    }
-
-    /**
-     * 发布静态资源.
-     *
-     * @return void
-     * @throws \Exception
-     */
-    public function publishable()
-    {
-        if (file_exists($this->getAssetPath())) {
-            if (!file_exists($this->getPublishsPath())) {
-                app('files')->makeDirectory($this->getPublishsPath(), 0755, true, true);
-            }
-            app('files')->copyDirectory($this->getAssetPath(), $this->getPublishsPath());
-        }
-    }
-
-    /**
-     * 取消发布静态资源.
-     *
-     * @return void
-     */
-    public function unpublishable()
-    {
-        app('files')->deleteDirectory($this->getPublishsPath());
-    }
-
-    /**
-     * 获取资源发布路径.
-     *
-     * @return string
-     */
-    protected function getPublishsPath()
-    {
-        return resource_path('admin-views/extensions/' . $this->getPackageName());
-    }
-
-    /**
-     * 获取静态资源路径.
-     *
-     * @return string
-     * @throws \Exception
-     */
-    final public function getAssetPath()
-    {
-        return $this->path('resources/admin-views/extensions/' . $this->packageName);
     }
 
     /**
