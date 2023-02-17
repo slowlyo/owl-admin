@@ -87,7 +87,7 @@ class AdminUserService extends AdminService
 
     public function updateUserSetting($primaryKey, $data): bool
     {
-        if (!$this->passwordHandler($primaryKey, $data)) {
+        if (!$this->passwordHandler($data, $primaryKey)) {
             return false;
         }
 
