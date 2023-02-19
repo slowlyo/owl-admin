@@ -404,6 +404,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     public function install()
     {
+        $this->publishable();
         $this->runMigrations();
     }
 
@@ -416,9 +417,58 @@ abstract class ServiceProvider extends LaravelServiceProvider
     public function uninstall()
     {
         $this->flushMenu();
+        $this->unpublishable();
         $this->runMigrations(true);
         \Slowlyo\SlowAdmin\Models\Extension::query()->where('name', $this->getName())->delete();
     }
+
+    /**
+     * 发布静态资源.
+     *
+     * @return void
+     * @throws \Exception
+     */
+    public function publishable()
+    {
+        if (file_exists($this->getAssetPath())) {
+            if (!file_exists($this->getPublishPath())) {
+                app('files')->makeDirectory($this->getPublishPath(), 0755, true, true);
+            }
+            app('files')->copyDirectory($this->getAssetPath(), $this->getPublishPath());
+        }
+    }
+
+    /**
+     * 取消发布静态资源.
+     *
+     * @return void
+     */
+    public function unpublishable()
+    {
+        app('files')->deleteDirectory($this->getPublishPath());
+    }
+
+    /**
+     * 获取资源发布路径.
+     *
+     * @return string
+     */
+    protected function getPublishPath()
+    {
+        return public_path('extensions/' . $this->getPackageName());
+    }
+
+    /**
+     * 获取静态资源路径.
+     *
+     * @return string
+     * @throws \Exception
+     */
+    final public function getAssetPath()
+    {
+        return $this->path('public/extensions/' . $this->packageName);
+    }
+
 
     /**
      * 获取语言包路径.
@@ -556,5 +606,20 @@ abstract class ServiceProvider extends LaravelServiceProvider
                 ],
             ])
             ->api('post:' . admin_url('dev_tools/extensions/save_config'));
+    }
+
+    public function assetUrl($path)
+    {
+        return url('extensions/' . $this->packageName . $path);
+    }
+
+    public function loadJs($path)
+    {
+        Admin::js($this->assetUrl($path));
+    }
+
+    public function loadCss($path)
+    {
+        Admin::css($this->assetUrl($path));
     }
 }

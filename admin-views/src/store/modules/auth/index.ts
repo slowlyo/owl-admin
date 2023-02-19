@@ -118,7 +118,6 @@ export const useAuthStore = defineStore('auth-store', {
 		 */
 		async login(form: object, remember: boolean) {
 			this.loginLoading = true;
-			console.log(await fetchLogin(form))
 			const {data, status} = await fetchLogin(form) as any;
 
 			if (status != 0) {

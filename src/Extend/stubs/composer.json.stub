@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "slowlyo/slow-admin": "~1.4"
+        "slowlyo/slow-admin": "*"
     },
     "autoload": {
         "psr-4": {

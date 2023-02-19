@@ -51,6 +51,8 @@ class Extension
             return $this->setError('无效的扩展名称');
         }
 
+        $this->dirs[] = 'public/extensions/' . $name;
+
         $this->filesystem = app('files');
         $this->namespace  = $namespace;
 
