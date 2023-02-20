@@ -43,7 +43,7 @@ class SlowAdmin
             $list = AdminMenuService::make()->query()->orderBy('order')->get();
         } else {
             $user->load('roles.permissions.menus');
-            $list = $user->roles->pluck('permissions')->flatten()->pluck('menus')->flatten()->sortBy('order');
+            $list = $user->roles->pluck('permissions')->flatten()->pluck('menus')->flatten()->unique('id')->sortBy('order');
         }
 
         return $this->list2Menu($list);
