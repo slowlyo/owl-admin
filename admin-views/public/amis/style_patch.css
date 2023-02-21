@@ -564,3 +564,11 @@
 .dark .amis-scope .cxd-GroupedSelection-item:hover{
     background: var(--dark-border-color);
 }
+
+.dark .amis-scope .cxd-ColumnToggler-menu{
+    background: var(--dark-card-background);
+}
+
+.dark .amis-scope .cxd-ColumnToggler-menuItem:hover, .amis-scope .cxd-ColumnToggler-menu > li:hover{
+    background: var(--dark-border-color);
+}
