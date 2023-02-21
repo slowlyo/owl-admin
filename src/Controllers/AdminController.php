@@ -31,6 +31,12 @@ abstract class AdminController extends Controller
     /** @var string $pageTitle 页面标题 */
     protected string $pageTitle;
 
+    /** @var bool $isCreate 是否是新增页面 */
+    protected bool $isCreate = false;
+
+    /** @var bool $isEdit 是否是编辑页面 */
+    protected bool $isEdit = false;
+
     public function __construct()
     {
         if (property_exists($this, 'serviceName')) {
@@ -87,6 +93,8 @@ abstract class AdminController extends Controller
      */
     public function create()
     {
+        $this->isCreate = true;
+
         $form = $this->form()->api($this->getStorePath());
 
         $page = $this->basePage()->body($form)->toolbar([$this->backButton()]);
@@ -145,6 +153,8 @@ abstract class AdminController extends Controller
      */
     public function edit($id)
     {
+        $this->isEdit = true;
+
         if ($this->actionOfGetData()) {
             return $this->response()->success($this->service->getEditData($id));
         }
