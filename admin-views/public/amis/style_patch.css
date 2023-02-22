@@ -475,71 +475,71 @@
     background: var(--dark-table-header-background);
 }
 
-.dark .amis-scope .cxd-Tabs--vertical > .cxd-Tabs-linksWrapper > .cxd-Tabs-links > li > a:first-child{
+.dark .amis-scope .cxd-Tabs--vertical > .cxd-Tabs-linksWrapper > .cxd-Tabs-links > li > a:first-child {
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li.is-active > a:first-child{
+.dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li.is-active > a:first-child {
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Tabs--card > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li > a:first-child{
+.dark .amis-scope .cxd-Tabs--card > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li > a:first-child {
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li:hover > a:first-child, .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li:focus > a:first-child{
+.dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li:hover > a:first-child, .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li:focus > a:first-child {
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Tabs-links > .cxd-Tabs-link > a:first-child{
+.dark .amis-scope .cxd-Tabs-links > .cxd-Tabs-link > a:first-child {
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li > a:first-child{
+.dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li > a:first-child {
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Tabs--card > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li.is-active > a:first-child{
+.dark .amis-scope .cxd-Tabs--card > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li.is-active > a:first-child {
     color: var(--Tabs--card-active-color);
 }
 
-.dark .amis-scope .cxd-Tabs-links > .cxd-Tabs-link.active > a:first-child, .amis-scope .cxd-Tabs-links > .cxd-Tabs-link.is-active > a:first-child{
+.dark .amis-scope .cxd-Tabs-links > .cxd-Tabs-link.active > a:first-child, .amis-scope .cxd-Tabs-links > .cxd-Tabs-link.is-active > a:first-child {
     color: var(--Tabs--card-active-color);
 }
 
-.dark .amis-scope .cxd-Tabs--chrome > .cxd-Tabs-linksWrapper{
+.dark .amis-scope .cxd-Tabs--chrome > .cxd-Tabs-linksWrapper {
     background: var(--dark-table-header-background);
 }
 
-.dark .amis-scope .cxd-Wizard-steps{
+.dark .amis-scope .cxd-Wizard-steps {
     background: var(--dark-card-background);
 }
 
-.dark .amis-scope .cxd-Wizard--vertical > .cxd-Wizard-step > .cxd-Wizard-steps li{
+.dark .amis-scope .cxd-Wizard--vertical > .cxd-Wizard-step > .cxd-Wizard-steps li {
     background: var(--dark-card-background);
 }
 
-.dark .amis-scope .cxd-Wizard--vertical > .cxd-Wizard-step > .cxd-Wizard-steps ul li.is-active{
-    background: var(--dark-card-background);
-    color: var(--dark-text-color);
-}
-
-.dark .amis-scope .cxd-Wizard-steps ul li.is-active{
+.dark .amis-scope .cxd-Wizard--vertical > .cxd-Wizard-step > .cxd-Wizard-steps ul li.is-active {
     background: var(--dark-card-background);
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Property > table > tbody > tr > th, .dark .amis-scope .cxd-Property > table > thead > tr > th{
+.dark .amis-scope .cxd-Wizard-steps ul li.is-active {
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
+}
+
+.dark .amis-scope .cxd-Property > table > tbody > tr > th, .dark .amis-scope .cxd-Property > table > thead > tr > th {
     background: var(--dark-table-header-background);
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Property > table > tbody > tr{
+.dark .amis-scope .cxd-Property > table > tbody > tr {
     background: var(--dark-card-background);
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Select-option.is-highlight{
+.dark .amis-scope .cxd-Select-option.is-highlight {
     background: var(--dark-border-color);
 }
 
@@ -548,27 +548,35 @@
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Form .cxd-Collapse-header{
+.dark .amis-scope .cxd-Form .cxd-Collapse-header {
     background: var(--dark-card-background);
     color: var(--dark-text-color);
 }
 
-.dark .amis-scope .cxd-Cards-placeholder{
+.dark .amis-scope .cxd-Cards-placeholder {
     background: var(--dark-card-background);
 }
 
-.dark .amis-scope .cxd-PopOver{
+.dark .amis-scope .cxd-PopOver {
     background: var(--dark-card-background);
 }
 
-.dark .amis-scope .cxd-GroupedSelection-item:hover{
+.dark .amis-scope .cxd-GroupedSelection-item:hover {
     background: var(--dark-border-color);
 }
 
-.dark .amis-scope .cxd-ColumnToggler-menu{
+.dark .amis-scope .cxd-ColumnToggler-menu {
     background: var(--dark-card-background);
 }
 
-.dark .amis-scope .cxd-ColumnToggler-menuItem:hover, .amis-scope .cxd-ColumnToggler-menu > li:hover{
+.dark .amis-scope .cxd-ColumnToggler-menuItem:hover, .amis-scope .cxd-ColumnToggler-menu > li:hover {
     background: var(--dark-border-color);
+}
+
+.dark .amis-scope .cxd-Number--enhance .cxd-Number-input {
+    color: var(--dark-text-color);
+}
+
+.dark .amis-scope .cxd-Select-menu {
+    color: var(--dark-text-color);
 }
