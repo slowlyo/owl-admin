@@ -580,3 +580,7 @@
 .dark .amis-scope .cxd-Select-menu {
     color: var(--dark-text-color);
 }
+
+.dark .amis-scope .cxd-Card-title{
+	color: var(--dark-text-color);
+}
