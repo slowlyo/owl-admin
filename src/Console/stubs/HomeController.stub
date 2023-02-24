@@ -270,7 +270,7 @@ HTML
             '.clear-card-mb'                 => [
                 'margin-bottom' => '0 !important',
             ],
-            '.cxd-Image'                     => [
+            '.amis-scope .cxd-Image'                     => [
                 'border' => '0',
             ],
             '.amis-scope .bg-blingbling'                 => [
