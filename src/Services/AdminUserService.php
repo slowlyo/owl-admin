@@ -32,11 +32,17 @@ class AdminUserService extends AdminService
             return false;
         }
 
+        $columns = $this->getTableColumns();
+
         $model = $this->getModel();
 
         $roles = Arr::pull($data, 'roles');
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 
@@ -60,11 +66,17 @@ class AdminUserService extends AdminService
             return false;
         }
 
+        $columns = $this->getTableColumns();
+
         $model = $this->query()->whereKey($primaryKey)->first();
 
         $roles = Arr::pull($data, 'roles');
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 

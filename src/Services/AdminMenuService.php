@@ -33,6 +33,8 @@ class AdminMenuService extends AdminService
 
     public function update($primaryKey, $data): bool
     {
+        $columns = $this->getTableColumns();
+
         $parent_id = Arr::get($data, 'parent_id');
         if ($parent_id != 0) {
             if ($this->parentIsChild($primaryKey, $parent_id)) {
@@ -44,6 +46,10 @@ class AdminMenuService extends AdminService
         $model = $this->query()->whereKey($primaryKey)->first();
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $v = $k == 'parent_id' ? intval($v) : $v;
 
             $model->setAttribute($k, $v);
@@ -58,9 +64,15 @@ class AdminMenuService extends AdminService
 
     public function store($data): bool
     {
+        $columns = $this->getTableColumns();
+
         $model = $this->getModel();
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $v = $k == 'parent_id' ? intval($v) : $v;
 
             $model->setAttribute($k, $v);

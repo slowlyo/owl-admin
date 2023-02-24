@@ -2,6 +2,7 @@
 
 namespace Slowlyo\SlowAdmin\Services;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Slowlyo\SlowAdmin\Traits\ErrorTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,6 +22,11 @@ abstract class AdminService
     public function getModel(): Model
     {
         return new $this->modelName;
+    }
+
+    public function getTableColumns()
+    {
+        return Schema::getColumnListing($this->getModel()->getTable());
     }
 
     public function query(): Builder
@@ -83,9 +89,14 @@ abstract class AdminService
      */
     public function update($primaryKey, $data): bool
     {
-        $model = $this->query()->whereKey($primaryKey)->first();
+        $columns = $this->getTableColumns();
+        $model   = $this->query()->whereKey($primaryKey)->first();
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 
@@ -101,9 +112,14 @@ abstract class AdminService
      */
     public function store($data): bool
     {
-        $model = $this->getModel();
+        $columns = $this->getTableColumns();
+        $model   = $this->getModel();
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 

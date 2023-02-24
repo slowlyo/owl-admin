@@ -48,11 +48,17 @@ class AdminPermissionService extends AdminService
             return false;
         }
 
+        $columns = $this->getTableColumns();
+
         $model = $this->getModel();
 
         $menus = Arr::pull($data, 'menus');
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 
@@ -71,6 +77,8 @@ class AdminPermissionService extends AdminService
             return false;
         }
 
+        $columns = $this->getTableColumns();
+
         $parent_id = Arr::get($data, 'parent_id');
         if ($parent_id != 0) {
             if ($this->parentIsChild($primaryKey, $parent_id)) {
@@ -84,6 +92,10 @@ class AdminPermissionService extends AdminService
         $menus = Arr::pull($data, 'menus');
 
         foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 
