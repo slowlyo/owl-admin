@@ -26,7 +26,7 @@ abstract class AdminService
 
     public function getTableColumns()
     {
-        return Schema::getColumnListing($this->getModel()->getTable());
+        return Schema::connection($this->getModel()->getConnectionName())->getColumnListing($this->getModel()->getTable());
     }
 
     public function query(): Builder
