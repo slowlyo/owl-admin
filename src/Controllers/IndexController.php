@@ -79,6 +79,7 @@ class IndexController extends AdminController
         $settings = [
             'app_name'               => config('admin.name'),
             'logo'                   => url(config('admin.logo')),
+            'footer'                 => config('admin.footer'),
             'locale'                 => config('app.locale'),
             'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
             'login_captcha'          => config('admin.auth.login_captcha'),
