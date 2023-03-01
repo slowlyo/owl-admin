@@ -99,6 +99,7 @@
 	--Form-input-onFocused-borderColor: var(--primary-color-suppl);
 	--Panel-heading-fontSize: var(--fonts-size-10);
 	--Panel-heading-fontWeight: var(--fonts-weight-4);
+    --checkbox-checked-hover-bg-color: var(--primary-color-hover);
 }
 
 /*//2.4.0 样式修复*/
