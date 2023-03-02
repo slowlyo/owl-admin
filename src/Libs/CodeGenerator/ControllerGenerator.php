@@ -125,6 +125,10 @@ class ControllerGenerator extends BaseGenerator
     {
         $list = collect();
 
+        $primaryKey     = $this->primaryKey ?? 'id';
+        $primaryKeyName = strtoupper($primaryKey);
+        $list->push("TableColumn::make()->name('{$primaryKey}')->label('{$primaryKeyName}')->sortable(true)");
+
         $this->columns->map(function ($column) use (&$list) {
             $item = '';
 
@@ -176,7 +180,9 @@ class ControllerGenerator extends BaseGenerator
     {
         $detail = collect();
 
-        $detail->push("TextControl::make()->static(true)->name('id')->label('ID')");
+        $primaryKey     = $this->primaryKey ?? 'id';
+        $primaryKeyName = strtoupper($primaryKey);
+        $detail->push("TextControl::make()->static(true)->name('{$primaryKey}')->label('{$primaryKeyName}')");
 
         $this->columns->map(function ($column) use (&$detail) {
             $item = '';
