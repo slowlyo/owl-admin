@@ -26,7 +26,8 @@ abstract class AdminService
 
     public function getTableColumns()
     {
-        return Schema::connection($this->getModel()->getConnectionName())->getColumnListing($this->getModel()->getTable());
+        return Schema::connection($this->getModel()->getConnectionName())->getColumnListing($this->getModel()
+            ->getTable());
     }
 
     public function query(): Builder
@@ -73,8 +74,11 @@ abstract class AdminService
      */
     public function list()
     {
-        $items = $this->query()->paginate(request()->input('perPage', 20))->items();
-        $total = $this->query()->count();
+        $model = $this->getModel();
+        $query = $this->query()->orderByDesc($model->getUpdatedAtColumn() ?? $model->getKeyName());
+
+        $items = (clone $query)->paginate(request()->input('perPage', 20))->items();
+        $total = (clone $query)->count();
 
         return compact('items', 'total');
     }
