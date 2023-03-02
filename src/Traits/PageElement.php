@@ -89,15 +89,18 @@ trait PageElement
      * 新增按钮
      *
      * @param bool $dialog
+     * @param string $dialogSize
      *
      * @return DialogAction|LinkAction
      */
-    protected function createButton(bool $dialog = false): DialogAction|LinkAction
+    protected function createButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
         $form = $this->form()->api($this->getStorePath());
 
         if ($dialog) {
-            $button = DialogAction::make()->dialog(Dialog::make()->title(__('admin.create'))->body($form));
+            $button = DialogAction::make()->dialog(
+                Dialog::make()->title(__('admin.create'))->body($form)->size($dialogSize)
+            );
         } else {
             $button = LinkAction::make()->link($this->getCreatePath());
         }
@@ -109,15 +112,18 @@ trait PageElement
      * 行编辑按钮
      *
      * @param bool $dialog
+     * @param string $dialogSize
      *
      * @return DialogAction|LinkAction
      */
-    protected function rowEditButton(bool $dialog = false): DialogAction|LinkAction
+    protected function rowEditButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
         if ($dialog) {
             $form = $this->form()->api($this->getUpdatePath('$id'))->initApi($this->getEditGetDataPath('$id'));
 
-            $button = DialogAction::make()->dialog(Dialog::make()->title(__('admin.edit'))->body($form));
+            $button = DialogAction::make()->dialog(
+                Dialog::make()->title(__('admin.edit'))->body($form)->size($dialogSize)
+            );
         } else {
             $button = LinkAction::make()->link($this->getEditPath());
         }
@@ -129,15 +135,16 @@ trait PageElement
      * 行详情按钮
      *
      * @param bool $dialog
+     * @param string $dialogSize
      *
      * @return DialogAction|LinkAction
      */
-    protected function rowShowButton(bool $dialog = false): DialogAction|LinkAction
+    protected function rowShowButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
         if ($dialog) {
-            $button = DialogAction::make()->dialog(Dialog::make()
-                ->title(__('admin.show'))
-                ->body($this->detail('$id')));
+            $button = DialogAction::make()->dialog(
+                Dialog::make()->title(__('admin.show'))->body($this->detail('$id'))->size($dialogSize)
+            );
         } else {
             $button = LinkAction::make()->link($this->getShowPath());
         }
@@ -166,22 +173,23 @@ trait PageElement
      * 操作列
      *
      * @param bool $dialog
+     * @param string $dialogSize
      *
      * @return Operation
      */
-    protected function rowActions(bool $dialog = false): Operation
+    protected function rowActions(bool $dialog = false, string $dialogSize = ''): Operation
     {
         return Operation::make()->label(__('admin.actions'))->buttons([
-            $this->rowShowButton($dialog),
-            $this->rowEditButton($dialog),
+            $this->rowShowButton($dialog, $dialogSize),
+            $this->rowEditButton($dialog, $dialogSize),
             $this->rowDeleteButton(),
         ]);
     }
 
-    protected function rowActionsOnlyEditAndDelete($dialog = false): Operation
+    protected function rowActionsOnlyEditAndDelete($dialog = false, string $dialogSize = ''): Operation
     {
         return Operation::make()->label(__('admin.actions'))->buttons([
-            $this->rowEditButton($dialog),
+            $this->rowEditButton($dialog, $dialogSize),
             $this->rowDeleteButton(),
         ]);
     }
@@ -218,10 +226,17 @@ trait PageElement
             ->footerToolbar(['switch-per-page', 'statistics', 'pagination'])
             ->headerToolbar([
                 $this->createButton(),
-                'bulkActions',
-                amis('reload')->align('right'),
-                amis('filter-toggler')->align('right'),
+                ...$this->baseHeaderToolBar(),
             ]);
+    }
+
+    protected function baseHeaderToolBar()
+    {
+        return [
+            'bulkActions',
+            amis('reload')->align('right'),
+            amis('filter-toggler')->align('right'),
+        ];
     }
 
     /**
