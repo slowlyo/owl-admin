@@ -2,8 +2,8 @@
 
 namespace {namespace};
 
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Extend\ServiceProvider;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Extend\ServiceProvider;
 
 class {className}ServiceProvider extends ServiceProvider
 {

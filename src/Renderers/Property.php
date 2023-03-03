@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Renderers;
+namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * <b>Property 属性表</b><br/>

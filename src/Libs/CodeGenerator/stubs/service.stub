@@ -3,7 +3,7 @@
 namespace {{ Namespace }};
 
 use {{ UseModel }};
-use Slowlyo\SlowAdmin\Services\AdminService;
+use Slowlyo\OwlAdmin\Services\AdminService;
 
 class {{ ClassName }} extends AdminService
 {

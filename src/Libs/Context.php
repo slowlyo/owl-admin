@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Libs;
+namespace Slowlyo\OwlAdmin\Libs;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;

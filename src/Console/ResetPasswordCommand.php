@@ -1,9 +1,9 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Console;
+namespace Slowlyo\OwlAdmin\Console;
 
 use Illuminate\Console\Command;
-use Slowlyo\SlowAdmin\Models\AdminUser;
+use Slowlyo\OwlAdmin\Models\AdminUser;
 
 class ResetPasswordCommand extends Command
 {

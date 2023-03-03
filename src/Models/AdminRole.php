@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Models;
+namespace Slowlyo\OwlAdmin\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 

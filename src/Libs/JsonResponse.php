@@ -1,8 +1,8 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Libs;
+namespace Slowlyo\OwlAdmin\Libs;
 
-use Slowlyo\SlowAdmin\Renderers\BaseRenderer;
+use Slowlyo\OwlAdmin\Renderers\BaseRenderer;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class JsonResponse

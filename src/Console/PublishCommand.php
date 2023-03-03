@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Console;
+namespace Slowlyo\OwlAdmin\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -29,7 +29,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $description = "Re-publish slow-admin's assets, configuration and language files. If you want overwrite the existing files, you can add the `--force` option";
+    protected $description = "Re-publish owl-admin's assets, configuration and language files. If you want overwrite the existing files, you can add the `--force` option";
 
     /**
      * @var Filesystem

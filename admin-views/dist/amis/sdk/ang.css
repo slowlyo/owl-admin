@@ -1,7 +1,7 @@
 /*!
- * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2022 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 
 .fa {
@@ -296,7 +296,9 @@
     animation-duration: 1ms;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+    -webkit-transition-delay: 0s;
     transition-delay: 0s;
+    -webkit-transition-duration: 0s;
     transition-duration: 0s;
   }
 }
@@ -10305,6 +10307,10 @@ readers do not read off random characters that represent icons */
   content: "\f26b";
 }
 
+.fa-stubber:before {
+  content: "\e5c7";
+}
+
 .fa-telegram:before {
   content: "\f2c6";
 }
@@ -10315,6 +10321,10 @@ readers do not read off random characters that represent icons */
 
 .fa-old-republic:before {
   content: "\f510";
+}
+
+.fa-odysee:before {
+  content: "\e5c6";
 }
 
 .fa-square-whatsapp:before {
@@ -10571,9 +10581,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2022 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 
 .fa.fa-glass:before {
@@ -74539,73 +74549,6 @@ title: Word Break
     (var(--BreadcrumbDropdown-item-height) - var(--fontSizeSm)) / 2
   );
   --Breadcrumb-item-disabled-color: var(--colors-neutral-text-6);
-  --Calendar-btn-bg: var(--info);
-  --Calendar-btn-border: var(--Calendar-btn-bg);
-  --Calendar-btn-borderRadius: var(--Button-borderRadius);
-  --Calendar-btn-color: var(--colors-neutral-fill-11);
-  --Calendar-btn-fontSize: var(--fontSizeSm);
-  --Calendar-btn-height: 1.875rem;
-  --Calendar-btn-lineHeight: var(--lineHeightBase);
-  --Calendar-btn-onActive-bg: var(--colors-brand-4);
-  --Calendar-btn-onActive-border: var(--colors-brand-3);
-  --Calendar-btn-onActive-color: var(--Calendar-btn-color);
-  --Calendar-btn-onHover-bg: var(--colors-brand-4);
-  --Calendar-btn-onHover-border: var(--colors-brand-3);
-  --Calendar-btn-onHover-color: var(--Calendar-btn-color);
-  --Calendar-btn-paddingX: 0.625rem;
-  --Calendar-btn-paddingY: calc(
-    (
-        var(--Calendar-btn-height) - var(--Calendar-btn-lineHeight) *
-          var(--Calendar-btn-fontSize)
-      ) / 2
-  );
-  --Calendar-btnCancel-bg: var(--light);
-  --Calendar-btnCancel-border: var(--colors-neutral-line-7);
-  --Calendar-btnCancel-borderRadius: var(--borders-radius-3);
-  --Calendar-btnCancel-color: var(--text-color);
-  --Calendar-btnCancel-onActive-bg: var(--colors-neutral-fill-11);
-  --Calendar-btnCancel-onActive-border: var(--colors-brand-4);
-  --Calendar-btnCancel-onActive-color: var(--colors-brand-4);
-  --Calendar-btnCancel-onHover-bg: var(--colors-neutral-fill-11);
-  --Calendar-btnCancel-onHover-border: var(--colors-brand-6);
-  --Calendar-btnCancel-onHover-color: var(--colors-brand-6);
-  --Calendar-cell-bg: var(--colors-neutral-fill-11);
-  --Calendar-cell-onActive-bg: var(--info);
-  --Calendar-cell-onBetween-bg: rgba(0, 123, 255, 0.1);
-  --Calendar-cell-onDisabled-bg: #f7f7f9;
-  --Calendar-cell-onHover-bg: #f7f7f9;
-  --Calendar-color: #151b26;
-  --Calendar-fontSize: var(--fontSizeSm);
-  --Calendar-input-borderColor: var(--borderColor);
-  --Calendar-input-borderRadius: var(--borders-radius-3);
-  --Calendar-input-color: var(--info);
-  --Calendar-input-fontSize: var(--fontSizeBase);
-  --Calendar-input-height: 2.5rem;
-  --Calendar-input-lineHeight: var(--lineHeightBase);
-  --Calendar-input-onFocused-borderColor: var(--info);
-  --Calendar-input-paddingX: 0.625rem;
-  --Calendar-input-paddingY: calc(
-    (
-        var(--Calendar-input-height) - var(--Calendar-input-lineHeight) *
-          var(--Calendar-input-fontSize)
-      ) / 2
-  );
-  --Calendar-shortcut-color: #151b26;
-  --Calendar-shortcut-decoration: none;
-  --Calendar-shortcut-onHover-color: var(--colors-brand-6);
-  --Calendar-shortcut-onHover-decoration: none;
-  --Calendar-shortcuts-bg: var(--colors-neutral-text-9);
-  --Calendar-shortcuts-height: var(--sizes-size-9);
-  --Calendar-wLabel-color: var(--colors-neutral-text-6);
-  --Calendar-icon-bottom: -0.25rem;
-  --Calendar-icon-width: var(--sizes-size-6);
-  --Calendar-icon-height: var(--sizes-size-6);
-  --Calendar-borderWidth: var(--borders-width-2);
-  --Calendar-borderColor: var(--colors-brand-5);
-  --Calendar-rdt-day: var(--sizes-base-49);
-  --Calendar-schedule-content-padding: 0 var(--sizes-size-3);
-  --Calendar-schedule-content-height: var(--sizes-base-10);
-  --Calendar-schedule-content-color: var(--colors-neutral-text-11);
   --Card-actions-borderColor: var(--colors-neutral-line-10);
   --Card-actions-fontSize: var(--fonts-size-8);
   --Card-actions-onChecked-onHover-bg: var(--colors-neutral-fill-11);
@@ -74713,42 +74656,6 @@ title: Word Break
   --Crud-toolbar-gap: var(--sizes-size-6);
   --Crud-toolbar-height: 1.875rem;
   --Crud-toolbar-lineHeight: var(--lineHeightBase);
-  --DatePicker-bg: var(--colors-neutral-fill-11);
-  --DatePicker-borderColor: var(--Form-input-borderColor);
-  --DatePicker-borderRadius: var(--borders-radius-3);
-  --DatePicker-borderWidth: var(--borders-width-2);
-  --DatePicker-color: var(--colors-neutral-text-2);
-  --DatePicker-header-onHover-color: var(--colors-brand-6);
-  --DatePicker-arrow-color: #84868c;
-  --DatePicker-fontSize: var(--fontSizeSm);
-  --DatePicker-header-select-borderColor: #fff;
-  --DatePicker-height: var(--Form-input-height);
-  --DatePicker-iconColor: var(--icon-color);
-  --DatePicker-lineHeight: var(--Form-input-lineHeight);
-  --DatePicker-onFocused-borderColor: var(--colors-brand-4);
-  --DatePicker-onHover-bg: var(--colors-neutral-fill-11);
-  --DatePicker-onHover-borderColor: var(--colors-brand-5);
-  --DatePicker-onDisabled-bg: var(--colors-neutral-text-9);
-  --DatePicker-onDisabled-color: var(--colors-neutral-text-6);
-  --DatePicker-onHover-iconColor: var(--colors-brand-5);
-  --DatePicker-paddingX: 0.75rem;
-  --DatePicker-paddingY: calc(
-    (
-        var(--DatePicker-height) - var(--DatePicker-lineHeight) *
-          var(--DatePicker-fontSize)
-      ) / 2 - var(--DatePicker-borderWidth)
-  );
-  --DatePicker-placeholderColor: var(--colors-neutral-text-6);
-  --DatePicker-minWidth: calc(
-    var(--fontSizeLg) * 5 + var(--DatePicker-paddingX) * 2 +
-      var(--Form-input-clearBtn-size) * 2
-  );
-  --DateRangePicker-minWidth: calc(
-    var(--fontSizeLg) * 8 + var(--DatePicker-paddingX) * 2 +
-      var(--Form-input-clearBtn-size) * 2
-  );
-  --DateRangePicker-activeCursor-color: var(--colors-brand-4);
-  --DateRangePicker-activeCursor-height: 2px;
   --LocationPicker-borderRadius: var(--borders-radius-3);
   --Drawer-bg: var(--background);
   --Drawer-body-padding: var(--sizes-base-12);
@@ -74859,59 +74766,6 @@ title: Word Break
       ) / 2
   );
   --Form-row-gutterWidth: 0.625rem;
-  --Form-select-bg: var(--colors-neutral-fill-11);
-  --Form-select-height: var(--Form-select-outer-top);
-  --Form-select-borderColor: var(--Form-input-borderColor);
-  --Form-select-borderRadius: var(--borders-radius-3);
-  --Form-select-borderWidth: var(--borders-width-2);
-  --Form-select-caret-iconColor: var(--colors-neutral-text-5);
-  --Form-select-caret-onHover-iconColor: var(--colors-neutral-text-5);
-  --Form-select-caret-fontSize: var(--fonts-size-8);
-  --Form-select-checkall-bottomBorder: #eceff8;
-  --Form-select-color: var(--colors-neutral-text-2);
-  --Form-select-input-fontSize: var(--fontSizeSm);
-  --Form-select-menu-bg: var(--colors-neutral-fill-11);
-  --Form-select-menu-color: var(--colors-neutral-text-2);
-  --Form-select-menu-height: var(--sizes-base-12);
-  --Form-select-menu-onActive-bg: transparent;
-  --Form-select-menu-onActive-color: var(--colors-brand-5);
-  --Form-select-menu-onDisabled-bg: transparent;
-  --Form-select-menu-onDisabled-color: var(--text--muted-color);
-  --Form-select-menu-onHover-bg: var(--colors-brand-10);
-  --Form-select-menu-onHover-color: var(--colors-neutral-text-2);
-  --Form-select-group-color: var(--Form-select-caret-iconColor);
-  --Form-select-onError-borderColor: var(--Form-input-onError-borderColor);
-  --Form-select-onFocused-borderColor: var(--Form-input-onFocused-borderColor);
-  --Form-select-onFocused-color: var(--Form-select-color);
-  --Form-select-onHover-bg: var(--colors-neutral-fill-11);
-  --Form-select-onHover-borderColor: var(--colors-brand-5);
-  --Form-select-outer-borderWidth: var(--borders-width-1);
-  --Form-select-outer-top: var(--sizes-base-16);
-  --Form-select-outer-boxShadow: var(--shadows-shadow-normal);
-  --Form-select-paddingX: var(--Form-input-paddingX);
-  --Form-select-placeholderColor: var(--Form-input-placeholderColor);
-  --Form-select-popoverGap: var(--borders-radius-3);
-  --Form-select-icon-rigin: var(--sizes-size-9);
-  --Form-select-search-height: var(--sizes-base-15);
-  --Form-select-value-bgColor: var(--Form-input-onDisabled-bg);
-  --Form-select-value-bgColor--dark: var(--colors-neutral-fill-4);
-  --Form-select-value-borderColor: var(--colors-neutral-line-9);
-  --Form-select-valueIcon-color: var(--colors-neutral-text-4);
-  --Form-select-valueIcon-color--dark: var(--colors-neutral-text-8);
-  --Form-select-valueIcon-onHover-color: var(--Form-select-color);
-  --Form-select-multiple-bgColor: var(--colors-neutral-fill-10);
-  --Form-selectOption-height: var(--Form-select-height);
-  --Form-selectValue-bg: #cce5ff;
-  --Form-selectValue-onHover-bgColor: var(--Form-select-borderColor);
-  --Form-selectValue-borderColor: var(--colors-brand-7);
-  --Form-selectValue-color: var(--colors-brand-5);
-  --Form-selectValue-fontSize: var(--fontSizeSm);
-  --Form-selectValue-onDisable-bg: #e6f2ff;
-  --Form-selectValue-onHover-bg: #b3d7ff;
-  --Form-selectValue-onDisabled-color: var(--Form-select-caret-iconColor);
-  --Form-selectValue-onInvalid-color: var(--danger);
-  --Form-valueLabel-maxWidth: 7.5rem;
-  --Form-select-onFocus-boxShadow: none;
   --IconPicker-content-maxHeight: 21.875rem;
   --IconPicker-padding: var(--gap-xs);
   --IconPicker-selectedIcon-marginRight: var(--gap-xs);
@@ -74943,10 +74797,10 @@ title: Word Break
   );
   --InputGroup-select-arrowColor: var(--colors-neutral-text-5);
   --InputGroup-select-bg: var(--colors-neutral-fill-11);
-  --InputGroup-select-borderColor: var(--Form-select-borderColor);
-  --InputGroup-select-borderRadius: var(--Form-select-borderRadius);
+  --InputGroup-select-borderColor: var(--borderColor);
+  --InputGroup-select-borderRadius: var(--borders-radius-3);
   --InputGroup-select-borderWidth: var(--borders-width-2);
-  --InputGroup-select-color: var(--Form-select-color);
+  --InputGroup-select-color: var(--colors-neutral-text-2);
   --InputGroup-select-onFocused-arrowColor: var(--colors-brand-5);
   --InputGroup-select-onFocused-bg: var(--colors-brand-10);
   --InputGroup-select-onFocused-color: var(--colors-brand-5);
@@ -75219,18 +75073,6 @@ title: Word Break
   --Remark-onHover-borderColor: var(--colors-warning-5);
   --Remark-onHover-iconColor: var(--colors-neutral-text-11);
   --Remark-width: var(--sizes-size-9);
-  --ResultBox-tag-height: 1.5rem;
-  --ResultBox-tag-marginBottom: 0.125rem;
-  --ResultBox-icon--onDisabled-color: #ebebeb;
-  --ResultBox-icon--onHover-color: #666666;
-  --ResultBox-icon-color: var(--colors-neutral-text-6);
-  --ResultBox-value--onDisabled-color: #cccccc;
-  --ResultBox-value--onHover-bg: rgba(0, 145, 255, 0.1);
-  --ResultBox-value--onHover-bg--dark: #b8babf;
-  --ResultBox-value-bg: var(--colors-neutral-fill-10);
-  --ResultBox-value-color: #000;
-  --ResultBox-value-clear-bg: var(--colors-neutral-fill-8);
-  --ResultBox-value-clear-hover-bg: var(--colors-neutral-fill-9);
   --Satus-icon-width: var(--sizes-size-8);
   --Satus-icon-height: var(--Satus-icon-width);
   --Sparkline-line-color: var(--info);
@@ -75439,22 +75281,6 @@ title: Word Break
   --TransferSelect-heading-borderBottom: var(--borders-width-1);
   --TabsTransfer-title-bg: #f7f7f9;
   --TabsTransfer-border-color: #e8e9eb;
-  --Tree-indent: var(--gap-md);
-  --Tree-icon-gap: var(--sizes-size-5);
-  --Tree-icon-margin-right: 0.5rem;
-  --Tree-inputHeight: calc(var(--Form-input-height) * 0.85);
-  --Tree-item-onHover-bg: var(--colors-neutral-fill-10);
-  --Tree-item-onHover-bg-pure: var(--colors-neutral-fill-10);
-  --Tree-itemArrowWidth: 1rem;
-  --Tree-itemHeight: var(--sizes-base-12);
-  --Tree-itemLabel--onChecked-color: var(--Form-selectValue-color);
-  --TreeSelect-popover-bg: var(--colors-neutral-fill-11);
-  --Tree-item-text-max-height: 15.625rem;
-  --Tree-item-text-top: 0.25rem;
-  --Tree-item-arrow-padding-left: 0.25rem;
-  --Tree-item-arrow-color: #84868c;
-  --Tree-item-onChekced-bg: var(--colors-brand-10);
-  --Tree-item-onChekced-bg-borderRadius: var(--borders-radius-2);
   --Wizard-badge-bg: var(--colors-neutral-fill-11);
   --Wizard-badge-border: var(--borders-width-2) var(--borders-style-2)
     var(--colors-neutral-fill-6);
@@ -76466,7 +76292,7 @@ title: Word Break
   --transfer-group-font-color: var(--colors-neutral-text-5);
   --transfer-group-fontWeight: var(--fonts-weight-6);
   --transfer-group-lineHeight: var(--fonts-lineHeight-2);
-  --transfer-table-last-paddingRight: var(--sizes-size-10);
+  --transfer-table-last-paddingRight: var(--sizes-base-9);
   --transfer-table-header-marginTop: var(--sizes-size-1);
   --transfer-table-header-marginLeft: var(--sizes-size-1);
   --transfer-table-header-paddingTop: var(--sizes-size-5);
@@ -76649,7 +76475,7 @@ title: Word Break
   --input-addon-text-bottom-border-width: var(--borders-width-2);
   --input-addon-text-bottom-border-style: var(--borders-style-2);
   --input-addon-text-left-border-color: var(--colors-neutral-line-8);
-  --input-addon-text-left-border-width: var(--borders-width-1);
+  --input-addon-text-left-border-width: var(--borders-width-2);
   --input-addon-text-left-border-style: var(--borders-style-2);
   --input-size-sm-height: var(--sizes-base-15);
   --input-size-default-height: var(--sizes-base-16);
@@ -76759,13 +76585,13 @@ title: Word Break
   --inputNumber-base-default-unit-paddingTop: calc(
     (
         var(--Form-selectOption-height) - var(--Form-input-lineHeight) *
-          var(--Form-input-fontSize) - var(--Form-select-borderWidth) * 2
+          var(--Form-input-fontSize) - var(--Form-input-borderWidth) * 2
       ) / 2
   );
   --inputNumber-base-default-unit-paddingBottom: calc(
     (
         var(--Form-selectOption-height) - var(--Form-input-lineHeight) *
-          var(--Form-input-fontSize) - var(--Form-select-borderWidth) * 2
+          var(--Form-input-fontSize) - var(--Form-input-borderWidth) * 2
       ) / 2
   );
   --inputNumber-base-default-unit-paddingLeft: var(--sizes-size-6);
@@ -77096,7 +76922,7 @@ title: Word Break
   --Checkbox--sm-inner-size: var(--sizes-size-5);
   --Checkbox--sm-size: var(--sizes-size-8);
   --Checkbox-borderRadius: 0.125rem;
-  --Checkbox-color: var(--Form-input-borderColor);
+  --Checkbox-color: var(--borderColor);
   --Checkbox-gap: var(--gap-xs);
   --Checkbox-gb: #fff;
   --Checkbox-inner-size: var(--sizes-size-5);
@@ -77257,7 +77083,7 @@ title: Word Break
   --Form-description-fontWeight: var(--fonts-weight-6);
   --Form-description-lineHeight: var(--fonts-lineHeight-2);
   --Form-description-gap: var(--sizes-size-3);
-  --Form-item-onError-color: var(--colors-brand-5);
+  --Form-item-onError-color: var(--colors-error-5);
   --Form-item-onError-borderColor: var(--colors-error-5);
   --Form-item-onError-bg: var(--colors-neutral-fill-11);
   --Form-feedBack-color: var(--colors-error-5);
@@ -78175,6 +78001,453 @@ title: Word Break
   --ImageControl-addBtn-onHover-color: var(--inputImage-base-hover-color);
   --ImageControl-addBtn-upload-color: var(--inputImage-base-default-color);
   --ImageControl-progress-borderRadius: var(--borders-radius-2);
+  --select-base-default-top-border-color: var(--colors-neutral-line-8);
+  --select-base-default-top-border-width: var(--borders-width-2);
+  --select-base-default-top-border-style: var(--borders-style-2);
+  --select-base-default-right-border-color: var(--colors-neutral-line-8);
+  --select-base-default-right-border-width: var(--borders-width-2);
+  --select-base-default-right-border-style: var(--borders-style-2);
+  --select-base-default-bottom-border-color: var(--colors-neutral-line-8);
+  --select-base-default-bottom-border-width: var(--borders-width-2);
+  --select-base-default-bottom-border-style: var(--borders-style-2);
+  --select-base-default-left-border-color: var(--colors-neutral-line-8);
+  --select-base-default-left-border-width: var(--borders-width-2);
+  --select-base-default-left-border-style: var(--borders-style-2);
+  --select-base-default-top-right-border-radius: var(--borders-radius-3);
+  --select-base-default-top-left-border-radius: var(--borders-radius-3);
+  --select-base-default-bottom-right-border-radius: var(--borders-radius-3);
+  --select-base-default-bottom-left-border-radius: var(--borders-radius-3);
+  --select-base-default-paddingTop: var(--sizes-size-3);
+  --select-base-default-paddingBottom: var(--sizes-size-3);
+  --select-base-default-paddingLeft: var(--sizes-size-6);
+  --select-base-default-paddingRight: var(--sizes-size-6);
+  --select-base-default-color: var(--colors-neutral-text-2);
+  --select-base-default-fontSize: var(--fonts-size-7);
+  --select-base-default-fontWeight: var(--fonts-weight-6);
+  --select-base-default-bg-color: transparent;
+  --select-base-default-option-paddingTop: var(--sizes-size-0);
+  --select-base-default-option-paddingBottom: var(--sizes-size-0);
+  --select-base-default-option-paddingLeft: var(--sizes-size-6);
+  --select-base-default-option-paddingRight: var(--sizes-size-6);
+  --select-base-default-option-color: var(--colors-neutral-text-2);
+  --select-base-default-option-fontSize: var(--fonts-size-7);
+  --select-base-default-option-fontWeight: var(--fonts-weight-6);
+  --select-base-default-option-bg-color: transparent;
+  --select-base-default-option-line-height: var(--sizes-base-16);
+  --select-base-hover-top-border-color: var(--colors-brand-5);
+  --select-base-hover-top-border-width: var(--borders-width-2);
+  --select-base-hover-top-border-style: var(--borders-style-2);
+  --select-base-hover-right-border-color: var(--colors-brand-5);
+  --select-base-hover-right-border-width: var(--borders-width-2);
+  --select-base-hover-right-border-style: var(--borders-style-2);
+  --select-base-hover-bottom-border-color: var(--colors-brand-5);
+  --select-base-hover-bottom-border-width: var(--borders-width-2);
+  --select-base-hover-bottom-border-style: var(--borders-style-2);
+  --select-base-hover-left-border-color: var(--colors-brand-5);
+  --select-base-hover-left-border-width: var(--borders-width-2);
+  --select-base-hover-left-border-style: var(--borders-style-2);
+  --select-base-hover-bg-color: transparent;
+  --select-base-hover-option-color: var(--colors-neutral-text-2);
+  --select-base-hover-option-bg-color: var(--colors-brand-10);
+  --select-base-active-top-border-color: var(--colors-brand-5);
+  --select-base-active-top-border-width: var(--borders-width-2);
+  --select-base-active-top-border-style: var(--borders-style-2);
+  --select-base-active-right-border-color: var(--colors-brand-5);
+  --select-base-active-right-border-width: var(--borders-width-2);
+  --select-base-active-right-border-style: var(--borders-style-2);
+  --select-base-active-bottom-border-color: var(--colors-brand-5);
+  --select-base-active-bottom-border-width: var(--borders-width-2);
+  --select-base-active-bottom-border-style: var(--borders-style-2);
+  --select-base-active-left-border-color: var(--colors-brand-5);
+  --select-base-active-left-border-width: var(--borders-width-2);
+  --select-base-active-left-border-style: var(--borders-style-2);
+  --select-base-active-shadow: var(--shadows-shadow-none);
+  --select-base-active-bg-color: transparent;
+  --select-base-active-option-color: var(--colors-brand-5);
+  --select-base-active-option-bg-color: transparent;
+  --select-base-disabled-top-border-color: var(--colors-neutral-line-8);
+  --select-base-disabled-top-border-width: var(--borders-width-2);
+  --select-base-disabled-top-border-style: var(--borders-style-2);
+  --select-base-disabled-right-border-color: var(--colors-neutral-line-8);
+  --select-base-disabled-right-border-width: var(--borders-width-2);
+  --select-base-disabled-right-border-style: var(--borders-style-2);
+  --select-base-disabled-bottom-border-color: var(--colors-neutral-line-8);
+  --select-base-disabled-bottom-border-width: var(--borders-width-2);
+  --select-base-disabled-bottom-border-style: var(--borders-style-2);
+  --select-base-disabled-left-border-color: var(--colors-neutral-line-8);
+  --select-base-disabled-left-border-width: var(--borders-width-2);
+  --select-base-disabled-left-border-style: var(--borders-style-2);
+  --select-base-disabled-bg-color: var(--colors-neutral-fill-10);
+  --select-base-disabled-option-color: var(--colors-neutral-text-6);
+  --select-base-disabled-option-bg-color: transparent;
+  --select-multiple-top-right-border-radius: var(--borders-radius-2);
+  --select-multiple-top-left-border-radius: var(--borders-radius-2);
+  --select-multiple-bottom-right-border-radius: var(--borders-radius-2);
+  --select-multiple-bottom-left-border-radius: var(--borders-radius-2);
+  --select-multiple-paddingTop: var(--sizes-size-0);
+  --select-multiple-paddingBottom: var(--sizes-size-0);
+  --select-multiple-paddingLeft: var(--sizes-size-3);
+  --select-multiple-paddingRight: var(--sizes-size-3);
+  --select-multiple-marginTop: var(--sizes-size-0);
+  --select-multiple-marginBottom: var(--sizes-size-2);
+  --select-multiple-marginLeft: var(--sizes-size-0);
+  --select-multiple-marginRight: var(--sizes-size-3);
+  --select-multiple-color: var(--colors-neutral-text-2);
+  --select-multiple-fontSize: var(--fonts-size-8);
+  --select-multiple-fontWeight: var(--fonts-weight-6);
+  --select-multiple-bg-color: var(--colors-neutral-fill-10);
+  --select-multiple-hover-bg-color: var(--colors-brand-10);
+  --select-multiple-icon-color: var(--colors-neutral-text-6);
+  --select-multiple-icon-hover-color: var(--colors-neutral-text-2);
+  --select-group-color: var(--colors-neutral-text-5);
+  --select-group-fontSize: var(--fonts-size-7);
+  --select-group-fontWeight: var(--fonts-weight-6);
+  --select-group-lineHeight: var(--fonts-lineHeight-2);
+  --select-group-paddingTop: var(--sizes-size-3);
+  --select-group-paddingBottom: var(--sizes-size-3);
+  --select-group-paddingLeft: var(--sizes-size-7);
+  --select-group-paddingRight: var(--sizes-size-7);
+  --select-table-header-paddingTop: var(--sizes-size-5);
+  --select-table-header-paddingBottom: var(--sizes-size-5);
+  --select-table-header-paddingLeft: var(--sizes-size-7);
+  --select-table-header-paddingRight: var(--sizes-base-9);
+  --select-table-option-paddingTop: var(--sizes-size-4);
+  --select-table-option-paddingBottom: var(--sizes-size-5);
+  --select-table-option-paddingLeft: var(--sizes-size-7);
+  --select-table-option-paddingRight: var(--sizes-base-9);
+  --select-table-color: var(--colors-neutral-text-2);
+  --select-table-fontSize: var(--fonts-size-8);
+  --select-tree-color: var(--colors-neutral-text-2);
+  --select-tree-fontSize: var(--fonts-size-7);
+  --select-tree-hover-bg-color: var(--colors-neutral-fill-10);
+  --select-tree-active-bg-color: var(--colors-brand-10);
+  --Form-select-bg: var(--select-base-default-bg-color);
+  --Form-select-height: var(--Form-select-outer-top);
+  --Form-select-borderColor: var(--select-base-default-top-border-color)
+    var(--select-base-default-right-border-color)
+    var(--select-base-default-bottom-border-color)
+    var(--select-base-default-left-border-color);
+  --Form-select-borderRadius: var(--select-base-default-top-left-border-radius)
+    var(--select-base-default-top-right-border-radius)
+    var(--select-base-default-bottom-right-border-radius)
+    var(--select-base-default-bottom-left-border-radius);
+  --Form-select-borderWidth: var(--select-base-default-top-border-width)
+    var(--select-base-default-right-border-width)
+    var(--select-base-default-bottom-border-width)
+    var(--select-base-default-left-border-width);
+  --Form-select-caret-iconColor: var(--colors-neutral-text-5);
+  --Form-select-caret-onHover-iconColor: var(--colors-neutral-text-5);
+  --Form-select-caret-fontSize: var(--fonts-size-8);
+  --Form-select-checkall-bottomBorder: #eceff8;
+  --Form-select-color: var(--select-base-default-color);
+  --Form-select-input-fontSize: var(--fontSizeSm);
+  --Form-select-menu-bg: var(--colors-neutral-fill-11);
+  --Form-select-menu-color: var(--colors-neutral-text-2);
+  --Form-select-menu-height: var(--sizes-base-12);
+  --Form-select-menu-onActive-bg: var(--select-base-active-option-bg-color);
+  --Form-select-menu-onActive-color: var(--select-base-active-option-color);
+  --Form-select-menu-onDisabled-bg: var(--select-base-disabled-option-bg-color);
+  --Form-select-menu-onDisabled-color: var(--select-base-disabled-option-color);
+  --Form-select-menu-onHover-bg: var(--select-base-hover-option-bg-color);
+  --Form-select-menu-onHover-color: var(--select-base-hover-option-color);
+  --Form-select-group-color: var(--Form-select-caret-iconColor);
+  --Form-select-onError-borderColor: var(--Form-input-onError-borderColor);
+  --Form-select-onFocused-borderColor: var(--Form-input-onFocused-borderColor);
+  --Form-select-onFocused-color: var(--Form-select-color);
+  --Form-select-onHover-bg: var(--select-base-hover-bg-color);
+  --Form-select-onHover-borderColor: var(--colors-brand-5);
+  --Form-select-outer-borderWidth: var(--borders-width-1);
+  --Form-select-outer-top: var(--sizes-base-16);
+  --Form-select-outer-boxShadow: var(--shadows-shadow-normal);
+  --Form-select-paddingX: var(--Form-input-paddingX);
+  --Form-select-placeholderColor: var(--Form-input-placeholderColor);
+  --Form-select-popoverGap: var(--borders-radius-3);
+  --Form-select-icon-rigin: var(--sizes-size-9);
+  --Form-select-search-height: var(--sizes-base-15);
+  --Form-select-value-bgColor: var(--select-multiple-bg-color);
+  --Form-select-value-bgColor--dark: var(--colors-neutral-fill-4);
+  --Form-select-value-borderColor: var(--colors-neutral-line-9);
+  --Form-select-valueIcon-color: var(--select-multiple-icon-color);
+  --Form-select-valueIcon-color--dark: var(--colors-neutral-text-8);
+  --Form-select-valueIcon-onHover-color: var(
+    --select-multiple-icon-hover-color
+  );
+  --Form-select-multiple-bgColor: var(--colors-neutral-fill-10);
+  --Form-selectOption-height: var(--Form-select-height);
+  --Form-selectValue-bg: #cce5ff;
+  --Form-selectValue-onHover-bgColor: var(--select-multiple-hover-bg-color);
+  --Form-selectValue-borderColor: var(--colors-brand-7);
+  --Form-selectValue-color: var(--colors-brand-5);
+  --Form-selectValue-fontSize: var(--select-multiple-fontSize);
+  --Form-selectValue-onDisable-bg: #e6f2ff;
+  --Form-selectValue-onHover-bg: #b3d7ff;
+  --Form-selectValue-onDisabled-color: var(--Form-select-caret-iconColor);
+  --Form-selectValue-onInvalid-color: var(--danger);
+  --Form-valueLabel-maxWidth: 7.5rem;
+  --Form-select-onFocus-boxShadow: none;
+  --ResultBox-tag-height: 1.5rem;
+  --ResultBox-tag-marginBottom: var(--select-multiple-marginBottom);
+  --ResultBox-icon--onDisabled-color: #ebebeb;
+  --ResultBox-icon--onHover-color: var(--select-multiple-icon-hover-color);
+  --ResultBox-icon-color: var(--select-multiple-icon-color);
+  --ResultBox-value--onDisabled-color: #cccccc;
+  --ResultBox-value--onHover-bg: var(--select-multiple-hover-bg-color);
+  --ResultBox-value--onHover-bg--dark: #b8babf;
+  --ResultBox-value-bg: var(--select-multiple-bg-color);
+  --ResultBox-value-color: var(--select-multiple-color);
+  --ResultBox-value-clear-bg: var(--colors-neutral-fill-8);
+  --ResultBox-value-clear-hover-bg: var(--colors-neutral-fill-9);
+  --Tree-max-height: 300px;
+  --Tree-indent: var(--gap-md);
+  --Tree-icon-gap: var(--sizes-size-5);
+  --Tree-icon-margin-right: 0.5rem;
+  --Tree-inputHeight: calc(var(--Form-input-height) * 0.85);
+  --Tree-item-onHover-bg: var(--colors-neutral-fill-10);
+  --Tree-item-onHover-bg-pure: var(--select-tree-hover-bg-color);
+  --Tree-itemArrowWidth: 1rem;
+  --Tree-itemHeight: var(--sizes-base-12);
+  --Tree-itemLabel--onChecked-color: var(--Form-selectValue-color);
+  --TreeSelect-popover-bg: var(--colors-neutral-fill-11);
+  --Tree-item-text-max-height: 15.625rem;
+  --Tree-item-text-top: 0.25rem;
+  --Tree-item-arrow-padding-left: 0.25rem;
+  --Tree-item-arrow-color: #84868c;
+  --Tree-item-onChekced-bg: var(--select-tree-active-bg-color);
+  --Tree-item-onChekced-bg-borderRadius: var(--borders-radius-2);
+  --inputDate-default-top-border-color: var(--colors-neutral-line-8);
+  --inputDate-default-top-border-width: var(--borders-width-2);
+  --inputDate-default-top-border-style: var(--borders-style-2);
+  --inputDate-default-right-border-color: var(--colors-neutral-line-8);
+  --inputDate-default-right-border-width: var(--borders-width-2);
+  --inputDate-default-right-border-style: var(--borders-style-2);
+  --inputDate-default-bottom-border-color: var(--colors-neutral-line-8);
+  --inputDate-default-bottom-border-width: var(--borders-width-2);
+  --inputDate-default-bottom-border-style: var(--borders-style-2);
+  --inputDate-default-left-border-color: var(--colors-neutral-line-8);
+  --inputDate-default-left-border-width: var(--borders-width-2);
+  --inputDate-default-left-border-style: var(--borders-style-2);
+  --inputDate-default-top-right-border-radius: var(--borders-radius-3);
+  --inputDate-default-top-left-border-radius: var(--borders-radius-3);
+  --inputDate-default-bottom-right-border-radius: var(--borders-radius-3);
+  --inputDate-default-bottom-left-border-radius: var(--borders-radius-3);
+  --inputDate-default-paddingTop: var(--sizes-size-3);
+  --inputDate-default-paddingBottom: var(--sizes-size-3);
+  --inputDate-default-paddingLeft: var(--sizes-size-6);
+  --inputDate-default-paddingRight: var(--sizes-base-6);
+  --inputDate-default-fontSize: var(--fonts-size-7);
+  --inputDate-default-fontWeight: var(--fonts-weight-6);
+  --inputDate-default-height: var(--sizes-base-16);
+  --inputDate-default-color: var(--colors-neutral-text-2);
+  --inputDate-default-bg-color: var(--colors-neutral-fill-11);
+  --inputDate-default-icon: '<svg viewBox="0 0 13 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-1.338385, -2.000000)"><rect x="0" y="0" width="16" height="16"></rect><path d="M6,2 L6,3 L10,3 L10,2 L11,2 L11,3 L14,3 L14,14 L2,14 L2,3 L5,3 L5,2 L6,2 Z M13,7 L3,7 L3,13 L13,13 L13,7 Z M5,4 L3,4 L3,6 L13,6 L13,4 L11,4 L11,5 L10,5 L10,4 L6,4 L6,5 L5,5 L5,4 Z" fill="currentColor"></path></g></g></svg>';
+  --inputDate-default-icon-color: var(--colors-brand-5);
+  --inputDate-default-icon-size: var(--sizes-base-7);
+  --inputDate-default-title-color: var(--colors-neutral-text-2);
+  --inputDate-default-title-arrow-color: var(--colors-neutral-text-5);
+  --inputDate-default-option-color: var(--colors-neutral-text-2);
+  --inputDate-default-option-bg-color: var(--colors-neutral-fill-11);
+  --inputDate-default-option-today-border-color: var(--colors-brand-5);
+  --inputDate-default-option-top-right-border-radius: var(--borders-radius-2);
+  --inputDate-default-option-top-left-border-radius: var(--borders-radius-2);
+  --inputDate-default-option-bottom-right-border-radius: var(
+    --borders-radius-2
+  );
+  --inputDate-default-option-bottom-left-border-radius: var(--borders-radius-2);
+  --inputDate-hover-top-border-color: var(--colors-brand-5);
+  --inputDate-hover-top-border-width: var(--borders-width-2);
+  --inputDate-hover-top-border-style: var(--borders-style-2);
+  --inputDate-hover-right-border-color: var(--colors-brand-5);
+  --inputDate-hover-right-border-width: var(--borders-width-2);
+  --inputDate-hover-right-border-style: var(--borders-style-2);
+  --inputDate-hover-bottom-border-color: var(--colors-brand-5);
+  --inputDate-hover-bottom-border-width: var(--borders-width-2);
+  --inputDate-hover-bottom-border-style: var(--borders-style-2);
+  --inputDate-hover-left-border-color: var(--colors-brand-5);
+  --inputDate-hover-left-border-width: var(--borders-width-2);
+  --inputDate-hover-left-border-style: var(--borders-style-2);
+  --inputDate-hover-color: var(--colors-neutral-text-2);
+  --inputDate-hover-bg-color: var(--colors-neutral-fill-11);
+  --inputDate-hover-title-color: var(--colors-brand-6);
+  --inputDate-hover-title-arrow-color: var(--colors-neutral-text-2);
+  --inputDate-hover-option-color: var(--colors-neutral-text-2);
+  --inputDate-hover-option-bg-color: var(--colors-neutral-fill-10);
+  --inputDate-active-top-border-color: var(--colors-brand-5);
+  --inputDate-active-top-border-width: var(--borders-width-2);
+  --inputDate-active-top-border-style: var(--borders-style-2);
+  --inputDate-active-right-border-color: var(--colors-brand-5);
+  --inputDate-active-right-border-width: var(--borders-width-2);
+  --inputDate-active-right-border-style: var(--borders-style-2);
+  --inputDate-active-bottom-border-color: var(--colors-brand-5);
+  --inputDate-active-bottom-border-width: var(--borders-width-2);
+  --inputDate-active-bottom-border-style: var(--borders-style-2);
+  --inputDate-active-left-border-color: var(--colors-brand-5);
+  --inputDate-active-left-border-width: var(--borders-width-2);
+  --inputDate-active-left-border-style: var(--borders-style-2);
+  --inputDate-active-shadow: var(--shadows-shadow-none);
+  --inputDate-active-color: var(--colors-neutral-text-2);
+  --inputDate-active-bg-color: var(--colors-neutral-fill-11);
+  --inputDate-active-option-color: var(--colors-neutral-text-11);
+  --inputDate-active-option-bg-color: var(--colors-brand-5);
+  --inputDate-disabled-top-border-color: var(--colors-neutral-line-8);
+  --inputDate-disabled-top-border-width: var(--borders-width-2);
+  --inputDate-disabled-top-border-style: var(--borders-style-2);
+  --inputDate-disabled-right-border-color: var(--colors-neutral-line-8);
+  --inputDate-disabled-right-border-width: var(--borders-width-2);
+  --inputDate-disabled-right-border-style: var(--borders-style-2);
+  --inputDate-disabled-bottom-border-color: var(--colors-neutral-line-8);
+  --inputDate-disabled-bottom-border-width: var(--borders-width-2);
+  --inputDate-disabled-bottom-border-style: var(--borders-style-2);
+  --inputDate-disabled-left-border-color: var(--colors-neutral-line-8);
+  --inputDate-disabled-left-border-width: var(--borders-width-2);
+  --inputDate-disabled-left-border-style: var(--borders-style-2);
+  --inputDate-disabled-color: var(--colors-neutral-text-2);
+  --inputDate-disabled-bg-color: var(--colors-neutral-fill-10);
+  --inputDate-disabled-option-color: var(--colors-neutral-text-6);
+  --inputDate-disabled-option-bg-color: transparent;
+  --inputDate-other-color: var(--colors-neutral-text-2);
+  --inputDate-other-bg-color: transparent;
+  --inputDate-other-top-right-border-radius: var(--borders-radius-2);
+  --inputDate-other-top-left-border-radius: var(--borders-radius-2);
+  --inputDate-other-bottom-right-border-radius: var(--borders-radius-2);
+  --inputDate-other-bottom-left-border-radius: var(--borders-radius-2);
+  --inputDate-other-hover-color: var(--colors-neutral-text-2);
+  --inputDate-other-hover-bg-color: var(--colors-neutral-fill-10);
+  --inputDate-other-active-color: var(--colors-neutral-text-11);
+  --inputDate-other-active-bg-color: var(--colors-brand-5);
+  --inputDate-other-disabled-color: var(--colors-neutral-text-6);
+  --inputDate-other-disabled-bg-color: var(--colors-neutral-fill-10);
+  --inputDate-range-line-height: var(--borders-width-3);
+  --inputDate-range-line-color: var(--colors-brand-4);
+  --inputDate-range-separator-width: var(--sizes-size-5);
+  --inputDate-range-separator-margin: var(--sizes-size-5);
+  --inputDate-range-separator-color: var(--colors-neutral-fill-6);
+  --inputDate-range-between-color: var(--colors-brand-10);
+  --DatePicker-bg: var(--inputDate-default-bg-color);
+  --DatePicker-borderColor: var(--inputDate-default-top-border-color)
+    var(--inputDate-default-right-border-color)
+    var(--inputDate-default-bottom-border-color)
+    var(--inputDate-default-left-border-color);
+  --DatePicker-borderStyle: var(--inputDate-default-top-border-style)
+    var(--inputDate-default-right-border-style)
+    var(--inputDate-default-bottom-border-style)
+    var(--inputDate-default-left-border-style);
+  --DatePicker-borderWidth: var(--inputDate-default-top-border-width)
+    var(--inputDate-default-right-border-width)
+    var(--inputDate-default-bottom-border-width)
+    var(--inputDate-default-left-border-width);
+  --DatePicker-borderRadius: var(--inputDate-default-top-left-border-radius)
+    var(--inputDate-default-top-right-border-radius)
+    var(--inputDate-default-bottom-right-border-radius)
+    var(--inputDate-default-bottom-left-border-radius);
+  --DatePicker-color: var(--inputDate-default-color);
+  --DatePicker-header-onHover-color: var(--inputDate-hover-title-color);
+  --DatePicker-arrow-color: var(--inputDate-default-title-arrow-color);
+  --DatePicker-fontSize: var(--inputDate-default-fontSize);
+  --DatePicker-header-select-borderColor: #fff;
+  --DatePicker-height: var(--inputDate-default-height);
+  --DatePicker-iconColor: var(--icon-color);
+  --DatePicker-lineHeight: var(--Form-input-lineHeight);
+  --DatePicker-onFocused-borderColor: var(--inputDate-active-top-border-color)
+    var(--inputDate-active-right-border-color)
+    var(--inputDate-active-bottom-border-color)
+    var(--inputDate-active-left-border-color);
+  --DatePicker-onHover-bg: var(--inputDate-hover-bg-color);
+  --DatePicker-onHover-borderColor: var(--inputDate-hover-top-border-color)
+    var(--inputDate-hover-right-border-color)
+    var(--inputDate-hover-bottom-border-color)
+    var(--inputDate-hover-left-border-color);
+  --DatePicker-onDisabled-bg: var(--colors-neutral-text-9);
+  --DatePicker-onDisabled-color: var(--colors-neutral-text-6);
+  --DatePicker-onHover-iconColor: var(--colors-brand-5);
+  --DatePicker-paddingX: 0.75rem;
+  --DatePicker-paddingY: var(--sizes-size-3);
+  --DatePicker-placeholderColor: var(--colors-neutral-text-6);
+  --DatePicker-minWidth: calc(
+    var(--fontSizeLg) * 5 + var(--DatePicker-paddingX) * 2 +
+      var(--Form-input-clearBtn-size) * 2
+  );
+  --DateRangePicker-minWidth: calc(
+    var(--fontSizeLg) * 8 + var(--DatePicker-paddingX) * 2 +
+      var(--Form-input-clearBtn-size) * 2
+  );
+  --DateRangePicker-activeCursor-color: var(--inputDate-range-line-color);
+  --DateRangePicker-activeCursor-height: var(--inputDate-range-line-height);
+  --Calendar-btn-bg: var(--info);
+  --Calendar-btn-border: var(--Calendar-btn-bg);
+  --Calendar-btn-borderRadius: var(--Button-borderRadius);
+  --Calendar-btn-color: var(--colors-neutral-fill-11);
+  --Calendar-btn-fontSize: var(--fontSizeSm);
+  --Calendar-btn-height: 1.875rem;
+  --Calendar-btn-lineHeight: var(--lineHeightBase);
+  --Calendar-btn-onActive-bg: var(--colors-brand-4);
+  --Calendar-btn-onActive-border: var(--colors-brand-3);
+  --Calendar-btn-onActive-color: var(--Calendar-btn-color);
+  --Calendar-btn-onHover-bg: var(--colors-brand-4);
+  --Calendar-btn-onHover-border: var(--colors-brand-3);
+  --Calendar-btn-onHover-color: var(--Calendar-btn-color);
+  --Calendar-btn-paddingX: 0.625rem;
+  --Calendar-btn-paddingY: calc(
+    (
+        var(--Calendar-btn-height) - var(--Calendar-btn-lineHeight) *
+          var(--Calendar-btn-fontSize)
+      ) / 2
+  );
+  --Calendar-btnCancel-bg: var(--light);
+  --Calendar-btnCancel-border: var(--colors-neutral-line-7);
+  --Calendar-btnCancel-borderRadius: var(--borders-radius-3);
+  --Calendar-btnCancel-color: var(--text-color);
+  --Calendar-btnCancel-onActive-bg: var(--colors-neutral-fill-11);
+  --Calendar-btnCancel-onActive-border: var(--colors-brand-4);
+  --Calendar-btnCancel-onActive-color: var(--colors-brand-4);
+  --Calendar-btnCancel-onHover-bg: var(--colors-neutral-fill-11);
+  --Calendar-btnCancel-onHover-border: var(--colors-brand-6);
+  --Calendar-btnCancel-onHover-color: var(--colors-brand-6);
+  --Calendar-cell-bg: var(--inputDate-default-option-bg-color);
+  --Calendar-cell-onActive-bg: var(--inputDate-active-option-bg-color);
+  --Calendar-cell-onBetween-bg: var(--inputDate-range-between-color);
+  --Calendar-cell-onDisabled-bg: var(--inputDate-other-disabled-bg-color);
+  --Calendar-cell-onHover-bg: var(--inputDate-hover-option-bg-color);
+  --Calendar-color: var(--inputDate-default-option-color);
+  --Calendar-fontSize: var(--fontSizeSm);
+  --Calendar-input-borderColor: var(--borderColor);
+  --Calendar-input-borderRadius: var(--borders-radius-3);
+  --Calendar-input-color: var(--info);
+  --Calendar-input-fontSize: var(--fontSizeBase);
+  --Calendar-input-height: 2.5rem;
+  --Calendar-input-lineHeight: var(--lineHeightBase);
+  --Calendar-input-onFocused-borderColor: var(--info);
+  --Calendar-input-paddingX: 0.625rem;
+  --Calendar-input-paddingY: calc(
+    (
+        var(--Calendar-input-height) - var(--Calendar-input-lineHeight) *
+          var(--Calendar-input-fontSize)
+      ) / 2
+  );
+  --Calendar-shortcut-color: #151b26;
+  --Calendar-shortcut-decoration: none;
+  --Calendar-shortcut-onHover-color: var(--colors-brand-6);
+  --Calendar-shortcut-onHover-decoration: none;
+  --Calendar-shortcuts-bg: var(--colors-neutral-text-9);
+  --Calendar-shortcuts-height: var(--sizes-size-9);
+  --Calendar-wLabel-color: var(--colors-neutral-text-6);
+  --Calendar-icon-bottom: -0.25rem;
+  --Calendar-icon-width: var(--sizes-size-6);
+  --Calendar-icon-height: var(--sizes-size-6);
+  --Calendar-borderWidth: var(--borders-width-2);
+  --Calendar-borderColor: var(--inputDate-default-option-today-border-color);
+  --Calendar-rdt-day: var(--sizes-base-49);
+  --Calendar-schedule-content-padding: 0 var(--sizes-size-3);
+  --Calendar-schedule-content-height: var(--sizes-base-10);
+  --Calendar-schedule-content-color: var(--colors-neutral-text-11);
+  --inputTime-default-icon: '<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_时间</title><g id="ic_时间" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><circle id="1-FL" stroke="currentColor" cx="8" cy="8" r="6.5" stroke-width="1px" fill="none" stroke-linecap="butt" stroke-linejoin="round"/><polyline id="2-FLW" stroke="currentColor" points="7.87443646 5.5 7.87443646 8.53778873 5.5 9.28133409" stroke-width="1px" fill="none" stroke-linecap="butt" stroke-linejoin="round"/></g></svg>';
+  --inputTime-default-fontSize: var(--fonts-size-8);
+  --inputTime-default-fontWeight: var(--fonts-weight-6);
+  --inputTime-default-color: var(--colors-neutral-text-2);
+  --inputTime-default-bg-color: var(--colors-neutral-text-11);
+  --inputTime-hover-color: var(--colors-neutral-text-2);
+  --inputTime-hover-bg-color: var(--colors-neutral-fill-10);
+  --inputTime-active-color: var(--colors-neutral-text-2);
+  --inputTime-active-bg-color: var(--colors-brand-10);
 }
 
 :root {
@@ -89127,7 +89400,7 @@ title: Word Break
 
 .amis-scope .rdtPicker td > span {
   display: inline-block;
-  border-radius: 2px;
+  border-radius: var(--inputDate-default-option-top-left-border-radius) var(--inputDate-default-option-top-right-border-radius) var(--inputDate-default-option-bottom-right-border-radius) var(--inputDate-default-option-bottom-left-border-radius);
   height: 24px;
   width: 24px;
 }
@@ -89143,7 +89416,12 @@ title: Word Break
 
 .amis-scope .rdtPicker td.rdtOld,
 .amis-scope .rdtPicker td.rdtNew {
-  color: #b8babf;
+  color: var(--inputDate-disabled-option-color);
+}
+
+.amis-scope .rdtPicker td.rdtOld span,
+.amis-scope .rdtPicker td.rdtNew span {
+  background: var(--inputDate-disabled-option-bg-color);
 }
 
 .amis-scope .rdtPicker td.rdtToday {
@@ -89704,6 +89982,18 @@ title: Word Break
 
 .amis-scope [hidden] {
   display: none;
+}
+
+/** Browser Compatibility
+    ========================================================================== */
+
+/* 兼容Safari浏览器input disbaled状态下文字颜色不显示 */
+
+.amis-scope input[disabled],
+.amis-scope input:disabled,
+.amis-scope input.disabled,
+.amis-scope input.is-disabled {
+  -webkit-text-fill-color: var(--text--muted-color);
 }
 
 .amis-scope svg.icon {
@@ -91902,6 +92192,10 @@ title: Word Break
   vertical-align: middle;
 }
 
+.amis-scope .a-Button--size-default.a-Button--iconOnly {
+  min-width: var(--button-size-default-height);
+}
+
 .amis-scope .a-Button--size-xs {
   font-size: var(--button-size-xs-fontSize);
   font-weight: var(--button-size-xs-fontWeight);
@@ -91944,7 +92238,7 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-xs.a-Button--iconOnly {
-  min-width: calc( var(--Button--xs-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: var(--button-size-xs-height);
 }
 
 .amis-scope .a-Button--size-sm {
@@ -91989,7 +92283,7 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-sm.a-Button--iconOnly {
-  min-width: calc( var(--Button--sm-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: var(--button-size-sm-height);
 }
 
 .amis-scope .a-Button--size-md {
@@ -92034,7 +92328,7 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-md.a-Button--iconOnly {
-  min-width: calc( var(--Button--md-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: var(--button-size-md-height);
 }
 
 .amis-scope .a-Button--size-lg {
@@ -92079,17 +92373,16 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-lg.a-Button--iconOnly {
-  min-width: calc( var(--Button--lg-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: var(--button-size-lg-height);
 }
 
 .amis-scope .a-Button--iconOnly {
-  min-width: calc( var(--Button-height) * var(--Button--iconOnly-minWidthRate) );
+  padding: 0;
 }
 
 .amis-scope .a-Button--iconOnly:not(.a-Button--link) > svg.icon {
   width: 0.875rem;
   height: 0.875rem;
-  top: 0.125rem;
 }
 
 .amis-scope .a-Button--iconOnly:not(.a-Button--link) > .fa,
@@ -95431,6 +95724,10 @@ title: Word Break
   border-left-style: var(--Tabs--vertical-active-border-style);
   border-left-color: var(--Tabs--vertical-onActive-border);
   border-left-width: var(--Tabs--vertical-onActive-borderWidth);
+}
+
+.amis-scope .a-Tabs--vertical > .a-Tabs-linksWrapper + .a-Tabs-content {
+  width: calc(100% - var(--Tabs--vertical-width));
 }
 
 .amis-scope .a-Tabs--vertical > .a-Tabs-content {
@@ -101001,11 +101298,6 @@ title: Word Break
   justify-content: space-between;
 }
 
-.amis-scope .a-InputTable-toolbar .a-Button {
-  border-color: transparent;
-  color: var(--button-link-default-font-color);
-}
-
 .amis-scope .a-InputTable-pager {
   margin-left: auto;
 }
@@ -105487,6 +105779,16 @@ title: Word Break
   align-items: center;
   border-radius: 3px;
   position: relative;
+  color: var(--Form-select-color);
+  font-size: var(--select-base-default-fontSize);
+  font-weight: var(--select-base-default-fontWeight);
+  border-width: var(--Form-select-borderWidth);
+  border-style: var(--select-base-default-top-border-style) var(--select-base-default-right-border-style) var(--select-base-default-bottom-border-style) var(--select-base-default-left-border-style);
+  border-color: var(--Form-select-borderColor);
+  background: var(--Form-select-bg);
+  border-radius: var(--Form-select-borderRadius);
+  min-height: var(--Form-selectOption-height);
+  padding: var(--select-base-default-paddingTop) var(--select-base-default-paddingRight) var(--select-base-default-paddingBottom) var(--select-base-default-paddingLeft);
 }
 
 .amis-scope .a-ResultBox input {
@@ -105525,12 +105827,21 @@ title: Word Break
 }
 
 .amis-scope .a-ResultBox.is-focused,
-.amis-scope .a-ResultBox.is-active,
 .amis-scope .a-ResultBox:focus {
   outline: none;
-  border-color: var(--Form-input-onFocused-borderColor);
-  box-shadow: var(--Form-input-boxShadow);
-  background: var(--Form-input-onFocused-bg);
+  background: var(--Form-select-onHover-bg);
+  border-width: var(--select-base-hover-top-border-width) var(--select-base-hover-right-border-width) var(--select-base-hover-bottom-border-width) var(--select-base-hover-left-border-width);
+  border-style: var(--select-base-hover-top-border-style) var(--select-base-hover-right-border-style) var(--select-base-hover-bottom-border-style) var(--select-base-hover-left-border-style);
+  border-color: var(--select-base-hover-top-border-color) var(--select-base-hover-right-border-color) var(--select-base-hover-bottom-border-color) var(--select-base-hover-left-border-color);
+}
+
+.amis-scope .a-ResultBox.is-active,
+.amis-scope .a-ResultBox.is-opened {
+  border-width: var(--select-base-active-top-border-width) var(--select-base-active-right-border-width) var(--select-base-active-bottom-border-width) var(--select-base-active-left-border-width);
+  border-style: var(--select-base-active-top-border-style) var(--select-base-active-right-border-style) var(--select-base-active-bottom-border-style) var(--select-base-active-left-border-style);
+  border-color: var(--select-base-active-top-border-color) var(--select-base-active-right-border-color) var(--select-base-active-bottom-border-color) var(--select-base-active-left-border-color);
+  box-shadow: var(--select-base-active-shadow);
+  background: var(--select-base-active-bg-color);
 }
 
 .amis-scope .a-ResultBox.is-clickable:not(.is-disabled) {
@@ -105538,9 +105849,10 @@ title: Word Break
 }
 
 .amis-scope .a-ResultBox.is-clickable:not(.is-disabled):hover {
-  border-color: var(--Form-input-onFocused-borderColor);
-  box-shadow: var(--Form-input-boxShadow);
-  background: var(--Form-input-onFocused-bg);
+  background: var(--Form-select-onHover-bg);
+  border-width: var(--select-base-hover-top-border-width) var(--select-base-hover-right-border-width) var(--select-base-hover-bottom-border-width) var(--select-base-hover-left-border-width);
+  border-style: var(--select-base-hover-top-border-style) var(--select-base-hover-right-border-style) var(--select-base-hover-bottom-border-style) var(--select-base-hover-left-border-style);
+  border-color: var(--select-base-hover-top-border-color) var(--select-base-hover-right-border-color) var(--select-base-hover-bottom-border-color) var(--select-base-hover-left-border-color);
 }
 
 .amis-scope .a-ResultBox.is-error.is-focused {
@@ -105549,10 +105861,11 @@ title: Word Break
 
 .amis-scope .a-ResultBox.is-disabled {
   color: var(--text--muted-color);
-  background: var(--Form-input-onDisabled-bg);
-  border-color: var(--Form-input-onDisabled-borderColor);
   pointer-events: none;
-  background: var(--TabsTransfer-title-bg);
+  border-width: var(--select-base-disabled-top-border-width) var(--select-base-disabled-right-border-width) var(--select-base-disabled-bottom-border-width) var(--select-base-disabled-left-border-width);
+  border-style: var(--select-base-disabled-top-border-style) var(--select-base-disabled-right-border-style) var(--select-base-disabled-bottom-border-style) var(--select-base-disabled-left-border-style);
+  border-color: var(--select-base-disabled-top-border-color) var(--select-base-disabled-right-border-color) var(--select-base-disabled-bottom-border-color) var(--select-base-disabled-left-border-color);
+  background: var(--select-base-disabled-bg-color);
 }
 
 .amis-scope .a-ResultBox.is-disabled div.a-ResultBox-value {
@@ -105667,16 +105980,15 @@ title: Word Break
 .amis-scope .a-ResultBox-value {
   background: var(--ResultBox-value-bg);
   color: var(--ResultBox-value-color);
-  font-size: var(--Form-input-fontSize);
-  padding: 0 var(--gap-xs);
+  font-size: var(--select-multiple-fontSize);
   min-height: var(--ResultBox-tag-height);
   flex-wrap: nowrap;
   display: inline-flex;
   align-items: center;
-  margin-right: var(--gap-xs);
-  margin-bottom: var(--ResultBox-tag-marginBottom);
+  padding: var(--select-multiple-paddingTop) var(--select-multiple-paddingRight) var(--select-multiple-paddingBottom) var(--select-multiple-paddingLeft);
+  margin: var(--select-multiple-marginTop) var(--select-multiple-marginRight) var(--ResultBox-tag-marginBottom) var(--select-multiple-marginLeft);
   user-select: none;
-  border-radius: 0.125rem;
+  border-radius: var(--select-multiple-top-left-border-radius) var(--select-multiple-top-right-border-radius) var(--select-multiple-bottom-right-border-radius) var(--select-multiple-bottom-left-border-radius);
 }
 
 .amis-scope .a-ResultBox-value > a {
@@ -105724,10 +106036,6 @@ title: Word Break
 .amis-scope .a-ResultBox > input {
   padding-left: 8px;
   min-height: 24px;
-}
-
-.amis-scope .a-ResultBox.a-TransferDropDown {
-  padding: 0 var(--gap-base);
 }
 
 .amis-scope .a-ResultBox.a-TransferDropDown.is-group > .a-TransferDropDown-icon {
@@ -107361,6 +107669,17 @@ title: Word Break
   display: flex;
 }
 
+.amis-scope .a-InputGroup-validation--full.is-error > .a-Form-control {
+  border-color: var(--Form-input-onError-borderColor);
+  transition: all var(--animation-duration);
+}
+
+.amis-scope .a-InputGroup-validation--partial.is-error > .a-Form-control.is-error {
+  border-color: var(--Form-input-onError-borderColor);
+  background: var(--Form-input-onError-bg);
+  transition: all var(--animation-duration);
+}
+
 .amis-scope .a-TextControl {
   position: relative;
   max-width: 100%;
@@ -107497,6 +107816,7 @@ title: Word Break
 .amis-scope .a-TextControl .a-TextControl-clear svg {
   font-size: var(--input-clearable-icon-size);
   fill: var(--input-clearable-default-color);
+  color: var(--input-clearable-default-color);
   width: var(--input-clearable-icon-size);
   height: var(--input-clearable-icon-size);
 }
@@ -107570,6 +107890,12 @@ title: Word Break
   flex-wrap: nowrap;
 }
 
+.amis-scope .a-TextControl--withAddOn:hover .a-TextControl-input,
+.amis-scope .a-TextControl--withAddOn:hover .a-Button,
+.amis-scope .a-TextControl--withAddOn:hover .a-TextControl-addOn {
+  border-color: var(--Form-input-onHover-borderColor);
+}
+
 @media (min-width: 576px) {
   .amis-scope .a-TextControl--withAddOn.a-Form-control--sizeXs,
   .amis-scope .a-TextControl--withAddOn.a-Form-control--sizeSm,
@@ -107586,19 +107912,22 @@ title: Word Break
   }
 }
 
-.amis-scope .a-TextControl--withAddOn > .a-TextControl-input {
+.amis-scope .a-TextControl--withAddOn > .a-TextControl-input,
+.amis-scope .a-TextControl--withAddOn.is-focused > .a-TextControl-input {
   flex-basis: 1;
   flex-grow: 1;
   min-width: 0;
   border-radius: 0;
 }
 
-.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:first-child {
+.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:first-child,
+.amis-scope .a-TextControl--withAddOn.is-focused > .a-TextControl-input:first-child {
   border-top-left-radius: var(--Form-input-borderRadius);
   border-bottom-left-radius: var(--Form-input-borderRadius);
 }
 
-.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:last-child {
+.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:last-child,
+.amis-scope .a-TextControl--withAddOn.is-focused > .a-TextControl-input:last-child {
   border-top-right-radius: var(--Form-input-borderRadius);
   border-bottom-right-radius: var(--Form-input-borderRadius);
 }
@@ -107622,6 +107951,8 @@ title: Word Break
 
 .amis-scope .a-TextControl-addOn:first-child {
   border-left-width: var(--input-addon-text-left-border-width);
+  border-top-left-radius: var(--Form-input-borderRadius);
+  border-bottom-left-radius: var(--Form-input-borderRadius);
 }
 
 .amis-scope .a-TextControl-addOn:last-child {
@@ -107634,7 +107965,7 @@ title: Word Break
   position: relative;
   border-radius: 0;
   margin-left: -0.0625rem;
-  border: var(--InputGroup-button-borderWidth) solid var(--InputGroup-button-borderColor);
+  transition: none;
 }
 
 .amis-scope .a-TextControl--withAddOn > .a-TextControl-button:not(:last-child) .a-Button {
@@ -108252,10 +108583,6 @@ title: Word Break
   background: var(--Checkbox-checked-onHover-bgColor);
 }
 
-.amis-scope .a-Checkbox--full.a-Checkbox--checkbox:active input:checked + i:before {
-  background: var(--Checkbox-checked-onHover-bgColor);
-}
-
 .amis-scope .a-Checkbox--full.a-Checkbox--checkbox input:checked + i {
   border-color: var(--Checkbox-onHover-color);
   background: var(--Checkbox-onHover-color);
@@ -108720,16 +109047,21 @@ title: Word Break
 }
 
 .amis-scope .a-GroupedSelection-group > .a-GroupedSelection-itemLabel {
-  height: 2rem;
-  padding: var(--gap-xs) var(--gap-base);
-  color: var(--FileControl-icon-color);
+  padding: var(--select-group-paddingTop) var(--select-group-paddingRight) var(--select-group-paddingBottom) var(--select-group-paddingLeft);
+  color: var(--select-group-color);
+  font-size: var(--select-group-fontSize);
+  font-weight: var(--select-group-fontWeight);
+  line-height: var(--select-group-lineHeight);
 }
 
 .amis-scope .a-GroupedSelection-item {
   display: flex;
-  line-height: var(--Form-input-lineHeight);
-  font-size: var(--Form-input-fontSize);
-  padding: calc( ( var(--Form-input-height) - var(--Form-input-lineHeight) * var(--Form-input-fontSize) ) / 2 ) var(--gap-sm);
+  color: var(--select-base-default-option-color);
+  background: var(--select-base-default-option-bg-color);
+  line-height: var(--select-base-default-option-line-height);
+  font-size: var(--select-base-default-option-fontSize);
+  font-weight: var(--select-base-default-option-fontWeight);
+  padding: var(--select-base-default-option-paddingTop) var(--select-base-default-option-paddingRight) var(--select-base-default-option-paddingBottom) var(--select-base-default-option-paddingLeft);
   flex-direction: row;
   cursor: pointer;
   user-select: none;
@@ -108739,21 +109071,26 @@ title: Word Break
   margin-right: 0.625rem;
 }
 
-.amis-scope .a-GroupedSelection-item.is-active {
-  background: var(--Form-select-menu-onActive-bg);
-}
-
 .amis-scope .a-GroupedSelection-item:hover {
-  background: var(--Tree-item-onHover-bg);
+  color: var(--Form-select-menu-onHover-color);
+  background: var(--Form-select-menu-onHover-bg);
 }
 
 .amis-scope .a-GroupedSelection-item:hover i {
   border: 1px solid var(--menu-active-color);
 }
 
+.amis-scope .a-GroupedSelection-item.is-active,
+.amis-scope .a-GroupedSelection-item.is-focused,
+.amis-scope .a-GroupedSelection-item.is-opened {
+  color: var(--Form-select-menu-onActive-color);
+  background: var(--Form-select-menu-onActive-bg);
+}
+
 .amis-scope .a-GroupedSelection-item.is-disabled {
   pointer-events: none;
-  color: var(--text--muted-color);
+  color: var(--Form-select-menu-onDisabled-color);
+  background: var(--Form-select-menu-onDisabled-bg);
 }
 
 .amis-scope .a-GroupedSelection-group > .a-GroupedSelection-items > .a-GroupedSelection-item {
@@ -108811,29 +109148,36 @@ title: Word Break
 
 .amis-scope .a-TableSelection .a-Table-table > thead > tr > th,
 .amis-scope .a-TableSelection .a-Table-table > tbody > tr > td {
-  font-size: var(--fontSizeSm);
-  padding-top: var(--gap-xs);
-  padding-bottom: 0.375rem;
+  color: var(--select-table-color);
+  font-size: var(--select-table-fontSize);
   vertical-align: middle;
 }
 
 .amis-scope .a-TableSelection .a-Table-table > thead > tr > th {
-  padding-top: 0.375rem;
+  padding: var(--select-table-header-paddingTop) var(--select-table-header-paddingLeft) var(--select-table-header-paddingBottom) var(--select-table-header-paddingLeft);
 }
 
-.amis-scope .a-TableSelection .a-Table-table > thead > tr > th:first-child,
-.amis-scope .a-TableSelection .a-Table-table > tbody > tr > td:first-child {
-  padding-left: 0.625rem;
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr > td {
+  padding: var(--select-table-option-paddingTop) var(--select-table-option-paddingLeft) var(--select-table-option-paddingBottom) var(--select-table-option-paddingLeft);
 }
 
-.amis-scope .a-TableSelection .a-Table-table > thead > tr > th:last-child,
+.amis-scope .a-TableSelection .a-Table-table > thead > tr > th:last-child {
+  padding-right: var(--select-table-header-paddingRight);
+}
+
 .amis-scope .a-TableSelection .a-Table-table > tbody > tr > td:last-child {
-  padding-right: var(--gap-md);
+  padding-right: var(--select-table-option-paddingRight);
 }
 
-.amis-scope .a-TableSelection .a-Table-table > tbody > tr.is-active {
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr.is-active > td {
   color: var(--Form-select-menu-onActive-color);
   background: var(--Form-select-menu-onActive-bg);
+}
+
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr:hover > td,
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr.is-hovered > td {
+  color: var(--Form-select-menu-onHover-color);
+  background: var(--Form-select-menu-onHover-bg);
 }
 
 .amis-scope .a-TreeSelection .a-Table-expandBtn {
@@ -108941,9 +109285,12 @@ title: Word Break
 
 .amis-scope .a-ChainedSelection-item {
   display: flex;
-  line-height: var(--Form-input-lineHeight);
-  font-size: var(--Form-input-fontSize);
-  padding: calc( ( var(--Form-input-height) - var(--Form-input-lineHeight) * var(--Form-input-fontSize) ) / 2 ) var(--gap-sm);
+  font-size: var(--select-base-default-option-fontSize);
+  font-weight: var(--select-base-default-option-fontWeight);
+  color: var(--select-base-default-option-color);
+  background: var(--select-base-default-option-bg-color);
+  line-height: var(--select-base-default-option-line-height);
+  padding: var(--select-base-default-option-paddingTop) var(--select-base-default-option-paddingRight) var(--select-base-default-option-paddingBottom) var(--select-base-default-option-paddingLeft);
   flex-direction: row;
   cursor: pointer;
   user-select: none;
@@ -108959,12 +109306,14 @@ title: Word Break
 }
 
 .amis-scope .a-ChainedSelection-item:hover {
-  background: var(--Tree-item-onHover-bg);
+  color: var(--Form-select-menu-onHover-color);
+  background: var(--Form-select-menu-onHover-bg);
 }
 
 .amis-scope .a-ChainedSelection-item.is-disabled {
   pointer-events: none;
-  color: var(--text--muted-color);
+  color: var(--Form-select-menu-onDisabled-color);
+  background: var(--Form-select-menu-onDisabled-bg);
 }
 
 .amis-scope .a-ChainedSelection-itemLabel {
@@ -109291,6 +109640,7 @@ title: Word Break
   border: var(--Number-borderWidth) solid var(--Form-input-borderColor);
   border-radius: var(--Number-borderRadius);
   overflow: hidden;
+  position: relative;
   border-width: var(--inputNumber-base-default-top-border-width) var(--inputNumber-base-default-right-border-width) var(--inputNumber-base-default-bottom-border-width) var(--inputNumber-base-default-left-border-width);
   border-style: var(--inputNumber-base-default-top-border-style) var(--inputNumber-base-default-right-border-style) var(--inputNumber-base-default-bottom-border-style) var(--inputNumber-base-default-left-border-style);
   border-color: var(--inputNumber-base-default-top-border-color) var(--inputNumber-base-default-right-border-color) var(--inputNumber-base-default-bottom-border-color) var(--inputNumber-base-default-left-border-color);
@@ -109304,6 +109654,10 @@ title: Word Break
   border-color: var(--inputNumber-base-hover-top-border-color) var(--inputNumber-base-hover-right-border-color) var(--inputNumber-base-hover-bottom-border-color) var(--inputNumber-base-hover-left-border-color);
   border-radius: var(--inputNumber-base-hover-top-left-border-radius) var(--inputNumber-base-hover-top-right-border-radius) var(--inputNumber-base-hover-bottom-right-border-radius) var(--inputNumber-base-hover-bottom-left-border-radius);
   background: var(--inputNumber-base-hover-bg-color);
+}
+
+.amis-scope .a-Number:hover .a-Number-input {
+  padding-right: calc( var(--Number-handler-width) + var(--inputNumber-base-default-paddingRight) );
 }
 
 .amis-scope .a-Number-focused {
@@ -109421,7 +109775,8 @@ title: Word Break
 
 .amis-scope .a-Number-handler-wrap {
   display: none;
-  float: right;
+  position: absolute;
+  right: 0;
   border-left: 0.0625rem solid var(--Form-input-borderColor);
   width: var(--Number-handler-width);
   height: 100%;
@@ -109451,8 +109806,6 @@ title: Word Break
 .amis-scope .a-Number-disabled .a-Number-input {
   opacity: 0.72;
   cursor: not-allowed;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
   color: var(--text--muted-color);
   background: var(--Form-input-onDisabled-bg);
   border-color: var(--Form-input-onDisabled-borderColor);
@@ -109538,6 +109891,10 @@ title: Word Break
   border-style: var(--inputNumber-enhance-hover-top-border-style) var(--inputNumber-enhance-hover-right-border-style) var(--inputNumber-enhance-hover-bottom-border-style) var(--inputNumber-enhance-hover-left-border-style);
   border-color: var(--inputNumber-enhance-hover-top-border-color) var(--inputNumber-enhance-hover-right-border-color) var(--inputNumber-enhance-hover-bottom-border-color) var(--inputNumber-enhance-hover-left-border-color);
   border-radius: var(--inputNumber-enhance-hover-top-left-border-radius) var(--inputNumber-enhance-hover-top-right-border-radius) var(--inputNumber-enhance-hover-bottom-right-border-radius) var(--inputNumber-enhance-hover-bottom-left-border-radius);
+}
+
+.amis-scope .a-Number--enhance:hover .a-Number-input {
+  padding-right: var(--inputNumber-base-default-paddingRight);
 }
 
 .amis-scope .a-Number--enhance:hover .a-Number--enhance-input {
@@ -109733,12 +110090,15 @@ title: Word Break
   align-items: center;
   outline: none;
   position: relative;
-  font-size: var(--Form-input-fontSize);
-  border: var(--Form-select-borderWidth) solid var(--Form-select-borderColor);
+  font-size: var(--select-base-default-fontSize);
+  font-weight: var(--select-base-default-fontWeight);
+  border-width: var(--Form-select-borderWidth);
+  border-style: var(--select-base-default-top-border-style) var(--select-base-default-right-border-style) var(--select-base-default-bottom-border-style) var(--select-base-default-left-border-style);
+  border-color: var(--Form-select-borderColor);
   background: var(--Form-select-bg);
   border-radius: var(--Form-select-borderRadius);
   min-height: var(--Form-selectOption-height);
-  padding: calc( ( var(--Form-selectOption-height) - var(--Form-input-lineHeight) * var(--Form-input-fontSize) - var(--Form-select-borderWidth) * 2 ) / 2 ) 0 calc( ( var(--Form-selectOption-height) - var(--Form-input-lineHeight) * var(--Form-input-fontSize) - var(--Form-select-borderWidth) * 2 ) / 2 ) var(--Form-select-paddingX);
+  padding: var(--select-base-default-paddingTop) var(--select-base-default-paddingRight) var(--select-base-default-paddingBottom) var(--select-base-default-paddingLeft);
   cursor: pointer;
   color: var(--Form-select-color);
 }
@@ -109749,7 +110109,9 @@ title: Word Break
 
 .amis-scope .a-Select:hover {
   background: var(--Form-select-onHover-bg);
-  border-color: var(--Form-input-onHover-borderColor);
+  border-width: var(--select-base-hover-top-border-width) var(--select-base-hover-right-border-width) var(--select-base-hover-bottom-border-width) var(--select-base-hover-left-border-width);
+  border-style: var(--select-base-hover-top-border-style) var(--select-base-hover-right-border-style) var(--select-base-hover-bottom-border-style) var(--select-base-hover-left-border-style);
+  border-color: var(--select-base-hover-top-border-color) var(--select-base-hover-right-border-color) var(--select-base-hover-bottom-border-color) var(--select-base-hover-left-border-color);
 }
 
 .amis-scope .a-Select:hover .a-Select-arrow:before {
@@ -109757,13 +110119,28 @@ title: Word Break
 }
 
 .amis-scope .a-Select:active {
-  border-color: var(--Button--default-onActive-border);
+  border-width: var(--select-base-active-top-border-width) var(--select-base-active-right-border-width) var(--select-base-active-bottom-border-width) var(--select-base-active-left-border-width);
+  border-style: var(--select-base-active-top-border-style) var(--select-base-active-right-border-style) var(--select-base-active-bottom-border-style) var(--select-base-active-left-border-style);
+  border-color: var(--select-base-active-top-border-color) var(--select-base-active-right-border-color) var(--select-base-active-bottom-border-color) var(--select-base-active-left-border-color);
+  box-shadow: var(--select-base-active-shadow);
+  background: var(--select-base-active-bg-color);
+}
+
+.amis-scope .a-Select.is-focused:not(.is-mobile),
+.amis-scope .a-Select.is-opened:not(.is-mobile) {
+  border-width: var(--select-base-active-top-border-width) var(--select-base-active-right-border-width) var(--select-base-active-bottom-border-width) var(--select-base-active-left-border-width);
+  border-style: var(--select-base-active-top-border-style) var(--select-base-active-right-border-style) var(--select-base-active-bottom-border-style) var(--select-base-active-left-border-style);
+  border-color: var(--select-base-active-top-border-color) var(--select-base-active-right-border-color) var(--select-base-active-bottom-border-color) var(--select-base-active-left-border-color);
+  box-shadow: var(--select-base-active-shadow);
+  background: var(--select-base-active-bg-color);
+  color: var(--Form-select-onFocused-color);
 }
 
 .amis-scope .a-Select.is-disabled {
-  color: var(--text--muted-color);
-  background: var(--Form-input-onDisabled-bg);
-  border-color: var(--Form-input-onDisabled-borderColor);
+  border-width: var(--select-base-disabled-top-border-width) var(--select-base-disabled-right-border-width) var(--select-base-disabled-bottom-border-width) var(--select-base-disabled-left-border-width);
+  border-style: var(--select-base-disabled-top-border-style) var(--select-base-disabled-right-border-style) var(--select-base-disabled-bottom-border-style) var(--select-base-disabled-left-border-style);
+  border-color: var(--select-base-disabled-top-border-color) var(--select-base-disabled-right-border-color) var(--select-base-disabled-bottom-border-color) var(--select-base-disabled-left-border-color);
+  background: var(--select-base-disabled-bg-color);
 }
 
 .amis-scope .a-Select:focus {
@@ -109775,13 +110152,11 @@ title: Word Break
 }
 
 .amis-scope .a-Select .a-PopOver.a-Select-popover .a-Select-menu .a-Select-option {
-  height: 2rem;
-  line-height: 2rem;
+  line-height: var(--select-base-default-option-line-height);
 }
 
 .amis-scope .a-Select .a-PopOver.a-Select-popover .a-Select-menu .a-Select-addBtn {
-  height: 2rem;
-  line-height: 1.875rem;
+  line-height: var(--select-base-default-option-line-height);
 }
 
 .amis-scope .a-Select--borderHalf {
@@ -109820,7 +110195,6 @@ title: Word Break
 }
 
 .amis-scope .a-Select-value {
-  line-height: calc( var(--Form-input-lineHeight) * var(--Form-input-fontSize) );
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
@@ -109838,7 +110212,7 @@ title: Word Break
 .amis-scope .a-Select--multi {
   height: auto;
   min-height: var(--Form-selectOption-height);
-  padding: var(--gap-xs) 0 var(--gap-xs) var(--gap-xs);
+  padding: var(--select-base-default-paddingTop) var(--select-base-default-paddingRight) var(--select-base-default-paddingBottom) var(--select-base-default-paddingLeft);
 }
 
 .amis-scope .a-Select--multi .a-Select-valueWrap > input {
@@ -109863,11 +110237,13 @@ title: Word Break
   display: inline-block;
   vertical-align: middle;
   font-size: var(--Form-selectValue-fontSize);
+  font-weight: var(--select-multiple-fontWeight);
+  color: var(--select-multiple-color);
   background: var(--Form-select-value-bgColor);
   border: 0.0625rem solid var(--Form-select-value-borderColor);
-  border-radius: 0.125rem;
-  margin-right: var(--gap-xs);
-  margin-bottom: var(--gap-xs);
+  border-radius: var(--select-multiple-top-left-border-radius) var(--select-multiple-top-right-border-radius) var(--select-multiple-bottom-right-border-radius) var(--select-multiple-bottom-left-border-radius);
+  padding: var(--select-multiple-paddingTop) var(--select-multiple-paddingRight) var(--select-multiple-paddingBottom) var(--select-multiple-paddingLeft);
+  margin: var(--select-multiple-marginTop) var(--select-multiple-marginRight) var(--ResultBox-tag-marginBottom) var(--select-multiple-marginLeft);
 }
 
 .amis-scope .a-Select--multi .a-Select-value:hover {
@@ -109877,7 +110253,6 @@ title: Word Break
 .amis-scope .a-Select--multi .a-Select-valueLabel {
   display: inline-block;
   max-width: var(--Form-valueLabel-maxWidth);
-  padding: 0 var(--gap-xs);
   overflow: hidden;
   vertical-align: top;
   text-overflow: ellipsis;
@@ -109886,7 +110261,7 @@ title: Word Break
 
 .amis-scope .a-Select-valueIcon {
   cursor: pointer;
-  padding: 1px 5px;
+  margin-left: 0.625rem;
   color: var(--Form-select-valueIcon-color);
 }
 
@@ -109907,7 +110282,6 @@ title: Word Break
 }
 
 .amis-scope .a-Select-arrow {
-  margin-right: 0.75rem;
   width: var(--gap-md);
   text-align: center;
   display: flex;
@@ -110005,8 +110379,13 @@ title: Word Break
 
 .amis-scope .a-Select-option {
   cursor: pointer;
-  padding: calc( ( var(--Form-select-menu-height) - var(--Form-input-lineHeight) * var(--Form-input-fontSize) ) / 2 ) var(--Form-select-paddingX);
+  padding: var(--select-base-default-option-paddingTop) var(--select-base-default-option-paddingRight) var(--select-base-default-option-paddingBottom) var(--select-base-default-option-paddingLeft);
   display: flex;
+  color: var(--select-base-default-option-color);
+  font-size: var(--select-base-default-option-fontSize);
+  font-weight: var(--select-base-default-option-fontWeight);
+  background: var(--select-base-default-option-bg-color);
+  line-height: var(--select-base-default-option-line-height);
 }
 
 .amis-scope .a-Select-option-checkbox {
@@ -110036,6 +110415,9 @@ title: Word Break
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
+  font-size: var(--select-base-default-option-fontSize);
+  font-weight: var(--select-base-default-option-fontWeight);
+  color: var(--select-base-default-option-color);
 }
 
 .amis-scope .a-Select-option.is-active {
@@ -110043,14 +110425,26 @@ title: Word Break
   background: var(--Form-select-menu-onActive-bg);
 }
 
+.amis-scope .a-Select-option.is-active .a-Select-option-checkbox > label > span {
+  color: var(--Form-select-menu-onActive-color);
+}
+
 .amis-scope .a-Select-option.is-highlight {
   color: var(--Form-select-menu-onHover-color);
   background: var(--Form-select-menu-onHover-bg);
 }
 
+.amis-scope .a-Select-option.is-highlight .a-Select-option-checkbox > label > span {
+  color: var(--Form-select-menu-onHover-color);
+}
+
 .amis-scope .a-Select-option.is-disabled {
   color: var(--Form-select-menu-onDisabled-color);
   background: var(--Form-select-menu-onDisabled-bg);
+}
+
+.amis-scope .a-Select-option.is-disabled .a-Select-option-checkbox > label > span {
+  color: var(--Form-select-menu-onDisabled-color);
 }
 
 .amis-scope .a-Select-option > label {
@@ -110092,7 +110486,7 @@ title: Word Break
 .amis-scope .a-Select-addBtn {
   display: block;
   cursor: pointer;
-  padding: calc( ( var(--Form-select-menu-height) - var(--Form-input-lineHeight) * var(--Form-input-fontSize) ) / 2 ) var(--Form-select-paddingX);
+  padding: var(--select-base-default-option-paddingTop) var(--select-base-default-option-paddingRight) var(--select-base-default-option-paddingBottom) var(--select-base-default-option-paddingLeft);
 }
 
 .amis-scope .a-Select-addBtn:hover {
@@ -110103,12 +110497,6 @@ title: Word Break
   width: 0.875rem;
   height: 0.875rem;
   margin-right: var(--Checkbox-gap);
-}
-
-.amis-scope .a-Select.is-focused:not(.is-mobile),
-.amis-scope .a-Select.is-opened:not(.is-mobile) {
-  border-color: var(--Form-input-onFocused-borderColor);
-  color: var(--Form-select-onFocused-color);
 }
 
 .amis-scope .a-Select-spinner {
@@ -110159,11 +110547,13 @@ title: Word Break
   display: inline-block;
   vertical-align: middle;
   font-size: var(--Form-selectValue-fontSize);
+  font-weight: var(--select-multiple-fontWeight);
+  color: var(--select-multiple-color);
   background: var(--Form-select-value-bgColor);
   border: 0.0625rem solid var(--Form-select-value-borderColor);
-  border-radius: 0.125rem;
-  margin-right: var(--gap-xs);
-  margin-bottom: var(--gap-xs);
+  border-radius: var(--select-multiple-top-left-border-radius) var(--select-multiple-top-right-border-radius) var(--select-multiple-bottom-right-border-radius) var(--select-multiple-bottom-left-border-radius);
+  padding: var(--select-multiple-paddingTop) var(--select-multiple-paddingRight) var(--select-multiple-paddingBottom) var(--select-multiple-paddingLeft);
+  margin: var(--select-multiple-marginTop) var(--select-multiple-marginRight) var(--ResultBox-tag-marginBottom) var(--select-multiple-marginLeft);
 }
 
 .amis-scope .a-Select-overflow-wrapper .a-Select-value:hover {
@@ -110173,7 +110563,6 @@ title: Word Break
 .amis-scope .a-Select-overflow-wrapper .a-Select-valueLabel {
   display: inline-block;
   max-width: var(--Form-valueLabel-maxWidth);
-  padding: 0 var(--gap-xs);
   overflow: hidden;
   vertical-align: top;
   text-overflow: ellipsis;
@@ -110227,7 +110616,7 @@ title: Word Break
 
 .amis-scope .a-SelectControl .a-TransferDropDown-popover .a-Tree-list .a-Tree-item .a-Tree-itemLabel:hover .a-Tree-itemText,
 .amis-scope .a-SelectControl .a-TransferDropDown-popover .a-Tree-list .a-Tree-item .a-Tree-item--isLeaf:hover .a-Tree-itemText {
-  background: var(--Transfer-title-bg);
+  background: var(--select-tree-hover-bg-color);
 }
 
 .amis-scope .a-SelectControl .a-TransferDropDown-popover .a-Tree-list .a-Tree-item .a-Tree-itemLabel:active,
@@ -110237,7 +110626,7 @@ title: Word Break
 
 .amis-scope .a-SelectControl .a-TransferDropDown-popover .a-Tree-list .a-Tree-item .a-Tree-itemLabel:active .a-Tree-itemText,
 .amis-scope .a-SelectControl .a-TransferDropDown-popover .a-Tree-list .a-Tree-item .a-Tree-item--isLeaf:active .a-Tree-itemText {
-  background: var(--Tree-item-onChekced-bg);
+  background: var(--select-tree-active-bg-color);
 }
 
 .amis-scope .a-SelectControl .a-TransferDropDown-popover .a-Tree-list .a-Tree-item .a-Tree-itemLabel.is-checked,
@@ -110526,14 +110915,14 @@ title: Word Break
   position: relative;
   display: inline-flex;
   flex-wrap: nowrap;
-  border: var(--DatePicker-borderWidth) solid var(--DatePicker-borderColor);
-  font-size: var(--DatePicker-fontSize);
-  padding: var(--DatePicker-paddingY) var(--DatePicker-paddingX);
-  height: var(--DatePicker-height);
+  border: var(--borders-width-2) solid var(--colors-neutral-line-8);
+  font-size: var(--fonts-size-7);
+  padding: var(--sizes-size-4) var(--sizes-size-7);
+  height: var(--sizes-base-16);
   outline: none;
   white-space: nowrap;
-  color: var(--DatePicker-color);
-  background: var(--DatePicker-bg);
+  color: var(--colors-neutral-text-2);
+  background: var(--colors-neutral-fill-11);
   border-radius: var(--LocationPicker-borderRadius);
 }
 
@@ -110542,17 +110931,17 @@ title: Word Break
 }
 
 .amis-scope .a-LocationPicker:not(.is-disabled):hover {
-  background: var(--DatePicker-onHover-bg);
-  border-color: var(--DatePicker-onHover-borderColor);
+  background: var(--colors-neutral-fill-11);
+  border-color: var(--colors-brand-5);
 }
 
 .amis-scope .a-LocationPicker:not(.is-disabled):hover .a-DatePicker-toggler:before {
-  color: var(--DatePicker-onHover-iconColor);
+  color: var(--colors-brand-5);
 }
 
 .amis-scope .a-LocationPicker.is-focused,
 .amis-scope .a-LocationPicker.is-active {
-  border-color: var(--DatePicker-onFocused-borderColor);
+  border-color: var(--colors-brand-5);
   box-shadow: var(--Form-input-boxShadow);
 }
 
@@ -110565,7 +110954,7 @@ title: Word Break
 }
 
 .amis-scope .a-LocationPicker-placeholder {
-  color: var(--DatePicker-placeholderColor);
+  color: var(--colors-neutral-text-6);
   user-select: none;
   margin-right: var(--gap-base);
   flex-basis: 0;
@@ -110580,11 +110969,11 @@ title: Word Break
 
 .amis-scope .a-LocationPicker-toggler {
   cursor: pointer;
-  color: var(--DatePicker-iconColor);
+  color: var(--colors-neutral-text-5);
 }
 
 .amis-scope .a-LocationPicker-toggler:hover {
-  color: var(--DatePicker-onHover-iconColor);
+  color: var(--colors-brand-5);
 }
 
 .amis-scope .a-LocationPicker-clear {
@@ -110827,9 +111216,11 @@ title: Word Break
   position: relative;
   display: inline-flex;
   flex-wrap: nowrap;
-  border: var(--DatePicker-borderWidth) solid var(--DatePicker-borderColor);
+  border-width: var(--DatePicker-borderWidth);
+  border-style: var(--DatePicker-borderStyle);
+  border-color: var(--DatePicker-borderColor);
   font-size: var(--DatePicker-fontSize);
-  padding: var(--DatePicker-paddingY) var(--DatePicker-paddingX);
+  padding: var(--inputDate-default-paddingTop) var(--inputDate-default-paddingRight) var(--inputDate-default-paddingBottom) var(--inputDate-default-paddingLeft);
   height: var(--DatePicker-height);
   outline: none;
   white-space: nowrap;
@@ -110845,6 +111236,9 @@ title: Word Break
   background: none;
   padding: 0;
   border: 0;
+  font-size: var(--DatePicker-fontSize);
+  font-weight: var(--inputDate-default-fontWeight);
+  color: var(--inputDate-default-color);
 }
 
 .amis-scope .a-DatePicker-input:focus {
@@ -110878,6 +111272,12 @@ title: Word Break
 .amis-scope .a-DatePicker:not(.is-disabled):hover {
   background: var(--DatePicker-onHover-bg);
   border-color: var(--DatePicker-onHover-borderColor);
+  border-style: var(--inputDate-hover-top-border-style) var(--inputDate-hover-right-border-style) var(--inputDate-hover-bottom-border-style) var(--inputDate-hover-left-border-style);
+  border-width: var(--inputDate-hover-top-border-width) var(--inputDate-hover-right-border-width) var(--inputDate-hover-bottom-border-width) var(--inputDate-hover-left-border-width);
+}
+
+.amis-scope .a-DatePicker:not(.is-disabled):hover .a-DatePicker-input {
+  color: var(--inputDate-hover-color);
 }
 
 .amis-scope .a-DatePicker:not(.is-disabled):hover .a-DatePicker-clear {
@@ -110889,20 +111289,26 @@ title: Word Break
 }
 
 .amis-scope .a-DatePicker:not(.is-disabled).is-focused {
+  background: var(--inputDate-active-bg-color);
   border-color: var(--DatePicker-onFocused-borderColor);
-  box-shadow: var(--Form-input-boxShadow);
+  box-shadow: var(--inputDate-active-shadow);
+  border-style: var(--inputDate-active-top-border-style) var(--inputDate-active-right-border-style) var(--inputDate-active-bottom-border-style) var(--inputDate-active-left-border-style);
+  border-width: var(--inputDate-active-top-border-width) var(--inputDate-active-right-border-width) var(--inputDate-active-bottom-border-width) var(--inputDate-active-left-border-width);
 }
 
-.amis-scope .a-DatePicker .a-DatePicker-input {
-  font-size: var(--fonts-size-7);
+.amis-scope .a-DatePicker:not(.is-disabled).is-focused .a-DatePicker-input {
+  color: var(--inputDate-active-color);
 }
 
 .amis-scope .a-DatePicker.is-disabled {
-  background: #e5e7eb;
+  background: var(--inputDate-disabled-bg-color);
+  border-width: var(--inputDate-disabled-top-border-width) var(--inputDate-disabled-right-border-width) var(--inputDate-disabled-bottom-border-width) var(--inputDate-disabled-left-border-width);
+  border-style: var(--inputDate-disabled-top-border-style) var(--inputDate-disabled-right-border-style) var(--inputDate-disabled-bottom-border-style) var(--inputDate-disabled-left-border-style);
+  border-color: var(--inputDate-disabled-top-border-color) var(--inputDate-disabled-right-border-color) var(--inputDate-disabled-bottom-border-color) var(--inputDate-disabled-left-border-color);
 }
 
 .amis-scope .a-DatePicker.is-disabled > .a-DatePicker-input {
-  color: var(--text--muted-color);
+  color: var(--inputDate-disabled-color);
 }
 
 .amis-scope .a-DatePicker-placeholder {
@@ -110946,6 +111352,20 @@ title: Word Break
   fill: var(--Form-input-clearBtn-color-onActive);
 }
 
+.amis-scope .a-DatePicker-toggler svg {
+  color: var(--inputDate-default-icon-color);
+  width: var(--inputDate-default-icon-size);
+  height: var(--inputDate-default-icon-size);
+}
+
+.amis-scope .a-DatePicker .DatePicker-toggler-clock {
+  content: var(--inputTime-default-icon);
+}
+
+.amis-scope .a-DatePicker .DatePicker-toggler-date {
+  content: var(--inputDate-default-icon);
+}
+
 .amis-scope .a-DatePicker-clear {
   padding: var(--Form-input-clearBtn-padding);
   cursor: pointer;
@@ -110970,6 +111390,11 @@ title: Word Break
 
 .amis-scope .a-DatePicker-clear:active svg {
   fill: var(--Form-input-clearBtn-color-onActive);
+}
+
+.amis-scope .a-DatePicker-clear svg {
+  width: var(--inputDate-default-icon-size);
+  height: var(--inputDate-default-icon-size);
 }
 
 .amis-scope .a-DateControl:not(.is-inline) > .a-DatePicker {
@@ -111130,6 +111555,7 @@ title: Word Break
 .amis-scope .rdt .rdtPicker td.rdtMinute:hover span,
 .amis-scope .rdt .rdtPicker td.rdtSecond:hover span,
 .amis-scope .rdt .rdtPicker .rdtTimeToggle:hover span {
+  color: var(--inputDate-hover-option-color);
   background: var(--Calendar-cell-onHover-bg);
 }
 
@@ -111161,6 +111587,7 @@ title: Word Break
 
 .amis-scope .rdt .rdtPicker td.rdtActive > span,
 .amis-scope .rdt .rdtPicker td.rdtActive:hover > span {
+  color: var(--inputDate-active-option-color);
   background: var(--Calendar-cell-onActive-bg);
 }
 
@@ -111227,8 +111654,8 @@ title: Word Break
 
 .amis-scope .a-CalendarInputWrapper .a-CalendarInput-sugs {
   list-style: none;
-  background: var(--Form-select-menu-bg);
-  color: var(--Form-select-menu-color);
+  background: var(--inputTime-default-bg-color);
+  color: var(--inputTime-default-color);
   left: -0.0625rem;
   right: -0.0625rem;
   top: 100%;
@@ -111248,17 +111675,19 @@ title: Word Break
   text-align: center;
   height: 28px;
   line-height: 28px;
+  font-size: var(--inputTime-default-fontSize);
+  font-weight: var(--inputTime-default-fontWeight);
   cursor: pointer;
 }
 
 .amis-scope .a-CalendarInputWrapper .a-CalendarInput-sugsItem.is-highlight {
-  color: var(--Form-select-menu-onHover-color);
-  background: var(--Form-select-menu-onHover-bg);
+  color: var(--inputTime-active-color);
+  background: var(--inputTime-active-bg-color);
 }
 
 .amis-scope .a-CalendarInputWrapper .a-CalendarInput-sugsItem:hover {
-  color: var(--Form-select-menu-onHover-color);
-  background: #f7f7f9;
+  color: var(--inputTime-hover-color);
+  background: var(--inputTime-hover-bg-color);
 }
 
 .amis-scope .a-TimeContentWrapper {
@@ -111518,7 +111947,7 @@ title: Word Break
 .amis-scope .rdtPrev:hover,
 .amis-scope .rdtNext:hover {
   text-decoration: none;
-  color: var(--DatePicker-color);
+  color: var(--inputDate-hover-title-arrow-color);
 }
 
 .amis-scope .rdtCenter {
@@ -111529,7 +111958,7 @@ title: Word Break
   text-align: center;
   cursor: pointer;
   font-weight: normal;
-  color: var(--DatePicker-color);
+  color: var(--inputDate-default-title-color);
 }
 
 .amis-scope .rdtSwitch:hover {
@@ -111582,6 +112011,9 @@ title: Word Break
 .amis-scope td.rdtYear > span,
 .amis-scope td.rdtQuarter > span {
   display: inline-block;
+  color: var(--inputDate-other-color);
+  background: var(--inputDate-other-bg-color);
+  border-radius: var(--inputDate-other-top-left-border-radius) var(--inputDate-other-top-right-border-radius) var(--inputDate-other-bottom-right-border-radius) var(--inputDate-other-bottom-left-border-radius);
 }
 
 .amis-scope td.rdtMonth.rdtBetween,
@@ -111599,8 +112031,8 @@ title: Word Break
 .amis-scope td.rdtMonth:hover > span,
 .amis-scope td.rdtYear:hover > span,
 .amis-scope td.rdtQuarter:hover > span {
-  color: var(--Form-select-menu-onHover-color);
-  background: #f7f7f9;
+  color: var(--inputDate-other-hover-color);
+  background: var(--inputDate-other-hover-bg-color);
 }
 
 .amis-scope td.rdtMonth.rdtActive,
@@ -111618,8 +112050,8 @@ title: Word Break
 .amis-scope td.rdtYear.rdtActive:hover > span,
 .amis-scope td.rdtQuarter.rdtActive > span,
 .amis-scope td.rdtQuarter.rdtActive:hover > span {
-  background: var(--info) !important;
-  color: var(--white);
+  background: var(--inputDate-other-active-bg-color) !important;
+  color: var(--inputDate-other-active-color) !important;
 }
 
 .amis-scope td.rdtMonth.rdtDisabled,
@@ -111628,8 +112060,17 @@ title: Word Break
 .amis-scope td.rdtYear.rdtDisabled:hover,
 .amis-scope td.rdtQuarter.rdtDisabled,
 .amis-scope td.rdtQuarter.rdtDisabled:hover {
-  background: var(--Calendar-cell-onDisabled-bg);
-  color: #b8babf;
+  background: var(--inputDate-other-disabled-bg-color);
+}
+
+.amis-scope td.rdtMonth.rdtDisabled > span,
+.amis-scope td.rdtMonth.rdtDisabled:hover > span,
+.amis-scope td.rdtYear.rdtDisabled > span,
+.amis-scope td.rdtYear.rdtDisabled:hover > span,
+.amis-scope td.rdtQuarter.rdtDisabled > span,
+.amis-scope td.rdtQuarter.rdtDisabled:hover > span {
+  background: var(--inputDate-other-disabled-bg-color);
+  color: var(--inputDate-other-disabled-color);
 }
 
 .amis-scope .rdtPicker .rdtActive.rdtBetween.rdtStartDay {
@@ -111667,9 +112108,11 @@ title: Word Break
   position: relative;
   display: inline-flex;
   flex-wrap: nowrap;
-  border: var(--DatePicker-borderWidth) solid var(--DatePicker-borderColor);
+  border-width: var(--DatePicker-borderWidth);
+  border-style: var(--DatePicker-borderStyle);
+  border-color: var(--DatePicker-borderColor);
   font-size: var(--DatePicker-fontSize);
-  padding: 0 var(--DatePicker-paddingX);
+  padding: 0 var(--inputDate-default-paddingRight) 0 var(--inputDate-default-paddingLeft);
   height: var(--DatePicker-height);
   outline: none;
   border-radius: var(--DatePicker-borderRadius);
@@ -111694,6 +112137,12 @@ title: Word Break
 .amis-scope .a-DateRangePicker:not(.is-disabled):hover {
   background: var(--DatePicker-onHover-bg);
   border-color: var(--DatePicker-onHover-borderColor);
+  border-style: var(--inputDate-hover-top-border-style) var(--inputDate-hover-right-border-style) var(--inputDate-hover-bottom-border-style) var(--inputDate-hover-left-border-style);
+  border-width: var(--inputDate-hover-top-border-width) var(--inputDate-hover-right-border-width) var(--inputDate-hover-bottom-border-width) var(--inputDate-hover-left-border-width);
+}
+
+.amis-scope .a-DateRangePicker:not(.is-disabled):hover .a-DateRangePicker-input {
+  color: var(--inputDate-hover-color);
 }
 
 .amis-scope .a-DateRangePicker:not(.is-disabled):hover .a-DateRangePicker-clear {
@@ -111705,20 +112154,29 @@ title: Word Break
 }
 
 .amis-scope .a-DateRangePicker:not(.is-disabled).is-focused {
+  background: var(--inputDate-active-bg-color);
   border-color: var(--DatePicker-onFocused-borderColor);
-  box-shadow: var(--Form-input-boxShadow);
+  box-shadow: var(--inputDate-active-shadow);
+  border-style: var(--inputDate-active-top-border-style) var(--inputDate-active-right-border-style) var(--inputDate-active-bottom-border-style) var(--inputDate-active-left-border-style);
+  border-width: var(--inputDate-active-top-border-width) var(--inputDate-active-right-border-width) var(--inputDate-active-bottom-border-width) var(--inputDate-active-left-border-width);
+}
+
+.amis-scope .a-DateRangePicker:not(.is-disabled).is-focused .a-DateRangePicker-input {
+  color: var(--inputDate-active-color);
 }
 
 .amis-scope .a-DateRangePicker .a-DateRangePicker-input {
   border: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: var(--DateRangePicker-activeCursor-height) solid transparent;
   outline: none;
   padding: 0;
   background: 0;
   flex: 1;
   width: 50%;
   line-height: 1.875rem;
-  font-size: var(--fonts-size-7);
+  font-size: var(--DatePicker-fontSize);
+  font-weight: var(--inputDate-default-fontWeight);
+  color: var(--inputDate-default-color);
 }
 
 .amis-scope .a-DateRangePicker .a-DateRangePicker-input::placeholder {
@@ -111730,23 +112188,26 @@ title: Word Break
 }
 
 .amis-scope .a-DateRangePicker .a-DateRangePicker-input-separator {
-  margin: 0 var(--gap-sm);
+  margin: 0 var(--inputDate-range-separator-margin);
   display: flex;
   align-items: center;
 }
 
 .amis-scope .a-DateRangePicker .a-DateRangePicker-input-separator-line {
-  width: var(--gap-sm);
+  width: var(--inputDate-range-separator-width);
   height: 1px;
-  background: #b8babf;
+  background: var(--inputDate-range-separator-color);
 }
 
 .amis-scope .a-DateRangePicker.is-disabled {
-  background: #e5e7eb;
+  background: var(--inputDate-disabled-bg-color);
+  border-width: var(--inputDate-disabled-top-border-width) var(--inputDate-disabled-right-border-width) var(--inputDate-disabled-bottom-border-width) var(--inputDate-disabled-left-border-width);
+  border-style: var(--inputDate-disabled-top-border-style) var(--inputDate-disabled-right-border-style) var(--inputDate-disabled-bottom-border-style) var(--inputDate-disabled-left-border-style);
+  border-color: var(--inputDate-disabled-top-border-color) var(--inputDate-disabled-right-border-color) var(--inputDate-disabled-bottom-border-color) var(--inputDate-disabled-left-border-color);
 }
 
 .amis-scope .a-DateRangePicker.is-disabled > .a-DateRangePicker-input {
-  color: var(--text--muted-color);
+  color: var(--inputDate-disabled-color);
 }
 
 .amis-scope .a-DateRangePicker-placeholder {
@@ -111789,6 +112250,20 @@ title: Word Break
   fill: var(--Form-input-clearBtn-color-onActive);
 }
 
+.amis-scope .a-DateRangePicker-toggler svg {
+  color: var(--inputDate-default-icon-color);
+  width: var(--inputDate-default-icon-size);
+  height: var(--inputDate-default-icon-size);
+}
+
+.amis-scope .a-DateRangePicker .DatePicker-toggler-clock {
+  content: var(--inputTime-default-icon);
+}
+
+.amis-scope .a-DateRangePicker .DatePicker-toggler-date {
+  content: var(--inputDate-default-icon);
+}
+
 .amis-scope .a-DateRangePicker-clear {
   padding: var(--Form-input-clearBtn-padding);
   cursor: pointer;
@@ -111813,6 +112288,11 @@ title: Word Break
 
 .amis-scope .a-DateRangePicker-clear:active svg {
   fill: var(--Form-input-clearBtn-color-onActive);
+}
+
+.amis-scope .a-DateRangePicker-clear svg {
+  width: var(--inputDate-default-icon-size);
+  height: var(--inputDate-default-icon-size);
 }
 
 .amis-scope .a-DateRangePicker-activeCursor {
@@ -111913,7 +112393,9 @@ title: Word Break
 
 .amis-scope .a-DateRangeCalendar {
   display: inline-block;
-  border: var(--DatePicker-borderWidth) solid var(--DatePicker-borderColor);
+  border-width: var(--DatePicker-borderWidth);
+  border-style: var(--DatePicker-borderStyle);
+  border-color: var(--DatePicker-borderColor);
   background: var(--DatePicker-bg);
   border-radius: var(--DatePicker-borderRadius);
 }
@@ -113102,7 +113584,7 @@ title: Word Break
   border: 1px solid var(--Form-input-borderColor);
   padding: 6px 12px;
   border-radius: 2px;
-  max-height: 300px;
+  max-height: var(--Tree-max-height);
   overflow: auto;
 }
 
@@ -113113,6 +113595,25 @@ title: Word Break
 
 .amis-scope .a-TreeControl.no-border {
   border: 0;
+}
+
+.amis-scope .a-TreeControl.is-sticky {
+  max-height: unset;
+  overflow: unset;
+}
+
+.amis-scope .a-TreeControl-searchbox {
+  margin-top: var(--gap-sm);
+  margin-bottom: var(--gap-md);
+}
+
+.amis-scope .a-TreeControl-searchbox.is-active {
+  width: 100%;
+}
+
+.amis-scope .a-TreeControl > .a-Tree {
+  max-height: var(--Tree-max-height);
+  overflow: auto;
 }
 
 .amis-scope .a-Tree-list,
@@ -113380,7 +113881,8 @@ title: Word Break
   cursor: pointer;
   flex: 1 auto;
   display: inline-block;
-  color: var(--Form-input-color);
+  color: var(--select-tree-color);
+  font-size: var(--select-tree-fontSize);
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -114099,6 +114601,11 @@ title: Word Break
   margin-right: var(--gap-xs);
 }
 
+.amis-scope .a-ChainedSelectControl-spinner {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .amis-scope .a-Picker {
   position: relative;
   max-width: 100%;
@@ -114353,10 +114860,6 @@ title: Word Break
 
 .amis-scope .a-TagControl {
   position: relative;
-}
-
-.amis-scope .a-TagControl-input.is-focused {
-  border-radius: 0;
 }
 
 .amis-scope .a-TagControl-input.is-disabled {
@@ -115128,10 +115631,14 @@ title: Word Break
 .amis-scope .a-NestedSelect-menu .a-NestedSelect-option {
   position: relative;
   padding-left: var(--gap-md);
-  min-height: var(--Form-input-height);
-  line-height: var(--Form-input-height);
+  min-height: var(--select-base-default-option-line-height);
+  line-height: var(--select-base-default-option-line-height);
   cursor: pointer;
   display: flex;
+  font-size: var(--select-base-default-option-fontSize);
+  font-weight: var(--select-base-default-option-fontWeight);
+  color: var(--select-base-default-option-color);
+  background: var(--select-base-default-option-bg-color);
 }
 
 .amis-scope .a-NestedSelect-menu .a-NestedSelect-option > .a-NestedSelect-optionLabel {
@@ -116101,7 +116608,6 @@ title: Word Break
   }
 
   .amis-scope .a-Form-item--horizontal > .a-Form-label {
-    height: 2rem;
     line-height: 2rem;
     margin: 0;
     margin-right: var(--Form--horizontal-label-gap);
@@ -117641,6 +118147,10 @@ title: Word Break
   margin-top: 0.625rem;
 }
 
+.amis-scope .a-FormulaEditor-settings > div {
+  width: 0;
+}
+
 .amis-scope .a-FormulaEditor-settings.only-variable {
   height: 21.875rem;
 }
@@ -117827,11 +118337,17 @@ title: Word Break
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
   white-space: nowrap;
 }
 
 .amis-scope .a-FormulaEditor-VariableList-item > label {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  width: 0;
+  display: inline-block;
 }
 
 .amis-scope .a-FormulaEditor-VariableList-item-tag {
@@ -117841,6 +118357,9 @@ title: Word Break
   border-radius: var(--borderRadius);
   background: #f5f5f5;
   color: var(--black);
+  font-size: var(--fontSizeSm);
+  line-height: 1.5rem;
+  height: 1.5rem;
 }
 
 .amis-scope .a-FormulaEditor-VariableList .a-GroupedSelection-item-tag {
@@ -118792,7 +119311,7 @@ title: Word Break
   --Menu-light-fontColor-onHover: var(--Layout-fontColor--onHover);
   --Menu-light-ancestor-fontColor-onActive: var(--Layout-light-fontColor);
   --Menu-light-fontColor-onActive: var(--Layout-fontColor--onActive);
-  --Menu-light-groupTitle-fontColor: #d8d8d8;
+  --Menu-light-groupTitle-fontColor: #84868c;
   --Menu-light-selectedIndicator-color: var(--Layout-fontColor--info);
   --Menu-dark-backgroundColor: var(--Layout-dark-backgroundColor);
   --Menu-dark-backgroundColor-onHover: var(--Layout-fontColor--info);
@@ -118800,7 +119319,7 @@ title: Word Break
   --Menu-dark-fontColor-onHover: var(--Layout-fontColor--onHover);
   --Menu-dark-ancestor-fontColor-onActive: var(--Layout-fontColor--onActive);
   --Menu-dark-fontColor-onActive: var(--Layout-dark-fontColor);
-  --Menu-dark-groupTitle-fontColor: #d8d8d8;
+  --Menu-dark-groupTitle-fontColor: #84868c;
   --Menu-dark-selectedIndicator-color: var(--Layout-dark-selected-color);
   outline: none;
   margin-bottom: 0;
@@ -118810,6 +119329,8 @@ title: Word Break
   list-style: none;
   color: var(--Menu-light-fontColor);
   background-color: var(--Menu-light-backgroundColor);
+  transition: all 0.3s;
+  width: 100%;
 }
 
 .amis-scope .a-Nav-Menu.a-Nav-Menu-dark {
@@ -118856,15 +119377,18 @@ title: Word Break
   cursor: not-allowed;
 }
 
-.amis-scope .a-Nav-Menu-root.a-Nav-Menu-collapsed .a-Nav-Menu-item {
+.amis-scope .a-Nav-Menu-root.a-Nav-Menu-collapsed .a-Nav-Menu-item,
+.amis-scope .a-Nav-Menu-root.a-Nav-Menu-collapsed .a-Nav-Menu-submenu-title {
   padding: 0;
   text-align: center;
 }
 
 .amis-scope .a-Nav-Menu-item-link {
-  display: block;
+  display: flex;
+  align-items: center;
   height: var(--Nav-Item-height);
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .amis-scope .a-Nav-Menu-item-divider {
@@ -118878,12 +119402,7 @@ title: Word Break
 .amis-scope .a-Nav-Menu-item-icon {
   margin-right: var(--gap-sm);
   font-size: var(--Menu-icon-size);
-  width: var(--Menu-icon-size);
   color: var(--Menu-light-fontColor);
-  display: inline-block;
-  line-height: var(--Menu-item-height--vertical);
-  position: relative;
-  top: 1.5px;
 }
 
 .amis-scope .a-Nav-Menu-item-icon img {
@@ -118893,12 +119412,12 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item-icon-collapsed {
   font-size: var(--Menu-fontSize--collapsed);
-  margin-right: 0;
+  margin: 0 auto;
 }
 
 .amis-scope .a-Nav-Menu-item-icon-svg-collapsed {
   font-size: var(--Menu-fontSize--collapsed);
-  margin-right: 0;
+  margin: 0 auto;
   height: var(--Menu-item-height--vertical);
 }
 
@@ -118922,12 +119441,12 @@ title: Word Break
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  vertical-align: middle;
   user-select: none;
 }
 
 .amis-scope .a-Nav-Menu-item-label-collapsed {
   font-size: var(--Menu-fontSize--collapsed);
+  margin: 0 auto;
   font-weight: 600;
 }
 
@@ -118953,9 +119472,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item-group-title {
   color: var(--Menu-light-groupTitle-fontColor);
-  line-height: 1.5;
-  padding: 8px 10px;
-  border-bottom: 1px solid #dedede;
+  line-height: 1.25rem;
+  padding: 0 var(--Menu-Submenu-item-paddingX) 0 1rem;
+  font-size: 0.75rem;
+  margin: 0.75rem 0 0.25rem 0;
 }
 
 .amis-scope .a-Nav-Menu-item-group-title.a-Nav-Menu-dark {
@@ -119015,6 +119535,9 @@ title: Word Break
 .amis-scope .a-Nav-Menu-item .a-Badge,
 .amis-scope .a-Nav-Menu-submenu .a-Badge {
   position: static;
+  flex: 1;
+  width: 0;
+  display: flex;
 }
 
 .amis-scope .a-Nav-Menu-item .a-Nav-Menu-item-wrap,
@@ -119025,6 +119548,14 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item-extra {
   position: relative;
+}
+
+.amis-scope .a-Nav-Menu-item-extra .a-DropDown > .a-Button {
+  padding: 0;
+}
+
+.amis-scope .a-Nav-Menu-item-extra .a-DropDown > .a-Button > i {
+  margin: 0;
 }
 
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-item-selected {
@@ -119086,7 +119617,14 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-item-icon,
-.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-item-label {
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-submenu-arrow {
+  color: var(--Menu-light-fontColor-onActive) !important;
+}
+
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onActive) !important;
 }
 
@@ -119133,19 +119671,7 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-dark > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title {
-  background-color: var(--Menu-dark-backgroundColor-onHover);
-}
-
-.amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-dark > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  border-right: 3px solid var(--Menu-dark-selectedIndicator-color);
-  transform: scaleY(1);
-  opacity: 1;
-  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+  color: var(--Menu-dark-fontColor-onActive);
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-dark > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-icon,
@@ -119175,19 +119701,7 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title {
-  background-color: var(--Menu-light-backgroundColor-onHover);
-}
-
-.amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  border-right: 3px solid var(--Menu-light-selectedIndicator-color);
-  transform: scaleY(1);
-  opacity: 1;
-  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+  color: var(--Menu-dark-fontColor-onActive);
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-icon,
@@ -119278,7 +119792,7 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-title {
   margin: 0;
   position: relative;
-  padding: 0;
+  padding: 0 1rem;
   line-height: var(--Nav-Item-height);
   display: block;
   white-space: nowrap;
@@ -119289,8 +119803,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item:hover .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-item:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-item:hover .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onHover);
 }
 
@@ -119307,8 +119823,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-dark .a-Nav-Menu-item:hover .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-dark .a-Nav-Menu-item:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-item:hover .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-fontColor-onHover);
 }
 
@@ -119320,8 +119838,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-light .a-Nav-Menu-item:hover .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-light .a-Nav-Menu-item:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-light .a-Nav-Menu-item:hover .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onHover);
 }
 
@@ -119335,6 +119855,10 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-title.a-Nav-Menu-item-disabled,
 .amis-scope .a-Nav-Menu-submenu-title.a-Nav-Menu-submenu-disabled {
   color: #777 !important;
+}
+
+.amis-scope .a-Nav-Menu-item-tooltip-wrap {
+  padding: 0;
 }
 
 .amis-scope .a-Nav-Menu-collapsed > .a-Nav-Menu-item,
@@ -119355,10 +119879,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-popup {
   position: absolute;
   z-index: 1500;
-}
-
-.amis-scope .a-Nav-Menu-submenu-popup .a-Nav-Menu-item {
-  padding: 0 var(--Menu-Submenu-item-paddingX);
 }
 
 .amis-scope .a-Nav-Menu-submenu > .a-Nav-Menu {
@@ -119410,6 +119930,12 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-fontColor);
+}
+
+.amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
+  color: var(--Menu-dark-fontColor-onHover);
 }
 
 .amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-active .a-Nav-Menu-submenu-title {
@@ -119489,7 +120015,7 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-item-tooltip-wrap > .a-Nav-Menu-item,
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title {
-  padding: 0 20px;
+  padding: 0 1rem;
   height: var(--Menu-item-height--horizontal);
 }
 
@@ -119503,12 +120029,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon,
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label {
   line-height: var(--Menu-item-height--horizontal);
-}
-
-.amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-item-tooltip-wrap > .a-Nav-Menu-item .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label {
-  padding: 0;
-  top: 0;
 }
 
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-item.a-Nav-Menu-item-selected:after {
@@ -119558,8 +120078,8 @@ title: Word Break
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-arrow {
   display: inline-block;
   font-size: 0.5625rem;
-  vertical-align: baseline;
   text-align: center;
+  vertical-align: middle;
   text-transform: none;
   text-rendering: auto;
   line-height: 1.25rem;
@@ -119568,7 +120088,10 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-arrow > svg {
-  text-align: center;
+  top: auto;
+}
+
+.amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-item-label {
   vertical-align: middle;
 }
 
@@ -119607,8 +120130,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-icon,
 .amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-item-icon,
-.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-item-label {
+.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onActive);
 }
 
@@ -119638,19 +120163,16 @@ title: Word Break
   text-transform: none;
   text-rendering: auto;
   position: absolute;
-  right: 0;
+  right: var(--Menu-Submenu-item-paddingX);
   top: 0;
-  width: var(--Menu-Submenu-title-paddingX);
   line-height: var(--Menu-item-height--vertical);
-  transform: rotate(-90deg);
 }
 
 .amis-scope .a-Nav-Menu-vertical .a-Nav-Menu-submenu-arrow > svg,
 .amis-scope .a-Nav-Menu-vertical-left .a-Nav-Menu-submenu-arrow > svg,
 .amis-scope .a-Nav-Menu-vertical-right .a-Nav-Menu-submenu-arrow > svg,
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-submenu-arrow > svg {
-  text-align: center;
-  vertical-align: middle;
+  top: auto;
 }
 
 .amis-scope .a-Nav-Menu-rtl .a-Nav-Menu-vertical .a-Nav-Menu-submenu-arrow,
@@ -119670,7 +120192,7 @@ title: Word Break
 .amis-scope .a-Nav-Menu-vertical-right.a-Nav-Menu-expand-before .a-Nav-Menu-submenu-title .a-Nav-Menu-item-wrap,
 .amis-scope .a-Nav-Menu-inline.a-Nav-Menu-expand-before .a-Nav-Menu-submenu-title .a-Nav-Menu-item-wrap {
   padding-right: 0;
-  padding-left: var(--Menu-Submenu-title-paddingX);
+  padding-left: 1rem;
 }
 
 .amis-scope .a-Nav-Menu-vertical.a-Nav-Menu-expand-before .a-Nav-Menu-submenu-arrow,
@@ -119694,46 +120216,44 @@ title: Word Break
   color: var(--Menu-light-fontColor);
 }
 
-.amis-scope .a-Nav-Menu-vertical-right .a-Nav-Menu-item,
-.amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-item {
-  padding: 0 var(--Menu-Submenu-title-paddingX) 0 calc(var(--Menu-Submenu-title-paddingX) - 1px);
+.amis-scope .a-Nav-Menu-vertical-right .a-Nav-Menu-submenu-arrow {
+  right: 0.625rem;
 }
 
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-arrow {
   cursor: pointer;
   transition: transform 0.3s;
-  transform: rotate(0deg);
+  transform: rotate(90deg);
 }
 
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-submenu-open > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-open > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
-  transform: rotate(180deg);
+  transform: rotate(270deg);
 }
 
 .amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-item-wrap {
   overflow: hidden;
 }
 
-.amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title {
-  padding: 0 var(--Menu-Submenu-title-paddingX) 0 calc(var(--Menu-Submenu-title-paddingX) - 1px);
-  text-align: center;
-}
-
 .amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-submenu-arrow {
   display: none !important;
+}
+
+.amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-item-group-title {
+  display: none;
+}
+
+.amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-item-group-list .a-Nav-Menu-item-divider {
+  height: 1px;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .amis-scope .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu,
 .amis-scope .a-Nav-Menu-submenu-vertical-left.a-Nav-Menu-submenu,
 .amis-scope .a-Nav-Menu-submenu-vertical-right.a-Nav-Menu-submenu {
   padding: 0;
-}
-
-.amis-scope .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title,
-.amis-scope .a-Nav-Menu-submenu-vertical-left.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title,
-.amis-scope .a-Nav-Menu-submenu-vertical-right.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title {
-  padding: 0 var(--Menu-Submenu-item-paddingX);
 }
 
 .amis-scope .a-Nav-Menu-submenu-rtl .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu,
@@ -119753,7 +120273,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title {
   padding-top: 0;
   padding-bottom: 0;
-  padding-right: 0;
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -119770,7 +120289,8 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-ancestor-fontColor-onActive);
 }
 
@@ -119778,28 +120298,24 @@ title: Word Break
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled.a-Nav-Menu-item,
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled.a-Nav-Menu-item {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled.a-Nav-Menu-item .a-Nav-Menu-item-link,
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled.a-Nav-Menu-item .a-Nav-Menu-item-link {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled .a-Nav-Menu-submenu-title,
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled .a-Nav-Menu-submenu-title {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled .a-Nav-Menu-submenu-title > .a-Nav-Menu-item-icon,
@@ -119810,7 +120326,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled .a-Nav-Menu-submenu-title > .a-Nav-Menu-submenu-arrow {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled .a-Nav-Menu-item-icon,
@@ -119821,7 +120336,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled .a-Nav-Menu-submenu-arrow {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu-open-slide-up-enter,
@@ -119984,6 +120498,12 @@ title: Word Break
 .amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-fontColor);
+}
+
+.amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
+  color: var(--Menu-dark-fontColor-onHover);
 }
 
 .amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-active .a-Nav-Menu-submenu-title {

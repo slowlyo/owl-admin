@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Middleware;
+namespace Slowlyo\OwlAdmin\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

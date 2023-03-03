@@ -83,9 +83,9 @@ if (!function_exists('amis')) {
 
 
 if (!function_exists('amis')) {
-    function amis($type = null): \Slowlyo\SlowAdmin\Renderers\Component
+    function amis($type = null): \Slowlyo\OwlAdmin\Renderers\Component
     {
-        $component = \Slowlyo\SlowAdmin\Renderers\Component::make();
+        $component = \Slowlyo\OwlAdmin\Renderers\Component::make();
 
         if ($type) {
             $component->setType($type);
@@ -151,7 +151,7 @@ if (!function_exists('is_json')) {
 if (!function_exists('settings')) {
     function settings()
     {
-        return \Slowlyo\SlowAdmin\Services\AdminSettingService::make();
+        return \Slowlyo\OwlAdmin\Services\AdminSettingService::make();
     }
 }
 

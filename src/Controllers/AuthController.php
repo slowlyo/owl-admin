@@ -1,19 +1,19 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\Request;
-use Slowlyo\SlowAdmin\SlowAdmin;
-use Slowlyo\SlowAdmin\Libs\Captcha;
+use Slowlyo\OwlAdmin\OwlAdmin;
+use Slowlyo\OwlAdmin\Libs\Captcha;
 use Illuminate\Support\Facades\Hash;
-use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Models\AdminUser;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Models\AdminUser;
 use Illuminate\Support\Facades\Validator;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Renderers\ImageControl;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Renderers\ImageControl;
 use Symfony\Component\HttpFoundation\Response;
-use Slowlyo\SlowAdmin\Services\AdminUserService;
+use Slowlyo\OwlAdmin\Services\AdminUserService;
 
 class AuthController extends AdminController
 {
@@ -81,12 +81,12 @@ class AuthController extends AdminController
 
     protected function guard(): \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
     {
-        return SlowAdmin::guard();
+        return OwlAdmin::guard();
     }
 
     public function currentUser()
     {
-        return $this->response()->success(SlowAdmin::user()->only(['id', 'name', 'avatar']));
+        return $this->response()->success(OwlAdmin::user()->only(['id', 'name', 'avatar']));
     }
 
     public function userSetting(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource

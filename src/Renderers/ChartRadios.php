@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Renderers;
+namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * <b>ChartRadios 图表单选框</b><br/>

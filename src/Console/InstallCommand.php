@@ -1,16 +1,16 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Console;
+namespace Slowlyo\OwlAdmin\Console;
 
 use Illuminate\Console\Command;
-use Slowlyo\SlowAdmin\Models\AdminUser;
-use Slowlyo\SlowAdmin\Models\AdminTablesSeeder;
+use Slowlyo\OwlAdmin\Models\AdminUser;
+use Slowlyo\OwlAdmin\Models\AdminTablesSeeder;
 
 class InstallCommand extends Command
 {
     protected $signature = 'admin:install';
 
-    protected $description = 'Install SlowAdmin';
+    protected $description = 'Install OwlAdmin';
 
     public function handle()
     {

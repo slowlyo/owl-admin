@@ -1,10 +1,10 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Services;
+namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
-use Slowlyo\SlowAdmin\Traits\ErrorTrait;
+use Slowlyo\OwlAdmin\Traits\ErrorTrait;
 use Illuminate\Database\Eloquent\Builder;
 
 abstract class AdminService

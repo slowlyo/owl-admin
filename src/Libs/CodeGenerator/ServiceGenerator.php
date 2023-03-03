@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Libs\CodeGenerator;
+namespace Slowlyo\OwlAdmin\Libs\CodeGenerator;
 
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 

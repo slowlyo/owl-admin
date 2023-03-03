@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Renderers;
+namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * <b>FormItem 普通表单项</b><br/>

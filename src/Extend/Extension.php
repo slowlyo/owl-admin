@@ -1,11 +1,11 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Extend;
+namespace Slowlyo\OwlAdmin\Extend;
 
-use Slowlyo\SlowAdmin\Libs\Helper;
+use Slowlyo\OwlAdmin\Libs\Helper;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use Slowlyo\SlowAdmin\Traits\ErrorTrait;
+use Slowlyo\OwlAdmin\Traits\ErrorTrait;
 
 class Extension
 {

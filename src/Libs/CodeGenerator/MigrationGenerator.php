@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Libs\CodeGenerator;
+namespace Slowlyo\OwlAdmin\Libs\CodeGenerator;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;

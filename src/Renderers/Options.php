@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Renderers;
+namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * <b>Options 选择器表单项</b><br/>

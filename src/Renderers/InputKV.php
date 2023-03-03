@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Renderers;
+namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * <b>InputKV 键值对</b><br/>

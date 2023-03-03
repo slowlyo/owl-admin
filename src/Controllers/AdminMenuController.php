@@ -1,24 +1,24 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Html;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Models\AdminMenu;
-use Slowlyo\SlowAdmin\Renderers\Dialog;
-use Slowlyo\SlowAdmin\Renderers\SvgIcon;
-use Slowlyo\SlowAdmin\Renderers\Operation;
-use Slowlyo\SlowAdmin\Renderers\TableColumn;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Renderers\ListControl;
-use Slowlyo\SlowAdmin\Renderers\GroupControl;
-use Slowlyo\SlowAdmin\Renderers\NumberControl;
-use Slowlyo\SlowAdmin\Renderers\SwitchControl;
-use Slowlyo\SlowAdmin\Services\AdminMenuService;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\Html;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Renderers\Dialog;
+use Slowlyo\OwlAdmin\Renderers\SvgIcon;
+use Slowlyo\OwlAdmin\Renderers\Operation;
+use Slowlyo\OwlAdmin\Renderers\TableColumn;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Renderers\ListControl;
+use Slowlyo\OwlAdmin\Renderers\GroupControl;
+use Slowlyo\OwlAdmin\Renderers\NumberControl;
+use Slowlyo\OwlAdmin\Renderers\SwitchControl;
+use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Slowlyo\SlowAdmin\Renderers\TreeSelectControl;
+use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 
 class AdminMenuController extends AdminController
 {

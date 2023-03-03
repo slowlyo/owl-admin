@@ -1,9 +1,9 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Extend;
+namespace Slowlyo\OwlAdmin\Extend;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Illuminate\Support\Facades\Validator;
 
 /**

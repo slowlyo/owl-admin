@@ -1,9 +1,9 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Services;
+namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Models\AdminRole;
+use Slowlyo\OwlAdmin\Models\AdminRole;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 

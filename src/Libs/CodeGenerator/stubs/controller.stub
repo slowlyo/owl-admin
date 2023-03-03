@@ -3,12 +3,12 @@
 namespace {{ Namespace }};
 
 use Illuminate\Http\JsonResponse;
-use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Renderers\TableColumn;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\TableColumn;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Slowlyo\SlowAdmin\Controllers\AdminController;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
 use {{ UseService }};
 
 class {{ ClassName }} extends AdminController

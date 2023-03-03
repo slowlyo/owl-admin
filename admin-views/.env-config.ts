@@ -4,9 +4,9 @@ type ServiceEnv = Record<ServiceEnvType, ServiceEnvConfig>;
 /** 不同请求服务的环境配置 */
 const serviceEnv: ServiceEnv = {
 	dev: {
-		url: 'http://slow-admin.test/admin-api',
+		url: 'http://owl-admin.test/admin-api',
 		// @ts-ignore
-		urlPattern: 'http://slow-admin.test/admin-api',
+		urlPattern: 'http://owl-admin.test/admin-api',
 		secondUrl: 'http://localhost:8081',
 		secondUrlPattern: '/second-url-pattern'
 	},

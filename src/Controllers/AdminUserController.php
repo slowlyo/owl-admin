@@ -1,18 +1,18 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Slowlyo\SlowAdmin\Renderers\Tag;
-use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Renderers\Operation;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Renderers\TableColumn;
-use Slowlyo\SlowAdmin\Renderers\ImageControl;
-use Slowlyo\SlowAdmin\Renderers\SelectControl;
-use Slowlyo\SlowAdmin\Services\AdminUserService;
-use Slowlyo\SlowAdmin\Services\AdminRoleService;
+use Slowlyo\OwlAdmin\Renderers\Tag;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\Operation;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Renderers\TableColumn;
+use Slowlyo\OwlAdmin\Renderers\ImageControl;
+use Slowlyo\OwlAdmin\Renderers\SelectControl;
+use Slowlyo\OwlAdmin\Services\AdminUserService;
+use Slowlyo\OwlAdmin\Services\AdminRoleService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AdminUserController extends AdminController

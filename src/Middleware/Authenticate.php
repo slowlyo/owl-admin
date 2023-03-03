@@ -1,17 +1,17 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Middleware;
+namespace Slowlyo\OwlAdmin\Middleware;
 
 use Closure;
-use Slowlyo\SlowAdmin\SlowAdmin;
+use Slowlyo\OwlAdmin\OwlAdmin;
 
 class Authenticate
 {
     public function handle($request, Closure $next)
     {
         if (config('admin.auth.enable')) {
-            if (!$this->shouldPassThrough($request) && SlowAdmin::guard()->guest()) {
-                return SlowAdmin::response()->additional(['code' => '401'])->fail('请先登录');
+            if (!$this->shouldPassThrough($request) && OwlAdmin::guard()->guest()) {
+                return OwlAdmin::response()->additional(['code' => '401'])->fail('请先登录');
             }
         }
 

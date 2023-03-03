@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Libs;
+namespace Slowlyo\OwlAdmin\Libs;
 
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;

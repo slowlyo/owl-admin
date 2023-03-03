@@ -1,12 +1,12 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Services;
+namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Admin;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
-use Slowlyo\SlowAdmin\Models\AdminSetting;
+use Slowlyo\OwlAdmin\Models\AdminSetting;
 
 class AdminSettingService extends AdminService
 {

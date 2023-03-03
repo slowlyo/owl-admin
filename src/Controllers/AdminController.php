@@ -1,15 +1,15 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\Request;
-use Slowlyo\SlowAdmin\SlowAdmin;
+use Slowlyo\OwlAdmin\OwlAdmin;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Slowlyo\SlowAdmin\Traits\Uploader;
-use Slowlyo\SlowAdmin\Traits\QueryPath;
-use Slowlyo\SlowAdmin\Traits\PageElement;
-use Slowlyo\SlowAdmin\Services\AdminService;
+use Slowlyo\OwlAdmin\Traits\Uploader;
+use Slowlyo\OwlAdmin\Traits\QueryPath;
+use Slowlyo\OwlAdmin\Traits\PageElement;
+use Slowlyo\OwlAdmin\Services\AdminService;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -48,7 +48,7 @@ abstract class AdminController extends Controller
 
     public function user()
     {
-        return SlowAdmin::user();
+        return OwlAdmin::user();
     }
 
     public function actionOfGetData()
@@ -68,7 +68,7 @@ abstract class AdminController extends Controller
 
     protected function response()
     {
-        return SlowAdmin::response();
+        return OwlAdmin::response();
     }
 
     protected function autoResponse($flag, $text = '')

@@ -2,7 +2,7 @@
 
 return [
     // 应用名称
-    'name'           => 'Slow Admin',
+    'name'           => 'Owl Admin',
 
     // 应用 logo
     'logo'           => '/admin/logo.png',
@@ -11,7 +11,7 @@ return [
     'default_avatar' => '/admin/default-avatar.png',
 
     // 底部信息
-    'footer'         => '© 2023 <a href="https://gitee.com/slowlyo/slow-admin" target="_blank">Slow Admin</a>',
+    'footer'         => '© 2023 <a href="https://gitee.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
 
     'directory' => app_path('Admin'),
 
@@ -30,8 +30,8 @@ return [
         // 是否开启鉴权
         'enable'        => true,
         // 用户模型
-        'model'         => \Slowlyo\SlowAdmin\Models\AdminUser::class,
-        'controller'    => \Slowlyo\SlowAdmin\Controllers\AuthController::class,
+        'model'         => \Slowlyo\OwlAdmin\Models\AdminUser::class,
+        'controller'    => \Slowlyo\OwlAdmin\Controllers\AuthController::class,
         'guard'         => 'sanctum',
         'except'        => [
 

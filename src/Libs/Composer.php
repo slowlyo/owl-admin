@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Libs;
+namespace Slowlyo\OwlAdmin\Libs;
 
 use Composer\Autoload\ClassLoader;
 

@@ -1,22 +1,22 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Extend;
+namespace Slowlyo\OwlAdmin\Extend;
 
 use RuntimeException;
 use FilesystemIterator;
 use Illuminate\Support\Str;
-use Slowlyo\SlowAdmin\Admin;
+use Slowlyo\OwlAdmin\Admin;
 use RecursiveIteratorIterator;
-use Slowlyo\SlowAdmin\Libs\Zip;
+use Slowlyo\OwlAdmin\Libs\Zip;
 use RecursiveDirectoryIterator;
-use Slowlyo\SlowAdmin\Libs\Helper;
+use Slowlyo\OwlAdmin\Libs\Helper;
 use Illuminate\Support\Collection;
-use Slowlyo\SlowAdmin\Libs\Composer;
+use Slowlyo\OwlAdmin\Libs\Composer;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\SlowAdmin\Models\Extension as ExtensionModel;
+use Slowlyo\OwlAdmin\Models\Extension as ExtensionModel;
 
 class Manager
 {
@@ -253,7 +253,7 @@ class Manager
     {
         $composerProperty = Composer::parse($directory . '/composer.json');
 
-        $serviceProvider = $composerProperty->get('extra.slow-admin');
+        $serviceProvider = $composerProperty->get('extra.owl-admin');
         $psr4            = $composerProperty->get('autoload.psr-4');
         $files           = $composerProperty->get('autoload.files');
 
@@ -436,7 +436,7 @@ class Manager
 
         $composerProperty = Composer::parse($directory . '/composer.json');
 
-        if (!$composerProperty->name || !$composerProperty->get('extra.slow-admin')) {
+        if (!$composerProperty->name || !$composerProperty->get('extra.owl-admin')) {
             return false;
         }
 

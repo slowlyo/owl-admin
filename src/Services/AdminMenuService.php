@@ -1,9 +1,9 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Services;
+namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Models\AdminMenu;
 
 class AdminMenuService extends AdminService
 {

@@ -2,7 +2,7 @@
 
 namespace {{Namespace}};
 
-use Slowlyo\SlowAdmin\Controllers\AuthController as AdminAuthController;
+use Slowlyo\OwlAdmin\Controllers\AuthController as AdminAuthController;
 
 class AuthController extends AdminAuthController
 {

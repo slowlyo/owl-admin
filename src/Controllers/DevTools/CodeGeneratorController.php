@@ -1,30 +1,30 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers\DevTools;
+namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Renderers\Card;
-use Slowlyo\SlowAdmin\Renderers\Flex;
-use Slowlyo\SlowAdmin\Renderers\Alert;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\Card;
+use Slowlyo\OwlAdmin\Renderers\Flex;
+use Slowlyo\OwlAdmin\Renderers\Alert;
 use Illuminate\Support\Facades\Artisan;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Renderers\GroupControl;
-use Slowlyo\SlowAdmin\Renderers\TableControl;
-use Slowlyo\SlowAdmin\Renderers\SelectControl;
-use Slowlyo\SlowAdmin\Renderers\VanillaAction;
-use Slowlyo\SlowAdmin\Renderers\CheckboxControl;
-use Slowlyo\SlowAdmin\Renderers\FieldSetControl;
-use Slowlyo\SlowAdmin\Controllers\AdminController;
-use Slowlyo\SlowAdmin\Renderers\CheckboxesControl;
-use Slowlyo\SlowAdmin\Libs\CodeGenerator\ModelGenerator;
-use Slowlyo\SlowAdmin\Libs\CodeGenerator\ServiceGenerator;
-use Slowlyo\SlowAdmin\Libs\CodeGenerator\MigrationGenerator;
-use Slowlyo\SlowAdmin\Libs\CodeGenerator\ControllerGenerator;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Renderers\GroupControl;
+use Slowlyo\OwlAdmin\Renderers\TableControl;
+use Slowlyo\OwlAdmin\Renderers\SelectControl;
+use Slowlyo\OwlAdmin\Renderers\VanillaAction;
+use Slowlyo\OwlAdmin\Renderers\CheckboxControl;
+use Slowlyo\OwlAdmin\Renderers\FieldSetControl;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
+use Slowlyo\OwlAdmin\Renderers\CheckboxesControl;
+use Slowlyo\OwlAdmin\Libs\CodeGenerator\ModelGenerator;
+use Slowlyo\OwlAdmin\Libs\CodeGenerator\ServiceGenerator;
+use Slowlyo\OwlAdmin\Libs\CodeGenerator\MigrationGenerator;
+use Slowlyo\OwlAdmin\Libs\CodeGenerator\ControllerGenerator;
 
 class CodeGeneratorController extends AdminController
 {
@@ -226,7 +226,7 @@ class CodeGeneratorController extends AdminController
 
                 Card::make()->body([
                     Alert::make()
-                        ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/slow-admin-doc/#/docs/issue?id=%f0%9f%90%9b-%e7%bc%96%e8%be%91-%e8%af%a6%e6%83%85%e9%a1%b5%e9%9d%a2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%98%be%e5%a4%b1%e8%b4%a5' target='_blank'>查看详情</a> ")
+                        ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/owl-admin-doc/#/docs/issue?id=%f0%9f%90%9b-%e7%bc%96%e8%be%91-%e8%af%a6%e6%83%85%e9%a1%b5%e9%9d%a2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%98%be%e5%a4%b1%e8%b4%a5' target='_blank'>查看详情</a> ")
                         ->level('warning')
                         ->showCloseButton(true)
                         ->showIcon(true),

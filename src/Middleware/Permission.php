@@ -1,13 +1,13 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Middleware;
+namespace Slowlyo\OwlAdmin\Middleware;
 
 use Str;
 use Closure;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
-use Slowlyo\SlowAdmin\SlowAdmin;
-use Slowlyo\SlowAdmin\Models\AdminPermission;
+use Slowlyo\OwlAdmin\OwlAdmin;
+use Slowlyo\OwlAdmin\Models\AdminPermission;
 
 class Permission
 {
@@ -19,7 +19,7 @@ class Permission
             return $next($request);
         }
 
-        $user = SlowAdmin::user();
+        $user = OwlAdmin::user();
 
         if (!empty($args) || $this->shouldPassThrough($request) || $this->checkRoutePermission($request) || $user?->isAdministrator()) {
             return $next($request);
@@ -28,7 +28,7 @@ class Permission
         if (!$user?->allPermissions()
             ->first(fn(AdminPermission $permission) => $permission->shouldPassThrough($request))) {
 
-            return SlowAdmin::response()->fail('无权访问');
+            return OwlAdmin::response()->fail('无权访问');
         }
 
         return $next($request);

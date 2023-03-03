@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Libs;
+namespace Slowlyo\OwlAdmin\Libs;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;

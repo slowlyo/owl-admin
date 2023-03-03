@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Traits;
+namespace Slowlyo\OwlAdmin\Traits;
 
 use Illuminate\Support\Facades\Storage;
 

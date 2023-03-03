@@ -1,17 +1,17 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Slowlyo\SlowAdmin\Renderers\Card;
-use Slowlyo\SlowAdmin\Renderers\Flex;
-use Slowlyo\SlowAdmin\Renderers\Html;
-use Slowlyo\SlowAdmin\Renderers\Grid;
-use Slowlyo\SlowAdmin\Renderers\Chart;
-use Slowlyo\SlowAdmin\Renderers\Image;
-use Slowlyo\SlowAdmin\Renderers\Action;
-use Slowlyo\SlowAdmin\Renderers\Custom;
-use Slowlyo\SlowAdmin\Renderers\Wrapper;
+use Slowlyo\OwlAdmin\Renderers\Card;
+use Slowlyo\OwlAdmin\Renderers\Flex;
+use Slowlyo\OwlAdmin\Renderers\Html;
+use Slowlyo\OwlAdmin\Renderers\Grid;
+use Slowlyo\OwlAdmin\Renderers\Chart;
+use Slowlyo\OwlAdmin\Renderers\Image;
+use Slowlyo\OwlAdmin\Renderers\Action;
+use Slowlyo\OwlAdmin\Renderers\Custom;
+use Slowlyo\OwlAdmin\Renderers\Wrapper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HomeController extends AdminController
@@ -56,7 +56,7 @@ document.querySelector(".gitee-box").style.display = "none"
 
 // 引入 gitee-widget
 const script = document.createElement("script")
-script.src = "https://gitee.com/slowlyo/slow-admin/widget_preview"
+script.src = "https://gitee.com/slowlyo/owl-admin/widget_preview"
 script.async = true
 script.defer = true
 document.body.appendChild(script)
@@ -130,13 +130,13 @@ JS
                             ->blank(true)
                             ->actionType('url')
                             ->blank(true)
-                            ->link('https://gitee.com/slowlyo/slow-admin'),
+                            ->link('https://gitee.com/slowlyo/owl-admin'),
                         Action::make()
                             ->level('link')
-                            ->label('SlowAdmin 文档')
+                            ->label('OwlAdmin 文档')
                             ->blank(true)
                             ->actionType('url')
-                            ->link('https://slowlyo.gitee.io/slow-admin-doc/'),
+                            ->link('https://slowlyo.gitee.io/owl-admin-doc/'),
                         Action::make()
                             ->level('link')
                             ->label('Amis 文档')

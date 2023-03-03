@@ -1,11 +1,11 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Services;
+namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Slowlyo\SlowAdmin\Models\AdminPermission;
+use Slowlyo\OwlAdmin\Models\AdminPermission;
 
 class AdminPermissionService extends AdminService
 {

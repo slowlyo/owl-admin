@@ -1,4 +1,4 @@
-# Slow Admin
+# Owl Admin
 
 ***
 基于 `Laravel` 、 `amis` 开发的后台框架. 快速且灵活~
@@ -24,7 +24,7 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 
 - [《Laravel 9 中文文档》](https://learnku.com/docs/laravel/9.x/installation/12200)
 - [《amis》](https://aisuda.bce.baidu.com/amis/zh-CN/docs/index)
-- [《Slow Admin》](https://slowlyo.gitee.io/slow-admin-doc)
+- [《Owl Admin》](https://slowlyo.gitee.io/owl-admin-doc)
 
 ## 功能
 
@@ -50,8 +50,8 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 ## 截图
 
 ***
-![登录](https://slowlyo.gitee.io/static/images/slow-admin/login-page.png)
-![首页](https://slowlyo.gitee.io/static/images/slow-admin/home-page.png)
+![登录](https://slowlyo.gitee.io/static/images/owl-admin/login-page.png)
+![首页](https://slowlyo.gitee.io/static/images/owl-admin/home-page.png)
 
 ## 环境
 
@@ -81,10 +81,10 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-3. 获取 `Slow Admin`
+3. 获取 `Owl Admin`
 
 ```php
-composer require slowlyo/slow-admin
+composer require slowlyo/owl-admin
 ```
 
 4. 发布资源

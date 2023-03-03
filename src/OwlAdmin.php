@@ -1,23 +1,23 @@
 <?php
 
-namespace Slowlyo\SlowAdmin;
+namespace Slowlyo\OwlAdmin;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Libs\Context;
+use Slowlyo\OwlAdmin\Libs\Context;
 use Illuminate\Support\Facades\Auth;
-use Slowlyo\SlowAdmin\Libs\Composer;
-use Slowlyo\SlowAdmin\Traits\Assets;
-use Slowlyo\SlowAdmin\Extend\Manager;
-use Slowlyo\SlowAdmin\Models\AdminUser;
-use Slowlyo\SlowAdmin\Models\AdminMenu;
-use Slowlyo\SlowAdmin\Libs\JsonResponse;
-use Slowlyo\SlowAdmin\Extend\ServiceProvider;
+use Slowlyo\OwlAdmin\Libs\Composer;
+use Slowlyo\OwlAdmin\Traits\Assets;
+use Slowlyo\OwlAdmin\Extend\Manager;
+use Slowlyo\OwlAdmin\Models\AdminUser;
+use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Libs\JsonResponse;
+use Slowlyo\OwlAdmin\Extend\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\SlowAdmin\Services\AdminMenuService;
-use Slowlyo\SlowAdmin\Services\AdminSettingService;
+use Slowlyo\OwlAdmin\Services\AdminMenuService;
+use Slowlyo\OwlAdmin\Services\AdminSettingService;
 
-class SlowAdmin
+class OwlAdmin
 {
     use Assets;
 

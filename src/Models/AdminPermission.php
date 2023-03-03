@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Models;
+namespace Slowlyo\OwlAdmin\Models;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;

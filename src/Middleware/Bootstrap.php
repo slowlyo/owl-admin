@@ -1,16 +1,16 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Middleware;
+namespace Slowlyo\OwlAdmin\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Slowlyo\SlowAdmin\SlowAdmin;
+use Slowlyo\OwlAdmin\OwlAdmin;
 
 class Bootstrap
 {
     public function handle(Request $request, Closure $next)
     {
-        SlowAdmin::bootstrap();
+        OwlAdmin::bootstrap();
 
         return $next($request);
     }

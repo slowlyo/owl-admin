@@ -1,12 +1,12 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Extend;
+namespace Slowlyo\OwlAdmin\Extend;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Admin;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Route;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Libs\ComposerProperty;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Libs\ComposerProperty;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Symfony\Component\Console\Output\NullOutput;
@@ -419,7 +419,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
         $this->flushMenu();
         $this->unpublishable();
         $this->runMigrations(true);
-        \Slowlyo\SlowAdmin\Models\Extension::query()->where('name', $this->getName())->delete();
+        \Slowlyo\OwlAdmin\Models\Extension::query()->where('name', $this->getName())->delete();
     }
 
     /**

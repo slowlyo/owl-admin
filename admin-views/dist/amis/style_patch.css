@@ -1,5 +1,5 @@
 :root {
-	--slow-menu-bg: #eaf4ff;
+	--owl-menu-bg: #eaf4ff;
 
 	--primary: var(--primary-color);
 	--success: var(--success-color);
@@ -9,8 +9,7 @@
 
 	--borderRadius: 6px;
 
-
-    --Table-onHover-bg: var(--primary-color-active);
+	--Table-onHover-bg: var(--primary-color-active);
 	--Panel-borderWidth: 0;
 	--Panel-border: 1px solid rgba(0, 0, 0, .06);
 	--Page-title-fontSize: 20px;
@@ -99,7 +98,7 @@
 	--Form-input-onFocused-borderColor: var(--primary-color-suppl);
 	--Panel-heading-fontSize: var(--fonts-size-10);
 	--Panel-heading-fontWeight: var(--fonts-weight-4);
-    --checkbox-checked-hover-bg-color: var(--primary-color-hover);
+	--checkbox-checked-hover-bg-color: var(--primary-color-hover);
 }
 
 /*//2.4.0 样式修复*/
@@ -245,12 +244,12 @@
 	justify-content: center;
 }
 
-.amis-scope .cxd-Table-table .cxd-TextControl-input{
-    background: white;
+.amis-scope .cxd-Table-table .cxd-TextControl-input {
+	background: white;
 }
 
-.dark .amis-scope .cxd-Table-table .cxd-TextControl-input{
-    background: var(--dark-card-background);
+.dark .amis-scope .cxd-Table-table .cxd-TextControl-input {
+	background: var(--dark-card-background);
 }
 
 

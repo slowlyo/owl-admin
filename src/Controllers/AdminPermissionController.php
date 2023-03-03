@@ -1,25 +1,25 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use Slowlyo\SlowAdmin\Renderers\Tag;
-use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Renderers\Action;
-use Slowlyo\SlowAdmin\Models\AdminMenu;
-use Slowlyo\SlowAdmin\Renderers\TableColumn;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Models\AdminPermission;
-use Slowlyo\SlowAdmin\Renderers\SelectControl;
-use Slowlyo\SlowAdmin\Renderers\NumberControl;
-use Slowlyo\SlowAdmin\Services\AdminMenuService;
+use Slowlyo\OwlAdmin\Renderers\Tag;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\Action;
+use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Renderers\TableColumn;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Models\AdminPermission;
+use Slowlyo\OwlAdmin\Renderers\SelectControl;
+use Slowlyo\OwlAdmin\Renderers\NumberControl;
+use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Slowlyo\SlowAdmin\Renderers\CheckboxesControl;
-use Slowlyo\SlowAdmin\Renderers\TreeSelectControl;
-use Slowlyo\SlowAdmin\Services\AdminPermissionService;
+use Slowlyo\OwlAdmin\Renderers\CheckboxesControl;
+use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
+use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
 class AdminPermissionController extends AdminController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Models;
+namespace Slowlyo\OwlAdmin\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Collection;

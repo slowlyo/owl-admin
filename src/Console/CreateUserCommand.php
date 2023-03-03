@@ -1,10 +1,10 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Console;
+namespace Slowlyo\OwlAdmin\Console;
 
 use Illuminate\Console\Command;
-use Slowlyo\SlowAdmin\Models\AdminUser;
-use Slowlyo\SlowAdmin\Models\AdminRole;
+use Slowlyo\OwlAdmin\Models\AdminUser;
+use Slowlyo\OwlAdmin\Models\AdminRole;
 
 class CreateUserCommand extends Command
 {

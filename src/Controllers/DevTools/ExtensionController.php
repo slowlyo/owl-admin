@@ -1,31 +1,31 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers\DevTools;
+namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Illuminate\Http\Request;
-use Slowlyo\SlowAdmin\Admin;
-use Slowlyo\SlowAdmin\Renderers\Tpl;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Renderers\Card;
-use Slowlyo\SlowAdmin\Renderers\Alert;
-use Slowlyo\SlowAdmin\Renderers\Dialog;
-use Slowlyo\SlowAdmin\Extend\Extension;
-use Slowlyo\SlowAdmin\Renderers\Drawer;
-use Slowlyo\SlowAdmin\Renderers\Wrapper;
-use Slowlyo\SlowAdmin\Renderers\Divider;
-use Slowlyo\SlowAdmin\Renderers\Service;
-use Slowlyo\SlowAdmin\Renderers\Markdown;
-use Slowlyo\SlowAdmin\Renderers\CRUDCards;
-use Slowlyo\SlowAdmin\Renderers\CRUDTable;
-use Slowlyo\SlowAdmin\Renderers\UrlAction;
-use Slowlyo\SlowAdmin\Renderers\AjaxAction;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Renderers\FileControl;
-use Slowlyo\SlowAdmin\Renderers\TableColumn;
-use Slowlyo\SlowAdmin\Renderers\DialogAction;
-use Slowlyo\SlowAdmin\Renderers\DrawerAction;
-use Slowlyo\SlowAdmin\Renderers\SchemaPopOver;
-use Slowlyo\SlowAdmin\Controllers\AdminController;
+use Slowlyo\OwlAdmin\Admin;
+use Slowlyo\OwlAdmin\Renderers\Tpl;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\Card;
+use Slowlyo\OwlAdmin\Renderers\Alert;
+use Slowlyo\OwlAdmin\Renderers\Dialog;
+use Slowlyo\OwlAdmin\Extend\Extension;
+use Slowlyo\OwlAdmin\Renderers\Drawer;
+use Slowlyo\OwlAdmin\Renderers\Wrapper;
+use Slowlyo\OwlAdmin\Renderers\Divider;
+use Slowlyo\OwlAdmin\Renderers\Service;
+use Slowlyo\OwlAdmin\Renderers\Markdown;
+use Slowlyo\OwlAdmin\Renderers\CRUDCards;
+use Slowlyo\OwlAdmin\Renderers\CRUDTable;
+use Slowlyo\OwlAdmin\Renderers\UrlAction;
+use Slowlyo\OwlAdmin\Renderers\AjaxAction;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Renderers\FileControl;
+use Slowlyo\OwlAdmin\Renderers\TableColumn;
+use Slowlyo\OwlAdmin\Renderers\DialogAction;
+use Slowlyo\OwlAdmin\Renderers\DrawerAction;
+use Slowlyo\OwlAdmin\Renderers\SchemaPopOver;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class ExtensionController extends AdminController
 {
@@ -110,7 +110,7 @@ class ExtensionController extends AdminController
                 UrlAction::make()
                     ->icon('fa-regular fa-lightbulb')
                     ->label(__('admin.extensions.more_extensions'))
-                    ->link('https://slowlyo.gitee.io/slow-admin-doc/extensions/')
+                    ->link('https://slowlyo.gitee.io/owl-admin-doc/extensions/')
                     ->blank(true),
                 amis('reload')->align('right'),
                 amis('filter-toggler')->align('right'),
@@ -118,7 +118,7 @@ class ExtensionController extends AdminController
                 Card::make()->header([
                     'title'           => '${alias || "-" | truncate: 8}',
                     'subTitle'        => '${name}',
-                    'avatar'          => '${logo || "https://slowlyo.gitee.io/slow-admin-doc/static/logo.png"}',
+                    'avatar'          => '${logo || "https://slowlyo.gitee.io/owl-admin-doc/static/logo.png"}',
                     'avatarClassName' => 'pull-left thumb-md avatar m-r',
                 ])->body([
                     amis()->label(__('admin.extensions.card.author'))
@@ -221,7 +221,7 @@ class ExtensionController extends AdminController
                         TextControl::make()
                             ->name('name')
                             ->label(__('admin.extensions.form.name'))
-                            ->placeholder('eg: slowlyo/slow-admin')
+                            ->placeholder('eg: slowlyo/owl-admin')
                             ->required(true),
                         TextControl::make()
                             ->name('namespace')

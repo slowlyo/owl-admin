@@ -1,18 +1,18 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Traits;
+namespace Slowlyo\OwlAdmin\Traits;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Renderers\Page;
-use Slowlyo\SlowAdmin\Renderers\Form;
-use Slowlyo\SlowAdmin\Renderers\Button;
-use Slowlyo\SlowAdmin\Renderers\Dialog;
-use Slowlyo\SlowAdmin\Renderers\CRUDTable;
-use Slowlyo\SlowAdmin\Renderers\Operation;
-use Slowlyo\SlowAdmin\Renderers\LinkAction;
-use Slowlyo\SlowAdmin\Renderers\AjaxAction;
-use Slowlyo\SlowAdmin\Renderers\OtherAction;
-use Slowlyo\SlowAdmin\Renderers\DialogAction;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\Button;
+use Slowlyo\OwlAdmin\Renderers\Dialog;
+use Slowlyo\OwlAdmin\Renderers\CRUDTable;
+use Slowlyo\OwlAdmin\Renderers\Operation;
+use Slowlyo\OwlAdmin\Renderers\LinkAction;
+use Slowlyo\OwlAdmin\Renderers\AjaxAction;
+use Slowlyo\OwlAdmin\Renderers\OtherAction;
+use Slowlyo\OwlAdmin\Renderers\DialogAction;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 

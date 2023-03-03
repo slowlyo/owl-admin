@@ -3,12 +3,12 @@
 namespace {{Namespace}};
 
 use Illuminate\Http\Request;
-use Slowlyo\SlowAdmin\Renderers\Tab;
-use Slowlyo\SlowAdmin\Renderers\Tabs;
-use Slowlyo\SlowAdmin\Renderers\Alert;
-use Slowlyo\SlowAdmin\Renderers\InputKV;
-use Slowlyo\SlowAdmin\Renderers\TextControl;
-use Slowlyo\SlowAdmin\Controllers\AdminController;
+use Slowlyo\OwlAdmin\Renderers\Tab;
+use Slowlyo\OwlAdmin\Renderers\Tabs;
+use Slowlyo\OwlAdmin\Renderers\Alert;
+use Slowlyo\OwlAdmin\Renderers\InputKV;
+use Slowlyo\OwlAdmin\Renderers\TextControl;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class SettingController extends AdminController
 {

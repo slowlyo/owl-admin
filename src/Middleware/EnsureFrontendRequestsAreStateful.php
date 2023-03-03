@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Middleware;
+namespace Slowlyo\OwlAdmin\Middleware;
 
 use Illuminate\Routing\Pipeline;
 use Illuminate\Support\Collection;

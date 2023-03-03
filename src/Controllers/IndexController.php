@@ -1,12 +1,12 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Controllers;
+namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\Request;
-use Slowlyo\SlowAdmin\Admin;
-use Slowlyo\SlowAdmin\SlowAdmin;
+use Slowlyo\OwlAdmin\Admin;
+use Slowlyo\OwlAdmin\OwlAdmin;
 use Illuminate\Http\JsonResponse;
-use Slowlyo\SlowAdmin\Models\Extension;
+use Slowlyo\OwlAdmin\Models\Extension;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class IndexController extends AdminController
@@ -27,7 +27,7 @@ class IndexController extends AdminController
             ],
         ];
 
-        array_push($menus, ...SlowAdmin::make()->getMenus());
+        array_push($menus, ...OwlAdmin::make()->getMenus());
 
         if (config('admin.show_development_tools')) {
             $menus[] = $this->devTools();

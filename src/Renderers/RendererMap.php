@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Renderers;
+namespace Slowlyo\OwlAdmin\Renderers;
 
 class RendererMap
 {
@@ -21,8 +21,8 @@ class RendererMap
 		'collapse' => Collapse::class,
 		'collapse-group' => CollapseGroup::class,
 		'color' => Color::class,
-		'crud' => CRUDTable::class,
-		'crud2' => CRUD2Table::class,
+		'crud' => CRUDCards::class,
+		'crud2' => CRUD2Cards::class,
 		'custom' => Custom::class,
 		'date' => Date::class,
 		'static-date' => StaticExactControl::class,

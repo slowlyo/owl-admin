@@ -1,7 +1,7 @@
 /*!
- * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2022 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 
 .fa {
@@ -296,7 +296,9 @@
     animation-duration: 1ms;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+    -webkit-transition-delay: 0s;
     transition-delay: 0s;
+    -webkit-transition-duration: 0s;
     transition-duration: 0s;
   }
 }
@@ -10299,6 +10301,10 @@ readers do not read off random characters that represent icons */
   content: "\f26b";
 }
 
+.fa-stubber:before {
+  content: "\e5c7";
+}
+
 .fa-telegram:before {
   content: "\f2c6";
 }
@@ -10309,6 +10315,10 @@ readers do not read off random characters that represent icons */
 
 .fa-old-republic:before {
   content: "\f510";
+}
+
+.fa-odysee:before {
+  content: "\e5c6";
 }
 
 .fa-square-whatsapp:before {
@@ -10553,9 +10563,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2022 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 
 .fa.fa-glass:before {
@@ -85082,7 +85092,7 @@ title: Word Break
 
 .amis-scope .rdtPicker td > span {
   display: inline-block;
-  border-radius: 2px;
+  border-radius: 1px 1px 1px 1px;
   height: 24px;
   width: 24px;
 }
@@ -85098,7 +85108,12 @@ title: Word Break
 
 .amis-scope .rdtPicker td.rdtOld,
 .amis-scope .rdtPicker td.rdtNew {
-  color: #b8babf;
+  color: #b9b8bf;
+}
+
+.amis-scope .rdtPicker td.rdtOld span,
+.amis-scope .rdtPicker td.rdtNew span {
+  background: transparent;
 }
 
 .amis-scope .rdtPicker td.rdtToday {
@@ -85659,6 +85674,18 @@ title: Word Break
 
 .amis-scope [hidden] {
   display: none;
+}
+
+/** Browser Compatibility
+    ========================================================================== */
+
+/* 兼容Safari浏览器input disbaled状态下文字颜色不显示 */
+
+.amis-scope input[disabled],
+.amis-scope input:disabled,
+.amis-scope input.disabled,
+.amis-scope input.is-disabled {
+  -webkit-text-fill-color: #b9b8bf;
 }
 
 .amis-scope svg.icon {
@@ -87865,6 +87892,10 @@ title: Word Break
   vertical-align: middle;
 }
 
+.amis-scope .a-Button--size-default.a-Button--iconOnly {
+  min-width: 2rem;
+}
+
 .amis-scope .a-Button--size-xs {
   font-size: 12px;
   font-weight: 400;
@@ -87907,7 +87938,7 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-xs.a-Button--iconOnly {
-  min-width: calc( var(--Button--xs-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: 1.375rem;
 }
 
 .amis-scope .a-Button--size-sm {
@@ -87952,7 +87983,7 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-sm.a-Button--iconOnly {
-  min-width: calc( var(--Button--sm-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: 1.875rem;
 }
 
 .amis-scope .a-Button--size-md {
@@ -87997,7 +88028,7 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-md.a-Button--iconOnly {
-  min-width: calc( var(--Button--md-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: 2rem;
 }
 
 .amis-scope .a-Button--size-lg {
@@ -88042,17 +88073,16 @@ title: Word Break
 }
 
 .amis-scope .a-Button--size-lg.a-Button--iconOnly {
-  min-width: calc( var(--Button--lg-height) * var(--Button--iconOnly-minWidthRate) );
+  min-width: 2.375rem;
 }
 
 .amis-scope .a-Button--iconOnly {
-  min-width: calc( var(--Button-height) * var(--Button--iconOnly-minWidthRate) );
+  padding: 0;
 }
 
 .amis-scope .a-Button--iconOnly:not(.a-Button--link) > svg.icon {
   width: 0.875rem;
   height: 0.875rem;
-  top: 0.125rem;
 }
 
 .amis-scope .a-Button--iconOnly:not(.a-Button--link) > .fa,
@@ -91428,6 +91458,10 @@ title: Word Break
   border-left-width: 4px;
 }
 
+.amis-scope .a-Tabs--vertical > .a-Tabs-linksWrapper + .a-Tabs-content {
+  width: calc(100% - 8.75rem);
+}
+
 .amis-scope .a-Tabs--vertical > .a-Tabs-content {
   border: none;
   flex-grow: 1;
@@ -93518,7 +93552,7 @@ title: Word Break
 
 .amis-scope .a-ScheduleCalendar .rdt .rdtPicker td.rdtActive {
   background: transparent;
-  color: #151b26;
+  color: #181526;
 }
 
 .amis-scope .a-ScheduleCalendar .rdt .rdtPicker td.rdtActive > span {
@@ -93526,7 +93560,7 @@ title: Word Break
 }
 
 .amis-scope .a-ScheduleCalendar .rdt .rdtPicker td.rdtActive:hover {
-  background: #f7f7f9;
+  background: #ffffff;
 }
 
 .amis-scope .a-ScheduleCalendar-large {
@@ -93681,7 +93715,7 @@ title: Word Break
 .amis-scope .a-CalendarMobile-body .rdt .rdtPicker td.rdtActive,
 .amis-scope .a-CalendarMobile-body .rdt .rdtPicker td.rdtActive:hover {
   background: transparent;
-  color: #151b26;
+  color: #181526;
   text-shadow: none;
 }
 
@@ -93786,7 +93820,7 @@ title: Word Break
 }
 
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtBetween {
-  background: rgba(0, 123, 255, 0.1) !important;
+  background: rgba(0, 126, 255, 0.08) !important;
   color: var(--Button--primary-bg);
 }
 
@@ -93798,19 +93832,19 @@ title: Word Break
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtRangeStart:hover .calendar-wrap,
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtRangeEnd .calendar-wrap,
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtRangeEnd:hover .calendar-wrap {
-  background: #23b7e5 !important;
+  background: #7266ba !important;
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtRangeHasEnd,
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtRangeHasEnd:hover {
-  background: linear-gradient(to right, transparent 0%, transparent 50%, rgba(0, 123, 255, 0.1) 51%, rgba(0, 123, 255, 0.1) 100%) !important;
+  background: linear-gradient(to right, transparent 0%, transparent 50%, rgba(0, 126, 255, 0.08) 51%, rgba(0, 126, 255, 0.08) 100%) !important;
 }
 
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtRangeEnd,
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtRangeEnd:hover {
-  background: linear-gradient(to right, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.1) 50%, transparent 51%, transparent 100%) !important;
+  background: linear-gradient(to right, rgba(0, 126, 255, 0.08) 0%, rgba(0, 126, 255, 0.08) 50%, transparent 51%, transparent 100%) !important;
 }
 
 .amis-scope .a-CalendarMobile .a-CalendarMobile-calendar-wrap .a-CalendarMobile-calendar .rdtPicker .rdtToday {
@@ -97039,11 +97073,6 @@ title: Word Break
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.amis-scope .a-InputTable-toolbar .a-Button {
-  border-color: transparent;
-  color: #7266ba;
 }
 
 .amis-scope .a-InputTable-pager {
@@ -101595,6 +101624,23 @@ title: Word Break
   align-items: center;
   border-radius: 3px;
   position: relative;
+  color: #181526;
+  font-weight: 400;
+  border-width: 1px
+    1px
+    1px
+    1px;
+  border-style: solid solid solid solid;
+  border-color: #e9e8eb
+    #e9e8eb
+    #e9e8eb
+    #e9e8eb;
+  background: transparent;
+  border-radius: 2px
+    2px
+    2px
+    2px;
+  padding: 0.25rem 0.625rem 0.25rem 0.625rem;
 }
 
 .amis-scope .a-ResultBox input {
@@ -101633,12 +101679,21 @@ title: Word Break
 }
 
 .amis-scope .a-ResultBox.is-focused,
-.amis-scope .a-ResultBox.is-active,
 .amis-scope .a-ResultBox:focus {
   outline: none;
-  border-color: #7266ba;
-  box-shadow: none;
-  background: #ffffff;
+  background: transparent;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #7266ba #7266ba #7266ba #7266ba;
+}
+
+.amis-scope .a-ResultBox.is-active,
+.amis-scope .a-ResultBox.is-opened {
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #7266ba #7266ba #7266ba #7266ba;
+  box-shadow: 0px 0px 0px 0px transparent;
+  background: transparent;
 }
 
 .amis-scope .a-ResultBox.is-clickable:not(.is-disabled) {
@@ -101646,9 +101701,10 @@ title: Word Break
 }
 
 .amis-scope .a-ResultBox.is-clickable:not(.is-disabled):hover {
-  border-color: #7266ba;
-  box-shadow: none;
-  background: #ffffff;
+  background: transparent;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #7266ba #7266ba #7266ba #7266ba;
 }
 
 .amis-scope .a-ResultBox.is-error.is-focused {
@@ -101657,10 +101713,11 @@ title: Word Break
 
 .amis-scope .a-ResultBox.is-disabled {
   color: #b9b8bf;
-  background: #ffffff;
-  border-color: #e9e8eb;
   pointer-events: none;
-  background: #f7f7f9;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #e9e8eb #e9e8eb #e9e8eb #e9e8eb;
+  background: #ffffff;
 }
 
 .amis-scope .a-ResultBox.is-disabled div.a-ResultBox-value {
@@ -101774,17 +101831,16 @@ title: Word Break
 
 .amis-scope .a-ResultBox-value {
   background: #ffffff;
-  color: #000;
-  font-size: 14px;
-  padding: 0 0.25rem;
+  color: #181526;
+  font-size: 12px;
   min-height: 1.5rem;
   flex-wrap: nowrap;
   display: inline-flex;
   align-items: center;
-  margin-right: 0.25rem;
-  margin-bottom: 0.125rem;
+  padding: 0rem 0.25rem 0rem 0.25rem;
+  margin: 0rem 0.25rem 0.125rem 0rem;
   user-select: none;
-  border-radius: 0.125rem;
+  border-radius: 1px 1px 1px 1px;
 }
 
 .amis-scope .a-ResultBox-value > a {
@@ -101794,7 +101850,7 @@ title: Word Break
 }
 
 .amis-scope .a-ResultBox-value > a:hover {
-  color: #666666;
+  color: #181526;
 }
 
 .amis-scope .a-ResultBox-value > a > svg {
@@ -101807,7 +101863,7 @@ title: Word Break
 }
 
 .amis-scope .a-ResultBox-value:hover {
-  background: rgba(0, 145, 255, 0.1);
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-ResultBox-value.is-disabled {
@@ -101834,10 +101890,6 @@ title: Word Break
   min-height: 24px;
 }
 
-.amis-scope .a-ResultBox.a-TransferDropDown {
-  padding: 0 0.75rem;
-}
-
 .amis-scope .a-ResultBox.a-TransferDropDown.is-group > .a-TransferDropDown-icon {
   margin-right: 0.5rem;
 }
@@ -101851,7 +101903,7 @@ title: Word Break
 }
 
 .amis-scope .a-ResultBox.a-TransferDropDown > .a-ResultBox-value:hover {
-  background: #e9e8eb;
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-ResultBox-overflow-wrapper {
@@ -103479,6 +103531,17 @@ title: Word Break
   display: flex;
 }
 
+.amis-scope .a-InputGroup-validation--full.is-error > .a-Form-control {
+  border-color: #e62525;
+  transition: all 0s;
+}
+
+.amis-scope .a-InputGroup-validation--partial.is-error > .a-Form-control.is-error {
+  border-color: #e62525;
+  background: #ffffff;
+  transition: all 0s;
+}
+
 .amis-scope .a-TextControl {
   position: relative;
   max-width: 100%;
@@ -103620,6 +103683,7 @@ title: Word Break
 .amis-scope .a-TextControl .a-TextControl-clear svg {
   font-size: 0.875rem;
   fill: #7266ba;
+  color: #7266ba;
   width: 0.875rem;
   height: 0.875rem;
 }
@@ -103698,6 +103762,12 @@ title: Word Break
   flex-wrap: nowrap;
 }
 
+.amis-scope .a-TextControl--withAddOn:hover .a-TextControl-input,
+.amis-scope .a-TextControl--withAddOn:hover .a-Button,
+.amis-scope .a-TextControl--withAddOn:hover .a-TextControl-addOn {
+  border-color: #7266ba;
+}
+
 @media (min-width: 576px) {
   .amis-scope .a-TextControl--withAddOn.a-Form-control--sizeXs,
   .amis-scope .a-TextControl--withAddOn.a-Form-control--sizeSm,
@@ -103714,19 +103784,22 @@ title: Word Break
   }
 }
 
-.amis-scope .a-TextControl--withAddOn > .a-TextControl-input {
+.amis-scope .a-TextControl--withAddOn > .a-TextControl-input,
+.amis-scope .a-TextControl--withAddOn.is-focused > .a-TextControl-input {
   flex-basis: 1;
   flex-grow: 1;
   min-width: 0;
   border-radius: 0;
 }
 
-.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:first-child {
+.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:first-child,
+.amis-scope .a-TextControl--withAddOn.is-focused > .a-TextControl-input:first-child {
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 }
 
-.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:last-child {
+.amis-scope .a-TextControl--withAddOn > .a-TextControl-input:last-child,
+.amis-scope .a-TextControl--withAddOn.is-focused > .a-TextControl-input:last-child {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
@@ -103749,7 +103822,9 @@ title: Word Break
 }
 
 .amis-scope .a-TextControl-addOn:first-child {
-  border-left-width: 0px;
+  border-left-width: 1px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
 
 .amis-scope .a-TextControl-addOn:last-child {
@@ -103762,7 +103837,7 @@ title: Word Break
   position: relative;
   border-radius: 0;
   margin-left: -0.0625rem;
-  border: 1px solid #e9e8eb;
+  transition: none;
 }
 
 .amis-scope .a-TextControl--withAddOn > .a-TextControl-button:not(:last-child) .a-Button {
@@ -104405,10 +104480,6 @@ title: Word Break
   background: #584a94;
 }
 
-.amis-scope .a-Checkbox--full.a-Checkbox--checkbox:active input:checked + i:before {
-  background: #584a94;
-}
-
 .amis-scope .a-Checkbox--full.a-Checkbox--checkbox input:checked + i {
   border-color: #7266ba;
   background: #7266ba;
@@ -104878,16 +104949,21 @@ title: Word Break
 }
 
 .amis-scope .a-GroupedSelection-group > .a-GroupedSelection-itemLabel {
-  height: 2rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.75rem 0.25rem 0.75rem;
   color: #85848c;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .amis-scope .a-GroupedSelection-item {
   display: flex;
-  line-height: 1.5;
+  color: #181526;
+  background: transparent;
+  line-height: 2rem;
   font-size: 14px;
-  padding: calc( ( 2rem - 1.5 * 14px ) / 2 ) 0.5rem;
+  font-weight: 400;
+  padding: 0rem 0.625rem 0rem 0.625rem;
   flex-direction: row;
   cursor: pointer;
   user-select: none;
@@ -104897,21 +104973,26 @@ title: Word Break
   margin-right: 0.625rem;
 }
 
-.amis-scope .a-GroupedSelection-item.is-active {
-  background: transparent;
-}
-
 .amis-scope .a-GroupedSelection-item:hover {
-  background: #ffffff;
+  color: #181526;
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-GroupedSelection-item:hover i {
   border: 1px solid #7266ba;
 }
 
+.amis-scope .a-GroupedSelection-item.is-active,
+.amis-scope .a-GroupedSelection-item.is-focused,
+.amis-scope .a-GroupedSelection-item.is-opened {
+  color: #7266ba;
+  background: transparent;
+}
+
 .amis-scope .a-GroupedSelection-item.is-disabled {
   pointer-events: none;
   color: #b9b8bf;
+  background: transparent;
 }
 
 .amis-scope .a-GroupedSelection-group > .a-GroupedSelection-items > .a-GroupedSelection-item {
@@ -104969,29 +105050,36 @@ title: Word Break
 
 .amis-scope .a-TableSelection .a-Table-table > thead > tr > th,
 .amis-scope .a-TableSelection .a-Table-table > tbody > tr > td {
+  color: #181526;
   font-size: 12px;
-  padding-top: 0.25rem;
-  padding-bottom: 0.375rem;
   vertical-align: middle;
 }
 
 .amis-scope .a-TableSelection .a-Table-table > thead > tr > th {
-  padding-top: 0.375rem;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
 }
 
-.amis-scope .a-TableSelection .a-Table-table > thead > tr > th:first-child,
-.amis-scope .a-TableSelection .a-Table-table > tbody > tr > td:first-child {
-  padding-left: 0.625rem;
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr > td {
+  padding: 0.375rem 0.75rem 0.5rem 0.75rem;
 }
 
-.amis-scope .a-TableSelection .a-Table-table > thead > tr > th:last-child,
+.amis-scope .a-TableSelection .a-Table-table > thead > tr > th:last-child {
+  padding-right: 1.125rem;
+}
+
 .amis-scope .a-TableSelection .a-Table-table > tbody > tr > td:last-child {
-  padding-right: 1rem;
+  padding-right: 1.125rem;
 }
 
-.amis-scope .a-TableSelection .a-Table-table > tbody > tr.is-active {
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr.is-active > td {
   color: #7266ba;
   background: transparent;
+}
+
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr:hover > td,
+.amis-scope .a-TableSelection .a-Table-table > tbody > tr.is-hovered > td {
+  color: #181526;
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-TreeSelection .a-Table-expandBtn {
@@ -105099,9 +105187,12 @@ title: Word Break
 
 .amis-scope .a-ChainedSelection-item {
   display: flex;
-  line-height: 1.5;
   font-size: 14px;
-  padding: calc( ( 2rem - 1.5 * 14px ) / 2 ) 0.5rem;
+  font-weight: 400;
+  color: #181526;
+  background: transparent;
+  line-height: 2rem;
+  padding: 0rem 0.625rem 0rem 0.625rem;
   flex-direction: row;
   cursor: pointer;
   user-select: none;
@@ -105117,12 +105208,14 @@ title: Word Break
 }
 
 .amis-scope .a-ChainedSelection-item:hover {
-  background: #ffffff;
+  color: #181526;
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-ChainedSelection-item.is-disabled {
   pointer-events: none;
   color: #b9b8bf;
+  background: transparent;
 }
 
 .amis-scope .a-ChainedSelection-itemLabel {
@@ -105459,6 +105552,7 @@ title: Word Break
   border: 1px solid #e9e8eb;
   border-radius: 2px;
   overflow: hidden;
+  position: relative;
   border-width: 1px 1px 1px 1px;
   border-style: solid solid solid solid;
   border-color: #e9e8eb #e9e8eb #e9e8eb #e9e8eb;
@@ -105472,6 +105566,10 @@ title: Word Break
   border-color: #7266ba #7266ba #7266ba #7266ba;
   border-radius: 2px 2px 2px 2px;
   background: transparent;
+}
+
+.amis-scope .a-Number:hover .a-Number-input {
+  padding-right: calc( 1.5rem + 0.75rem );
 }
 
 .amis-scope .a-Number-focused {
@@ -105589,7 +105687,8 @@ title: Word Break
 
 .amis-scope .a-Number-handler-wrap {
   display: none;
-  float: right;
+  position: absolute;
+  right: 0;
   border-left: 0.0625rem solid #e9e8eb;
   width: 1.5rem;
   height: 100%;
@@ -105620,8 +105719,6 @@ title: Word Break
 .amis-scope .a-Number-disabled .a-Number-input {
   opacity: 0.72;
   cursor: not-allowed;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
   color: #b9b8bf;
   background: #ffffff;
   border-color: #e9e8eb;
@@ -105669,12 +105766,12 @@ title: Word Break
   padding: calc(
     (
         2rem - 1.5 *
-          14px - 1px * 2
+          14px - 0.0625rem * 2
       ) / 2
   ) 0 calc(
     (
         2rem - 1.5 *
-          14px - 1px * 2
+          14px - 0.0625rem * 2
       ) / 2
   ) 0.625rem;
 }
@@ -105717,6 +105814,10 @@ title: Word Break
   border-style: solid solid solid solid;
   border-color: #7266ba #7266ba #7266ba #7266ba;
   border-radius: 2px 2px 2px 2px;
+}
+
+.amis-scope .a-Number--enhance:hover .a-Number-input {
+  padding-right: 0.75rem;
 }
 
 .amis-scope .a-Number--enhance:hover .a-Number--enhance-input {
@@ -105913,11 +106014,23 @@ title: Word Break
   outline: none;
   position: relative;
   font-size: 14px;
-  border: 1px solid #e9e8eb;
-  background: #ffffff;
-  border-radius: 2px;
+  font-weight: 400;
+  border-width: 1px
+    1px
+    1px
+    1px;
+  border-style: solid solid solid solid;
+  border-color: #e9e8eb
+    #e9e8eb
+    #e9e8eb
+    #e9e8eb;
+  background: transparent;
+  border-radius: 2px
+    2px
+    2px
+    2px;
   min-height: 2rem;
-  padding: calc( ( 2rem - 1.5 * 14px - 1px * 2 ) / 2 ) 0 calc( ( 2rem - 1.5 * 14px - 1px * 2 ) / 2 ) 0.625rem;
+  padding: 0.25rem 0.625rem 0.25rem 0.625rem;
   cursor: pointer;
   color: #181526;
 }
@@ -105927,8 +106040,10 @@ title: Word Break
 }
 
 .amis-scope .a-Select:hover {
-  background: #ffffff;
-  border-color: #7266ba;
+  background: transparent;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #7266ba #7266ba #7266ba #7266ba;
 }
 
 .amis-scope .a-Select:hover .a-Select-arrow:before {
@@ -105936,13 +106051,28 @@ title: Word Break
 }
 
 .amis-scope .a-Select:active {
-  border-color: var(--Button--default-onActive-border);
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #7266ba #7266ba #7266ba #7266ba;
+  box-shadow: 0px 0px 0px 0px transparent;
+  background: transparent;
+}
+
+.amis-scope .a-Select.is-focused:not(.is-mobile),
+.amis-scope .a-Select.is-opened:not(.is-mobile) {
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #7266ba #7266ba #7266ba #7266ba;
+  box-shadow: 0px 0px 0px 0px transparent;
+  background: transparent;
+  color: #181526;
 }
 
 .amis-scope .a-Select.is-disabled {
-  color: #b9b8bf;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #e9e8eb #e9e8eb #e9e8eb #e9e8eb;
   background: #ffffff;
-  border-color: #e9e8eb;
 }
 
 .amis-scope .a-Select:focus {
@@ -105954,13 +106084,11 @@ title: Word Break
 }
 
 .amis-scope .a-Select .a-PopOver.a-Select-popover .a-Select-menu .a-Select-option {
-  height: 2rem;
   line-height: 2rem;
 }
 
 .amis-scope .a-Select .a-PopOver.a-Select-popover .a-Select-menu .a-Select-addBtn {
-  height: 2rem;
-  line-height: 1.875rem;
+  line-height: 2rem;
 }
 
 .amis-scope .a-Select--borderHalf {
@@ -105998,7 +106126,6 @@ title: Word Break
 }
 
 .amis-scope .a-Select-value {
-  line-height: calc( 1.5 * 14px );
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
@@ -106016,7 +106143,7 @@ title: Word Break
 .amis-scope .a-Select--multi {
   height: auto;
   min-height: 2rem;
-  padding: 0.25rem 0 0.25rem 0.25rem;
+  padding: 0.25rem 0.625rem 0.25rem 0.625rem;
 }
 
 .amis-scope .a-Select--multi .a-Select-valueWrap > input {
@@ -106041,21 +106168,22 @@ title: Word Break
   display: inline-block;
   vertical-align: middle;
   font-size: 12px;
+  font-weight: 400;
+  color: #181526;
   background: #ffffff;
   border: 0.0625rem solid #f3f2f5;
-  border-radius: 0.125rem;
-  margin-right: 0.25rem;
-  margin-bottom: 0.25rem;
+  border-radius: 1px 1px 1px 1px;
+  padding: 0rem 0.25rem 0rem 0.25rem;
+  margin: 0rem 0.25rem 0.125rem 0rem;
 }
 
 .amis-scope .a-Select--multi .a-Select-value:hover {
-  background-color: #e9e8eb;
+  background-color: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-Select--multi .a-Select-valueLabel {
   display: inline-block;
   max-width: 7.5rem;
-  padding: 0 0.25rem;
   overflow: hidden;
   vertical-align: top;
   text-overflow: ellipsis;
@@ -106064,8 +106192,8 @@ title: Word Break
 
 .amis-scope .a-Select-valueIcon {
   cursor: pointer;
-  padding: 1px 5px;
-  color: #5d5c66;
+  margin-left: 0.625rem;
+  color: #b9b8bf;
 }
 
 .amis-scope .a-Select-valueIcon:hover {
@@ -106085,7 +106213,6 @@ title: Word Break
 }
 
 .amis-scope .a-Select-arrow {
-  margin-right: 0.75rem;
   width: 1rem;
   text-align: center;
   display: flex;
@@ -106183,8 +106310,13 @@ title: Word Break
 
 .amis-scope .a-Select-option {
   cursor: pointer;
-  padding: calc( ( 1.5rem - 1.5 * 14px ) / 2 ) 0.625rem;
+  padding: 0rem 0.625rem 0rem 0.625rem;
   display: flex;
+  color: #181526;
+  font-size: 14px;
+  font-weight: 400;
+  background: transparent;
+  line-height: 2rem;
 }
 
 .amis-scope .a-Select-option-checkbox {
@@ -106214,6 +106346,9 @@ title: Word Break
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  color: #181526;
 }
 
 .amis-scope .a-Select-option.is-active {
@@ -106221,14 +106356,26 @@ title: Word Break
   background: transparent;
 }
 
+.amis-scope .a-Select-option.is-active .a-Select-option-checkbox > label > span {
+  color: #7266ba;
+}
+
 .amis-scope .a-Select-option.is-highlight {
   color: #181526;
   background: rgba(0, 126, 255, 0.08);
 }
 
+.amis-scope .a-Select-option.is-highlight .a-Select-option-checkbox > label > span {
+  color: #181526;
+}
+
 .amis-scope .a-Select-option.is-disabled {
   color: #b9b8bf;
   background: transparent;
+}
+
+.amis-scope .a-Select-option.is-disabled .a-Select-option-checkbox > label > span {
+  color: #b9b8bf;
 }
 
 .amis-scope .a-Select-option > label {
@@ -106270,7 +106417,7 @@ title: Word Break
 .amis-scope .a-Select-addBtn {
   display: block;
   cursor: pointer;
-  padding: calc( ( 1.5rem - 1.5 * 14px ) / 2 ) 0.625rem;
+  padding: 0rem 0.625rem 0rem 0.625rem;
 }
 
 .amis-scope .a-Select-addBtn:hover {
@@ -106281,12 +106428,6 @@ title: Word Break
   width: 0.875rem;
   height: 0.875rem;
   margin-right: 0.25rem;
-}
-
-.amis-scope .a-Select.is-focused:not(.is-mobile),
-.amis-scope .a-Select.is-opened:not(.is-mobile) {
-  border-color: #7266ba;
-  color: #181526;
 }
 
 .amis-scope .a-Select-spinner {
@@ -106312,7 +106453,7 @@ title: Word Break
 }
 
 .amis-scope .a-Select-clear svg:hover > path:first-of-type {
-  fill: #5d5c66;
+  fill: #b9b8bf;
 }
 
 .amis-scope .a-Select-popup {
@@ -106337,21 +106478,22 @@ title: Word Break
   display: inline-block;
   vertical-align: middle;
   font-size: 12px;
+  font-weight: 400;
+  color: #181526;
   background: #ffffff;
   border: 0.0625rem solid #f3f2f5;
-  border-radius: 0.125rem;
-  margin-right: 0.25rem;
-  margin-bottom: 0.25rem;
+  border-radius: 1px 1px 1px 1px;
+  padding: 0rem 0.25rem 0rem 0.25rem;
+  margin: 0rem 0.25rem 0.125rem 0rem;
 }
 
 .amis-scope .a-Select-overflow-wrapper .a-Select-value:hover {
-  background-color: #e9e8eb;
+  background-color: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-Select-overflow-wrapper .a-Select-valueLabel {
   display: inline-block;
   max-width: 7.5rem;
-  padding: 0 0.25rem;
   overflow: hidden;
   vertical-align: top;
   text-overflow: ellipsis;
@@ -106706,13 +106848,8 @@ title: Word Break
   display: inline-flex;
   flex-wrap: nowrap;
   border: 1px solid #e9e8eb;
-  font-size: 12px;
-  padding: calc(
-    (
-        2rem - 1.5 *
-          12px
-      ) / 2 - 1px
-  ) 0.75rem;
+  font-size: 14px;
+  padding: 0.375rem 0.75rem;
   height: 2rem;
   outline: none;
   white-space: nowrap;
@@ -106736,7 +106873,7 @@ title: Word Break
 
 .amis-scope .a-LocationPicker.is-focused,
 .amis-scope .a-LocationPicker.is-active {
-  border-color: #584a94;
+  border-color: #7266ba;
   box-shadow: none;
 }
 
@@ -107017,20 +107154,29 @@ title: Word Break
   position: relative;
   display: inline-flex;
   flex-wrap: nowrap;
-  border: 1px solid #e9e8eb;
-  font-size: 12px;
-  padding: calc(
-    (
-        2rem - 1.5 *
-          12px
-      ) / 2 - 1px
-  ) 0.75rem;
+  border-width: 1px
+    1px
+    1px
+    1px;
+  border-style: solid
+    solid
+    solid
+    solid;
+  border-color: #e9e8eb
+    #e9e8eb
+    #e9e8eb
+    #e9e8eb;
+  font-size: 14px;
+  padding: 0.25rem 0.75rem 0.25rem 0.625rem;
   height: 2rem;
   outline: none;
   white-space: nowrap;
   color: #181526;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 2px
+    2px
+    2px
+    2px;
   min-width: calc(
     16px * 5 + 0.75rem * 2 +
       14px * 2
@@ -107043,6 +107189,9 @@ title: Word Break
   background: none;
   padding: 0;
   border: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #181526;
 }
 
 .amis-scope .a-DatePicker-input:focus {
@@ -107075,7 +107224,16 @@ title: Word Break
 
 .amis-scope .a-DatePicker:not(.is-disabled):hover {
   background: #ffffff;
-  border-color: #7266ba;
+  border-color: #7266ba
+    #7266ba
+    #7266ba
+    #7266ba;
+  border-style: solid solid solid solid;
+  border-width: 1px 1px 1px 1px;
+}
+
+.amis-scope .a-DatePicker:not(.is-disabled):hover .a-DatePicker-input {
+  color: #181526;
 }
 
 .amis-scope .a-DatePicker:not(.is-disabled):hover .a-DatePicker-clear {
@@ -107087,20 +107245,29 @@ title: Word Break
 }
 
 .amis-scope .a-DatePicker:not(.is-disabled).is-focused {
-  border-color: #584a94;
-  box-shadow: none;
+  background: #ffffff;
+  border-color: #7266ba
+    #7266ba
+    #7266ba
+    #7266ba;
+  box-shadow: 0px 0px 0px 0px transparent;
+  border-style: solid solid solid solid;
+  border-width: 1px 1px 1px 1px;
 }
 
-.amis-scope .a-DatePicker .a-DatePicker-input {
-  font-size: 14px;
+.amis-scope .a-DatePicker:not(.is-disabled).is-focused .a-DatePicker-input {
+  color: #181526;
 }
 
 .amis-scope .a-DatePicker.is-disabled {
-  background: #e5e7eb;
+  background: #ffffff;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #e9e8eb #e9e8eb #e9e8eb #e9e8eb;
 }
 
 .amis-scope .a-DatePicker.is-disabled > .a-DatePicker-input {
-  color: #b9b8bf;
+  color: #181526;
 }
 
 .amis-scope .a-DatePicker-placeholder {
@@ -107144,6 +107311,20 @@ title: Word Break
   fill: #323040;
 }
 
+.amis-scope .a-DatePicker-toggler svg {
+  color: #7266ba;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.amis-scope .a-DatePicker .DatePicker-toggler-clock {
+  content: '<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_时间</title><g id="ic_时间" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><circle id="1-FL" stroke="currentColor" cx="8" cy="8" r="6.5" stroke-width="1px" fill="none" stroke-linecap="butt" stroke-linejoin="round"/><polyline id="2-FLW" stroke="currentColor" points="7.87443646 5.5 7.87443646 8.53778873 5.5 9.28133409" stroke-width="1px" fill="none" stroke-linecap="butt" stroke-linejoin="round"/></g></svg>';
+}
+
+.amis-scope .a-DatePicker .DatePicker-toggler-date {
+  content: '<svg viewBox="0 0 13 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-1.338385, -2.000000)"><rect x="0" y="0" width="16" height="16"></rect><path d="M6,2 L6,3 L10,3 L10,2 L11,2 L11,3 L14,3 L14,14 L2,14 L2,3 L5,3 L5,2 L6,2 Z M13,7 L3,7 L3,13 L13,13 L13,7 Z M5,4 L3,4 L3,6 L13,6 L13,4 L11,4 L11,5 L10,5 L10,4 L6,4 L6,5 L5,5 L5,4 Z" fill="currentColor"></path></g></g></svg>';
+}
+
 .amis-scope .a-DatePicker-clear {
   padding: 0.1875rem;
   cursor: pointer;
@@ -107168,6 +107349,11 @@ title: Word Break
 
 .amis-scope .a-DatePicker-clear:active svg {
   fill: #323040;
+}
+
+.amis-scope .a-DatePicker-clear svg {
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .amis-scope .a-DateControl:not(.is-inline) > .a-DatePicker {
@@ -107259,7 +107445,7 @@ title: Word Break
 .amis-scope .rdt {
   user-select: none;
   font-size: 12px;
-  color: #151b26;
+  color: #181526;
 }
 
 .amis-scope .rdt .rdtDays {
@@ -107328,7 +107514,8 @@ title: Word Break
 .amis-scope .rdt .rdtPicker td.rdtMinute:hover span,
 .amis-scope .rdt .rdtPicker td.rdtSecond:hover span,
 .amis-scope .rdt .rdtPicker .rdtTimeToggle:hover span {
-  background: #f7f7f9;
+  color: #181526;
+  background: #ffffff;
 }
 
 .amis-scope .rdt .rdtPicker td.rdtToday > span {
@@ -107340,11 +107527,11 @@ title: Word Break
 }
 
 .amis-scope .rdt .rdtPicker td.rdtBetween {
-  background: rgba(0, 123, 255, 0.1);
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .rdt .rdtPicker td.rdtToday:before {
-  border-bottom-color: #23b7e5;
+  border-bottom-color: #7266ba;
 }
 
 .amis-scope .rdt .rdtPicker td.rdtActive.rdtToday:before {
@@ -107359,7 +107546,8 @@ title: Word Break
 
 .amis-scope .rdt .rdtPicker td.rdtActive > span,
 .amis-scope .rdt .rdtPicker td.rdtActive:hover > span {
-  background: #23b7e5;
+  color: #ffffff;
+  background: #7266ba;
 }
 
 .amis-scope .rdt .rdtPicker .rdtActive.rdtToday {
@@ -107371,7 +107559,7 @@ title: Word Break
 }
 
 .amis-scope .rdt .rdtPicker td.rdtDisabled:hover > span {
-  background: #f7f7f9;
+  background: #ffffff;
 }
 
 .amis-scope .rdt thead tr:first-child th {
@@ -107446,6 +107634,8 @@ title: Word Break
   text-align: center;
   height: 28px;
   line-height: 28px;
+  font-size: 12px;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -107456,7 +107646,7 @@ title: Word Break
 
 .amis-scope .a-CalendarInputWrapper .a-CalendarInput-sugsItem:hover {
   color: #181526;
-  background: #f7f7f9;
+  background: #ffffff;
 }
 
 .amis-scope .a-TimeContentWrapper {
@@ -107716,7 +107906,7 @@ title: Word Break
   cursor: pointer !important;
   width: 1rem;
   padding: 0;
-  color: #84868c;
+  color: #85848c;
   font-size: 18px;
   text-decoration: none;
   font-family: auto;
@@ -107790,12 +107980,15 @@ title: Word Break
 .amis-scope td.rdtYear > span,
 .amis-scope td.rdtQuarter > span {
   display: inline-block;
+  color: #181526;
+  background: transparent;
+  border-radius: 1px 1px 1px 1px;
 }
 
 .amis-scope td.rdtMonth.rdtBetween,
 .amis-scope td.rdtYear.rdtBetween,
 .amis-scope td.rdtQuarter.rdtBetween {
-  background: rgba(0, 123, 255, 0.1);
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope td.rdtMonth:hover,
@@ -107808,7 +108001,7 @@ title: Word Break
 .amis-scope td.rdtYear:hover > span,
 .amis-scope td.rdtQuarter:hover > span {
   color: #181526;
-  background: #f7f7f9;
+  background: #ffffff;
 }
 
 .amis-scope td.rdtMonth.rdtActive,
@@ -107826,8 +108019,8 @@ title: Word Break
 .amis-scope td.rdtYear.rdtActive:hover > span,
 .amis-scope td.rdtQuarter.rdtActive > span,
 .amis-scope td.rdtQuarter.rdtActive:hover > span {
-  background: #23b7e5 !important;
-  color: #ffffff;
+  background: #7266ba !important;
+  color: #ffffff !important;
 }
 
 .amis-scope td.rdtMonth.rdtDisabled,
@@ -107836,22 +108029,31 @@ title: Word Break
 .amis-scope td.rdtYear.rdtDisabled:hover,
 .amis-scope td.rdtQuarter.rdtDisabled,
 .amis-scope td.rdtQuarter.rdtDisabled:hover {
-  background: #f7f7f9;
-  color: #b8babf;
+  background: #ffffff;
+}
+
+.amis-scope td.rdtMonth.rdtDisabled > span,
+.amis-scope td.rdtMonth.rdtDisabled:hover > span,
+.amis-scope td.rdtYear.rdtDisabled > span,
+.amis-scope td.rdtYear.rdtDisabled:hover > span,
+.amis-scope td.rdtQuarter.rdtDisabled > span,
+.amis-scope td.rdtQuarter.rdtDisabled:hover > span {
+  background: #ffffff;
+  color: #b9b8bf;
 }
 
 .amis-scope .rdtPicker .rdtActive.rdtBetween.rdtStartDay {
-  background: linear-gradient(to right, transparent 0%, transparent 50%, rgba(0, 123, 255, 0.1) 51%, rgba(0, 123, 255, 0.1) 100%);
+  background: linear-gradient(to right, transparent 0%, transparent 50%, rgba(0, 126, 255, 0.08) 51%, rgba(0, 126, 255, 0.08) 100%);
 }
 
 .amis-scope .rdt .rdtPicker td.is-disabled {
   cursor: not-allowed !important;
-  background: #f7f7f9;
+  background: #ffffff;
   color: #b9b8bf;
 }
 
 .amis-scope .rdt .rdtPicker td.is-disabled:hover {
-  background: #f7f7f9;
+  background: #ffffff;
   color: #b9b8bf;
 }
 
@@ -107861,26 +108063,49 @@ title: Word Break
 }
 
 .amis-scope .rdtPicker .rdtActive.rdtBetween.rdtEndDay {
-  background: linear-gradient(to right, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.1) 50%, transparent 51%, transparent 100%);
+  background: linear-gradient(to right, rgba(0, 126, 255, 0.08) 0%, rgba(0, 126, 255, 0.08) 50%, transparent 51%, transparent 100%);
 }
 
 .amis-scope .a-DateCalendar {
   display: inline-block;
-  border: 1px solid #e9e8eb;
+  border: 1px
+    1px
+    1px
+    1px solid #e9e8eb
+    #e9e8eb
+    #e9e8eb
+    #e9e8eb;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 2px
+    2px
+    2px
+    2px;
 }
 
 .amis-scope .a-DateRangePicker {
   position: relative;
   display: inline-flex;
   flex-wrap: nowrap;
-  border: 1px solid #e9e8eb;
-  font-size: 12px;
-  padding: 0 0.75rem;
+  border-width: 1px
+    1px
+    1px
+    1px;
+  border-style: solid
+    solid
+    solid
+    solid;
+  border-color: #e9e8eb
+    #e9e8eb
+    #e9e8eb
+    #e9e8eb;
+  font-size: 14px;
+  padding: 0 0.75rem 0 0.625rem;
   height: 2rem;
   outline: none;
-  border-radius: 2px;
+  border-radius: 2px
+    2px
+    2px
+    2px;
   color: #181526;
   background: #ffffff;
 }
@@ -107901,7 +108126,16 @@ title: Word Break
 
 .amis-scope .a-DateRangePicker:not(.is-disabled):hover {
   background: #ffffff;
-  border-color: #7266ba;
+  border-color: #7266ba
+    #7266ba
+    #7266ba
+    #7266ba;
+  border-style: solid solid solid solid;
+  border-width: 1px 1px 1px 1px;
+}
+
+.amis-scope .a-DateRangePicker:not(.is-disabled):hover .a-DateRangePicker-input {
+  color: #181526;
 }
 
 .amis-scope .a-DateRangePicker:not(.is-disabled):hover .a-DateRangePicker-clear {
@@ -107913,8 +108147,18 @@ title: Word Break
 }
 
 .amis-scope .a-DateRangePicker:not(.is-disabled).is-focused {
-  border-color: #584a94;
-  box-shadow: none;
+  background: #ffffff;
+  border-color: #7266ba
+    #7266ba
+    #7266ba
+    #7266ba;
+  box-shadow: 0px 0px 0px 0px transparent;
+  border-style: solid solid solid solid;
+  border-width: 1px 1px 1px 1px;
+}
+
+.amis-scope .a-DateRangePicker:not(.is-disabled).is-focused .a-DateRangePicker-input {
+  color: #181526;
 }
 
 .amis-scope .a-DateRangePicker .a-DateRangePicker-input {
@@ -107927,6 +108171,8 @@ title: Word Break
   width: 50%;
   line-height: 1.875rem;
   font-size: 14px;
+  font-weight: 400;
+  color: #181526;
 }
 
 .amis-scope .a-DateRangePicker .a-DateRangePicker-input::placeholder {
@@ -107946,15 +108192,18 @@ title: Word Break
 .amis-scope .a-DateRangePicker .a-DateRangePicker-input-separator-line {
   width: 0.5rem;
   height: 1px;
-  background: #b8babf;
+  background: #b9b8bf;
 }
 
 .amis-scope .a-DateRangePicker.is-disabled {
-  background: #e5e7eb;
+  background: #ffffff;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid solid solid solid;
+  border-color: #e9e8eb #e9e8eb #e9e8eb #e9e8eb;
 }
 
 .amis-scope .a-DateRangePicker.is-disabled > .a-DateRangePicker-input {
-  color: #b9b8bf;
+  color: #181526;
 }
 
 .amis-scope .a-DateRangePicker-placeholder {
@@ -107997,6 +108246,20 @@ title: Word Break
   fill: #323040;
 }
 
+.amis-scope .a-DateRangePicker-toggler svg {
+  color: #7266ba;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.amis-scope .a-DateRangePicker .DatePicker-toggler-clock {
+  content: '<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_时间</title><g id="ic_时间" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><circle id="1-FL" stroke="currentColor" cx="8" cy="8" r="6.5" stroke-width="1px" fill="none" stroke-linecap="butt" stroke-linejoin="round"/><polyline id="2-FLW" stroke="currentColor" points="7.87443646 5.5 7.87443646 8.53778873 5.5 9.28133409" stroke-width="1px" fill="none" stroke-linecap="butt" stroke-linejoin="round"/></g></svg>';
+}
+
+.amis-scope .a-DateRangePicker .DatePicker-toggler-date {
+  content: '<svg viewBox="0 0 13 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-1.338385, -2.000000)"><rect x="0" y="0" width="16" height="16"></rect><path d="M6,2 L6,3 L10,3 L10,2 L11,2 L11,3 L14,3 L14,14 L2,14 L2,3 L5,3 L5,2 L6,2 Z M13,7 L3,7 L3,13 L13,13 L13,7 Z M5,4 L3,4 L3,6 L13,6 L13,4 L11,4 L11,5 L10,5 L10,4 L6,4 L6,5 L5,5 L5,4 Z" fill="currentColor"></path></g></g></svg>';
+}
+
 .amis-scope .a-DateRangePicker-clear {
   padding: 0.1875rem;
   cursor: pointer;
@@ -108021,6 +108284,11 @@ title: Word Break
 
 .amis-scope .a-DateRangePicker-clear:active svg {
   fill: #323040;
+}
+
+.amis-scope .a-DateRangePicker-clear svg {
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .amis-scope .a-DateRangePicker-activeCursor {
@@ -108121,9 +108389,23 @@ title: Word Break
 
 .amis-scope .a-DateRangeCalendar {
   display: inline-block;
-  border: 1px solid #e9e8eb;
+  border-width: 1px
+    1px
+    1px
+    1px;
+  border-style: solid
+    solid
+    solid
+    solid;
+  border-color: #e9e8eb
+    #e9e8eb
+    #e9e8eb
+    #e9e8eb;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 2px
+    2px
+    2px
+    2px;
 }
 
 .amis-scope .a-DateRangePicker.is-mobile {
@@ -108946,17 +109228,17 @@ title: Word Break
 .amis-scope .a-RichTextControl .fr-toolbar .fr-command.fr-btn.fr-active,
 .amis-scope .a-RichTextControl .fr-popup .fr-command.fr-btn.fr-active {
   color: #23b7e5;
-  background: #ffffff;
+  background: transparent;
 }
 
 .amis-scope .a-RichTextControl .fr-desktop .fr-command:hover,
 .amis-scope .a-RichTextControl .fr-desktop .fr-command:focus {
-  background: #ffffff;
+  background: transparent;
 }
 
 .amis-scope .a-RichTextControl .fr-toolbar .fr-command.fr-btn.fr-dropdown.fr-active,
 .amis-scope .a-RichTextControl .fr-popup .fr-command.fr-btn.fr-dropdown.fr-active {
-  background: #ffffff;
+  background: transparent;
 }
 
 .amis-scope .a-RichTextControl .fr-command.fr-btn + .fr-dropdown-menu .fr-dropdown-wrapper .fr-dropdown-content ul.fr-dropdown-list li a.fr-active {
@@ -109335,6 +109617,25 @@ title: Word Break
   border: 0;
 }
 
+.amis-scope .a-TreeControl.is-sticky {
+  max-height: unset;
+  overflow: unset;
+}
+
+.amis-scope .a-TreeControl-searchbox {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.amis-scope .a-TreeControl-searchbox.is-active {
+  width: 100%;
+}
+
+.amis-scope .a-TreeControl > .a-Tree {
+  max-height: 300px;
+  overflow: auto;
+}
+
 .amis-scope .a-Tree-list,
 .amis-scope .a-Tree-sublist {
   list-style: none;
@@ -109601,6 +109902,7 @@ title: Word Break
   flex: 1 auto;
   display: inline-block;
   color: #181526;
+  font-size: 14px;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -110228,7 +110530,7 @@ title: Word Break
 
 .amis-scope .a-SubForm-value {
   background: #ffffff;
-  color: #000;
+  color: #181526;
   font-size: 14px;
   padding: 0 0.25rem;
   min-height: 1.5rem;
@@ -110254,7 +110556,7 @@ title: Word Break
 .amis-scope .a-SubForm-valueDel:hover,
 .amis-scope .a-SubForm-valueEdit:hover,
 .amis-scope .a-SubForm-valueDragBar:hover {
-  color: #666666;
+  color: #181526;
 }
 
 .amis-scope .a-SubForm-valueDel > svg,
@@ -110271,7 +110573,7 @@ title: Word Break
 }
 
 .amis-scope .a-SubForm-value:hover {
-  background: rgba(0, 145, 255, 0.1);
+  background: rgba(0, 126, 255, 0.08);
 }
 
 .amis-scope .a-SubForm-value.is-disabled {
@@ -110342,6 +110644,11 @@ title: Word Break
 
 .amis-scope .a-ChainedSelectControl .a-Select {
   margin-right: 0.25rem;
+}
+
+.amis-scope .a-ChainedSelectControl-spinner {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .amis-scope .a-Picker {
@@ -110613,10 +110920,6 @@ title: Word Break
 
 .amis-scope .a-TagControl {
   position: relative;
-}
-
-.amis-scope .a-TagControl-input.is-focused {
-  border-radius: 0;
 }
 
 .amis-scope .a-TagControl-input.is-disabled {
@@ -111137,7 +111440,7 @@ title: Word Break
 }
 
 .amis-scope .a-Transfer .a-Table-content .a-Table-table > thead > tr > th:last-child {
-  padding-right: var(--sizes-size-10);
+  padding-right: 1.125rem;
 }
 
 .amis-scope .a-Transfer .a-Table-content .a-Table-table > tbody > tr > td {
@@ -111152,7 +111455,7 @@ title: Word Break
 }
 
 .amis-scope .a-Transfer .a-Table-content .a-Table-table > tbody > tr > td:last-child {
-  padding-right: var(--sizes-size-10);
+  padding-right: 1.125rem;
 }
 
 .amis-scope .a-Transfer .a-Selections .a-TableSelection .a-Table-table > thead > tr,
@@ -111404,6 +111707,10 @@ title: Word Break
   line-height: 2rem;
   cursor: pointer;
   display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  color: #181526;
+  background: transparent;
 }
 
 .amis-scope .a-NestedSelect-menu .a-NestedSelect-option > .a-NestedSelect-optionLabel {
@@ -112331,7 +112638,7 @@ title: Word Break
 }
 
 .amis-scope .a-Form-item.is-error > .a-Form-label {
-  color: #7266ba;
+  color: #e62525;
 }
 
 .amis-scope .a-Form-item .a-Form-control--withSize > .a-ResultBox {
@@ -112418,7 +112725,6 @@ title: Word Break
   }
 
   .amis-scope .a-Form-item--horizontal > .a-Form-label {
-    height: 2rem;
     line-height: 2rem;
     margin: 0;
     margin-right: 1rem;
@@ -113968,6 +114274,10 @@ title: Word Break
   margin-top: 0.625rem;
 }
 
+.amis-scope .a-FormulaEditor-settings > div {
+  width: 0;
+}
+
 .amis-scope .a-FormulaEditor-settings.only-variable {
   height: 21.875rem;
 }
@@ -114154,11 +114464,17 @@ title: Word Break
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
   white-space: nowrap;
 }
 
 .amis-scope .a-FormulaEditor-VariableList-item > label {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  width: 0;
+  display: inline-block;
 }
 
 .amis-scope .a-FormulaEditor-VariableList-item-tag {
@@ -114168,6 +114484,9 @@ title: Word Break
   border-radius: 2px;
   background: #f5f5f5;
   color: var(--black);
+  font-size: 12px;
+  line-height: 1.5rem;
+  height: 1.5rem;
 }
 
 .amis-scope .a-FormulaEditor-VariableList .a-GroupedSelection-item-tag {
@@ -115126,7 +115445,7 @@ title: Word Break
   --Menu-light-fontColor-onHover: var(--Layout-fontColor--onHover);
   --Menu-light-ancestor-fontColor-onActive: var(--Layout-light-fontColor);
   --Menu-light-fontColor-onActive: var(--Layout-fontColor--onActive);
-  --Menu-light-groupTitle-fontColor: #d8d8d8;
+  --Menu-light-groupTitle-fontColor: #84868c;
   --Menu-light-selectedIndicator-color: var(--Layout-fontColor--info);
   --Menu-dark-backgroundColor: var(--Layout-dark-backgroundColor);
   --Menu-dark-backgroundColor-onHover: var(--Layout-fontColor--info);
@@ -115134,7 +115453,7 @@ title: Word Break
   --Menu-dark-fontColor-onHover: var(--Layout-fontColor--onHover);
   --Menu-dark-ancestor-fontColor-onActive: var(--Layout-fontColor--onActive);
   --Menu-dark-fontColor-onActive: var(--Layout-dark-fontColor);
-  --Menu-dark-groupTitle-fontColor: #d8d8d8;
+  --Menu-dark-groupTitle-fontColor: #84868c;
   --Menu-dark-selectedIndicator-color: var(--Layout-dark-selected-color);
   outline: none;
   margin-bottom: 0;
@@ -115144,6 +115463,8 @@ title: Word Break
   list-style: none;
   color: var(--Menu-light-fontColor);
   background-color: var(--Menu-light-backgroundColor);
+  transition: all 0.3s;
+  width: 100%;
 }
 
 .amis-scope .a-Nav-Menu.a-Nav-Menu-dark {
@@ -115190,15 +115511,18 @@ title: Word Break
   cursor: not-allowed;
 }
 
-.amis-scope .a-Nav-Menu-root.a-Nav-Menu-collapsed .a-Nav-Menu-item {
+.amis-scope .a-Nav-Menu-root.a-Nav-Menu-collapsed .a-Nav-Menu-item,
+.amis-scope .a-Nav-Menu-root.a-Nav-Menu-collapsed .a-Nav-Menu-submenu-title {
   padding: 0;
   text-align: center;
 }
 
 .amis-scope .a-Nav-Menu-item-link {
-  display: block;
+  display: flex;
+  align-items: center;
   height: 2.5rem;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .amis-scope .a-Nav-Menu-item-divider {
@@ -115212,12 +115536,7 @@ title: Word Break
 .amis-scope .a-Nav-Menu-item-icon {
   margin-right: 0.5rem;
   font-size: var(--Menu-icon-size);
-  width: var(--Menu-icon-size);
   color: var(--Menu-light-fontColor);
-  display: inline-block;
-  line-height: var(--Menu-item-height--vertical);
-  position: relative;
-  top: 1.5px;
 }
 
 .amis-scope .a-Nav-Menu-item-icon img {
@@ -115227,12 +115546,12 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item-icon-collapsed {
   font-size: var(--Menu-fontSize--collapsed);
-  margin-right: 0;
+  margin: 0 auto;
 }
 
 .amis-scope .a-Nav-Menu-item-icon-svg-collapsed {
   font-size: var(--Menu-fontSize--collapsed);
-  margin-right: 0;
+  margin: 0 auto;
   height: var(--Menu-item-height--vertical);
 }
 
@@ -115256,12 +115575,12 @@ title: Word Break
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  vertical-align: middle;
   user-select: none;
 }
 
 .amis-scope .a-Nav-Menu-item-label-collapsed {
   font-size: var(--Menu-fontSize--collapsed);
+  margin: 0 auto;
   font-weight: 600;
 }
 
@@ -115287,9 +115606,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item-group-title {
   color: var(--Menu-light-groupTitle-fontColor);
-  line-height: 1.5;
-  padding: 8px 10px;
-  border-bottom: 1px solid #dedede;
+  line-height: 1.25rem;
+  padding: 0 var(--Menu-Submenu-item-paddingX) 0 1rem;
+  font-size: 0.75rem;
+  margin: 0.75rem 0 0.25rem 0;
 }
 
 .amis-scope .a-Nav-Menu-item-group-title.a-Nav-Menu-dark {
@@ -115349,6 +115669,9 @@ title: Word Break
 .amis-scope .a-Nav-Menu-item .a-Badge,
 .amis-scope .a-Nav-Menu-submenu .a-Badge {
   position: static;
+  flex: 1;
+  width: 0;
+  display: flex;
 }
 
 .amis-scope .a-Nav-Menu-item .a-Nav-Menu-item-wrap,
@@ -115359,6 +115682,14 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item-extra {
   position: relative;
+}
+
+.amis-scope .a-Nav-Menu-item-extra .a-DropDown > .a-Button {
+  padding: 0;
+}
+
+.amis-scope .a-Nav-Menu-item-extra .a-DropDown > .a-Button > i {
+  margin: 0;
 }
 
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-item-selected {
@@ -115420,7 +115751,14 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-item-icon,
-.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-item-label {
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-item-selected .a-Nav-Menu-submenu-arrow {
+  color: var(--Menu-light-fontColor-onActive) !important;
+}
+
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-inline.a-Nav-Menu-light .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onActive) !important;
 }
 
@@ -115467,19 +115805,7 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-dark > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title {
-  background-color: var(--Menu-dark-backgroundColor-onHover);
-}
-
-.amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-dark > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  border-right: 3px solid var(--Menu-dark-selectedIndicator-color);
-  transform: scaleY(1);
-  opacity: 1;
-  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+  color: var(--Menu-dark-fontColor-onActive);
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-dark > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-icon,
@@ -115509,19 +115835,7 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title {
-  background-color: var(--Menu-light-backgroundColor-onHover);
-}
-
-.amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  border-right: 3px solid var(--Menu-light-selectedIndicator-color);
-  transform: scaleY(1);
-  opacity: 1;
-  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+  color: var(--Menu-dark-fontColor-onActive);
 }
 
 .amis-scope .a-Nav-Menu-root.a-Nav-Menu-vertical.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-icon,
@@ -115612,7 +115926,7 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-title {
   margin: 0;
   position: relative;
-  padding: 0;
+  padding: 0 1rem;
   line-height: 2.5rem;
   display: block;
   white-space: nowrap;
@@ -115623,8 +115937,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-item:hover .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-item:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-item:hover .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onHover);
 }
 
@@ -115641,8 +115957,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-dark .a-Nav-Menu-item:hover .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-dark .a-Nav-Menu-item:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-item:hover .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-fontColor-onHover);
 }
 
@@ -115654,8 +115972,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-light .a-Nav-Menu-item:hover .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-light .a-Nav-Menu-item:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-light .a-Nav-Menu-item:hover .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-light .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onHover);
 }
 
@@ -115669,6 +115989,10 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-title.a-Nav-Menu-item-disabled,
 .amis-scope .a-Nav-Menu-submenu-title.a-Nav-Menu-submenu-disabled {
   color: #777 !important;
+}
+
+.amis-scope .a-Nav-Menu-item-tooltip-wrap {
+  padding: 0;
 }
 
 .amis-scope .a-Nav-Menu-collapsed > .a-Nav-Menu-item,
@@ -115689,10 +116013,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-popup {
   position: absolute;
   z-index: 1500;
-}
-
-.amis-scope .a-Nav-Menu-submenu-popup .a-Nav-Menu-item {
-  padding: 0 var(--Menu-Submenu-item-paddingX);
 }
 
 .amis-scope .a-Nav-Menu-submenu > .a-Nav-Menu {
@@ -115744,6 +116064,12 @@ title: Word Break
 .amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-fontColor);
+}
+
+.amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
+  color: var(--Menu-dark-fontColor-onHover);
 }
 
 .amis-scope .a-Nav-Menu-submenu-popup-dark > .a-Nav-Menu .a-Nav-Menu-submenu-active .a-Nav-Menu-submenu-title {
@@ -115823,7 +116149,7 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-item-tooltip-wrap > .a-Nav-Menu-item,
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title {
-  padding: 0 20px;
+  padding: 0 1rem;
   height: var(--Menu-item-height--horizontal);
 }
 
@@ -115837,12 +116163,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon,
 .amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label {
   line-height: var(--Menu-item-height--horizontal);
-}
-
-.amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-item-tooltip-wrap > .a-Nav-Menu-item .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-horizontal > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label {
-  padding: 0;
-  top: 0;
 }
 
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-item.a-Nav-Menu-item-selected:after {
@@ -115892,8 +116212,8 @@ title: Word Break
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-arrow {
   display: inline-block;
   font-size: 0.5625rem;
-  vertical-align: baseline;
   text-align: center;
+  vertical-align: middle;
   text-transform: none;
   text-rendering: auto;
   line-height: 1.25rem;
@@ -115902,7 +116222,10 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-arrow > svg {
-  text-align: center;
+  top: auto;
+}
+
+.amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-item-label {
   vertical-align: middle;
 }
 
@@ -115941,8 +116264,10 @@ title: Word Break
 
 .amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-icon,
 .amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-submenu-selected .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-item-icon,
-.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-item-label {
+.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-horizontal.a-Nav-Menu-light > .a-Nav-Menu-item-selected .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-light-fontColor-onActive);
 }
 
@@ -115972,19 +116297,16 @@ title: Word Break
   text-transform: none;
   text-rendering: auto;
   position: absolute;
-  right: 0;
+  right: var(--Menu-Submenu-item-paddingX);
   top: 0;
-  width: var(--Menu-Submenu-title-paddingX);
   line-height: var(--Menu-item-height--vertical);
-  transform: rotate(-90deg);
 }
 
 .amis-scope .a-Nav-Menu-vertical .a-Nav-Menu-submenu-arrow > svg,
 .amis-scope .a-Nav-Menu-vertical-left .a-Nav-Menu-submenu-arrow > svg,
 .amis-scope .a-Nav-Menu-vertical-right .a-Nav-Menu-submenu-arrow > svg,
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-submenu-arrow > svg {
-  text-align: center;
-  vertical-align: middle;
+  top: auto;
 }
 
 .amis-scope .a-Nav-Menu-rtl .a-Nav-Menu-vertical .a-Nav-Menu-submenu-arrow,
@@ -116004,7 +116326,7 @@ title: Word Break
 .amis-scope .a-Nav-Menu-vertical-right.a-Nav-Menu-expand-before .a-Nav-Menu-submenu-title .a-Nav-Menu-item-wrap,
 .amis-scope .a-Nav-Menu-inline.a-Nav-Menu-expand-before .a-Nav-Menu-submenu-title .a-Nav-Menu-item-wrap {
   padding-right: 0;
-  padding-left: var(--Menu-Submenu-title-paddingX);
+  padding-left: 1rem;
 }
 
 .amis-scope .a-Nav-Menu-vertical.a-Nav-Menu-expand-before .a-Nav-Menu-submenu-arrow,
@@ -116028,46 +116350,44 @@ title: Word Break
   color: var(--Menu-light-fontColor);
 }
 
-.amis-scope .a-Nav-Menu-vertical-right .a-Nav-Menu-item,
-.amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-item {
-  padding: 0 var(--Menu-Submenu-title-paddingX) 0 calc(var(--Menu-Submenu-title-paddingX) - 1px);
+.amis-scope .a-Nav-Menu-vertical-right .a-Nav-Menu-submenu-arrow {
+  right: 0.625rem;
 }
 
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-arrow {
   cursor: pointer;
   transition: transform 0.3s;
-  transform: rotate(0deg);
+  transform: rotate(90deg);
 }
 
 .amis-scope .a-Nav-Menu-inline .a-Nav-Menu-submenu-open > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow,
 .amis-scope .a-Nav-Menu-horizontal .a-Nav-Menu-submenu-open > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
-  transform: rotate(180deg);
+  transform: rotate(270deg);
 }
 
 .amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-item-wrap {
   overflow: hidden;
 }
 
-.amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title {
-  padding: 0 var(--Menu-Submenu-title-paddingX) 0 calc(var(--Menu-Submenu-title-paddingX) - 1px);
-  text-align: center;
-}
-
 .amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-submenu-arrow {
   display: none !important;
+}
+
+.amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-item-group-title {
+  display: none;
+}
+
+.amis-scope .a-Nav-Menu-collapsed .a-Nav-Menu-item-group-list .a-Nav-Menu-item-divider {
+  height: 1px;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .amis-scope .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu,
 .amis-scope .a-Nav-Menu-submenu-vertical-left.a-Nav-Menu-submenu,
 .amis-scope .a-Nav-Menu-submenu-vertical-right.a-Nav-Menu-submenu {
   padding: 0;
-}
-
-.amis-scope .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title,
-.amis-scope .a-Nav-Menu-submenu-vertical-left.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title,
-.amis-scope .a-Nav-Menu-submenu-vertical-right.a-Nav-Menu-submenu .a-Nav-Menu-submenu-title {
-  padding: 0 var(--Menu-Submenu-item-paddingX);
 }
 
 .amis-scope .a-Nav-Menu-submenu-rtl .a-Nav-Menu-submenu-vertical.a-Nav-Menu-submenu,
@@ -116087,7 +116407,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu > .a-Nav-Menu-submenu-title {
   padding-top: 0;
   padding-bottom: 0;
-  padding-right: 0;
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -116104,7 +116423,8 @@ title: Word Break
 }
 
 .amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
-.amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon {
+.amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-sub.a-Nav-Menu-inline > .a-Nav-Menu-submenu.a-Nav-Menu-submenu-dark.a-Nav-Menu-submenu-selected > .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-ancestor-fontColor-onActive);
 }
 
@@ -116112,28 +116432,24 @@ title: Word Break
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled.a-Nav-Menu-item,
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled.a-Nav-Menu-item {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled.a-Nav-Menu-item .a-Nav-Menu-item-link,
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled.a-Nav-Menu-item .a-Nav-Menu-item-link {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled .a-Nav-Menu-submenu-title,
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled .a-Nav-Menu-submenu-title {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled .a-Nav-Menu-submenu-title > .a-Nav-Menu-item-icon,
@@ -116144,7 +116460,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled .a-Nav-Menu-submenu-title > .a-Nav-Menu-submenu-arrow {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu .a-Nav-Menu-item-disabled .a-Nav-Menu-item-icon,
@@ -116155,7 +116470,6 @@ title: Word Break
 .amis-scope .a-Nav-Menu .a-Nav-Menu-submenu-disabled .a-Nav-Menu-submenu-arrow {
   cursor: not-allowed;
   color: var(--Menu-fontColor-onDisabled) !important;
-  pointer-events: none;
 }
 
 .amis-scope .a-Nav-Menu-open-slide-up-enter,
@@ -116318,6 +116632,12 @@ title: Word Break
 .amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-item-label,
 .amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title .a-Nav-Menu-submenu-arrow {
   color: var(--Menu-dark-fontColor);
+}
+
+.amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-label,
+.amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-item-icon,
+.amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-dark .a-Nav-Menu-submenu-title:hover .a-Nav-Menu-submenu-arrow {
+  color: var(--Menu-dark-fontColor-onHover);
 }
 
 .amis-scope .a-Nav-Menu-overflow-menu-dark > .a-Nav-Menu .a-Nav-Menu-submenu-active .a-Nav-Menu-submenu-title {

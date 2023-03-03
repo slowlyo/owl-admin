@@ -1,18 +1,18 @@
 {
-    "name": "slowlyo/slow-admin",
+    "name": "slowlyo/owl-admin",
     "description": "采用 laravel、amis、vue3 打造的后台框架，拥有 120+ 种组件，只用后端代码就能实现复杂的页面效果，学习成本低，让开发者能够快速构建高效的后台管理系统。",
     "license": "MIT",
     "authors": [
         {
             "name": "Slowlyo",
-            "email": "yguren@qq.com.com",
+            "email": "slowlyo_email@qq.com.com",
             "homepage": "https://gitee.com/slowlyo"
         }
     ],
-    "homepage": "https://gitee.com/slowlyo/slow-admin",
+    "homepage": "https://gitee.com/slowlyo/owl-admin",
     "keywords": [
         "Laravel",
-        "SlowAdmin",
+        "OwlAdmin",
         "Admin"
     ],
     "require": {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Slowlyo\\SlowAdmin\\": "src/"
+            "Slowlyo\\OwlAdmin\\": "src/"
         },
         "files": [
             "src/Libs/helpers.php"
@@ -30,10 +30,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Slowlyo\\SlowAdmin\\SlowAdminServiceProvider"
+                "Slowlyo\\OwlAdmin\\OwlAdminServiceProvider"
             ],
             "aliases": {
-                "SlowAdmin": "Slowlyo\\SlowAdmin\\Facades\\SlowAdmin"
+                "OwlAdmin": "Slowlyo\\OwlAdmin\\Facades\\OwlAdmin"
             }
         }
     }

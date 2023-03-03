@@ -1,17 +1,17 @@
 <?php
 
-namespace Slowlyo\SlowAdmin;
+namespace Slowlyo\OwlAdmin;
 
 use Illuminate\Support\Arr;
-use Slowlyo\SlowAdmin\Console;
-use Slowlyo\SlowAdmin\Libs\Asset;
-use Slowlyo\SlowAdmin\Libs\Context;
-use Slowlyo\SlowAdmin\Extend\Manager;
+use Slowlyo\OwlAdmin\Console;
+use Slowlyo\OwlAdmin\Libs\Asset;
+use Slowlyo\OwlAdmin\Libs\Context;
+use Slowlyo\OwlAdmin\Extend\Manager;
 use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 
-class SlowAdminServiceProvider extends ServiceProvider
+class OwlAdminServiceProvider extends ServiceProvider
 {
     protected array $commands = [
         Console\InstallCommand::class,

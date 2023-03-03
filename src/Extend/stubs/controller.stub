@@ -2,7 +2,7 @@
 
 namespace {namespace}\Http\Controllers;
 
-use Slowlyo\SlowAdmin\Controllers\AdminController;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class {className}Controller extends AdminController
 {

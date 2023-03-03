@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Models;
+namespace Slowlyo\OwlAdmin\Models;
 
 use Illuminate\Database\Seeder;
 
@@ -30,6 +30,7 @@ class AdminTablesSeeder extends Seeder
                 'slug'      => 'home',
                 'http_path' => ['/home*'],
                 "parent_id" => 0,
+                'is_home'   => 1,
             ],
             [
                 'name'      => '系统',

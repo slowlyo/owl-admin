@@ -1,10 +1,10 @@
 <?php
 
-namespace Slowlyo\SlowAdmin\Services;
+namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
-use Slowlyo\SlowAdmin\Models\AdminUser;
+use Slowlyo\OwlAdmin\Models\AdminUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
