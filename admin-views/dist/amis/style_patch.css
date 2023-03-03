@@ -9,6 +9,12 @@
 
 	--borderRadius: 6px;
 
+    --Form-selectValue-bg: var(--primary-color-active);
+    --Form-selectValue-borderColor: var(--primary-color-hover);
+    --Form-selectValue-onHover-bg: var(--primary-color-active);
+    --ListItem-onChecked-bg: var(--primary-color-active);
+    --ListItem-onChecked-borderColor: var(--primary-color);
+    --ListItem-onChecked-color: var(--primary-color);
 	--Table-onHover-bg: var(--primary-color-active);
 	--Panel-borderWidth: 0;
 	--Panel-border: 1px solid rgba(0, 0, 0, .06);
