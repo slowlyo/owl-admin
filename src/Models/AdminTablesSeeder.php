@@ -85,36 +85,42 @@ class AdminTablesSeeder extends Seeder
                 'title'     => 'admin_system',
                 'icon'      => 'material-symbols:settings-outline',
                 'url'       => '/system',
+                'is_home'   => 0,
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_users',
                 'icon'      => 'ph:user-gear',
                 'url'       => '/system/admin_users',
+                'is_home'   => 0,
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_roles',
                 'icon'      => 'carbon:user-role',
                 'url'       => '/system/admin_roles',
+                'is_home'   => 0,
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_permission',
                 'icon'      => 'fluent-mdl2:permissions',
                 'url'       => '/system/admin_permissions',
+                'is_home'   => 0,
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_menu',
                 'icon'      => 'ant-design:menu-unfold-outlined',
                 'url'       => '/system/admin_menus',
+                'is_home'   => 0,
             ],
             [
                 'parent_id' => 2,
                 'title'     => 'admin_setting',
                 'icon'      => 'mdi:information-outline',
                 'url'       => '/system/settings',
+                'is_home'   => 0,
             ],
         ]);
     }
