@@ -105,6 +105,7 @@
 	--Panel-heading-fontSize: var(--fonts-size-10);
 	--Panel-heading-fontWeight: var(--fonts-weight-4);
 	--checkbox-checked-hover-bg-color: var(--primary-color-hover);
+    --Form-select-bg: white;
 }
 
 /*//2.4.0 样式修复*/
@@ -269,6 +270,14 @@
 	--dark-disabled-color: #585858;
 }
 
+.dark:root{
+    --Form-select-bg: transparent !important;
+    --select-base-hover-option-color: var(--dark-text-color);
+    --select-base-default-option-color: var(--dark-text-color);
+    --colors-neutral-line-10: var(--dark-border-color);
+    --colors-neutral-line-8: var(--dark-border-color);
+}
+
 .dark .amis-scope .cxd-Crud, .dark .amis-scope .cxd-Panel, .dark .amis-scope .cxd-Card {
 	background: var(--dark-card-background);
 	border-color: var(--dark-border-color);
@@ -301,9 +310,8 @@
 }
 
 .dark .amis-scope .cxd-Button--default, .dark .amis-scope .cxd-Select {
-	background: var(--dark-background1);
+	background: var(--dark-card-background);
 	color: var(--dark-text-color);
-	border: var(--Form-select-borderWidth) solid var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-Table-table {
@@ -382,7 +390,7 @@
 }
 
 .dark .amis-scope .base-filter .cxd-TextControl-input {
-	background: var(--dark-card-background);
+	background: var(--dark-card-background) !important;
 }
 
 .dark .amis-scope .cxd-Panel-body {
@@ -608,4 +616,12 @@
 
 .dark .amis-scope .cxd-Card-title {
 	color: var(--dark-text-color);
+}
+
+.dark .amis-scope .cxd-Panel{
+    border: 1px solid var(--dark-border-color);
+}
+
+.dark .amis-scope .base-filter{
+    background: var(--dark-card-background) !important;
 }
