@@ -9,12 +9,12 @@
 
 	--borderRadius: 6px;
 
-    --Form-selectValue-bg: var(--primary-color-active);
-    --Form-selectValue-borderColor: var(--primary-color-hover);
-    --Form-selectValue-onHover-bg: var(--primary-color-active);
-    --ListItem-onChecked-bg: var(--primary-color-active);
-    --ListItem-onChecked-borderColor: var(--primary-color);
-    --ListItem-onChecked-color: var(--primary-color);
+	--Form-selectValue-bg: var(--primary-color-active);
+	--Form-selectValue-borderColor: var(--primary-color-hover);
+	--Form-selectValue-onHover-bg: var(--primary-color-active);
+	--ListItem-onChecked-bg: var(--primary-color-active);
+	--ListItem-onChecked-borderColor: var(--primary-color);
+	--ListItem-onChecked-color: var(--primary-color);
 	--Table-onHover-bg: var(--primary-color-active);
 	--Panel-borderWidth: 0;
 	--Panel-border: 1px solid rgba(0, 0, 0, .06);
@@ -105,7 +105,16 @@
 	--Panel-heading-fontSize: var(--fonts-size-10);
 	--Panel-heading-fontWeight: var(--fonts-weight-4);
 	--checkbox-checked-hover-bg-color: var(--primary-color-hover);
-    --Form-select-bg: white;
+	--select-base-hover-option-bg-color: var(--primary-color-active);
+	--colors-brand-10: var(--primary-color-active);
+	--colors-link-6: var(--primary-color-hover);
+	--colors-link-5: var(--primary-color);
+	--DateRangePicker-activeCursor-color: var(--primary-color);
+	--colors-brand-9: var(--primary-color-active);
+	--colors-brand-7: var(--primary-color-hover);
+	--transfer-search-border-active-color: var(--primary-color);
+	--colors-brand-6: var(--primary-color-hover);
+	--Form-select-bg: white;
 }
 
 /*//2.4.0 样式修复*/
@@ -122,6 +131,11 @@
 .cxd-Button > svg {
 	width: 12px;
 	height: 12px;
+}
+
+.amis-scope .cxd-InputGroup-addOn:first-child{
+	display: flex;
+	align-items: center;
 }
 
 /*// end*/
@@ -271,11 +285,11 @@
 }
 
 .dark:root{
-    --Form-select-bg: transparent !important;
-    --select-base-hover-option-color: var(--dark-text-color);
-    --select-base-default-option-color: var(--dark-text-color);
-    --colors-neutral-line-10: var(--dark-border-color);
-    --colors-neutral-line-8: var(--dark-border-color);
+	--Form-select-bg: transparent !important;
+	--select-base-hover-option-color: var(--dark-text-color);
+	--select-base-default-option-color: var(--dark-text-color);
+	--colors-neutral-line-10: var(--dark-border-color);
+	--colors-neutral-line-8: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-Crud, .dark .amis-scope .cxd-Panel, .dark .amis-scope .cxd-Card {
@@ -619,9 +633,9 @@
 }
 
 .dark .amis-scope .cxd-Panel{
-    border: 1px solid var(--dark-border-color);
+	border: 1px solid var(--dark-border-color);
 }
 
 .dark .amis-scope .base-filter{
-    background: var(--dark-card-background) !important;
+	background: var(--dark-card-background) !important;
 }
