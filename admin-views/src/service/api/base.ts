@@ -1,4 +1,4 @@
-import {request} from "../request";
+import { request } from '../request';
 
 /**
  * 初始化页面结构

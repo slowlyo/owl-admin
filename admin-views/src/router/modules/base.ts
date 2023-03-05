@@ -1,12 +1,12 @@
 const base: AuthRoute.Route = {
-	// @ts-ignore
+  // @ts-ignore
   name: '_link',
-	// @ts-ignore
+  // @ts-ignore
   path: '/_link',
   component: 'basic',
-	// @ts-ignore
+  // @ts-ignore
   meta: {
-		hide: true,
+    hide: true
   }
 };
 

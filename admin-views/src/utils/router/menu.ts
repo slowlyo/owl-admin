@@ -1,4 +1,4 @@
-import { useIconRender } from '@/composables';
+import {useIconRender} from "@/composables"
 
 /**
  * 将权限路由转换成菜单
@@ -39,8 +39,7 @@ export function transformAuthRouteToMenu(routes: AuthRoute.Route[]): App.GlobalM
  * @param menus - 菜单数据
  */
 export function getActiveKeyPathsOfMenus(activeKey: string, menus: App.GlobalMenuOption[]) {
-  const keys = menus.map(menu => getActiveKeyPathsOfMenu(activeKey, menu)).flat(1);
-  return keys;
+  return menus.map(menu => getActiveKeyPathsOfMenu(activeKey, menu)).flat(1);
 }
 
 function getActiveKeyPathsOfMenu(activeKey: string, menu: App.GlobalMenuOption) {

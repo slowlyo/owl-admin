@@ -33,8 +33,8 @@ import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import type { MenuOption } from 'naive-ui';
 import { useAppStore, useThemeStore } from '@/store';
-import { useAppInfo, useRouterPush } from '@/composables';
-import { getActiveKeyPathsOfMenus } from '@/utils';
+import { useRouterPush } from '@/composables';
+import { getActiveKeyPathsOfMenus, settings } from '@/utils';
 
 defineOptions({ name: 'MixMenuDrawer' });
 
@@ -51,7 +51,8 @@ const route = useRoute();
 const app = useAppStore();
 const theme = useThemeStore();
 const { routerPush } = useRouterPush();
-const { title } = useAppInfo();
+
+const title = settings.setStore(useAppStore()).getSettingItem('app_name');
 
 const showDrawer = computed(() => (props.visible && props.menus.length) || app.mixSiderFixed);
 
