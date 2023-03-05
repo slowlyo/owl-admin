@@ -19,8 +19,6 @@ class AdminUserController extends AdminController
 {
     protected string $serviceName = AdminUserService::class;
 
-    protected string $queryPath = 'system/admin_users';
-
     protected string $pageTitle;
 
     public function __construct()
@@ -100,8 +98,8 @@ class AdminUserController extends AdminController
         ]);
     }
 
-    public function detail($id): Form
+    public function detail(): Form
     {
-        return $this->baseDetail($id)->body([]);
+        return $this->baseDetail()->body([]);
     }
 }

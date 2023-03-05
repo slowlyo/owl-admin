@@ -44,6 +44,8 @@ abstract class AdminController extends Controller
         }
 
         $this->adminPrefix = config('admin.route.prefix');
+
+        $this->queryPath = str_replace($this->adminPrefix . '/', '', request()->path());
     }
 
     public function user()
@@ -133,7 +135,7 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getDetail($id));
         }
 
-        $page = $this->basePage()->toolbar([$this->backButton()])->body($this->detail($id));
+        $page = $this->basePage()->toolbar([$this->backButton()])->body($this->detail());
 
         if (!$this->isTabMode()) {
             $page = $page->subTitle(__('admin.detail'));
@@ -159,7 +161,7 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getEditData($id));
         }
 
-        $form = $this->form()->api($this->getUpdatePath($id))->initApi($this->getEditGetDataPath($id));
+        $form = $this->form()->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
 
         $page = $this->basePage()->toolbar([$this->backButton()])->body($form);
 

@@ -15,8 +15,6 @@ class {{ ClassName }} extends AdminController
 {
     protected string $serviceName = {{ ServiceName }}::class;
 
-    protected string $queryPath = '{{ QueryPath }}';
-
     protected string $pageTitle = '{{ PageTitle }}';
 
     public function index(): JsonResponse|JsonResource
@@ -47,9 +45,9 @@ class {{ ClassName }} extends AdminController
         ]);
     }
 
-    public function detail($id): Form
+    public function detail(): Form
     {
-        return $this->baseDetail($id)->body([
+        return $this->baseDetail()->body([
             {{ DetailContent }}
         ]);
     }

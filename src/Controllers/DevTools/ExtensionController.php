@@ -29,8 +29,6 @@ use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class ExtensionController extends AdminController
 {
-    protected string $queryPath = 'dev_tools/extensions';
-
     public function __construct()
     {
         parent::__construct();

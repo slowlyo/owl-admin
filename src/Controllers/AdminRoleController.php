@@ -17,8 +17,6 @@ class AdminRoleController extends AdminController
 {
     protected string $serviceName = AdminRoleService::class;
 
-    protected string $queryPath = 'system/admin_roles';
-
     protected string $pageTitle;
 
     public function __construct()
@@ -85,8 +83,8 @@ class AdminRoleController extends AdminController
         ]);
     }
 
-    public function detail($id): Form
+    public function detail(): Form
     {
-        return $this->baseDetail($id)->body([]);
+        return $this->baseDetail()->body([]);
     }
 }

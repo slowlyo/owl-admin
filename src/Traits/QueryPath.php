@@ -47,13 +47,19 @@ trait QueryPath
     /**
      * 编辑 获取数据
      *
-     * @param $id
-     *
      * @return string
      */
-    public function getEditGetDataPath($id): string
+    public function getEditGetDataPath(): string
     {
-        return admin_url($this->queryPath . '/' . $id . '/edit?_action=getData');
+        $path = str_replace('/edit', '', $this->queryPath);
+
+        $last = collect(explode('/', $path))->last();
+
+        if (!is_numeric($last)) {
+            $path .= '/${id}';
+        }
+
+        return admin_url($path . '?_action=getData');
     }
 
     /**
@@ -69,25 +75,37 @@ trait QueryPath
     /**
      * 编辑保存
      *
-     * @param $id
-     *
      * @return string
      */
-    public function getUpdatePath($id): string
+    public function getUpdatePath(): string
     {
-        return 'put:' . admin_url($this->queryPath . '/' . $id);
+        $path = str_replace('/edit', '', $this->queryPath);
+
+        $last = collect(explode('/', $path))->last();
+
+        if (!is_numeric($last)) {
+            $path .= '/${id}';
+        }
+
+        return 'put:' . admin_url($path);
     }
 
     /**
      * 详情 获取数据
      *
-     * @param $id
-     *
      * @return string
      */
-    public function getShowGetDataPath($id): string
+    public function getShowGetDataPath(): string
     {
-        return admin_url($this->queryPath . '/' . $id . '?_action=getData');
+        $path = $this->queryPath;
+
+        $last = collect(explode('/', $this->queryPath))->last();
+
+        if (!is_numeric($last)) {
+            $path .= '/${id}';
+        }
+
+        return admin_url($path . '?_action=getData');
     }
 
     /**
@@ -107,7 +125,7 @@ trait QueryPath
      */
     public function getStorePath(): string
     {
-        return 'post:' . admin_url($this->queryPath);
+        return 'post:' . admin_url(str_replace('/create', '', $this->queryPath));
     }
 
     /**
@@ -119,5 +137,4 @@ trait QueryPath
     {
         return '/' . trim($this->queryPath, '/');
     }
-
 }

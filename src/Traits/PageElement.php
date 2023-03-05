@@ -119,7 +119,7 @@ trait PageElement
     protected function rowEditButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
         if ($dialog) {
-            $form = $this->form()->api($this->getUpdatePath('$id'))->initApi($this->getEditGetDataPath('$id'));
+            $form = $this->form()->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
 
             $button = DialogAction::make()->dialog(
                 Dialog::make()->title(__('admin.edit'))->body($form)->size($dialogSize)
@@ -254,18 +254,16 @@ trait PageElement
     }
 
     /**
-     * @param $id
-     *
      * @return Form
      */
-    protected function baseDetail($id): Form
+    protected function baseDetail(): Form
     {
         return Form::make()
             ->panelClassName('px-48 m:px-0')
             ->title(' ')
             ->mode('horizontal')
             ->actions([])
-            ->initApi($this->getShowGetDataPath($id));
+            ->initApi($this->getShowGetDataPath());
     }
 
     /**

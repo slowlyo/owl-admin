@@ -25,8 +25,6 @@ class AdminPermissionController extends AdminController
 {
     protected string $serviceName = AdminPermissionService::class;
 
-    protected string $queryPath = 'system/admin_permissions';
-
     protected string $pageTitle;
 
     public function __construct()
@@ -144,9 +142,9 @@ class AdminPermissionController extends AdminController
         ]);
     }
 
-    public function detail($id): Form
+    public function detail(): Form
     {
-        return $this->baseDetail($id)->body([]);
+        return $this->baseDetail()->body([]);
     }
 
     private function getHttpMethods(): array

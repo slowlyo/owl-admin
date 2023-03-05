@@ -28,8 +28,6 @@ use Slowlyo\OwlAdmin\Libs\CodeGenerator\ControllerGenerator;
 
 class CodeGeneratorController extends AdminController
 {
-    protected string $queryPath = 'dev_tools/code_generator';
-
     public static array $dataTypeMap = [
         'int'                => 'integer',
         'int@unsigned'       => 'unsignedInteger',

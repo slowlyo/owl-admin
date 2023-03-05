@@ -4,7 +4,6 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Html;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Slowlyo\OwlAdmin\Renderers\Dialog;
@@ -23,8 +22,6 @@ use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 class AdminMenuController extends AdminController
 {
     protected string $serviceName = AdminMenuService::class;
-
-    protected string $queryPath = 'system/admin_menus';
 
     protected string $pageTitle;
 
@@ -90,8 +87,8 @@ class AdminMenuController extends AdminController
                     $this->rowEditButton(true)->dialog(
                         Dialog::make()->title(__('admin.edit'))->body(
                             $this->form()
-                                ->api($this->getUpdatePath('$id'))
-                                ->initApi($this->getEditGetDataPath('$id'))
+                                ->api($this->getUpdatePath())
+                                ->initApi($this->getEditGetDataPath())
                         )->size('lg')
                     ),
                     $this->rowDeleteButton(),
@@ -167,9 +164,9 @@ class AdminMenuController extends AdminController
         ]);
     }
 
-    public function detail($id): Form
+    public function detail(): Form
     {
-        return $this->baseDetail($id)->body([]);
+        return $this->baseDetail()->body([]);
     }
 
     public function quickEdit()

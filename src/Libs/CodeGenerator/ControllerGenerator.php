@@ -81,7 +81,6 @@ class ControllerGenerator extends BaseGenerator
         $stub = $this->replaceClass($stub, $name)
             ->replaceNamespace($stub, $name)
             ->replaceService($stub)
-            ->replaceQueryPath($stub)
             ->replaceTitle($stub)
             ->replaceListContent($stub)
             ->replaceFormContent($stub)
@@ -101,13 +100,6 @@ class ControllerGenerator extends BaseGenerator
         $class = str_replace($this->getNamespace($name) . '\\', '', $name);
 
         $stub = str_replace(['{{ ServiceName }}', '{{ UseService }}'], [$class, $name], $stub);
-
-        return $this;
-    }
-
-    protected function replaceQueryPath(&$stub): static
-    {
-        $stub = str_replace('{{ QueryPath }}', Str::snake($this->tableName), $stub);
 
         return $this;
     }
