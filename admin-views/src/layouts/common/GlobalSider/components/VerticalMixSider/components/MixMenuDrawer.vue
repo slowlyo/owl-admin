@@ -8,7 +8,7 @@
       :style="{ width: showDrawer ? theme.sider.mixChildMenuWidth + 'px' : '0px' }"
     >
       <header class="header-height flex-y-center justify-between" :style="{ height: theme.header.height + 'px' }">
-        <h2 class="text-primary pl-8px text-16px font-bold">{{ title }}</h2>
+        <h2 class="text-primary pl-8px text-16px font-bold">{{ getSettingItem('app_name') }}</h2>
         <div class="px-8px text-16px text-gray-600 cursor-pointer" @click="app.toggleMixSiderFixed">
           <icon-mdi-pin-off v-if="app.mixSiderFixed" />
           <icon-mdi-pin v-else />
@@ -52,7 +52,7 @@ const app = useAppStore();
 const theme = useThemeStore();
 const { routerPush } = useRouterPush();
 
-const title = settings.setStore(useAppStore()).getSettingItem('app_name');
+const getSettingItem = (key: string) => settings.setStore(useAppStore()).getSettingItem(key)
 
 const showDrawer = computed(() => (props.visible && props.menus.length) || app.mixSiderFixed);
 
