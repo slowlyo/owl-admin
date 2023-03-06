@@ -5,7 +5,7 @@ namespace Slowlyo\OwlAdmin\Controllers;
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\OwlAdmin;
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Slowlyo\OwlAdmin\Traits\Uploader;
 use Slowlyo\OwlAdmin\Traits\QueryPath;
 use Slowlyo\OwlAdmin\Traits\PageElement;

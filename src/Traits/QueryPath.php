@@ -56,7 +56,7 @@ trait QueryPath
         $last = collect(explode('/', $path))->last();
 
         if (!is_numeric($last)) {
-            $path .= '/${id}';
+            $path .= '/${id}/edit';
         }
 
         return admin_url($path . '?_action=getData');
