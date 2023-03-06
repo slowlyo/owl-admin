@@ -12,7 +12,7 @@ use Slowlyo\OwlAdmin\Controllers;
     $router->get('/current-user', [Controllers\AuthController::class, 'currentUser']);
     $router->get('/captcha', [Controllers\AuthController::class, 'reloadCaptcha']);
 
-    $router->get('/no-content', [Controllers\IndexController::class, 'noContent']);
+    $router->get('/no-content', [Controllers\IndexController::class, 'noContentResponse']);
     $router->get('/menus', [Controllers\IndexController::class, 'menus']);
     $router->get('/_settings', [Controllers\IndexController::class, 'settings']);
     $router->post('/_settings', [Controllers\IndexController::class, 'saveSettings']);

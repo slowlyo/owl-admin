@@ -36,7 +36,7 @@ class IndexController extends AdminController
         return $this->response()->success($menus);
     }
 
-    public function noContent(): JsonResponse|JsonResource
+    public function noContentResponse(): JsonResponse|JsonResource
     {
         return $this->response()->successMessage();
     }
