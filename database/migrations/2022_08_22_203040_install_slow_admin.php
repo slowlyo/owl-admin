@@ -33,8 +33,8 @@ return new class extends Migration {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->string('slug', 50)->unique();
-            $table->json('http_method')->nullable();
-            $table->json('http_path')->nullable();
+            $table->text('http_method')->nullable();
+            $table->text('http_path')->nullable();
             $table->integer('order')->default(0);
             $table->integer('parent_id')->default(0);
             $table->timestamps();

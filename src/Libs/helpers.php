@@ -61,7 +61,7 @@ if (!function_exists('admin_resource_full_path')) {
             $disk = config('admin.upload.disk');
 
             if (config("filesystems.disks.{$disk}")) {
-                $src = Storage::disk($disk)->url($path);
+                $src = \Illuminate\Support\Facades\Storage::disk($disk)->url($path);
             } else {
                 $src = '';
             }
@@ -98,16 +98,20 @@ if (!function_exists('amis')) {
 if (!function_exists('admin_encode')) {
     function admin_encode($str, $key = null)
     {
-        return base64_encode(openssl_encrypt($str, 'AES-128-ECB', $key ?? config('app.key')));
+        return \Illuminate\Support\Facades\Crypt::encryptString($str);
     }
 }
 
 if (!function_exists('admin_decode')) {
     function admin_decode($decodeStr, $key = null)
     {
-        $str = openssl_decrypt(base64_decode($decodeStr), 'AES-128-ECB', $key ?? config('app.key'));
+        try {
+            $str = \Illuminate\Support\Facades\Crypt::decryptString($decodeStr);
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            $str = '';
+        }
 
-        return $str ?: '';
+        return $str;
     }
 }
 
@@ -120,7 +124,7 @@ if (!function_exists('file_upload_handle')) {
      */
     function file_upload_handle()
     {
-        $storage = Storage::disk(config('admin.upload.disk'));
+        $storage = \Illuminate\Support\Facades\Storage::disk(config('admin.upload.disk'));
 
         return \Illuminate\Database\Eloquent\Casts\Attribute::make(
             get: fn($value) => $storage->url($value),
