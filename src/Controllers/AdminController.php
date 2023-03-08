@@ -97,7 +97,7 @@ abstract class AdminController extends Controller
     {
         $this->isCreate = true;
 
-        $form = $this->form()->api($this->getStorePath());
+        $form = $this->form(false)->api($this->getStorePath());
 
         $page = $this->basePage()->body($form)->toolbar([$this->backButton()]);
 
@@ -161,7 +161,7 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getEditData($id));
         }
 
-        $form = $this->form()->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
+        $form = $this->form(true)->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
 
         $page = $this->basePage()->toolbar([$this->backButton()])->body($form);
 

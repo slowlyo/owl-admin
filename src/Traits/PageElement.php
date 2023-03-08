@@ -95,7 +95,7 @@ trait PageElement
      */
     protected function createButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
-        $form = $this->form()->api($this->getStorePath());
+        $form = $this->form(false)->api($this->getStorePath());
 
         if ($dialog) {
             $button = DialogAction::make()->dialog(
@@ -119,7 +119,7 @@ trait PageElement
     protected function rowEditButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
         if ($dialog) {
-            $form = $this->form()->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
+            $form = $this->form(true)->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
 
             $button = DialogAction::make()->dialog(
                 Dialog::make()->title(__('admin.edit'))->body($form)->size($dialogSize)
