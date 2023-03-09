@@ -160,6 +160,21 @@
 	height: 100%;
 }
 
+.amis-scope .cxd-Pagination{
+	display: flex;
+	align-items: center;
+}
+
+.amis-scope .cxd-Pagination-next > span{
+	display: flex;
+	align-items: center;
+}
+
+.amis-scope .cxd-Pagination-prev > span{
+	display: flex;
+	align-items: center;
+}
+
 /*end*/
 
 .amis-scope {
