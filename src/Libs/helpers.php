@@ -74,7 +74,7 @@ if (!function_exists('admin_resource_full_path')) {
     }
 }
 
-if (!function_exists('amis')) {
+if (!function_exists('admin_path')) {
     function admin_path($path = '')
     {
         return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
@@ -92,6 +92,13 @@ if (!function_exists('amis')) {
         }
 
         return $component;
+    }
+}
+
+if (!function_exists('amisMake')) {
+    function amisMake(): \Slowlyo\OwlAdmin\Renderers\Amis
+    {
+        return \Slowlyo\OwlAdmin\Renderers\Amis::make();
     }
 }
 
