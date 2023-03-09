@@ -2,14 +2,12 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\Operation;
 use Slowlyo\OwlAdmin\Renderers\TableColumn;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
@@ -24,15 +22,6 @@ class AdminRoleController extends AdminController
         $this->pageTitle = __('admin.admin_roles');
 
         parent::__construct();
-    }
-
-    public function index(): JsonResponse|JsonResource
-    {
-        if ($this->actionOfGetData()) {
-            return $this->response()->success($this->service->list());
-        }
-
-        return $this->response()->success($this->list());
     }
 
     public function list(): Page

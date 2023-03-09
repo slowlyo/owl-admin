@@ -2,12 +2,10 @@
 
 namespace {{ Namespace }};
 
-use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\TableColumn;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use {{ UseService }};
 
@@ -16,15 +14,6 @@ class {{ ClassName }} extends AdminController
     protected string $serviceName = {{ ServiceName }}::class;
 
     protected string $pageTitle = '{{ PageTitle }}';
-
-    public function index(): JsonResponse|JsonResource
-    {
-        if ($this->actionOfGetData()) {
-            return $this->response()->success($this->service->list());
-        }
-
-        return $this->response()->success($this->list());
-    }
 
     public function list(): Page
     {

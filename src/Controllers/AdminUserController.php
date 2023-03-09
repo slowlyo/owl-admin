@@ -2,7 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Renderers\Tag;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
@@ -13,7 +12,6 @@ use Slowlyo\OwlAdmin\Renderers\ImageControl;
 use Slowlyo\OwlAdmin\Renderers\SelectControl;
 use Slowlyo\OwlAdmin\Services\AdminUserService;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class AdminUserController extends AdminController
 {
@@ -26,15 +24,6 @@ class AdminUserController extends AdminController
         $this->pageTitle = __('admin.admin_users');
 
         parent::__construct();
-    }
-
-    public function index(): JsonResponse|JsonResource
-    {
-        if ($this->actionOfGetData()) {
-            return $this->response()->success($this->service->list());
-        }
-
-        return $this->response()->success($this->list());
     }
 
     public function list(): Page

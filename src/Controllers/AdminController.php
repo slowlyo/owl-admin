@@ -86,6 +86,15 @@ abstract class AdminController extends Controller
         return $this->response()->fail($this->service->getError() ?? $text . __('admin.failed'));
     }
 
+    public function index()
+    {
+        if ($this->actionOfGetData()) {
+            return $this->response()->success($this->service->list());
+        }
+
+        return $this->response()->success($this->list());
+    }
+
     /**
      * 获取新增页面
      *

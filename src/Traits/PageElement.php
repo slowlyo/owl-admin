@@ -22,8 +22,6 @@ trait PageElement
      * 是否为tab模式
      *
      * @return array|\ArrayAccess|mixed
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     protected function isTabMode()
     {
@@ -36,8 +34,6 @@ trait PageElement
      * 基础页面
      *
      * @return Page
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     protected function basePage(): Page
     {
@@ -55,8 +51,6 @@ trait PageElement
      * 返回列表按钮
      *
      * @return OtherAction|null
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     protected function backButton(): OtherAction|null
     {
@@ -272,8 +266,6 @@ trait PageElement
      * @param $crud
      *
      * @return Page
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     protected function baseList($crud): Page
     {

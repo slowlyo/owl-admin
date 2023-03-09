@@ -2,7 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
@@ -16,7 +15,6 @@ use Slowlyo\OwlAdmin\Renderers\GroupControl;
 use Slowlyo\OwlAdmin\Renderers\NumberControl;
 use Slowlyo\OwlAdmin\Renderers\SwitchControl;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 
 class AdminMenuController extends AdminController
@@ -30,15 +28,6 @@ class AdminMenuController extends AdminController
         $this->pageTitle = __('admin.admin_menus');
 
         parent::__construct();
-    }
-
-    public function index(): JsonResponse|JsonResource
-    {
-        if ($this->actionOfGetData()) {
-            return $this->response()->success($this->service->list());
-        }
-
-        return $this->response()->success($this->list());
     }
 
     public function list(): Page

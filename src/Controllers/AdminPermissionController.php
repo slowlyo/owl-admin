@@ -3,7 +3,6 @@
 namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Support\Str;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Tag;
 use Slowlyo\OwlAdmin\Renderers\Page;
@@ -16,7 +15,6 @@ use Slowlyo\OwlAdmin\Models\AdminPermission;
 use Slowlyo\OwlAdmin\Renderers\SelectControl;
 use Slowlyo\OwlAdmin\Renderers\NumberControl;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\OwlAdmin\Renderers\CheckboxesControl;
 use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
@@ -32,15 +30,6 @@ class AdminPermissionController extends AdminController
         $this->pageTitle = __('admin.admin_permissions');
 
         parent::__construct();
-    }
-
-    public function index(): JsonResponse|JsonResource
-    {
-        if ($this->actionOfGetData()) {
-            return $this->response()->success($this->service->list());
-        }
-
-        return $this->response()->success($this->list());
     }
 
     public function list(): Page
