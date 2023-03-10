@@ -52,7 +52,6 @@ class OwlAdminServiceProvider extends ServiceProvider
         $this->loadAdminAuthConfig();
         $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
         $this->registerServices();
-        $this->registerExtensions();
         $this->registerRouteMiddleware();
     }
 
@@ -66,11 +65,12 @@ class OwlAdminServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->registerExtensions();
         $this->ensureHttps();
         $this->registerPublishing();
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->bootExtensions();
 
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
         if (file_exists($routes = admin_path('routes.php'))) {
             $this->loadRoutesFrom($routes);
         }

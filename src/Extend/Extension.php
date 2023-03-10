@@ -101,7 +101,7 @@ class Extension
 
         // make class
         $classContents = str_replace(
-            ['{namespace}', '{className}', '{title}', '{path}', '{basePackage}', '{property}', '{registerTheme}'],
+            ['{namespace}', '{className}', '{title}', '{path}', '{basePackage}', '{property}'],
             [
                 $this->namespace,
                 $this->className,
@@ -109,7 +109,6 @@ class Extension
                 $basePackage,
                 $basePackage,
                 $this->makeProviderContent(),
-                $this->makeRegisterThemeContent(),
             ],
             file_get_contents(__DIR__ . '/stubs/extension.stub')
         );
@@ -135,11 +134,6 @@ class Extension
     protected function makeProviderContent()
     {
         return '';
-    }
-
-    protected function makeRegisterThemeContent()
-    {
-        return null;
     }
 
     protected function copyFiles()

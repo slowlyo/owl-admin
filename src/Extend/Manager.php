@@ -69,7 +69,7 @@ class Manager
      */
     public function boot()
     {
-        $this->extensions->each->boot();
+        $this->extensions->each->init();
     }
 
     public function initRoutes()

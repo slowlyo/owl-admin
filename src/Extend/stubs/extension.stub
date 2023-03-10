@@ -9,19 +9,6 @@ class {className}ServiceProvider extends ServiceProvider
 {
 	{property}
 
-	public function register()
-	{
-		//
-	}
-
-	public function init()
-	{
-		parent::init();
-
-		//
-		{registerTheme}
-	}
-
 	public function settingForm()
 	{
 	    return $this->baseSettingForm()->body([
