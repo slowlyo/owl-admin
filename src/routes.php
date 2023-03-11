@@ -16,6 +16,7 @@ use Slowlyo\OwlAdmin\Controllers;
     $router->get('/menus', [Controllers\IndexController::class, 'menus']);
     $router->get('/_settings', [Controllers\IndexController::class, 'settings']);
     $router->post('/_settings', [Controllers\IndexController::class, 'saveSettings']);
+    $router->get('_download_export', [Controllers\IndexController::class, 'downloadExport']);
 
     // 用户设置
     $router->get('/user_setting', [Controllers\AuthController::class, 'userSetting']);

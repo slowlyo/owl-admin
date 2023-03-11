@@ -104,4 +104,16 @@ class IndexController extends AdminController
 
         return $this->response()->successMessage();
     }
+
+    /**
+     * 下载导出文件
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function downloadExport(Request $request)
+    {
+        return response()->download(storage_path('app/' . $request->input('path')))->deleteFileAfterSend();
+    }
 }

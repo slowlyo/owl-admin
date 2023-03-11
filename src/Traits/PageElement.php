@@ -13,8 +13,6 @@ use Slowlyo\OwlAdmin\Renderers\LinkAction;
 use Slowlyo\OwlAdmin\Renderers\AjaxAction;
 use Slowlyo\OwlAdmin\Renderers\OtherAction;
 use Slowlyo\OwlAdmin\Renderers\DialogAction;
-use Psr\Container\NotFoundExceptionInterface;
-use Psr\Container\ContainerExceptionInterface;
 
 trait PageElement
 {
@@ -276,5 +274,74 @@ trait PageElement
         }
 
         return $list;
+    }
+
+    /**
+     * 导出按钮
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\Alert|\Slowlyo\OwlAdmin\Renderers\DropdownButton
+     */
+    protected function exportAction()
+    {
+        if (!class_exists('\Maatwebsite\Excel\Excel')) {
+            return amisMake()
+                ->Alert()
+                ->level('warning')
+                ->body('请先安装 maatwebsite/excel 扩展')
+                ->showIcon(true)
+                ->showCloseButton(true);
+        }
+
+        $downloadPath = admin_url('_download_export');
+        $exportPath   = $this->getExportPath();
+        $event        = fn($script) => ['click' => ['actions' => [['actionType' => 'custom', 'script' => $script]]]];
+        $doAction     = <<<JS
+doAction([
+    { actionType: "ajax", args: { api: { url: url.toString(), method: "get" } } },
+    {
+        actionType: "url",
+        expression: "\${event.data.responseResult.responseStatus === 0}",
+        args: { "url": "{$downloadPath}", "blank": true, "params": { "path": "\${event.data.responseResult.responseData.path}" } },
+    },
+])
+JS;
+
+
+        return amisMake()->DropdownButton()->label('导出')->set('icon', 'fa-solid fa-download')->buttons([
+            amisMake()->VanillaAction()->label('全部')->onEvent(
+                $event(<<<JS
+let data = event.data.__super.__super
+let params = Object.keys(data).filter(key => key !== "page" && key !== "__super").reduce((obj, key) => {
+    obj[key] = data[key];
+    return obj;
+}, {})
+let url = new URL("{$exportPath}", window.location.origin)
+Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+{$doAction}
+JS
+
+                )
+            ),
+            amisMake()->VanillaAction()->label('当前页')->onEvent(
+                $event(<<<JS
+let ids = event.data.items.map(item => item.id)
+if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "当前页没有数据" } }) }
+let url = new URL("{$exportPath}", window.location.origin)
+url.searchParams.append("_ids", ids.join(","))
+{$doAction}
+JS
+                )
+            ),
+            amisMake()->VanillaAction()->label('选中项')->onEvent(
+                $event(<<<JS
+let ids = event.data.selectedItems.map(item => item.id)
+if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "请选择要导出的数据" } }) }
+let url = new URL("{$exportPath}", window.location.origin)
+url.searchParams.append("_ids", ids.join(","))
+{$doAction}
+JS
+                )
+            ),
+        ])->align('right')->closeOnClick(true);
     }
 }

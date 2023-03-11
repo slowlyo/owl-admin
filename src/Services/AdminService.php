@@ -26,8 +26,8 @@ abstract class AdminService
 
     public function getTableColumns()
     {
-        return Schema::connection($this->getModel()->getConnectionName())->getColumnListing($this->getModel()
-            ->getTable());
+        return Schema::connection($this->getModel()->getConnectionName())
+            ->getColumnListing($this->getModel()->getTable());
     }
 
     public function query(): Builder
@@ -68,14 +68,25 @@ abstract class AdminService
     }
 
     /**
+     * 列表 获取查询
+     *
+     * @return Builder
+     */
+    public function listQuery()
+    {
+        $model = $this->getModel();
+
+        return $this->query()->orderByDesc($model->getUpdatedAtColumn() ?? $model->getKeyName());
+    }
+
+    /**
      * 列表 获取数据
      *
      * @return array
      */
     public function list()
     {
-        $model = $this->getModel();
-        $query = $this->query()->orderByDesc($model->getUpdatedAtColumn() ?? $model->getKeyName());
+        $query = $this->listQuery();
 
         $items = (clone $query)->paginate(request()->input('perPage', 20))->items();
         $total = (clone $query)->count();

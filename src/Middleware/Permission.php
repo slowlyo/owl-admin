@@ -77,6 +77,7 @@ class Permission
             '_settings',
             'upload_rich',
             'captcha',
+            '_download_export',
             ...$devTools,
         ])->map(function ($path) {
             $prefix = '/' . trim(config('admin.route.prefix'), '/');

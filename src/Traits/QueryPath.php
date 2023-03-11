@@ -15,6 +15,16 @@ trait QueryPath
     }
 
     /**
+     * 导出
+     *
+     * @return string
+     */
+    public function getExportPath()
+    {
+        return admin_url($this->queryPath . '?_action=export');
+    }
+
+    /**
      * 删除
      *
      * @return string
