@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\OwlAdmin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Slowlyo\OwlAdmin\Traits\Export;
 use Slowlyo\OwlAdmin\Traits\Uploader;
 use Slowlyo\OwlAdmin\Traits\QueryPath;
 use Slowlyo\OwlAdmin\Traits\PageElement;
 use Slowlyo\OwlAdmin\Services\AdminService;
-use Slowlyo\OwlAdmin\Libs\Excel\AdminExport;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,6 +20,7 @@ abstract class AdminController extends Controller
     use QueryPath;
     use PageElement;
     use Uploader;
+    use Export;
 
     protected AdminService $service;
 
@@ -32,10 +33,10 @@ abstract class AdminController extends Controller
     /** @var string $pageTitle 页面标题 */
     protected string $pageTitle;
 
-    /** @var bool $isCreate 是否是新增页面 */
+    /** @var bool $isCreate 是否是新增页面, 页面模式时生效 */
     protected bool $isCreate = false;
 
-    /** @var bool $isEdit 是否是编辑页面 */
+    /** @var bool $isEdit 是否是编辑页面, 页面模式时生效 */
     protected bool $isEdit = false;
 
     public function __construct()
@@ -237,68 +238,5 @@ abstract class AdminController extends Controller
         $rows = $this->service->delete($ids);
 
         return $this->autoResponse($rows, __('admin.delete'));
-    }
-
-    /**
-     * 导出
-     *
-     * @return JsonResponse|JsonResource
-     */
-    protected function export()
-    {
-        // 默认在 storage/app/ 下
-        $path = sprintf('%s-%s.xlsx', $this->exportFileName(), date('YmdHis'));
-
-        // 导出本页和导出选中项都是通过 _ids 查询
-        $ids = request()->input('_ids');
-
-        // listQuery() 为列表查询条件，与获取列表数据一致
-        $query = $this->service->listQuery()->when($ids, fn($query) => $query->whereIn('id', explode(',', $ids)));
-
-        // 此处使用 laravel-excel 导出，可自行修改
-        AdminExport::make($query)
-            ->setHeadings($this->exportHeadings())
-            ->setMap(fn($row) => $this->exportColumns($row))
-            ->store($path);
-
-        return $this->response()->success(compact('path'));
-    }
-
-    /**
-     * 导出表头
-     *
-     * @return array
-     */
-    protected function exportHeadings()
-    {
-        return [];
-    }
-
-    /**
-     * 导出列
-     * eg: return [$row->id, $row->name];
-     * 文档: https://docs.laravel-excel.com/3.1/exports/mapping.html#mapping-rows
-     *
-     * @param $row
-     *
-     * @return mixed
-     */
-    protected function exportColumns($row)
-    {
-        return $row->toArray();
-    }
-
-    /**
-     * 导出文件名
-     *
-     * @return string
-     */
-    protected function exportFileName()
-    {
-        if ($this->pageTitle) {
-            return $this->pageTitle;
-        }
-
-        return strtolower(str_replace('Controller', '', class_basename($this)));
     }
 }
