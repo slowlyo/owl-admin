@@ -287,15 +287,17 @@ trait PageElement
             return amisMake()
                 ->Alert()
                 ->level('warning')
-                ->body('请先安装 maatwebsite/excel 扩展')
+                ->body(__('admin.export.please_install_laravel_excel'))
                 ->showIcon(true)
                 ->showCloseButton(true);
         }
 
-        $downloadPath = admin_url('_download_export');
-        $exportPath   = $this->getExportPath();
-        $event        = fn($script) => ['click' => ['actions' => [['actionType' => 'custom', 'script' => $script]]]];
-        $doAction     = <<<JS
+        $downloadPath   = admin_url('_download_export');
+        $exportPath     = $this->getExportPath();
+        $pageNoData     = __('admin.export.page_no_data');
+        $selectedNoData = __('admin.export.selected_rows_no_data');
+        $event          = fn($script) => ['click' => ['actions' => [['actionType' => 'custom', 'script' => $script]]]];
+        $doAction       = <<<JS
 doAction([
     { actionType: "ajax", args: { api: { url: url.toString(), method: "get" } } },
     {
@@ -307,9 +309,13 @@ doAction([
 JS;
 
 
-        return amisMake()->DropdownButton()->label('导出')->set('icon', 'fa-solid fa-download')->buttons([
-            amisMake()->VanillaAction()->label('全部')->onEvent(
-                $event(<<<JS
+        return amisMake()
+            ->DropdownButton()
+            ->label(__('admin.export.title'))
+            ->set('icon', 'fa-solid fa-download')
+            ->buttons([
+                amisMake()->VanillaAction()->label(__('admin.export.all'))->onEvent(
+                    $event(<<<JS
 let data = event.data.__super.__super
 let params = Object.keys(data).filter(key => key !== "page" && key !== "__super").reduce((obj, key) => {
     obj[key] = data[key];
@@ -320,28 +326,30 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 {$doAction}
 JS
 
-                )
-            ),
-            amisMake()->VanillaAction()->label('当前页')->onEvent(
-                $event(<<<JS
+                    )
+                ),
+                amisMake()->VanillaAction()->label(__('admin.export.page'))->onEvent(
+                    $event(<<<JS
 let ids = event.data.items.map(item => item.id)
-if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "当前页没有数据" } }) }
+if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$pageNoData}" } }) }
 let url = new URL("{$exportPath}", window.location.origin)
 url.searchParams.append("_ids", ids.join(","))
 {$doAction}
 JS
-                )
-            ),
-            amisMake()->VanillaAction()->label('选中项')->onEvent(
-                $event(<<<JS
+                    )
+                ),
+                amisMake()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
+                    $event(<<<JS
 let ids = event.data.selectedItems.map(item => item.id)
-if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "请选择要导出的数据" } }) }
+if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$selectedNoData}" } }) }
 let url = new URL("{$exportPath}", window.location.origin)
 url.searchParams.append("_ids", ids.join(","))
 {$doAction}
 JS
-                )
-            ),
-        ])->align('right')->closeOnClick(true);
+                    )
+                ),
+            ])
+            ->align('right')
+            ->closeOnClick(true);
     }
 }

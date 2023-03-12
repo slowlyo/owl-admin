@@ -177,4 +177,13 @@ Backup important data before performing operations!!!<br>
             'invalid_package' => 'Invalid extension package',
         ],
     ],
+    'export'     => [
+        'title'                        => 'Export',
+        'all'                          => 'All',
+        'page'                         => 'Current Page',
+        'selected_rows'                => 'Selected Rows',
+        'page_no_data'                 => 'Current page has no data',
+        'selected_rows_no_data'        => 'No data is selected',
+        'please_install_laravel_excel' => 'Please install the package "maatwebsite/excel" first',
+    ],
 ];
