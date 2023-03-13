@@ -281,7 +281,7 @@ trait PageElement
      *
      * @return \Slowlyo\OwlAdmin\Renderers\Alert|\Slowlyo\OwlAdmin\Renderers\DropdownButton
      */
-    protected function exportAction()
+    protected function exportAction($disableSelectedItem = false)
     {
         if (!class_exists('\Maatwebsite\Excel\Excel')) {
             return amisMake()
@@ -307,15 +307,9 @@ doAction([
     },
 ])
 JS;
-
-
-        return amisMake()
-            ->DropdownButton()
-            ->label(__('admin.export.title'))
-            ->set('icon', 'fa-solid fa-download')
-            ->buttons([
-                amisMake()->VanillaAction()->label(__('admin.export.all'))->onEvent(
-                    $event(<<<JS
+        $buttons        = [
+            amisMake()->VanillaAction()->label(__('admin.export.all'))->onEvent(
+                $event(<<<JS
 let data = event.data.__super.__super
 let params = Object.keys(data).filter(key => key !== "page" && key !== "__super").reduce((obj, key) => {
     obj[key] = data[key];
@@ -326,29 +320,38 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 {$doAction}
 JS
 
-                    )
-                ),
-                amisMake()->VanillaAction()->label(__('admin.export.page'))->onEvent(
-                    $event(<<<JS
+                )
+            ),
+            amisMake()->VanillaAction()->label(__('admin.export.page'))->onEvent(
+                $event(<<<JS
 let ids = event.data.items.map(item => item.id)
 if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$pageNoData}" } }) }
 let url = new URL("{$exportPath}", window.location.origin)
 url.searchParams.append("_ids", ids.join(","))
 {$doAction}
 JS
-                    )
-                ),
-                amisMake()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
-                    $event(<<<JS
+                )
+            ),
+        ];
+
+        if (!$disableSelectedItem) {
+            $buttons[] = amisMake()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
+                $event(<<<JS
 let ids = event.data.selectedItems.map(item => item.id)
 if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$selectedNoData}" } }) }
 let url = new URL("{$exportPath}", window.location.origin)
 url.searchParams.append("_ids", ids.join(","))
 {$doAction}
 JS
-                    )
-                ),
-            ])
+                )
+            );
+        }
+
+        return amisMake()
+            ->DropdownButton()
+            ->label(__('admin.export.title'))
+            ->set('icon', 'fa-solid fa-download')
+            ->buttons($buttons)
             ->align('right')
             ->closeOnClick(true);
     }
