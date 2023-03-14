@@ -134,7 +134,7 @@ if (!function_exists('file_upload_handle')) {
         $storage = \Illuminate\Support\Facades\Storage::disk(config('admin.upload.disk'));
 
         return \Illuminate\Database\Eloquent\Casts\Attribute::make(
-            get: fn($value) => $storage->url($value),
+            get: fn($value) => $value ? $storage->url($value) : '',
             set: fn($value) => str_replace($storage->url(''), '', $value)
         );
     }
