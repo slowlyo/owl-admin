@@ -1,656 +1,669 @@
 :root {
-	--owl-menu-bg: #eaf4ff;
+    --owl-menu-bg: #eaf4ff;
 
-	--primary: var(--primary-color);
-	--success: var(--success-color);
-	--warning: var(--warning-color);
-	--danger: var(--error-color);
-	--info: var(--info-color);
+    --primary: var(--primary-color);
+    --success: var(--success-color);
+    --warning: var(--warning-color);
+    --danger: var(--error-color);
+    --info: var(--info-color);
 
-	--borderRadius: 6px;
+    --borderRadius: 6px;
 
-	--Form-selectValue-bg: var(--primary-color-active);
-	--Form-selectValue-borderColor: var(--primary-color-hover);
-	--Form-selectValue-onHover-bg: var(--primary-color-active);
-	--ListItem-onChecked-bg: var(--primary-color-active);
-	--ListItem-onChecked-borderColor: var(--primary-color);
-	--ListItem-onChecked-color: var(--primary-color);
-	--Table-onHover-bg: var(--primary-color-active);
-	--Panel-borderWidth: 0;
-	--Panel-border: 1px solid rgba(0, 0, 0, .06);
-	--Page-title-fontSize: 20px;
-	--Page-title-fontWeight: 600;
-	--Page-title-lineHeight: 1;
-	--DropDown-menu-borderWidth: 0;
-	--Form-input-onHover-borderColor: var(--primary-color-hover);
-	--Form-input-onFocused-borderColor: var(--primary-color-pressed);
-	--Form-select-onFocused-borderColor: var(--primary-color-pressed);
-	--Form-select-onFocused-color: var(--primary-color-pressed);
-	--ColorPicker-onFocused-borderColor: var(--primary-color-pressed);
-	--DatePicker-onFocused-borderColor: var(--primary-color-pressed);
-	--InputGroup-select-onFocused-color: var(--primary-color-pressed);
-	--Panel--default-bg: transparent;
-	--Panel--default-headingBorderColor: transparent;
-	--Panel-titleFontSize: var(--fontSizeLg);
-	--ListControl-item-onActive-color: var(--primary-color-suppl);
-	--ListControl-item-onActive-borderColor: var(--primary-color-suppl);
-	--ListControl-item-onActive-before-bg: var(--primary-color-suppl);
-	--Switch-checked-onHover-bgColor: var(--primary-color-hover);
-	--Switch-checked-onActive-bgColor: var(--primary-color-suppl);
-	--Combo-addBtn-onHover-bg: var(--primary-color-hover);
-	--Combo-addBtn-onActive-bg: var(--primary-color-suppl);
-	--Form-select-menu-onActive-color: var(--primary-color-suppl);
-	--Button--default-onHover-color: var(--primary-color-hover);
-	--Button--default-onActive-color: var(--primary-color-suppl);
-	--Button--default-onActive-border: var(--primary-color-suppl);
-	--primary-onActive: var(--primary-color-suppl);
-	--info-onHover: var(--info-color-hover);
-	--info-onActive: var(--info-color-suppl);
-	--link-onClick-color: var(--primary-color-pressed);
-	--Button--primary-onHover-border: var(--primary-color-hover);
-	--button-primary-default-bg-color: var(--primary);
-	--button-primary-default-top-border-color: var(--primary);
-	--button-primary-default-bottom-border-color: var(--primary);
-	--button-primary-default-left-border-color: var(--primary);
-	--button-primary-default-right-border-color: var(--primary);
-	--Button--primary-onHover-bg: var(--primary-color-hover);
-	--Button--info-onActive-bg: var(--info-color-suppl);
-	--Button--info-onActive-border: var(--info-color-suppl);
-	--Button--info-onHover-bg: var(--info-color-hover);
-	--Button--info-onHover-border: var(--info-color-hover);
-	--Calendar-btn-onActive-bg: var(--primary-color-pressed);
-	--Calendar-btn-onActive-border: var(--primary-color-pressed);
-	--Calendar-btn-onHover-bg: var(--primary-color-hover);
-	--Calendar-btn-onHover-border: var(--primary-color-hover);
-	--Calendar-shortcut-onHover-color: var(--primary-color-hover);
-	--DatePicker-header-onHover-color: var(--primary-color-hover);
-	--PickerColumns-confirmAction-color: var(--primary-color-pressed);
-	--Button-paddingX: 15px;
-	--button-size-default-paddingRight: 15px;
-	--button-size-default-paddingLeft: 15px;
-	--Panel-footerPadding: 1rem var(--gap-base);
-	--Panel-headingPadding: var(--gap-base);
-	--Panel-boxShadow: 0 0 0;
+    --Form-selectValue-bg: var(--primary-color-active);
+    --Form-selectValue-borderColor: var(--primary-color-hover);
+    --Form-selectValue-onHover-bg: var(--primary-color-active);
+    --ListItem-onChecked-bg: var(--primary-color-active);
+    --ListItem-onChecked-borderColor: var(--primary-color);
+    --ListItem-onChecked-color: var(--primary-color);
+    --Table-onHover-bg: var(--primary-color-active);
+    --Panel-borderWidth: 0;
+    --Panel-border: 1px solid rgba(0, 0, 0, .06);
+    --Page-title-fontSize: 20px;
+    --Page-title-fontWeight: 600;
+    --Page-title-lineHeight: 1;
+    --DropDown-menu-borderWidth: 0;
+    --Form-input-onHover-borderColor: var(--primary-color-hover);
+    --Form-input-onFocused-borderColor: var(--primary-color-pressed);
+    --Form-select-onFocused-borderColor: var(--primary-color-pressed);
+    --Form-select-onFocused-color: var(--primary-color-pressed);
+    --ColorPicker-onFocused-borderColor: var(--primary-color-pressed);
+    --DatePicker-onFocused-borderColor: var(--primary-color-pressed);
+    --InputGroup-select-onFocused-color: var(--primary-color-pressed);
+    --Panel--default-bg: transparent;
+    --Panel--default-headingBorderColor: transparent;
+    --Panel-titleFontSize: var(--fontSizeLg);
+    --ListControl-item-onActive-color: var(--primary-color-suppl);
+    --ListControl-item-onActive-borderColor: var(--primary-color-suppl);
+    --ListControl-item-onActive-before-bg: var(--primary-color-suppl);
+    --Switch-checked-onHover-bgColor: var(--primary-color-hover);
+    --Switch-checked-onActive-bgColor: var(--primary-color-suppl);
+    --Combo-addBtn-onHover-bg: var(--primary-color-hover);
+    --Combo-addBtn-onActive-bg: var(--primary-color-suppl);
+    --Form-select-menu-onActive-color: var(--primary-color-suppl);
+    --Button--default-onHover-color: var(--primary-color-hover);
+    --Button--default-onActive-color: var(--primary-color-suppl);
+    --Button--default-onActive-border: var(--primary-color-suppl);
+    --primary-onActive: var(--primary-color-suppl);
+    --info-onHover: var(--info-color-hover);
+    --info-onActive: var(--info-color-suppl);
+    --link-onClick-color: var(--primary-color-pressed);
+    --Button--primary-onHover-border: var(--primary-color-hover);
+    --button-primary-default-bg-color: var(--primary);
+    --button-primary-default-top-border-color: var(--primary);
+    --button-primary-default-bottom-border-color: var(--primary);
+    --button-primary-default-left-border-color: var(--primary);
+    --button-primary-default-right-border-color: var(--primary);
+    --Button--primary-onHover-bg: var(--primary-color-hover);
+    --Button--info-onActive-bg: var(--info-color-suppl);
+    --Button--info-onActive-border: var(--info-color-suppl);
+    --Button--info-onHover-bg: var(--info-color-hover);
+    --Button--info-onHover-border: var(--info-color-hover);
+    --Calendar-btn-onActive-bg: var(--primary-color-pressed);
+    --Calendar-btn-onActive-border: var(--primary-color-pressed);
+    --Calendar-btn-onHover-bg: var(--primary-color-hover);
+    --Calendar-btn-onHover-border: var(--primary-color-hover);
+    --Calendar-shortcut-onHover-color: var(--primary-color-hover);
+    --DatePicker-header-onHover-color: var(--primary-color-hover);
+    --PickerColumns-confirmAction-color: var(--primary-color-pressed);
+    --Button-paddingX: 15px;
+    --button-size-default-paddingRight: 15px;
+    --button-size-default-paddingLeft: 15px;
+    --Panel-footerPadding: 1rem var(--gap-base);
+    --Panel-headingPadding: var(--gap-base);
+    --Panel-boxShadow: 0 0 0;
 
-	--button-link-default-font-color: var(--primary);
-	--colors-brand-5: var(--primary);
-	--button-default-hover-font-color: var(--primary);
-	--button-default-hover-top-border-color: var(--primary);
-	--button-default-hover-bottom-border-color: var(--primary);
-	--button-default-hover-left-border-color: var(--primary);
-	--button-default-hover-right-border-color: var(--primary);
-	--Avatar-bg: transparent;
-	--transfer-search-border-hover-color: var(--primary-color-hover);
-	--button-default-default-bg-color: white;
-	--Panel-heading-bg: white;
-	--Panel-borderRadius: var(--borderRadius);
-	--button-primary-hover-bg-color: var(--primary-color-hover);
-	--button-primary-hover-top-border-color: var(--primary-color-hover);
-	--button-primary-hover-bottom-border-color: var(--primary-color-hover);
-	--button-primary-hover-left-border-color: var(--primary-color-hover);
-	--button-primary-hover-right-border-color: var(--primary-color-hover);
-	--button-primary-active-bg-color: var(--primary-color-active);
-	--button-primary-active-top-border-color: var(--primary-color-active);
-	--button-primary-active-bottom-border-color: var(--primary-color-active);
-	--button-primary-active-left-border-color: var(--primary-color-active);
-	--button-primary-active-right-border-color: var(--primary-color-active);
-	--button-link-hover-font-color: var(--primary-color-hover);
-	--button-link-active-font-color: var(--primary-color-active);
-	--button-default-active-font-color: var(--primary-color-active);
-	--button-default-active-top-border-color: var(--primary-color-active);
-	--button-default-active-bottom-border-color: var(--primary-color-active);
-	--button-default-active-left-border-color: var(--primary-color-active);
-	--button-default-active-right-border-color: var(--primary-color-active);
-	--Form-input-onFocused-borderColor: var(--primary-color-suppl);
-	--Panel-heading-fontSize: var(--fonts-size-10);
-	--Panel-heading-fontWeight: var(--fonts-weight-4);
-	--checkbox-checked-hover-bg-color: var(--primary-color-hover);
-	--select-base-hover-option-bg-color: var(--primary-color-active);
-	--colors-brand-10: var(--primary-color-active);
-	--colors-link-6: var(--primary-color-hover);
-	--colors-link-5: var(--primary-color);
-	--DateRangePicker-activeCursor-color: var(--primary-color);
-	--colors-brand-9: var(--primary-color-active);
-	--colors-brand-7: var(--primary-color-hover);
-	--transfer-search-border-active-color: var(--primary-color);
-	--colors-brand-6: var(--primary-color-hover);
-	--Form-select-bg: white;
+    --button-link-default-font-color: var(--primary);
+    --colors-brand-5: var(--primary);
+    --button-default-hover-font-color: var(--primary);
+    --button-default-hover-top-border-color: var(--primary);
+    --button-default-hover-bottom-border-color: var(--primary);
+    --button-default-hover-left-border-color: var(--primary);
+    --button-default-hover-right-border-color: var(--primary);
+    --Avatar-bg: transparent;
+    --transfer-search-border-hover-color: var(--primary-color-hover);
+    --button-default-default-bg-color: white;
+    --Panel-heading-bg: white;
+    --Panel-borderRadius: var(--borderRadius);
+    --button-primary-hover-bg-color: var(--primary-color-hover);
+    --button-primary-hover-top-border-color: var(--primary-color-hover);
+    --button-primary-hover-bottom-border-color: var(--primary-color-hover);
+    --button-primary-hover-left-border-color: var(--primary-color-hover);
+    --button-primary-hover-right-border-color: var(--primary-color-hover);
+    --button-primary-active-bg-color: var(--primary-color-active);
+    --button-primary-active-top-border-color: var(--primary-color-active);
+    --button-primary-active-bottom-border-color: var(--primary-color-active);
+    --button-primary-active-left-border-color: var(--primary-color-active);
+    --button-primary-active-right-border-color: var(--primary-color-active);
+    --button-link-hover-font-color: var(--primary-color-hover);
+    --button-link-active-font-color: var(--primary-color-active);
+    --button-default-active-font-color: var(--primary-color-active);
+    --button-default-active-top-border-color: var(--primary-color-active);
+    --button-default-active-bottom-border-color: var(--primary-color-active);
+    --button-default-active-left-border-color: var(--primary-color-active);
+    --button-default-active-right-border-color: var(--primary-color-active);
+    --Form-input-onFocused-borderColor: var(--primary-color-suppl);
+    --Panel-heading-fontSize: var(--fonts-size-10);
+    --Panel-heading-fontWeight: var(--fonts-weight-4);
+    --checkbox-checked-hover-bg-color: var(--primary-color-hover);
+    --select-base-hover-option-bg-color: var(--primary-color-active);
+    --colors-brand-10: var(--primary-color-active);
+    --colors-link-6: var(--primary-color-hover);
+    --colors-link-5: var(--primary-color);
+    --DateRangePicker-activeCursor-color: var(--primary-color);
+    --colors-brand-9: var(--primary-color-active);
+    --colors-brand-7: var(--primary-color-hover);
+    --transfer-search-border-active-color: var(--primary-color);
+    --colors-brand-6: var(--primary-color-hover);
+    --Form-select-bg: white;
 }
 
 /*//2.4.0 样式修复*/
 .cxd-Button--sm {
-	font-size: var(--button-size-default-fontSize);
-	font-weight: var(--button-size-default-fontWeight);
-	line-height: var(--button-size-default-lineHeight);
-	border-radius: var(--button-size-default-top-left-border-radius) var(--button-size-default-top-right-border-radius) var(--button-size-default-bottom-right-border-radius) var(--button-size-default-bottom-left-border-radius);
-	height: var(--button-size-default-height);
-	padding: var(--button-size-default-paddingTop) var(--button-size-default-paddingRight) var(--button-size-default-paddingBottom) var(--button-size-default-paddingLeft);
-	margin: var(--button-size-default-marginTop) var(--button-size-default-marginRight) var(--button-size-default-marginBottom) var(--button-size-default-marginLeft);
+    font-size: var(--button-size-default-fontSize);
+    font-weight: var(--button-size-default-fontWeight);
+    line-height: var(--button-size-default-lineHeight);
+    border-radius: var(--button-size-default-top-left-border-radius) var(--button-size-default-top-right-border-radius) var(--button-size-default-bottom-right-border-radius) var(--button-size-default-bottom-left-border-radius);
+    height: var(--button-size-default-height);
+    padding: var(--button-size-default-paddingTop) var(--button-size-default-paddingRight) var(--button-size-default-paddingBottom) var(--button-size-default-paddingLeft);
+    margin: var(--button-size-default-marginTop) var(--button-size-default-marginRight) var(--button-size-default-marginBottom) var(--button-size-default-marginLeft);
 }
 
 .cxd-Button > svg {
-	width: 12px;
-	height: 12px;
+    width: 12px;
+    height: 12px;
 }
 
 .amis-scope .cxd-InputGroup-addOn:first-child{
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 /*// end*/
 
 /*2.7.0样式修复*/
 .amis-scope .cxd-Select--multi .cxd-Select-value {
-	background: var(--ResultBox-value-bg);
-	color: var(--ResultBox-value-color);
-	font-size: var(--Form-input-fontSize);
-	padding: 0 var(--gap-xs);
-	min-height: var(--ResultBox-tag-height);
-	flex-wrap: nowrap;
-	display: inline-flex;
-	align-items: center;
-	margin-right: var(--gap-xs);
-	margin-bottom: var(--ResultBox-tag-marginBottom);
-	user-select: none;
-	border-radius: .125rem;
+    background: var(--ResultBox-value-bg);
+    color: var(--ResultBox-value-color);
+    font-size: var(--Form-input-fontSize);
+    padding: 0 var(--gap-xs);
+    min-height: var(--ResultBox-tag-height);
+    flex-wrap: nowrap;
+    display: inline-flex;
+    align-items: center;
+    margin-right: var(--gap-xs);
+    margin-bottom: var(--ResultBox-tag-marginBottom);
+    user-select: none;
+    border-radius: .125rem;
 }
 
 .amis-scope .cxd-RatingControl, .amis-scope .cxd-Rating, .amis-scope .cxd-Rating > ul, .amis-scope .cxd-Rating-star {
-	height: 100%;
+    height: 100%;
 }
 
 .amis-scope .cxd-Pagination{
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .amis-scope .cxd-Pagination-next > span{
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .amis-scope .cxd-Pagination-prev > span{
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
+}
+
+.amis-scope .cxd-Pagination{
+    margin: 0;
+}
+
+.amis-scope .cxd-Pagination-wrap{
+    display: flex;
+    align-items: center;
+}
+
+.n-back-top{
+    bottom: 15px !important;
 }
 
 /*end*/
 
 .amis-scope {
-	height: 100%;
-	background: transparent;
-	position: relative;
+    height: 100%;
+    background: transparent;
+    position: relative;
 }
 
 .amis-scope .cxd-Page {
-	height: auto;
-	background: transparent;
+    height: auto;
+    background: transparent;
 }
 
 .amis-scope .cxd-Page-content {
-	padding: 0;
+    padding: 0;
 }
 
 .amis-scope .cxd-Page-header {
-	display: flex;
-	align-items: end;
-	padding: var(--Page-header-paddingY) 0;
+    display: flex;
+    align-items: end;
+    padding: var(--Page-header-paddingY) 0;
 }
 
 .amis-scope .cxd-Page-body {
-	padding: var(--Page-body-padding) 0;
+    padding: var(--Page-body-padding) 0;
 }
 
 .amis-scope .cxd-Page-subTitle {
-	padding-left: 12px;
-	font-size: 14px;
-	line-height: 1;
+    padding-left: 12px;
+    font-size: 14px;
+    line-height: 1;
 }
 
 .amis-scope .cxd-Page-main > .cxd-Page-header {
-	border-bottom: 0;
+    border-bottom: 0;
 }
 
 .amis-scope .cxd-Page-headerRow {
-	border-bottom: none;
+    border-bottom: none;
 }
 
 .amis-scope .cxd-Crud {
-	padding: 15px;
-	background: white;
-	border-radius: var(--borderRadius);
-	border: 1px solid rgba(0, 0, 0, .06);
+    padding: 15px;
+    background: white;
+    border-radius: var(--borderRadius);
+    border: 1px solid rgba(0, 0, 0, .06);
 }
 
 .amis-scope .cxd-Card {
-	border: 1px solid rgba(0, 0, 0, .06);
-	--un-shadow: var(--un-shadow-inset) 0 1px 2px 0 var(--un-shadow-color, rgba(0, 0, 0, .05));
-	box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
+    border: 1px solid rgba(0, 0, 0, .06);
+    --un-shadow: var(--un-shadow-inset) 0 1px 2px 0 var(--un-shadow-color, rgba(0, 0, 0, .05));
+    box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
 }
 
 .amis-scope .cxd-Crud {
-	--un-shadow: var(--un-shadow-inset) 0 1px 2px 0 var(--un-shadow-color, rgba(0, 0, 0, .05));
-	box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
+    --un-shadow: var(--un-shadow-inset) 0 1px 2px 0 var(--un-shadow-color, rgba(0, 0, 0, .05));
+    box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
 }
 
 .amis-scope .cxd-Layout--folded .cxd-AsideNav-subList {
-	border-radius: var(--borderRadius);
+    border-radius: var(--borderRadius);
 }
 
 .amis-scope .cxd-Remark > span {
-	background: transparent;
+    background: transparent;
 }
 
 .amis-scope .base-filter {
-	background: #f7f7f9 !important;
-	box-shadow: 0 0 0 0 !important;
+    background: #f7f7f9 !important;
+    box-shadow: 0 0 0 0 !important;
 }
 
 .amis-scope .base-filter .cxd-TextControl-input {
-	background: white;
+    background: white;
 }
 
 .amis-scope .base-filter .cxd-Panel-footer {
-	background: #f7f7f9;
+    background: #f7f7f9;
 }
 
 .amis-scope .cxd-Panel-heading {
-	border-width: 0;
+    border-width: 0;
 }
 
 .amis-scope .cxd-Panel {
-	border: 1px solid rgba(0, 0, 0, .06);
-	--un-shadow: var(--un-shadow-inset) 0 1px 2px 0 var(--un-shadow-color, rgba(0, 0, 0, .05));
-	box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
+    border: 1px solid rgba(0, 0, 0, .06);
+    --un-shadow: var(--un-shadow-inset) 0 1px 2px 0 var(--un-shadow-color, rgba(0, 0, 0, .05));
+    box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
 }
 
 .amis-scope .cxd-Panel-footer {
-	border: 0 !important;
+    border: 0 !important;
 }
 
 .amis-scope .cxd-RichTextControl {
-	border-radius: var(--borderRadius);
+    border-radius: var(--borderRadius);
 }
 
 .amis-scope .cxd-Number--enhance .cxd-Number--enhance-left-icon .InputNumber-enhance-minus, .amis-scope .cxd-Number--enhance .cxd-Number--enhance-right-icon .InputNumber-enhance-plus {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .amis-scope .cxd-Table-table .cxd-TextControl-input {
-	background: white;
+    background: white;
 }
 
 .dark .amis-scope .cxd-Table-table .cxd-TextControl-input {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 
 /*暗色主题适配*/
 :root {
-	--dark-card-background: #18181c;
-	--dark-background1: #101014;
-	--dark-table-header-background: #26262a;
-	--dark-text-color: rgba(255, 255, 255, 0.82);
-	--dark-border-color: rgba(255, 255, 255, 0.2);
-	--dark-disabled-color: #585858;
+    --dark-card-background: #18181c;
+    --dark-background1: #101014;
+    --dark-table-header-background: #26262a;
+    --dark-text-color: rgba(255, 255, 255, 0.82);
+    --dark-border-color: rgba(255, 255, 255, 0.2);
+    --dark-disabled-color: #585858;
 }
 
 .dark:root{
-	--Form-select-bg: transparent !important;
-	--select-base-hover-option-color: var(--dark-text-color);
-	--select-base-default-option-color: var(--dark-text-color);
-	--colors-neutral-line-10: var(--dark-border-color);
-	--colors-neutral-line-8: var(--dark-border-color);
+    --Form-select-bg: transparent !important;
+    --select-base-hover-option-color: var(--dark-text-color);
+    --select-base-default-option-color: var(--dark-text-color);
+    --colors-neutral-line-10: var(--dark-border-color);
+    --colors-neutral-line-8: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-Crud, .dark .amis-scope .cxd-Panel, .dark .amis-scope .cxd-Card {
-	background: var(--dark-card-background);
-	border-color: var(--dark-border-color);
+    background: var(--dark-card-background);
+    border-color: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-RichTextControl {
-	background: var(--dark-card-background);
-	border-color: var(--dark-border-color);
+    background: var(--dark-card-background);
+    border-color: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-Panel-footer {
-	background: var(--dark-card-background);
-	border-color: var(--dark-border-color);
+    background: var(--dark-card-background);
+    border-color: var(--dark-border-color);
 }
 
 .dark .amis-scope {
-	color: var(--dark-text-color) !important;
+    color: var(--dark-text-color) !important;
 }
 
 .dark .amis-scope .cxd-Page-header {
-	color: var(--dark-text-color) !important;
+    color: var(--dark-text-color) !important;
 }
 
 .dark .amis-scope .cxd-Page-title {
-	color: var(--dark-text-color) !important;
+    color: var(--dark-text-color) !important;
 }
 
 .dark .amis-scope .cxd-Form-label {
-	color: var(--dark-text-color) !important;
+    color: var(--dark-text-color) !important;
 }
 
 .dark .amis-scope .cxd-Button--default, .dark .amis-scope .cxd-Select {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Table-table {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
-	border-bottom: var(--Table-borderWidth) solid var(--dark-border-color) !important;
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
+    border-bottom: var(--Table-borderWidth) solid var(--dark-border-color) !important;
 }
 
 .dark .amis-scope .cxd-Table-table > thead > tr > th:not(:last-child) {
-	border-right: var(--Table-borderWidth) solid var(--dark-border-color) !important;
+    border-right: var(--Table-borderWidth) solid var(--dark-border-color) !important;
 }
 
 .dark .amis-scope .cxd-Table-table > thead > tr > th {
-	background: var(--dark-table-header-background);
-	color: var(--dark-text-color);
-	border-bottom: var(--Table-borderWidth) solid var(--dark-border-color) !important;
+    background: var(--dark-table-header-background);
+    color: var(--dark-text-color);
+    border-bottom: var(--Table-borderWidth) solid var(--dark-border-color) !important;
 }
 
 .dark .amis-scope .cxd-Table-table > tbody > tr:hover, .dark .amis-scope .cxd-Table-table > tbody > tr.is-hovered {
-	background: var(--dark-table-header-background);
-	color: var(--dark-text-color);
+    background: var(--dark-table-header-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Table-table > tbody > tr + tr {
-	border-top: var(--Table-borderWidth) solid var(--dark-border-color);
+    border-top: var(--Table-borderWidth) solid var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-TextControl-input {
-	border-color: var(--dark-border-color);
+    border-color: var(--dark-border-color);
 }
 
 .dark .amis-scope .second-toolbar {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .fr-box.fr-basic .fr-wrapper {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .fr-toolbar {
-	background: var(--dark-table-header-background);
-	color: var(--dark-text-color);
+    background: var(--dark-table-header-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tabs-content {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-Tabs--line > .cxd-Tabs-linksWrapper > .cxd-Tabs-links > li > a:first-child, .dark .amis-scope .cxd-Tabs--line > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li > a:first-child {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Combo-item {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-TextControl-input input {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Modal-content, .dark .amis-scope .cxd-Modal-header {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-Modal-title {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Select-popover {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .base-filter {
-	background: var(--dark-card-background);
-	border-color: var(--dark-border-color);
+    background: var(--dark-card-background);
+    border-color: var(--dark-border-color);
 }
 
 .dark .amis-scope .base-filter .cxd-TextControl-input {
-	background: var(--dark-card-background) !important;
+    background: var(--dark-card-background) !important;
 }
 
 .dark .amis-scope .cxd-Panel-body {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-TreeSelect-popover > .cxd-Tree {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tree-itemText {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-ResultBox {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-ResultBox:hover {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-ListControl-item, .dark .amis-scope .cxd-ListControl-static-item {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Panel--default > .cxd-Panel-heading {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-Panel-title {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Checkbox--checkbox {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Checkbox--radio > i + span {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-ListControl-item.is-disabled {
-	background: var(--dark-disabled-color);
+    background: var(--dark-disabled-color);
 }
 
 .dark .amis-scope .cxd-Number-disabled .cxd-Number-input {
-	background: var(--dark-disabled-color);
+    background: var(--dark-disabled-color);
 }
 
 .dark .amis-scope .cxd-TextControl.is-disabled > .cxd-TextControl-input {
-	background: var(--dark-disabled-color);
+    background: var(--dark-disabled-color);
 }
 
 .dark .amis-scope .cxd-ColorPicker, .dark .amis-scope .cxd-DatePicker, .dark .amis-scope .cxd-DateRangePicker {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-ColorPicker:not(.is-disabled):hover, .dark .amis-scope .cxd-DatePicker:not(.is-disabled):hover, .dark .amis-scope .cxd-DateRangePicker:not(.is-disabled):hover {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-InputGroup-addOn, .dark .amis-scope .cxd-InputGroup .cxd-SelectControl .cxd-Select {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-ExcelControl-dropzone {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-TextareaControl > textarea {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-Transfer-title {
-	background: var(--dark-table-header-background);
-	color: var(--dark-text-color);
+    background: var(--dark-table-header-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-InputBox {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .monaco-editor, .monaco-editor-background, .monaco-editor .inputarea.ime-input {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-TextareaControl.is-disabled > .cxd-TextareaControl-input {
-	background: var(--dark-disabled-color);
+    background: var(--dark-disabled-color);
 }
 
 .dark .amis-scope .cxd-Tree-item > div:hover, .dark .amis-scope .cxd-Tree-itemLabel:hover .cxd-Tree-itemLabel-item {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-ResultBox.is-clickable:not(.is-disabled):hover {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-RadiosControl .cxd-Checkbox:hover, .dark .amis-scope .cxd-Checkbox--radio input:checked + i + span {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-CBGroupOrItem-body-item {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-CBGroupOrItem-body-group.is-hover {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-Tabs--card > .cxd-Tabs-linksContainer-wrapper, .dark .amis-scope .cxd-Tabs--vertical > .cxd-Tabs-linksWrapper {
-	background: var(--dark-table-header-background);
+    background: var(--dark-table-header-background);
 }
 
 .dark .amis-scope .cxd-Tabs--vertical > .cxd-Tabs-linksWrapper > .cxd-Tabs-links > li > a:first-child {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li.is-active > a:first-child {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tabs--card > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li > a:first-child {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li:hover > a:first-child, .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li:focus > a:first-child {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tabs-links > .cxd-Tabs-link > a:first-child {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tabs--tiled > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li > a:first-child {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Tabs--card > .cxd-Tabs-linksContainer-wrapper > .cxd-Tabs-linksContainer > .cxd-Tabs-linksContainer-main > .cxd-Tabs-links > li.is-active > a:first-child {
-	color: var(--Tabs--card-active-color);
+    color: var(--Tabs--card-active-color);
 }
 
 .dark .amis-scope .cxd-Tabs-links > .cxd-Tabs-link.active > a:first-child, .amis-scope .cxd-Tabs-links > .cxd-Tabs-link.is-active > a:first-child {
-	color: var(--Tabs--card-active-color);
+    color: var(--Tabs--card-active-color);
 }
 
 .dark .amis-scope .cxd-Tabs--chrome > .cxd-Tabs-linksWrapper {
-	background: var(--dark-table-header-background);
+    background: var(--dark-table-header-background);
 }
 
 .dark .amis-scope .cxd-Wizard-steps {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-Wizard--vertical > .cxd-Wizard-step > .cxd-Wizard-steps li {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-Wizard--vertical > .cxd-Wizard-step > .cxd-Wizard-steps ul li.is-active {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Wizard-steps ul li.is-active {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Property > table > tbody > tr > th, .dark .amis-scope .cxd-Property > table > thead > tr > th {
-	background: var(--dark-table-header-background);
-	color: var(--dark-text-color);
+    background: var(--dark-table-header-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Property > table > tbody > tr {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Select-option.is-highlight {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-Number--enhance .cxd-Number--enhance-left-icon .InputNumber-enhance-minus, .dark .amis-scope .cxd-Number--enhance .cxd-Number--enhance-right-icon .InputNumber-enhance-plus {
-	background: var(--dark-disabled-color);
-	color: var(--dark-text-color);
+    background: var(--dark-disabled-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Form .cxd-Collapse-header {
-	background: var(--dark-card-background);
-	color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Cards-placeholder {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-PopOver {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-GroupedSelection-item:hover {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-ColumnToggler-menu {
-	background: var(--dark-card-background);
+    background: var(--dark-card-background);
 }
 
 .dark .amis-scope .cxd-ColumnToggler-menuItem:hover, .amis-scope .cxd-ColumnToggler-menu > li:hover {
-	background: var(--dark-border-color);
+    background: var(--dark-border-color);
 }
 
 .dark .amis-scope .cxd-Number--enhance .cxd-Number-input {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Select-menu {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Card-title {
-	color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .dark .amis-scope .cxd-Panel{
-	border: 1px solid var(--dark-border-color);
+    border: 1px solid var(--dark-border-color);
 }
 
 .dark .amis-scope .base-filter{
-	background: var(--dark-card-background) !important;
+    background: var(--dark-card-background) !important;
 }
