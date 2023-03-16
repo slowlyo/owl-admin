@@ -49,7 +49,7 @@ class AdminPermissionController extends AdminController
             ->filterTogglable(false)
             ->footerToolbar([])
             ->headerToolbar([
-                $this->createButton(true),
+                $this->createButton(true, 'lg'),
                 'bulkActions',
                 $autoBtn,
                 amis('reload')->align('right'),
@@ -74,7 +74,7 @@ class AdminPermissionController extends AdminController
                     ->items(Tag::make()
                         ->label('${item}')
                         ->className('my-1')),
-                $this->rowActionsOnlyEditAndDelete(true),
+                $this->rowActionsOnlyEditAndDelete(true, 'lg'),
             ]);
 
         return $this->baseList($crud);

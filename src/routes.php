@@ -40,6 +40,8 @@ use Slowlyo\OwlAdmin\Controllers;
         $router->resource('admin_menus', Controllers\AdminMenuController::class);
         // 快速编辑
         $router->post('admin_menu_quick_save', [Controllers\AdminMenuController::class, 'quickEdit']);
+        // 角色保存权限
+        $router->post('admin_role_save_permissions', [Controllers\AdminRoleController::class, 'savePermissions']);
         // 角色
         $router->resource('admin_roles', Controllers\AdminRoleController::class);
         // 权限

@@ -7,6 +7,10 @@ use Slowlyo\OwlAdmin\Models\AdminRole;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @method AdminRole getModel()
+ * @method AdminRole|Builder query()
+ */
 class AdminRoleService extends AdminService
 {
     protected string $modelName = AdminRole::class;
@@ -30,8 +34,6 @@ class AdminRoleService extends AdminService
 
         $model = $this->getModel();
 
-        $permissions = Arr::pull($data, 'permissions');
-
         foreach ($data as $k => $v) {
             if (!in_array($k, $columns)) {
                 continue;
@@ -40,13 +42,7 @@ class AdminRoleService extends AdminService
             $model->setAttribute($k, $v);
         }
 
-        if ($model->save()) {
-            $model->permissions()->sync(Arr::has($permissions, '0.id') ? Arr::pluck($permissions, 'id') : $permissions);
-
-            return true;
-        }
-
-        return false;
+        return $model->save();
     }
 
     public function update($primaryKey, $data): bool
@@ -59,8 +55,6 @@ class AdminRoleService extends AdminService
 
         $model = $this->query()->whereKey($primaryKey)->first();
 
-        $permissions = Arr::pull($data, 'permissions');
-
         foreach ($data as $k => $v) {
             if (!in_array($k, $columns)) {
                 continue;
@@ -69,13 +63,7 @@ class AdminRoleService extends AdminService
             $model->setAttribute($k, $v);
         }
 
-        if ($model->save()) {
-            $model->permissions()->sync(Arr::has($permissions, '0.id') ? Arr::pluck($permissions, 'id') : $permissions);
-
-            return true;
-        }
-
-        return false;
+        return $model->save();
     }
 
     public function hasRepeated($data, $id = 0): bool
@@ -93,5 +81,13 @@ class AdminRoleService extends AdminService
         }
 
         return false;
+    }
+
+    public function savePermissions($primaryKey, $permissions)
+    {
+        $model = $this->query()->whereKey($primaryKey)->first();
+
+        return $model->permissions()->sync(Arr::has($permissions, '0.id') ? Arr::pluck($permissions,
+            'id') : $permissions);
     }
 }
