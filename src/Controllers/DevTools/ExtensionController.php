@@ -105,11 +105,7 @@ class ExtensionController extends AdminController
             ->headerToolbar([
                 $this->createExtend(),
                 $this->localInstall(),
-                UrlAction::make()
-                    ->icon('fa-regular fa-lightbulb')
-                    ->label(__('admin.extensions.more_extensions'))
-                    ->link('https://slowlyo.gitee.io/owl-admin-doc/extensions/')
-                    ->blank(true),
+                $this->moreExtend(),
                 amis('reload')->align('right'),
                 amis('filter-toggler')->align('right'),
             ])->card(
@@ -141,7 +137,9 @@ class ExtensionController extends AdminController
                                 ->actions([])
                                 ->closeOnOutside(true)
                                 ->closeOnEsc(true)
-                                ->body(Markdown::make()->name('${doc | raw}')->options(['html' => true, 'breaks' => true]))
+                                ->body(Markdown::make()->name('${doc | raw}')->options(['html'   => true,
+                                                                                        'breaks' => true,
+                                ]))
                         )
                     ),
                     Divider::make(),
@@ -267,72 +265,69 @@ class ExtensionController extends AdminController
 
     /**
      * 更多扩展
-     * gitee 和 github 的 pages 都不能跨域访问, 放弃这个方案
      *
      * @return DrawerAction
-     * @deprecated
      */
     public function moreExtend()
     {
-        return DrawerAction::make()->label('更多扩展')->icon('fa-regular fa-lightbulb')->drawer(
-            Drawer::make()->title('更多扩展')->size('xl')->closeOnEsc(true)->closeOnOutside(true)->body(
-                CRUDTable::make()
-                    ->perPage(20)
-                    ->affixHeader(false)
-                    ->filterTogglable(true)
-                    ->loadDataOnce(true)
-                    ->source('${rows | filter:name,author,description:match:keywords}')
-                    ->filter(
-                        $this->baseFilter()->body([
-                            TextControl::make()
-                                ->name('keywords')
-                                ->label('关键字')
-                                ->placeholder('输入关键字搜索')
-                                ->size('md'),
-                        ])
+        return DrawerAction::make()
+            ->label(__('admin.extensions.more_extensions'))
+            ->icon('fa-regular fa-lightbulb')
+            ->drawer(
+                Drawer::make()
+                    ->title(__('admin.extensions.more_extensions'))
+                    ->size('xl')
+                    ->closeOnEsc(true)
+                    ->closeOnOutside(true)
+                    ->body(
+                        CRUDTable::make()
+                            ->perPage(20)
+                            ->affixHeader(false)
+                            ->filterTogglable(true)
+                            ->loadDataOnce(true)
+                            ->filter(
+                                $this->baseFilter()->body([
+                                    TextControl::make()
+                                        ->name('keywords')
+                                        ->label('关键字')
+                                        ->placeholder('输入关键字搜索')
+                                        ->size('md'),
+                                ])
+                            )
+                            ->filterDefaultVisible(false)
+                            ->api('https://packagist.org/search.json?tags=owl-admin&per_page=15&q=${keywords}')
+                            ->perPage(15)
+                            ->footerToolbar(['statistics', 'pagination'])
+                            ->headerToolbar([
+                                amis('reload')->align('right'),
+                                amis('filter-toggler')->align('right'),
+                            ])->columns([
+                                TableColumn::make()->name('name')->label('名称')->width(200)
+                                    ->type('tpl')
+                                    ->tpl('<a href="${url}" target="_blank" title="打开 Packagist">${name}</a>'),
+                                TableColumn::make()
+                                    ->name('description')
+                                    ->label('描述')
+                                    ->type('tpl')
+                                    ->tpl('${description|truncate: 50}')
+                                    ->popOver(
+                                        SchemaPopOver::make()->trigger('hover')->body(
+                                            Tpl::make()->tpl('${description}')
+                                        )->position('left-top')
+                                    ),
+                                TableColumn::make()->name('repository')->label('仓库')
+                                    ->type('tpl')
+                                    ->tpl('<a href="${repository}" target="_blank" title="打开代码仓库">${repository|truncate: 50}</a>'),
+                                TableColumn::make()->name('downloads')->label('下载量')->width(100),
+                                TableColumn::make()
+                                    ->name('${"composer require" + name}')
+                                    ->label('composer 安装命令')
+                                    ->width(300)
+                                    ->copyable(true),
+                            ])
                     )
-                    ->filterDefaultVisible(false)
-                    ->api(url('/extend-data.json'))
-                    ->perPageAvailable([10, 20, 30, 50, 100, 200])
-                    ->footerToolbar(['switch-per-page', 'statistics', 'pagination'])
-                    ->headerToolbar([
-                        amis('reload')->align('right'),
-                        amis('filter-toggler')->align('right'),
-                    ])->columns([
-                        TableColumn::make()->name('name')->label('名称')->width(200)
-                            ->type('tpl')
-                            ->tpl('<a href="${repository}" target="_blank" title="打开代码仓库">${name}</a>'),
-                        TableColumn::make()
-                            ->name('author')
-                            ->label('作者')
-                            ->width(200)
-                            ->type('tpl')
-                            ->tpl('<a href="${author_homepage}" target="_blank" title="打开作者主页">${author}</a>'),
-                        TableColumn::make()
-                            ->name('description')
-                            ->label('描述')
-                            ->type('tpl')
-                            ->tpl('${description|truncate: 30}')
-                            ->popOver(
-                                SchemaPopOver::make()->trigger('hover')->body(
-                                    Tpl::make()->tpl('${description}')
-                                )->position('left-top')
-                            ),
-                        TableColumn::make()
-                            ->name('zip_download_address')
-                            ->label('zip下载地址')
-                            ->width(300)
-                            ->remark('下载后请使用 [本地安装] 功能自行安装')
-                            ->type('tpl')
-                            ->tpl('<a href="${zip_download_address}" target="_blank" title="去下载">${zip_download_address | truncate: 40}</a>'),
-                        TableColumn::make()
-                            ->name('composer_command')
-                            ->label('composer 安装命令')
-                            ->width(300)
-                            ->copyable(true),
-                    ])
-            )->actions([])
-        );
+                    ->actions([])
+            );
     }
 
     /**
