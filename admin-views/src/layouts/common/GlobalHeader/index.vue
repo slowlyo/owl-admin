@@ -7,19 +7,21 @@
 		</div>
 		<header-menu v-else/>
 		<div class="flex justify-end h-full">
-			<global-search/>
-			<full-screen/>
-			<theme-mode/>
+			<global-search v-if="layoutSettings.header.search"/>
+			<full-screen v-if="layoutSettings.header.full_screen"/>
+			<theme-mode v-if="layoutSettings.header.switch_theme"/>
 			<!--<system-message />-->
-			<setting-button v-if="showButton"/>
+			<setting-button v-if="layoutSettings.header.theme_config"/>
 			<user-avatar/>
 		</div>
 	</dark-mode-container>
 </template>
 
 <script setup lang="ts">
+import {computed} from "vue"
 import {useAppStore, useThemeStore} from "@/store"
 import {useBasicLayout} from "@/composables"
+import {settings} from "@/utils"
 import GlobalLogo from "../GlobalLogo/index.vue"
 import GlobalSearch from "../GlobalSearch/index.vue"
 import {
@@ -31,8 +33,6 @@ import {
 	ThemeMode,
 	UserAvatar
 } from "./components"
-import {settings} from "@/utils"
-import {computed} from "vue"
 
 defineOptions({name: "GlobalHeader"})
 
@@ -50,8 +50,7 @@ defineProps<Props>()
 const theme = useThemeStore()
 const {isMobile} = useBasicLayout()
 
-// const showButton = import.meta.env.PROD && import.meta.env.VITE_VERCEL !== 'Y';
-const showButton = computed(() => settings.setStore(useAppStore()).getSettingItem("show_development_tools"))
+const layoutSettings = computed(() => settings.setStore(useAppStore()).getSettingItem("layout"))
 </script>
 
 <style scoped>

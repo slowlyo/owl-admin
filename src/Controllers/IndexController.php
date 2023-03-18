@@ -76,19 +76,19 @@ class IndexController extends AdminController
 
     public function settings(): JsonResponse|JsonResource
     {
-        $settings = [
-            'app_name'               => config('admin.name'),
-            'logo'                   => url(config('admin.logo')),
-            'footer'                 => config('admin.footer'),
-            'locale'                 => config('app.locale'),
-            'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
-            'login_captcha'          => config('admin.auth.login_captcha'),
-            'system_theme_setting'   => Admin::setting()->get('system_theme_setting'),
-            'show_development_tools' => config('admin.show_development_tools'),
-            'assets'                 => Admin::getAssets(),
-        ];
+        return $this->response()->success([
+            'assets'   => Admin::getAssets(),
+            'app_name' => config('admin.name'),
+            'locale'   => config('app.locale'),
+            'footer'   => config('admin.footer'),
+            'layout'   => config('admin.layout'),
+            'logo'     => url(config('admin.logo')),
 
-        return $this->response()->success($settings);
+            'login_captcha'          => config('admin.auth.login_captcha'),
+            'show_development_tools' => config('admin.show_development_tools'),
+            'system_theme_setting'   => Admin::setting()->get('system_theme_setting'),
+            'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
+        ]);
     }
 
     /**

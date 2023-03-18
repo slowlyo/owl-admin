@@ -77,7 +77,7 @@ class AdminRoleController extends AdminController
                             ->multiple(true)
                             ->options(AdminPermissionService::make()->getTree())
                             ->searchable(true)
-                            ->autoCheckChildren(false)
+                            ->onlyChildren(true)
                             ->joinValues(false)
                             ->extractValue(true)
                             ->size('full')

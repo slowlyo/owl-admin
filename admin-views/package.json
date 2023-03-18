@@ -48,15 +48,9 @@
     "commit": "soy git-commit",
     "cleanup": "soy cleanup",
     "update-pkg": "soy update-pkg",
-    "tsx": "tsx",
-    "logo": "tsx ./scripts/logo.ts",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "release": "standard-version",
-    "prepare": "simple-git-hooks"
+    "tsx": "tsx"
   },
   "dependencies": {
-    "@antv/data-set": "^0.11.8",
-    "@antv/g2": "^4.2.8",
     "@better-scroll/core": "^2.5.0",
     "@soybeanjs/vue-admin-layout": "^1.1.1",
     "@soybeanjs/vue-admin-tab": "^1.0.5",
@@ -66,7 +60,6 @@
     "colord": "^2.9.3",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.7",
-    "echarts": "^5.4.1",
     "form-data": "^4.0.0",
     "lodash-es": "^4.17.21",
     "naive-ui": "2.34.3",
@@ -79,12 +72,9 @@
     "vue": "3.2.45",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6",
-    "vuedraggable": "^4.1.0",
-    "wangeditor": "^4.7.15",
-    "xgplayer": "^2.32.2"
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@amap/amap-jsapi-types": "^0.0.10",
     "@iconify/json": "^2.2.7",
     "@iconify/vue": "^4.0.2",
     "@soybeanjs/cli": "^0.1.6",
@@ -98,7 +88,6 @@
     "@unocss/vite": "^0.48.4",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "conventional-changelog": "^3.1.25",
     "cross-env": "^7.0.3",
     "eslint": "^8.32.0",
     "eslint-config-soybeanjs-vue": "^0.2.2",
@@ -107,8 +96,6 @@
     "node-html-to-image": "^3.2.4",
     "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.57.1",
-    "simple-git-hooks": "^2.8.1",
-    "standard-version": "^9.5.0",
     "tsx": "^3.12.2",
     "typescript": "4.9.4",
     "unplugin-icons": "^0.15.1",
@@ -123,15 +110,6 @@
     "vite-plugin-pwa": "^0.14.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^1.0.24"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "mockjs@1.1.0": "patches/mockjs@1.1.0.patch"
-    }
-  },
-  "simple-git-hooks": {
-    "commit-msg": "pnpm soy git-commit-verify",
-    "pre-commit": "pnpm typecheck && pnpm lint-staged"
   },
   "lint-staged": {
     "*": "eslint . --fix"

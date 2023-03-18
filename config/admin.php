@@ -60,4 +60,17 @@ return [
     'extension'                            => [
         'dir' => base_path('extensions'),
     ],
+
+    'layout' => [
+        'header' => [
+            // 是否显示 [搜索] 按钮
+            'search'       => true,
+            // 是否显示 [全屏] 按钮
+            'full_screen'  => true,
+            // 是否显示 [主题模式] 按钮
+            'switch_theme' => true,
+            // 是否显示 [主题配置] 按钮
+            'theme_config' => true,
+        ],
+    ],
 ];

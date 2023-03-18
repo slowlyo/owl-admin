@@ -1,0 +1,1 @@
+import{_ as e}from"./ExceptionBase.vue_vue_type_script_setup_true_lang-0f526526.js";import{_ as t}from"./_plugin-vue_export-helper-c27b6911.js";import{D as c,E as r}from"./auth-ef2de8ea.js";import"./Button-4ea3816f.js";const n={};function _(s,a){const o=e;return c(),r(o,{type:"500"})}const x=t(n,[["render",_]]);export{x as default};

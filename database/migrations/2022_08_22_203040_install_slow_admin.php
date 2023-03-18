@@ -78,7 +78,7 @@ return new class extends Migration {
 
         Schema::create('admin_settings', function (Blueprint $table) {
             $table->string('key');
-            $table->text('values');
+            $table->longText('values');
             $table->timestamps();
         });
 

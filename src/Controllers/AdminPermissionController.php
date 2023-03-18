@@ -207,11 +207,15 @@ class AdminPermissionController extends AdminController
                 'permission_id' => $item['id'],
                 'menu_id'       => $item['id'],
             ]);
-            if ($item['parent_id'] != 0) {
-                $query->insert([
-                    'permission_id' => $item['id'],
+
+            $_id = $item['id'];
+            while ($item['parent_id'] != 0) {
+                (clone $query)->insert([
+                    'permission_id' => $_id,
                     'menu_id'       => $item['parent_id'],
                 ]);
+
+                $item = AdminMenu::query()->find($item['parent_id']);
             }
         }
 
