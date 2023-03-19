@@ -44,7 +44,7 @@ class AuthController extends AdminController
                 abort(Response::HTTP_BAD_REQUEST, $validator->errors()->first());
             }
             $adminModel = config("admin.auth.model", AdminUser::class);
-            $user = $adminModel::query()->where('username', $request->username)->first();
+            $user       = $adminModel::query()->where('username', $request->username)->first();
             if ($user && Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('admin')->plainTextToken;
 
@@ -105,7 +105,7 @@ class AuthController extends AdminController
             ->panelClassName('px-48 m:px-0')
             ->mode('horizontal')
             ->data($user)
-            ->api('put:' . admin_url('/user_setting/' . $user->id))
+            ->api('put:' . admin_url('/user_setting'))
             ->body([
                 ImageControl::make()
                     ->label(__('admin.admin_user.avatar'))
@@ -122,16 +122,16 @@ class AuthController extends AdminController
 
         $page = Page::make()->body($form);
 
-        if(!$this->isTabMode()){
+        if (!$this->isTabMode()) {
             $page = $page->title(__('admin.user_setting'));
         }
 
         return $this->response()->success($page);
     }
 
-    public function saveUserSetting($id): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+    public function saveUserSetting(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
-        $result = $this->service->updateUserSetting($id,
+        $result = $this->service->updateUserSetting($this->user()->id,
             request()->only([
                 'avatar',
                 'name',

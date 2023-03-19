@@ -20,7 +20,7 @@ use Slowlyo\OwlAdmin\Controllers;
 
     // 用户设置
     $router->get('/user_setting', [Controllers\AuthController::class, 'userSetting']);
-    $router->put('/user_setting/{id}', [Controllers\AuthController::class, 'saveUserSetting']);
+    $router->put('/user_setting', [Controllers\AuthController::class, 'saveUserSetting']);
 
     // 图片上传
     $router->any('upload_image', [Controllers\IndexController::class, 'uploadImage']);
