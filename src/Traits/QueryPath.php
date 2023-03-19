@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Traits;
 
+use Illuminate\Support\Str;
+
 trait QueryPath
 {
     /**
@@ -145,6 +147,19 @@ trait QueryPath
      */
     public function getListPath(): string
     {
-        return '/' . trim($this->queryPath, '/');
+        $path = $this->queryPath;
+
+        if (Str::contains($this->queryPath, '/create')) {
+            $path = str_replace('/create', '', $path);
+        }
+
+        if (Str::contains($this->queryPath, '/edit')) {
+            $_path = explode('/', $path);
+            array_pop($_path);
+            array_pop($_path);
+            $path = implode('/', $_path);
+        }
+
+        return '/' . trim($path, '/');
     }
 }
