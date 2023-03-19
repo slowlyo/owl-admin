@@ -183,7 +183,7 @@ class AdminPermissionController extends AdminController
 
         $permissions = [];
         foreach ($menus as $menu) {
-            $_httpPath = $this->getHttpPath($menu['url']);
+            $_httpPath = $menu['url_type'] == AdminMenu::TYPE_ROUTE ? $this->getHttpPath($menu['url']) : '';
 
             $permissions[] = [
                 'id'         => $menu['id'],
