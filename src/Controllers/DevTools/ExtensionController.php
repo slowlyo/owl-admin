@@ -137,8 +137,9 @@ class ExtensionController extends AdminController
                                 ->actions([])
                                 ->closeOnOutside(true)
                                 ->closeOnEsc(true)
-                                ->body(Markdown::make()->name('${doc | raw}')->options(['html'   => true,
-                                                                                        'breaks' => true,
+                                ->body(Markdown::make()->name('${doc | raw}')->options([
+                                    'html'   => true,
+                                    'breaks' => true,
                                 ]))
                         )
                     ),
@@ -320,10 +321,16 @@ class ExtensionController extends AdminController
                                     ->tpl('<a href="${repository}" target="_blank" title="打开代码仓库">${repository|truncate: 50}</a>'),
                                 TableColumn::make()->name('downloads')->label('下载量')->width(100),
                                 TableColumn::make()
-                                    ->name('${"composer require" + name}')
+                                    ->name('${"composer require " + name}')
                                     ->label('composer 安装命令')
                                     ->width(300)
                                     ->copyable(true),
+                                amisMake()->Operation()->label('操作')->buttons([
+                                    amisMake()->LinkAction()
+                                        ->label('去安装')
+                                        ->level('link')
+                                        ->link('${"/dev_tools/terminal?type=composer&action_type=require&package=" + name}'),
+                                ]),
                             ])
                     )
                     ->actions([])

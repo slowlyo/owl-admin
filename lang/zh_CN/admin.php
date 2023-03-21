@@ -33,6 +33,7 @@ return [
 
     'developer'             => '开发',
     'code_generator'        => '代码生成器',
+    'terminal'              => '终端',
     'administrator'         => '管理员',
     'soft_delete'           => '软删除',
     'keyword'               => '关键字',

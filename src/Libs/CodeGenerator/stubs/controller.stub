@@ -9,6 +9,9 @@ use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use {{ UseService }};
 
+/**
+ * @property {{ ServiceName }} $service
+ */
 class {{ ClassName }} extends AdminController
 {
     protected string $serviceName = {{ ServiceName }}::class;

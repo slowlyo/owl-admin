@@ -7,11 +7,11 @@
 		</div>
 		<header-menu v-else/>
 		<div class="flex justify-end h-full">
-			<global-search v-if="layoutSettings.header.search"/>
-			<full-screen v-if="layoutSettings.header.full_screen"/>
-			<theme-mode v-if="layoutSettings.header.switch_theme"/>
+			<global-search v-if="layoutSettings?.header?.search"/>
+			<full-screen v-if="layoutSettings?.header?.full_screen"/>
+			<theme-mode v-if="layoutSettings?.header?.switch_theme"/>
 			<!--<system-message />-->
-			<setting-button v-if="layoutSettings.header.theme_config"/>
+			<setting-button v-if="layoutSettings?.header?.theme_config"/>
 			<user-avatar/>
 		</div>
 	</dark-mode-container>

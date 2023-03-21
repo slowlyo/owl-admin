@@ -97,7 +97,7 @@ class AdminMenuController extends AdminController
                     ->label(__('admin.admin_menu.icon'))
                     ->description(
                         __('admin.admin_menu.icon_description') .
-                        '<a href="https://icones.js.org" target="_blank"> https://icones.js.org</a>'
+                        '<a href="https://icones.js.org/collection/all" target="_blank"> https://icones.js.org</a>'
                     ),
             ]),
             GroupControl::make()->body([

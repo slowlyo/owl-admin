@@ -58,6 +58,7 @@ use Slowlyo\OwlAdmin\Controllers;
         $router->get('/', [Controllers\DevTools\CodeGeneratorController::class, 'index']);
         // 代码生成器
         $router->resource('code_generator', Controllers\DevTools\CodeGeneratorController::class);
+
         // 扩展
         $router->resource('extensions', Controllers\DevTools\ExtensionController::class);
         // 本地扩展安装
@@ -72,5 +73,16 @@ use Slowlyo\OwlAdmin\Controllers;
         $router->post('extensions/save_config', [Controllers\DevTools\ExtensionController::class, 'saveConfig']);
         // 获取扩展配置表单
         $router->post('extensions/config_form', [Controllers\DevTools\ExtensionController::class, 'configForm']);
+
+        // 终端
+        $router->get('terminal', [Controllers\DevTools\TerminalController::class, 'index']);
+        // artisan 信息查询
+        $router->post('terminal/artisan_schema', [Controllers\DevTools\TerminalController::class, 'artisanSchema']);
+        // composer options
+        $router->get('terminal/composer_options', [Controllers\DevTools\TerminalController::class, 'composerOptions']);
+        // 预加载
+        $router->post('terminal/preload', [Controllers\DevTools\TerminalController::class, 'preload']);
+        // 终端执行命令
+        $router->post('terminal/exec', [Controllers\DevTools\TerminalController::class, 'exec']);
     });
 });

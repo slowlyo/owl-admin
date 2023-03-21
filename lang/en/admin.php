@@ -33,6 +33,7 @@ return [
 
     'developer'             => 'Developer',
     'code_generator'        => 'Code Generator',
+    'terminal'              => 'Terminal',
     'administrator'         => 'Administrator',
     'soft_delete'           => 'Soft Delete',
     'keyword'               => 'Keyword',
