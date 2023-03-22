@@ -79,9 +79,8 @@ class OwlAdminServiceProvider extends ServiceProvider
 
     protected function registerPublishing()
     {
+        $this->commands($this->commands);
         if ($this->app->runningInConsole()) {
-            $this->commands($this->commands);
-
             $this->publishes([__DIR__ . '/../admin-views/dist' => public_path('admin')], 'admin-assets');
             $this->publishes([__DIR__ . '/../lang' => lang_path()], 'admin-lang');
             $this->publishes([__DIR__ . '/../config/admin.php' => config_path('admin.php')], 'admin-config');
