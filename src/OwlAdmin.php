@@ -64,7 +64,7 @@ class OwlAdmin
                     'meta'      => [
                         'href'         => $isLink ? $item['url'] : '',
                         'title'        => $item['title'],
-                        'icon'         => $item['icon'] ?? ' ',
+                        'icon'         => $item['icon'] ?? '-',
                         'hide'         => $item['visible'] == 0,
                         'order'        => $item['order'],
                         'singleLayout' => $parentId != 0 ? '' : 'basic',
