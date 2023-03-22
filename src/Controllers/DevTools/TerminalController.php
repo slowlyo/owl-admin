@@ -118,6 +118,12 @@ class TerminalController extends AdminController
                         ->actions([
                             amisMake()
                                 ->VanillaAction()
+                                ->label('刷新页面')
+                                ->level('success')
+                                ->confirmText('刷新页面后将无法查看日志！')
+                                ->onEvent(['click' => ['actions' => [['actionType' => 'refresh']]]]),
+                            amisMake()
+                                ->VanillaAction()
                                 ->label('关闭')
                                 ->level('primary')
                                 ->confirmText('请自行确认命令是否执行完毕，关闭后将无法查看日志！')
@@ -132,7 +138,7 @@ class TerminalController extends AdminController
                                             [
                                                 'actionType'  => 'setValue',
                                                 'componentId' => 'terminal_dialog',
-                                                'args'        => ['value' => []],
+                                                'args'        => ['value' => ['uuid' => '']],
                                             ],
                                             [
                                                 'actionType'  => 'reset',
