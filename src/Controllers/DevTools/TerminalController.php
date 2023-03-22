@@ -96,8 +96,7 @@ class TerminalController extends AdminController
                         ->Dialog()
                         ->id('terminal_dialog')
                         ->title('')
-                        ->body(123)
-                        ->visibleOn('${uuid && uuid != ""}')
+                        ->visibleOn('${uuid}')
                         ->size('lg')
                         ->body([
                             amisMake()
@@ -133,7 +132,7 @@ class TerminalController extends AdminController
                                             [
                                                 'actionType'  => 'setValue',
                                                 'componentId' => 'terminal_dialog',
-                                                'args'        => ['value' => ['uuid' => '']],
+                                                'args'        => ['value' => []],
                                             ],
                                             [
                                                 'actionType'  => 'reset',
@@ -167,7 +166,10 @@ class TerminalController extends AdminController
             if ($options = $request->input('options')) {
                 foreach ($options as $key => $item) {
                     if ($item && in_array($key, array_keys($info['options']))) {
-                        $command .= ' --' . $key . '=' . $item;
+                        $command .= ' --' . $key;
+                        if (!is_bool($info['options'][$key]['default'])) {
+                            $command .= '=' . $item;
+                        }
                     }
                 }
             }
