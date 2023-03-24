@@ -2,10 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\Card;
@@ -21,6 +18,7 @@ use Slowlyo\OwlAdmin\Renderers\CheckboxControl;
 use Slowlyo\OwlAdmin\Renderers\FieldSetControl;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use Slowlyo\OwlAdmin\Renderers\CheckboxesControl;
+use Slowlyo\OwlAdmin\Libs\CodeGenerator\Generator;
 use Slowlyo\OwlAdmin\Libs\CodeGenerator\ModelGenerator;
 use Slowlyo\OwlAdmin\Libs\CodeGenerator\ServiceGenerator;
 use Slowlyo\OwlAdmin\Libs\CodeGenerator\MigrationGenerator;
@@ -28,38 +26,13 @@ use Slowlyo\OwlAdmin\Libs\CodeGenerator\ControllerGenerator;
 
 class CodeGeneratorController extends AdminController
 {
-    public static array $dataTypeMap = [
-        'int'                => 'integer',
-        'int@unsigned'       => 'unsignedInteger',
-        'tinyint'            => 'tinyInteger',
-        'tinyint@unsigned'   => 'unsignedTinyInteger',
-        'smallint'           => 'smallInteger',
-        'smallint@unsigned'  => 'unsignedSmallInteger',
-        'mediumint'          => 'mediumInteger',
-        'mediumint@unsigned' => 'unsignedMediumInteger',
-        'bigint'             => 'bigInteger',
-        'bigint@unsigned'    => 'unsignedBigInteger',
-        'date'               => 'date',
-        'time'               => 'time',
-        'datetime'           => 'dateTime',
-        'timestamp'          => 'timestamp',
-        'enum'               => 'enum',
-        'json'               => 'json',
-        'binary'             => 'binary',
-        'float'              => 'float',
-        'double'             => 'double',
-        'decimal'            => 'decimal',
-        'varchar'            => 'string',
-        'char'               => 'char',
-        'text'               => 'text',
-        'mediumtext'         => 'mediumText',
-        'longtext'           => 'longText',
-    ];
-
     public function index(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
         $page = Page::make()
             ->title(__('admin.code_generator'))
+            ->css([
+                '.amis-scope .cxd-Table-content' => ['padding-bottom' => '15px'],
+            ])
             ->body($this->form())
             ->remark(
                 __('admin.code_generators.remark1') .
@@ -73,6 +46,7 @@ class CodeGeneratorController extends AdminController
 
     public function form()
     {
+        $databaseColumns = Generator::make()->getDatabaseColumns();
         // 下划线的表名处理成驼峰文件名
         $nameHandler =
             'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
@@ -84,9 +58,8 @@ class CodeGeneratorController extends AdminController
             ->mode('horizontal')
             ->resetAfterSubmit(true)
             ->api($this->getStorePath())
-            ->data([
-                'table_info' => $this->getDatabaseColumns(),
-            ])
+            ->data(['table_info' => $databaseColumns])
+            ->feedback(['title' => '', 'body' => amisMake()->Tpl()->tpl('${result | raw}')])
             ->body([
                 Card::make()->body(
                     GroupControl::make()->body([
@@ -117,14 +90,11 @@ class CodeGeneratorController extends AdminController
                                     ->clearable(true)
                                     ->selectMode('group')
                                     ->options(
-                                        $this->getDatabaseColumns()->map(function ($item, $index) {
+                                        $databaseColumns->map(function ($item, $index) {
                                             return [
                                                 'label'    => $index,
                                                 'children' => $item->keys()->map(function ($item) use ($index) {
-                                                    return [
-                                                        'value' => $item . '-' . $index,
-                                                        'label' => $item,
-                                                    ];
+                                                    return ['value' => $item . '-' . $index, 'label' => $item];
                                                 }),
                                             ];
                                         })->values()
@@ -162,28 +132,7 @@ class CodeGeneratorController extends AdminController
                                 ->extractValue(true)
                                 ->checkAll(true)
                                 ->defaultCheckAll(true)
-                                ->options([
-                                    [
-                                        'label' => __('admin.code_generators.create_database_migration'),
-                                        'value' => 'need_database_migration',
-                                    ],
-                                    [
-                                        'label' => __('admin.code_generators.create_table'),
-                                        'value' => 'need_create_table',
-                                    ],
-                                    [
-                                        'label' => __('admin.code_generators.create_model'),
-                                        'value' => 'need_model',
-                                    ],
-                                    [
-                                        'label' => __('admin.code_generators.create_controller'),
-                                        'value' => 'need_controller',
-                                    ],
-                                    [
-                                        'label' => __('admin.code_generators.create_service'),
-                                        'value' => 'need_service',
-                                    ],
-                                ]),
+                                ->options(Generator::make()->needCreateOptions()),
                             FieldSetControl::make()
                                 ->title(__('admin.code_generators.expand_more_settings'))
                                 ->collapseTitle(__('admin.code_generators.collapse_settings'))
@@ -221,78 +170,83 @@ class CodeGeneratorController extends AdminController
                         ]),
                     ]),
                 ),
-
-                Card::make()->body([
-                    Alert::make()
-                        ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/owl-admin-doc/#/docs/issue?id=%f0%9f%90%9b-%e7%bc%96%e8%be%91-%e8%af%a6%e6%83%85%e9%a1%b5%e9%9d%a2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%98%be%e5%a4%b1%e8%b4%a5' target='_blank'>查看详情</a> ")
-                        ->level('warning')
-                        ->showCloseButton(true)
-                        ->showIcon(true),
-                    TableControl::make()
-                        ->name('columns')
-                        ->label(false)
-                        ->addable(true)
-                        ->needConfirm(false)
-                        ->draggable(true)
-                        ->removable(true)
-                        ->columnsTogglable(false)
-                        ->value([
-                            [
-                                'name'       => '',
-                                'type'       => 'string',
-                                'additional' => 255,
-                                'index'      => '',
-                            ],
-                        ])
-                        ->columns([
-                            TextControl::make()
-                                ->name('name')
-                                ->label(__('admin.code_generators.column_name'))
-                                ->required(true),
-                            SelectControl::make()
-                                ->name('type')
-                                ->label(__('admin.code_generators.type'))
-                                ->options($this->availableFieldTypes())
-                                ->searchable(true)
-                                ->value('string')
-                                ->required(true),
-                            TextControl::make()
-                                ->name('additional')
-                                ->label(__('admin.code_generators.extra_params'))
-                                ->width(160)
-                                ->size('sm'),
-                            CheckboxControl::make()
-                                ->name('nullable')
-                                ->label(__('admin.code_generators.nullable'))
-                                ->width(60),
-                            SelectControl::make()
-                                ->name('index')
-                                ->label(__('admin.code_generators.index'))
-                                ->size('xs')
-                                ->width(90)
-                                ->options(
-                                    collect(['index', 'unique'])->map(fn($value) => [
-                                        'label' => $value,
-                                        'value' => $value,
-                                    ]))
-                                ->clearable(true),
-                            TextControl::make()->name('comment')->label(__('admin.code_generators.comment')),
-                            TextControl::make()
-                                ->name('default')
-                                ->label(__('admin.code_generators.default_value')),
-                        ]),
-                ]),
+                $this->columnTable(),
             ]);
     }
 
-    public function store(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+    public function columnTable()
     {
-        $needs   = collect($request->needs);
-        $columns = collect($request->columns);
+        return Card::make()->body([
+            Alert::make()
+                ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/owl-admin-doc/#/docs/issue?id=%f0%9f%90%9b-%e7%bc%96%e8%be%91-%e8%af%a6%e6%83%85%e9%a1%b5%e9%9d%a2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%98%be%e5%a4%b1%e8%b4%a5' target='_blank'>查看详情</a> ")
+                ->level('warning')
+                ->showCloseButton(true)
+                ->showIcon(true),
+            TableControl::make()
+                ->className('pb-7')
+                ->name('columns')
+                ->label(false)
+                ->addable(true)
+                ->needConfirm(false)
+                ->draggable(true)
+                ->removable(true)
+                ->columnsTogglable(false)
+                ->value([['name' => '', 'type' => '', 'additional' => '', 'index' => '']])
+                ->columns([
+                    TextControl::make()
+                        ->name('name')
+                        ->label(__('admin.code_generators.column_name'))
+                        ->required(true),
+                    SelectControl::make()
+                        ->name('type')
+                        ->label(__('admin.code_generators.type'))
+                        ->options(Generator::make()->availableFieldTypes())
+                        ->searchable(true)
+                        ->value('string')
+                        ->required(true),
+                    TextControl::make()
+                        ->name('additional')
+                        ->label(__('admin.code_generators.extra_params'))
+                        ->width(160)
+                        ->size('sm'),
+                    CheckboxControl::make()
+                        ->name('nullable')
+                        ->label(__('admin.code_generators.nullable'))
+                        ->width(60),
+                    SelectControl::make()
+                        ->name('index')
+                        ->label(__('admin.code_generators.index'))
+                        ->size('xs')
+                        ->width(90)
+                        ->options(
+                            collect(['index', 'unique'])->map(fn($value) => [
+                                'label' => $value,
+                                'value' => $value,
+                            ]))
+                        ->clearable(true),
+                    TextControl::make()->name('comment')->label(__('admin.code_generators.comment')),
+                    TextControl::make()
+                        ->name('default')
+                        ->label(__('admin.code_generators.default_value')),
+                    // amisMake()->SubFormControl()->name('more')->label('更多设置')->btnLabel('更多')->form(
+                    //     amisMake()->Form()->title('更多设置')->set('size', 'lg')->body([])
+                    // ),
+                ]),
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $needs          = collect($request->needs);
+        $columns        = collect($request->columns);
+        $successMessage = function ($type, $path) {
+            return "<b class='text-success'>{$type} generated successfully!</b><br>{$path}<br><br>";
+        };
 
         $paths   = [];
         $message = '';
         try {
+            // Model
             if ($needs->contains('need_model')) {
                 $path = ModelGenerator::make()
                     ->primary($request->primary_key)
@@ -300,12 +254,12 @@ class CodeGeneratorController extends AdminController
                     ->softDelete($request->get('soft_delete', false))
                     ->generate($request->table_name, $request->model_name);
 
-                $message .= "Model generation succeeded!\n";
-                $message .= $path . "\n\n";
+                $message .= $successMessage('Model', $path);
 
                 $paths[] = $path;
             }
 
+            // Migration
             if ($needs->contains('need_database_migration')) {
                 $path = MigrationGenerator::make()
                     ->primary($request->primary_key)
@@ -313,12 +267,12 @@ class CodeGeneratorController extends AdminController
                     ->softDelete($request->get('soft_delete', false))
                     ->generate($request->table_name, $columns);
 
-                $message .= "Migration generation succeeded!\n";
-                $message .= $path . "\n\n";
+                $message .= $successMessage('Migration', $path);
 
                 $paths[] = $path;
             }
 
+            // Controller
             if ($needs->contains('need_controller')) {
                 $path = ControllerGenerator::make()
                     ->primary($request->primary_key)
@@ -329,21 +283,21 @@ class CodeGeneratorController extends AdminController
                     ->timestamps($request->get('need_timestamps', false))
                     ->generate($request->controller_name);
 
-                $message .= "Controller generation succeeded!\n";
-                $message .= $path . "\n\n";
+                $message .= $successMessage('Controller', $path);
 
                 $paths[] = $path;
             }
 
+            // Service
             if ($needs->contains('need_service')) {
                 $path = ServiceGenerator::make()->generate($request->service_name, $request->model_name);
 
-                $message .= "Service generation succeeded!\n";
-                $message .= $path . "\n\n";
+                $message .= $successMessage('Service', $path);
 
                 $paths[] = $path;
             }
 
+            // 创建数据库表
             if ($needs->contains('need_create_table')) {
                 Artisan::call('migrate');
                 $message .= Artisan::output();
@@ -354,77 +308,7 @@ class CodeGeneratorController extends AdminController
             return $this->response()->fail($e->getMessage());
         }
 
-        return $this->response()->successMessage($message);
-    }
-
-    public function availableFieldTypes(): array
-    {
-        return collect([
-            'bigIncrements',
-            'bigInteger',
-            'binary',
-            'boolean',
-            'char',
-            'dateTimeTz',
-            'dateTime',
-            'date',
-            'decimal',
-            'double',
-            'enum',
-            'float',
-            'foreignId',
-            'foreignIdFor',
-            'foreignUuid',
-            'geometryCollection',
-            'geometry',
-            'id',
-            'increments',
-            'integer',
-            'ipAddress',
-            'json',
-            'jsonb',
-            'lineString',
-            'longText',
-            'macAddress',
-            'mediumIncrements',
-            'mediumInteger',
-            'mediumText',
-            'morphs',
-            'multiLineString',
-            'multiPoint',
-            'multiPolygon',
-            'nullableMorphs',
-            'nullableTimestamps',
-            'nullableUuidMorphs',
-            'point',
-            'polygon',
-            'rememberToken',
-            'set',
-            'smallIncrements',
-            'smallInteger',
-            'softDeletesTz',
-            'softDeletes',
-            'string',
-            'text',
-            'timeTz',
-            'time',
-            'timestampTz',
-            'timestamp',
-            'timestampsTz',
-            'timestamps',
-            'tinyIncrements',
-            'tinyInteger',
-            'tinyText',
-            'unsignedBigInteger',
-            'unsignedDecimal',
-            'unsignedInteger',
-            'unsignedMediumInteger',
-            'unsignedSmallInteger',
-            'unsignedTinyInteger',
-            'uuidMorphs',
-            'uuid',
-            'year',
-        ])->map(fn($value) => ['label' => $value, 'value' => $value])->toArray();
+        return $this->response()->doNotDisplayToast()->success(['result' => $message]);
     }
 
     public function getNamespace($name, $app = null): string
@@ -438,71 +322,5 @@ class CodeGeneratorController extends AdminController
         }
 
         return $namespace->push($name)->implode('/') . '/';
-    }
-
-    protected function getDatabaseColumns($db = null, $tb = null)
-    {
-        $databases = Arr::where(config('database.connections', []), function ($value) {
-            $supports = ['mysql'];
-
-            return in_array(strtolower(Arr::get($value, 'driver')), $supports);
-        });
-
-        $data = [];
-
-        try {
-            foreach ($databases as $connectName => $value) {
-                if ($db && $db != $value['database']) {
-                    continue;
-                }
-
-                $sql = sprintf('SELECT * FROM information_schema.columns WHERE table_schema = "%s"',
-                    $value['database']);
-
-                if ($tb) {
-                    $p = Arr::get($value, 'prefix');
-
-                    $sql .= " AND TABLE_NAME = '{$p}{$tb}'";
-                }
-
-                $sql .= ' ORDER BY `ORDINAL_POSITION` ASC';
-
-                $tmp = DB::connection($connectName)->select($sql);
-
-                $collection = collect($tmp)->map(function ($v) use ($value) {
-                    if (!$p = Arr::get($value, 'prefix')) {
-                        return (array)$v;
-                    }
-                    $v = (array)$v;
-
-                    $v['TABLE_NAME'] = Str::replaceFirst($p, '', $v['TABLE_NAME']);
-
-                    return $v;
-                });
-
-                $data[$value['database']] = $collection->groupBy('TABLE_NAME')->map(function ($v) {
-                    return collect($v)->keyBy('COLUMN_NAME')->where('COLUMN_NAME', '<>', 'id')->map(function ($v) {
-                        $v['COLUMN_TYPE'] = strtolower($v['COLUMN_TYPE']);
-                        $v['DATA_TYPE']   = strtolower($v['DATA_TYPE']);
-
-                        if (Str::contains($v['COLUMN_TYPE'], 'unsigned')) {
-                            $v['DATA_TYPE'] .= '@unsigned';
-                        }
-
-
-                        return [
-                            'name'     => $v['COLUMN_NAME'],
-                            'type'     => Arr::get(self::$dataTypeMap, $v['DATA_TYPE'], 'string'),
-                            'default'  => $v['COLUMN_DEFAULT'],
-                            'nullable' => $v['IS_NULLABLE'] == 'YES',
-                            'comment'  => $v['COLUMN_COMMENT'],
-                        ];
-                    })->values();
-                });
-            }
-        } catch (\Throwable $e) {
-        }
-
-        return collect($data);
     }
 }
