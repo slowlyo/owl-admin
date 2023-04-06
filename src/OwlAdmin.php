@@ -74,7 +74,7 @@ class OwlAdmin
                 $children = $this->list2Menu($list, (int)$item['id'], $_temp['name']);
 
                 if (!empty($children)) {
-                    $_temp['component']            = $parentId == 0 ? 'basic' : 'multi';
+                    $_temp['component']            = 'amis';
                     $_temp['meta']['singleLayout'] = '';
                     $_temp['children']             = $children;
                 }
@@ -100,7 +100,7 @@ class OwlAdmin
             'path'      => $url . $path,
             'component' => 'amis',
             'meta'      => [
-                'title'        => Arr::get($item, 'meta.title') . '-' . __('admin.' . $action),
+                'title'        => Arr::get($item, 'meta.title') . ' - ' . __('admin.' . $action),
                 'hide'         => true,
                 'icon'         => Arr::get($item, 'meta.icon'),
                 'singleLayout' => Arr::get($item, 'meta.singleLayout'),

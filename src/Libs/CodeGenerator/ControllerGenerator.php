@@ -81,7 +81,6 @@ class ControllerGenerator extends BaseGenerator
         $stub = $this->replaceClass($stub, $name)
             ->replaceNamespace($stub, $name)
             ->replaceService($stub)
-            ->replaceTitle($stub)
             ->replaceListContent($stub)
             ->replaceFormContent($stub)
             ->replaceDetailContent($stub)
@@ -100,15 +99,6 @@ class ControllerGenerator extends BaseGenerator
         $class = str_replace($this->getNamespace($name) . '\\', '', $name);
 
         $stub = str_replace(['{{ ServiceName }}', '{{ UseService }}'], [$class, $name], $stub);
-
-        return $this;
-    }
-
-    protected function replaceTitle(&$stub): static
-    {
-        $title = $this->title ?? Str::studly($this->tableName);
-
-        $stub = str_replace('{{ PageTitle }}', $title, $stub);
 
         return $this;
     }

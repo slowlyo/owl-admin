@@ -1,0 +1,16 @@
+{
+  "footer": false,
+  "breadcrumb": true,
+  "breadcrumbIcon": false,
+  "themeColor": "#4080FF",
+  "menuWidth": 220,
+  "layoutMode": "default",
+  "theme": "light",
+  "siderTheme": "light",
+  "topTheme": "light",
+  "animateInType": "scale",
+  "animateInDuration": 550,
+  "animateOutType": "right",
+  "animateOutDuration": 450,
+  "loginTemplate": "default"
+}

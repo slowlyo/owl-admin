@@ -17,15 +17,6 @@ class AdminUserController extends AdminController
 {
     protected string $serviceName = AdminUserService::class;
 
-    protected string $pageTitle;
-
-    public function __construct()
-    {
-        $this->pageTitle = __('admin.admin_users');
-
-        parent::__construct();
-    }
-
     public function list(): Page
     {
         $crud = $this->baseCRUD()

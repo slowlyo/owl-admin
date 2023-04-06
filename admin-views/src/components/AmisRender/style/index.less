@@ -1,0 +1,485 @@
+@import "amis/lib/themes/cxd.css";
+@import "amis/lib/helper.css";
+@import "amis/sdk/iconfont.css";
+@import "@arco-themes/react-arco-pro/variables.less";
+
+:root {
+  --colors-warning-1: @orange-10;
+  --colors-warning-2: @orange-9;
+  --colors-warning-3: @orange-8;
+  --colors-warning-4: @orange-7;
+  --colors-warning-5: @orange-6;
+  --colors-warning-6: @orange-5;
+  --colors-warning-7: @orange-4;
+  --colors-warning-8: @orange-3;
+  --colors-warning-9: @orange-2;
+  --colors-warning-10: @orange-1;
+
+  --colors-success-1: @green-10;
+  --colors-success-2: @green-9;
+  --colors-success-3: @green-8;
+  --colors-success-4: @green-7;
+  --colors-success-5: @green-6;
+  --colors-success-6: @green-5;
+  --colors-success-7: @green-4;
+  --colors-success-8: @green-3;
+  --colors-success-9: @green-2;
+  --colors-success-10: @green-1;
+
+  --colors-info-1: @blue-10;
+  --colors-info-2: @blue-9;
+  --colors-info-3: @blue-8;
+  --colors-info-4: @blue-7;
+  --colors-info-5: @blue-6;
+  --colors-info-6: @blue-5;
+  --colors-info-7: @blue-4;
+  --colors-info-8: @blue-3;
+  --colors-info-9: @blue-2;
+  --colors-info-10: @blue-1;
+
+  --colors-other-1: @blue-10;
+  --colors-other-2: @blue-9;
+  --colors-other-3: @blue-8;
+  --colors-other-4: @blue-7;
+  --colors-other-5: @blue-6;
+  --colors-other-6: @blue-5;
+  --colors-other-7: @blue-4;
+  --colors-other-8: @blue-3;
+  --colors-other-9: @blue-2;
+  --colors-other-10: @blue-1;
+
+  --colors-error-1: @red-10;
+  --colors-error-2: @red-9;
+  --colors-error-3: @red-8;
+  --colors-error-4: @red-7;
+  --colors-error-5: @red-6;
+  --colors-error-6: @red-5;
+  --colors-error-7: @red-4;
+  --colors-error-8: @red-3;
+  --colors-error-9: @red-2;
+  --colors-error-10: @red-1;
+}
+
+body {
+  --input-default-default-bg-color: var(--color-bg-2);
+  --button-default-default-bg-color: var(--color-bg-2);
+  --button-default-hover-bg-color: var(--color-bg-2);
+  --select-base-default-bg-color: var(--color-bg-2);
+  --select-base-hover-bg-color: var(--color-bg-2);
+  --select-base-active-bg-color: var(--color-bg-2);
+  --Form-select-bg: var(--color-bg-2);
+  --Form-select-onHover-bg: var(--color-bg-2);
+  --Card-bg: var(--color-bg-2);
+  --Panel-bg: var(--color-bg-2);
+  --Panel-footer-bg: var(--color-bg-2);
+  --Panel-footerBg: var(--color-bg-2);
+  --Number-handler-onHover-bg: var(--color-bg-2);
+  --inputNumber-base-default-bg-color: var(--color-bg-2);
+  --ListControl-item-onActive-onHover-bg: var(--color-bg-2);
+  --ColorPicker-onHover-bg: var(--color-bg-2);
+  --ColorPicker-bg: var(--color-bg-2);
+  --DatePicker-onHover-bg: var(--color-bg-2);
+  --inputDate-active-bg-color: var(--color-bg-2);
+  --DatePicker-bg: var(--color-bg-2);
+  --InputGroup-select-bg: var(--color-bg-2);
+  --Form-input-bg: var(--color-bg-2);
+  --Form-input-onFocused-bg: var(--color-bg-2);
+  --Page-main-bg: var(--color-bg-2);
+  --Modal-bg: var(--color-bg-2);
+  --Modal-header-bg: var(--color-bg-2);
+  --Form-item-onError-bg: var(--color-bg-2);
+  //--PopOver-bg: var(--color-bg-2);
+  --Drawer-bg: var(--color-bg-2);
+  --Drawer-header-bg: var(--color-bg-2);
+  --Tabs-content-bg: var(--color-bg-2);
+  --Wizard-steps-bg: var(--color-bg-2);
+  --Wizard-steps-li-onActive-bg: var(--color-bg-2);
+  --Table-bg: var(--color-bg-2);
+  --DropDown-menu-bg: var(--color-bg-2);
+  --DropDown-menu-borderColor: var(--color-bg-2);
+  --checkbox-checkbox-default-bg-color: var(--color-bg-2);
+  --input-default-hover-bg-color: var(--color-bg-2);
+  --input-default-active-bg-color: var(--color-bg-2);
+  --input-addon-text-bg-color-default: var(--color-bg-2);
+  --input-addon-text-bg-color-hover: var(--color-bg-2);
+  --ListControl-item-bg: var(--color-bg-2);
+  --listSelect-base-default-bg-color: var(--color-bg-2);
+  --listSelect-base-hover-bg-color: var(--color-bg-2);
+  --listSelect-base-active-bg-color: var(--color-bg-2);
+  --ListControl-item-onHover-bg: var(--color-bg-2);
+  --ImageControl-addBtn-onHover-bg: var(--color-bg-2);
+  --ImageControl-addBtn-onActive-bg: var(--color-bg-2);
+  --ImageControl-addBtn-bg: var(--color-bg-2);
+
+  --Number-handler-bg: var(--color-bg-5);
+  --input-default-disabled-bg-color: var(--color-bg-3);
+  --button-default-disabled-bg-color: var(--color-bg-3);
+  --inputNumber-base-disabled-bg-color: var(--color-bg-3);
+  --Form-select-menu-bg: var(--color-bg-3);
+  --TreeSelect-popover-bg: var(--color-bg-3);
+  --listSelect-base-disabled-bg-color: var(--color-bg-3);
+  --select-base-disabled-bg-color: var(--color-bg-3);
+  --Form-input-onDisabled-bg: var(--color-bg-3);
+  --Form-select-menu-onHover-bg: var(--color-bg-5);
+  --transfer-base-title-bg: var(--color-bg-5);
+  --Form-select-multiple-bgColor: var(--color-bg-5);
+  --ResultBox-value--onHover-bg: var(--color-bg-5);
+  --Table-thead-bg: var(--color-fill-2);
+  --Table-thead-borderColor: var(--color-bg-2);
+  --inputNumber-enhance-leftIcon-default-bg-color: var(--color-bg-5);
+  --inputNumber-enhance-leftIcon-hover-bg-color: var(--color-bg-5);
+  --inputNumber-enhance-rightIcon-default-bg-color: var(--color-bg-5);
+  --inputNumber-enhance-rightIcon-hover-bg-color: var(--color-bg-5);
+  --Pagination-onActive-backgroundColor: var(--color-bg-5);
+  --Calendar-cell-onHover-bg: var(--color-bg-5);
+
+  --colors-neutral-line-8: var(--color-border);
+  --button-default-default-top-border-color: var(--color-border);
+  --button-default-default-bottom-border-color: var(--color-border);
+  --button-default-default-left-border-color: var(--color-border);
+  --button-default-default-right-border-color: var(--color-border);
+  --button-default-disabled-right-border-color: var(--color-border);
+  --button-default-disabled-left-border-color: var(--color-border);
+  --button-default-disabled-top-border-color: var(--color-border);
+  --button-default-disabled-bottom-border-color: var(--color-border);
+  --input-default-default-top-border-color: var(--color-border);
+  --input-default-default-bottom-border-color: var(--color-border);
+  --input-default-default-left-border-color: var(--color-border);
+  --input-default-default-right-border-color: var(--color-border);
+  --input-default-disabled-top-border-color: var(--color-border);
+  --input-default-disabled-bottom-border-color: var(--color-border);
+  --input-default-disabled-left-border-color: var(--color-border);
+  --input-default-disabled-right-border-color: var(--color-border);
+  --inputNumber-base-default-top-border-color: var(--color-border);
+  --inputNumber-base-default-bottom-border-color: var(--color-border);
+  --inputNumber-base-default-left-border-color: var(--color-border);
+  --inputNumber-base-default-right-border-color: var(--color-border);
+  --input-addon-text-top-border-color: var(--color-border);
+  --input-addon-text-bottom-border-color: var(--color-border);
+  --input-addon-text-left-border-color: var(--color-border);
+  --input-addon-text-right-border-color: var(--color-border);
+  --listSelect-base-default-top-border-color: var(--color-border);
+  --listSelect-base-default-bottom-border-color: var(--color-border);
+  --listSelect-base-default-left-border-color: var(--color-border);
+  --listSelect-base-default-right-border-color: var(--color-border);
+  --listSelect-base-disabled-top-border-color: var(--color-border);
+  --listSelect-base-disabled-bottom-border-color: var(--color-border);
+  --listSelect-base-disabled-left-border-color: var(--color-border);
+  --listSelect-base-disabled-right-border-color: var(--color-border);
+  --select-base-disabled-top-border-color: var(--color-border);
+  --select-base-disabled-bottom-border-color: var(--color-border);
+  --select-base-disabled-left-border-color: var(--color-border);
+  --select-base-disabled-right-border-color: var(--color-border);
+  --checkbox-checkbox-default-top-border-color: var(--color-border);
+  --checkbox-checkbox-default-bottom-border-color: var(--color-border);
+  --checkbox-checkbox-default-left-border-color: var(--color-border);
+  --checkbox-checkbox-default-right-border-color: var(--color-border);
+  --inputImage-base-default-top-border-color: var(--color-border);
+  --inputImage-base-default-right-border-color: var(--color-border);
+  --inputImage-base-default-bottom-border-color: var(--color-border);
+  --inputImage-base-default-left-border-color: var(--color-border);
+  --transfer-search-top-border-color: var(--color-border);
+  --transfer-search-bottom-border-color: var(--color-border);
+  --transfer-search-left-border-color: var(--color-border);
+  --transfer-search-right-border-color: var(--color-border);
+  --transfer-base-top-border-color: var(--color-border);
+  --transfer-base-bottom-border-color: var(--color-border);
+  --transfer-base-left-border-color: var(--color-border);
+  --transfer-base-right-border-color: var(--color-border);
+  --Tabs--tiled-top-border-color: var(--color-border);
+  --Tabs--tiled-bottom-border-color: var(--color-border);
+  --Tabs--tiled-left-border-color: var(--color-border);
+  --Tabs--tiled-right-border-color: var(--color-border);
+  --inputNumber-enhance-default-top-border-color: var(--color-border);
+  --inputNumber-enhance-default-bottom-border-color: var(--color-border);
+  --inputNumber-enhance-default-left-border-color: var(--color-border);
+  --inputNumber-enhance-default-right-border-color: var(--color-border);
+
+  --Number-borderColor: var(--color-border);
+  --Tabs--tiled-active-right-border-color: var(--color-border);
+  --Tabs--tiled-active-left-border-color: var(--color-border);
+  --Tabs--card-borderTopColor: var(--color-border);
+  --Drawer-footer-borderColor: var(--color-border);
+  --Drawer-header-borderColor: var(--color-border);
+  --Combo-addBtn-border: var(--color-border);
+  --Combo-addBtn-onHover-border: var(--color-border);
+  --InputGroup-button-borderColor: var(--color-border);
+  --InputGroup-select-borderColor: var(--color-border);
+  --InputGroup-addOn-borderColor: var(--color-border);
+  --DatePicker-borderColor: var(--color-border);
+  --Form-select-value-borderColor: var(--color-border);
+  --ColorPicker-borderColor: var(--color-border);
+  --Divider-color: var(--color-border);
+  --borderColor: var(--color-border);
+  --Form-input-borderColor: var(--color-border);
+  --Form-select-borderColor: var(--color-border);
+  --Form-input-onDisabled-borderColor: var(--color-border);
+  --Tabs-borderColor: var(--color-border);
+  --Table-borderColor: var(--color-border);
+  --Remark-borderColor: var(--color-border);
+  --Card-borderColor: var(--color-border);
+  --Table-onHover-borderColor: var(--color-border);
+
+  --button-default-default-font-color: var(--color-text-1);
+  --Page-title-color: var(--color-text-1);
+  --Panel-heading-color: var(--color-text-1);
+  --Card-heading-color: var(--color-text-1);
+  --radio-default-active-text-color: var(--color-text-1);
+  --radio-default-default-text-color: var(--color-text-1);
+  --radio-default-hover-text-color: var(--color-text-1);
+  --Form-item-color: var(--color-text-1);
+  --Form-item-fontColor: var(--color-text-1);
+  --text-color: var(--color-text-1);
+  --Form-input-color: var(--color-text-1);
+  --ResultBox-value-color: var(--color-text-1);
+  --Form-input-addOnColor: var(--color-text-1);
+  --Form-select-menu-color: var(--color-text-1);
+  --checkbox-checkbox-default-color: var(--color-text-1);
+  --ListControl-item-color: var(--color-text-1);
+  --select-base-default-option-color: var(--color-text-1);
+  --Form-select-menu-onHover-color: var(--color-text-1);
+  --select-multiple-color: var(--color-text-1);
+  --DatePicker-color: var(--color-text-1);
+  --inputDate-hover-color: var(--color-text-1);
+  --inputDate-default-color: var(--color-text-1);
+  --inputDate-active-color: var(--color-text-1);
+  --InputGroup-select-arrowColor: var(--color-text-1);
+  --InputGroup-select-color: var(--color-text-1);
+  --transfer-search-font-color: var(--color-text-1);
+  --transfer-base-title-font-color: var(--color-text-1);
+  --Form-select-color: var(--color-text-1);
+  --Form-select-onFocused-color: var(--color-text-1);
+  --select-tree-color: var(--color-text-1);
+  --Modal-title-color: var(--color-text-1);
+  --Drawer-title-fontColor: var(--color-text-1);
+  --Tabs--line-color: var(--color-text-1);
+  --Tabs--card-color: var(--color-text-1);
+  --Tabs-color: var(--color-text-1);
+  --Tabs--tiled-active-color: var(--color-text-1);
+  --Tabs--tiled-color: var(--color-text-1);
+  --Tabs--tiled-hover-color: var(--color-text-1);
+  --Tabs--vertical-color: var(--color-text-1);
+  --Wizard-steps-li-onActive-color: var(--color-text-1);
+  --Table-thead-color: var(--color-text-1);
+  --collapse-default-header-color: var(--color-text-1);
+  --Table-color: var(--color-text-1);
+  --Table-onHover-color: var(--color-text-1);
+  --inputNumber-enhance-leftIcon-default-color: var(--color-text-1);
+  --inputNumber-enhance-rightIcon-default-color: var(--color-text-1);
+  --DropDown-menuItem-color: var(--color-text-1);
+
+  --Panel-heading-fontSize: 16px;
+  --Page-title-fontSize: 20px;
+  --Page-title-fontWeight: 600;
+
+  color: var(--color-text-1);
+}
+
+body[arco-theme='dark'] {
+  --ResultBox-value-bg: var(--color-bg-5);
+  --Form-select-value-bgColor: var(--color-bg-5);
+  --Tree-item-onChekced-bg: var(--color-bg-5);
+  --Tree-item-onHover-bg-pure: var(--color-bg-5);
+  --Tabs--card-bg: var(--color-bg-5);
+  --Tabs--chrome-bg: var(--color-bg-5);
+  --Tabs--vertical-bg: var(--color-bg-5);
+  --Property-title-bg: var(--color-bg-5);
+  --Property-label-bg: var(--color-bg-5);
+  --DropDown-menuItem-onHover-bg: var(--color-bg-5);
+  --Table-onHover-bg: var(--color-bg-5);
+  --Table-onChecked-bg: var(--color-bg-5);
+  --Table-onChecked-borderColor: var(--color-border);
+  --Tag-default-color: var(--color-bg-5);
+  --Tag-fontColor: var(--color-text-1);
+  --InputGroup-select-onFocused-bg: var(--color-bg-2);
+  --switch-default-off-slider-color: var(--color-text-1);
+  --switch-default-on-slider-color: var(--color-text-1);
+  --Alert--info-color: var(--color-bg-2);
+
+  .cxd-Property > table > tbody > tr > td, .cxd-Property > table > tbody > tr > th {
+    background: var(--color-bg-2);
+  }
+
+  .cxd-DateRangePicker-rangers {
+    background: var(--color-bg-5);
+  }
+}
+
+.cxd-Page-header {
+  display: flex;
+  align-items: end;
+  padding: 0 0 var(--Page-header-paddingY) 0;
+}
+
+.cxd-Page {
+  height: auto;
+  background: transparent;
+}
+
+.cxd-Page-content {
+  padding: 0;
+}
+
+.cxd-Page-body {
+  padding: 0;
+}
+
+.cxd-Page-subTitle {
+  padding-left: 12px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.cxd-Page-main > .cxd-Page-header {
+  border-bottom: 0;
+}
+
+.cxd-Page-headerRow {
+  border-bottom: none;
+}
+
+.cxd-Crud {
+  padding: 15px;
+  background: var(--color-bg-2);
+  border-radius: var(--borderRadius);
+  border: none;
+}
+
+.cxd-Card {
+  box-shadow: none;
+}
+
+.cxd-Layout--folded .cxd-AsideNav-subList {
+  border-radius: var(--borderRadius);
+}
+
+.cxd-Remark > span {
+  background: var(--color-bg-2);
+}
+
+.base-filter {
+  background: var(--color-bg-2) !important;
+  box-shadow: 0 0 0 0 !important;
+  border-bottom: var(--Table-borderWidth) solid var(--color-border) !important;
+  border-radius: 0;
+}
+
+.base-filter .cxd-TextControl-input {
+  background: var(--color-bg-2);
+}
+
+.base-filter .cxd-Panel-footer {
+  background: var(--color-bg-2);
+}
+
+.cxd-Panel-footer {
+  border-width: 0;
+}
+
+.cxd-Panel-heading {
+  border-width: 0;
+  background: transparent !important;
+}
+
+.cxd-Panel {
+  border: none;
+  box-shadow: none;
+}
+
+.cxd-Panel-title, .cxd-Modal-title {
+  font-size: 16px;
+}
+
+.cxd-RichTextControl {
+  border-radius: var(--borderRadius);
+}
+
+.cxd-Image {
+  border: none;
+}
+
+.sketch-picker {
+  background: var(--color-bg-5) !important;
+}
+
+.cxd-PopOver {
+  border: none !important;
+}
+
+.cxd-ExcelControl-dropzone {
+  background: var(--color-bg-2);
+  border-color: var(--color-border);
+}
+
+textarea {
+  color: var(--color-text-1);
+}
+
+.cxd-CBGroupOrItem-body-item {
+  background: var(--color-bg-5);
+}
+
+.cxd-CBGroupOrItem-body-group.is-hover {
+  background: var(--color-bg-5);
+}
+
+.cxd-Drawer .cxd-Drawer-resizeCtrl {
+  background: var(--color-bg-2);
+}
+
+.cxd-Tabs--vertical {
+  border-color: var(--color-border);
+}
+
+.cxd-Wizard--vertical > .cxd-Wizard-step > .cxd-Wizard-steps ul li.is-active {
+  background: var(--color-bg-2);
+}
+
+.cxd-Form .cxd-Collapse-header {
+  background: var(--color-bg-2);
+  display: flex;
+  align-items: center;
+}
+
+.cxd-Collapse-header:hover {
+  background: var(--color-bg-2);
+  color: var(--color-text-1);
+}
+
+.cxd-Cards-placeholder {
+  background: var(--color-bg-2);
+}
+
+.cxd-Pagination-inputGroup input {
+  background: var(--color-bg-2);
+  color: var(--color-text-1);
+}
+
+.navbar-user:hover {
+  border: 0 !important;
+  color: var(--color-text-1) !important;
+}
+
+.navbar-user {
+  border: 0;
+  color: var(--color-text-1);
+  padding: 0;
+
+  img {
+    width: 32px;
+  }
+}
+
+.cxd-Table-toolbar {
+  padding: 0 var(--Table-toolbar-marginX) var(--Table-toolbar-marginY) var(--Table-toolbar-marginX);
+}
+
+.base-form .cxd-Card-heading {
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px var(--gap-md);
+
+  .cxd-Card-title {
+    font-size: 16px;
+  }
+}

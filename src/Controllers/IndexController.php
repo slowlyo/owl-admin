@@ -21,7 +21,7 @@ class IndexController extends AdminController
                 'meta'      => [
                     'hide'         => true,
                     'title'        => __('admin.user_setting'),
-                    'icon'         => 'carbon:user-avatar',
+                    'icon'         => 'fa fa-circle-user',
                     'singleLayout' => 'basic',
                 ],
             ],
@@ -49,7 +49,7 @@ class IndexController extends AdminController
             'component' => 'basic',
             'meta'      => [
                 'title' => __('admin.developer'),
-                'icon'  => 'fluent:window-dev-tools-20-regular',
+                'icon'  => 'fa fa-code',
             ],
             'children'  => [
                 [
@@ -58,7 +58,7 @@ class IndexController extends AdminController
                     'component' => 'amis',
                     'meta'      => [
                         'title' => __('admin.code_generator'),
-                        'icon'  => 'material-symbols:code-rounded',
+                        'icon'  => 'fa fa-file-code',
                     ],
                 ],
                 [
@@ -67,7 +67,7 @@ class IndexController extends AdminController
                     'component' => 'amis',
                     'meta'      => [
                         'title' => __('admin.extensions.menu'),
-                        'icon'  => 'material-symbols:extension-outline-rounded',
+                        'icon'  => 'fa fa-puzzle-piece',
                     ],
                 ],
                 [
@@ -76,7 +76,7 @@ class IndexController extends AdminController
                     'component' => 'amis',
                     'meta'      => [
                         'title' => __('admin.terminal'),
-                        'icon'  => 'tabler:terminal-2',
+                        'icon'  => 'fa fa-terminal',
                     ],
                 ],
             ],
@@ -89,7 +89,6 @@ class IndexController extends AdminController
             'assets'   => Admin::getAssets(),
             'app_name' => config('admin.name'),
             'locale'   => config('app.locale'),
-            'footer'   => config('admin.footer'),
             'layout'   => config('admin.layout'),
             'logo'     => url(config('admin.logo')),
 

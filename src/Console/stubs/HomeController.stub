@@ -17,10 +17,6 @@ use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class HomeController extends AdminController
 {
-    protected string $queryPath = 'dashboard';
-
-    protected string $pageTitle = '首页';
-
     public function index(): JsonResponse|JsonResource
     {
         $page = $this->basePage()->css($this->css())->body([

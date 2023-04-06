@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  box-sizing: border-box;
+  background-color: var(--color-bg-2);
+  height: 100%;
+}
+
+.round {
+  :global(.arco-input-inner-wrapper) {
+    border-radius: 16px;
+  }
+
+  svg {
+    font-size: 16px;
+  }
+}
+
+.dropdown-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  vertical-align: text-bottom;
+}
+
+.fixed-settings {
+  position: fixed;
+  top: 280px;
+  right: 0px;
+
+  svg {
+    font-size: 18px;
+    vertical-align: -4px;
+  }
+}

@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Renderers\Icon;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Slowlyo\OwlAdmin\Renderers\Dialog;
-use Slowlyo\OwlAdmin\Renderers\SvgIcon;
 use Slowlyo\OwlAdmin\Renderers\Operation;
 use Slowlyo\OwlAdmin\Renderers\TableColumn;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
@@ -20,15 +20,6 @@ use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 class AdminMenuController extends AdminController
 {
     protected string $serviceName = AdminMenuService::class;
-
-    protected string $pageTitle;
-
-    public function __construct()
-    {
-        $this->pageTitle = __('admin.admin_menus');
-
-        parent::__construct();
-    }
 
     public function list(): Page
     {
@@ -58,7 +49,7 @@ class AdminMenuController extends AdminController
                     ->type('flex')
                     ->justify('start')
                     ->items([
-                        SvgIcon::make()->icon('${icon}')->className('mr-1 text-15px'),
+                        Icon::make()->icon('${icon}')->className('mr-1 text-15px'),
                         '${icon}',
                     ]),
                 TableColumn::make()->label(__('admin.admin_menu.url'))->name('url'),
@@ -97,7 +88,7 @@ class AdminMenuController extends AdminController
                     ->label(__('admin.admin_menu.icon'))
                     ->description(
                         __('admin.admin_menu.icon_description') .
-                        '<a href="https://icones.js.org/collection/all" target="_blank"> https://icones.js.org</a>'
+                        '<a href="https://fontawesome.com/search" target="_blank"> https://fontawesome.com/search</a>'
                     ),
             ]),
             GroupControl::make()->body([

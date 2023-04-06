@@ -30,9 +30,6 @@ abstract class AdminController extends Controller
     /** @var string|mixed $adminPrefix 路由前缀 */
     protected string $adminPrefix;
 
-    /** @var string $pageTitle 页面标题 */
-    protected string $pageTitle;
-
     /** @var bool $isCreate 是否是新增页面, 页面模式时生效 */
     protected bool $isCreate = false;
 
@@ -137,13 +134,14 @@ abstract class AdminController extends Controller
     {
         $this->isCreate = true;
 
-        $form = $this->form(false)->api($this->getStorePath());
+        $form = amisMake()
+            ->Card()
+            ->className('base-form')
+            ->header(['title' => __('admin.create')])
+            ->toolbar([$this->backButton()])
+            ->body($this->form(false)->api($this->getStorePath()));
 
-        $page = $this->basePage()->body($form)->toolbar([$this->backButton()]);
-
-        if (!$this->isTabMode()) {
-            $page = $page->subTitle(__('admin.create'));
-        }
+        $page = $this->basePage()->body($form);
 
         return $this->response()->success($page);
     }
@@ -175,11 +173,14 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getDetail($id));
         }
 
-        $page = $this->basePage()->toolbar([$this->backButton()])->body($this->detail());
+        $detail = amisMake()
+            ->Card()
+            ->className('base-form')
+            ->header(['title' => __('admin.detail')])
+            ->body($this->detail())
+            ->toolbar([$this->backButton()]);
 
-        if (!$this->isTabMode()) {
-            $page = $page->subTitle(__('admin.detail'));
-        }
+        $page = $this->basePage()->body($detail);
 
         return $this->response()->success($page);
     }
@@ -201,13 +202,16 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getEditData($id));
         }
 
-        $form = $this->form(true)->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
+        $form = amisMake()
+            ->Card()
+            ->className('base-form')
+            ->header(['title' => __('admin.edit')])
+            ->toolbar([$this->backButton()])
+            ->body(
+                $this->form(true)->api($this->getUpdatePath())->initApi($this->getEditGetDataPath())
+            );
 
-        $page = $this->basePage()->toolbar([$this->backButton()])->body($form);
-
-        if (!$this->isTabMode()) {
-            $page = $page->subTitle(__('admin.edit'));
-        }
+        $page = $this->basePage()->body($form);
 
         return $this->response()->success($page);
     }

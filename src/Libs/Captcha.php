@@ -79,9 +79,9 @@ class Captcha
         for ($i = 0; $i < $this->codeNum; $i++) {
             $color = imagecolorallocate($this->im, rand(0, 150), rand(0, 150), rand(0, 150));
             $x     = floor($this->width / $this->codeNum) * $i + 3;
-            $y     = rand(15, $this->height - 5);
+            $y     = rand(16, $this->height - 5);
             // 更大的字体
-            imagettftext($this->im, 15, rand(-30, 30), $x, $y, $color, $this->font, $this->code[$i]);
+            imagettftext($this->im, 16, rand(-30, 30), $x, $y, $color, $this->font, $this->code[$i]);
         }
     }
 

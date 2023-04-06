@@ -29,17 +29,10 @@ class CodeGeneratorController extends AdminController
     public function index(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
         $page = Page::make()
-            ->title(__('admin.code_generator'))
             ->css([
                 '.amis-scope .cxd-Table-content' => ['padding-bottom' => '15px'],
             ])
-            ->body($this->form())
-            ->remark(
-                __('admin.code_generators.remark1') .
-                "<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>" .
-                __('admin.code_generators.remark2') .
-                "</a>, " . __('admin.code_generators.remark3')
-            );
+            ->body($this->form());
 
         return $this->response()->success($page);
     }
@@ -206,7 +199,17 @@ class CodeGeneratorController extends AdminController
                         ->required(true),
                     TextControl::make()
                         ->name('additional')
-                        ->label(__('admin.code_generators.extra_params'))
+                        ->label(
+                            amisMake()->TooltipWrapper()->body([
+                                __('admin.code_generators.extra_params'),
+                                amisMake()->Icon()->icon('fa fa-circle-question')->className('pl-2'),
+                            ])->content(
+                                __('admin.code_generators.remark1') .
+                                "<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>" .
+                                __('admin.code_generators.remark2') .
+                                "</a>, " . __('admin.code_generators.remark3')
+                            )
+                        )
                         ->width(160)
                         ->size('sm'),
                     CheckboxControl::make()

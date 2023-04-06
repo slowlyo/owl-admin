@@ -23,15 +23,6 @@ class AdminPermissionController extends AdminController
 {
     protected string $serviceName = AdminPermissionService::class;
 
-    protected string $pageTitle;
-
-    public function __construct()
-    {
-        $this->pageTitle = __('admin.admin_permissions');
-
-        parent::__construct();
-    }
-
     public function list(): Page
     {
         $autoBtn = '';

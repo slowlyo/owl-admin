@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Schema;
 
 if (!function_exists('admin_url')) {
-    function admin_url($path = null)
+    function admin_url($path = null, $needPrefix = false)
     {
-        return url(config('admin.route.prefix') . '/' . trim($path, '/'));
+        $prefix = $needPrefix ? config('admin.route.prefix') : '';
+
+        return $prefix . '/' . trim($path, '/');
     }
 }
 

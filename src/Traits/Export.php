@@ -64,10 +64,6 @@ trait Export
      */
     protected function exportFileName()
     {
-        if ($this->pageTitle) {
-            return $this->pageTitle;
-        }
-
         return strtolower(str_replace('Controller', '', class_basename($this)));
     }
 }

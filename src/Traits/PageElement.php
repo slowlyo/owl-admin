@@ -2,7 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Traits;
 
-use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\Button;
@@ -17,32 +16,13 @@ use Slowlyo\OwlAdmin\Renderers\DialogAction;
 trait PageElement
 {
     /**
-     * 是否为tab模式
-     *
-     * @return array|\ArrayAccess|mixed
-     */
-    protected function isTabMode()
-    {
-        $setting = app('admin.setting')->get('system_theme_setting');
-
-        return Arr::get(json_decode($setting, true), 'tab.visible', false);
-    }
-
-    /**
      * 基础页面
      *
      * @return Page
      */
     protected function basePage(): Page
     {
-        $page = Page::make()->className('m:overflow-auto');
-
-        // 如果不是tab模式，添加标题
-        if (!$this->isTabMode()) {
-            $page = $page->title($this->pageTitle);
-        }
-
-        return $page;
+        return Page::make()->className('m:overflow-auto');
     }
 
     /**
@@ -52,10 +32,6 @@ trait PageElement
      */
     protected function backButton(): OtherAction|null
     {
-        if ($this->isTabMode()) {
-            return null;
-        }
-
         return OtherAction::make()
             ->label(__('admin.back'))
             ->icon('fa-solid fa-chevron-left')
@@ -155,7 +131,6 @@ trait PageElement
             ->label(__('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
-            ->className('text-danger')
             ->actionType('ajax')
             ->confirmText(__('admin.confirm_delete'))
             ->api($this->getDeletePath());
@@ -267,13 +242,7 @@ trait PageElement
      */
     protected function baseList($crud): Page
     {
-        $list = $this->basePage()->body($crud);
-
-        if (!$this->isTabMode()) {
-            $list = $list->subTitle(__('admin.list'));
-        }
-
-        return $list;
+        return $this->basePage()->body($crud);
     }
 
     /**

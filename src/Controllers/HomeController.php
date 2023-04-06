@@ -16,8 +16,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class HomeController extends AdminController
 {
-    protected string $pageTitle = '首页';
-
     public function index(): JsonResponse|JsonResource
     {
         $page = $this->basePage()->css($this->css())->body([
@@ -264,13 +262,13 @@ HTML
     private function css(): array
     {
         return [
-            '.amis-scope .clear-card-mb'                 => [
+            '.clear-card-mb'                 => [
                 'margin-bottom' => '0 !important',
             ],
-            '.amis-scope .cxd-Image'                     => [
+            '.cxd-Image'                     => [
                 'border' => '0',
             ],
-            '.amis-scope .bg-blingbling'                 => [
+            '.bg-blingbling'                 => [
                 'color'             => '#fff',
                 'background'        => 'linear-gradient(to bottom right, #2C3E50, #FD746C, #FF8235, #ffff1c, #92FE9D, #00C9FF, #a044ff, #e73827)',
                 'background-repeat' => 'no-repeat',
@@ -282,7 +280,7 @@ HTML
                   50%{background-position:100% 100%}
                   100%{background-position:0% 0%}',
             ],
-            '.amis-scope .bg-blingbling .cxd-Card-title' => [
+            '.bg-blingbling .cxd-Card-title' => [
                 'color' => '#fff',
             ],
         ];

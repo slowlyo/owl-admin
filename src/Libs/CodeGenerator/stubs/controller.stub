@@ -16,8 +16,6 @@ class {{ ClassName }} extends AdminController
 {
     protected string $serviceName = {{ ServiceName }}::class;
 
-    protected string $pageTitle = '{{ PageTitle }}';
-
     public function list(): Page
     {
         $crud = $this->baseCRUD()

@@ -11,15 +11,6 @@ class AdminRoleController extends AdminController
 {
     protected string $serviceName = AdminRoleService::class;
 
-    protected string $pageTitle;
-
-    public function __construct()
-    {
-        $this->pageTitle = __('admin.admin_roles');
-
-        parent::__construct();
-    }
-
     public function list(): Page
     {
         $crud = $this->baseCRUD()

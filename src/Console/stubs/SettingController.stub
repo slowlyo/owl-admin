@@ -12,10 +12,6 @@ use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class SettingController extends AdminController
 {
-    protected string $queryPath = 'system/settings';
-
-    protected string $pageTitle = '系统设置';
-
     public function index()
     {
         $page = $this->basePage()->body([

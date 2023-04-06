@@ -29,13 +29,6 @@ use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class ExtensionController extends AdminController
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->pageTitle = __('admin.extensions.page_title');
-    }
-
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
      * @throws \Psr\Container\ContainerExceptionInterface

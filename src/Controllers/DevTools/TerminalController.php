@@ -107,7 +107,7 @@ class TerminalController extends AdminController
                                 ->showCloseButton(true)
                                 ->body('此功能无法保证命令一定执行成功，如需保证命令执行成功，请使用命令行工具！<br> 输出有时可能会很慢, 让子弹飞一会儿~   (如果太久没有输出, 可能是命令执行失败了, 请自行检查命令是否被执行)'),
                             amisMake()->Log()->className('mt-3')->height(600)->source([
-                                'url'        => admin_url('dev_tools/terminal/exec?uuid=${uuid}'),
+                                'url'        => admin_url('dev_tools/terminal/exec?uuid=${uuid}', true),
                                 'expression' => '${uuid}',
                                 'method'     => 'post',
                                 'headers'    => ['Authorization' => 'Bearer ' . request()->bearerToken(),],

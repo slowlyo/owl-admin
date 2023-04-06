@@ -10,9 +10,6 @@ return [
     // 默认头像
     'default_avatar' => '/admin/default-avatar.png',
 
-    // 底部信息
-    'footer'         => '© 2023 <a href="https://gitee.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
-
     'directory' => app_path('Admin'),
 
     'bootstrap' => app_path('Admin/bootstrap.php'),
@@ -70,8 +67,6 @@ return [
 
     'layout' => [
         'header' => [
-            // 是否显示 [搜索] 按钮
-            'search'       => true,
             // 是否显示 [全屏] 按钮
             'full_screen'  => true,
             // 是否显示 [主题模式] 按钮
@@ -79,5 +74,7 @@ return [
             // 是否显示 [主题配置] 按钮
             'theme_config' => true,
         ],
+        // 底部信息
+        'footer'         => '© 2023 <a href="https://gitee.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
     ],
 ];

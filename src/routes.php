@@ -7,6 +7,7 @@ use Slowlyo\OwlAdmin\Controllers;
     'prefix'     => config('admin.route.prefix'),
     'middleware' => config('admin.route.middleware'),
 ], function (\Illuminate\Routing\Router $router) {
+    $router->get('/login', [Controllers\AuthController::class, 'loginPage']);
     $router->post('/login', [Controllers\AuthController::class, 'login']);
     $router->get('/logout', [Controllers\AuthController::class, 'logout']);
     $router->get('/current-user', [Controllers\AuthController::class, 'currentUser']);
