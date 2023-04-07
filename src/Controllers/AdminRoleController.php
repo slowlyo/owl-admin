@@ -44,7 +44,7 @@ class AdminRoleController extends AdminController
             '.tree-full'                               => [
                 'overflow' => 'hidden !important',
             ],
-            '.amis-scope .cxd-TreeControl > .cxd-Tree' => [
+            '.cxd-TreeControl > .cxd-Tree' => [
                 'height'     => '100% !important',
                 'max-height' => '100% !important',
             ],

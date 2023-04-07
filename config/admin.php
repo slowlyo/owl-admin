@@ -67,6 +67,8 @@ return [
 
     'layout' => [
         'header' => [
+            // 是否显示 [刷新] 按钮
+            'refresh'      => true,
             // 是否显示 [全屏] 按钮
             'full_screen'  => true,
             // 是否显示 [主题模式] 按钮

@@ -9,7 +9,6 @@ interface RequestConfig extends AxiosRequestConfig {
 
 export default <RequestConfig>{
     baseURL: "/admin-api",
-    proxyURL: "http://owl-admin.test",
-    // proxyURL: "http://owl-admin-demo.test",
-    changeOrigin: true,
+    // proxyURL: "http://owl-admin.test",
+    // changeOrigin: true,
 }

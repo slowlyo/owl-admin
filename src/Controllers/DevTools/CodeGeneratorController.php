@@ -30,7 +30,7 @@ class CodeGeneratorController extends AdminController
     {
         $page = Page::make()
             ->css([
-                '.amis-scope .cxd-Table-content' => ['padding-bottom' => '15px'],
+                '.cxd-Table-content' => ['padding-bottom' => '15px'],
             ])
             ->body($this->form());
 

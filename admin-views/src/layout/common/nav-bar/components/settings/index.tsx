@@ -47,7 +47,7 @@ function Setting(props: SettingProps) {
             payload: {settings: defaultSettings},
         })
 
-        submit()
+        save.run({system_theme_setting: defaultSettings})
     }
 
     return (
@@ -71,7 +71,10 @@ function Setting(props: SettingProps) {
                 onCancel={() => setVisible(false)}
                 footer={
                     <>
-                        <Popconfirm position="lb" title={locale["tips"]} content={locale["settings.restoreDefault.confirm"]} onOk={resetSettings}>
+                        <Popconfirm position="lb"
+                                    title={locale["tips"]}
+                                    content={locale["settings.restoreDefault.confirm"]}
+                                    onOk={resetSettings}>
                             <Button type="primary" status="warning">
                                 {locale["settings.restoreDefault"]}
                             </Button>

@@ -1,11 +1,11 @@
 import {useEffect} from "react"
 import useLocale from "@/utils/useLocale"
 import locale from "./locale"
-import SimpleLogin from "./template/simple"
-import DefaultLogin from "./template/default"
 import {useSelector} from "react-redux"
 import {GlobalState} from "@/store"
-import AmisLogin from "@/pages/login/template/amis"
+import SimpleLogin from "./template/simple"
+import DefaultLogin from "./template/default"
+import AmisLogin from "./template/amis"
 
 const Login = () => {
     const t = useLocale(locale)

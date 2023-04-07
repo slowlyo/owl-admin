@@ -25,7 +25,7 @@ function AmisPage() {
         }
     })
 
-    registerGlobalFunction("refreshAmisPage", () => initPage.run(pathname))
+    registerGlobalFunction("refreshAmisPage", () => initPage.runAsync(pathname))
 
     useEffect(() => {
         initPage.run(pathname)

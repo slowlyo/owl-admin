@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react"
 import {Tooltip,} from "@arco-design/web-react"
-import {IconFullscreen, IconFullscreenExit, IconMoonFill, IconSunFill,} from "@arco-design/web-react/icon"
+import {IconFullscreen, IconFullscreenExit, IconMoonFill, IconRefresh, IconSunFill,} from "@arco-design/web-react/icon"
 import {useSelector} from "react-redux"
 import {GlobalState} from "@/store"
 import {GlobalContext} from "@/context"
@@ -21,6 +21,7 @@ function Navbar() {
     const t = useLocale()
     const {userInfo, settings, appSettings} = useSelector((state: GlobalState) => state)
     const {theme, setTheme} = useContext(GlobalContext)
+    const [refreshing, setRefreshing] = useState(false)
 
     const [fullScreen, setFullScreen] = useState(document.fullscreenElement != null)
     const toggleFullScreen = () => {
@@ -81,16 +82,25 @@ function Navbar() {
                 )}
 
                 <ul className="flex">
+                    {/* 刷新 */}
+                    {appSettings?.layout?.header?.refresh && (
+                        <li className="pr-8px flex item-center">
+                            <Tooltip content={t["settings.refresh"]}>
+                                <IconButton className={refreshing && styles.rotate}
+                                            icon={<IconRefresh/>}
+                                            onClick={() => {
+                                                setRefreshing(true)
+                                                window.$owl.refreshAmisPage().then(() => {
+                                                    setTimeout(() => setRefreshing(false), 500)
+                                                })
+                                            }}/>
+                            </Tooltip>
+                        </li>
+                    )}
                     {/* 全屏 */}
                     {appSettings?.layout?.header?.full_screen && (
-                        <li className="px-8px flex item-center">
-                            <Tooltip
-                                content={
-                                    fullScreen
-                                        ? t["settings.fullscreen.exit"]
-                                        : t["settings.fullscreen.enter"]
-                                }
-                            >
+                        <li className="pr-8px flex item-center">
+                            <Tooltip content={fullScreen ? t["settings.fullscreen.exit"] : t["settings.fullscreen.enter"]}>
                                 <IconButton
                                     icon={fullScreen ? <IconFullscreenExit/> : <IconFullscreen/>}
                                     onClick={toggleFullScreen}
@@ -101,13 +111,7 @@ function Navbar() {
                     {/* 主题切换 */}
                     {appSettings?.layout?.header?.switch_theme && (
                         <li className="pr-8px flex item-center">
-                            <Tooltip
-                                content={
-                                    theme === "light"
-                                        ? t["settings.navbar.theme.toDark"]
-                                        : t["settings.navbar.theme.toLight"]
-                                }
-                            >
+                            <Tooltip content={theme === "light" ? t["settings.navbar.theme.toDark"] : t["settings.navbar.theme.toLight"]}>
                                 <IconButton
                                     icon={theme !== "dark" ? <IconMoonFill/> : <IconSunFill/>}
                                     onClick={() => setTheme(theme === "light" ? "dark" : "light")}
