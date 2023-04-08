@@ -11,6 +11,7 @@ import useRoute from "@/routes"
 import {useHistory} from "react-router"
 import lazyload from "@/utils/lazyload"
 import {isString} from "@/utils/is"
+import {Icon} from "@iconify/react"
 
 const ArcoSider = Layout.Sider
 
@@ -133,7 +134,7 @@ export const DoubleSider = ({stateChange}) => {
                             return (
                                 <MenuItem key={menu.path}>
                                     <div className="flex flex-col items-center text-12px line-height-12px justify-center h-full">
-                                        <i className={menu.meta.icon}></i>
+                                        <Icon icon={menu.meta.icon} className="text-18px mb-8px"/>
                                         <div className="">
                                             {menu.meta.title}
                                         </div>

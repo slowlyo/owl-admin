@@ -48,10 +48,14 @@ export const Menu = (
         return function travel(_routes: IRoute[], level, parentNode = []) {
             return _routes.map((route) => {
                 const {meta} = route
-                const titleDom = (<div className="flex items-center">
-                    <Icon icon={meta?.icon} className="mr-8px" style={{fontSize: "18px"}}/>
-                    <div> {route?.meta?.title} </div>
-                </div>)
+                const titleDom = (
+                    <div className="inline-block">
+                        <div className="flex items-center">
+                            <Icon icon={meta?.icon} className="inline-flex mr-8px" style={{fontSize: "18px"}}/>
+                            <div className="inline-flex"> {route?.meta?.title} </div>
+                        </div>
+                    </div>
+                )
 
                 const visibleChildren = (route.children || [])
 

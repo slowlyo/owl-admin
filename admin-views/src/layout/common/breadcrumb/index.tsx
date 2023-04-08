@@ -49,8 +49,14 @@ export const Breadcrumb = () => {
                 {
                     list.map((item) => (
                         <Menu.Item key={item.path}>
-                            <Icon icon={item.meta.icon} className="mr-10px" style={{fontSize: "18px"}}/>
-                            {item.meta.title}
+                            <div className="inline-block">
+                                <div className="flex items-center">
+                                    <Icon icon={item?.meta?.icon}
+                                          className="inline-flex mr-8px"
+                                          style={{fontSize: "18px"}}/>
+                                    <div className="inline-flex"> {item?.meta?.title} </div>
+                                </div>
+                            </div>
                         </Menu.Item>
                     ))
                 }
