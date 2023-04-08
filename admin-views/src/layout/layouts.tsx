@@ -13,10 +13,9 @@ export default function ({mode}: { mode: string }) {
     const [collapsed, setCollapsed] = useState<boolean>(false)
     const {settings} = useSelector((state: GlobalState) => state)
 
-    const extraWidth = settings.layoutMode == "double" ? 60 : 0
+    const extraWidth = mode == "double" ? 60 : 0
     const navbarPadding = collapsed ? extraWidth + 60 : extraWidth + settings.menuWidth
 
-    // default / top / left
     return (
         <>
             {(mode === "left" || mode === "double") && (

@@ -3,32 +3,10 @@ import {useHistory} from "react-router-dom"
 import {Menu as ArcoMenu} from "@arco-design/web-react"
 import qs from "query-string"
 import useRoute, {IRoute} from "@/routes"
-import {isArray, isString} from "@/utils/is"
-import lazyload from "@/utils/lazyload"
+import {getFlattenRoutes} from "@/routes/helpers"
 
 const MenuItem = ArcoMenu.Item
 const SubMenu = ArcoMenu.SubMenu
-
-function getFlattenRoutes(routes) {
-    const mod = import.meta.glob("../../../pages/**/[a-z[]*.tsx")
-    const res = []
-
-    function travel(_routes) {
-        _routes.forEach((route) => {
-            if (route.path && !route.children) {
-                if (isString(route.component)) {
-                    route.component = lazyload(mod[`../../../pages/${route.component}/index.tsx`])
-                }
-                res.push(route)
-            } else if (isArray(route.children) && route.children.length) {
-                travel(route.children)
-            }
-        })
-    }
-
-    travel(routes)
-    return res
-}
 
 export const Menu = (
     {
@@ -72,12 +50,6 @@ export const Menu = (
                 const iconDom = <i className={meta?.icon + " pr-5px"}></i>
                 const titleDom = <> {iconDom} {route?.meta?.title} </>
 
-                const getBreadcrumb = (route) => ({
-                    title: route.meta?.title,
-                    icon: route.meta?.icon,
-                    children: route.children
-                })
-
                 const visibleChildren = (route.children || [])
 
                 if (meta?.hide) {
@@ -88,7 +60,7 @@ export const Menu = (
                     menuMap.current.set(route.path, {subMenu: true})
                     return (
                         <SubMenu key={route.path} title={titleDom}>
-                            {travel(visibleChildren, level + 1, [...parentNode, getBreadcrumb(route)])}
+                            {travel(visibleChildren, level + 1, [...parentNode])}
                         </SubMenu>
                     )
                 }

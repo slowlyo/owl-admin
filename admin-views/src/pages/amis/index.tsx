@@ -19,7 +19,6 @@ function AmisPage() {
     const initPage = useRequest(initPageSchema, {
         manual: true,
         cacheKey: pathname + "-schema",
-        debounceWait: 200,
         onSuccess(res) {
             setSchema(res.data)
         }

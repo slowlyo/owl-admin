@@ -12,6 +12,7 @@ import {useRequest} from "ahooks"
 import {fetchCaptcha, fetchLogin, fetchUserInfo} from "@/service/api"
 import {setToken} from "@/utils/checkLogin"
 import registerGlobalFunction from "@/utils/registerGlobalFunction"
+import useRoute from "@/routes"
 
 export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
     const dispatch = useDispatch()
@@ -26,6 +27,7 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
 
     const [rememberPassword, setRememberPassword] = useState(!!loginParams)
     const {appSettings} = useSelector((state: GlobalState) => state)
+    const [_, defaultRoute] = useRoute()
 
     const initUserInfo = useRequest(fetchUserInfo, {
         manual: true,
@@ -49,7 +51,7 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
         // 获取用户信息
         initUserInfo.runAsync().then(() => {
             // 跳转首页
-            window.location.hash = "#/"
+            window.location.hash = "#/" + defaultRoute
         })
     }
 
@@ -106,7 +108,9 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
             formRef.current.setFieldsValue(parseParams)
         }
 
-        getCaptcha.run()
+        if (appSettings.login_captcha){
+            getCaptcha.run()
+        }
     }, [loginParams])
 
     if (onlyFunc) return null

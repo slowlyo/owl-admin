@@ -62,7 +62,8 @@ function Index() {
             setLang(res.data.locale == "zh_CN" ? "zh-CN" : "en-US")
             setTheme(res.data.system_theme_setting?.theme || store.getState().settings.theme)
             dynamicAssetsHandler(res.data.assets)
-
+        },
+        onFinally() {
             store.dispatch({
                 type: "update-inited",
                 payload: {inited: true},
@@ -104,14 +105,7 @@ function Index() {
 
     return (
         <HashRouter>
-            <ConfigProvider
-                locale={getArcoLocale()}
-                componentConfig={{
-                    Card: {bordered: false},
-                    List: {bordered: false},
-                    Table: {border: false},
-                }}
-            >
+            <ConfigProvider locale={getArcoLocale()}>
                 <Provider store={store}>
                     <GlobalContext.Provider value={contextValue}>
                         <Switch>

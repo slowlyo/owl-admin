@@ -5,6 +5,8 @@ import {fetchUserRoutes} from "@/service/api"
 import {useDispatch, useSelector} from "react-redux"
 import {GlobalState} from "@/store"
 import registerGlobalFunction from "@/utils/registerGlobalFunction"
+import {componentMount} from "@/routes/helpers"
+import {isArray} from "@/utils/is"
 
 export type IRoute = AuthParams & {
     name: string;
@@ -53,12 +55,13 @@ const useRoute = (): [IRoute[], string] => {
     const dynamicRoutes = useRequest(fetchUserRoutes, {
         manual: true,
         cacheKey: "app-dynamic-routes",
-        onSuccess: ({data}) => {
-            const routes = [...staticRoutes, ...data]
-
+        onSuccess: async ({data}) => {
+            if (!isArray(data)) return
             dispatch({
                 type: "update-routes",
-                payload: {routes,},
+                payload: {
+                    routes: await componentMount([...staticRoutes, ...data])
+                },
             })
         }
     })

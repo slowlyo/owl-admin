@@ -3,35 +3,14 @@ import {Redirect, Route, Switch} from "react-router-dom"
 import {Layout} from "@arco-design/web-react"
 import {useSelector} from "react-redux"
 import useRoute from "@/routes"
-import {isArray, isString} from "@/utils/is"
 import lazyLoad from "@/utils/lazyload"
 import {GlobalState} from "@/store"
 import styles from "./style/index.module.less"
 import {useHistory, useLocation} from "react-router"
 import QueueAnim from "rc-queue-anim"
+import {getFlattenRoutes} from "@/routes/helpers"
 
 const ArcoContent = Layout.Content
-
-function getFlattenRoutes(routes) {
-    const mod = import.meta.glob("../../../pages/**/[a-z[]*.tsx")
-    const res = []
-
-    function travel(_routes) {
-        _routes.forEach((route) => {
-            if (route.path && !route.children) {
-                if (isString(route.component)) {
-                    route.component = lazyLoad(mod[`../../../pages/${route.component}/index.tsx`])
-                }
-                res.push(route)
-            } else if (isArray(route.children) && route.children.length) {
-                travel(route.children)
-            }
-        })
-    }
-
-    travel(routes)
-    return res
-}
 
 export const Content = ({menuCollapsed}: { menuCollapsed?: boolean }) => {
     const {settings} = useSelector((state: GlobalState) => state)
@@ -74,13 +53,7 @@ export const Content = ({menuCollapsed}: { menuCollapsed?: boolean }) => {
                     <ArcoContent key={pathname} id={pathname} className="absolute w-full">
                         <Switch location={location}>
                             {flattenRoutes.map((route, index) => {
-                                return (
-                                    <Route
-                                        key={index}
-                                        path={route.path}
-                                        component={route.component}
-                                    />
-                                )
+                                return <Route key={index} path={route.path} component={route.component}/>
                             })}
                             <Route exact path="/">
                                 <Redirect to={`/${defaultRoute}`}/>
