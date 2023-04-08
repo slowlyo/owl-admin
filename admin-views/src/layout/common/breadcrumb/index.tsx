@@ -4,6 +4,7 @@ import {GlobalState} from "@/store"
 import {Breadcrumb as ArcoBreadcrumb, Menu} from "@arco-design/web-react"
 import {useHistory} from "react-router"
 import useRoute from "@/routes"
+import {Icon} from "@iconify/react"
 
 export const Breadcrumb = () => {
     const [routes] = useRoute()
@@ -48,7 +49,7 @@ export const Breadcrumb = () => {
                 {
                     list.map((item) => (
                         <Menu.Item key={item.path}>
-                            <i className={item.meta.icon + " pr-2"}></i>
+                            <Icon icon={item.meta.icon} className="mr-10px" style={{fontSize: "18px"}}/>
                             {item.meta.title}
                         </Menu.Item>
                     ))
@@ -78,7 +79,7 @@ export const Breadcrumb = () => {
                             return (
                                 <ArcoBreadcrumb.Item key={index} droplist={dropList}>
                                     {(settings.breadcrumbIcon && node.icon) && (
-                                        <i className={node.icon + " pr-2"}></i>
+                                        <Icon icon={node.icon} className="mr-10px" style={{fontSize: "18px"}}/>
                                     )}
                                     {node.title}
                                 </ArcoBreadcrumb.Item>

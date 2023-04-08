@@ -7,6 +7,7 @@ use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\Icon;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Slowlyo\OwlAdmin\Renderers\Dialog;
+use Slowlyo\OwlAdmin\Renderers\SvgIcon;
 use Slowlyo\OwlAdmin\Renderers\Operation;
 use Slowlyo\OwlAdmin\Renderers\TableColumn;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
@@ -49,7 +50,7 @@ class AdminMenuController extends AdminController
                     ->type('flex')
                     ->justify('start')
                     ->items([
-                        Icon::make()->icon('${icon}')->className('mr-1 text-15px'),
+                        SvgIcon::make()->icon('${icon}')->className('mr-2 text-lg'),
                         '${icon}',
                     ]),
                 TableColumn::make()->label(__('admin.admin_menu.url'))->name('url'),
@@ -88,7 +89,7 @@ class AdminMenuController extends AdminController
                     ->label(__('admin.admin_menu.icon'))
                     ->description(
                         __('admin.admin_menu.icon_description') .
-                        '<a href="https://fontawesome.com/search" target="_blank"> https://fontawesome.com/search</a>'
+                        '<a href="https://icones.js.org/collection/all" target="_blank"> https://icones.js.org</a>'
                     ),
             ]),
             GroupControl::make()->body([
@@ -138,7 +139,7 @@ class AdminMenuController extends AdminController
             'submitSucc' => [
                 'actions' => [
                     'actionType' => 'custom',
-                    'script'     => 'setTimeout(()=>(window.location.reload()), 1200)',
+                    'script'     => 'window.$owl.refreshRoutes()',
                 ],
             ],
         ]);

@@ -4,6 +4,7 @@ import {Menu as ArcoMenu} from "@arco-design/web-react"
 import qs from "query-string"
 import useRoute, {IRoute} from "@/routes"
 import {getFlattenRoutes} from "@/routes/helpers"
+import {Icon} from "@iconify/react"
 
 const MenuItem = ArcoMenu.Item
 const SubMenu = ArcoMenu.SubMenu
@@ -47,8 +48,10 @@ export const Menu = (
         return function travel(_routes: IRoute[], level, parentNode = []) {
             return _routes.map((route) => {
                 const {meta} = route
-                const iconDom = <i className={meta?.icon + " pr-5px"}></i>
-                const titleDom = <> {iconDom} {route?.meta?.title} </>
+                const titleDom = (<div className="flex items-center">
+                    <Icon icon={meta?.icon} className="mr-8px" style={{fontSize: "18px"}}/>
+                    <div> {route?.meta?.title} </div>
+                </div>)
 
                 const visibleChildren = (route.children || [])
 

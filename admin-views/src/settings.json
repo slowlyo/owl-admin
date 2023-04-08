@@ -8,9 +8,9 @@
   "theme": "light",
   "siderTheme": "light",
   "topTheme": "light",
-  "animateInType": "scale",
+  "animateInType": "alpha",
   "animateInDuration": 550,
-  "animateOutType": "right",
+  "animateOutType": "alpha",
   "animateOutDuration": 450,
   "loginTemplate": "default"
 }

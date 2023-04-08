@@ -21,7 +21,7 @@ class IndexController extends AdminController
                 'meta'      => [
                     'hide'         => true,
                     'title'        => __('admin.user_setting'),
-                    'icon'         => 'fa fa-circle-user',
+                    'icon'         => 'material-symbols:manage-accounts',
                     'singleLayout' => 'basic',
                 ],
             ],
@@ -49,7 +49,7 @@ class IndexController extends AdminController
             'component' => 'basic',
             'meta'      => [
                 'title' => __('admin.developer'),
-                'icon'  => 'fa fa-code',
+                'icon'  => 'fluent:window-dev-tools-20-regular',
             ],
             'children'  => [
                 [
@@ -58,7 +58,7 @@ class IndexController extends AdminController
                     'component' => 'amis',
                     'meta'      => [
                         'title' => __('admin.code_generator'),
-                        'icon'  => 'fa fa-file-code',
+                        'icon'  => 'ic:baseline-code',
                     ],
                 ],
                 [
@@ -67,7 +67,7 @@ class IndexController extends AdminController
                     'component' => 'amis',
                     'meta'      => [
                         'title' => __('admin.extensions.menu'),
-                        'icon'  => 'fa fa-puzzle-piece',
+                        'icon'  => 'ion:extension-puzzle-outline',
                     ],
                 ],
                 [
@@ -76,7 +76,7 @@ class IndexController extends AdminController
                     'component' => 'amis',
                     'meta'      => [
                         'title' => __('admin.terminal'),
-                        'icon'  => 'fa fa-terminal',
+                        'icon'  => 'teenyicons:terminal-outline',
                     ],
                 ],
             ],

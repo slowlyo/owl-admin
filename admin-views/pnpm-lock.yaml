@@ -10,6 +10,7 @@ specifiers:
   '@arco-themes/react-amis-design': ^0.0.5
   '@arco-themes/react-arco-pro': ^0.0.7
   '@fortawesome/fontawesome-free': ^6.3.0
+  '@iconify/react': ^4.1.0
   '@loadable/component': ^5.13.2
   '@svgr/webpack': ^5.5.0
   '@turf/turf': ^6.5.0
@@ -66,6 +67,7 @@ dependencies:
   '@arco-themes/react-amis-design': 0.0.5_7i2a3jlfudjwv4qjzxr3uxbiwi
   '@arco-themes/react-arco-pro': 0.0.7_7i2a3jlfudjwv4qjzxr3uxbiwi
   '@fortawesome/fontawesome-free': 6.4.0
+  '@iconify/react': 4.1.0_react@17.0.2
   '@loadable/component': 5.15.3_react@17.0.2
   '@turf/turf': 6.5.0
   ahooks: 3.7.6_react@17.0.2
@@ -1825,9 +1827,17 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@iconify/react/4.1.0_react@17.0.2:
+    resolution: {integrity: sha512-Mf72i3TNNKpKCKxmo7kzqyrUdCgaoljpqtWmtqpqwyxoV4ukhnDsSRNLhf2yBnqGr3cVZsdj/i0FMpXIY0Qk0g==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 17.0.2
+    dev: false
+
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.1.5:
     resolution: {integrity: sha512-6MvDI+I6QMvXn5rK9KQGdpEE4mmLTcuQdLZEiX5N+uZB+vc4Yw9K1OtnOgkl8mp4d9X0UrILREyZgF1NUwUt+Q==}
