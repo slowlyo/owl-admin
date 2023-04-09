@@ -15,7 +15,6 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 - 基于 amis 以 json 的方式构建页面，减少前端开发工作量，提升开发效率。
 - 在 amis 100多个组件都不满足的情况下, 可自行开发前端。
 - 框架为前后端分离 (不用再因为框架而束手束脚~)。
-- 前端基于 Soybean Admin 使用最新流行技术栈(Vue3、Vite3、TS、NaiveUI和UnoCSS等)。
 
 
 ## 文档
@@ -105,14 +104,3 @@ php artisan admin:install
 > 或者在 `laravel` 目录执行 `php artisan serve` <br>
 > 在浏览器打开 `http://localhost/admin` 即可访问 <br>
 > 初始账号密码都是 `admin`
-
-## 鸣谢
-
-***
-
-- [Laravel](https://laravel.com)
-- [Soybean Admin](https://github.com/honghuangdc/soybean-admin)
-- [amis](https://github.com/baidu/amis)
-- [Laravel-admin](https://www.laravel-admin.org/)
-- [Dcat Admin](https://github.com/jqhph/dcat-admin)
-- [Amis Admin](https://github.com/SmallRuralDog/amis-admin)
