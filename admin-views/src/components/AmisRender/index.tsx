@@ -14,8 +14,13 @@ const AmisRender = ({schema}) => {
     const history = useHistory()
     const {appSettings} = useSelector(({appSettings}: GlobalState) => ({appSettings}))
 
+    const localeMap = {
+        "zh_CN": "zh-CN",
+        "en": "en-US"
+    }
+
     const props = {
-        locale: appSettings.locale == "en" ? "en-US" : appSettings.locale
+        locale: localeMap[appSettings?.locale || "zh_CN"] || "zh-CN",
     }
 
     const options = {
