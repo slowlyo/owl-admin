@@ -54,10 +54,13 @@ export const Menu = (
             return _routes.map((route) => {
                 const {meta} = route
                 const titleDom = (
-                    <div className="inline-block">
+                    <div className="inline-block w-full">
                         <div className="flex items-center">
-                            <Icon icon={meta?.icon} className="inline-flex mr-8px" style={{fontSize: "18px"}}/>
-                            <div className="inline-flex"> {route?.meta?.title} </div>
+                            <div className="inline-flex mr-8px">
+                                <Icon icon={meta?.icon} style={{fontSize: "18px"}}/>
+                            </div>
+                            <div className="inline-flex overflow-hidden" style={{
+                            }}> {route?.meta?.title} </div>
                         </div>
                     </div>
                 )
