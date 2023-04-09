@@ -82,15 +82,16 @@ export const DoubleSider = ({stateChange}) => {
     const onClickMenuItem = (path) => {
         const currentRoute = routes.find((r) => r.path === path)
 
+        if (currentRoute.is_link) {
+            window.open(currentRoute.path)
+            return
+        }
+
         setSelectedKeys([path])
         if (currentRoute?.children?.length) {
             setChildrenRoutes(currentRoute.children)
         } else {
             setChildrenRoutes([])
-            if (isString(currentRoute.component)) {
-                const mod = import.meta.glob("../../../pages/**/[a-z[]*.tsx")
-                currentRoute.component = lazyload(mod[`../../../pages/${currentRoute.component}/index.tsx`])
-            }
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore

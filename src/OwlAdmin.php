@@ -43,7 +43,8 @@ class OwlAdmin
             $list = AdminMenuService::make()->query()->orderBy('order')->get();
         } else {
             $user->load('roles.permissions.menus');
-            $list = $user->roles->pluck('permissions')->flatten()->pluck('menus')->flatten()->unique('id')->sortBy('order');
+            $list =
+                $user->roles->pluck('permissions')->flatten()->pluck('menus')->flatten()->unique('id')->sortBy('order');
         }
 
         return $this->list2Menu($list);
@@ -54,29 +55,26 @@ class OwlAdmin
         $data = [];
         foreach ($list as $key => $item) {
             if ($item['parent_id'] == $parentId) {
-                $isLink = $item['url_type'] == AdminMenu::TYPE_LINK;
-                $idStr  = "[{$item['id']}]";
-                $_temp  = [
+                $idStr = "[{$item['id']}]";
+                $_temp = [
                     'name'      => $parentName ? $parentName . '-' . $idStr : $idStr,
-                    'path'      => $isLink ? '/_link' : $item['url'],
+                    'path'      => $item['url'],
                     'component' => 'amis',
                     'is_home'   => $item['is_home'],
+                    'is_link'   => $item['url_type'] == AdminMenu::TYPE_LINK,
                     'meta'      => [
-                        'href'         => $isLink ? $item['url'] : '',
-                        'title'        => $item['title'],
-                        'icon'         => $item['icon'] ?? '-',
-                        'hide'         => $item['visible'] == 0,
-                        'order'        => $item['order'],
-                        'singleLayout' => $parentId != 0 ? '' : 'basic',
+                        'title' => $item['title'],
+                        'icon'  => $item['icon'] ?? '-',
+                        'hide'  => $item['visible'] == 0,
+                        'order' => $item['order'],
                     ],
                 ];
 
                 $children = $this->list2Menu($list, (int)$item['id'], $_temp['name']);
 
                 if (!empty($children)) {
-                    $_temp['component']            = 'amis';
-                    $_temp['meta']['singleLayout'] = '';
-                    $_temp['children']             = $children;
+                    $_temp['component'] = 'amis';
+                    $_temp['children']  = $children;
                 }
 
                 $data[] = $_temp;
@@ -100,10 +98,9 @@ class OwlAdmin
             'path'      => $url . $path,
             'component' => 'amis',
             'meta'      => [
-                'title'        => Arr::get($item, 'meta.title') . ' - ' . __('admin.' . $action),
-                'hide'         => true,
-                'icon'         => Arr::get($item, 'meta.icon'),
-                'singleLayout' => Arr::get($item, 'meta.singleLayout'),
+                'hide'  => true,
+                'icon'  => Arr::get($item, 'meta.icon'),
+                'title' => Arr::get($item, 'meta.title') . ' - ' . __('admin.' . $action),
             ],
         ];
 

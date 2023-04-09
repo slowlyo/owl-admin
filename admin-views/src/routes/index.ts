@@ -16,6 +16,7 @@ export type IRoute = AuthParams & {
     ignore?: boolean;
     // 路由地址
     path?: string;
+    is_link?: boolean;
     // 路由组件
     component?: string;
     meta?: {

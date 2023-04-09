@@ -41,6 +41,11 @@ export const Menu = (
     function onClickMenuItem(path) {
         const currentRoute = flattenRoutes.find((r) => r.path === path)
 
+        if (currentRoute.is_link) {
+            window.open(currentRoute.path)
+            return
+        }
+
         currentRoute.component.preload().then(() => history.push(currentRoute.path))
     }
 

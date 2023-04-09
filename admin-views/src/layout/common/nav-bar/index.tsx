@@ -45,7 +45,7 @@ function Navbar() {
         }
     })
 
-    const showLogo = settings.layoutMode == "default" || settings.layoutMode == "top"
+    const showLogo = (settings.layoutMode == "default" || settings.layoutMode == "top")
     const darkTheme = settings.topTheme == "dark"
 
     registerGlobalFunction("logout", () => logout.run())
