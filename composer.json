@@ -1,6 +1,6 @@
 {
     "name": "slowlyo/owl-admin",
-    "description": "采用 laravel、amis、vue3 打造的后台框架，拥有 120+ 种组件，只用后端代码就能实现复杂的页面效果，学习成本低，让开发者能够快速构建高效的后台管理系统。",
+    "description": "采用 laravel、amis 打造的后台框架，拥有 120+ 种组件，只用后端代码就能实现复杂的页面效果，让开发者能够快速构建高效的后台管理系统。",
     "license": "MIT",
     "authors": [
         {
