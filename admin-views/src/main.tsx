@@ -61,6 +61,7 @@ function Index() {
             }
             setLang(res.data.locale == "zh_CN" ? "zh-CN" : "en-US")
             setTheme(res.data.system_theme_setting?.theme || store.getState().settings.theme)
+            setThemeColor(store.getState().settings.themeColor)
             dynamicAssetsHandler(res.data.assets)
         },
         onFinally() {
