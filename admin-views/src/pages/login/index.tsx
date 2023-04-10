@@ -9,12 +9,17 @@ import AmisLogin from "./template/amis"
 
 const Login = () => {
     const t = useLocale(locale)
-    const {settings, inited} = useSelector((state: GlobalState) => state)
+    const {settings, inited, appSettings} = useSelector((state: GlobalState) => state)
     const loginTemplate = settings.loginTemplate || "default"
 
     useEffect(() => {
         if (window.location.hash === "#/login") {
-            document.title = t["login.form.login"]
+            let title = t["login.form.login"]
+            const titleTmp = appSettings.layout?.title
+            if(titleTmp){
+                title = titleTmp.replace(/%title%/g, title)
+            }
+            document.title = title
         }
     })
 

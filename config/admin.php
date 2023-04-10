@@ -66,6 +66,8 @@ return [
     ],
 
     'layout' => [
+        // 浏览器标题, 功能名称使用 %title% 代替
+        'title' => '%title% | OwlAdmin',
         'header' => [
             // 是否显示 [刷新] 按钮
             'refresh'      => true,

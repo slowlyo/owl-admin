@@ -13,7 +13,7 @@ import {getFlattenRoutes} from "@/routes/helpers"
 const ArcoContent = Layout.Content
 
 export const Content = ({menuCollapsed}: { menuCollapsed?: boolean }) => {
-    const {settings} = useSelector((state: GlobalState) => state)
+    const {settings, appSettings} = useSelector((state: GlobalState) => state)
 
     const [routes, defaultRoute] = useRoute()
 
@@ -34,8 +34,13 @@ export const Content = ({menuCollapsed}: { menuCollapsed?: boolean }) => {
     const location = useLocation()
 
     const setPageTitle = () => {
-        const title = flattenRoutes.find((route) => route.path === pathname)?.meta?.title
+        let title = flattenRoutes.find((route) => route.path === pathname)?.meta?.title
         if (title) {
+            const titleTmp = appSettings.layout.title
+            if(titleTmp){
+                title = titleTmp.replace(/%title%/g, title)
+            }
+
             document.title = title
         }
     }
