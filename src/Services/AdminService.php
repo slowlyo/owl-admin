@@ -24,6 +24,11 @@ abstract class AdminService
         return new $this->modelName;
     }
 
+    public function primaryKey()
+    {
+        return $this->getModel()->getKeyName();
+    }
+
     public function getTableColumns()
     {
         return Schema::connection($this->getModel()->getConnectionName())
@@ -150,6 +155,6 @@ abstract class AdminService
      */
     public function delete(string $ids): mixed
     {
-        return $this->query()->whereIn('id', explode(',', $ids))->delete();
+        return $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
     }
 }

@@ -87,9 +87,7 @@ class Generator
 
         try {
             foreach ($databases as $connectName => $value) {
-                if ($db && $db != $value['database']) {
-                    continue;
-                }
+                if ($db && $db != $value['database']) continue;
 
                 $sql = sprintf('SELECT * FROM information_schema.columns WHERE table_schema = "%s"',
                     $value['database']);
@@ -116,23 +114,28 @@ class Generator
                 });
 
                 $data[$value['database']] = $collection->groupBy('TABLE_NAME')->map(function ($v) {
-                    return collect($v)->keyBy('COLUMN_NAME')->where('COLUMN_NAME', '<>', 'id')->map(function ($v) {
-                        $v['COLUMN_TYPE'] = strtolower($v['COLUMN_TYPE']);
-                        $v['DATA_TYPE']   = strtolower($v['DATA_TYPE']);
+                    return collect($v)
+                        ->keyBy('COLUMN_NAME')
+                        ->where('COLUMN_KEY', '<>', 'PRI')
+                        ->whereNotIn('COLUMN_NAME', ['created_at', 'updated_at', 'deleted_at'])
+                        ->map(function ($v) {
+                            $v['COLUMN_TYPE'] = strtolower($v['COLUMN_TYPE']);
+                            $v['DATA_TYPE']   = strtolower($v['DATA_TYPE']);
 
-                        if (Str::contains($v['COLUMN_TYPE'], 'unsigned')) {
-                            $v['DATA_TYPE'] .= '@unsigned';
-                        }
+                            if (Str::contains($v['COLUMN_TYPE'], 'unsigned')) {
+                                $v['DATA_TYPE'] .= '@unsigned';
+                            }
 
 
-                        return [
-                            'name'     => $v['COLUMN_NAME'],
-                            'type'     => Arr::get(Generator::$dataTypeMap, $v['DATA_TYPE'], 'string'),
-                            'default'  => $v['COLUMN_DEFAULT'],
-                            'nullable' => $v['IS_NULLABLE'] == 'YES',
-                            'comment'  => $v['COLUMN_COMMENT'],
-                        ];
-                    })->values();
+                            return [
+                                'name'     => $v['COLUMN_NAME'],
+                                'type'     => Arr::get(Generator::$dataTypeMap, $v['DATA_TYPE'], 'string'),
+                                'default'  => $v['COLUMN_DEFAULT'],
+                                'nullable' => $v['IS_NULLABLE'] == 'YES',
+                                'comment'  => $v['COLUMN_COMMENT'],
+                            ];
+                        })
+                        ->values();
                 });
             }
         } catch (\Throwable $e) {

@@ -84,7 +84,9 @@ abstract class AdminController extends Controller
      */
     public function getPrimaryValue($request): mixed
     {
-        return $request->id;
+        $primaryKey = $this->service->primaryKey();
+
+        return $request->$primaryKey;
     }
 
     /**

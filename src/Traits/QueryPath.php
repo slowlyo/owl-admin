@@ -33,7 +33,7 @@ trait QueryPath
      */
     public function getDeletePath(): string
     {
-        return 'delete:' . admin_url($this->queryPath . '/${id}');
+        return 'delete:' . admin_url($this->queryPath . '/${' . $this->service->primaryKey() . '}');
     }
 
     /**
@@ -53,7 +53,7 @@ trait QueryPath
      */
     public function getEditPath(): string
     {
-        return '/' . trim($this->queryPath, '/') . '/${id}/edit';
+        return '/' . trim($this->queryPath, '/') . '/${' . $this->service->primaryKey() . '}/edit';
     }
 
     /**
@@ -68,7 +68,7 @@ trait QueryPath
         $last = collect(explode('/', $path))->last();
 
         if (!is_numeric($last)) {
-            $path .= '/${id}/edit';
+            $path .= '/${' . $this->service->primaryKey() . '}/edit';
         }
 
         return admin_url($path . '?_action=getData');
@@ -81,7 +81,7 @@ trait QueryPath
      */
     public function getShowPath(): string
     {
-        return '/' . trim($this->queryPath, '/') . '/${id}';
+        return '/' . trim($this->queryPath, '/') . '/${' . $this->service->primaryKey() . '}';
     }
 
     /**
@@ -96,7 +96,7 @@ trait QueryPath
         $last = collect(explode('/', $path))->last();
 
         if (!is_numeric($last)) {
-            $path .= '/${id}';
+            $path .= '/${' . $this->service->primaryKey() . '}';
         }
 
         return 'put:' . admin_url($path);
@@ -114,7 +114,7 @@ trait QueryPath
         $last = collect(explode('/', $this->queryPath))->last();
 
         if (!is_numeric($last)) {
-            $path .= '/${id}';
+            $path .= '/${' . $this->service->primaryKey() . '}';
         }
 
         return admin_url($path . '?_action=getData');

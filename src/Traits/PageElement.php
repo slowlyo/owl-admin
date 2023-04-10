@@ -187,6 +187,7 @@ trait PageElement
             ->affixHeader(false)
             ->filterTogglable(true)
             ->filterDefaultVisible(false)
+            ->set('primaryField', $this->service->primaryKey())
             ->api($this->getListGetDataPath())
             ->bulkActions([$this->bulkDeleteButton()])
             ->perPageAvailable([10, 20, 30, 50, 100, 200])
