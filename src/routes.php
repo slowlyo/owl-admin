@@ -74,6 +74,8 @@ use Slowlyo\OwlAdmin\Controllers;
         $router->post('extensions/save_config', [Controllers\DevTools\ExtensionController::class, 'saveConfig']);
         // 获取扩展配置表单
         $router->post('extensions/config_form', [Controllers\DevTools\ExtensionController::class, 'configForm']);
+        // 更多扩展
+        $router->post('extensions/more', [Controllers\DevTools\ExtensionController::class, 'more']);
 
         // 终端
         $router->get('terminal', [Controllers\DevTools\TerminalController::class, 'index']);

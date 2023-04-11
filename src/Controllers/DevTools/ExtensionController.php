@@ -258,6 +258,28 @@ class ExtensionController extends AdminController
     }
 
     /**
+     * 获取更多扩展
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function more()
+    {
+        $q   = request('q');
+        // 加速
+        $url = 'http://admin-packagist.dev.slowlyo.top?q=' . $q;
+
+        $result = file_get_contents($url);
+
+        // 如果哪天加速服务挂了，就用官方的
+        if (!$result) {
+            $url    = 'https://packagist.org/search.json?tags=owl-admin&per_page=15&q=' . $q;
+            $result = file_get_contents($url);
+        }
+
+        return $this->response()->success(json_decode($result, true));
+    }
+
+    /**
      * 更多扩展
      *
      * @return DrawerAction
@@ -289,7 +311,7 @@ class ExtensionController extends AdminController
                                 ])
                             )
                             ->filterDefaultVisible(false)
-                            ->api('https://packagist.org/search.json?tags=owl-admin&per_page=15&q=${keywords}')
+                            ->api('post:' . admin_url('dev_tools/extensions/more') . '?q=${keywords}')
                             ->perPage(15)
                             ->footerToolbar(['statistics', 'pagination'])
                             ->headerToolbar([
