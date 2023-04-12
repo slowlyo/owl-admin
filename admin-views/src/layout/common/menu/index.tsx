@@ -5,6 +5,7 @@ import qs from "query-string"
 import useRoute, {IRoute} from "@/routes"
 import {getFlattenRoutes} from "@/routes/helpers"
 import {Icon} from "@iconify/react"
+import styles from "./style/index.module.less"
 
 const MenuItem = ArcoMenu.Item
 const SubMenu = ArcoMenu.SubMenu
@@ -54,13 +55,12 @@ export const Menu = (
             return _routes.map((route) => {
                 const {meta} = route
                 const titleDom = (
-                    <div className="inline-block w-full">
-                        <div className="flex items-center">
-                            <div className="inline-flex mr-8px">
-                                <Icon icon={meta?.icon} style={{fontSize: "18px"}}/>
+                    <div className="inline-block w-full h-full">
+                        <div className={"flex items-center"}>
+                            <div className="inline-flex mr-8px" style={{height: "40px"}}>
+                                <Icon icon={meta?.icon} style={{fontSize: "18px"}} className="my-auto"/>
                             </div>
-                            <div className="inline-flex overflow-hidden" style={{
-                            }}> {route?.meta?.title} </div>
+                            <div className="inline-flex overflow-hidden"> {route?.meta?.title} </div>
                         </div>
                     </div>
                 )
@@ -114,6 +114,7 @@ export const Menu = (
             selectedKeys={selectedKeys}
             openKeys={openKeys}
             onClickSubMenu={(_, openKeys) => setOpenKeys(openKeys)}
+            className={styles["custom-menu"]}
         >
             {renderRoutes()(customRoutes, 1)}
         </ArcoMenu>
