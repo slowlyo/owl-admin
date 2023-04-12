@@ -21,7 +21,7 @@ function Setting(props: SettingProps) {
     const [visible, setVisible] = useState(false)
     const locale = useLocale()
     const dispatch = useDispatch()
-    const settings = useSelector((state: GlobalState) => state.settings)
+    const {settings, appSettings} = useSelector((state: GlobalState) => state)
     const {setTheme} = useContext(GlobalContext)
 
     const save = useRequest(saveSettings, {
@@ -34,7 +34,11 @@ function Setting(props: SettingProps) {
 
     const submit = () => {
         if (settings.menuWidth === 0) {
-            return Message.warning("注意! 菜单宽度不可为零")
+            if(settings.layoutMode == 'double'){
+                settings.menuWidth = appSettings.system_theme_setting.menuWidth
+            }else{
+                return Message.warning("注意! 菜单宽度不可为零")
+            }
         }
 
         save.run({system_theme_setting: settings})

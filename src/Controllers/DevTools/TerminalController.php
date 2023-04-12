@@ -19,7 +19,15 @@ class TerminalController extends AdminController
 
     public function page()
     {
-        return amisMake()->Card()->body(
+        $remind = amisMake()
+            ->Alert()
+            ->level('warning')
+            ->body('该功能旨在方便开发者调试，生成环境切记不要开启！')
+            ->showCloseButton(true)
+            ->showIcon(true);
+
+        return amisMake()->Card()->body([
+            $remind,
             amisMake()
                 ->Form()
                 ->id('terminal_form')
@@ -149,7 +157,7 @@ class TerminalController extends AdminController
                                 ]),
                         ]),
                 ]),
-        );
+        ]);
     }
 
     public function preload(Request $request)
