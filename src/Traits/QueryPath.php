@@ -23,7 +23,7 @@ trait QueryPath
      */
     public function getExportPath()
     {
-        return admin_url($this->queryPath . '?_action=export');
+        return admin_url($this->queryPath . '?_action=export', true);
     }
 
     /**

@@ -22,7 +22,8 @@ trait Export
         $ids = request()->input('_ids');
 
         // listQuery() 为列表查询条件，与获取列表数据一致
-        $query = $this->service->listQuery()->when($ids, fn($query) => $query->whereIn('id', explode(',', $ids)));
+        $query = $this->service->listQuery()
+            ->when($ids, fn($query) => $query->whereIn($this->service->primaryKey(), explode(',', $ids)));
 
         // 此处使用 laravel-excel 导出，可自行修改
         AdminExport::make($query)

@@ -262,7 +262,9 @@ trait PageElement
                 ->showCloseButton(true);
         }
 
-        $downloadPath   = admin_url('_download_export');
+        $primaryKey = $this->service->primaryKey();
+
+        $downloadPath   = '/' . admin_url('_download_export', true);
         $exportPath     = $this->getExportPath();
         $pageNoData     = __('admin.export.page_no_data');
         $selectedNoData = __('admin.export.selected_rows_no_data');
@@ -271,10 +273,10 @@ trait PageElement
 doAction([
     { actionType: "ajax", args: { api: { url: url.toString(), method: "get" } } },
     {
-        actionType: "url",
+        actionType: "custom",
         expression: "\${event.data.responseResult.responseStatus === 0}",
-        args: { "url": "{$downloadPath}", "blank": true, "params": { "path": "\${event.data.responseResult.responseData.path}" } },
-    },
+        script: "window.open('{$downloadPath}?path='+event.data.responseResult.responseData.path)"
+    }
 ])
 JS;
         $buttons        = [
@@ -294,7 +296,7 @@ JS
             ),
             amisMake()->VanillaAction()->label(__('admin.export.page'))->onEvent(
                 $event(<<<JS
-let ids = event.data.items.map(item => item.id)
+let ids = event.data.items.map(item => item.{$primaryKey})
 if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$pageNoData}" } }) }
 let url = new URL("{$exportPath}", window.location.origin)
 url.searchParams.append("_ids", ids.join(","))
@@ -307,7 +309,7 @@ JS
         if (!$disableSelectedItem) {
             $buttons[] = amisMake()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
                 $event(<<<JS
-let ids = event.data.selectedItems.map(item => item.id)
+let ids = event.data.selectedItems.map(item => item.{$primaryKey})
 if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$selectedNoData}" } }) }
 let url = new URL("{$exportPath}", window.location.origin)
 url.searchParams.append("_ids", ids.join(","))
