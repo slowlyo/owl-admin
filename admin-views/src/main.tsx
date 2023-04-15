@@ -19,6 +19,7 @@ import {fetchSettings, fetchUserInfo} from "@/service/api"
 import {useRequest} from "ahooks"
 import {setThemeColor} from "@/utils/themeColor"
 import {dynamicAssetsHandler} from "@/utils/dynamicAssets"
+import {AliveScope} from "react-activation"
 
 const store = createStore(rootReducer)
 
@@ -108,12 +109,14 @@ function Index() {
         <HashRouter>
             <ConfigProvider locale={getArcoLocale()}>
                 <Provider store={store}>
-                    <GlobalContext.Provider value={contextValue}>
-                        <Switch>
-                            <Route path="/login" component={Login}/>
-                            <Route path="/" component={PageLayout}/>
-                        </Switch>
-                    </GlobalContext.Provider>
+                    <AliveScope>
+                        <GlobalContext.Provider value={contextValue}>
+                            <Switch>
+                                <Route path="/login" component={Login}/>
+                                <Route path="/" component={PageLayout}/>
+                            </Switch>
+                        </GlobalContext.Provider>
+                    </AliveScope>
                 </Provider>
             </ConfigProvider>
         </HashRouter>

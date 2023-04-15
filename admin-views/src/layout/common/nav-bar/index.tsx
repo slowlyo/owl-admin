@@ -72,7 +72,7 @@ function Navbar() {
             borderBottomColor: darkTheme ? "#333335" : "",
         }}>
             {showLogo && <Logo/>}
-            <div className="flex flex-1 pr-20px justify-between list-none">
+            <div className="flex flex-1 pr-8px justify-between list-none">
                 {settings.layoutMode == "top" ? (
                     <div className="flex-1 overflow-hidden custom-menu">
                         <LayoutMenu mode="horizontal" theme={settings.topTheme}/>

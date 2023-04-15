@@ -67,8 +67,8 @@ return [
 
     'layout' => [
         // 浏览器标题, 功能名称使用 %title% 代替
-        'title' => '%title% | OwlAdmin',
-        'header' => [
+        'title'              => '%title% | OwlAdmin',
+        'header'             => [
             // 是否显示 [刷新] 按钮
             'refresh'      => true,
             // 是否显示 [全屏] 按钮
@@ -78,7 +78,17 @@ return [
             // 是否显示 [主题配置] 按钮
             'theme_config' => true,
         ],
+        /*
+         * keep_alive 页面缓存黑名单
+         *
+         * eg:
+         * 列表: /user
+         * 详情: /user/:id
+         * 编辑: /user/:id/edit
+         * 新增: /user/create
+         */
+        'keep_alive_exclude' => [],
         // 底部信息
-        'footer'         => '© 2023 <a href="https://gitee.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
+        'footer'             => '© 2023 <a href="https://gitee.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
     ],
 ];

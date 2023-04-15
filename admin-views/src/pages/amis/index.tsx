@@ -20,15 +20,15 @@ function AmisPage() {
         manual: true,
         cacheKey: pathname + "-schema",
         onSuccess(res) {
+            // 先清空一次, 让数据也重新加载
+            setSchema("")
             setSchema(res.data)
         }
     })
 
     registerGlobalFunction("refreshAmisPage", () => initPage.runAsync(pathname))
 
-    useEffect(() => {
-        initPage.run(pathname)
-    }, [])
+    useEffect(() => initPage.run(pathname), [])
 
     return (
         <>

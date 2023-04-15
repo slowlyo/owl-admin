@@ -21,7 +21,7 @@ const Login = () => {
             }
             document.title = title
         }
-    })
+    }, [])
 
     const template = {
         default: DefaultLogin,

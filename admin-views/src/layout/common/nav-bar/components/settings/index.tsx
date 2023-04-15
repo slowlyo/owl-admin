@@ -116,6 +116,9 @@ function Setting(props: SettingProps) {
                     title={locale["settings.content"]}
                     options={[
                         {name: "settings.theme", value: "theme", type: "select", options: ["light", "dark"]},
+                        {name: "settings.keepAlive", value: "keepAlive"},
+                        {name: "settings.enableTab", value: "enableTab"},
+                        {name: "settings.tabIcon", value: "tabIcon"},
                         {name: "settings.footer", value: "footer"},
                         {name: "settings.breadcrumb", value: "breadcrumb"},
                         {name: "settings.breadcrumbIcon", value: "breadcrumbIcon"},

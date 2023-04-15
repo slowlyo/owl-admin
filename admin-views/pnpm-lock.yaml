@@ -5,6 +5,7 @@ specifiers:
   '@arco-design/color': ^0.4.0
   '@arco-design/web-react': ^2.32.2
   '@arco-design/webpack-plugin': ^1.6.0
+  '@arco-materials/context-menu': ^1.0.0
   '@arco-plugins/vite-plugin-svgr': ^0.7.2
   '@arco-plugins/vite-react': ^1.0.5
   '@arco-themes/react-amis-design': ^0.0.5
@@ -44,6 +45,7 @@ specifiers:
   query-string: ^6.13.8
   rc-queue-anim: ^2.0.0
   react: ^17.0.2
+  react-activation: ^0.12.4
   react-color: ^2.18.1
   react-dom: ^17.0.2
   react-redux: ^7.2.6
@@ -63,6 +65,7 @@ dependencies:
   '@antv/data-set': 0.11.8
   '@arco-design/color': 0.4.0
   '@arco-design/web-react': 2.46.1_7flab2xmjtutrqlkivvio3ufby
+  '@arco-materials/context-menu': 1.0.0_eovnffixbnar674ggrakz6oa4a
   '@arco-plugins/vite-react': 1.3.3
   '@arco-themes/react-amis-design': 0.0.5_7i2a3jlfudjwv4qjzxr3uxbiwi
   '@arco-themes/react-arco-pro': 0.0.7_7i2a3jlfudjwv4qjzxr3uxbiwi
@@ -83,6 +86,7 @@ dependencies:
   query-string: 6.14.1
   rc-queue-anim: 2.0.0_sfoxds7t5ydpegc3knd667wn6m
   react: 17.0.2
+  react-activation: 0.12.4_react@17.0.2
   react-color: 2.19.3_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-redux: 7.2.9_sfoxds7t5ydpegc3knd667wn6m
@@ -399,6 +403,18 @@ packages:
       lodash: 4.17.21
       micromatch: 4.0.5
     dev: true
+
+  /@arco-materials/context-menu/1.0.0_eovnffixbnar674ggrakz6oa4a:
+    resolution: {integrity: sha512-WkwQ2GO2m7rrYP/xqj+tXi9iQfTqs4pes+bMPTHxZM8bEOwbXKc8FOTV/Ot+pdW8HPi2ThYMBRCQ1E9o7/J9fg==}
+    peerDependencies:
+      '@arco-design/web-react': ~2
+      react: '>=16'
+      react-dom: ^16.0.1
+    dependencies:
+      '@arco-design/web-react': 2.46.1_7flab2xmjtutrqlkivvio3ufby
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /@arco-plugins/vite-plugin-svgr/0.7.2_vite@2.9.15:
     resolution: {integrity: sha512-oDhLSB6Q++NQWNCSRqSC4rGQkqPejtBqmgqdyLoD3lcq5dsf1qkY15vXSd4TB56yptSTPdUIZx/sE6130mZf8w==}
@@ -3967,7 +3983,6 @@ packages:
       es-abstract: 1.21.2
       get-intrinsic: 1.2.0
       is-string: 1.0.7
-    dev: true
 
   /array-union/2.1.0:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
@@ -4539,6 +4554,17 @@ packages:
     dependencies:
       crc-32: 1.2.2
       readable-stream: 3.6.2
+    dev: false
+
+  /create-react-context/0.3.0_react@17.0.2:
+    resolution: {integrity: sha512-dNldIoSuNSvlTJ7slIKC/ZFGKexBMBrrcc+TTe1NdmROnaASuLPvqpwj9v4XS4uXZ8+YPu0sNmShX2rXI5LNsw==}
+    peerDependencies:
+      prop-types: ^15.0.0
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      gud: 1.0.0
+      react: 17.0.2
+      warning: 4.0.3
     dev: false
 
   /cropperjs/1.5.13:
@@ -5921,6 +5947,10 @@ packages:
       lodash: 4.17.21
     dev: false
 
+  /gud/1.0.0:
+    resolution: {integrity: sha512-zGEOVKFM5sVPPrYs7J5/hYEw2Pof8KCyOwyhG8sAF26mCAeUFAcYPu1mwB7hhpIP29zOIBaDqwuHdLp0jvZXjw==}
+    dev: false
+
   /gzip-size/6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
     engines: {node: '>=10'}
@@ -6382,6 +6412,14 @@ packages:
     optionalDependencies:
       graceful-fs: 4.2.11
     dev: true
+
+  /jsx-ast-utils/2.4.1:
+    resolution: {integrity: sha512-z1xSldJ6imESSzOjd3NNkieVJKRlKYSOtMG8SFyCj2FIrvSaSuli/WjpBkEzCBoR9bYYYFgqJw61Xhu7Lcgk+w==}
+    engines: {node: '>=4.0'}
+    dependencies:
+      array-includes: 3.1.6
+      object.assign: 4.1.4
+    dev: false
 
   /jsx-ast-utils/3.3.3:
     resolution: {integrity: sha512-fYQHZTZ8jSfmWZ0iyzfwiU4WDX4HpHbMCZ3gPlWYiCl3BoeOTsqKBqnTVfH2rYT7eP5c3sVbeSPHnnJOaTrWiw==}
@@ -7563,6 +7601,20 @@ packages:
       '@types/node': 10.17.60
     dev: true
 
+  /react-activation/0.12.4_react@17.0.2:
+    resolution: {integrity: sha512-6jJtnUnQBKCrWgvHkzCJP3QZAtthnhDuoPa5LJnj1+1TxS5qkh3Z74zdNZY40wMbkTsLbo6CYoS51Fx/bTM3/w==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      create-react-context: 0.3.0_react@17.0.2
+      hoist-non-react-statics: 3.3.2
+      react: 17.0.2
+      react-node-key: 0.4.0_react@17.0.2
+      szfe-tools: 0.0.0-beta.7
+    transitivePeerDependencies:
+      - prop-types
+    dev: false
+
   /react-base16-styling/0.6.0:
     resolution: {integrity: sha512-yvh/7CArceR/jNATXOKDlvTnPKPmGZz7zsenQ3jUwLzHkNUR0CvY3yGYJbWJ/nnxsL8Sgmt5cO3/SILVuPO6TQ==}
     dependencies:
@@ -7704,6 +7756,16 @@ packages:
 
   /react-lifecycles-compat/3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+    dev: false
+
+  /react-node-key/0.4.0_react@17.0.2:
+    resolution: {integrity: sha512-puiuP2QYEuNBVVvcjpUE8d8/jdAhiXHBHMmjZzQT4+fe276RMYea/tY7JoZoYlrhAX8DORLPvjySjXYJZ1m6/A==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      jsx-ast-utils: 2.4.1
+      react: 17.0.2
+      szfe-tools: 0.0.0-beta.7
     dev: false
 
   /react-overlays/5.1.1_sfoxds7t5ydpegc3knd667wn6m:
@@ -8576,6 +8638,12 @@ packages:
 
   /svgpath/2.6.0:
     resolution: {integrity: sha512-OIWR6bKzXvdXYyO4DK/UWa1VA1JeKq8E+0ug2DG98Y/vOmMpfZNj+TIG988HjfYSqtcy/hFOtZq/n/j5GSESNg==}
+    dev: false
+
+  /szfe-tools/0.0.0-beta.7:
+    resolution: {integrity: sha512-/M7+Tel2G8zapfDYZlz17hf9ViqAi/loZMfM81b5iZMyaWL/t5dajBszEBI2kyIDFzlLT4btBcq+BimFgmAHug==}
+    dependencies:
+      '@babel/runtime': 7.21.0
     dev: false
 
   /table/6.8.1:
