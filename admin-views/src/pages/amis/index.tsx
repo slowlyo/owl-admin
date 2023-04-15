@@ -34,6 +34,7 @@ function AmisPage() {
         <>
             <AmisRender schema={schema}/>
             {settings.footer && <Footer/>}
+            <div className="h-20px"></div>
         </>
     )
 }
