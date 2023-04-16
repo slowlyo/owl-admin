@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react"
 import {Layout, Menu as ArcoMenu} from "@arco-design/web-react"
 import {IconMenuFold, IconMenuUnfold,} from "@arco-design/web-react/icon"
-import {useSelector, useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {GlobalState} from "@/store"
 import qs from "query-string"
 import {Menu} from "../menu"
@@ -9,8 +9,6 @@ import styles from "./style/index.module.less"
 import Logo from "@/layout/common/Logo"
 import useRoute from "@/routes"
 import {useHistory} from "react-router"
-import lazyload from "@/utils/lazyload"
-import {isString} from "@/utils/is"
 import {Icon} from "@iconify/react"
 
 const ArcoSider = Layout.Sider

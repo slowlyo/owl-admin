@@ -9,7 +9,7 @@ import styles from "./style/index.module.less"
 import {useHistory, useLocation} from "react-router"
 import QueueAnim from "rc-queue-anim"
 import {getFlattenRoutes} from "@/routes/helpers"
-import KeepAlive from "react-activation"
+import {KeepAlive} from "react-activation"
 import TabBar from "@/layout/common/tab-bar"
 
 const ArcoContent = Layout.Content
@@ -60,14 +60,13 @@ export const Content = ({menuCollapsed}: { menuCollapsed?: boolean }) => {
                            duration={[settings.animateInDuration, settings.animateInDuration]}>
                     <ArcoContent key={pathname} id={pathname} className="absolute w-full">
                         <Switch location={location}>
-                            {flattenRoutes.map((route, index) => {
-                                const Child = route.component
-
-                                // return <Route key={index} path={route.path} component={route.component} />
-                                return <Route key={index} path={route.path} render={() => (
-                                    <KeepAlive name={route.path}
-                                               when={settings.keepAlive && appSettings.layout.keep_alive_exclude.indexOf(route.path) == -1}>
-                                        <Child/>
+                            {flattenRoutes.map(({path, component}, index) => {
+                                // return <Route key={index} path={path} component={component} />
+                                return <Route key={index} path={path} render={() => (
+                                    <KeepAlive name={path}
+                                               cacheKey={path}
+                                               when={settings.keepAlive && appSettings.layout?.keep_alive_exclude.indexOf(path) == -1}>
+                                        {React.createElement(component)}
                                     </KeepAlive>
                                 )}/>
                             })}

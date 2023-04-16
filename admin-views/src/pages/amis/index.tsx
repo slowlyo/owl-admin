@@ -14,14 +14,14 @@ function AmisPage() {
     const pathname = history.location.pathname
     const {settings} = useSelector((state: GlobalState) => state)
 
-    const [schema, setSchema] = useState("")
+    const [schema, setSchema] = useState({})
 
     const initPage = useRequest(initPageSchema, {
         manual: true,
         cacheKey: pathname + "-schema",
         onSuccess(res) {
             // 先清空一次, 让数据也重新加载
-            setSchema("")
+            setSchema({})
             setSchema(res.data)
         }
     })

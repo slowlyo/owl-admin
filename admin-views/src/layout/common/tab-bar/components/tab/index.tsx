@@ -17,7 +17,7 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
 
     if (!item) return null
 
-    const menuItem = (title, icon) => {
+    const MenuItem = (title, icon) => {
         return (
             <div className="flex items-center">
                 <Icon icon={icon} className="mr-8px text-16px"/>
@@ -29,30 +29,37 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
     const contextMenus = [
         {
             key: "close",
-            text: menuItem(t["contextMenus.close"], "mdi:close")
+            text: MenuItem(t["contextMenus.close"], "mdi:close")
         },
         {
             key: "closeOthers",
-            text: menuItem(t["contextMenus.closeOthers"], "ant-design:column-width-outlined")
+            text: MenuItem(t["contextMenus.closeOthers"], "ant-design:column-width-outlined")
         },
         {
             key: "closeLeft",
-            text: menuItem(t["contextMenus.closeLeft"], "ri:contract-left-line")
+            text: MenuItem(t["contextMenus.closeLeft"], "ri:contract-left-line")
         },
         {
             key: "closeRight",
-            text: menuItem(t["contextMenus.closeRight"], "ri:contract-right-line")
+            text: MenuItem(t["contextMenus.closeRight"], "ri:contract-right-line")
         },
         {
             key: "closeAll",
-            text: menuItem(t["contextMenus.closeAll"], "fluent:subtract-20-filled")
+            text: MenuItem(t["contextMenus.closeAll"], "fluent:subtract-20-filled")
         }
     ]
+
+    const getContextMenus = () => {
+        if (!closeable) {
+            contextMenus.shift()
+        }
+        return contextMenus as ItemType[]
+    }
 
     return (
         <>
             {item.title && (
-                <ContextMenu items={contextMenus as ItemType[]} onClickItem={menuClick}>
+                <ContextMenu items={getContextMenus()} onClickItem={menuClick}>
                     <div className={styles.tab + " " + (pathname == item.path ? styles.tabSelected : "")}
                          onClick={() => history.push(item.path)}>
                         {settings.tabIcon && <Icon icon={item.icon} className="mr-8px"/>}

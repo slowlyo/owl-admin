@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react"
-import {Tooltip,} from "@arco-design/web-react"
-import {IconFullscreen, IconFullscreenExit, IconMoonFill, IconRefresh, IconSunFill,} from "@arco-design/web-react/icon"
+import {Tooltip} from "@arco-design/web-react"
+import {IconFullscreen, IconFullscreenExit, IconMoonFill, IconRefresh, IconSunFill} from "@arco-design/web-react/icon"
 import {useSelector} from "react-redux"
 import {GlobalState} from "@/store"
 import {GlobalContext} from "@/context"
