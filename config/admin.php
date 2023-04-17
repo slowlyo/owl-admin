@@ -89,6 +89,6 @@ return [
          */
         'keep_alive_exclude' => [],
         // 底部信息
-        'footer'             => '© 2023 <a href="https://gitee.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
+        'footer'             => '<a href="https://github.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
     ],
 ];

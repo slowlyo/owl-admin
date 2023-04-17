@@ -83,7 +83,6 @@ const TabBar = () => {
                 const needCloseTabs = cachedTabs.filter((tab) => tab.path !== item.path)
 
                 closeTabs(needCloseTabs)
-
                 history.push(item.path)
                 break
             case "closeLeft":
@@ -91,12 +90,14 @@ const TabBar = () => {
                 const needCloseLeftTabs = cachedTabs.filter((tab, index) => index < currentIndex)
 
                 closeTabs(needCloseLeftTabs)
+                history.push(item.path)
                 break
             case "closeRight":
                 const currentIndex2 = cachedTabs.findIndex((tab) => tab.path === item.path)
                 const needCloseRightTabs = cachedTabs.filter((tab, index) => index > currentIndex2)
 
                 closeTabs(needCloseRightTabs)
+                history.push(item.path)
                 break
             case "closeAll":
                 closeTabs(cachedTabs)
