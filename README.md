@@ -16,9 +16,6 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 - 在 amis 100多个组件都不满足的情况下, 可自行开发前端。
 - 框架为前后端分离 (不用再因为框架而束手束脚~)。
 
-## 交流论坛(兔小巢)
-给大家提供一个可以交流的地方：[兔小巢](https://support.qq.com/product/487441)
-
 ## 演示 Demo
 [Demo 地址](http://admin-demo.slowlyo.top)
 
