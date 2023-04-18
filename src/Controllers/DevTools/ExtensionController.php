@@ -111,7 +111,7 @@ class ExtensionController extends AdminController
                     amis()->label(__('admin.extensions.card.author'))
                         ->type('tpl')
                         ->tpl('${authors[0].name} < <span class="text-info">${authors[0].email}</span> >'),
-                    amis()->label(__('admin.extensions.card.version'))->name('version'),
+                    amis()->label(__('admin.extensions.card.version'))->name('version')->visibleOn('${version}'),
                     amis()->label(__('admin.extensions.card.homepage'))
                         ->type('tpl')
                         ->tpl('<a href="${homepage}" target="_blank">${homepage | truncate:30}</a>'),

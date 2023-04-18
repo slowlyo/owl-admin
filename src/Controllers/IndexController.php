@@ -70,15 +70,6 @@ class IndexController extends AdminController
                         'icon'  => 'ion:extension-puzzle-outline',
                     ],
                 ],
-                [
-                    'name'      => 'dev_tools_terminal',
-                    'path'      => '/dev_tools/terminal',
-                    'component' => 'amis',
-                    'meta'      => [
-                        'title' => __('admin.terminal'),
-                        'icon'  => 'teenyicons:terminal-outline',
-                    ],
-                ],
             ],
         ];
     }
