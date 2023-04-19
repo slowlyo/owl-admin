@@ -31,7 +31,7 @@ class HomeController extends AdminController
                 $this->lineChart()->md(8),
                 Flex::make()->className('h-full')->items([
                     $this->clock(),
-                    $this->giteeWidget(),
+                    $this->hitokoto(),
                 ])->direction('column'),
             ]),
         ]);
@@ -40,50 +40,41 @@ class HomeController extends AdminController
     }
 
     /**
-     * gitee widget
+     * 一言
      */
-    public function giteeWidget()
+    public function hitokoto()
     {
         return Card::make()
-            ->className('h-full clear-card-mb gitee-box overflow-auto')
+            ->className('h-full clear-card-mb')
             ->body(
-                Custom::make()->id('osc-gitee-widget-tag')->onMount(<<<JS
-// 隐藏 gitee-box
-document.querySelector(".gitee-box").style.display = "none"
+                Custom::make()->html(<<<HTML
+<div class="h-full flex flex-col mt-5 py-5 px-7">
+    <div>『</div>
+    <div class="flex flex-1 items-center w-full justify-center" id="hitokoto">
+        <a class="text-dark" href="#" id="hitokoto_text" target="_blank"></a>
+    </div>
+    <div class="flex justify-end">』</div>
+</div>
+<div class="flex justify-end mt-3">
+    ——&nbsp;
+    <span id="hitokoto_from_who"></span>
+    <span>「</span>
+    <span id="hitokoto_from"></span>
+    <span>」</span>
+</div>
+HTML
 
-// 引入 gitee-widget
-const script = document.createElement("script")
-script.src = "https://gitee.com/slowlyo/owl-admin/widget_preview"
-script.async = true
-script.defer = true
-document.body.appendChild(script)
-
-// 隐藏元素
-const hideElementByClassName = (className) => {
-    const element = document.querySelector(className)
-    if (element) {
-        element.style.display = "none"
-    }
-}
-
-setTimeout(() => {
-    // 移除 gitee-box 下的 cxd-Card-body 的 padding
-    const giteeBox = document.querySelector(".gitee-box")
-    if (giteeBox) {
-        giteeBox.querySelector(".cxd-Card-body").style.padding = "0"
-    }
-
-    // 隐藏不需要的元素
-    let hideClassName = [".osc_git_info", ".osc_git_issuecommits", ".osc_git_copyright"]
-    hideClassName.forEach(className =>  hideElementByClassName(className) )
-
-    // 隐藏边框
-    const oscBorderColor = document.querySelectorAll(".osc_border_color")
-    oscBorderColor.forEach(element => element.style.borderColor = "transparent")
-
-    // 显示
-    giteeBox.style.display = "block"
-}, 1000)
+                )->onMount(<<<JS
+fetch('https://v1.hitokoto.cn?c=i')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.querySelector('#hitokoto_text')
+      hitokoto.href = `https://hitokoto.cn/?uuid=\${data.uuid}`
+      hitokoto.innerText = data.hitokoto
+      document.querySelector('#hitokoto_from_who').innerText = data.from_who
+      document.querySelector('#hitokoto_from').innerText = data.from
+    })
+    .catch(console.error)
 JS
                 )
             );
@@ -123,17 +114,17 @@ JS
                     Flex::make()->className('w-64 mt-5')->justify('space-around')->items([
                         Action::make()
                             ->level('link')
-                            ->label('Gitee')
+                            ->label('GitHub')
                             ->blank(true)
                             ->actionType('url')
                             ->blank(true)
-                            ->link('https://gitee.com/slowlyo/owl-admin'),
+                            ->link('https://github.com/slowlyo/owl-admin'),
                         Action::make()
                             ->level('link')
                             ->label('OwlAdmin 文档')
                             ->blank(true)
                             ->actionType('url')
-                            ->link('https://slowlyo.gitee.io/owl-admin-doc/'),
+                            ->link('https://learnku.com/docs/owl-admin'),
                         Action::make()
                             ->level('link')
                             ->label('Amis 文档')
