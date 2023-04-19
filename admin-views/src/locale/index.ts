@@ -82,6 +82,7 @@ const i18n = {
         "contextMenus.closeLeft": "Close Left",
         "contextMenus.closeRight": "Close Right",
         "contextMenus.closeAll": "Close All",
+        "copy.success": "Copy Success",
     },
     "zh-CN": {
         "settings.title": "页面配置",
@@ -165,6 +166,7 @@ const i18n = {
         "contextMenus.closeLeft": "关闭左侧",
         "contextMenus.closeRight": "关闭右侧",
         "contextMenus.closeAll": "关闭所有",
+        "copy.success": "复制成功",
     },
 }
 

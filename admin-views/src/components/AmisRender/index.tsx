@@ -1,17 +1,20 @@
 import React from "react"
 import "./style/index.less"
-import {render as renderAmis} from "amis"
+import {render as renderAmis, toast} from "amis"
 import {GlobalState} from "@/store"
 import {useSelector} from "react-redux"
 import {amisRequest} from "@/service/api"
 import {ToastComponent} from "amis-ui"
 import {useHistory} from "react-router"
 import {registerCustomComponents} from "./CustomComponents"
+import clipboard from "@/utils/clipboard"
+import useLocale from "@/utils/useLocale"
 
 registerCustomComponents()
 
 const AmisRender = ({schema}) => {
     const history = useHistory()
+    const locale = useLocale()
     const {appSettings} = useSelector(({appSettings}: GlobalState) => ({appSettings}))
 
     const localeMap = {
@@ -34,6 +37,10 @@ const AmisRender = ({schema}) => {
             } else {
                 history.push(location.startsWith("/") ? location : `/${location}`)
             }
+        },
+        copy: async (content) => {
+            await clipboard(content)
+            toast.success(locale["copy.success"])
         }
     }
 
