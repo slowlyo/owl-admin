@@ -340,12 +340,6 @@ class ExtensionController extends AdminController
                                     ->label('composer 安装命令')
                                     ->width(300)
                                     ->copyable(true),
-                                amisMake()->Operation()->label('操作')->buttons([
-                                    amisMake()->LinkAction()
-                                        ->label('去安装')
-                                        ->level('link')
-                                        ->link('${"/dev_tools/terminal?type=composer&action_type=require&package=" + name}'),
-                                ]),
                             ])
                     )
                     ->actions([])
