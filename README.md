@@ -1,6 +1,5 @@
 # Owl Admin
 
-***
 基于 `Laravel` 、 `amis` 开发的后台框架. 快速且灵活~
 
 ### Laravel
@@ -21,15 +20,11 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 
 ## 文档
 
-***
-
 - [《Laravel 9 中文文档》](https://learnku.com/docs/laravel/9.x/installation/12200)
 - [《amis》](https://aisuda.bce.baidu.com/amis/zh-CN/docs/index)
 - [《框架文档》](https://learnku.com/docs/owl-admin)
 
 ## 功能
-
-***
 
 - 基础后台功能
     - 后台用户管理
@@ -48,20 +43,16 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
 
 ## 截图
 
-***
 ![登录](https://slowlyo.gitee.io/static/images/owl-admin/login-page.png)
+<br>
 ![首页](https://slowlyo.gitee.io/static/images/owl-admin/home-page.png)
 
 ## 环境
-
-***
 
 - PHP >= 8.0
 - Laravel 9
 
 ## 一分钟跑起来
-
-***
 
 1. 安装 `Laravel`
 
