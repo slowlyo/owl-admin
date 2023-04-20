@@ -3,8 +3,8 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * @method self position($value) 
  * @method self icon($value) 
+ * @method self position($value) 
  */
 class IconItem extends BaseRenderer
 {

@@ -969,6 +969,11 @@ class Amis
 		return Video::make();
 	}
 
+	public function WangEditor()
+	{
+		return WangEditor::make();
+	}
+
 	public function WebComponent()
 	{
 		return WebComponent::make();

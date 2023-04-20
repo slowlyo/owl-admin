@@ -27,7 +27,12 @@ class AdminUser extends User implements AuthenticatableContract
 
     public function avatar(): Attribute
     {
-        return new Attribute(fn($value) => $value ? admin_resource_full_path($value) : url(config('admin.default_avatar')));
+        $storage = \Illuminate\Support\Facades\Storage::disk(config('admin.upload.disk'));
+
+        return Attribute::make(
+            get: fn($value) => $value ? admin_resource_full_path($value) : url(config('admin.default_avatar')),
+            set: fn($value) => str_replace($storage->url(''), '', $value)
+        );
     }
 
     protected static function boot(): void

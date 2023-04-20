@@ -39,24 +39,37 @@ trait Uploader
     /**
      * 富文本编辑器上传路径
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\UrlGenerator|string
+     * @return string
      */
     public function uploadRichPath()
     {
-        return admin_url('upload_rich');
+        return admin_url('upload_rich', true);
     }
 
     public function uploadRich()
     {
-        $file = request()->file('file');
+        $fromWangEditor = false;
+        $file           = request()->file('file');
 
         if (!$file) {
-            return $this->response()->fail(__('admin.upload_file_error'));
+            $fromWangEditor = true;
+            $file           = request()->file('wangeditor-uploaded-image');
+            if (!$file) {
+                $file = request()->file('wangeditor-uploaded-video');
+            }
+        }
+
+        if (!$file) {
+            return $this->response()->additional(['errno' => 1])->fail(__('admin.upload_file_error'));
         }
 
         $path = $file->store(config('admin.upload.directory.rich'), config('admin.upload.disk'));
 
         $link = Storage::disk(config('admin.upload.disk'))->url($path);
+
+        if ($fromWangEditor) {
+            return $this->response()->additional(['errno' => 0])->success(['url' => $link]);
+        }
 
         return $this->response()->additional(compact('link'))->success(compact('link'));
     }

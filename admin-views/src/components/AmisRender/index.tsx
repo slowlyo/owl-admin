@@ -6,11 +6,8 @@ import {useSelector} from "react-redux"
 import {amisRequest} from "@/service/api"
 import {ToastComponent} from "amis-ui"
 import {useHistory} from "react-router"
-import {registerCustomComponents} from "./CustomComponents"
 import clipboard from "@/utils/clipboard"
 import useLocale from "@/utils/useLocale"
-
-registerCustomComponents()
 
 const AmisRender = ({schema}) => {
     const history = useHistory()

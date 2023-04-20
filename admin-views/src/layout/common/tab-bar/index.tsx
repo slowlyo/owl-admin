@@ -106,11 +106,14 @@ const TabBar = () => {
         }
     }
 
+    // 水平滚动
+    const horizontalScroll = ({deltaY}) => document.querySelector(`.${styles.tab}`).scrollLeft += deltaY
+
     useEffect(() => changeTab(), [routes, pathname])
     useEffect(() => initTab(), [routes])
 
     return (
-        <div className={styles.tab}>
+        <div className={styles.tab} onWheel={horizontalScroll}>
             {tabs.map((item, index) => (
                 <Tab key={index}
                      item={item}

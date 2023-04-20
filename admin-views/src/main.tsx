@@ -20,6 +20,9 @@ import {useRequest} from "ahooks"
 import {setThemeColor} from "@/utils/themeColor"
 import {dynamicAssetsHandler} from "@/utils/dynamicAssets"
 import {AliveScope} from "react-activation"
+import {registerCustomComponents} from "@/components/AmisRender/CustomComponents"
+
+registerCustomComponents()
 
 const store = createStore(rootReducer)
 
