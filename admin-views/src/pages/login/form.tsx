@@ -50,8 +50,10 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
         setToken(token)
         // 获取用户信息
         initUserInfo.runAsync().then(() => {
-            // 跳转首页
-            window.location.hash = "#/" + defaultRoute
+            window.$owl.refreshRoutes().then(() => {
+                // 跳转首页
+                window.location.hash = "#/" + defaultRoute
+            })
         })
     }
 

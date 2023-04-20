@@ -6,13 +6,15 @@ import useRoute, {IRoute} from "@/routes"
 import {useHistory} from "react-router"
 import {useAliveController} from "react-activation"
 import Tab from "./components/tab"
+import {getToken} from "@/utils/checkLogin"
 
 const TabBar = () => {
     const history = useHistory()
     const pathname = history.location.pathname
     const [routes, defaultRoute] = useRoute()
     const flattenRoutes = getFlattenRoutes(routes)
-    const [cacheTabs, setCacheTab] = useStorage("tabs", "")
+    const tabCacheKey = "tabs" + getToken().replace(/\|.*$/, "")
+    const [cacheTabs, setCacheTab] = useStorage(tabCacheKey, "")
     const cachedTabs = JSON.parse(cacheTabs || "[]")
     const defaultTab = flattenRoutes.find((route) => route.path === "/" + defaultRoute)
     const {drop} = useAliveController()

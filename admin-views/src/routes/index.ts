@@ -67,7 +67,7 @@ const useRoute = (): [IRoute[], string] => {
         }
     })
 
-    registerGlobalFunction("refreshRoutes", () => dynamicRoutes.run())
+    registerGlobalFunction("refreshRoutes", () => dynamicRoutes.runAsync())
 
     useEffect(() => {
         dynamicRoutes.run()

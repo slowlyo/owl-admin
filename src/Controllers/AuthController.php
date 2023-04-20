@@ -218,6 +218,7 @@ JS,
             ->hideCaret(true)
             ->trigger('hover')
             ->label($userInfo['name'])
+            ->align('right')
             ->btnClassName('navbar-user')
             ->menuClassName('min-w-0 px-2')
             ->set('icon', $userInfo['avatar'])
