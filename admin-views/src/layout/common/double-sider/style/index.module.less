@@ -111,7 +111,14 @@ body[arco-theme="dark"] {
 }
 
 .menu-wrapper {
+    height: 100%;
+    overflow: auto;
+
     & > div {
         margin: 0 auto;
     }
+}
+
+:global(.arco-menu-vertical .arco-menu-inline-header){
+    overflow: unset;
 }

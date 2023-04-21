@@ -74,6 +74,8 @@ export const DoubleSider = ({stateChange}) => {
         if (currentRoute?.children?.length) {
             setChildrenRoutes(currentRoute.children)
             setShowRight(true)
+        }else{
+            setShowRight(false)
         }
     }
 
