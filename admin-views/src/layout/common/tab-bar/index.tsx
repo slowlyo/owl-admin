@@ -36,15 +36,26 @@ const TabBar = () => {
         return current ? formatTabValue(current, pathname) : null
     }
 
+    const locateTheCurrentTab = () => {
+        setTimeout(() => {
+            // 定位当前选项卡
+            const tab = document.querySelector(".current_selected_tab")
+
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    tab?.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
+                }, 200)
+            }
+        }, 100)
+    }
+
     const changeTab = () => {
+        locateTheCurrentTab()
+
         // 如果当前路由不在缓存中，则添加
         const _currentTab = currentTab()
 
         if (_currentTab) {
-            // 定位当前选项卡
-            const tab = document.querySelector(".current_selected_tab")
-            tab?.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
-
             const exists = cachedTabs.find((tab) => tab.path === _currentTab.path)
 
             if (exists) return
