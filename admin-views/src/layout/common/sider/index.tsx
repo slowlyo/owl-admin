@@ -47,7 +47,9 @@ export const Sider = ({stateChange}) => {
                     <Logo collapsed={collapsed}/>
                 </div>
             )}
-            <div className={styles["menu-wrapper"]}>
+            <div className={styles["menu-wrapper"]} style={{
+                height: settings.layoutMode === "left" ? `calc(100vh - ${navbarHeight}px)` : ""
+            }}>
                 <Menu theme={settings.siderTheme}/>
             </div>
             <div className={styles["collapse-btn"]} onClick={toggleCollapse} style={{

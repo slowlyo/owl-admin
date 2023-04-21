@@ -41,6 +41,10 @@ const TabBar = () => {
         const _currentTab = currentTab()
 
         if (_currentTab) {
+            // 定位当前选项卡
+            const tab = document.querySelector(".current_selected_tab")
+            tab?.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
+
             const exists = cachedTabs.find((tab) => tab.path === _currentTab.path)
 
             if (exists) return

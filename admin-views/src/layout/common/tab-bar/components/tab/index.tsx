@@ -60,7 +60,7 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
         <>
             {item.title && (
                 <ContextMenu items={getContextMenus()} onClickItem={menuClick}>
-                    <div className={styles.tab + " " + (pathname == item.path ? styles.tabSelected : "")}
+                    <div className={styles.tab + " " + (pathname == item.path ? (styles.tabSelected + " current_selected_tab") : "")}
                          onClick={() => history.push(item.path)}>
                         {settings.tabIcon && <Icon icon={item.icon} className="mr-8px"/>}
                         {item.title}
