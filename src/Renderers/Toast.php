@@ -3,19 +3,81 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * <b>Toast 轻提示</b><br/>
- *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/toast
- *
- * @method self title($value) 标题
- * @method self body($value) 内容
- * @method self items($value) 轻提示内容
- * @method self level($value) 展示图标，可选'info'/'success'/'error'/'warning'
- * @method self position($value) 提示显示位置，可选值: top-right | top-center | top-left | bottom-center | bottom-left | bottom-right | center
- * @method self closeButton($value) 是否展示关闭按钮
- * @method self showIcon($value) 是否展示图标
- * @method self timeout($value) 持续时间
+ * Toast 轻提示
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Toast extends BaseRenderer
 {
+    public function __construct()
+    {
+
+    }
+
+    /**
+     * 内容
+     */
+    public function body($value = '')
+    {
+        return $this->set('body', $value);
+    }
+
+    /**
+     * 是否显示关闭按钮
+     */
+    public function closeButton($value = true)
+    {
+        return $this->set('closeButton', $value);
+    }
+
+    /**
+     * 轻提示内容
+     */
+    public function items($value = '')
+    {
+        return $this->set('items', $value);
+    }
+
+    /**
+     * 展示图标，可选'info'/'success'/'error'/'warning'
+     */
+    public function level($value = '')
+    {
+        return $this->set('level', $value);
+    }
+
+    /**
+     * 提示显示位置，可选值: top-right | top-center | top-left | bottom-center | bottom-left | bottom-right | center
+     */
+    public function position($value = '')
+    {
+        return $this->set('position', $value);
+    }
+
+    /**
+     * 是否显示图标
+     */
+    public function showIcon($value = true)
+    {
+        return $this->set('showIcon', $value);
+    }
+
+    /**
+     * 持续时间
+     */
+    public function timeout($value = '')
+    {
+        return $this->set('timeout', $value);
+    }
+
+    /**
+     * 标题
+     */
+    public function title($value = '')
+    {
+        return $this->set('title', $value);
+    }
+
 }

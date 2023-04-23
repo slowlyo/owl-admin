@@ -3,38 +3,25 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * ListItem
+ * FeedbackDialog
  * 
  * @author slowlyo
  * @version v2.9.0
  * @since 2023-04-23
  */
-class ListItem extends BaseRenderer
+class FeedbackDialog extends BaseRenderer
 {
     public function __construct()
     {
 
     }
 
+    /**
+     * 默认不用填写，自动会创建确认和取消按钮。
+     */
     public function actions($value = '')
     {
         return $this->set('actions', $value);
-    }
-
-    /**
-     * 操作位置，默认在右侧，可以设置成左侧。 可选值: left | right
-     */
-    public function actionsPosition($value = '')
-    {
-        return $this->set('actionsPosition', $value);
-    }
-
-    /**
-     * 图片地址
-     */
-    public function avatar($value = '')
-    {
-        return $this->set('avatar', $value);
     }
 
     /**
@@ -46,6 +33,14 @@ class ListItem extends BaseRenderer
     }
 
     /**
+     * 配置 Body 容器 className
+     */
+    public function bodyClassName($value = '')
+    {
+        return $this->set('bodyClassName', $value);
+    }
+
+    /**
      * 容器 css 类名
      */
     public function className($value = '')
@@ -54,11 +49,27 @@ class ListItem extends BaseRenderer
     }
 
     /**
-     * 描述
+     * 是否支持按 ESC 关闭 Dialog
      */
-    public function desc($value = '')
+    public function closeOnEsc($value = true)
     {
-        return $this->set('desc', $value);
+        return $this->set('closeOnEsc', $value);
+    }
+
+    /**
+     * 是否支持点其它区域关闭 Dialog
+     */
+    public function closeOnOutside($value = true)
+    {
+        return $this->set('closeOnOutside', $value);
+    }
+
+    /**
+     * 影响自动生成的按钮，如果自己配置了按钮这个配置无效。
+     */
+    public function confirm($value = true)
+    {
+        return $this->set('confirm', $value);
     }
 
     /**
@@ -75,6 +86,29 @@ class ListItem extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    public function footer($value = '')
+    {
+        return $this->set('footer', $value);
+    }
+
+    public function header($value = '')
+    {
+        return $this->set('header', $value);
+    }
+
+    public function headerClassName($value = '')
+    {
+        return $this->set('headerClassName', $value);
+    }
+
+    /**
+     * Dialog 高度
+     */
+    public function height($value = '')
+    {
+        return $this->set('height', $value);
     }
 
     /**
@@ -101,6 +135,11 @@ class ListItem extends BaseRenderer
         return $this->set('id', $value);
     }
 
+    public function name($value = '')
+    {
+        return $this->set('name', $value);
+    }
+
     /**
      * 事件动作配置
      */
@@ -110,11 +149,51 @@ class ListItem extends BaseRenderer
     }
 
     /**
-     * tooltip 说明
+     * 是否显示关闭按钮
      */
-    public function remark($value = '')
+    public function showCloseButton($value = true)
     {
-        return $this->set('remark', $value);
+        return $this->set('showCloseButton', $value);
+    }
+
+    /**
+     * 是否显示错误信息
+     */
+    public function showErrorMsg($value = true)
+    {
+        return $this->set('showErrorMsg', $value);
+    }
+
+    /**
+     * 是否显示 spinner
+     */
+    public function showLoading($value = true)
+    {
+        return $this->set('showLoading', $value);
+    }
+
+    /**
+     * Dialog 大小 可选值: xs | sm | md | lg | xl | full
+     */
+    public function size($value = '')
+    {
+        return $this->set('size', $value);
+    }
+
+    /**
+     * feedback 弹框取消是否中断后续操作
+     */
+    public function skipRestOnCancel($value = true)
+    {
+        return $this->set('skipRestOnCancel', $value);
+    }
+
+    /**
+     * feedback 弹框确认是否中断后续操作
+     */
+    public function skipRestOnConfirm($value = true)
+    {
+        return $this->set('skipRestOnConfirm', $value);
     }
 
     /**
@@ -171,15 +250,7 @@ class ListItem extends BaseRenderer
     }
 
     /**
-     * 副标题
-     */
-    public function subTitle($value = '')
-    {
-        return $this->set('subTitle', $value);
-    }
-
-    /**
-     * 标题
+     * 请通过配置 title 设置标题
      */
     public function title($value = '')
     {
@@ -195,11 +266,19 @@ class ListItem extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 可以用来配置 feedback 的出现条件
      */
     public function visibleOn($value = '')
     {
         return $this->set('visibleOn', $value);
+    }
+
+    /**
+     * Dialog 宽度
+     */
+    public function width($value = '')
+    {
+        return $this->set('width', $value);
     }
 
 }

@@ -4,32 +4,198 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Audio 音频渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/audio
- *
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self staticInputClassName($value) 静态展示表单项Value类名
- * @method self type($value) 指定为音频播放器
- * @method self inline($value) 是否是内联模式
- * @method self controls($value) 可以配置控制器
- * @method self className($value) 容器 css 类名
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self static($value) 是否静态展示
- * @method self visibleOn($value) 是否显示表达式
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self onEvent($value) 事件动作配置
- * @method self staticSchema($value) 
- * @method self src($value) "视频播放地址, 支持 $ 取变量。
- * @method self disabledOn($value) 是否禁用表达式
- * @method self visible($value) 是否显示
- * @method self disabled($value) 是否禁用
- * @method self hidden($value) 是否隐藏
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self autoPlay($value) 是否自动播放
- * @method self rates($value) 配置可选播放倍速
- * @method self staticOn($value) 是否静态展示表达式
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self loop($value) 是否循环播放
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Audio extends BaseRenderer
 {
-    public string $type = 'audio';
+    public function __construct()
+    {
+        $this->set('type', 'audio');
+
+    }
+
+    /**
+     * 是否自动播放
+     */
+    public function autoPlay($value = true)
+    {
+        return $this->set('autoPlay', $value);
+    }
+
+    /**
+     * 容器 css 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 可以配置控制器
+     */
+    public function controls($value = '')
+    {
+        return $this->set('controls', $value);
+    }
+
+    /**
+     * 是否禁用
+     */
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    /**
+     * 是否是内联模式
+     */
+    public function inline($value = true)
+    {
+        return $this->set('inline', $value);
+    }
+
+    /**
+     * 是否循环播放
+     */
+    public function loop($value = true)
+    {
+        return $this->set('loop', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 配置可选播放倍速
+     */
+    public function rates($value = '')
+    {
+        return $this->set('rates', $value);
+    }
+
+    /**
+     * "视频播放地址, 支持 $ 取变量。
+     */
+    public function src($value = '')
+    {
+        return $this->set('src', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 指定为音频播放器
+     */
+    public function type($value = 'audio')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
 }

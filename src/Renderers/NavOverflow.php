@@ -3,19 +3,113 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * @method self itemWidth($value) 导航项目宽度
- * @method self overflowSuffix($value) 导航列表后缀节点
- * @method self overflowIndicator($value) 菜单触发按钮的图标
- * @method self overflowClassName($value) 菜单触发按钮CSS类名
- * @method self overflowListClassName($value) 菜单外层CSS类名
- * @method self maxVisibleCount($value) 导航横向布局时，开启开启响应式收纳后最大可显示数量，超出此数量的导航将被收纳到下拉菜单中
- * @method self wrapperComponent($value) 包裹导航的外层标签名，可以使用其他标签渲染
- * @method self style($value) 自定义样式
- * @method self popOverContainer($value) 菜单DOM挂载点
- * @method self enable($value) 是否开启响应式收纳
- * @method self overflowLabel($value) 菜单触发按钮的文字
- * @method self overflowPopoverClassName($value) Popover浮层CSS类名
+ * NavOverflow
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class NavOverflow extends BaseRenderer
 {
+    public function __construct()
+    {
+
+    }
+
+    /**
+     * 是否开启响应式收纳
+     */
+    public function enable($value = true)
+    {
+        return $this->set('enable', $value);
+    }
+
+    /**
+     * 导航项目宽度
+     */
+    public function itemWidth($value = '')
+    {
+        return $this->set('itemWidth', $value);
+    }
+
+    /**
+     * 导航横向布局时，开启开启响应式收纳后最大可显示数量，超出此数量的导航将被收纳到下拉菜单中
+     */
+    public function maxVisibleCount($value = '')
+    {
+        return $this->set('maxVisibleCount', $value);
+    }
+
+    /**
+     * 菜单触发按钮CSS类名
+     */
+    public function overflowClassName($value = '')
+    {
+        return $this->set('overflowClassName', $value);
+    }
+
+    /**
+     * 菜单触发按钮的图标
+     */
+    public function overflowIndicator($value = '')
+    {
+        return $this->set('overflowIndicator', $value);
+    }
+
+    /**
+     * 菜单触发按钮的文字
+     */
+    public function overflowLabel($value = '')
+    {
+        return $this->set('overflowLabel', $value);
+    }
+
+    /**
+     * 菜单外层CSS类名
+     */
+    public function overflowListClassName($value = '')
+    {
+        return $this->set('overflowListClassName', $value);
+    }
+
+    /**
+     * Popover浮层CSS类名
+     */
+    public function overflowPopoverClassName($value = '')
+    {
+        return $this->set('overflowPopoverClassName', $value);
+    }
+
+    /**
+     * 导航列表后缀节点
+     */
+    public function overflowSuffix($value = '')
+    {
+        return $this->set('overflowSuffix', $value);
+    }
+
+    /**
+     * 菜单DOM挂载点
+     */
+    public function popOverContainer($value = '')
+    {
+        return $this->set('popOverContainer', $value);
+    }
+
+    /**
+     * 自定义样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
+    }
+
+    /**
+     * 包裹导航的外层标签名，可以使用其他标签渲染
+     */
+    public function wrapperComponent($value = '')
+    {
+        return $this->set('wrapperComponent', $value);
+    }
+
 }

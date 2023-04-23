@@ -4,41 +4,267 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 下拉按钮渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dropdown-button
- *
- * @method self type($value) 指定为 DropDown Button 类型
- * @method self align($value) 对齐方式 可选值: left | right | 
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self staticSchema($value) 
- * @method self buttons($value) 按钮集合，支持分组
- * @method self label($value) 按钮文字
- * @method self level($value) 按钮级别，样式 可选值: info | success | danger | warning | primary | link | 
- * @method self disabled($value) 是否禁用
- * @method self disabledOn($value) 是否禁用表达式
- * @method self closeOnOutside($value) 点击外部是否关闭
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self block($value) 是否独占一行 `display: block`
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self staticOn($value) 是否静态展示表达式
- * @method self btnClassName($value) 给 Button 配置 className。
- * @method self iconOnly($value) 是否只显示图标。
- * @method self menuClassName($value) 菜单 CSS 样式
- * @method self overlayPlacement($value) 
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self closeOnClick($value) 点击内容是否关闭
- * @method self trigger($value) 触发条件，默认是 click 可选值: click | hover | 
- * @method self onEvent($value) 事件动作配置
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self static($value) 是否静态展示
- * @method self rightIcon($value) 右侧图标
- * @method self hideCaret($value) 是否显示下拉按钮
- * @method self hidden($value) 是否隐藏
- * @method self visible($value) 是否显示
- * @method self staticInputClassName($value) 静态展示表单项Value类名
- * @method self size($value) 按钮大小 可选值: xs | sm | md | lg | 
- * @method self className($value) 容器 css 类名
- * @method self visibleOn($value) 是否显示表达式
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class DropdownButton extends BaseRenderer
 {
-    public string $type = 'dropdown-button';
+    public function __construct()
+    {
+        $this->set('type', 'dropdown-button');
+
+    }
+
+    /**
+     * 对齐方式 可选值: left | right
+     */
+    public function align($value = '')
+    {
+        return $this->set('align', $value);
+    }
+
+    /**
+     * 是否独占一行 `display: block`
+     */
+    public function block($value = true)
+    {
+        return $this->set('block', $value);
+    }
+
+    /**
+     * 给 Button 配置 className。
+     */
+    public function btnClassName($value = '')
+    {
+        return $this->set('btnClassName', $value);
+    }
+
+    /**
+     * 按钮集合，支持分组
+     */
+    public function buttons($value = '')
+    {
+        return $this->set('buttons', $value);
+    }
+
+    /**
+     * 容器 css 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 点击内容是否关闭
+     */
+    public function closeOnClick($value = true)
+    {
+        return $this->set('closeOnClick', $value);
+    }
+
+    /**
+     * 点击外部是否关闭
+     */
+    public function closeOnOutside($value = true)
+    {
+        return $this->set('closeOnOutside', $value);
+    }
+
+    /**
+     * 是否禁用
+     */
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 是否显示下拉按钮
+     */
+    public function hideCaret($value = true)
+    {
+        return $this->set('hideCaret', $value);
+    }
+
+    /**
+     * 是否只显示图标。
+     */
+    public function iconOnly($value = true)
+    {
+        return $this->set('iconOnly', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    /**
+     * 按钮文字
+     */
+    public function label($value = '')
+    {
+        return $this->set('label', $value);
+    }
+
+    /**
+     * 按钮级别，样式 可选值: info | success | danger | warning | primary | link
+     */
+    public function level($value = '')
+    {
+        return $this->set('level', $value);
+    }
+
+    /**
+     * 菜单 CSS 样式
+     */
+    public function menuClassName($value = '')
+    {
+        return $this->set('menuClassName', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    public function overlayPlacement($value = '')
+    {
+        return $this->set('overlayPlacement', $value);
+    }
+
+    /**
+     * 右侧图标
+     */
+    public function rightIcon($value = '')
+    {
+        return $this->set('rightIcon', $value);
+    }
+
+    /**
+     * 按钮大小 可选值: xs | sm | md | lg
+     */
+    public function size($value = '')
+    {
+        return $this->set('size', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 触发条件，默认是 click 可选值: click | hover
+     */
+    public function trigger($value = '')
+    {
+        return $this->set('trigger', $value);
+    }
+
+    /**
+     * 指定为 DropDown Button 类型
+     */
+    public function type($value = 'dropdown-button')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
 }

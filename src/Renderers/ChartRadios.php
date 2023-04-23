@@ -3,16 +3,50 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * <b>ChartRadios 图表单选框</b><br/>
- * 图表点选功能，用来做多个图表联动。
- *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/form/chart-radios
- *
- * @method self config($value) 图表配置
- * @method self showTooltipOnHighlight($value) 高亮的时候是否显示 tooltip
- * @method self chartValueField($value) 图表数值字段名
+ * ChartRadios 图表单选框
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
-class ChartRadios extends FormItem
+class ChartRadios extends BaseRenderer
 {
-    public string $type = 'chart-radios';
+    public function __construct()
+    {
+        $this->set('type', 'chart-radios');
+
+    }
+
+    /**
+     * 图表数值字段名
+     */
+    public function chartValueField($value = '')
+    {
+        return $this->set('chartValueField', $value);
+    }
+
+    /**
+     * 图表配置
+     */
+    public function config($value = '')
+    {
+        return $this->set('config', $value);
+    }
+
+    /**
+     * 高亮的时候是否显示 tooltip
+     */
+    public function showTooltipOnHighlight($value = true)
+    {
+        return $this->set('showTooltipOnHighlight', $value);
+    }
+
+    /**
+     * 指定为 chart-radios 渲染器。
+     */
+    public function type($value = 'chart-radios')
+    {
+        return $this->set('type', $value);
+    }
+
 }

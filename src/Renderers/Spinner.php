@@ -3,37 +3,241 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * @method self hidden($value) 是否隐藏
- * @method self visibleOn($value) 是否显示表达式
- * @method self staticOn($value) 是否静态展示表达式
- * @method self icon($value) 自定义icon
- * @method self loadingConfig($value) 
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self type($value) 组件类型
- * @method self delay($value) 延迟显示
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self tip($value) spinner文案
- * @method self tipPlacement($value) spinner文案位置 可选值: top | right | bottom | left | 
- * @method self overlay($value) 是否显示遮罩层
- * @method self disabled($value) 是否禁用
- * @method self onEvent($value) 事件动作配置
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self staticInputClassName($value) 静态展示表单项Value类名
- * @method self show($value) 控制Spinner显示与隐藏
- * @method self spinnerWrapClassName($value) 作为容器使用时最外层元素的class
- * @method self visible($value) 是否显示
- * @method self className($value) 自定义spinner的class
- * @method self size($value) spinner Icon 大小 可选值: sm | lg |  | 
- * @method self static($value) 是否静态展示
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self staticSchema($value) 
- * @method self body($value) 作为容器使用时内容
- * @method self disabledOn($value) 是否禁用表达式
- * @method self spinnerClassName($value) spin图标位置包裹元素的自定义class
- * @method self mode($value) 
+ * Spinner
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Spinner extends BaseRenderer
 {
-    public string $type = 'spinner';
+    public function __construct()
+    {
+        $this->set('type', 'spinner');
+
+    }
+
+    /**
+     * 作为容器使用时内容
+     */
+    public function body($value = '')
+    {
+        return $this->set('body', $value);
+    }
+
+    /**
+     * 自定义spinner的class
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 延迟显示
+     */
+    public function delay($value = '')
+    {
+        return $this->set('delay', $value);
+    }
+
+    /**
+     * 是否禁用
+     */
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 自定义icon
+     */
+    public function icon($value = '')
+    {
+        return $this->set('icon', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    public function loadingConfig($value = '')
+    {
+        return $this->set('loadingConfig', $value);
+    }
+
+    public function mode($value = '')
+    {
+        return $this->set('mode', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 是否显示遮罩层
+     */
+    public function overlay($value = true)
+    {
+        return $this->set('overlay', $value);
+    }
+
+    /**
+     * 控制Spinner显示与隐藏
+     */
+    public function show($value = true)
+    {
+        return $this->set('show', $value);
+    }
+
+    /**
+     * spinner Icon 大小 可选值: sm | lg | 
+     */
+    public function size($value = '')
+    {
+        return $this->set('size', $value);
+    }
+
+    /**
+     * spin图标位置包裹元素的自定义class
+     */
+    public function spinnerClassName($value = '')
+    {
+        return $this->set('spinnerClassName', $value);
+    }
+
+    /**
+     * 作为容器使用时最外层元素的class
+     */
+    public function spinnerWrapClassName($value = '')
+    {
+        return $this->set('spinnerWrapClassName', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * spinner文案
+     */
+    public function tip($value = '')
+    {
+        return $this->set('tip', $value);
+    }
+
+    /**
+     * spinner文案位置 可选值: top | right | bottom | left
+     */
+    public function tipPlacement($value = '')
+    {
+        return $this->set('tipPlacement', $value);
+    }
+
+    /**
+     * 组件类型
+     */
+    public function type($value = 'spinner')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
 }

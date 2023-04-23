@@ -3,21 +3,90 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * <b>Custom 自定义组件</b><br/>
- * 用于实现自定义组件，它解决了之前 JS SDK 和可视化编辑器中难以支持自定义组件的问题。
- *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/custom
- *
- * @method self id($value) 节点 id
- * @method self name($value) 节点 名称
- * @method self className($value) 节点 class
- * @method self inline($value) 默认使用 div 标签，如果 true 就使用 span 标签
- * @method self html($value) 初始化节点 html
- * @method self onMount($value) 节点初始化之后调的用函数
- * @method self onUpdate($value) 数据有更新的时候调用的函数
- * @method self onUnmount($value) 节点销毁的时候调用的函数
+ * Custom 自定义组件
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Custom extends BaseRenderer
 {
-    public string $type = 'custom';
+    public function __construct()
+    {
+        $this->set('type', 'custom');
+
+    }
+
+    /**
+     * 节点 class
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 初始化节点 html
+     */
+    public function html($value = '')
+    {
+        return $this->set('html', $value);
+    }
+
+    /**
+     * 节点 id
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    /**
+     * 默认使用 div 标签，如果 true 就使用 span 标签
+     */
+    public function inline($value = true)
+    {
+        return $this->set('inline', $value);
+    }
+
+    /**
+     * 节点 名称
+     */
+    public function name($value = '')
+    {
+        return $this->set('name', $value);
+    }
+
+    /**
+     * 节点初始化之后调的用函数
+     */
+    public function onMount($value = '')
+    {
+        return $this->set('onMount', $value);
+    }
+
+    /**
+     * 节点销毁的时候调用的函数
+     */
+    public function onUnmount($value = '')
+    {
+        return $this->set('onUnmount', $value);
+    }
+
+    /**
+     * 数据有更新的时候调用的函数
+     */
+    public function onUpdate($value = '')
+    {
+        return $this->set('onUpdate', $value);
+    }
+
+    /**
+     * 指定为 custom 渲染器。
+     */
+    public function type($value = 'custom')
+    {
+        return $this->set('type', $value);
+    }
+
 }

@@ -3,36 +3,207 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self onEvent($value) 事件动作配置
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self disabledTip($value) 
- * @method self accordion($value) 
- * @method self mode($value) 
- * @method self className($value) 
- * @method self hidden($value) 是否隐藏
- * @method self staticOn($value) 是否静态展示表达式
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self children($value) 
- * @method self disabledOn($value) 是否禁用表达式
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self defer($value) 
- * @method self deferApi($value) 
- * @method self staticInputClassName($value) 静态展示表单项Value类名
- * @method self visibleOn($value) 是否显示表达式
- * @method self label($value) 文字说明
- * @method self static($value) 是否静态展示
- * @method self unfolded($value) 
- * @method self staticSchema($value) 
- * @method self target($value) 
- * @method self icon($value) 图标类名，参考 fontawesome 4。
- * @method self to($value) 
- * @method self active($value) 
- * @method self key($value) 
- * @method self disabled($value) 
- * @method self visible($value) 是否显示
+ * NavItem
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class NavItem extends BaseRenderer
 {
+    public function __construct()
+    {
+
+    }
+
+    public function accordion($value = true)
+    {
+        return $this->set('accordion', $value);
+    }
+
+    public function active($value = true)
+    {
+        return $this->set('active', $value);
+    }
+
+    public function children($value = '')
+    {
+        return $this->set('children', $value);
+    }
+
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    public function defer($value = true)
+    {
+        return $this->set('defer', $value);
+    }
+
+    public function deferApi($value = '')
+    {
+        return $this->set('deferApi', $value);
+    }
+
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    public function disabledTip($value = '')
+    {
+        return $this->set('disabledTip', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 图标类名，参考 fontawesome 4。
+     */
+    public function icon($value = '')
+    {
+        return $this->set('icon', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    public function key($value = '')
+    {
+        return $this->set('key', $value);
+    }
+
+    /**
+     * 文字说明
+     */
+    public function label($value = '')
+    {
+        return $this->set('label', $value);
+    }
+
+    public function mode($value = '')
+    {
+        return $this->set('mode', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    public function target($value = '')
+    {
+        return $this->set('target', $value);
+    }
+
+    public function to($value = '')
+    {
+        return $this->set('to', $value);
+    }
+
+    public function unfolded($value = true)
+    {
+        return $this->set('unfolded', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
 }

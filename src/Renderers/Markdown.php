@@ -3,16 +3,58 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * <b>Markdown 渲染</b><br/>
- *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/markdown
- *
- * @method self name($value) 名称
- * @method self value($value) 静态值
- * @method self className($value) 类名
- * @method self src($value) 外部地址
+ * Markdown 渲染
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Markdown extends BaseRenderer
 {
-    public string $type = 'markdown';
+    public function __construct()
+    {
+        $this->set('type', 'markdown');
+
+    }
+
+    /**
+     * 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 名称
+     */
+    public function name($value = '')
+    {
+        return $this->set('name', $value);
+    }
+
+    /**
+     * 外部地址
+     */
+    public function src($value = '')
+    {
+        return $this->set('src', $value);
+    }
+
+    /**
+     * 指定为 markdown 渲染器。
+     */
+    public function type($value = 'markdown')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 静态值
+     */
+    public function value($value = '')
+    {
+        return $this->set('value', $value);
+    }
+
 }

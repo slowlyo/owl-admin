@@ -3,13 +3,46 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * @method self key($value)  可选值: ROTATE_RIGHT | ROTATE_LEFT | ZOOM_IN | ZOOM_OUT | SCALE_ORIGIN | 
- * @method self label($value) 
- * @method self icon($value) 
- * @method self iconClassName($value) 
- * @method self disabled($value) 
+ * ImageToolbarAction
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class ImageToolbarAction extends BaseRenderer
 {
-    public string $key = 'ROTATE_RIGHT';
+    public function __construct()
+    {
+        $this->set('key', 'ROTATE_RIGHT');
+
+    }
+
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    public function icon($value = '')
+    {
+        return $this->set('icon', $value);
+    }
+
+    public function iconClassName($value = '')
+    {
+        return $this->set('iconClassName', $value);
+    }
+
+    /**
+     *  可选值: ROTATE_RIGHT | ROTATE_LEFT | ZOOM_IN | ZOOM_OUT | SCALE_ORIGIN
+     */
+    public function key($value = '')
+    {
+        return $this->set('key', $value);
+    }
+
+    public function label($value = '')
+    {
+        return $this->set('label', $value);
+    }
+
 }

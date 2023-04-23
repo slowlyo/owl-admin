@@ -3,13 +3,47 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * @method self excavate($value) 
- * @method self x($value) 
- * @method self y($value) 
- * @method self src($value) 
- * @method self height($value) 
- * @method self width($value) 
+ * QRCodeImageSettings
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class QRCodeImageSettings extends BaseRenderer
 {
+    public function __construct()
+    {
+
+    }
+
+    public function excavate($value = true)
+    {
+        return $this->set('excavate', $value);
+    }
+
+    public function height($value = '')
+    {
+        return $this->set('height', $value);
+    }
+
+    public function src($value = '')
+    {
+        return $this->set('src', $value);
+    }
+
+    public function width($value = '')
+    {
+        return $this->set('width', $value);
+    }
+
+    public function x($value = '')
+    {
+        return $this->set('x', $value);
+    }
+
+    public function y($value = '')
+    {
+        return $this->set('y', $value);
+    }
+
 }

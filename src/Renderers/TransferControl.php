@@ -4,104 +4,765 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Transfer 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/transfer
- *
- * @method self visible($value) 是否显示
- * @method self type($value) 表单项类型
- * @method self statistics($value) 统计数字
- * @method self itemHeight($value) 单个选项的高度，主要用于虚拟渲染
- * @method self size($value) 表单项大小 可选值: xs | sm | md | lg | full | 
- * @method self mode($value) 配置当前表单项展示模式 可选值: normal | inline | horizontal | 
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self columns($value) 当 selectMode 为 table 时定义表格列信息。
- * @method self searchApi($value) 搜索 API
- * @method self hint($value) 输入提示，聚焦的时候显示
- * @method self validateApi($value) 远端校验表单项接口
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self leftMode($value) 当 selectMode 为 associated 时用来定义左侧的选择模式 可选值: tree | list | 
- * @method self valueTpl($value) 用来丰富值的展示
- * @method self initFetch($value) 配置 source 接口初始拉不拉取。
- * @method self visibleOn($value) 是否显示表达式
- * @method self staticInputClassName($value) 静态展示表单项Value类名
- * @method self inline($value) 表单 control 是否为 inline 模式。
- * @method self validationErrors($value) 验证失败的提示信息
- * @method self clearValueOnHidden($value) 表单项隐藏时，是否在当前 Form 中删除掉该表单项值。注意同名的未隐藏的表单项值也会删掉
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self searchable($value) 可搜索？
- * @method self addDialog($value) 控制新增弹框设置项
- * @method self deleteApi($value) 选项删除 API
- * @method self submitOnChange($value) 当修改完的时候是否提交表单。
- * @method self resultSearchable($value) 结果（右则）列表的检索功能，当设置为true时，可以通过输入检索模糊匹配检索内容
- * @method self placeholder($value) 占位符
- * @method self rightMode($value) 当 selectMode 为 associated 时用来定义右侧的选择模式 可选值: table | list | tree | chained | 
- * @method self loadingConfig($value) 
- * @method self multiple($value) 是否为多选模式
- * @method self editDialog($value) 控制编辑弹框设置项
- * @method self selectTitle($value) 左侧的标题文字
- * @method self onlyChildren($value) 树形模式下，仅选中子节点
- * @method self joinValues($value) 单选模式：当用户选中某个选项时，选项中的 value 将被作为该表单项的值提交，否则，整个选项对象都会作为该表单项的值提交。 多选模式：选中的多个选项的 `value` 会通过 `delimiter` 连接起来，否则直接将以数组的形式提交值。
- * @method self readOnlyOn($value) 只读条件
- * @method self hidden($value) 是否隐藏
- * @method self required($value) 是否为必填
- * @method self labelRemark($value) 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起
- * @method self sortable($value) 可排序？
- * @method self autoFill($value) 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
- * @method self validateOnChange($value) 不设置时，当表单提交过后表单项每次修改都会触发重新验证， 如果设置了，则由此配置项来决定要不要每次修改都触发验证。
- * @method self descriptionClassName($value) 配置描述上的 className
- * @method self staticSchema($value) 
- * @method self menuTpl($value) 用来丰富选项展示
- * @method self labelAlign($value) 描述标题
- * @method self value($value) 默认值，切记只能是静态值，不支持取变量，跟数据关联是通过设置 name 属性来实现的。
- * @method self static($value) 是否静态展示
- * @method self editable($value) 是否可以编辑
- * @method self validations($value) 
- * @method self disabled($value) 是否禁用
- * @method self remark($value) 显示一个小图标, 鼠标放上去的时候显示提示内容
- * @method self options($value) 选项集合
- * @method self clearable($value) 是否可清除。
- * @method self addApi($value) 添加时调用的接口
- * @method self description($value) 描述内容，支持 Html 片段。
- * @method self className($value) 容器 css 类名
- * @method self showArrow($value) 是否显示剪头
- * @method self desc($value) 
- * @method self searchPlaceholder($value) 左侧列表搜索框提示
- * @method self selectFirst($value) 默认选择选项第一个值。
- * @method self editControls($value) 选项修改的表单项
- * @method self removable($value) 是否可删除
- * @method self readOnly($value) 是否只读
- * @method self delimiter($value) 分割符
- * @method self resetValue($value) 点清除按钮时，将表单项设置成当前配置的值。
- * @method self deferApi($value) 延时加载的 API，当选项中有 defer: true 的选项时，点开会通过此接口扩充。
- * @method self selectMode($value) 勾选展示模式 可选值: table | list | tree | chained | associated | 
- * @method self leftOptions($value) 当 selectMode 为 associated 时用来定义左侧的选项
- * @method self searchResultColumns($value) 当 searchResultMode 为 table 时定义表格列信息。
- * @method self labelClassName($value) 配置 label className
- * @method self onEvent($value) 事件动作配置
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self width($value) 在Table中调整宽度
- * @method self disabledOn($value) 是否禁用表达式
- * @method self resultSearchPlaceholder($value) 右侧列表搜索框提示
- * @method self virtualThreshold($value) 在选项数量达到多少时开启虚拟渲染
- * @method self horizontal($value) 当配置为水平布局的时候，用来配置具体的左右分配。
- * @method self inputClassName($value) 配置 input className
- * @method self staticOn($value) 是否静态展示表达式
- * @method self resultListModeFollowSelect($value) 结果面板是否追踪显示
- * @method self resultTitle($value) 右侧结果的标题文字
- * @method self source($value) 可用来通过 API 拉取 options。
- * @method self label($value) 描述标题
- * @method self labelWidth($value) label自定义宽度，默认单位为px
- * @method self creatable($value) 是否可以新增
- * @method self createBtnLabel($value) 新增文字
- * @method self editApi($value) 编辑时调用的 API
- * @method self deleteConfirmText($value) 选项删除提示文字。
- * @method self name($value) 字段名，表单提交时的 key，支持多层级，用.连接，如： a.b.c
- * @method self initFetchOn($value) 用表达式来配置 source 接口初始要不要拉取
- * @method self extractValue($value) 开启后将选中的选项 value 的值封装为数组，作为当前表单项的值。
- * @method self addControls($value) 新增时的表单项。
- * @method self searchResultMode($value) 搜索结果展示模式 可选值: table | list | tree | chained | 
- * @method self showInvalidMatch($value) 当在value值未匹配到当前options中的选项时，是否value值对应文本飘红显示
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class TransferControl extends BaseRenderer
 {
-    public string $type = 'transfer';
+    public function __construct()
+    {
+        $this->set('type', 'transfer');
+
+    }
+
+    /**
+     * 添加时调用的接口
+     */
+    public function addApi($value = '')
+    {
+        return $this->set('addApi', $value);
+    }
+
+    /**
+     * 新增时的表单项。
+     */
+    public function addControls($value = '')
+    {
+        return $this->set('addControls', $value);
+    }
+
+    /**
+     * 控制新增弹框设置项
+     */
+    public function addDialog($value = '')
+    {
+        return $this->set('addDialog', $value);
+    }
+
+    /**
+     * 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
+     */
+    public function autoFill($value = '')
+    {
+        return $this->set('autoFill', $value);
+    }
+
+    /**
+     * 容器 css 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 表单项隐藏时，是否在当前 Form 中删除掉该表单项值。注意同名的未隐藏的表单项值也会删掉
+     */
+    public function clearValueOnHidden($value = true)
+    {
+        return $this->set('clearValueOnHidden', $value);
+    }
+
+    /**
+     * 是否可清除。
+     */
+    public function clearable($value = true)
+    {
+        return $this->set('clearable', $value);
+    }
+
+    /**
+     * 当 selectMode 为 table 时定义表格列信息。
+     */
+    public function columns($value = '')
+    {
+        return $this->set('columns', $value);
+    }
+
+    /**
+     * 是否可以新增
+     */
+    public function creatable($value = true)
+    {
+        return $this->set('creatable', $value);
+    }
+
+    /**
+     * 新增文字
+     */
+    public function createBtnLabel($value = '')
+    {
+        return $this->set('createBtnLabel', $value);
+    }
+
+    /**
+     * 延时加载的 API，当选项中有 defer: true 的选项时，点开会通过此接口扩充。
+     */
+    public function deferApi($value = '')
+    {
+        return $this->set('deferApi', $value);
+    }
+
+    /**
+     * 选项删除 API
+     */
+    public function deleteApi($value = '')
+    {
+        return $this->set('deleteApi', $value);
+    }
+
+    /**
+     * 选项删除提示文字。
+     */
+    public function deleteConfirmText($value = '')
+    {
+        return $this->set('deleteConfirmText', $value);
+    }
+
+    /**
+     * 分割符
+     */
+    public function delimiter($value = '')
+    {
+        return $this->set('delimiter', $value);
+    }
+
+    public function desc($value = '')
+    {
+        return $this->set('desc', $value);
+    }
+
+    /**
+     * 描述内容，支持 Html 片段。
+     */
+    public function description($value = '')
+    {
+        return $this->set('description', $value);
+    }
+
+    /**
+     * 配置描述上的 className
+     */
+    public function descriptionClassName($value = '')
+    {
+        return $this->set('descriptionClassName', $value);
+    }
+
+    /**
+     * 是否禁用
+     */
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑时调用的 API
+     */
+    public function editApi($value = '')
+    {
+        return $this->set('editApi', $value);
+    }
+
+    /**
+     * 选项修改的表单项
+     */
+    public function editControls($value = '')
+    {
+        return $this->set('editControls', $value);
+    }
+
+    /**
+     * 控制编辑弹框设置项
+     */
+    public function editDialog($value = '')
+    {
+        return $this->set('editDialog', $value);
+    }
+
+    /**
+     * 是否可以编辑
+     */
+    public function editable($value = true)
+    {
+        return $this->set('editable', $value);
+    }
+
+    /**
+     * 开启后将选中的选项 value 的值封装为数组，作为当前表单项的值。
+     */
+    public function extractValue($value = true)
+    {
+        return $this->set('extractValue', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 输入提示，聚焦的时候显示
+     */
+    public function hint($value = '')
+    {
+        return $this->set('hint', $value);
+    }
+
+    /**
+     * 当配置为水平布局的时候，用来配置具体的左右分配。
+     */
+    public function horizontal($value = '')
+    {
+        return $this->set('horizontal', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    /**
+     * 配置 source 接口初始拉不拉取。
+     */
+    public function initFetch($value = true)
+    {
+        return $this->set('initFetch', $value);
+    }
+
+    /**
+     * 用表达式来配置 source 接口初始要不要拉取
+     */
+    public function initFetchOn($value = '')
+    {
+        return $this->set('initFetchOn', $value);
+    }
+
+    /**
+     * 表单 control 是否为 inline 模式。
+     */
+    public function inline($value = true)
+    {
+        return $this->set('inline', $value);
+    }
+
+    /**
+     * 配置 input className
+     */
+    public function inputClassName($value = '')
+    {
+        return $this->set('inputClassName', $value);
+    }
+
+    /**
+     * 单个选项的高度，主要用于虚拟渲染
+     */
+    public function itemHeight($value = '')
+    {
+        return $this->set('itemHeight', $value);
+    }
+
+    /**
+     * 单选模式：当用户选中某个选项时，选项中的 value 将被作为该表单项的值提交，否则，整个选项对象都会作为该表单项的值提交。 多选模式：选中的多个选项的 `value` 会通过 `delimiter` 连接起来，否则直接将以数组的形式提交值。
+     */
+    public function joinValues($value = true)
+    {
+        return $this->set('joinValues', $value);
+    }
+
+    /**
+     * 描述标题
+     */
+    public function label($value = '')
+    {
+        return $this->set('label', $value);
+    }
+
+    /**
+     * 描述标题
+     */
+    public function labelAlign($value = '')
+    {
+        return $this->set('labelAlign', $value);
+    }
+
+    /**
+     * 配置 label className
+     */
+    public function labelClassName($value = '')
+    {
+        return $this->set('labelClassName', $value);
+    }
+
+    /**
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起
+     */
+    public function labelRemark($value = '')
+    {
+        return $this->set('labelRemark', $value);
+    }
+
+    /**
+     * label自定义宽度，默认单位为px
+     */
+    public function labelWidth($value = '')
+    {
+        return $this->set('labelWidth', $value);
+    }
+
+    /**
+     * 当 selectMode 为 associated 时用来定义左侧的选择模式 可选值: tree | list
+     */
+    public function leftMode($value = '')
+    {
+        return $this->set('leftMode', $value);
+    }
+
+    /**
+     * 当 selectMode 为 associated 时用来定义左侧的选项
+     */
+    public function leftOptions($value = '')
+    {
+        return $this->set('leftOptions', $value);
+    }
+
+    public function loadingConfig($value = '')
+    {
+        return $this->set('loadingConfig', $value);
+    }
+
+    /**
+     * 用来丰富选项展示
+     */
+    public function menuTpl($value = '')
+    {
+        return $this->set('menuTpl', $value);
+    }
+
+    /**
+     * 配置当前表单项展示模式 可选值: normal | inline | horizontal
+     */
+    public function mode($value = '')
+    {
+        return $this->set('mode', $value);
+    }
+
+    /**
+     * 是否为多选模式
+     */
+    public function multiple($value = true)
+    {
+        return $this->set('multiple', $value);
+    }
+
+    /**
+     * 字段名，表单提交时的 key，支持多层级，用.连接，如： a.b.c
+     */
+    public function name($value = '')
+    {
+        return $this->set('name', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 树形模式下，仅选中子节点
+     */
+    public function onlyChildren($value = true)
+    {
+        return $this->set('onlyChildren', $value);
+    }
+
+    /**
+     * 选项集合
+     */
+    public function options($value = '')
+    {
+        return $this->set('options', $value);
+    }
+
+    /**
+     * 占位符
+     */
+    public function placeholder($value = '')
+    {
+        return $this->set('placeholder', $value);
+    }
+
+    /**
+     * 是否只读
+     */
+    public function readOnly($value = true)
+    {
+        return $this->set('readOnly', $value);
+    }
+
+    /**
+     * 只读条件
+     */
+    public function readOnlyOn($value = '')
+    {
+        return $this->set('readOnlyOn', $value);
+    }
+
+    /**
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容
+     */
+    public function remark($value = '')
+    {
+        return $this->set('remark', $value);
+    }
+
+    /**
+     * 是否可删除
+     */
+    public function removable($value = true)
+    {
+        return $this->set('removable', $value);
+    }
+
+    /**
+     * 是否为必填
+     */
+    public function required($value = true)
+    {
+        return $this->set('required', $value);
+    }
+
+    /**
+     * 点清除按钮时，将表单项设置成当前配置的值。
+     */
+    public function resetValue($value = '')
+    {
+        return $this->set('resetValue', $value);
+    }
+
+    /**
+     * 结果面板是否追踪显示
+     */
+    public function resultListModeFollowSelect($value = true)
+    {
+        return $this->set('resultListModeFollowSelect', $value);
+    }
+
+    /**
+     * 右侧列表搜索框提示
+     */
+    public function resultSearchPlaceholder($value = '')
+    {
+        return $this->set('resultSearchPlaceholder', $value);
+    }
+
+    /**
+     * 结果（右则）列表的检索功能，当设置为true时，可以通过输入检索模糊匹配检索内容
+     */
+    public function resultSearchable($value = true)
+    {
+        return $this->set('resultSearchable', $value);
+    }
+
+    /**
+     * 右侧结果的标题文字
+     */
+    public function resultTitle($value = '')
+    {
+        return $this->set('resultTitle', $value);
+    }
+
+    /**
+     * 当 selectMode 为 associated 时用来定义右侧的选择模式 可选值: table | list | tree | chained
+     */
+    public function rightMode($value = '')
+    {
+        return $this->set('rightMode', $value);
+    }
+
+    /**
+     * 搜索 API
+     */
+    public function searchApi($value = '')
+    {
+        return $this->set('searchApi', $value);
+    }
+
+    /**
+     * 左侧列表搜索框提示
+     */
+    public function searchPlaceholder($value = '')
+    {
+        return $this->set('searchPlaceholder', $value);
+    }
+
+    /**
+     * 当 searchResultMode 为 table 时定义表格列信息。
+     */
+    public function searchResultColumns($value = '')
+    {
+        return $this->set('searchResultColumns', $value);
+    }
+
+    /**
+     * 搜索结果展示模式 可选值: table | list | tree | chained
+     */
+    public function searchResultMode($value = '')
+    {
+        return $this->set('searchResultMode', $value);
+    }
+
+    /**
+     * 可搜索？
+     */
+    public function searchable($value = true)
+    {
+        return $this->set('searchable', $value);
+    }
+
+    /**
+     * 默认选择选项第一个值。
+     */
+    public function selectFirst($value = true)
+    {
+        return $this->set('selectFirst', $value);
+    }
+
+    /**
+     * 勾选展示模式 可选值: table | list | tree | chained | associated
+     */
+    public function selectMode($value = '')
+    {
+        return $this->set('selectMode', $value);
+    }
+
+    /**
+     * 左侧的标题文字
+     */
+    public function selectTitle($value = '')
+    {
+        return $this->set('selectTitle', $value);
+    }
+
+    /**
+     * 是否显示剪头
+     */
+    public function showArrow($value = true)
+    {
+        return $this->set('showArrow', $value);
+    }
+
+    /**
+     * 当在value值未匹配到当前options中的选项时，是否value值对应文本飘红显示
+     */
+    public function showInvalidMatch($value = true)
+    {
+        return $this->set('showInvalidMatch', $value);
+    }
+
+    /**
+     * 表单项大小 可选值: xs | sm | md | lg | full
+     */
+    public function size($value = '')
+    {
+        return $this->set('size', $value);
+    }
+
+    /**
+     * 可排序？
+     */
+    public function sortable($value = true)
+    {
+        return $this->set('sortable', $value);
+    }
+
+    /**
+     * 可用来通过 API 拉取 options。
+     */
+    public function source($value = '')
+    {
+        return $this->set('source', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 统计数字
+     */
+    public function statistics($value = true)
+    {
+        return $this->set('statistics', $value);
+    }
+
+    /**
+     * 当修改完的时候是否提交表单。
+     */
+    public function submitOnChange($value = true)
+    {
+        return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     * 表单项类型
+     */
+    public function type($value = 'transfer')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 远端校验表单项接口
+     */
+    public function validateApi($value = '')
+    {
+        return $this->set('validateApi', $value);
+    }
+
+    /**
+     * 不设置时，当表单提交过后表单项每次修改都会触发重新验证， 如果设置了，则由此配置项来决定要不要每次修改都触发验证。
+     */
+    public function validateOnChange($value = true)
+    {
+        return $this->set('validateOnChange', $value);
+    }
+
+    /**
+     * 验证失败的提示信息
+     */
+    public function validationErrors($value = '')
+    {
+        return $this->set('validationErrors', $value);
+    }
+
+    public function validations($value = '')
+    {
+        return $this->set('validations', $value);
+    }
+
+    /**
+     * 默认值，切记只能是静态值，不支持取变量，跟数据关联是通过设置 name 属性来实现的。
+     */
+    public function value($value = '')
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
+     * 用来丰富值的展示
+     */
+    public function valueTpl($value = '')
+    {
+        return $this->set('valueTpl', $value);
+    }
+
+    /**
+     * 在选项数量达到多少时开启虚拟渲染
+     */
+    public function virtualThreshold($value = '')
+    {
+        return $this->set('virtualThreshold', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
+    /**
+     * 在Table中调整宽度
+     */
+    public function width($value = '')
+    {
+        return $this->set('width', $value);
+    }
+
 }

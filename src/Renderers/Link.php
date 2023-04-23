@@ -4,33 +4,206 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Link 链接展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/link
- *
- * @method self className($value) 容器 css 类名
- * @method self hidden($value) 是否隐藏
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self visibleOn($value) 是否显示表达式
- * @method self blank($value) 是否新窗口打开。
- * @method self href($value) 链接地址
- * @method self body($value) 链接内容，如果不配置将显示链接地址。
- * @method self disabledOn($value) 是否禁用表达式
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self static($value) 是否静态展示
- * @method self staticSchema($value) 
- * @method self type($value) 指定为 link 链接展示控件
- * @method self rightIcon($value) 右侧图标
- * @method self visible($value) 是否显示
- * @method self onEvent($value) 事件动作配置
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self badge($value) 角标
- * @method self htmlTarget($value) a标签原生target属性
- * @method self icon($value) 图标
- * @method self disabled($value) 是否禁用
- * @method self staticOn($value) 是否静态展示表达式
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self staticInputClassName($value) 静态展示表单项Value类名
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Link extends BaseRenderer
 {
-    public string $type = 'link';
+    public function __construct()
+    {
+        $this->set('type', 'link');
+
+    }
+
+    /**
+     * 角标
+     */
+    public function badge($value = '')
+    {
+        return $this->set('badge', $value);
+    }
+
+    /**
+     * 是否新窗口打开。
+     */
+    public function blank($value = true)
+    {
+        return $this->set('blank', $value);
+    }
+
+    /**
+     * 链接内容，如果不配置将显示链接地址。
+     */
+    public function body($value = '')
+    {
+        return $this->set('body', $value);
+    }
+
+    /**
+     * 容器 css 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 是否禁用
+     */
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 链接地址
+     */
+    public function href($value = '')
+    {
+        return $this->set('href', $value);
+    }
+
+    /**
+     * a标签原生target属性
+     */
+    public function htmlTarget($value = '')
+    {
+        return $this->set('htmlTarget', $value);
+    }
+
+    /**
+     * 图标
+     */
+    public function icon($value = '')
+    {
+        return $this->set('icon', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 右侧图标
+     */
+    public function rightIcon($value = '')
+    {
+        return $this->set('rightIcon', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 指定为 link 链接展示控件
+     */
+    public function type($value = 'link')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
 }

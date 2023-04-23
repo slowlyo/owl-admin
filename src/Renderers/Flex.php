@@ -3,18 +3,74 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * <b>Flex 布局</b><br/>
- *
- * @link https://aisuda.bce.baidu.com/amis/zh-CN/components/flex
- *
- * @method self className($value) css 类名
- * @method self justify($value) "start", "flex-start", "center", "end", "flex-end", "space-around", "space-between", "space-evenly"
- * @method self alignItems($value) "stretch", "start", "flex-start", "flex-end", "end", "center", "baseline"
- * @method self style($value) 自定义样式
- * @method self direction($value) 布局方向: column, row
- * @method self items($value) 子元素, 数组表示多个
+ * Flex 布局
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Flex extends BaseRenderer
 {
-    public string $type = 'flex';
+    public function __construct()
+    {
+        $this->set('type', 'flex');
+
+    }
+
+    /**
+     * stretch, start, flex-start, flex-end, end, center, baseline
+     */
+    public function alignItems($value = '')
+    {
+        return $this->set('alignItems', $value);
+    }
+
+    /**
+     * css 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 布局方向: column, row
+     */
+    public function direction($value = '')
+    {
+        return $this->set('direction', $value);
+    }
+
+    /**
+     * 子元素, 数组表示多个
+     */
+    public function items($value = '')
+    {
+        return $this->set('items', $value);
+    }
+
+    /**
+     * start, flex-start, center, end, flex-end, space-around, space-between, space-evenly
+     */
+    public function justify($value = '')
+    {
+        return $this->set('justify', $value);
+    }
+
+    /**
+     * 自定义样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
+    }
+
+    /**
+     * 指定为 flex 渲染器。
+     */
+    public function type($value = 'flex')
+    {
+        return $this->set('type', $value);
+    }
+
 }

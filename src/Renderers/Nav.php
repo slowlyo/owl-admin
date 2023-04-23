@@ -4,46 +4,307 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Nav 导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/nav
- *
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self stacked($value) true 为垂直排列，false 为水平排列类似如 tabs。 可选值: true | false | 
- * @method self badge($value) 角标
- * @method self disabledOn($value) 是否禁用表达式
- * @method self overflow($value) 横向导航时自动收纳配置
- * @method self defaultOpenLevel($value) 默认展开层级 小于等于该层数的节点默认全部打开
- * @method self itemBadge($value) 角标
- * @method self expandPosition($value) 自定义展开图标位置 默认在前面 before after
- * @method self static($value) 是否静态展示
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self type($value) 指定为 Nav 导航渲染器
- * @method self indentSize($value) 
- * @method self draggable($value) 可拖拽
- * @method self hidden($value) 是否隐藏
- * @method self staticOn($value) 是否静态展示表达式
- * @method self deferApi($value) 懒加载 api，如果不配置复用 source 接口。
- * @method self level($value) 最多展示多少层级
- * @method self staticInputClassName($value) 静态展示表单项Value类名
- * @method self source($value) 可以通过 API 拉取。
- * @method self dragOnSameLevel($value) 仅允许同层级拖拽
- * @method self mode($value) 垂直模式 非折叠状态下 控制菜单打开方式 可选值: float | inline | 
- * @method self visibleOn($value) 是否显示表达式
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self staticSchema($value) 
- * @method self itemActions($value) 更多操作菜单列表
- * @method self saveOrderApi($value) 保存排序的 api
- * @method self showKey($value) 控制仅展示指定key菜单下的子菜单项
- * @method self visible($value) 是否显示
- * @method self expandIcon($value) 自定义展开图标
- * @method self themeColor($value) 主题配色 默认light 可选值: light | dark | 
- * @method self className($value) 容器 css 类名
- * @method self disabled($value) 是否禁用
- * @method self onEvent($value) 事件动作配置
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self links($value) 链接地址集合
- * @method self collapsed($value) 控制仅展示指定key菜单下的子菜单项
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Nav extends BaseRenderer
 {
-    public string $type = 'nav';
+    public function __construct()
+    {
+        $this->set('type', 'nav');
+
+    }
+
+    /**
+     * 角标
+     */
+    public function badge($value = '')
+    {
+        return $this->set('badge', $value);
+    }
+
+    /**
+     * 容器 css 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 控制仅展示指定key菜单下的子菜单项
+     */
+    public function collapsed($value = true)
+    {
+        return $this->set('collapsed', $value);
+    }
+
+    /**
+     * 默认展开层级 小于等于该层数的节点默认全部打开
+     */
+    public function defaultOpenLevel($value = '')
+    {
+        return $this->set('defaultOpenLevel', $value);
+    }
+
+    /**
+     * 懒加载 api，如果不配置复用 source 接口。
+     */
+    public function deferApi($value = '')
+    {
+        return $this->set('deferApi', $value);
+    }
+
+    /**
+     * 是否禁用
+     */
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 仅允许同层级拖拽
+     */
+    public function dragOnSameLevel($value = true)
+    {
+        return $this->set('dragOnSameLevel', $value);
+    }
+
+    /**
+     * 可拖拽
+     */
+    public function draggable($value = true)
+    {
+        return $this->set('draggable', $value);
+    }
+
+    /**
+     * 自定义展开图标
+     */
+    public function expandIcon($value = '')
+    {
+        return $this->set('expandIcon', $value);
+    }
+
+    /**
+     * 自定义展开图标位置 默认在前面 before after
+     */
+    public function expandPosition($value = '')
+    {
+        return $this->set('expandPosition', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    public function indentSize($value = '')
+    {
+        return $this->set('indentSize', $value);
+    }
+
+    /**
+     * 更多操作菜单列表
+     */
+    public function itemActions($value = '')
+    {
+        return $this->set('itemActions', $value);
+    }
+
+    /**
+     * 角标
+     */
+    public function itemBadge($value = '')
+    {
+        return $this->set('itemBadge', $value);
+    }
+
+    /**
+     * 最多展示多少层级
+     */
+    public function level($value = '')
+    {
+        return $this->set('level', $value);
+    }
+
+    /**
+     * 链接地址集合
+     */
+    public function links($value = '')
+    {
+        return $this->set('links', $value);
+    }
+
+    /**
+     * 垂直模式 非折叠状态下 控制菜单打开方式 可选值: float | inline
+     */
+    public function mode($value = '')
+    {
+        return $this->set('mode', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 横向导航时自动收纳配置
+     */
+    public function overflow($value = '')
+    {
+        return $this->set('overflow', $value);
+    }
+
+    /**
+     * 保存排序的 api
+     */
+    public function saveOrderApi($value = '')
+    {
+        return $this->set('saveOrderApi', $value);
+    }
+
+    /**
+     * 控制仅展示指定key菜单下的子菜单项
+     */
+    public function showKey($value = '')
+    {
+        return $this->set('showKey', $value);
+    }
+
+    /**
+     * 可以通过 API 拉取。
+     */
+    public function source($value = '')
+    {
+        return $this->set('source', $value);
+    }
+
+    /**
+     * true 为垂直排列，false 为水平排列类似如 tabs。 可选值: 1 | 
+     */
+    public function stacked($value = true)
+    {
+        return $this->set('stacked', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 主题配色 默认light 可选值: light | dark
+     */
+    public function themeColor($value = '')
+    {
+        return $this->set('themeColor', $value);
+    }
+
+    /**
+     * 指定为 Nav 导航渲染器
+     */
+    public function type($value = 'nav')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
 }

@@ -4,7 +4,6 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Renderers\Icon;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Slowlyo\OwlAdmin\Renderers\Dialog;
 use Slowlyo\OwlAdmin\Renderers\SvgIcon;

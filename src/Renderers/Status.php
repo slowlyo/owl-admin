@@ -4,30 +4,182 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 状态展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/status
- *
- * @method self placeholder($value) 占位符
- * @method self onEvent($value) 事件动作配置
- * @method self hiddenOn($value) 是否隐藏表达式
- * @method self visible($value) 是否显示
- * @method self static($value) 是否静态展示
- * @method self labelMap($value) 文字映射关系
- * @method self hidden($value) 是否隐藏
- * @method self id($value) 组件唯一 id，主要用于日志采集
- * @method self staticOn($value) 是否静态展示表达式
- * @method self staticPlaceholder($value) 静态展示空值占位
- * @method self staticClassName($value) 静态展示表单项类名
- * @method self staticInputClassName($value) 静态展示表单项Value类名
- * @method self staticSchema($value) 
- * @method self type($value) 指定为状态展示控件
- * @method self visibleOn($value) 是否显示表达式
- * @method self map($value) 状态图标映射关系
- * @method self disabled($value) 是否禁用
- * @method self disabledOn($value) 是否禁用表达式
- * @method self staticLabelClassName($value) 静态展示表单项Label类名
- * @method self source($value) 新版配置映射源的字段 可以兼容新版icon并且配置颜色 2.8.0 新增
- * @method self className($value) 容器 css 类名
+ * 
+ * @author slowlyo
+ * @version v2.9.0
+ * @since 2023-04-23
  */
 class Status extends BaseRenderer
 {
-    public string $type = 'status';
+    public function __construct()
+    {
+        $this->set('type', 'status');
+
+    }
+
+    /**
+     * 容器 css 类名
+     */
+    public function className($value = '')
+    {
+        return $this->set('className', $value);
+    }
+
+    /**
+     * 是否禁用
+     */
+    public function disabled($value = true)
+    {
+        return $this->set('disabled', $value);
+    }
+
+    /**
+     * 是否禁用表达式
+     */
+    public function disabledOn($value = '')
+    {
+        return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否隐藏
+     */
+    public function hidden($value = true)
+    {
+        return $this->set('hidden', $value);
+    }
+
+    /**
+     * 是否隐藏表达式
+     */
+    public function hiddenOn($value = '')
+    {
+        return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 组件唯一 id，主要用于日志采集
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
+    }
+
+    /**
+     * 文字映射关系
+     */
+    public function labelMap($value = '')
+    {
+        return $this->set('labelMap', $value);
+    }
+
+    /**
+     * 状态图标映射关系
+     */
+    public function map($value = '')
+    {
+        return $this->set('map', $value);
+    }
+
+    /**
+     * 事件动作配置
+     */
+    public function onEvent($value = '')
+    {
+        return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 占位符
+     */
+    public function placeholder($value = '')
+    {
+        return $this->set('placeholder', $value);
+    }
+
+    /**
+     * 新版配置映射源的字段 可以兼容新版icon并且配置颜色 2.8.0 新增
+     */
+    public function source($value = '')
+    {
+        return $this->set('source', $value);
+    }
+
+    /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
+     * 静态展示表单项类名
+     */
+    public function staticClassName($value = '')
+    {
+        return $this->set('staticClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Value类名
+     */
+    public function staticInputClassName($value = '')
+    {
+        return $this->set('staticInputClassName', $value);
+    }
+
+    /**
+     * 静态展示表单项Label类名
+     */
+    public function staticLabelClassName($value = '')
+    {
+        return $this->set('staticLabelClassName', $value);
+    }
+
+    /**
+     * 是否静态展示表达式
+     */
+    public function staticOn($value = '')
+    {
+        return $this->set('staticOn', $value);
+    }
+
+    /**
+     * 静态展示空值占位
+     */
+    public function staticPlaceholder($value = '')
+    {
+        return $this->set('staticPlaceholder', $value);
+    }
+
+    public function staticSchema($value = '')
+    {
+        return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 指定为状态展示控件
+     */
+    public function type($value = 'status')
+    {
+        return $this->set('type', $value);
+    }
+
+    /**
+     * 是否显示
+     */
+    public function visible($value = true)
+    {
+        return $this->set('visible', $value);
+    }
+
+    /**
+     * 是否显示表达式
+     */
+    public function visibleOn($value = '')
+    {
+        return $this->set('visibleOn', $value);
+    }
+
 }

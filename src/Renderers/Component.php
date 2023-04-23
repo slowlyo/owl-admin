@@ -12,12 +12,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  */
 class Component extends BaseRenderer
 {
-    public string $type = '';
-
     public function setType($type): static
     {
-        $this->type = $type;
-
-        return $this;
+        return $this->set('type', $type);
     }
 }
