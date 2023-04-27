@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Libs\CodeGenerator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class Generator
 {
@@ -136,6 +137,58 @@ class Generator
                             ];
                         })
                         ->values();
+                });
+            }
+        } catch (\Throwable $e) {
+        }
+
+        return collect($data);
+    }
+
+    public function getDatabasePrimaryKeys($db = null, $tb = null)
+    {
+        $databases = Arr::where(config('database.connections', []), function ($value) {
+            $supports = ['mysql'];
+
+            return in_array(strtolower(Arr::get($value, 'driver')), $supports);
+        });
+
+        $data = [];
+
+        try {
+            foreach ($databases as $connectName => $value) {
+                if ($db && $db != $value['database']) continue;
+
+                $sql = sprintf('SELECT * FROM information_schema.columns WHERE table_schema = "%s"',
+                    $value['database']);
+
+                if ($tb) {
+                    $p = Arr::get($value, 'prefix');
+
+                    $sql .= " AND TABLE_NAME = '{$p}{$tb}'";
+                }
+
+                $tmp = DB::connection($connectName)->select($sql);
+
+                $collection = collect($tmp)->map(function ($v) use ($value) {
+                    if (!$p = Arr::get($value, 'prefix')) {
+                        return (array)$v;
+                    }
+                    $v = (array)$v;
+
+                    $v['TABLE_NAME'] = Str::replaceFirst($p, '', $v['TABLE_NAME']);
+
+                    return $v;
+                });
+
+                $data[$value['database']] = $collection->groupBy('TABLE_NAME')->map(function ($v) {
+                    return collect($v)
+                        ->keyBy('COLUMN_NAME')
+                        ->where('COLUMN_KEY', 'PRI')
+                        ->whereNotIn('COLUMN_NAME', ['created_at', 'updated_at', 'deleted_at'])
+                        ->map(fn($v) => $v['COLUMN_NAME'])
+                        ->values()
+                        ->first();
                 });
             }
         } catch (\Throwable $e) {

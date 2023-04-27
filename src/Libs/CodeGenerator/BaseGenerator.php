@@ -11,6 +11,8 @@ class BaseGenerator
 
     protected string $primaryKey = '';
 
+    protected bool $overwrite = false;
+
     public static function make(): static
     {
         return new static();
@@ -19,6 +21,13 @@ class BaseGenerator
     public function primary($key): static
     {
         $this->primaryKey = $key;
+
+        return $this;
+    }
+
+    public function overwrite(bool $overwrite = true): static
+    {
+        $this->overwrite = $overwrite;
 
         return $this;
     }

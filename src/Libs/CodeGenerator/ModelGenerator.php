@@ -39,8 +39,10 @@ class ModelGenerator extends BaseGenerator
             $files->makeDirectory($dir, 0755, true);
         }
 
-        if ($files->exists($path)) {
+        if ($files->exists($path) && !$this->overwrite) {
             abort(HttpResponse::HTTP_BAD_REQUEST, "Model [$name] already exists!");
+        }else{
+            $files->delete($path);
         }
 
         $stub = $files->get($this->stub);

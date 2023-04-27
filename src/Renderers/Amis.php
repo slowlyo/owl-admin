@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 namespace Slowlyo\OwlAdmin\Renderers;
 
-class Amis 
-{ 
+class Amis
+{
     public static function make()
-    { 
-        return new self(); 
+    {
+        return new self();
     }
 
     public function Action()
@@ -36,7 +36,17 @@ class Amis
 
     public function ArrayControl($name = '', $label = '')
     {
-        return ArrayControl::make()->name($name)->label($label);
+        $instance = ArrayControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Audio()
@@ -86,7 +96,17 @@ class Amis
 
     public function ButtonGroupControl($name = '', $label = '')
     {
-        return ButtonGroupControl::make()->name($name)->label($label);
+        $instance = ButtonGroupControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function ButtonToolbar()
@@ -151,7 +171,17 @@ class Amis
 
     public function ChainedSelectControl($name = '', $label = '')
     {
-        return ChainedSelectControl::make()->name($name)->label($label);
+        $instance = ChainedSelectControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Chart()
@@ -166,12 +196,32 @@ class Amis
 
     public function CheckboxControl($name = '', $label = '')
     {
-        return CheckboxControl::make()->name($name)->label($label);
+        $instance = CheckboxControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function CheckboxesControl($name = '', $label = '')
     {
-        return CheckboxesControl::make()->name($name)->label($label);
+        $instance = CheckboxesControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Code()
@@ -206,7 +256,17 @@ class Amis
 
     public function ComboControl($name = '', $label = '')
     {
-        return ComboControl::make()->name($name)->label($label);
+        $instance = ComboControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Component()
@@ -216,7 +276,17 @@ class Amis
 
     public function ConditionBuilderControl($name = '', $label = '')
     {
-        return ConditionBuilderControl::make()->name($name)->label($label);
+        $instance = ConditionBuilderControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function ConditionGroupValue()
@@ -246,7 +316,17 @@ class Amis
 
     public function DateControl($name = '', $label = '')
     {
-        return DateControl::make()->name($name)->label($label);
+        $instance = DateControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function DateRange()
@@ -256,12 +336,32 @@ class Amis
 
     public function DateRangeControl($name = '', $label = '')
     {
-        return DateRangeControl::make()->name($name)->label($label);
+        $instance = DateRangeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function DateTimeControl($name = '', $label = '')
     {
-        return DateTimeControl::make()->name($name)->label($label);
+        $instance = DateTimeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Dialog()
@@ -276,7 +376,17 @@ class Amis
 
     public function DiffControl($name = '', $label = '')
     {
-        return DiffControl::make()->name($name)->label($label);
+        $instance = DiffControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Divider()
@@ -306,7 +416,17 @@ class Amis
 
     public function EditorControl($name = '', $label = '')
     {
-        return EditorControl::make()->name($name)->label($label);
+        $instance = EditorControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function EmailAction()
@@ -326,12 +446,32 @@ class Amis
 
     public function FieldSetControl($name = '', $label = '')
     {
-        return FieldSetControl::make()->name($name)->label($label);
+        $instance = FieldSetControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function FileControl($name = '', $label = '')
     {
-        return FileControl::make()->name($name)->label($label);
+        $instance = FileControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Flex()
@@ -346,12 +486,32 @@ class Amis
 
     public function FormControl($name = '', $label = '')
     {
-        return FormControl::make()->name($name)->label($label);
+        $instance = FormControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function FormulaControl($name = '', $label = '')
     {
-        return FormulaControl::make()->name($name)->label($label);
+        $instance = FormulaControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Grid()
@@ -376,7 +536,17 @@ class Amis
 
     public function GroupControl($name = '', $label = '')
     {
-        return GroupControl::make()->name($name)->label($label);
+        $instance = GroupControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function HBox()
@@ -391,7 +561,17 @@ class Amis
 
     public function HiddenControl($name = '', $label = '')
     {
-        return HiddenControl::make()->name($name)->label($label);
+        $instance = HiddenControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Html()
@@ -421,7 +601,17 @@ class Amis
 
     public function IconPickerControl($name = '', $label = '')
     {
-        return IconPickerControl::make()->name($name)->label($label);
+        $instance = IconPickerControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Image()
@@ -431,7 +621,17 @@ class Amis
 
     public function ImageControl($name = '', $label = '')
     {
-        return ImageControl::make()->name($name)->label($label);
+        $instance = ImageControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function ImageToolbarAction()
@@ -446,12 +646,32 @@ class Amis
 
     public function InputCityControl($name = '', $label = '')
     {
-        return InputCityControl::make()->name($name)->label($label);
+        $instance = InputCityControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function InputColorControl($name = '', $label = '')
     {
-        return InputColorControl::make()->name($name)->label($label);
+        $instance = InputColorControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function InputDatetimeRange()
@@ -466,7 +686,17 @@ class Amis
 
     public function InputGroupControl($name = '', $label = '')
     {
-        return InputGroupControl::make()->name($name)->label($label);
+        $instance = InputGroupControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function InputKV()
@@ -491,7 +721,17 @@ class Amis
 
     public function JSONSchemaEditorControl($name = '', $label = '')
     {
-        return JSONSchemaEditorControl::make()->name($name)->label($label);
+        $instance = JSONSchemaEditorControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Json()
@@ -511,12 +751,32 @@ class Amis
 
     public function ListBodyField($name = '', $label = '')
     {
-        return ListBodyField::make()->name($name)->label($label);
+        $instance = ListBodyField::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function ListControl($name = '', $label = '')
     {
-        return ListControl::make()->name($name)->label($label);
+        $instance = ListControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function ListItem()
@@ -536,7 +796,17 @@ class Amis
 
     public function LocationControl($name = '', $label = '')
     {
-        return LocationControl::make()->name($name)->label($label);
+        $instance = LocationControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Log()
@@ -556,17 +826,47 @@ class Amis
 
     public function MatrixControl($name = '', $label = '')
     {
-        return MatrixControl::make()->name($name)->label($label);
+        $instance = MatrixControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function MonthControl($name = '', $label = '')
     {
-        return MonthControl::make()->name($name)->label($label);
+        $instance = MonthControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function MonthRangeControl($name = '', $label = '')
     {
-        return MonthRangeControl::make()->name($name)->label($label);
+        $instance = MonthRangeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function MultilineText()
@@ -591,12 +891,32 @@ class Amis
 
     public function NestedSelectControl($name = '', $label = '')
     {
-        return NestedSelectControl::make()->name($name)->label($label);
+        $instance = NestedSelectControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function NumberControl($name = '', $label = '')
     {
-        return NumberControl::make()->name($name)->label($label);
+        $instance = NumberControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Operation()
@@ -646,7 +966,17 @@ class Amis
 
     public function PickerControl($name = '', $label = '')
     {
-        return PickerControl::make()->name($name)->label($label);
+        $instance = PickerControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Plain()
@@ -686,27 +1016,77 @@ class Amis
 
     public function QuarterControl($name = '', $label = '')
     {
-        return QuarterControl::make()->name($name)->label($label);
+        $instance = QuarterControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function QuarterRangeControl($name = '', $label = '')
     {
-        return QuarterRangeControl::make()->name($name)->label($label);
+        $instance = QuarterRangeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function RadiosControl($name = '', $label = '')
     {
-        return RadiosControl::make()->name($name)->label($label);
+        $instance = RadiosControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function RangeControl($name = '', $label = '')
     {
-        return RangeControl::make()->name($name)->label($label);
+        $instance = RangeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function RatingControl($name = '', $label = '')
     {
-        return RatingControl::make()->name($name)->label($label);
+        $instance = RatingControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function ReloadAction()
@@ -721,12 +1101,32 @@ class Amis
 
     public function RepeatControl($name = '', $label = '')
     {
-        return RepeatControl::make()->name($name)->label($label);
+        $instance = RepeatControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function RichTextControl($name = '', $label = '')
     {
-        return RichTextControl::make()->name($name)->label($label);
+        $instance = RichTextControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function RowSelection()
@@ -766,7 +1166,17 @@ class Amis
 
     public function SelectControl($name = '', $label = '')
     {
-        return SelectControl::make()->name($name)->label($label);
+        $instance = SelectControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Service()
@@ -786,7 +1196,17 @@ class Amis
 
     public function StaticExactControl($name = '', $label = '')
     {
-        return StaticExactControl::make()->name($name)->label($label);
+        $instance = StaticExactControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Status()
@@ -806,7 +1226,17 @@ class Amis
 
     public function SubFormControl($name = '', $label = '')
     {
-        return SubFormControl::make()->name($name)->label($label);
+        $instance = SubFormControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function SvgIcon()
@@ -816,7 +1246,17 @@ class Amis
 
     public function SwitchControl($name = '', $label = '')
     {
-        return SwitchControl::make()->name($name)->label($label);
+        $instance = SwitchControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Tab()
@@ -831,12 +1271,32 @@ class Amis
 
     public function TableColumn($name = '', $label = '')
     {
-        return TableColumn::make()->name($name)->label($label);
+        $instance = TableColumn::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TableControl($name = '', $label = '')
     {
-        return TableControl::make()->name($name)->label($label);
+        $instance = TableControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TableSchema2()
@@ -856,12 +1316,32 @@ class Amis
 
     public function TabsTransferControl($name = '', $label = '')
     {
-        return TabsTransferControl::make()->name($name)->label($label);
+        $instance = TabsTransferControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TabsTransferPickerControl($name = '', $label = '')
     {
-        return TabsTransferPickerControl::make()->name($name)->label($label);
+        $instance = TabsTransferPickerControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Tag()
@@ -871,7 +1351,17 @@ class Amis
 
     public function TagControl($name = '', $label = '')
     {
-        return TagControl::make()->name($name)->label($label);
+        $instance = TagControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Tasks()
@@ -881,17 +1371,47 @@ class Amis
 
     public function TextControl($name = '', $label = '')
     {
-        return TextControl::make()->name($name)->label($label);
+        $instance = TextControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TextareaControl($name = '', $label = '')
     {
-        return TextareaControl::make()->name($name)->label($label);
+        $instance = TextareaControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TimeControl($name = '', $label = '')
     {
-        return TimeControl::make()->name($name)->label($label);
+        $instance = TimeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Timeline()
@@ -926,27 +1446,77 @@ class Amis
 
     public function TransferControl($name = '', $label = '')
     {
-        return TransferControl::make()->name($name)->label($label);
+        $instance = TransferControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TransferPickerControl($name = '', $label = '')
     {
-        return TransferPickerControl::make()->name($name)->label($label);
+        $instance = TransferPickerControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TreeControl($name = '', $label = '')
     {
-        return TreeControl::make()->name($name)->label($label);
+        $instance = TreeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function TreeSelectControl($name = '', $label = '')
     {
-        return TreeSelectControl::make()->name($name)->label($label);
+        $instance = TreeSelectControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function UUIDControl($name = '', $label = '')
     {
-        return UUIDControl::make()->name($name)->label($label);
+        $instance = UUIDControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function UrlAction()
@@ -956,7 +1526,17 @@ class Amis
 
     public function UserSelectControl($name = '', $label = '')
     {
-        return UserSelectControl::make()->name($name)->label($label);
+        $instance = UserSelectControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function VBox()
@@ -976,7 +1556,17 @@ class Amis
 
     public function WangEditor($name = '', $label = '')
     {
-        return WangEditor::make()->name($name)->label($label);
+        $instance = WangEditor::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function WebComponent()
@@ -991,7 +1581,17 @@ class Amis
 
     public function WizardStep($name = '', $label = '')
     {
-        return WizardStep::make()->name($name)->label($label);
+        $instance = WizardStep::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Words()
@@ -1006,7 +1606,17 @@ class Amis
 
     public function YearControl($name = '', $label = '')
     {
-        return YearControl::make()->name($name)->label($label);
+        $instance = YearControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
 }

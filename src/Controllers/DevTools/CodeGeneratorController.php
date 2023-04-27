@@ -4,20 +4,9 @@ namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Renderers\Card;
-use Slowlyo\OwlAdmin\Renderers\Flex;
-use Slowlyo\OwlAdmin\Renderers\Alert;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
-use Slowlyo\OwlAdmin\Renderers\TextControl;
-use Slowlyo\OwlAdmin\Renderers\GroupControl;
-use Slowlyo\OwlAdmin\Renderers\TableControl;
-use Slowlyo\OwlAdmin\Renderers\SelectControl;
-use Slowlyo\OwlAdmin\Renderers\VanillaAction;
-use Slowlyo\OwlAdmin\Renderers\CheckboxControl;
-use Slowlyo\OwlAdmin\Renderers\FieldSetControl;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
-use Slowlyo\OwlAdmin\Renderers\CheckboxesControl;
 use Slowlyo\OwlAdmin\Libs\CodeGenerator\Generator;
 use Slowlyo\OwlAdmin\Libs\CodeGenerator\ModelGenerator;
 use Slowlyo\OwlAdmin\Libs\CodeGenerator\ServiceGenerator;
@@ -29,13 +18,12 @@ class CodeGeneratorController extends AdminController
     public function index(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
         $page = Page::make()
-            ->css([
-                '.cxd-Table-content' => ['padding-bottom' => '15px'],
-            ])
+            ->css($this->css())
             ->body($this->form());
 
         return $this->response()->success($page);
     }
+
 
     public function form()
     {
@@ -44,43 +32,42 @@ class CodeGeneratorController extends AdminController
         $nameHandler =
             'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
 
-        return Form::make()
+        return amisMake()->Form()
             ->id('code_generator_form')
             ->wrapWithPanel(false)
+            ->labelWidth(150)
             ->title(' ')
             ->mode('horizontal')
-            ->resetAfterSubmit(true)
+            ->resetAfterSubmit()
             ->api($this->getStorePath())
-            ->data(['table_info' => $databaseColumns])
+            ->data([
+                'table_info'         => $databaseColumns,
+                'table_primary_keys' => Generator::make()->getDatabasePrimaryKeys(),
+            ])
             ->feedback(['title' => '', 'body' => amisMake()->Tpl()->tpl('${result | raw}')])
             ->body([
-                Card::make()->body(
-                    GroupControl::make()->body([
-                        GroupControl::make()->direction('vertical')->body([
-                            GroupControl::make()->body([
-                                TextControl::make()
-                                    ->label(__('admin.code_generators.app_title'))
-                                    ->name('title')
+                amisMake()->Card()->body(
+                    amisMake()->GroupControl()->body([
+                        amisMake()->GroupControl()->direction('vertical')->body([
+                            amisMake()->GroupControl()->body([
+                                amisMake()
+                                    ->TextControl('title', __('admin.code_generators.app_title'))
                                     ->value('${' . $nameHandler . '}'),
-                                Flex::make()->justify('end')->items([
-                                    VanillaAction::make()
+                                amisMake()->Flex()->justify('end')->items([
+                                    amisMake()->VanillaAction()
                                         ->type('submit')
                                         ->label(__('admin.code_generators.generate_code'))
                                         ->level('primary')
                                         ->icon('fa-solid fa-terminal'),
                                 ]),
                             ]),
-                            GroupControl::make()->body([
-                                TextControl::make()
-                                    ->label(__('admin.code_generators.table_name'))
-                                    ->name('table_name')
-                                    ->value('')
-                                    ->required(true),
-                                SelectControl::make()
-                                    ->label(__('admin.code_generators.exists_table'))
-                                    ->name('exists_table')
-                                    ->searchable(true)
-                                    ->clearable(true)
+                            amisMake()->GroupControl()->body([
+                                amisMake()->TextControl('table_name', __('admin.code_generators.table_name'))
+                                    ->value()
+                                    ->required(),
+                                amisMake()->SelectControl('exists_table', __('admin.code_generators.exists_table'))
+                                    ->searchable()
+                                    ->clearable()
                                     ->selectMode('group')
                                     ->options(
                                         $databaseColumns->map(function ($item, $index) {
@@ -101,16 +88,9 @@ class CodeGeneratorController extends AdminController
                                                     'componentId' => 'code_generator_form',
                                                     'args'        => [
                                                         'value' => [
-                                                            'table_name' => '${SPLIT(event.data.value, "-")[0]}',
-                                                        ],
-                                                    ],
-                                                ],
-                                                [
-                                                    'actionType'  => 'setValue',
-                                                    'componentId' => 'code_generator_form',
-                                                    'args'        => [
-                                                        'value' => [
-                                                            'columns' => '${table_info[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
+                                                            'table_name'  => '${SPLIT(event.data.value, "-")[0]}',
+                                                            'primary_key' => '${table_primary_keys[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
+                                                            'columns'     => '${table_info[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
                                                         ],
                                                     ],
                                                 ],
@@ -118,47 +98,34 @@ class CodeGeneratorController extends AdminController
                                         ],
                                     ]),
                             ]),
-                            CheckboxesControl::make()
-                                ->name('needs')
-                                ->label(__('admin.code_generators.options'))
+                            amisMake()->CheckboxesControl('needs', __('admin.code_generators.options'))
                                 ->joinValues(false)
-                                ->extractValue(true)
-                                ->checkAll(true)
-                                ->defaultCheckAll(true)
+                                ->extractValue()
+                                ->checkAll()
+                                ->defaultCheckAll()
                                 ->options(Generator::make()->needCreateOptions()),
-                            FieldSetControl::make()
+                            // amisMake()
+                            //     ->SwitchControl('overwrite', __('admin.code_generators.overwrite'))
+                            //     ->onText(__('admin.code_generators.overwrite_description')),
+                            amisMake()->FieldSetControl()
                                 ->title(__('admin.code_generators.expand_more_settings'))
                                 ->collapseTitle(__('admin.code_generators.collapse_settings'))
-                                ->collapsable(true)
-                                ->collapsed(true)
+                                ->collapsable()
+                                ->collapsed()
                                 ->titlePosition('bottom')->body([
-                                    TextControl::make()
-                                        ->label(__('admin.code_generators.primary_key'))
-                                        ->name('primary_key')
+                                    amisMake()->TextControl('primary_key', __('admin.code_generators.primary_key'))
                                         ->value('id')
                                         ->description(__('admin.code_generators.primary_key_description'))
-                                        ->required(true),
-                                    TextControl::make()
-                                        ->label(__('admin.code_generators.model_name'))
-                                        ->name('model_name')
+                                        ->required(),
+                                    amisMake()->TextControl('model_name', __('admin.code_generators.model_name'))
                                         ->value($this->getNamespace('Models', 1) . '${' . $nameHandler . '}'),
-                                    TextControl::make()
-                                        ->label(__('admin.code_generators.controller_name'))
-                                        ->name('controller_name')
+                                    amisMake()
+                                        ->TextControl('controller_name', __('admin.code_generators.controller_name'))
                                         ->value($this->getNamespace('Controllers') . '${' . $nameHandler . '}Controller'),
-                                    TextControl::make()
-                                        ->label(__('admin.code_generators.service_name'))
-                                        ->name('service_name')
-                                        ->value($this->getNamespace('Services',
-                                                1) . '${' . $nameHandler . '}Service'),
-                                    CheckboxControl::make()
-                                        ->name('need_timestamps')
-                                        ->option('CreatedAt & UpdatedAt')
-                                        ->value(1),
-                                    CheckboxControl::make()
-                                        ->name('soft_delete')
-                                        ->option(__('admin.soft_delete'))
-                                        ->value(1),
+                                    amisMake()->TextControl('service_name', __('admin.code_generators.service_name'))
+                                        ->value($this->getNamespace('Services', 1) . '${' . $nameHandler . '}Service'),
+                                    amisMake()->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')->value(1),
+                                    amisMake()->SwitchControl('soft_delete', __('admin.soft_delete'))->value(1),
                                 ]),
                         ]),
                     ]),
@@ -169,72 +136,49 @@ class CodeGeneratorController extends AdminController
 
     public function columnTable()
     {
-        return Card::make()->body([
-            Alert::make()
+        return amisMake()->Card()->body([
+            amisMake()->Alert()
                 ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/owl-admin-doc/#/docs/issue?id=%f0%9f%90%9b-%e7%bc%96%e8%be%91-%e8%af%a6%e6%83%85%e9%a1%b5%e9%9d%a2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%98%be%e5%a4%b1%e8%b4%a5' target='_blank'>查看详情</a> ")
                 ->level('warning')
-                ->showCloseButton(true)
-                ->showIcon(true),
-            TableControl::make()
-                ->className('pb-7')
-                ->name('columns')
-                ->label(false)
-                ->addable(true)
-                ->needConfirm(false)
-                ->draggable(true)
-                ->removable(true)
-                ->columnsTogglable(false)
-                ->value([['name' => '', 'type' => '', 'additional' => '', 'index' => '']])
-                ->columns([
-                    TextControl::make()
-                        ->name('name')
-                        ->label(__('admin.code_generators.column_name'))
-                        ->required(true),
-                    SelectControl::make()
-                        ->name('type')
-                        ->label(__('admin.code_generators.type'))
-                        ->options(Generator::make()->availableFieldTypes())
-                        ->searchable(true)
-                        ->value('string')
-                        ->required(true),
-                    TextControl::make()
-                        ->name('additional')
-                        ->label(
-                            amisMake()->TooltipWrapper()->body([
-                                __('admin.code_generators.extra_params'),
-                                amisMake()->Icon()->icon('fa fa-circle-question')->className('pl-2'),
-                            ])->content(
+                ->showCloseButton()
+                ->showIcon(),
+            amisMake()
+                ->SubFormControl('columns', false)
+                ->multiple()
+                ->btnLabel('${"<div class=\'column-name\'>"+name + "</div><div class=\'text-success\'>" + type+"</div><div class=\'item-comment\'>"+comment+"</div>"}')
+                ->minLength(1)
+                ->draggable()
+                ->addable()
+                ->removable()
+                ->itemClassName('custom-subform-item')
+                ->addButtonText('添加字段')
+                ->form(
+                    amisMake()->FormControl()->set('title', '添加字段')->body([
+                        amisMake()->TextControl('name', __('admin.code_generators.column_name'))->required(),
+                        amisMake()->SelectControl('type', __('admin.code_generators.type'))
+                            ->options(Generator::make()->availableFieldTypes())
+                            ->searchable()
+                            ->value('string')
+                            ->required(),
+                        amisMake()->TextControl('comment', __('admin.code_generators.comment')),
+                        amisMake()->TextControl('default', __('admin.code_generators.default_value')),
+                        amisMake()->TextControl('additional', __('admin.code_generators.extra_params'))
+                            ->labelRemark(
                                 __('admin.code_generators.remark1') .
                                 "<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>" .
                                 __('admin.code_generators.remark2') .
                                 "</a>, " . __('admin.code_generators.remark3')
-                            )
-                        )
-                        ->width(160)
-                        ->size('sm'),
-                    CheckboxControl::make()
-                        ->name('nullable')
-                        ->label(__('admin.code_generators.nullable'))
-                        ->width(60),
-                    SelectControl::make()
-                        ->name('index')
-                        ->label(__('admin.code_generators.index'))
-                        ->size('xs')
-                        ->width(90)
-                        ->options(
-                            collect(['index', 'unique'])->map(fn($value) => [
-                                'label' => $value,
-                                'value' => $value,
-                            ]))
-                        ->clearable(true),
-                    TextControl::make()->name('comment')->label(__('admin.code_generators.comment')),
-                    TextControl::make()
-                        ->name('default')
-                        ->label(__('admin.code_generators.default_value')),
-                    // amisMake()->SubFormControl()->name('more')->label('更多设置')->btnLabel('更多')->form(
-                    //     amisMake()->Form()->title('更多设置')->set('size', 'lg')->body([])
-                    // ),
-                ]),
+                            ),
+                        amisMake()->SelectControl('index', __('admin.code_generators.index'))
+                            ->options(
+                                collect(['index', 'unique'])->map(fn($value) => [
+                                    'label' => $value,
+                                    'value' => $value,
+                                ]))
+                            ->clearable(),
+                        amisMake()->SwitchControl('nullable', __('admin.code_generators.nullable'))->width(60),
+                    ])
+                ),
         ]);
     }
 
@@ -253,6 +197,7 @@ class CodeGeneratorController extends AdminController
             if ($needs->contains('need_model')) {
                 $path = ModelGenerator::make()
                     ->primary($request->primary_key)
+                    ->overwrite($request->get('overwrite', false))
                     ->timestamps($request->get('need_timestamps', false))
                     ->softDelete($request->get('soft_delete', false))
                     ->generate($request->table_name, $request->model_name);
@@ -279,6 +224,7 @@ class CodeGeneratorController extends AdminController
             if ($needs->contains('need_controller')) {
                 $path = ControllerGenerator::make()
                     ->primary($request->primary_key)
+                    ->overwrite($request->get('overwrite', false))
                     ->title($request->title)
                     ->tableName($request->table_name)
                     ->serviceName($request->service_name)
@@ -293,7 +239,9 @@ class CodeGeneratorController extends AdminController
 
             // Service
             if ($needs->contains('need_service')) {
-                $path = ServiceGenerator::make()->generate($request->service_name, $request->model_name);
+                $path = ServiceGenerator::make()
+                    ->overwrite($request->get('overwrite', false))
+                    ->generate($request->service_name, $request->model_name);
 
                 $message .= $successMessage('Service', $path);
 
@@ -302,6 +250,10 @@ class CodeGeneratorController extends AdminController
 
             // 创建数据库表
             if ($needs->contains('need_create_table')) {
+                if ($request->get('overwrite', false)) {
+                    Schema::dropIfExists($request->table_name);
+                }
+
                 Artisan::call('migrate');
                 $message .= Artisan::output();
             }
@@ -310,6 +262,8 @@ class CodeGeneratorController extends AdminController
 
             return $this->response()->fail($e->getMessage());
         }
+
+        $this->service->save($request->all());
 
         return $this->response()->doNotDisplayToast()->success(['result' => $message]);
     }
@@ -325,5 +279,55 @@ class CodeGeneratorController extends AdminController
         }
 
         return $namespace->push($name)->implode('/') . '/';
+    }
+
+    private function css()
+    {
+        return [
+            '.cxd-Table-content'                             => ['padding-bottom' => '15px'],
+            '.item-comment'                                  => [
+                'width'         => '220px',
+                'height'        => '18px',
+                'overflow'      => 'hidden',
+                'text-overflow' => 'ellipsis',
+                'white-space'   => 'nowrap',
+                'color'         => '#a9aeb8',
+                'font-size'     => '12px',
+            ],
+            '.column-name'                                   => [
+                'max-width'     => '160px',
+                'overflow'      => 'hidden',
+                'text-overflow' => 'ellipsis',
+                'white-space'   => 'nowrap',
+                'font-weight'   => 'bold',
+            ],
+            '.custom-subform-item'                           => [
+                'border'        => '1px solid #eee',
+                'border-radius' => '4px',
+                'margin'        => '5px',
+                'width'         => '16%',
+                'padding'       => '10px',
+                'min-width'     => '220px',
+                'position'      => 'relative',
+            ],
+            '.custom-subform-item .cxd-SubForm-valueDragBar' => [
+                'position' => 'absolute',
+                'top'      => '5px',
+                'left'     => '10px',
+            ],
+            '.custom-subform-item .cxd-SubForm-valueLabel'   => [
+                'margin-left' => '20px',
+            ],
+            '.custom-subform-item .cxd-SubForm-valueEdit'    => [
+                'position' => 'absolute',
+                'top'      => '5px',
+                'right'    => '30px',
+            ],
+            '.custom-subform-item .cxd-SubForm-valueDel'     => [
+                'position' => 'absolute',
+                'top'      => '5px',
+                'right'    => '10px',
+            ],
+        ];
     }
 }

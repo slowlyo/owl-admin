@@ -72,8 +72,10 @@ class ControllerGenerator extends BaseGenerator
             $files->makeDirectory($dir, 0755, true);
         }
 
-        if ($files->exists($path)) {
+        if ($files->exists($path) && !$this->overwrite) {
             abort(HttpResponse::HTTP_BAD_REQUEST, "Controller [$name] already exists!");
+        }else{
+            $files->delete($path);
         }
 
         $stub = $files->get($this->stub);
@@ -109,7 +111,7 @@ class ControllerGenerator extends BaseGenerator
 
         $primaryKey     = $this->primaryKey ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $list->push("TableColumn::make()->name('{$primaryKey}')->label('{$primaryKeyName}')->sortable(true)");
+        $list->push("TableColumn::make()->name('{$primaryKey}')->label('{$primaryKeyName}')->sortable()");
 
         $this->columns->map(function ($column) use (&$list) {
             $item = '';
@@ -126,8 +128,8 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $list->push("TableColumn::make()->name('created_at')->label('创建时间')->type('datetime')->sortable(true)");
-            $list->push("TableColumn::make()->name('updated_at')->label('更新时间')->type('datetime')->sortable(true)");
+            $list->push("TableColumn::make()->name('created_at')->label(__('admin.created_at'))->type('datetime')->sortable(true)");
+            $list->push("TableColumn::make()->name('updated_at')->label(__('admin.updated_at'))->type('datetime')->sortable(true)");
         }
 
         $list = $list->implode(",\n\t\t\t\t") . ',';
@@ -164,21 +166,21 @@ class ControllerGenerator extends BaseGenerator
 
         $primaryKey     = $this->primaryKey ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $detail->push("TextControl::make()->static(true)->name('{$primaryKey}')->label('{$primaryKeyName}')");
+        $detail->push("TextControl::make()->static()->name('{$primaryKey}')->label('{$primaryKeyName}')");
 
         $this->columns->map(function ($column) use (&$detail) {
             $item = '';
 
             $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
 
-            $item .= "TextControl::make()->static(true)->name('{$column['name']}')->label('{$label}')";
+            $item .= "TextControl::make()->static()->name('{$column['name']}')->label('{$label}')";
 
             $detail->push($item);
         });
 
         if ($this->needTimestamp) {
-            $detail->push("TextControl::make()->static(true)->name('created_at')->label('创建时间')");
-            $detail->push("TextControl::make()->static(true)->name('updated_at')->label('更新时间')");
+            $detail->push("TextControl::make()->static()->name('created_at')->label(__('admin.created_at'))");
+            $detail->push("TextControl::make()->static()->name('updated_at')->label(__('admin.updated_at'))");
         }
 
         $detail = $detail->implode(",\n\t\t\t");
