@@ -11,7 +11,10 @@ import {createViteProxy} from "./src/utils/proxy"
 export default defineConfig({
     base: "/admin/",
     resolve: {
-        alias: [{find: "@", replacement: "/src"}],
+        alias: [
+            {find: "@", replacement: "/src"},
+            {find: "moment/locale/zh-cn", replacement: "moment/dist/locale/zh-cn"}
+        ],
     },
     plugins: [
         UnoCSS({}),

@@ -1,6 +1,6 @@
 import React from "react"
 import "./style/index.less"
-import {render as renderAmis, toast} from "amis"
+import {render as renderAmis, RenderOptions, toast} from "amis"
 import {GlobalState} from "@/store"
 import {useSelector} from "react-redux"
 import {amisRequest} from "@/service/api"
@@ -23,7 +23,7 @@ const AmisRender = ({schema}) => {
         locale: localeMap[appSettings?.locale || "zh_CN"] || "zh-CN",
     }
 
-    const options = {
+    const options: RenderOptions = {
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         updateLocation: () => {
@@ -38,7 +38,7 @@ const AmisRender = ({schema}) => {
         copy: async (content) => {
             await clipboard(content)
             toast.success(locale["copy.success"])
-        }
+        },
     }
 
     return (

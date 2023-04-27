@@ -17,6 +17,22 @@ import {Breadcrumb} from "@/layout/common/breadcrumb"
 import Logo from "@/layout/common/Logo"
 import registerGlobalFunction from "@/utils/registerGlobalFunction"
 
+const UserMenu = ({userInfo, darkTheme}) => {
+    if (!userInfo.menus) return null
+
+    return (
+        <li className="px-8px flex item-center" style={{
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            "--button-default-default-bg-color": darkTheme ? "none" : "",
+            "--button-default-hover-bg-color": darkTheme ? "none" : "",
+            "--color-text-1": darkTheme ? "var(--color-text-4)" : ""
+        }}>
+            <AmisRender schema={userInfo.menus}/>
+        </li>
+    )
+}
+
 function Navbar() {
     const t = useLocale()
     const {userInfo, settings, appSettings} = useSelector((state: GlobalState) => state)
@@ -49,22 +65,6 @@ function Navbar() {
     const darkTheme = settings.topTheme == "dark"
 
     registerGlobalFunction("logout", () => logout.run())
-
-    const UserMenu = () => {
-        if (!userInfo.menus) return null
-
-        return (
-            <li className="px-8px flex item-center" style={{
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                "--button-default-default-bg-color": darkTheme ? "none" : "",
-                "--button-default-hover-bg-color": darkTheme ? "none" : "",
-                "--color-text-1": darkTheme ? "var(--color-text-4)" : ""
-            }}>
-                <AmisRender schema={userInfo.menus}/>
-            </li>
-        )
-    }
 
     return (
         <div className={styles.navbar} style={{
@@ -121,7 +121,7 @@ function Navbar() {
                     )}
                     {/* 主题设置 */}
                     {appSettings?.layout?.header?.theme_config && <Settings/>}
-                    <UserMenu/>
+                    <UserMenu userInfo={userInfo} darkTheme={darkTheme}/>
                 </ul>
             </div>
 
