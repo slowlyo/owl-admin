@@ -263,8 +263,6 @@ class CodeGeneratorController extends AdminController
             return $this->response()->fail($e->getMessage());
         }
 
-        $this->service->save($request->all());
-
         return $this->response()->doNotDisplayToast()->success(['result' => $message]);
     }
 
