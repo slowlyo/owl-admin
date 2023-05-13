@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class SchemaMessage extends BaseRenderer
 {

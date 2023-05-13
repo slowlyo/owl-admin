@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Service 服务类控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/service
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class Service extends BaseRenderer
 {
@@ -240,6 +240,14 @@ class Service extends BaseRenderer
     public function stopAutoRefreshWhen($value = '')
     {
         return $this->set('stopAutoRefreshWhen', $value);
+    }
+
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
     }
 
     /**

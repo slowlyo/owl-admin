@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tree 下拉选择框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tree
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class TreeControl extends BaseRenderer
 {
@@ -228,6 +228,14 @@ class TreeControl extends BaseRenderer
     public function extractValue($value = true)
     {
         return $this->set('extractValue', $value);
+    }
+
+    /**
+     * 高度自动增长？
+     */
+    public function heightAuto($value = true)
+    {
+        return $this->set('heightAuto', $value);
     }
 
     /**
@@ -617,6 +625,14 @@ class TreeControl extends BaseRenderer
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
     }
 
     /**

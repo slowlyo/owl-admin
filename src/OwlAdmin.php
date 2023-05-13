@@ -78,7 +78,9 @@ class OwlAdmin
                 }
 
                 $data[] = $_temp;
-                array_push($data, ...$this->generateMenus($_temp));
+                if (!in_array($_temp['path'], config('admin.route.without_extra_routes'))) {
+                    array_push($data, ...$this->generateMenus($_temp));
+                }
                 unset($list[$key]);
             }
         }

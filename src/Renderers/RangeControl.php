@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * RangeControl
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class RangeControl extends BaseRenderer
 {
@@ -377,6 +377,14 @@ class RangeControl extends BaseRenderer
     public function step($value = '')
     {
         return $this->set('step', $value);
+    }
+
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
     }
 
     /**

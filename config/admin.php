@@ -15,10 +15,14 @@ return [
     'bootstrap' => app_path('Admin/bootstrap.php'),
 
     'route' => [
-        'prefix'     => 'admin-api',
-        'domain'     => null,
-        'namespace'  => 'App\\Admin\\Controllers',
-        'middleware' => ['admin'],
+        'prefix'               => 'admin-api',
+        'domain'               => null,
+        'namespace'            => 'App\\Admin\\Controllers',
+        'middleware'           => ['admin'],
+        // 不包含额外路由, 配置后, 不会追加新增/详情/编辑页面路由
+        'without_extra_routes' => [
+            '/dashboard',
+        ],
     ],
 
     'auth' => [

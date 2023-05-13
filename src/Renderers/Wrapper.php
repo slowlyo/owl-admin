@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Wrapper 容器渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/wrapper
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class Wrapper extends BaseRenderer
 {

@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 提示渲染器，默认会显示个小图标，鼠标放上来的时候显示配置的内容。
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class Remark extends BaseRenderer
 {
@@ -166,6 +166,14 @@ class Remark extends BaseRenderer
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
+    }
+
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
     }
 
     /**

@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 视频播放器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/video
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class Video extends BaseRenderer
 {
@@ -246,6 +246,9 @@ class Video extends BaseRenderer
         return $this->set('stopOnNextFrame', $value);
     }
 
+    /**
+     * 组件样式
+     */
     public function style($value = '')
     {
         return $this->set('style', $value);

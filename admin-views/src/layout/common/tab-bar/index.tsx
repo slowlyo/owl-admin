@@ -25,9 +25,20 @@ const TabBar = () => {
         setTabs([formatTabValue(defaultTab, defaultTab?.path), ..._tabs])
     }
 
-    const initTab = () => updateTabs(cachedTabs)
+    const initTab = () => {
+        if (cachedTabs.length != 0) {
+            cachedTabs.map((tab) => {
+                let _tab = flattenRoutes.find((route) => route.name === tab.name)
 
-    const formatTabValue = (tab, path) => ({path, title: tab?.meta?.title, icon: tab?.meta?.icon})
+                if (_tab) {
+                    tab.title = _tab.meta.title
+                }
+            })
+        }
+        updateTabs(cachedTabs)
+    }
+
+    const formatTabValue = (tab, path) => ({name: tab?.name, path, title: tab?.meta?.title, icon: tab?.meta?.icon})
 
     const currentTab = () => {
         const _path = pathname.replace(/\/\d+/g, "/:id")
@@ -56,7 +67,7 @@ const TabBar = () => {
         const _currentTab = currentTab()
 
         if (_currentTab) {
-            const exists = cachedTabs.find((tab) => tab.path === _currentTab.path)
+            const exists = cachedTabs.find((tab) => tab.name === _currentTab.name)
 
             if (exists) return
             if (_currentTab.path == "/" + defaultRoute) return
@@ -71,7 +82,7 @@ const TabBar = () => {
     // 关闭选项卡
     const closeTab = (item) => {
         if (item.path == pathname) {
-            const currentIndex = tabs.findIndex((tab) => tab.path === item.path)
+            const currentIndex = tabs.findIndex((tab) => tab.name === item.name)
             // 如果关闭的是当前选项卡，则跳转到上一个选项卡
             const prevTab = tabs[currentIndex - 1]
             history.push(prevTab?.path || ("/" + defaultRoute))
@@ -82,13 +93,13 @@ const TabBar = () => {
 
     const closeTabs = (items) => {
         // 从缓存中移除对应的选项卡信息
-        const updatedCachedTabs = tabs.filter((tab) => (!items.find((item) => item.path === tab.path) && tab.path != "/" + defaultRoute))
+        const updatedCachedTabs = tabs.filter((tab) => (!items.find((item) => item.name === tab.name) && tab.path != "/" + defaultRoute))
 
         // 更新选项卡列表
         updateTabs(updatedCachedTabs)
         setCacheTab(JSON.stringify(updatedCachedTabs))
         // 清除页面缓存
-        items.forEach((item) => drop(item.path))
+        items.forEach((item) => drop(item.name))
     }
 
     const menuClick = (action, item) => {

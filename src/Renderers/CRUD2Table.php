@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Table
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class CRUD2Table extends BaseRenderer
 {
@@ -483,6 +483,14 @@ class CRUD2Table extends BaseRenderer
     public function stopAutoRefreshWhen($value = '')
     {
         return $this->set('stopAutoRefreshWhen', $value);
+    }
+
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
     }
 
     /**

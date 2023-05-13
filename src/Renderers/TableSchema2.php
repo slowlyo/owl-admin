@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableSchema2
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class TableSchema2 extends BaseRenderer
 {
@@ -324,6 +324,14 @@ class TableSchema2 extends BaseRenderer
     public function sticky($value = true)
     {
         return $this->set('sticky', $value);
+    }
+
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
     }
 
     /**

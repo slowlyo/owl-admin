@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUDCards
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class CRUDCards extends BaseRenderer
 {
@@ -53,7 +53,7 @@ class CRUDCards extends BaseRenderer
     /**
      * 开启查询区域，会根据列元素的searchable属性值，自动生成查询条件表单
      */
-    public function autoGenerateFilter($value = true)
+    public function autoGenerateFilter($value = '')
     {
         return $this->set('autoGenerateFilter', $value);
     }
@@ -565,6 +565,14 @@ class CRUDCards extends BaseRenderer
     public function stopAutoRefreshWhenModalIsOpen($value = true)
     {
         return $this->set('stopAutoRefreshWhenModalIsOpen', $value);
+    }
+
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
     }
 
     /**

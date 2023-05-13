@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Plain 纯文本渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/plain
  * 
  * @author slowlyo
- * @version v2.9.0
- * @since 2023-04-23
+ * @version v3.0.0
+ * @since 2023-05-13
  */
 class Plain extends BaseRenderer
 {
@@ -142,6 +142,14 @@ class Plain extends BaseRenderer
         return $this->set('staticSchema', $value);
     }
 
+    /**
+     * 组件样式
+     */
+    public function style($value = '')
+    {
+        return $this->set('style', $value);
+    }
+
     public function text($value = '')
     {
         return $this->set('text', $value);
@@ -153,7 +161,7 @@ class Plain extends BaseRenderer
     }
 
     /**
-     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/concepts/template 可选值: plain | text
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template 可选值: plain | text
      */
     public function type($value = '')
     {

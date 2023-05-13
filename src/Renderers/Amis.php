@@ -1,12 +1,12 @@
-<?php
+<?php 
 
 namespace Slowlyo\OwlAdmin\Renderers;
 
-class Amis
-{
+class Amis 
+{ 
     public static function make()
-    {
-        return new self();
+    { 
+        return new self(); 
     }
 
     public function Action()
@@ -52,6 +52,11 @@ class Amis
     public function Audio()
     {
         return Audio::make();
+    }
+
+    public function AutoGenerateFilter()
+    {
+        return AutoGenerateFilter::make();
     }
 
     public function Avatar()

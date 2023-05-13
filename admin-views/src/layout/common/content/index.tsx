@@ -60,10 +60,10 @@ export const Content = ({menuCollapsed}: { menuCollapsed?: boolean }) => {
                            duration={[settings.animateInDuration, settings.animateInDuration]}>
                     <ArcoContent key={pathname} id={pathname} className="absolute w-full">
                         <Switch location={location}>
-                            {flattenRoutes.map(({path, component}, index) => {
+                            {flattenRoutes.map(({name, path, component}, index) => {
                                 // return <Route key={index} path={path} component={component} />
                                 return <Route key={index} path={path} render={() => (
-                                    <KeepAlive name={path}
+                                    <KeepAlive name={name}
                                                cacheKey={path}
                                                when={settings.keepAlive && appSettings.layout?.keep_alive_exclude.indexOf(path) == -1}>
                                         {React.createElement(component)}
