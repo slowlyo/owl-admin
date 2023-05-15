@@ -17,7 +17,6 @@ use Slowlyo\OwlAdmin\Renderers\Service;
 use Slowlyo\OwlAdmin\Renderers\Markdown;
 use Slowlyo\OwlAdmin\Renderers\CRUDCards;
 use Slowlyo\OwlAdmin\Renderers\CRUDTable;
-use Slowlyo\OwlAdmin\Renderers\UrlAction;
 use Slowlyo\OwlAdmin\Renderers\AjaxAction;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Slowlyo\OwlAdmin\Renderers\FileControl;
@@ -79,12 +78,12 @@ class ExtensionController extends AdminController
         return CRUDCards::make()
             ->perPage(20)
             ->affixHeader(false)
-            ->filterTogglable(true)
+            ->filterTogglable()
             ->filterDefaultVisible(false)
             ->api($this->getListGetDataPath())
             ->perPageAvailable([10, 20, 30, 50, 100, 200])
             ->footerToolbar(['switch-per-page', 'statistics', 'pagination'])
-            ->loadDataOnce(true)
+            ->loadDataOnce()
             ->source('${rows | filter:alias:match:keywords}')
             ->filter(
                 $this->baseFilter()->body([
@@ -128,8 +127,8 @@ class ExtensionController extends AdminController
                                 ->size('lg')
                                 ->title('README.md')
                                 ->actions([])
-                                ->closeOnOutside(true)
-                                ->closeOnEsc(true)
+                                ->closeOnOutside()
+                                ->closeOnEsc()
                                 ->body(Markdown::make()->name('${doc | raw}')->options([
                                     'html'   => true,
                                     'breaks' => true,
@@ -206,18 +205,18 @@ class ExtensionController extends AdminController
                     Form::make()->mode('normal')->api($this->getStorePath())->body([
                         Alert::make()
                             ->level('info')
-                            ->showIcon(true)
+                            ->showIcon()
                             ->body(__('admin.extensions.create_tips', ['dir' => config('admin.extension.dir')])),
                         TextControl::make()
                             ->name('name')
                             ->label(__('admin.extensions.form.name'))
                             ->placeholder('eg: slowlyo/owl-admin')
-                            ->required(true),
+                            ->required(),
                         TextControl::make()
                             ->name('namespace')
                             ->label(__('admin.extensions.form.namespace'))
                             ->placeholder('eg: Slowlyo\Notice')
-                            ->required(true),
+                            ->required(),
                     ])
                 )
             );
@@ -251,7 +250,7 @@ class ExtensionController extends AdminController
             ->dialog(
                 Dialog::make()->title(__('admin.extensions.local_install'))->showErrorMsg(false)->body(
                     Form::make()->mode('normal')->api('post:' . admin_url('dev_tools/extensions/install'))->body([
-                        FileControl::make()->name('file')->label('')->required(true)->drag(true)->accept('.zip'),
+                        FileControl::make()->name('file')->label()->required()->drag()->accept('.zip'),
                     ])
                 )
             );
@@ -293,14 +292,14 @@ class ExtensionController extends AdminController
                 Drawer::make()
                     ->title(__('admin.extensions.more_extensions'))
                     ->size('xl')
-                    ->closeOnEsc(true)
-                    ->closeOnOutside(true)
+                    ->closeOnEsc()
+                    ->closeOnOutside()
                     ->body(
                         CRUDTable::make()
                             ->perPage(20)
                             ->affixHeader(false)
-                            ->filterTogglable(true)
-                            ->loadDataOnce(true)
+                            ->filterTogglable()
+                            ->loadDataOnce()
                             ->filter(
                                 $this->baseFilter()->body([
                                     TextControl::make()
@@ -339,7 +338,7 @@ class ExtensionController extends AdminController
                                     ->name('${"composer require " + name}')
                                     ->label('composer 安装命令')
                                     ->width(300)
-                                    ->copyable(true),
+                                    ->copyable(),
                             ])
                     )
                     ->actions([])
