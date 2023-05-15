@@ -1,16 +1,16 @@
 import type {ProxyOptions} from "vite"
-import config from "../service/request/config"
 
 /**
  * 设置网络代理
  */
-export function createViteProxy() {
-    if (!config.changeOrigin) return undefined
+export function createViteProxy(env) {
+    if (env.PROD) return undefined
+    if (env.VITE_PROXY_CHANGE_ORIGIN !== "Y") return undefined
 
     const proxy: Record<string, string | ProxyOptions> = {
-        [config.baseURL]: {
-            target: config.proxyURL,
-            changeOrigin: config.changeOrigin,
+        [env.VITE_API_PREFIX]: {
+            target: env.VITE_PROXY_URL,
+            changeOrigin: env.VITE_PROXY_CHANGE_ORIGIN === "Y",
         },
     }
 

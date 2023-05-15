@@ -54,27 +54,29 @@ use Slowlyo\OwlAdmin\Controllers;
         ]);
     });
 
-    // 开发工具
-    $router->group(['prefix' => 'dev_tools'], function (\Illuminate\Routing\Router $router) {
-        $router->get('/', [Controllers\DevTools\CodeGeneratorController::class, 'index']);
-        // 代码生成器
-        $router->resource('code_generator', Controllers\DevTools\CodeGeneratorController::class);
+    if(config('admin.show_development_tools')){
+        // 开发工具
+        $router->group(['prefix' => 'dev_tools'], function (\Illuminate\Routing\Router $router) {
+            $router->get('/', [Controllers\DevTools\CodeGeneratorController::class, 'index']);
+            // 代码生成器
+            $router->resource('code_generator', Controllers\DevTools\CodeGeneratorController::class);
 
-        // 扩展
-        $router->resource('extensions', Controllers\DevTools\ExtensionController::class);
-        // 本地扩展安装
-        $router->post('extensions/install', [Controllers\DevTools\ExtensionController::class, 'install']);
-        // 启用/禁用扩展
-        $router->post('extensions/enable', [Controllers\DevTools\ExtensionController::class, 'enable']);
-        // 卸载扩展
-        $router->post('extensions/uninstall', [Controllers\DevTools\ExtensionController::class, 'uninstall']);
-        // 获取扩展配置
-        $router->post('extensions/get_config', [Controllers\DevTools\ExtensionController::class, 'getConfig']);
-        // 保存扩展配置
-        $router->post('extensions/save_config', [Controllers\DevTools\ExtensionController::class, 'saveConfig']);
-        // 获取扩展配置表单
-        $router->post('extensions/config_form', [Controllers\DevTools\ExtensionController::class, 'configForm']);
-        // 更多扩展
-        $router->post('extensions/more', [Controllers\DevTools\ExtensionController::class, 'more']);
-    });
+            // 扩展
+            $router->resource('extensions', Controllers\DevTools\ExtensionController::class);
+            // 本地扩展安装
+            $router->post('extensions/install', [Controllers\DevTools\ExtensionController::class, 'install']);
+            // 启用/禁用扩展
+            $router->post('extensions/enable', [Controllers\DevTools\ExtensionController::class, 'enable']);
+            // 卸载扩展
+            $router->post('extensions/uninstall', [Controllers\DevTools\ExtensionController::class, 'uninstall']);
+            // 获取扩展配置
+            $router->post('extensions/get_config', [Controllers\DevTools\ExtensionController::class, 'getConfig']);
+            // 保存扩展配置
+            $router->post('extensions/save_config', [Controllers\DevTools\ExtensionController::class, 'saveConfig']);
+            // 获取扩展配置表单
+            $router->post('extensions/config_form', [Controllers\DevTools\ExtensionController::class, 'configForm']);
+            // 更多扩展
+            $router->post('extensions/more', [Controllers\DevTools\ExtensionController::class, 'more']);
+        });
+    }
 });
