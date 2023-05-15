@@ -13,6 +13,9 @@ use Slowlyo\OwlAdmin\Renderers\SelectControl;
 use Slowlyo\OwlAdmin\Services\AdminUserService;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
 
+/**
+ * @property AdminUserService $service
+ */
 class AdminUserController extends AdminController
 {
     protected string $serviceName = AdminUserService::class;
@@ -22,9 +25,7 @@ class AdminUserController extends AdminController
         $crud = $this->baseCRUD()
             ->headerToolbar([
                 $this->createButton(true),
-                'bulkActions',
-                amis('reload')->align('right'),
-                amis('filter-toggler')->align('right'),
+                ...$this->baseHeaderToolBar(),
             ])
             ->filter($this->baseFilter()->body(
                 TextControl::make()
@@ -34,7 +35,7 @@ class AdminUserController extends AdminController
                     ->placeholder(__('admin.admin_user.search_username'))
             ))
             ->columns([
-                TableColumn::make()->label('ID')->name('id')->sortable(true),
+                TableColumn::make()->label('ID')->name('id')->sortable(),
                 TableColumn::make()->label(__('admin.admin_user.avatar'))->name('avatar')->type('avatar')->src('${avatar}'),
                 TableColumn::make()->label(__('admin.username'))->name('username'),
                 TableColumn::make()->label(__('admin.admin_user.name'))->name('name'),
@@ -58,8 +59,8 @@ class AdminUserController extends AdminController
                 ->label(__('admin.admin_user.avatar'))
                 ->name('avatar')
                 ->receiver($this->uploadImagePath()),
-            TextControl::make()->label(__('admin.username'))->name('username')->required(true),
-            TextControl::make()->label(__('admin.admin_user.name'))->name('name')->required(true),
+            TextControl::make()->label(__('admin.username'))->name('username')->required(),
+            TextControl::make()->label(__('admin.admin_user.name'))->name('name')->required(),
             TextControl::make()->type('input-password')->label(__('admin.password'))->name('password'),
             TextControl::make()
                 ->type('input-password')
@@ -68,12 +69,12 @@ class AdminUserController extends AdminController
             SelectControl::make()
                 ->name('roles')
                 ->label(__('admin.admin_user.roles'))
-                ->searchable(true)
-                ->multiple(true)
+                ->searchable()
+                ->multiple()
                 ->labelField('name')
                 ->valueField('id')
                 ->joinValues(false)
-                ->extractValue(true)
+                ->extractValue()
                 ->options(AdminRoleService::make()->query()->get(['id', 'name'])),
         ]);
     }

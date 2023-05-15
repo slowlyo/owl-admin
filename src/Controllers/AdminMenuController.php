@@ -17,6 +17,9 @@ use Slowlyo\OwlAdmin\Renderers\SwitchControl;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 
+/**
+ * @property AdminMenuService $service
+ */
 class AdminMenuController extends AdminController
 {
     protected string $serviceName = AdminMenuService::class;
@@ -24,7 +27,7 @@ class AdminMenuController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
-            ->loadDataOnce(true)
+            ->loadDataOnce()
             ->footerToolbar([])
             ->headerToolbar([
                 $this->createButton(true)->dialog(
@@ -32,16 +35,14 @@ class AdminMenuController extends AdminController
                         $this->form()->api($this->getStorePath())
                     )->size('lg')
                 ),
-                'bulkActions',
-                amis('reload')->align('right'),
-                amis('filter-toggler')->align('right'),
+                ...$this->baseHeaderToolBar()
             ])
             ->filterTogglable(false)
             ->footerToolbar(['statistics'])
             ->quickSaveApi(admin_url('system/admin_menu_quick_save'))
             ->bulkActions([$this->bulkDeleteButton()->reload('window')])
             ->columns([
-                TableColumn::make()->label('ID')->name('id')->sortable(true),
+                TableColumn::make()->label('ID')->name('id')->sortable(),
                 TableColumn::make()->label(__('admin.admin_menu.title'))->name('title'),
                 TableColumn::make()
                     ->label(__('admin.admin_menu.icon'))
@@ -82,7 +83,7 @@ class AdminMenuController extends AdminController
     {
         return $this->baseForm()->body([
             GroupControl::make()->body([
-                TextControl::make()->name('title')->label(__('admin.admin_menu.title'))->required(true),
+                TextControl::make()->name('title')->label(__('admin.admin_menu.title'))->required(),
                 TextControl::make()
                     ->name('icon')
                     ->label(__('admin.admin_menu.icon'))
@@ -102,7 +103,7 @@ class AdminMenuController extends AdminController
                 NumberControl::make()
                     ->name('order')
                     ->label(__('admin.admin_menu.order'))
-                    ->required(true)
+                    ->required()
                     ->labelRemark(__('admin.order_asc'))
                     ->displayMode('enhance')
                     ->min(0)
@@ -111,8 +112,8 @@ class AdminMenuController extends AdminController
             TextControl::make()
                 ->name('url')
                 ->label(__('admin.admin_menu.url'))
-                ->required(true)
-                ->validateOnChange(true)
+                ->required()
+                ->validateOnChange()
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
                 ->placeholder('eg: /admin_menus'),

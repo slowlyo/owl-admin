@@ -12,6 +12,8 @@ class InstallCommand extends Command
 
     protected $description = 'Install OwlAdmin';
 
+    protected $directory;
+
     public function handle()
     {
         $this->initDatabase();

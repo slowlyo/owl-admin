@@ -19,6 +19,9 @@ use Slowlyo\OwlAdmin\Renderers\CheckboxesControl;
 use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
+/**
+ * @property AdminPermissionService $service
+ */
 class AdminPermissionController extends AdminController
 {
     protected string $serviceName = AdminPermissionService::class;
@@ -36,7 +39,7 @@ class AdminPermissionController extends AdminController
         }
 
         $crud = $this->baseCRUD()
-            ->loadDataOnce(true)
+            ->loadDataOnce()
             ->filterTogglable(false)
             ->footerToolbar([])
             ->headerToolbar([
@@ -47,7 +50,7 @@ class AdminPermissionController extends AdminController
                 amis('filter-toggler')->align('right'),
             ])
             ->columns([
-                TableColumn::make()->label('ID')->name('id')->sortable(true),
+                TableColumn::make()->label('ID')->name('id')->sortable(),
                 TableColumn::make()->label(__('admin.admin_permission.name'))->name('name'),
                 TableColumn::make()->label(__('admin.admin_permission.slug'))->name('slug'),
                 TableColumn::make()
@@ -74,8 +77,8 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            TextControl::make()->name('name')->label(__('admin.admin_permission.name'))->required(true),
-            TextControl::make()->name('slug')->label(__('admin.admin_permission.slug'))->required(true),
+            TextControl::make()->name('name')->label(__('admin.admin_permission.name'))->required(),
+            TextControl::make()->name('slug')->label(__('admin.admin_permission.slug'))->required(),
             TreeSelectControl::make()
                 ->name('parent_id')
                 ->label(__('admin.parent'))
@@ -89,11 +92,11 @@ class AdminPermissionController extends AdminController
                 ->options($this->getHttpMethods())
                 ->description(__('admin.admin_permission.http_method_description'))
                 ->joinValues(false)
-                ->extractValue(true),
+                ->extractValue(),
             NumberControl::make()
                 ->name('order')
                 ->label(__('admin.order'))
-                ->required(true)
+                ->required()
                 ->labelRemark(__('admin.order_desc'))
                 ->displayMode('enhance')
                 ->min(0)
@@ -101,24 +104,24 @@ class AdminPermissionController extends AdminController
             SelectControl::make()
                 ->name('http_path')
                 ->label(__('admin.admin_permission.http_path'))
-                ->searchable(true)
-                ->multiple(true)
+                ->searchable()
+                ->multiple()
                 ->options($this->getRoutes())
                 ->autoCheckChildren(false)
                 ->joinValues(false)
-                ->extractValue(true),
+                ->extractValue(),
             TreeSelectControl::make()
                 ->name('menus')
                 ->label(__('admin.menus'))
-                ->searchable(true)
-                ->multiple(true)
+                ->searchable()
+                ->multiple()
                 ->showIcon(false)
                 ->options(AdminMenuService::make()->getTree())
                 ->labelField('title')
                 ->valueField('id')
                 ->autoCheckChildren(false)
                 ->joinValues(false)
-                ->extractValue(true),
+                ->extractValue(),
         ]);
     }
 

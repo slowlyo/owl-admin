@@ -65,7 +65,7 @@ class AuthController extends AdminController
         // 验证码
         if ($enableCaptcha) {
             $captcha = amisMake()->InputGroupControl()->body([
-                amisMake()->TextControl()->name('captcha')->placeholder(__('admin.captcha'))->required(true),
+                amisMake()->TextControl()->name('captcha')->placeholder(__('admin.captcha'))->required(),
                 amisMake()->HiddenControl()->name('sys_captcha'),
                 amisMake()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
                     amisMake()
@@ -81,14 +81,14 @@ class AuthController extends AdminController
             ]);
         }
 
-        $form = amisMake()->Form()->id('login-form')->title('')->api(admin_url('/login'))->body([
-            amisMake()->TextControl()->name('username')->placeholder(__('admin.username'))->required(true),
+        $form = amisMake()->Form()->id('login-form')->title()->api(admin_url('/login'))->body([
+            amisMake()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
             amisMake()
                 ->TextControl()
                 ->type('input-password')
                 ->name('password')
                 ->placeholder(__('admin.password'))
-                ->required(true),
+                ->required(),
             $captcha,
             amisMake()->CheckboxControl()->name('remember_me')->option(__('admin.remember_me'))->value(true),
 
@@ -215,7 +215,7 @@ JS,
 
         $menus = amisMake()
             ->DropdownButton()
-            ->hideCaret(true)
+            ->hideCaret()
             ->trigger('hover')
             ->label($userInfo['name'])
             ->align('right')
@@ -252,7 +252,7 @@ JS,
         ]);
 
         $form = Form::make()
-            ->title('')
+            ->title()
             ->panelClassName('px-48 m:px-0')
             ->mode('horizontal')
             ->data($user)
@@ -262,7 +262,7 @@ JS,
                     ->label(__('admin.admin_user.avatar'))
                     ->name('avatar')
                     ->receiver($this->uploadImagePath()),
-                TextControl::make()->label(__('admin.admin_user.name'))->name('name')->required(true),
+                TextControl::make()->label(__('admin.admin_user.name'))->name('name')->required(),
                 TextControl::make()->type('input-password')->label(__('admin.old_password'))->name('old_password'),
                 TextControl::make()->type('input-password')->label(__('admin.password'))->name('password'),
                 TextControl::make()

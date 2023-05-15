@@ -7,6 +7,9 @@ use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
+/**
+ * @property AdminRoleService $service
+ */
 class AdminRoleController extends AdminController
 {
     protected string $serviceName = AdminRoleService::class;
@@ -20,7 +23,7 @@ class AdminRoleController extends AdminController
             ])
             ->filterTogglable(false)
             ->columns([
-                amisMake()->TableColumn()->label('ID')->name('id')->sortable(true),
+                amisMake()->TableColumn()->label('ID')->name('id')->sortable(),
                 amisMake()->TableColumn()->label(__('admin.admin_role.name'))->name('name'),
                 amisMake()->TableColumn()->label(__('admin.admin_role.slug'))->name('slug')->type('tag'),
                 amisMake()->TableColumn()
@@ -54,7 +57,7 @@ class AdminRoleController extends AdminController
     protected function setPermission()
     {
         return amisMake()->DrawerAction()->label('设置权限')->icon('fa-solid fa-gear')->level('link')->drawer(
-            amisMake()->Drawer()->title('设置权限')->resizable(true)->closeOnOutside(true)->closeOnEsc(true)->body([
+            amisMake()->Drawer()->title('设置权限')->resizable()->closeOnOutside()->closeOnEsc()->body([
                 amisMake()
                     ->Form()
                     ->api(admin_url('system/admin_role_save_permissions'))
@@ -64,13 +67,13 @@ class AdminRoleController extends AdminController
                     ->body([
                         amisMake()->TreeControl()
                             ->name('permissions')
-                            ->label('')
-                            ->multiple(true)
+                            ->label()
+                            ->multiple()
                             ->options(AdminPermissionService::make()->getTree())
-                            ->searchable(true)
-                            ->onlyChildren(true)
+                            ->searchable()
+                            ->onlyChildren()
                             ->joinValues(false)
-                            ->extractValue(true)
+                            ->extractValue()
                             ->size('full')
                             ->className('h-full b-none')
                             ->inputClassName('h-full tree-full')
@@ -93,12 +96,12 @@ class AdminRoleController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            amisMake()->TextControl()->label(__('admin.admin_role.name'))->name('name')->required(true),
+            amisMake()->TextControl()->label(__('admin.admin_role.name'))->name('name')->required(),
             amisMake()->TextControl()
                 ->label(__('admin.admin_role.slug'))
                 ->name('slug')
                 ->description(__('admin.admin_role.slug_description'))
-                ->required(true),
+                ->required(),
         ]);
     }
 
