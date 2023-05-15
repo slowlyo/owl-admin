@@ -185,7 +185,7 @@ trait PageElement
         return CRUDTable::make()
             ->perPage(20)
             ->affixHeader(false)
-            ->filterTogglable(true)
+            ->filterTogglable()
             ->filterDefaultVisible(false)
             ->set('primaryField', $this->service->primaryKey())
             ->api($this->getListGetDataPath())
