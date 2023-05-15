@@ -160,7 +160,7 @@ class CodeGeneratorController extends AdminController
                             ->searchable()
                             ->value('string')
                             ->required(),
-                        amisMake()->TextControl('comment', __('admin.code_generators.comment'))->required(),
+                        amisMake()->TextControl('comment', __('admin.code_generators.comment'))->value(),
                         amisMake()->TextControl('default', __('admin.code_generators.default_value')),
                         amisMake()->TextControl('additional', __('admin.code_generators.extra_params'))
                             ->labelRemark(
