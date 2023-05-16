@@ -27,12 +27,11 @@ export default defineConfig(configEnv => {
                 svgrOptions: {},
             }),
             vitePluginForArco({
-                // theme: "@arco-themes/react-arco-pro",
                 theme: "@arco-themes/react-amis-design",
                 modifyVars: {},
             }),
             compression(),
-            progress()
+            progress(),
         ],
         css: {
             preprocessorOptions: {
@@ -47,11 +46,9 @@ export default defineConfig(configEnv => {
             open: true,
             proxy: createViteProxy(viteEnv),
         },
-        optimizeDeps: {
-            include: [
-                "amis",
-                "amis-ui",
-            ]
+        build: {
+            sourcemap: false,
+            reportCompressedSize: false,
         }
     }
 })

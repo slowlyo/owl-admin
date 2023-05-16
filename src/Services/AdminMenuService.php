@@ -4,7 +4,12 @@ namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @method AdminMenu getModel()
+ * @method AdminMenu|Builder query()
+ */
 class AdminMenuService extends AdminService
 {
     protected string $modelName = AdminMenu::class;
@@ -38,28 +43,13 @@ class AdminMenuService extends AdminService
         $parent_id = Arr::get($data, 'parent_id');
         if ($parent_id != 0) {
             if ($this->parentIsChild($primaryKey, $parent_id)) {
-                $this->setError('父级菜单不允许设置为当前子菜单');
-                return false;
+                return $this->setError(__('admin.admin_menu.parent_id_not_allow'));
             }
         }
 
         $model = $this->query()->whereKey($primaryKey)->first();
 
-        foreach ($data as $k => $v) {
-            if (!in_array($k, $columns)) {
-                continue;
-            }
-
-            $v = $k == 'parent_id' ? intval($v) : $v;
-
-            $model->setAttribute($k, $v);
-
-            if ($k == 'is_home' && $v == 1) {
-                $this->changeHomePage();
-            }
-        }
-
-        return $model->save();
+        return $this->saveData($data, $columns, $model);
     }
 
     public function store($data): bool
@@ -68,21 +58,7 @@ class AdminMenuService extends AdminService
 
         $model = $this->getModel();
 
-        foreach ($data as $k => $v) {
-            if (!in_array($k, $columns)) {
-                continue;
-            }
-
-            $v = $k == 'parent_id' ? intval($v) : $v;
-
-            $model->setAttribute($k, $v);
-
-            if ($k == 'is_home' && $v == 1) {
-                $this->changeHomePage();
-            }
-        }
-
-        return $model->save();
+        return $this->saveData($data, $columns, $model);
     }
 
     public function changeHomePage($excludeId = 0)
@@ -93,5 +69,31 @@ class AdminMenuService extends AdminService
     public function list()
     {
         return ['items' => $this->getTree()];
+    }
+
+    /**
+     * @param $data
+     * @param array $columns
+     * @param AdminMenu $model
+     *
+     * @return bool
+     */
+    protected function saveData($data, array $columns, AdminMenu $model): bool
+    {
+        foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
+            $v = $k == 'parent_id' ? intval($v) : $v;
+
+            $model->setAttribute($k, $v);
+
+            if ($k == 'is_home' && $v == 1) {
+                $this->changeHomePage();
+            }
+        }
+
+        return $model->save();
     }
 }

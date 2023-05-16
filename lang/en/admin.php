@@ -86,18 +86,24 @@ return [
 
     'admin_users' => 'Admin Users',
     'admin_user'  => [
-        'avatar'          => 'Avatar',
-        'name'            => 'Name',
-        'roles'           => 'Roles',
-        'search_username' => 'Search Username/Name',
+        'avatar'                  => 'Avatar',
+        'name'                    => 'Name',
+        'roles'                   => 'Roles',
+        'search_username'         => 'Search Username/Name',
+        'password_confirmation'   => 'Password Not Match',
+        'old_password_required'   => 'Old Password Required',
+        'old_password_error'      => 'Old Password Error',
+        'username_already_exists' => 'Username Already Exists',
     ],
 
     'admin_roles' => 'Admin Roles',
     'admin_role'  => [
-        'name'             => 'Name',
-        'slug'             => 'Slug',
-        'permissions'      => 'Permissions',
-        'slug_description' => 'unique identifier of a role',
+        'name'                => 'Name',
+        'slug'                => 'Slug',
+        'permissions'         => 'Permissions',
+        'slug_description'    => 'unique identifier of a role',
+        'name_already_exists' => 'Role Name Already Exists',
+        'slug_already_exists' => 'Role Slug Already Exists',
     ],
 
     'admin_permissions' => 'Permissions',
@@ -109,6 +115,9 @@ return [
         'http_path'               => 'Http Path',
         'auto_generate'           => 'Auto Generate',
         'auto_generate_confirm'   => 'The permission information will be generated after the permission table and permission menu association table are truncated. Do you want to continue?',
+        'parent_id_not_allow'     => 'Parent Id Not Allow',
+        'name_already_exists'     => 'Permission Name Already Exists',
+        'slug_already_exists'     => 'Permission Slug Already Exists',
     ],
 
     'admin_menus' => 'Menus',
@@ -131,6 +140,7 @@ return [
         'hide'                   => 'Hide',
         'is_home'                => 'Is Home',
         'is_home_description'    => 'In multi-tab mode, the page label is fixed on the left',
+        'parent_id_not_allow'    => 'The parent menu cannot be set to the current submenu',
     ],
 
     'extensions' => [

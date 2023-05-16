@@ -7,16 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Tag;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Renderers\Action;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
-use Slowlyo\OwlAdmin\Renderers\TableColumn;
-use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Slowlyo\OwlAdmin\Models\AdminPermission;
-use Slowlyo\OwlAdmin\Renderers\SelectControl;
-use Slowlyo\OwlAdmin\Renderers\NumberControl;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
-use Slowlyo\OwlAdmin\Renderers\CheckboxesControl;
-use Slowlyo\OwlAdmin\Renderers\TreeSelectControl;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
 /**
@@ -30,11 +23,10 @@ class AdminPermissionController extends AdminController
     {
         $autoBtn = '';
         if (config('admin.show_auto_generate_permission_button')) {
-            $autoBtn = Action::make()
+            $autoBtn = amisMake()->AjaxAction()
                 ->label(__('admin.admin_permission.auto_generate'))
                 ->level('success')
                 ->confirmText(__('admin.admin_permission.auto_generate_confirm'))
-                ->actionType('ajax')
                 ->api(admin_url('system/_admin_permissions_auto_generate'));
         }
 
@@ -50,24 +42,20 @@ class AdminPermissionController extends AdminController
                 amis('filter-toggler')->align('right'),
             ])
             ->columns([
-                TableColumn::make()->label('ID')->name('id')->sortable(),
-                TableColumn::make()->label(__('admin.admin_permission.name'))->name('name'),
-                TableColumn::make()->label(__('admin.admin_permission.slug'))->name('slug'),
-                TableColumn::make()
-                    ->label(__('admin.admin_permission.http_method'))
-                    ->name('http_method')
+                amisMake()->TableColumn('id', 'ID')->sortable(),
+                amisMake()->TableColumn('name', __('admin.admin_permission.name')),
+                amisMake()->TableColumn('slug', __('admin.admin_permission.slug')),
+                amisMake()->TableColumn('http_method', __('admin.admin_permission.http_method'))
                     ->type('each')
-                    ->items(Tag::make()
-                        ->label('${item}')
-                        ->className('my-1'))
+                    ->items(
+                        Tag::make()->label('${item}')->className('my-1')
+                    )
                     ->placeholder(Tag::make()->label('ANY')),
-                TableColumn::make()
-                    ->label(__('admin.admin_permission.http_path'))
-                    ->name('http_path')
+                amisMake()->TableColumn('http_path', __('admin.admin_permission.http_path'))
                     ->type('each')
-                    ->items(Tag::make()
-                        ->label('${item}')
-                        ->className('my-1')),
+                    ->items(
+                        Tag::make()->label('${item}')->className('my-1')
+                    ),
                 $this->rowActionsOnlyEditAndDelete(true, 'lg'),
             ]);
 
@@ -77,42 +65,32 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            TextControl::make()->name('name')->label(__('admin.admin_permission.name'))->required(),
-            TextControl::make()->name('slug')->label(__('admin.admin_permission.slug'))->required(),
-            TreeSelectControl::make()
-                ->name('parent_id')
-                ->label(__('admin.parent'))
+            amisMake()->TextControl('name', __('admin.admin_permission.name'))->required(),
+            amisMake()->TextControl('slug', __('admin.admin_permission.slug'))->required(),
+            amisMake()->TreeSelectControl('parent_id', __('admin.parent'))
                 ->labelField('name')
                 ->valueField('id')
                 ->value(0)
                 ->options($this->service->getTree()),
-            CheckboxesControl::make()
-                ->name('http_method')
-                ->label(__('admin.admin_permission.http_method'))
+            amisMake()->CheckboxesControl('http_method', __('admin.admin_permission.http_method'))
                 ->options($this->getHttpMethods())
                 ->description(__('admin.admin_permission.http_method_description'))
                 ->joinValues(false)
                 ->extractValue(),
-            NumberControl::make()
-                ->name('order')
-                ->label(__('admin.order'))
+            amisMake()->NumberControl('order', __('admin.order'))
                 ->required()
                 ->labelRemark(__('admin.order_desc'))
                 ->displayMode('enhance')
                 ->min(0)
                 ->value(0),
-            SelectControl::make()
-                ->name('http_path')
-                ->label(__('admin.admin_permission.http_path'))
+            amisMake()->SelectControl('http_path', __('admin.admin_permission.http_path'))
                 ->searchable()
                 ->multiple()
                 ->options($this->getRoutes())
                 ->autoCheckChildren(false)
                 ->joinValues(false)
                 ->extractValue(),
-            TreeSelectControl::make()
-                ->name('menus')
-                ->label(__('admin.menus'))
+            amisMake()->TreeSelectControl('menus', __('admin.menus'))
                 ->searchable()
                 ->multiple()
                 ->showIcon(false)
@@ -132,13 +110,10 @@ class AdminPermissionController extends AdminController
 
     private function getHttpMethods(): array
     {
-
-        return collect(AdminPermission::$httpMethods)->map(function ($method) {
-            return [
-                'value' => $method,
-                'label' => $method,
-            ];
-        })->toArray();
+        return collect(AdminPermission::$httpMethods)->map(fn($method) => [
+            'value' => $method,
+            'label' => $method,
+        ])->toArray();
     }
 
     public function getRoutes(): array

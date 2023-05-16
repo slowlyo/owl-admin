@@ -71,12 +71,12 @@ class AdminRoleService extends AdminService
         $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
 
         if ((clone $query)->where('name', $data['name'])->exists()) {
-            $this->setError('角色名称重复');
+            $this->setError(__('admin.admin_role.name_already_exists'));
             return true;
         }
 
         if ((clone $query)->where('slug', $data['slug'])->exists()) {
-            $this->setError('角色标识重复');
+            $this->setError(__('admin.admin_role.slug_already_exists'));
             return true;
         }
 
@@ -87,7 +87,8 @@ class AdminRoleService extends AdminService
     {
         $model = $this->query()->whereKey($primaryKey)->first();
 
-        return $model->permissions()->sync(Arr::has($permissions, '0.id') ? Arr::pluck($permissions,
-            'id') : $permissions);
+        return $model->permissions()->sync(
+            Arr::has($permissions, '0.id') ? Arr::pluck($permissions, 'id') : $permissions
+        );
     }
 }

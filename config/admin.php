@@ -27,7 +27,7 @@ return [
 
     'auth' => [
         // 是否开启验证码
-        'login_captcha' => true,
+        'login_captcha' => env('ADMIN_LOGIN_CAPTCHA', true),
         // 是否开启鉴权
         'enable'        => true,
         // 用户模型
@@ -49,13 +49,13 @@ return [
         ],
     ],
 
-    'https'                                => false,
+    'https'                                => env('ADMIN_HTTPS', false),
 
     // 是否显示 [开发者工具]
-    'show_development_tools'               => true,
+    'show_development_tools'               => env('ADMIN_SHOW_DEVELOPMENT_TOOLS', true),
 
     // 是否显示 [权限] 功能中的自动生成按钮
-    'show_auto_generate_permission_button' => true,
+    'show_auto_generate_permission_button' => env('ADMIN_SHOW_AUTO_GENERATE_PERMISSION_BUTTON', true),
 
     'dev_tools' => [
         'terminal' => [

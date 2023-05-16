@@ -79,9 +79,17 @@ abstract class AdminService
      */
     public function listQuery()
     {
-        $model = $this->getModel();
+        return $this->query()->orderByDesc($this->sortColumn());
+    }
 
-        return $this->query()->orderByDesc($model->getUpdatedAtColumn() ?? $model->getKeyName());
+    /**
+     * 列表 排序字段
+     *
+     * @return string
+     */
+    public function sortColumn()
+    {
+        return $this->getModel()->getUpdatedAtColumn() ?? $this->getModel()->getKeyName();
     }
 
     /**

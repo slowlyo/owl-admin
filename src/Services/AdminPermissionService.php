@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Slowlyo\OwlAdmin\Models\AdminPermission;
 
+/**
+ * @method AdminPermission getModel()
+ * @method AdminPermission|Builder query()
+ */
 class AdminPermissionService extends AdminService
 {
     protected string $modelName = AdminPermission::class;
@@ -52,23 +56,7 @@ class AdminPermissionService extends AdminService
 
         $model = $this->getModel();
 
-        $menus = Arr::pull($data, 'menus');
-
-        foreach ($data as $k => $v) {
-            if (!in_array($k, $columns)) {
-                continue;
-            }
-
-            $model->setAttribute($k, $v);
-        }
-
-        if ($model->save()) {
-            $model->menus()->sync(Arr::has($menus, '0.id') ? Arr::pluck($menus, 'id') : $menus);
-
-            return true;
-        }
-
-        return false;
+        return $this->saveData($data, $columns, $model);
     }
 
     public function update($primaryKey, $data): bool
@@ -82,13 +70,46 @@ class AdminPermissionService extends AdminService
         $parent_id = Arr::get($data, 'parent_id');
         if ($parent_id != 0) {
             if ($this->parentIsChild($primaryKey, $parent_id)) {
-                $this->setError('父级不允许设置为当前子权限');
-                return false;
+                return $this->setError(__('admin.admin_permissions.parent_id_not_allow'));
             }
         }
 
         $model = $this->query()->whereKey($primaryKey)->first();
 
+        return $this->saveData($data, $columns, $model);
+    }
+
+    public function hasRepeated($data, $id = 0): bool
+    {
+        $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
+
+        if ((clone $query)->where('name', $data['name'])->exists()) {
+            $this->setError(__('admin.admin_permission.name_already_exists'));
+            return true;
+        }
+
+        if ((clone $query)->where('slug', $data['slug'])->exists()) {
+            $this->setError(__('admin.admin_permission.slug_already_exists'));
+            return true;
+        }
+
+        return false;
+    }
+
+    public function list()
+    {
+        return ['items' => $this->getTree()];
+    }
+
+    /**
+     * @param $data
+     * @param array $columns
+     * @param AdminPermission $model
+     *
+     * @return bool
+     */
+    protected function saveData($data, array $columns, AdminPermission $model): bool
+    {
         $menus = Arr::pull($data, 'menus');
 
         foreach ($data as $k => $v) {
@@ -106,27 +127,5 @@ class AdminPermissionService extends AdminService
         }
 
         return false;
-    }
-
-    public function hasRepeated($data, $id = 0): bool
-    {
-        $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
-
-        if ((clone $query)->where('name', $data['name'])->exists()) {
-            $this->setError('权限名称重复');
-            return true;
-        }
-
-        if ((clone $query)->where('slug', $data['slug'])->exists()) {
-            $this->setError('权限标识重复');
-            return true;
-        }
-
-        return false;
-    }
-
-    public function list()
-    {
-        return ['items' => $this->getTree()];
     }
 }

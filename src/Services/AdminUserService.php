@@ -8,6 +8,10 @@ use Slowlyo\OwlAdmin\Models\AdminUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @method AdminUser getModel()
+ * @method AdminUser|Builder query()
+ */
 class AdminUserService extends AdminService
 {
     protected string $modelName = AdminUser::class;
@@ -24,8 +28,7 @@ class AdminUserService extends AdminService
     public function store($data): bool
     {
         if ($this->checkUsernameUnique($data['username'])) {
-            $this->setError('用户名已存在');
-            return false;
+            return $this->setError(__('admin.admin_user.username_already_exists'));
         }
 
         if (!$this->passwordHandler($data)) {
@@ -36,30 +39,13 @@ class AdminUserService extends AdminService
 
         $model = $this->getModel();
 
-        $roles = Arr::pull($data, 'roles');
-
-        foreach ($data as $k => $v) {
-            if (!in_array($k, $columns)) {
-                continue;
-            }
-
-            $model->setAttribute($k, $v);
-        }
-
-        if ($model->save()) {
-            $model->roles()->sync(Arr::has($roles, '0.id') ? Arr::pluck($roles, 'id') : $roles);
-
-            return true;
-        }
-
-        return false;
+        return $this->saveData($data, $columns, $model);
     }
 
     public function update($primaryKey, $data): bool
     {
         if ($this->checkUsernameUnique($data['username'], $primaryKey)) {
-            $this->setError('用户名已存在');
-            return false;
+            return $this->setError(__('admin.admin_user.username_already_exists'));
         }
 
         if (!$this->passwordHandler($data)) {
@@ -70,23 +56,7 @@ class AdminUserService extends AdminService
 
         $model = $this->query()->whereKey($primaryKey)->first();
 
-        $roles = Arr::pull($data, 'roles');
-
-        foreach ($data as $k => $v) {
-            if (!in_array($k, $columns)) {
-                continue;
-            }
-
-            $model->setAttribute($k, $v);
-        }
-
-        if ($model->save()) {
-            $model->roles()->sync(Arr::has($roles, '0.id') ? Arr::pluck($roles, 'id') : $roles);
-
-            return true;
-        }
-
-        return false;
+        return $this->saveData($data, $columns, $model);
     }
 
     public function checkUsernameUnique($username, $id = 0): bool
@@ -112,18 +82,18 @@ class AdminUserService extends AdminService
 
         if ($password) {
             if ($password !== Arr::get($data, 'confirm_password')) {
-                return $this->setError('两次输入密码不一致');
+                return $this->setError(__('admin.admin_user.password_confirmation'));
             }
 
             if ($id) {
                 if (!Arr::get($data, 'old_password')) {
-                    return $this->setError('请输入原密码');
+                    return $this->setError(__('admin.admin_user.old_password_required'));
                 }
 
                 $oldPassword = $this->query()->where('id', $id)->value('password');
 
                 if (!Hash::check($data['old_password'], $oldPassword)) {
-                    return $this->setError('密码错误');
+                    return $this->setError(__('admin.admin_user.old_password_error'));
                 }
             }
 
@@ -152,5 +122,33 @@ class AdminUserService extends AdminService
         $total = (clone $query)->count();
 
         return compact('items', 'total');
+    }
+
+    /**
+     * @param $data
+     * @param array $columns
+     * @param AdminUser $model
+     *
+     * @return bool
+     */
+    protected function saveData($data, array $columns, AdminUser $model): bool
+    {
+        $roles = Arr::pull($data, 'roles');
+
+        foreach ($data as $k => $v) {
+            if (!in_array($k, $columns)) {
+                continue;
+            }
+
+            $model->setAttribute($k, $v);
+        }
+
+        if ($model->save()) {
+            $model->roles()->sync(Arr::has($roles, '0.id') ? Arr::pluck($roles, 'id') : $roles);
+
+            return true;
+        }
+
+        return false;
     }
 }

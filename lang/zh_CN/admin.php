@@ -88,18 +88,24 @@ return [
 
     'admin_users' => '管理员',
     'admin_user'  => [
-        'avatar'          => '头像',
-        'name'            => '姓名',
-        'roles'           => '角色',
-        'search_username' => '搜索用户名/名称',
+        'avatar'                  => '头像',
+        'name'                    => '姓名',
+        'roles'                   => '角色',
+        'search_username'         => '搜索用户名/名称',
+        'password_confirmation'   => '两次输入密码不一致',
+        'old_password_required'   => '请输入原密码',
+        'old_password_error'      => '原密码错误',
+        'username_already_exists' => '用户名已存在',
     ],
 
     'admin_roles' => '角色',
     'admin_role'  => [
-        'name'             => '名称',
-        'slug'             => '标识',
-        'permissions'      => '权限',
-        'slug_description' => '角色的唯一标识, 不可重复',
+        'name'                => '名称',
+        'slug'                => '标识',
+        'permissions'         => '权限',
+        'slug_description'    => '角色的唯一标识, 不可重复',
+        'name_already_exists' => '角色名称已存在',
+        'slug_already_exists' => '角色标识已存在',
     ],
 
     'admin_permissions' => '权限',
@@ -111,6 +117,9 @@ return [
         'http_path'               => '路由',
         'auto_generate'           => '自动生成',
         'auto_generate_confirm'   => '权限信息会在 截断权限表&权限菜单关联表 后重新生成, 是否继续操作 ?',
+        'parent_id_not_allow'     => '父级不允许设置为当前子权限',
+        'name_already_exists'     => '权限名称已存在',
+        'slug_already_exists'     => '权限标识已存在',
     ],
 
     'admin_menus' => '菜单',
@@ -133,6 +142,7 @@ return [
         'hide'                   => '隐藏',
         'is_home'                => '首页',
         'is_home_description'    => '在多页签卡模式下，页面标签将固定在左侧',
+        'parent_id_not_allow'    => '父级菜单不允许设置为当前子菜单',
     ],
 
     'extensions' => [
