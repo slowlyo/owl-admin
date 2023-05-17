@@ -77,6 +77,7 @@ class IndexController extends AdminController
     public function settings(): JsonResponse|JsonResource
     {
         return $this->response()->success([
+            'nav'      => Admin::getNav(),
             'assets'   => Admin::getAssets(),
             'app_name' => config('admin.name'),
             'locale'   => config('app.locale'),

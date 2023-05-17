@@ -4,6 +4,9 @@ namespace Slowlyo\OwlAdmin\Traits;
 
 trait Assets
 {
+    /**
+     * @return \Slowlyo\OwlAdmin\Libs\Asset;
+     */
     public static function asset()
     {
         return app('admin.asset');
@@ -36,6 +39,24 @@ trait Assets
             'css'     => static::asset()->css(),
             'scripts' => static::asset()->scripts(),
             'styles'  => static::asset()->styles(),
+        ];
+    }
+
+    public static function appendNav($appendNav = null)
+    {
+        return static::asset()->appendNav($appendNav);
+    }
+
+    public static function prependNav($prependNav = null)
+    {
+        return static::asset()->prependNav($prependNav);
+    }
+
+    public static function getNav()
+    {
+        return [
+            'appendNav'  => static::asset()->appendNav(),
+            'prependNav' => static::asset()->prependNav(),
         ];
     }
 }

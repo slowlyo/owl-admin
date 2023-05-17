@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Libs;
 
+use Slowlyo\OwlAdmin\Renderers\BaseRenderer;
+
 class Asset
 {
     protected array $js = [];
@@ -11,6 +13,10 @@ class Asset
     protected array $scripts = [];
 
     protected array $styles = [];
+
+    protected $appendNav;
+
+    protected $prependNav;
 
     private function assetsHandler($type, $assets)
     {
@@ -45,5 +51,27 @@ class Asset
     public function styles($styles = null)
     {
         return $this->assetsHandler('styles', $styles);
+    }
+
+    public function appendNav($appendNav = null)
+    {
+        if (is_null($appendNav)) {
+            return $this->appendNav;
+        }
+
+        $this->appendNav = $appendNav;
+
+        return $this;
+    }
+
+    public function prependNav($prependNav = null)
+    {
+        if (is_null($prependNav)) {
+            return $this->prependNav;
+        }
+
+        $this->prependNav = $prependNav;
+
+        return $this;
     }
 }

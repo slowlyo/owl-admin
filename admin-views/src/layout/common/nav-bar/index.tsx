@@ -82,6 +82,9 @@ function Navbar() {
                 )}
 
                 <ul className="flex">
+                    {/* prependNav */}
+                    {appSettings?.nav?.prependNav && <AmisRender schema={appSettings.nav.prependNav}/>}
+
                     {/* 刷新 */}
                     {appSettings?.layout?.header?.refresh && (
                         <li className="pr-8px flex item-center">
@@ -97,6 +100,7 @@ function Navbar() {
                             </Tooltip>
                         </li>
                     )}
+
                     {/* 全屏 */}
                     {appSettings?.layout?.header?.full_screen && (
                         <li className="pr-8px flex item-center">
@@ -108,6 +112,7 @@ function Navbar() {
                             </Tooltip>
                         </li>
                     )}
+
                     {/* 主题切换 */}
                     {appSettings?.layout?.header?.switch_theme && (
                         <li className="pr-8px flex item-center">
@@ -119,8 +124,13 @@ function Navbar() {
                             </Tooltip>
                         </li>
                     )}
+
                     {/* 主题设置 */}
                     {appSettings?.layout?.header?.theme_config && <Settings/>}
+
+                    {/* appendNav */}
+                    {appSettings?.nav?.appendNav && <AmisRender schema={appSettings.nav.appendNav}/>}
+
                     <UserMenu userInfo={userInfo} darkTheme={darkTheme}/>
                 </ul>
             </div>
