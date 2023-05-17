@@ -24,6 +24,7 @@ const AmisRender = ({schema}) => {
     }
 
     const options: RenderOptions = {
+        enableAMISDebug: appSettings.show_development_tools,
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         updateLocation: () => {
