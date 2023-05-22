@@ -66,7 +66,7 @@ composer create-project laravel/laravel example-app
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=slow_admin
+DB_DATABASE=owl_admin
 DB_USERNAME=root
 DB_PASSWORD=
 ```
