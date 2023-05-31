@@ -95,3 +95,11 @@ php artisan admin:install
 > 或者在 `laravel` 目录执行 `php artisan serve` <br>
 > 在浏览器打开 `http://localhost/admin` 即可访问 <br>
 > 初始账号密码都是 `admin`
+
+
+<br>
+<br>
+
+感谢 [__JetBrains__](https://jb.gg/OpenSourceSupport) 提供的 `IDE` 支持
+
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png?_gl=1*cg0jw0*_ga*NTA2ODgwODQyLjE2NTU3MzAyNTI.*_ga_9J976DJZ68*MTY4NTUzNjY1Ny4xMS4xLjE2ODU1MzY2NjAuMC4wLjA.&_ga=2.105214851.1872617824.1685460785-506880842.1655730252" width="50px">
