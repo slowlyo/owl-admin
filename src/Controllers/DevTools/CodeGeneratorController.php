@@ -49,7 +49,7 @@ class CodeGeneratorController extends AdminController
                 ->size('full')
                 ->title($isEdit ? __('admin.edit') : __('admin.create'))
                 ->actions([
-                    amisMake()->VanillaAction()->actionType('cancel')->label('取消'),
+                    amisMake()->VanillaAction()->actionType('cancel')->label(__('admin.cancel')),
                     amisMake()
                         ->VanillaAction()
                         ->type('submit')
@@ -86,7 +86,7 @@ class CodeGeneratorController extends AdminController
                         ->AjaxAction()
                         ->label(__('admin.code_generators.generate_code'))
                         ->level('link')
-                        ->confirmText('确定生成代码？')
+                        ->confirmText(__('admin.code_generators.confirm_generate_code'))
                         ->api('dev_tools/code_generator/generate?id=${id}')
                         ->feedback(
                             amisMake()->Dialog()->title(' ')->body(amisMake()->Tpl()->tpl('${result | raw}'))->onEvent([
@@ -103,9 +103,14 @@ class CodeGeneratorController extends AdminController
                             ])
                         )
                         ->icon('fa fa-code'),
-                    amisMake()->DialogAction()->label('预览')->icon('fa fa-eye')->level('link')->dialog(
-                        $this->previewCodeDialog()
-                    ),
+                    amisMake()
+                        ->DialogAction()
+                        ->label(__('admin.code_generators.preview'))
+                        ->icon('fa fa-eye')
+                        ->level('link')
+                        ->dialog(
+                            $this->previewCodeDialog()
+                        ),
                     amisMake()
                         ->DialogAction()
                         ->label(__('admin.edit'))
@@ -138,7 +143,7 @@ class CodeGeneratorController extends AdminController
                 'table_primary_keys' => Generator::make()->getDatabasePrimaryKeys(),
             ])
             ->tabs([
-                amisMake()->Tab()->title('基本信息')->body(
+                amisMake()->Tab()->title(__('admin.code_generators.base_info'))->body(
                     amisMake()->Card()->body(
                         amisMake()->GroupControl()->body([
                             amisMake()->GroupControl()->direction('vertical')->body([
@@ -248,18 +253,24 @@ class CodeGeneratorController extends AdminController
                         ]),
                     )
                 ),
-                amisMake()->Tab()->title('字段信息')->body($this->columnForm()),
-                amisMake()->Tab()->title('路由配置')->body(
+                amisMake()->Tab()->title(__('admin.code_generators.column_info'))->body($this->columnForm()),
+                amisMake()->Tab()->title(__('admin.code_generators.route_config'))->body(
                     amisMake()->ComboControl('menu_info', false)->multiLine()->subFormMode('horizontal')->items([
-                        amisMake()->SwitchControl('enabled', '生成路由及菜单')->value(1),
-                        amisMake()->TextControl('route', '路由')->id('gen_menu_route')->required(),
-                        amisMake()->TextControl('title', '菜单名称')->id('gen_menu_title')->required(),
-                        amisMake()->TreeSelectControl('parent_id', '父级菜单')
+                        amisMake()->SwitchControl('enabled', __('admin.code_generators.gen_route_menu'))->value(1),
+                        amisMake()
+                            ->TextControl('route', __('admin.code_generators.route'))
+                            ->id('gen_menu_route')
+                            ->required(),
+                        amisMake()
+                            ->TextControl('title', __('admin.code_generators.menu_name'))
+                            ->id('gen_menu_title')
+                            ->required(),
+                        amisMake()->TreeSelectControl('parent_id', __('admin.code_generators.parent_menu'))
                             ->labelField('title')
                             ->valueField('id')
                             ->value(0)
                             ->options(AdminMenuService::make()->getTree()),
-                        amisMake()->TextControl('icon', '菜单图标')
+                        amisMake()->TextControl('icon', __('admin.code_generators.menu_icon'))
                             ->value('ph:circle')
                             ->description(
                                 __('admin.admin_menu.icon_description') .
@@ -277,7 +288,7 @@ class CodeGeneratorController extends AdminController
             return amisMake()->Tab()->title($title)->body([
                 amisMake()->Alert()->level('info')->showIcon()->body($tips),
                 amisMake()
-                    ->SelectControl($key . '_type', '类型')
+                    ->SelectControl($key . '_type', __('admin.admin_menu.type'))
                     ->searchable()
                     ->clearable()
                     ->source('${component_options}')
@@ -285,7 +296,7 @@ class CodeGeneratorController extends AdminController
                         'change' => [
                             'actions' => [['actionType' => 'clear', 'componentId' => $key . '_property_id']],
                         ],
-                    ])->description('name和label属性取字段名和注释'),
+                    ])->description(__('admin.code_generators.name_label_desc')),
                 amisMake()->Divider()->visibleOn('${!!' . $key . '_type}'),
                 amisMake()
                     ->Service()
@@ -297,7 +308,7 @@ class CodeGeneratorController extends AdminController
 
         return amisMake()->Card()->body([
             amisMake()->Alert()
-                ->body("如果字段名存在 no、status 会导致 form 回显失败! <a href='https://slowlyo.gitee.io/owl-admin-doc/#/docs/issue?id=%f0%9f%90%9b-%e7%bc%96%e8%be%91-%e8%af%a6%e6%83%85%e9%a1%b5%e9%9d%a2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%98%be%e5%a4%b1%e8%b4%a5' target='_blank'>查看详情</a> ")
+                ->body(__('admin.code_generators.column_warning') . " <a href='https://github.com/Slowlyo/owl-admin/issues/5' target='_blank'>" . __('admin.show') . "</a> ")
                 ->level('warning')
                 ->showCloseButton()
                 ->showIcon(),
@@ -310,18 +321,18 @@ class CodeGeneratorController extends AdminController
                 ->addable()
                 ->removable()
                 ->itemClassName('custom-subform-item')
-                ->addButtonText('添加字段')
+                ->addButtonText(__('admin.code_generators.add_column'))
                 ->form(
                     amisMake()
                         ->FormControl()
-                        ->set('title', '添加字段')
+                        ->set('title', __('admin.code_generators.add_column'))
                         ->size('lg')
                         ->id('column_form')
                         ->data([
                             'component_options' => $this->getComponentOptions(),
                         ])
                         ->tabs([
-                            amisMake()->Tab()->title('基础信息')->body([
+                            amisMake()->Tab()->title(__('admin.code_generators.base_info'))->body([
                                 amisMake()->GroupControl()->body([
                                     amisMake()
                                         ->TextControl('name', __('admin.code_generators.column_name'))
@@ -356,23 +367,41 @@ class CodeGeneratorController extends AdminController
                                 ]),
 
                                 amisMake()->SwitchControl('nullable', __('admin.code_generators.nullable'))->width(60),
-                                amisMake()->CheckboxesControl('action_scope', '作用域')->options([
-                                    ['label' => '列表', 'value' => 'list'],
-                                    ['label' => '详情', 'value' => 'detail'],
-                                    ['label' => '新增', 'value' => 'create'],
-                                    ['label' => '编辑', 'value' => 'edit'],
-                                ])->joinValues(false)->extractValue()->checkAll()->defaultCheckAll(),
+                                amisMake()
+                                    ->CheckboxesControl('action_scope', __('admin.code_generators.scope'))
+                                    ->options([
+                                        ['label' => __('admin.list'), 'value' => 'list'],
+                                        ['label' => __('admin.detail'), 'value' => 'detail'],
+                                        ['label' => __('admin.create'), 'value' => 'create'],
+                                        ['label' => __('admin.edit'), 'value' => 'edit'],
+                                    ])
+                                    ->joinValues(false)
+                                    ->extractValue()
+                                    ->checkAll()
+                                    ->defaultCheckAll(),
                             ]),
 
-                            $componentSchema('列表组件', '非必须, 默认使用 TableColumn', 'list_component'),
-                            $componentSchema('表单组件', '非必须, 默认使用 TextControl', 'form_component'),
-                            $componentSchema('详情组件', '非必须, 默认使用 TextControl', 'detail_component'),
+                            $componentSchema(
+                                __('admin.code_generators.list_component'),
+                                __('admin.code_generators.list_component_desc'),
+                                'list_component'
+                            ),
+                            $componentSchema(
+                                __('admin.code_generators.form_component'),
+                                __('admin.code_generators.form_component_desc'),
+                                'form_component'
+                            ),
+                            $componentSchema(
+                                __('admin.code_generators.detail_component'),
+                                __('admin.code_generators.detail_component_desc'),
+                                'detail_component'
+                            ),
 
-                            amisMake()->Tab()->title('模型配置')->body([
+                            amisMake()->Tab()->title(__('admin.code_generators.model_config'))->body([
                                 amisMake()
-                                    ->SwitchControl('file_column', '文件字段')
+                                    ->SwitchControl('file_column', __('admin.code_generators.file_column'))
                                     ->value(0)
-                                    ->description('文件字段会自动在模型中添加 获取/修改器 方法'),
+                                    ->description(__('admin.code_generators.file_column_desc')),
                             ]),
                         ])
                 ),
@@ -381,7 +410,7 @@ class CodeGeneratorController extends AdminController
 
     public function previewCodeDialog()
     {
-        return amisMake()->Dialog()->size('lg')->title('预览代码')->body(
+        return amisMake()->Dialog()->size('lg')->title(__('admin.code_generators.preview_code'))->body(
             amisMake()->Service()->api('post:dev_tools/code_generator/preview?id=${id}')->body(
                 amisMake()->Tabs()->tabs([
                     amisMake()->Tab()->title('Controller')->body(
@@ -594,20 +623,20 @@ class CodeGeneratorController extends AdminController
         $type = $request->t;
 
         $schema = amisMake()
-            ->ComboControl($type . '_property', '属性')
+            ->ComboControl($type . '_property', __('admin.code_generators.property'))
             ->id($type . '_property_id')
             ->multiple()
             ->visibleOn('${!!' . $type . '_type}')
             ->items([
                 amisMake()
-                    ->SelectControl('name', '名称')
+                    ->SelectControl('name', __('admin.code_generators.property_name'))
                     ->required()
                     ->set('unique', true)
                     ->searchable()
                     ->creatable()
                     ->size('md')
                     ->options($options),
-                amisMake()->TextControl('value', '值')->size('md'),
+                amisMake()->TextControl('value', __('admin.code_generators.value'))->size('md'),
             ]);
 
         return $this->response()->success($schema);
