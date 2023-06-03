@@ -6,6 +6,8 @@ use {{ UseModel }};
 use Slowlyo\OwlAdmin\Services\AdminService;
 
 /**
+ * {{ AppTitle }}
+ *
  * @method {{ ModelName }} getModel()
  * @method {{ ModelName }}|\Illuminate\Database\Query\Builder query()
  */

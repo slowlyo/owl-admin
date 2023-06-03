@@ -11,7 +11,7 @@ class BaseGenerator
 
     protected string $primaryKey = '';
 
-    protected bool $overwrite = false;
+    protected string $title = '';
 
     public static function make(): static
     {
@@ -25,13 +25,12 @@ class BaseGenerator
         return $this;
     }
 
-    public function overwrite(bool $overwrite = true): static
+    public function title($title): static
     {
-        $this->overwrite = $overwrite;
+        $this->title = $title;
 
         return $this;
     }
-
 
     public static function fromJson(?string $path)
     {
@@ -111,6 +110,13 @@ class BaseGenerator
         $class = str_replace($this->getNamespace($name) . '\\', '', $name);
 
         $stub = str_replace('{{ ClassName }}', $class, $stub);
+
+        return $this;
+    }
+
+    protected function replaceTitle(&$stub): static
+    {
+        $stub = str_replace('{{ AppTitle }}', $this->title, $stub);
 
         return $this;
     }

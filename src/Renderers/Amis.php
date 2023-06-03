@@ -1049,6 +1049,21 @@ class Amis
         return $instance;
     }
 
+    public function RadioControl($name = '', $label = '')
+    {
+        $instance = RadioControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
     public function RadiosControl($name = '', $label = '')
     {
         $instance = RadiosControl::make();

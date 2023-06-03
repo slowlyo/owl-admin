@@ -21,15 +21,14 @@ class ServiceGenerator extends BaseGenerator
             $files->makeDirectory($dir, 0755, true);
         }
 
-        if ($files->exists($path) && !$this->overwrite) {
+        if ($files->exists($path)) {
             abort(HttpResponse::HTTP_BAD_REQUEST, "Service [$name] already exists!");
-        }else{
-            $files->delete($path);
         }
 
         $stub = $files->get($this->stub);
 
         $stub = $this->replaceClass($stub, $name)
+            ->replaceTitle($stub)
             ->replaceModel($stub, $modelName)
             ->replaceNamespace($stub, $name)
             ->replaceSpace($stub);
@@ -38,6 +37,20 @@ class ServiceGenerator extends BaseGenerator
         $files->chmod($path, 0777);
 
         return $path;
+    }
+
+    public function preview($serviceName, $modelName): bool|string
+    {
+        $name      = str_replace('/', '\\', $serviceName);
+        $modelName = str_replace('/', '\\', $modelName);
+        $files     = app('files');
+        $stub      = $files->get($this->stub);
+
+        return $this->replaceClass($stub, $name)
+            ->replaceTitle($stub)
+            ->replaceModel($stub, $modelName)
+            ->replaceNamespace($stub, $name)
+            ->replaceSpace($stub);
     }
 
     public function replaceModel(&$stub, $name): static

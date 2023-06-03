@@ -160,6 +160,7 @@ class RendererMap
 		'qr-code' => QRCode::class,
 		'qrcode' => QRCode::class,
 		'r-editor' => EditorControl::class,
+		'radio' => RadioControl::class,
 		'radios' => RadiosControl::class,
 		'razor-editor' => EditorControl::class,
 		'remark' => Remark::class,

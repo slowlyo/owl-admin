@@ -8,8 +8,8 @@ use Slowlyo\OwlAdmin\Traits\Uploader;
  * WangEditor
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class WangEditor extends BaseRenderer
 {

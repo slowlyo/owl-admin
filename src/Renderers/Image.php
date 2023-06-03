@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图片展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/image
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class Image extends BaseRenderer
 {
@@ -79,6 +79,14 @@ class Image extends BaseRenderer
     public function enlargeAble($value = true)
     {
         return $this->set('enlargeAble', $value);
+    }
+
+    /**
+     * 放大时是否显示图片集
+     */
+    public function enlargeWithGallary($value = true)
+    {
+        return $this->set('enlargeWithGallary', $value);
     }
 
     /**

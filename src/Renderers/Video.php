@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 视频播放器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/video
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class Video extends BaseRenderer
 {
@@ -127,6 +127,14 @@ class Video extends BaseRenderer
     public function jumpFrame($value = true)
     {
         return $this->set('jumpFrame', $value);
+    }
+
+    /**
+     * 是否循环播放
+     */
+    public function loop($value = true)
+    {
+        return $this->set('loop', $value);
     }
 
     /**

@@ -14,8 +14,10 @@ use Psr\Container\ContainerExceptionInterface;
 class OwlAdminServiceProvider extends ServiceProvider
 {
     protected array $commands = [
+        Console\UpdateCommand::class,
         Console\InstallCommand::class,
         Console\PublishCommand::class,
+        Console\GenRouteCommand::class,
         Console\CreateUserCommand::class,
         Console\ResetPasswordCommand::class,
     ];
@@ -71,6 +73,9 @@ class OwlAdminServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->bootExtensions();
 
+        if (file_exists($adminRoutes = base_path('routes/admin.php'))) {
+            $this->loadRoutesFrom($adminRoutes);
+        }
         if (file_exists($routes = admin_path('routes.php'))) {
             $this->loadRoutesFrom($routes);
         }

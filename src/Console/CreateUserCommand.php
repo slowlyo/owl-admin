@@ -20,7 +20,7 @@ class CreateUserCommand extends Command
      *
      * @var string
      */
-    protected $description = '创建admin用户';
+    protected $description = 'Create a user for admin panel.';
 
     /**
      * Execute the console command.

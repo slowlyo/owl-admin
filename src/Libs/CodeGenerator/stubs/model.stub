@@ -5,6 +5,9 @@ namespace {{ Namespace }};
 {{ ImportSoftDelete }}
 use Slowlyo\OwlAdmin\Models\BaseModel as Model;
 
+/**
+ * {{ AppTitle }}
+ */
 class {{ ClassName }} extends Model
 {
     {{ SoftDelete }}
@@ -12,4 +15,6 @@ class {{ ClassName }} extends Model
     {{ ModelTable }}
     {{ ModelKey }}
     {{ Timestamp }}
+
+    {{ ModelContent }}
 }

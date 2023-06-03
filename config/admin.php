@@ -57,13 +57,6 @@ return [
     // 是否显示 [权限] 功能中的自动生成按钮
     'show_auto_generate_permission_button' => env('ADMIN_SHOW_AUTO_GENERATE_PERMISSION_BUTTON', true),
 
-    'dev_tools' => [
-        'terminal' => [
-            'php_alias'      => 'php',
-            'composer_alias' => 'composer',
-        ],
-    ],
-
     // 扩展
     'extension' => [
         'dir' => base_path('extensions'),

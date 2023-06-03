@@ -3,11 +3,11 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * Group 表单集合渲染器，能让多个表单在一行显示 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/group
+ * Control 表单项包裹 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/control
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class FormControl extends BaseRenderer
 {

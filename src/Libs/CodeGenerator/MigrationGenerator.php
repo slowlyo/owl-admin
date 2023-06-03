@@ -19,6 +19,8 @@ class MigrationGenerator extends BaseMigrationCreator
 
     protected string $primaryKey = '';
 
+    protected string $title = '';
+
     public static function make(): static
     {
         return new static(app('files'), __DIR__ . '/stubs');
@@ -38,9 +40,28 @@ class MigrationGenerator extends BaseMigrationCreator
         return str_replace(['{{ content }}', '{{ table }}'], [$this->generateContent(), $table], $stub);
     }
 
+    public function preview($table)
+    {
+        return $this->populateStub($this->getStub($table, false), $table);
+    }
+
     public function primary($key): static
     {
         $this->primaryKey = $key;
+
+        return $this;
+    }
+
+    public function title($title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function setColumns($columns)
+    {
+        $this->columns = $columns;
 
         return $this;
     }
@@ -50,6 +71,7 @@ class MigrationGenerator extends BaseMigrationCreator
         empty($this->columns) && abort(HttpResponse::HTTP_BAD_REQUEST, 'Table fields can\'t be empty');
 
         $rows   = [];
+        $rows[] = "\$table->comment('{$this->title}');\n";
         $rows[] = "\$table->increments('{$this->primaryKey}');\n";
 
         foreach ($this->columns as $field) {
@@ -61,9 +83,9 @@ class MigrationGenerator extends BaseMigrationCreator
             }
             $column .= ')';
 
-            $index = Arr::get($field, 'index');
-            if ($index) {
-                $column .= "->{$index}()";
+            $column_index = Arr::get($field, 'column_index');
+            if ($column_index) {
+                $column .= "->{$column_index}()";
             }
 
             $hasDefault = isset($field['default']) && $field['default'] !== '';

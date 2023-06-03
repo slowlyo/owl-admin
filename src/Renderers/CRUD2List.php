@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2List
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class CRUD2List extends BaseRenderer
 {
@@ -107,6 +107,14 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
+     * 底部区域CSS类名
+     */
+    public function footerToolbarClassName($value = '')
+    {
+        return $this->set('footerToolbarClassName', $value);
+    }
+
+    /**
      * 顶部区域
      */
     public function header($value = '')
@@ -128,6 +136,14 @@ class CRUD2List extends BaseRenderer
     public function headerToolbar($value = '')
     {
         return $this->set('headerToolbar', $value);
+    }
+
+    /**
+     * 顶部区域CSS类名
+     */
+    public function headerToolbarClassName($value = '')
+    {
+        return $this->set('headerToolbarClassName', $value);
     }
 
     /**

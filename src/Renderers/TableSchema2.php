@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableSchema2
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class TableSchema2 extends BaseRenderer
 {
@@ -138,7 +138,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 嵌套展开记录的唯一标识
+     * 多选、嵌套展开记录的ID字段名 默认id
      */
     public function keyField($value = '')
     {
@@ -178,6 +178,14 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
+     * 是否可多选 作用同rowSelection.type 兼容原CRUD属性 不设置认为是多选 仅设置selectable才起作用
+     */
+    public function multiple($value = true)
+    {
+        return $this->set('multiple', $value);
+    }
+
+    /**
      * 事件动作配置
      */
     public function onEvent($value = '')
@@ -194,7 +202,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 快速编辑关键字段
+     * 设置ID字段名 作用同keyFiled 兼容原CURD属性
      */
     public function primaryField($value = '')
     {
@@ -239,6 +247,14 @@ class TableSchema2 extends BaseRenderer
     public function rowSelection($value = '')
     {
         return $this->set('rowSelection', $value);
+    }
+
+    /**
+     * 是否可选择 作用同rowSelection 兼容原CRUD属性 默认多选
+     */
+    public function selectable($value = true)
+    {
+        return $this->set('selectable', $value);
     }
 
     /**

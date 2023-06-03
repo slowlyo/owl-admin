@@ -39,11 +39,26 @@ abstract class AdminService
     {
         $query = $this->modelName::query();
 
+        // 支持 sortable 属性
         if (request()->orderBy && request()->orderDir) {
             $query->orderBy(request()->orderBy, request()->orderDir ?? 'asc');
         }
 
+        // 支持 searchable 属性
+        $this->searchable($query);
+
         return $query;
+    }
+
+    protected function searchable($query)
+    {
+        collect(array_keys(request()->query()))
+            ->intersect($this->getTableColumns())
+            ->map(function ($field) use ($query) {
+                $query->when(request($field), function ($query) use ($field) {
+                    $query->where($field, 'like', '%' . request($field) . '%');
+                });
+            });
     }
 
     /**

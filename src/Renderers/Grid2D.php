@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 二维布局渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/grid-2d
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class Grid2D extends BaseRenderer
 {

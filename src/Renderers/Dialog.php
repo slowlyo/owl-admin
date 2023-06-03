@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Dialog 弹框渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class Dialog extends BaseRenderer
 {
@@ -71,6 +71,14 @@ class Dialog extends BaseRenderer
     public function confirm($value = true)
     {
         return $this->set('confirm', $value);
+    }
+
+    /**
+     * 弹框类型 confirm 确认弹框
+     */
+    public function dialogType($value = 'confirm')
+    {
+        return $this->set('dialogType', $value);
     }
 
     /**
@@ -147,6 +155,14 @@ class Dialog extends BaseRenderer
     public function onEvent($value = '')
     {
         return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 是否显示蒙层
+     */
+    public function overlay($value = true)
+    {
+        return $this->set('overlay', $value);
     }
 
     /**

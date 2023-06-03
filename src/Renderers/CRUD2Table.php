@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Table
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class CRUD2Table extends BaseRenderer
 {
@@ -130,11 +130,27 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
+     * 底部区域CSS类名
+     */
+    public function footerToolbarClassName($value = '')
+    {
+        return $this->set('footerToolbarClassName', $value);
+    }
+
+    /**
      * 顶部区域
      */
     public function headerToolbar($value = '')
     {
         return $this->set('headerToolbar', $value);
+    }
+
+    /**
+     * 顶部区域CSS类名
+     */
+    public function headerToolbarClassName($value = '')
+    {
+        return $this->set('headerToolbarClassName', $value);
     }
 
     /**
@@ -194,7 +210,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 嵌套展开记录的唯一标识
+     * 多选、嵌套展开记录的ID字段名 默认id
      */
     public function keyField($value = '')
     {
@@ -316,7 +332,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 快速编辑关键字段
+     * 设置ID字段名 作用同keyFiled 兼容原CURD属性
      */
     public function primaryField($value = '')
     {

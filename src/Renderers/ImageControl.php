@@ -8,8 +8,8 @@ use Slowlyo\OwlAdmin\Traits\Uploader;
  * Image 图片上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/image
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class ImageControl extends BaseRenderer
 {
@@ -160,6 +160,22 @@ class ImageControl extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否可拖拽排序
+     */
+    public function draggable($value = true)
+    {
+        return $this->set('draggable', $value);
+    }
+
+    /**
+     * 可拖拽排序的提示信息。
+     */
+    public function draggableTip($value = '')
+    {
+        return $this->set('draggableTip', $value);
     }
 
     /**

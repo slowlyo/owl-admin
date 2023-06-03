@@ -15,8 +15,6 @@ class ControllerGenerator extends BaseGenerator
 
     protected string $tableName = '';
 
-    protected string $title = '';
-
     protected Collection $columns;
 
     protected bool $needTimestamp = false;
@@ -38,13 +36,6 @@ class ControllerGenerator extends BaseGenerator
     public function tableName($tableName): static
     {
         $this->tableName = $tableName;
-
-        return $this;
-    }
-
-    public function title($title): static
-    {
-        $this->title = $title;
 
         return $this;
     }
@@ -72,15 +63,14 @@ class ControllerGenerator extends BaseGenerator
             $files->makeDirectory($dir, 0755, true);
         }
 
-        if ($files->exists($path) && !$this->overwrite) {
+        if ($files->exists($path)) {
             abort(HttpResponse::HTTP_BAD_REQUEST, "Controller [$name] already exists!");
-        }else{
-            $files->delete($path);
         }
 
         $stub = $files->get($this->stub);
 
         $stub = $this->replaceClass($stub, $name)
+            ->replaceTitle($stub)
             ->replaceNamespace($stub, $name)
             ->replaceService($stub)
             ->replaceListContent($stub)
@@ -92,6 +82,22 @@ class ControllerGenerator extends BaseGenerator
         $files->chmod($path, 0777);
 
         return $path;
+    }
+
+    public function preview($name)
+    {
+        $name  = str_replace('/', '\\', $name);
+        $files = app('files');
+        $stub  = $files->get($this->stub);
+
+        return $this->replaceClass($stub, $name)
+            ->replaceTitle($stub)
+            ->replaceNamespace($stub, $name)
+            ->replaceService($stub)
+            ->replaceListContent($stub)
+            ->replaceFormContent($stub)
+            ->replaceDetailContent($stub)
+            ->replaceSpace($stub);
     }
 
     protected function replaceService(&$stub): static
@@ -111,14 +117,14 @@ class ControllerGenerator extends BaseGenerator
 
         $primaryKey     = $this->primaryKey ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $list->push("TableColumn::make()->name('{$primaryKey}')->label('{$primaryKeyName}')->sortable()");
+        $list->push("amisMake()->TableColumn('{$primaryKey}', '{$primaryKeyName}')->sortable()");
 
-        $this->columns->map(function ($column) use (&$list) {
-            $item = '';
+        $this->columns->each(function ($column) use (&$list) {
+            if (!$this->columnInTheScope($column, 'list')) {
+                return;
+            }
 
-            $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
-
-            $item .= "TableColumn::make()->name('{$column['name']}')->label('{$label}')";
+            $item = $this->getColumnComponent('list_component', $column);
 
             if ($column['type'] == 'integer') {
                 $item .= '->sortable(true)';
@@ -128,8 +134,8 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $list->push("TableColumn::make()->name('created_at')->label(__('admin.created_at'))->type('datetime')->sortable(true)");
-            $list->push("TableColumn::make()->name('updated_at')->label(__('admin.updated_at'))->type('datetime')->sortable(true)");
+            $list->push("amisMake()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true)");
+            $list->push("amisMake()->TableColumn('updated_at', __('admin.updated_at'))->type('datetime')->sortable(true)");
         }
 
         $list = $list->implode(",\n\t\t\t\t") . ',';
@@ -143,12 +149,19 @@ class ControllerGenerator extends BaseGenerator
     {
         $form = collect();
 
-        $this->columns->where('index', '!=', 'primary')->map(function ($column) use (&$form) {
-            $item = '';
+        $this->columns->where('index', '!=', 'primary')->each(function ($column) use (&$form) {
+            if (!$this->columnInTheScope($column, 'create') && !$this->columnInTheScope($column, 'edit')) {
+                return;
+            }
 
-            $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
+            $item = $this->getColumnComponent('form_component', $column);
 
-            $item .= "TextControl::make()->name('{$column['name']}')->label('{$label}')";
+            if (!$this->columnInTheScope($column, 'create') && $this->columnInTheScope($column, 'edit')) {
+                $item .= '->visibleOn($isEdit)';
+            } else if ($this->columnInTheScope($column, 'create') && !$this->columnInTheScope($column, 'edit')) {
+                $item .= '->visibleOn(!$isEdit)';
+            }
+
 
             $form->push($item);
         });
@@ -166,21 +179,21 @@ class ControllerGenerator extends BaseGenerator
 
         $primaryKey     = $this->primaryKey ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $detail->push("TextControl::make()->static()->name('{$primaryKey}')->label('{$primaryKeyName}')");
+        $detail->push("amisMake()->TextControl('{$primaryKey}', '{$primaryKeyName}')->static()");
 
-        $this->columns->map(function ($column) use (&$detail) {
-            $item = '';
+        $this->columns->each(function ($column) use (&$detail) {
+            if (!$this->columnInTheScope($column, 'detail')) {
+                return;
+            }
 
-            $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
-
-            $item .= "TextControl::make()->static()->name('{$column['name']}')->label('{$label}')";
+            $item = $this->getColumnComponent('detail_component', $column);
 
             $detail->push($item);
         });
 
         if ($this->needTimestamp) {
-            $detail->push("TextControl::make()->static()->name('created_at')->label(__('admin.created_at'))");
-            $detail->push("TextControl::make()->static()->name('updated_at')->label(__('admin.updated_at'))");
+            $detail->push("amisMake()->TextControl('created_at', __('admin.created_at'))->static()");
+            $detail->push("amisMake()->TextControl('updated_at', __('admin.updated_at'))->static()");
         }
 
         $detail = $detail->implode(",\n\t\t\t");
@@ -188,5 +201,42 @@ class ControllerGenerator extends BaseGenerator
         $stub = str_replace('{{ DetailContent }}', $detail, $stub);
 
         return $this;
+    }
+
+    public function columnInTheScope($column, $scope)
+    {
+        if (!Arr::has($column, 'action_scope')) {
+            return true;
+        }
+
+        return in_array($scope, Arr::get($column, 'action_scope', []));
+    }
+
+    public function getColumnComponent($type, $column)
+    {
+        $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
+
+        if ($component = Arr::get($column, $type . '_type')) {
+            $item = "amisMake()->{$component}('{$column['name']}', '{$label}')";
+            if ($property = Arr::get($column, $type . '_property')) {
+                $item .= collect($property)->map(function ($item) {
+                    $_val = Arr::get($item, 'value');
+
+                    if (filled($_val) && !in_array($_val, ['true', 'false']) && !is_numeric($_val)) {
+                        $_val = "'{$_val}'";
+                    }
+
+                    return '->' . Arr::get($item, 'name') . '(' . $_val . ')';
+                })->implode('');
+            }
+
+            return $item;
+        }
+
+        return match ($type) {
+            'list_component' => "amisMake()->TableColumn('{$column['name']}', '{$label}')",
+            'form_component' => "amisMake()->TextControl('{$column['name']}', '{$label}')",
+            'detail_component' => "amisMake()->TextControl('{$column['name']}', '{$label}')->static()",
+        };
     }
 }

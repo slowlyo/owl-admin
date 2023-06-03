@@ -3,6 +3,8 @@
 namespace Slowlyo\OwlAdmin\Libs\CodeGenerator;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class ModelGenerator extends BaseGenerator
@@ -10,6 +12,8 @@ class ModelGenerator extends BaseGenerator
     protected bool $needSoftDelete = false;
 
     protected bool $needTimestamp = false;
+
+    protected Collection $columns;
 
     protected string $stub = __DIR__ . '/stubs/model.stub';
 
@@ -27,6 +31,13 @@ class ModelGenerator extends BaseGenerator
         return $this;
     }
 
+    public function columns($columns): static
+    {
+        $this->columns = $columns;
+
+        return $this;
+    }
+
     public function generate($table, $name): bool|string
     {
         $name = str_replace('/', '\\', $name);
@@ -39,19 +50,19 @@ class ModelGenerator extends BaseGenerator
             $files->makeDirectory($dir, 0755, true);
         }
 
-        if ($files->exists($path) && !$this->overwrite) {
+        if ($files->exists($path)) {
             abort(HttpResponse::HTTP_BAD_REQUEST, "Model [$name] already exists!");
-        }else{
-            $files->delete($path);
         }
 
         $stub = $files->get($this->stub);
 
         $stub = $this->replaceClass($stub, $name)
+            ->replaceTitle($stub)
             ->replaceNamespace($stub, $name)
             ->replaceSoftDeletes($stub)
             ->replaceTable($stub, $table, $name)
             ->replaceTimestamp($stub)
+            ->replaceContent($stub)
             ->replacePrimaryKey($stub)
             ->replaceSpace($stub);
 
@@ -59,6 +70,23 @@ class ModelGenerator extends BaseGenerator
         $files->chmod($path, 0777);
 
         return $path;
+    }
+
+    public function preview($table, $name)
+    {
+        $name  = str_replace('/', '\\', $name);
+        $files = app('files');
+        $stub  = $files->get($this->stub);
+
+        return $this->replaceClass($stub, $name)
+            ->replaceTitle($stub)
+            ->replaceNamespace($stub, $name)
+            ->replaceSoftDeletes($stub)
+            ->replaceTable($stub, $table, $name)
+            ->replaceTimestamp($stub)
+            ->replaceContent($stub)
+            ->replacePrimaryKey($stub)
+            ->replaceSpace($stub);
     }
 
     protected function replaceSoftDeletes(&$stub): static
@@ -91,6 +119,29 @@ class ModelGenerator extends BaseGenerator
         $useTimestamps = $this->needTimestamp ? '' : "public \$timestamps = false;\n";
 
         $stub = str_replace('{{ Timestamp }}', $useTimestamps, $stub);
+
+        return $this;
+    }
+
+    protected function replaceContent(&$stub): static
+    {
+        $content = '';
+
+        $this->columns->each(function ($column) use (&$content) {
+            if (Arr::get($column, 'file_column', false)) {
+                $content .= <<<EOF
+
+
+    public function {$column['name']}():\Illuminate\Database\Eloquent\Casts\Attribute
+    {
+        return file_upload_handle();
+    }
+EOF;
+
+            }
+        });
+
+        $stub = str_replace('{{ ModelContent }}', $content, $stub);
 
         return $this;
     }

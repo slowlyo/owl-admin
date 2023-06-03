@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * FieldSet 表单项集合 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/fieldset
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class FieldSetControl extends BaseRenderer
 {

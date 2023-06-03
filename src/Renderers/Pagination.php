@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Pagination
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class Pagination extends BaseRenderer
 {
@@ -76,14 +76,6 @@ class Pagination extends BaseRenderer
     public function id($value = '')
     {
         return $this->set('id', $value);
-    }
-
-    /**
-     * 最后一页，总页数（如果传入了total，会重新计算lastPage）
-     */
-    public function lastPage($value = '')
-    {
-        return $this->set('lastPage', $value);
     }
 
     /**

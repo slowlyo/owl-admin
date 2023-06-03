@@ -19,7 +19,7 @@ class ResetPasswordCommand extends Command
      *
      * @var string
      */
-    protected $description = '重置指定admin用户的密码';
+    protected $description = 'Reset a user\'s password for admin panel.';
 
     /**
      * Execute the console command.

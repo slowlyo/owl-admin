@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DateRange 日期范围控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/date-range
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class DateRangeControl extends BaseRenderer
 {
@@ -332,6 +332,14 @@ class DateRangeControl extends BaseRenderer
     public function required($value = true)
     {
         return $this->set('required', $value);
+    }
+
+    /**
+     * 日期范围快捷键
+     */
+    public function shortcuts($value = '')
+    {
+        return $this->set('shortcuts', $value);
     }
 
     /**

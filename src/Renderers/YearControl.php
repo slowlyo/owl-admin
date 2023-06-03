@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 年份选择控件
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class YearControl extends BaseRenderer
 {
@@ -268,6 +268,14 @@ class YearControl extends BaseRenderer
     public function required($value = true)
     {
         return $this->set('required', $value);
+    }
+
+    /**
+     * 日期快捷键
+     */
+    public function shortcuts($value = '')
+    {
+        return $this->set('shortcuts', $value);
     }
 
     /**

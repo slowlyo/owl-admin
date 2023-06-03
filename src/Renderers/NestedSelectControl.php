@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Nested Select 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/nested-select
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class NestedSelectControl extends BaseRenderer
 {

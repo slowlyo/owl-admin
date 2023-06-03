@@ -57,10 +57,14 @@ use Slowlyo\OwlAdmin\Controllers;
     if(config('admin.show_development_tools')){
         // 开发工具
         $router->group(['prefix' => 'dev_tools'], function (\Illuminate\Routing\Router $router) {
-            $router->get('/', [Controllers\DevTools\CodeGeneratorController::class, 'index']);
             // 代码生成器
             $router->resource('code_generator', Controllers\DevTools\CodeGeneratorController::class);
-
+            // 代码生成器 - 生成代码
+            $router->post('code_generator/generate', [Controllers\DevTools\CodeGeneratorController::class, 'generate']);
+            // 代码生成器 - 预览
+            $router->post('code_generator/preview', [Controllers\DevTools\CodeGeneratorController::class, 'preview']);
+            // 代码生成器 - 获取属性选项
+            $router->post('code_generator/get_property_options', [Controllers\DevTools\CodeGeneratorController::class, 'getPropertyOptions']);
             // 扩展
             $router->resource('extensions', Controllers\DevTools\ExtensionController::class);
             // 本地扩展安装

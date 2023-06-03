@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UUID 功能性组件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/uuid
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class UUIDControl extends BaseRenderer
 {

@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 表单向导 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/wizard
  * 
  * @author slowlyo
- * @version v3.0.0
- * @since 2023-05-13
+ * @version v3.1.0
+ * @since 2023-06-03
  */
 class Wizard extends BaseRenderer
 {
@@ -74,6 +74,14 @@ class Wizard extends BaseRenderer
     }
 
     /**
+     * 表单区域css类
+     */
+    public function bodyClassName($value = '')
+    {
+        return $this->set('bodyClassName', $value);
+    }
+
+    /**
      * 是否合并后再提交
      */
     public function bulkSubmit($value = true)
@@ -103,6 +111,14 @@ class Wizard extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 底部操作栏的css类
+     */
+    public function footerClassName($value = '')
+    {
+        return $this->set('footerClassName', $value);
     }
 
     /**
@@ -242,9 +258,25 @@ class Wizard extends BaseRenderer
         return $this->set('staticSchema', $value);
     }
 
+    /**
+     * step + body区域css类
+     */
+    public function stepClassName($value = '')
+    {
+        return $this->set('stepClassName', $value);
+    }
+
     public function steps($value = '')
     {
         return $this->set('steps', $value);
+    }
+
+    /**
+     * 步骤条区域css类
+     */
+    public function stepsClassName($value = '')
+    {
+        return $this->set('stepsClassName', $value);
     }
 
     /**
@@ -285,6 +317,14 @@ class Wizard extends BaseRenderer
     public function visibleOn($value = '')
     {
         return $this->set('visibleOn', $value);
+    }
+
+    /**
+     * 是否用panel包裹
+     */
+    public function wrapWithPanel($value = true)
+    {
+        return $this->set('wrapWithPanel', $value);
     }
 
 }

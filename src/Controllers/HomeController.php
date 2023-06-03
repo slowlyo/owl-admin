@@ -107,7 +107,7 @@ JS
     {
         return Card::make()->className('h-96')->body(
             Wrapper::make()->className('h-full')->body([
-                Flex::make()->className('h-full')->direction('column')->justify('center')->items([
+                Flex::make()->className('h-full')->direction('column')->justify('center')->alignItems('center')->items([
                     Image::make()->src(url(config('admin.logo'))),
                     Wrapper::make()->className('text-3xl mt-9')->body(config('admin.name')),
                     Flex::make()->className('w-64 mt-5')->justify('space-around')->items([
