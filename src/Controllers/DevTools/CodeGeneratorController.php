@@ -158,7 +158,7 @@ class CodeGeneratorController extends AdminController
                                                         'actionType'  => 'setValue',
                                                         'componentId' => 'gen_menu_title',
                                                         'args'        => [
-                                                            'value' => '/${value}',
+                                                            'value' => '${value}',
                                                         ],
                                                     ],
                                                 ],
@@ -176,7 +176,7 @@ class CodeGeneratorController extends AdminController
                                                         'actionType'  => 'setValue',
                                                         'componentId' => 'gen_menu_route',
                                                         'args'        => [
-                                                            'value' => '${value}',
+                                                            'value' => '/${value}',
                                                         ],
                                                     ],
                                                 ],

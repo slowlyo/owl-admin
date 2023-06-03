@@ -21,7 +21,7 @@ class RouteGenerator
                 'title'     => $menuInfo['title'],
                 'icon'      => $menuInfo['icon'],
                 'parent_id' => $menuInfo['parent_id'],
-                'url'       => $menuInfo['route'],
+                'url'       => '/' . ltrim($menuInfo['route'], '/'),
                 'order'     => 100,
             ]);
         }
