@@ -19,6 +19,7 @@ class OwlAdminServiceProvider extends ServiceProvider
         Console\PublishCommand::class,
         Console\GenRouteCommand::class,
         Console\CreateUserCommand::class,
+        Console\GenCodeClearCommand::class,
         Console\ResetPasswordCommand::class,
     ];
 

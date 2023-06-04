@@ -7,7 +7,7 @@ use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
 
 class GenRouteCommand extends Command
 {
-    protected $signature = 'admin:gen-route';
+    protected $signature = 'admin:gen-route {--excluded=}';
 
     protected $description = 'Generate admin route file.';
 
@@ -31,20 +31,30 @@ _content_
 EOF;
 
 
+        $excluded = $this->option('excluded');
+        if ($excluded) {
+            $excluded = explode(',', $excluded);
+        }
+
         $routes = '';
-        AdminCodeGeneratorService::make()->getModel()->query()->get()->map(function ($item) use (&$routes) {
-            if (!$item->menu_info['enabled']) return;
+        AdminCodeGeneratorService::make()
+            ->getModel()
+            ->query()
+            ->when($excluded, fn($query, $excluded) => $query->whereNotIn('id', $excluded))
+            ->get()
+            ->map(function ($item) use (&$routes) {
+                if (!$item->menu_info['enabled']) return;
 
-            $_route      = ltrim($item->menu_info['route'], '/');
-            $_controller = '\\' . str_replace('/', '\\', $item->controller_name);
+                $_route      = ltrim($item->menu_info['route'], '/');
+                $_controller = '\\' . str_replace('/', '\\', $item->controller_name);
 
-            $routes .= <<<EOF
+                $routes .= <<<EOF
     // {$item->title}
     \$router->resource('{$_route}', {$_controller}::class);
 
 EOF;
 
-        });
+            });
 
         $content = str_replace('_content_', $routes, $content);
 
