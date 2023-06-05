@@ -20,6 +20,13 @@ class UpdateCommand extends Command
         $this->checkVersion();
 
         if ($this->updateAll = $this->confirm('Do you want to update all?')) {
+            $this->call('admin:publish', [
+                '--assets' => true,
+                '--lang'   => true,
+                '--config' => true,
+                '--force'  => true,
+            ]);
+
             // execute all version update order by version number
             collect(get_class_methods($this))
                 ->filter(fn($method) => Str::startsWith($method, 'version'))
@@ -59,37 +66,49 @@ class UpdateCommand extends Command
     {
         $this->output->title('Update to version v2.5.7');
 
-        $this->call('admin:publish', [
-            '--assets' => true,
-            '--lang'   => true,
-            '--config' => true,
-            '--force'  => true,
-        ]);
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--assets' => true,
+                '--lang'   => true,
+                '--config' => true,
+                '--force'  => true,
+            ]);
+        }
 
         if (!Schema::hasTable('admin_code_generators')) {
-            $sql = <<<SQL
-create table admin_code_generators
-(
-    id              int unsigned auto_increment
-        primary key,
-    title           varchar(255) default ''   not null comment '名称',
-    table_name      varchar(255) default ''   not null comment '表名',
-    primary_key     varchar(255) default 'id' not null comment '主键名',
-    model_name      varchar(255) default ''   not null comment '模型名',
-    controller_name varchar(255) default ''   not null comment '控制器名',
-    service_name    varchar(255) default ''   not null comment '服务名',
-    columns         longtext                  not null comment '字段信息',
-    need_timestamps tinyint(1)   default 0    not null comment '是否需要时间戳',
-    soft_delete     tinyint(1)   default 0    not null comment '是否需要软删除',
-    needs           text                      null comment '需要生成的代码',
-    menu_info       text                      null comment '菜单信息',
-    created_at      timestamp                 null,
-    updated_at      timestamp                 null
-)
-    comment '代码生成器历史记录' charset = utf8mb4;
-SQL;
+            Schema::create('admin_code_generators', function ($table) {
+                $table->increments('id')->unsigned();
+                $table->string('title')->default('')->comment('名称');
+                $table->string('table_name')->default('')->comment('表名');
+                $table->string('primary_key')->default('id')->comment('主键名');
+                $table->string('model_name')->default('')->comment('模型名');
+                $table->string('controller_name')->default('')->comment('控制器名');
+                $table->string('service_name')->default('')->comment('服务名');
+                $table->longText('columns')->comment('字段信息');
+                $table->tinyInteger('need_timestamps')->default(0)->comment('是否需要时间戳');
+                $table->tinyInteger('soft_delete')->default(0)->comment('是否需要软删除');
+                $table->text('needs')->nullable()->comment('需要生成的代码');
+                $table->text('menu_info')->nullable()->comment('菜单信息');
+                $table->timestamps();
+            });
+        }
+    }
 
-            DB::statement($sql);
+    public function version259()
+    {
+        $this->output->title('Update to version v2.5.9');
+
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--lang'  => true,
+                '--force' => true,
+            ]);
+        }
+
+        if (!Schema::hasColumn('admin_code_generators', 'page_info')) {
+            Schema::table('admin_code_generators', function ($table) {
+                $table->text('page_info')->nullable()->comment('页面信息')->after('menu_info');
+            });
         }
     }
 }

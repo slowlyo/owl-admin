@@ -65,6 +65,8 @@ use Slowlyo\OwlAdmin\Controllers;
             $router->post('code_generator/preview', [Controllers\DevTools\CodeGeneratorController::class, 'preview']);
             // 代码生成器 - 获取属性选项
             $router->post('code_generator/get_property_options', [Controllers\DevTools\CodeGeneratorController::class, 'getPropertyOptions']);
+            // 代码生成器 - 获取记录
+            $router->post('code_generator/get_record', [Controllers\DevTools\CodeGeneratorController::class, 'getRecord']);
             // 扩展
             $router->resource('extensions', Controllers\DevTools\ExtensionController::class);
             // 本地扩展安装

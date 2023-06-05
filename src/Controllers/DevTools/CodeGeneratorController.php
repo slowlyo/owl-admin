@@ -74,6 +74,27 @@ class CodeGeneratorController extends AdminController
                     ->dialog(
                         $formDrawer()
                     ),
+                amisMake()
+                    ->DialogAction()
+                    ->label(__('admin.code_generators.import_record'))
+                    ->icon('fa fa-upload')
+                    ->level('success')
+                    ->dialog(
+                        amisMake()->Dialog()->title(false)->body(
+                            amisMake()->Form()->mode('normal')->body([
+                                amisMake()
+                                    ->TextareaControl('data')
+                                    ->required()
+                                    ->minRows(10)
+                                    ->description(__('admin.code_generators.import_record_desc'))
+                                    ->placeholder(__('admin.code_generators.import_record_placeholder')),
+                            ])->api([
+                                'url'    => '/dev_tools/code_generator',
+                                'method' => 'post',
+                                'data'   => '${DECODEJSON(data)}',
+                            ])
+                        )
+                    ),
                 ...$this->baseHeaderToolBar(),
             ])
             ->columns([
@@ -81,7 +102,7 @@ class CodeGeneratorController extends AdminController
                 amisMake()->TableColumn('title', __('admin.code_generators.app_title')),
                 amisMake()->TableColumn('table_name', __('admin.code_generators.table_name')),
                 amisMake()->TableColumn('updated_at', __('admin.updated_at'))->sortable(),
-                amisMake()->Operation()->label(__('admin.actions'))->set('width', 300)->buttons([
+                amisMake()->Operation()->label(__('admin.actions'))->set('width', 320)->buttons([
                     amisMake()
                         ->AjaxAction()
                         ->label(__('admin.code_generators.generate_code'))
@@ -103,6 +124,32 @@ class CodeGeneratorController extends AdminController
                             ])
                         )
                         ->icon('fa fa-code'),
+                    amisMake()
+                        ->DialogAction()
+                        ->label(__('admin.code_generators.copy_record'))
+                        ->icon('fa fa-copy')
+                        ->level('link')
+                        ->dialog(
+                            amisMake()->Dialog()->title(false)->body(
+                                amisMake()
+                                    ->Form()
+                                    ->initApi('post:dev_tools/code_generator/get_record?id=${id}')
+                                    ->mode('normal')
+                                    ->body(
+                                        amisMake()
+                                            ->TextareaControl('record')
+                                            ->disabled()
+                                            ->description(__('admin.code_generators.copy_record_description'))
+                                    ),
+                            )->actions([
+                                amisMake()->VanillaAction()->actionType('cancel')->label(__('admin.cancel')),
+                                amisMake()
+                                    ->CopyAction()
+                                    ->label(__('admin.copy'))
+                                    ->level('success')
+                                    ->content('${ENCODEJSON(record)}'),
+                            ])
+                        ),
                     amisMake()
                         ->DialogAction()
                         ->label(__('admin.code_generators.preview'))
@@ -278,6 +325,20 @@ class CodeGeneratorController extends AdminController
                             ),
                     ])
                 ),
+                amisMake()->Tab()->title(__('admin.code_generators.page_config'))->body(
+                    amisMake()->ComboControl('page_info', false)->multiLine()->subFormMode('horizontal')->items([
+                        amisMake()->SwitchControl('dialog_form', __('admin.code_generators.dialog_form'))->value(1),
+                        amisMake()->SelectControl('dialog_size', __('admin.code_generators.dialog_size'))
+                            ->options(['xs', 'sm', 'md', 'lg', 'xl', 'full'])
+                            ->value('md')
+                            ->visibleOn('${!!dialog_form}'),
+                        amisMake()->CheckboxesControl('row_actions', __('admin.actions'))->options([
+                            'show'   => __('admin.show'),
+                            'edit'   => __('admin.edit'),
+                            'delete' => __('admin.delete'),
+                        ])->checkAll()->defaultCheckAll()->joinValues(false)->extractValue(),
+                    ])
+                ),
             ]);
     }
 
@@ -430,13 +491,6 @@ class CodeGeneratorController extends AdminController
         );
     }
 
-    /**
-     * 生成代码
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
     public function generate(Request $request)
     {
         $record = $this->service->getDetail($request->id);
@@ -489,6 +543,7 @@ class CodeGeneratorController extends AdminController
                     ->primary($record->primary_key)
                     ->title($record->title)
                     ->tableName($record->table_name)
+                    ->pageInfo($record->page_info)
                     ->serviceName($record->service_name)
                     ->columns($columns)
                     ->timestamps($record->need_timestamps)
@@ -557,6 +612,7 @@ class CodeGeneratorController extends AdminController
                 ->primary($record->primary_key)
                 ->title($record->title)
                 ->tableName($record->table_name)
+                ->pageInfo($record->page_info)
                 ->serviceName($record->service_name)
                 ->columns($columns)
                 ->timestamps($record->need_timestamps)
@@ -640,6 +696,13 @@ class CodeGeneratorController extends AdminController
             ]);
 
         return $this->response()->success($schema);
+    }
+
+    public function getRecord()
+    {
+        $record = $this->service->getDetail(request()->id)->makeHidden(['id', 'created_at', 'updated_at'])->toArray();
+
+        return $this->response()->success(compact('record'));
     }
 
     public function getNamespace($name, $app = null): string

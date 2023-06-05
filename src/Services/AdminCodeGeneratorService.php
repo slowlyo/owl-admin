@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Services;
 
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Builder;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 
@@ -30,7 +31,7 @@ class AdminCodeGeneratorService extends AdminService
             return $this->setError(__('admin.code_generators.exists_table'));
         }
 
-        return parent::store($data);
+        return parent::store($this->filterData($data));
     }
 
     public function update($primaryKey, $data): bool
@@ -44,6 +45,15 @@ class AdminCodeGeneratorService extends AdminService
             return $this->setError(__('admin.code_generators.exists_table'));
         }
 
-        return parent::update($primaryKey, $data);
+        return parent::update($primaryKey, $this->filterData($data));
+    }
+
+    public function filterData($data)
+    {
+        $data['columns'] = collect($data['columns'])
+            ->map(fn($item) => Arr::except($item, ['component_options']))
+            ->toArray();
+
+        return Arr::except($data, ['table_info', 'table_primary_keys']);
     }
 }

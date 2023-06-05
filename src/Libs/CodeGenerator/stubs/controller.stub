@@ -19,14 +19,10 @@ class {{ ClassName }} extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
-            ->filterTogglable(false)
-            ->headerToolbar([
-                $this->createButton(true),
-                ...$this->baseHeaderToolBar(),
-            ])
+            ->filterTogglable(false){{ HeaderToolbar }}
             ->columns([
                 {{ ListContent }}
-                $this->rowActions(true),
+                {{ RowActions }}
             ]);
 
         return $this->baseList($crud);

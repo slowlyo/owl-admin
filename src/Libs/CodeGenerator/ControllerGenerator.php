@@ -15,6 +15,8 @@ class ControllerGenerator extends BaseGenerator
 
     protected string $tableName = '';
 
+    protected array $pageInfo = [];
+
     protected Collection $columns;
 
     protected bool $needTimestamp = false;
@@ -36,6 +38,13 @@ class ControllerGenerator extends BaseGenerator
     public function tableName($tableName): static
     {
         $this->tableName = $tableName;
+
+        return $this;
+    }
+
+    public function pageInfo($pageInfo): static
+    {
+        $this->pageInfo = $pageInfo;
 
         return $this;
     }
@@ -142,7 +151,57 @@ class ControllerGenerator extends BaseGenerator
 
         $stub = str_replace('{{ ListContent }}', $list, $stub);
 
+        // row actions
+        $stub = str_replace('{{ RowActions }}', $this->makeRowButton($this->pageInfo), $stub);
+
+        // header toolbar
+        $headerToolbar = '';
+        if ($this->pageInfo['dialog_form']) {
+            $headerToolbar =
+                "\n\t\t\t->headerToolbar([\n\t\t\t\t\$this->createButton(true{$this->getDialogSize()}),\n\t\t\t\t...\$this->baseHeaderToolBar()\n\t\t\t])";
+        }
+
+        $stub = str_replace('{{ HeaderToolbar }}', $headerToolbar, $stub);
+
         return $this;
+    }
+
+    private function getDialogSize()
+    {
+        $pageInfo   = $this->pageInfo;
+        $dialogSize = $pageInfo['dialog_size'] ?? 'md';
+        $dialogSize = $dialogSize == 'md' ? '' : ', \'' . $dialogSize . '\'';
+
+        return $pageInfo['dialog_form'] ? $dialogSize : '';
+    }
+
+    private function makeRowButton($pageInfo)
+    {
+        $_actions   = data_get($pageInfo, 'row_actions');
+        $isDialog   = $pageInfo['dialog_form'] ? 'true' : '';
+        $dialogSize = $this->getDialogSize();
+
+        if (in_array('show', $_actions) && in_array('edit', $_actions) && in_array('delete', $_actions)) {
+            return "\$this->rowActions({$isDialog}{$dialogSize})";
+        }
+        if (in_array('edit', $_actions) && in_array('delete', $_actions)) {
+            return "\$this->rowActionsOnlyEditAndDelete({$isDialog}{$dialogSize})";
+        }
+
+        $str = "amisMake()->Operation()->label(__('admin.actions'))->buttons([\n\t\t\t\t";
+
+        if (in_array('show', $_actions)) {
+            $str .= "\t\$this->rowShowButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+        }
+        if (in_array('edit', $_actions)) {
+            $str .= "\t\$this->rowEditButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+        }
+        if (in_array('delete', $_actions)) {
+            $str .= "\t\$this->rowDeleteButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+        }
+        $str .= "])";
+
+        return $str;
     }
 
     protected function replaceFormContent(&$stub): static
