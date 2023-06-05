@@ -100,8 +100,9 @@ class UpdateCommand extends Command
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
-                '--lang'  => true,
-                '--force' => true,
+                '--lang'   => true,
+                '--assets' => true,
+                '--force'  => true,
             ]);
         }
 
