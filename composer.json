@@ -37,8 +37,5 @@
                 "OwlAdmin": "Slowlyo\\OwlAdmin\\Facades\\OwlAdmin"
             }
         }
-    },
-    "archive": {
-        "exclude": [".git"]
     }
 }
