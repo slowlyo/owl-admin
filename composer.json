@@ -13,7 +13,8 @@
     "keywords": [
         "Laravel",
         "OwlAdmin",
-        "Admin"
+        "Admin",
+        "Amis"
     ],
     "require": {
         "php": ">=8.0",
@@ -36,5 +37,8 @@
                 "OwlAdmin": "Slowlyo\\OwlAdmin\\Facades\\OwlAdmin"
             }
         }
+    },
+    "archive": {
+        "exclude": [".git"]
     }
 }
