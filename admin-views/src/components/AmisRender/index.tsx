@@ -1,17 +1,16 @@
 import React from "react"
 import "./style/index.less"
-import {render as renderAmis, RenderOptions, toast} from "amis"
+import {render as renderAmis, RenderOptions} from "amis"
+import {Message} from "@arco-design/web-react"
 import {GlobalState} from "@/store"
 import {useSelector} from "react-redux"
 import {amisRequest} from "@/service/api"
 import {ToastComponent} from "amis-ui"
 import {useHistory} from "react-router"
 import clipboard from "@/utils/clipboard"
-import useLocale from "@/utils/useLocale"
 
 const AmisRender = ({schema}) => {
     const history = useHistory()
-    const locale = useLocale()
     const {appSettings} = useSelector(({appSettings}: GlobalState) => ({appSettings}))
 
     const localeMap = {
@@ -38,7 +37,8 @@ const AmisRender = ({schema}) => {
         },
         copy: async (content) => {
             await clipboard(content)
-            toast.success(locale["copy.success"])
+
+            Message.success(props.locale === "zh-CN" ? "复制成功" : "Copy success")
         },
     }
 
