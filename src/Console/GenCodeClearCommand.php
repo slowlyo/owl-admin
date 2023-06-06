@@ -2,12 +2,12 @@
 
 namespace Slowlyo\OwlAdmin\Console;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
-use Slowlyo\OwlAdmin\Libs\CodeGenerator\BaseGenerator;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\BaseGenerator;
 
 class GenCodeClearCommand extends Command
 {
@@ -127,7 +127,7 @@ class GenCodeClearCommand extends Command
 
     protected function getMenu($menuInfo)
     {
-        return AdminMenu::query()->where([
+        return Admin::adminMenuModel()->query()->where([
             'title'     => $menuInfo['title'],
             'parent_id' => $menuInfo['parent_id'],
             'url'       => '/' . ltrim($menuInfo['route'], '/'),

@@ -7,13 +7,13 @@ use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Artisan;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
-use Slowlyo\OwlAdmin\Libs\CodeGenerator\Generator;
-use Slowlyo\OwlAdmin\Libs\CodeGenerator\ModelGenerator;
-use Slowlyo\OwlAdmin\Libs\CodeGenerator\RouteGenerator;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\Generator;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\ModelGenerator;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\RouteGenerator;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
-use Slowlyo\OwlAdmin\Libs\CodeGenerator\ServiceGenerator;
-use Slowlyo\OwlAdmin\Libs\CodeGenerator\MigrationGenerator;
-use Slowlyo\OwlAdmin\Libs\CodeGenerator\ControllerGenerator;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\ServiceGenerator;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\MigrationGenerator;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\ControllerGenerator;
 
 /**
  * @property AdminCodeGeneratorService $service
@@ -659,7 +659,7 @@ class CodeGeneratorController extends AdminController
 
         $renderer = new \ReflectionClass($className);
 
-        $exclude = ['__construct', '__call', 'set', 'jsonSerialize', 'toJson', 'toArray', 'type', 'name', 'label',];
+        $exclude = ['__construct', '__call', 'set', 'jsonSerialize', 'toJson', 'toArray', 'name', 'label',];
 
         $options = collect($renderer->getMethods(\ReflectionMethod::IS_PUBLIC))
             ->map(function ($item) {

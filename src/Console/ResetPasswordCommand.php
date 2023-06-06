@@ -2,8 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Console;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Console\Command;
-use Slowlyo\OwlAdmin\Models\AdminUser;
 
 class ResetPasswordCommand extends Command
 {
@@ -26,7 +26,7 @@ class ResetPasswordCommand extends Command
      */
     public function handle()
     {
-        $users = AdminUser::all();
+        $users = Admin::adminUserModel()::query()->all();
 
         askForUserName:
         $username = $this->askWithCompletion('Please enter a username who needs to reset his password', $users->pluck('username')->toArray());

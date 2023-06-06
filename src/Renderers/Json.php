@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * JSON 数据展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/json
  * 
  * @author slowlyo
- * @version v3.1.0
- * @since 2023-06-03
+ * @version v3.1.1
+ * @since 2023-06-06
  */
 class Json extends BaseRenderer
 {

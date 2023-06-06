@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Repeat 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/repeat
  * 
  * @author slowlyo
- * @version v3.1.0
- * @since 2023-06-03
+ * @version v3.1.1
+ * @since 2023-06-06
  */
 class RepeatControl extends BaseRenderer
 {

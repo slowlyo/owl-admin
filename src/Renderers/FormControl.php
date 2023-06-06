@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Control 表单项包裹 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/control
  * 
  * @author slowlyo
- * @version v3.1.0
- * @since 2023-06-03
+ * @version v3.1.1
+ * @since 2023-06-06
  */
 class FormControl extends BaseRenderer
 {

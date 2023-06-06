@@ -4,7 +4,7 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\OwlAdmin;
-use Slowlyo\OwlAdmin\Libs\Captcha;
+use Slowlyo\OwlAdmin\Support\Captcha;
 use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Models\AdminUser;

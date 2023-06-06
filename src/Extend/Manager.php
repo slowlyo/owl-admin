@@ -7,11 +7,11 @@ use FilesystemIterator;
 use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Admin;
 use RecursiveIteratorIterator;
-use Slowlyo\OwlAdmin\Libs\Zip;
+use Slowlyo\OwlAdmin\Support\Zip;
 use RecursiveDirectoryIterator;
-use Slowlyo\OwlAdmin\Libs\Helper;
+use Slowlyo\OwlAdmin\Support\Helper;
 use Illuminate\Support\Collection;
-use Slowlyo\OwlAdmin\Libs\Composer;
+use Slowlyo\OwlAdmin\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
 use Psr\Container\NotFoundExceptionInterface;
@@ -350,7 +350,7 @@ class Manager
      * @param string $filePath
      * @param bool $force
      *
-     * @return bool
+     * @return string
      * @throws \Exception
      */
     public function extract($filePath, bool $force = false)

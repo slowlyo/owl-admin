@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Radio 单选框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/radios
  * 
  * @author slowlyo
- * @version v3.1.0
- * @since 2023-06-03
+ * @version v3.1.1
+ * @since 2023-06-06
  */
 class RadioControl extends BaseRenderer
 {

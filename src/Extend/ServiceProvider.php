@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Route;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Libs\ComposerProperty;
+use Slowlyo\OwlAdmin\Support\ComposerProperty;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
@@ -248,6 +248,8 @@ abstract class ServiceProvider extends LaravelServiceProvider
             }
         } catch (\ReflectionException $e) {
         }
+
+        return '';
     }
 
     /**

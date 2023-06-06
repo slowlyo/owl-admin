@@ -2,28 +2,29 @@
 
 namespace Slowlyo\OwlAdmin\Models;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Database\Seeder;
 
 class AdminTablesSeeder extends Seeder
 {
     public function run()
     {
-        AdminUser::truncate();
-        AdminUser::create([
+        Admin::adminUserModel()::query()->truncate();
+        Admin::adminUserModel()::query()->create([
             'username' => 'admin',
             'password' => bcrypt('admin'),
             'name'     => 'Administrator',
         ]);
 
-        AdminRole::truncate();
-        AdminRole::create([
+        Admin::adminRoleModel()::query()->truncate();
+        Admin::adminRoleModel()::query()->create([
             'name' => 'Administrator',
             'slug' => 'administrator',
         ]);
 
-        AdminUser::first()->roles()->save(AdminRole::first());
+        Admin::adminUserModel()::query()->first()->roles()->save(Admin::adminRoleModel()::query()->first());
 
-        AdminPermission::truncate();
+        Admin::adminPermissionModel()::query()->truncate();
         collect([
             [
                 'name'      => '首页',
@@ -67,12 +68,12 @@ class AdminTablesSeeder extends Seeder
                 'http_path' => ["/settings*"],
                 "parent_id" => 2,
             ],
-        ])->each(fn($item) => AdminPermission::create($item));
+        ])->each(fn($item) => Admin::adminPermissionModel()::query()->create($item));
 
-        AdminRole::first()->permissions()->save(AdminPermission::first());
+        Admin::adminRoleModel()::query()->first()->permissions()->save(Admin::adminPermissionModel()::query()->first());
 
-        AdminMenu::truncate();
-        AdminMenu::insert([
+        Admin::adminMenuModel()::query()->truncate();
+        Admin::adminMenuModel()::query()->insert([
             [
                 'parent_id' => 0,
                 'title'     => 'dashboard',

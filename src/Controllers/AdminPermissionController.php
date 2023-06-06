@@ -3,12 +3,11 @@
 namespace Slowlyo\OwlAdmin\Controllers;
 
 use Illuminate\Support\Str;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Tag;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Models\AdminMenu;
-use Slowlyo\OwlAdmin\Models\AdminPermission;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
@@ -110,7 +109,7 @@ class AdminPermissionController extends AdminController
 
     private function getHttpMethods(): array
     {
-        return collect(AdminPermission::$httpMethods)->map(fn($method) => [
+        return collect(Admin::adminPermissionModel()::$httpMethods)->map(fn($method) => [
             'value' => $method,
             'label' => $method,
         ])->toArray();
@@ -148,11 +147,11 @@ class AdminPermissionController extends AdminController
 
     public function autoGenerate()
     {
-        $menus = AdminMenu::all()->toArray();
+        $menus = Admin::adminMenuModel()->all()->toArray();
 
         $permissions = [];
         foreach ($menus as $menu) {
-            $_httpPath = $menu['url_type'] == AdminMenu::TYPE_ROUTE ? $this->getHttpPath($menu['url']) : '';
+            $_httpPath = $menu['url_type'] == Admin::adminMenuModel()::TYPE_ROUTE ? $this->getHttpPath($menu['url']) : '';
 
             $permissions[] = [
                 'id'         => $menu['id'],
@@ -166,8 +165,8 @@ class AdminPermissionController extends AdminController
             ];
         }
 
-        AdminPermission::query()->truncate();
-        AdminPermission::query()->insert($permissions);
+        Admin::adminPermissionModel()::query()->truncate();
+        Admin::adminPermissionModel()::query()->insert($permissions);
 
         DB::table('admin_permission_menu')->truncate();
         foreach ($permissions as $item) {
@@ -184,7 +183,7 @@ class AdminPermissionController extends AdminController
                     'menu_id'       => $item['parent_id'],
                 ]);
 
-                $item = AdminMenu::query()->find($item['parent_id']);
+                $item = Admin::adminMenuModel()::query()->find($item['parent_id']);
             }
         }
 

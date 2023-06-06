@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Log 实时日志
  * 
  * @author slowlyo
- * @version v3.1.0
- * @since 2023-06-03
+ * @version v3.1.1
+ * @since 2023-06-06
  */
 class Log extends BaseRenderer
 {

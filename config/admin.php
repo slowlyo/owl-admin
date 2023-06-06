@@ -58,7 +58,7 @@ return [
     'show_auto_generate_permission_button' => env('ADMIN_SHOW_AUTO_GENERATE_PERMISSION_BUTTON', true),
 
     // 扩展
-    'extension' => [
+    'extension'                            => [
         'dir' => base_path('extensions'),
     ],
 
@@ -87,5 +87,12 @@ return [
         'keep_alive_exclude' => [],
         // 底部信息
         'footer'             => '<a href="https://github.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
+    ],
+
+    'models' => [
+        'admin_user'       => \Slowlyo\OwlAdmin\Models\AdminUser::class,
+        'admin_role'       => \Slowlyo\OwlAdmin\Models\AdminRole::class,
+        'admin_menu'       => \Slowlyo\OwlAdmin\Models\AdminMenu::class,
+        'admin_permission' => \Slowlyo\OwlAdmin\Models\AdminPermission::class,
     ],
 ];

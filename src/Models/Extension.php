@@ -2,9 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Extension extends Model
+class Extension extends BaseModel
 {
     protected $fillable = ['name', 'is_enabled', 'options'];
 

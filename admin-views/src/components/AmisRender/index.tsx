@@ -20,13 +20,45 @@ const AmisRender = ({schema}) => {
 
     const props = {
         locale: localeMap[appSettings?.locale || "zh_CN"] || "zh-CN",
+        location: history.location,
+    }
+
+    // 拆分url中的参数
+    const getParams = (url: string) => {
+        const urlParams = url.split("?")[1]
+        const params = {}
+        if (urlParams) {
+            urlParams.split("&").forEach(item => {
+                const [key, value] = item.split("=")
+                params[key] = value
+            })
+        }
+
+        return params
     }
 
     const options: RenderOptions = {
         enableAMISDebug: appSettings.show_development_tools,
-        fetcher: ({url, method, data}) => amisRequest(url, method, data),
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        updateLocation: () => {
+        fetcher: (config) => {
+            let {url, method, data} = config
+
+            if (config?.config?.forceReload) {
+                // 获取hash中的参数
+                const hashParams = getParams(window.location.hash)
+                // 获取url中的参数
+                const urlParams = getParams(url)
+                // 合并参数
+                const params = {...urlParams, ...hashParams}
+                // 拼接参数
+                const paramsStr = Object.keys(params).map(key => `${key}=${params[key]}`).join("&")
+                // 拼接url
+                url = `${url.split("?")[0]}?${paramsStr}`
+            }
+
+            return amisRequest(url, method, data)
+        },
+        updateLocation: (location, replace) => {
+            replace || history.push(location)
         },
         jumpTo: (location: string) => {
             if (location.startsWith("http") || location.startsWith("https")) {

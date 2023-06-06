@@ -4,7 +4,6 @@ namespace Slowlyo\OwlAdmin\Console;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class UpdateCommand extends Command

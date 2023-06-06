@@ -3,15 +3,17 @@
 namespace Slowlyo\OwlAdmin;
 
 use Illuminate\Support\Arr;
-use Slowlyo\OwlAdmin\Libs\Context;
+use Slowlyo\OwlAdmin\Support\Context;
 use Illuminate\Support\Facades\Auth;
-use Slowlyo\OwlAdmin\Libs\Composer;
+use Slowlyo\OwlAdmin\Support\Composer;
 use Slowlyo\OwlAdmin\Traits\Assets;
 use Slowlyo\OwlAdmin\Extend\Manager;
 use Slowlyo\OwlAdmin\Models\AdminUser;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
-use Slowlyo\OwlAdmin\Libs\JsonResponse;
+use Slowlyo\OwlAdmin\Models\AdminRole;
+use Slowlyo\OwlAdmin\Support\JsonResponse;
 use Slowlyo\OwlAdmin\Extend\ServiceProvider;
+use Slowlyo\OwlAdmin\Models\AdminPermission;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
@@ -61,7 +63,7 @@ class OwlAdmin
                     'path'      => $item['url'],
                     'component' => 'amis',
                     'is_home'   => $item['is_home'],
-                    'is_link'   => $item['url_type'] == AdminMenu::TYPE_LINK,
+                    'is_link'   => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
                     'meta'      => [
                         'title' => $item['title'],
                         'icon'  => $item['icon'] ?? '-',
@@ -206,5 +208,37 @@ class OwlAdmin
     public static function setting()
     {
         return app('admin.setting');
+    }
+
+    /**
+     * @return AdminMenu
+     */
+    public static function adminMenuModel()
+    {
+        return config('admin.models.admin_menu', AdminMenu::class);
+    }
+
+    /**
+     * @return AdminPermission
+     */
+    public static function adminPermissionModel()
+    {
+        return config('admin.models.admin_permission', AdminPermission::class);
+    }
+
+    /**
+     * @return AdminRole
+     */
+    public static function adminRoleModel()
+    {
+        return config('admin.models.admin_role', AdminRole::class);
+    }
+
+    /**
+     * @return AdminUser
+     */
+    public static function adminUserModel()
+    {
+        return config('admin.models.admin_user', AdminUser::class);
     }
 }

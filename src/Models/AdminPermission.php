@@ -72,7 +72,7 @@ class AdminPermission extends BaseModel
     protected static function boot(): void
     {
         parent::boot();
-        static::deleting(function (AdminPermission $model) {
+        static::deleting(function ($model) {
             $model->menus()->detach();
         });
     }

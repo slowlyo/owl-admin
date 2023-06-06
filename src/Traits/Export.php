@@ -3,7 +3,7 @@
 namespace Slowlyo\OwlAdmin\Traits;
 
 use Illuminate\Http\JsonResponse;
-use Slowlyo\OwlAdmin\Libs\Excel\AdminExport;
+use Slowlyo\OwlAdmin\Support\Excel\AdminExport;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 trait Export

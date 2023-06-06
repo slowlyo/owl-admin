@@ -63,9 +63,9 @@ trait PageElement
      */
     protected function createButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
-        $form = $this->form(false)->api($this->getStorePath());
-
         if ($dialog) {
+            $form = $this->form(false)->api($this->getStorePath())->onEvent([]);
+
             $button = DialogAction::make()->dialog(
                 Dialog::make()->title(__('admin.create'))->body($form)->size($dialogSize)
             );
@@ -87,7 +87,11 @@ trait PageElement
     protected function rowEditButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
     {
         if ($dialog) {
-            $form = $this->form(true)->api($this->getUpdatePath())->initApi($this->getEditGetDataPath());
+            $form = $this->form(true)
+                ->api($this->getUpdatePath())
+                ->initApi($this->getEditGetDataPath())
+                ->redirect('')
+                ->onEvent([]);
 
             $button = DialogAction::make()->dialog(
                 Dialog::make()->title(__('admin.edit'))->body($form)->size($dialogSize)
@@ -131,7 +135,6 @@ trait PageElement
             ->label(__('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
-            ->actionType('ajax')
             ->confirmText(__('admin.confirm_delete'))
             ->api($this->getDeletePath());
     }
@@ -214,11 +217,13 @@ trait PageElement
      */
     protected function baseForm(): Form
     {
-        return Form::make()
-            ->panelClassName('px-48 m:px-0')
-            ->title(' ')
-            ->mode('horizontal')
-            ->redirect($this->getListPath());
+        return Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->onEvent([
+            'submitSucc' => [
+                'actions' => [
+                    ['actionType' => 'custom', 'script' => 'window.history.back()'],
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -258,8 +263,8 @@ trait PageElement
                 ->Alert()
                 ->level('warning')
                 ->body(__('admin.export.please_install_laravel_excel'))
-                ->showIcon(true)
-                ->showCloseButton(true);
+                ->showIcon()
+                ->showCloseButton();
         }
 
         $primaryKey = $this->service->primaryKey();
@@ -325,6 +330,6 @@ JS
             ->set('icon', 'fa-solid fa-download')
             ->buttons($buttons)
             ->align('right')
-            ->closeOnClick(true);
+            ->closeOnClick();
     }
 }

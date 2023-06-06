@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 视频播放器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/video
  * 
  * @author slowlyo
- * @version v3.1.0
- * @since 2023-06-03
+ * @version v3.1.1
+ * @since 2023-06-06
  */
 class Video extends BaseRenderer
 {

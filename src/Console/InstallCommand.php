@@ -2,8 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Console;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Console\Command;
-use Slowlyo\OwlAdmin\Models\AdminUser;
 use Slowlyo\OwlAdmin\Models\AdminTablesSeeder;
 
 class InstallCommand extends Command
@@ -24,7 +24,7 @@ class InstallCommand extends Command
     {
         $this->call('migrate');
 
-        if (AdminUser::query()->count() == 0) {
+        if (Admin::adminUserModel()::query()->count() == 0) {
             $this->call('db:seed', ['--class' => AdminTablesSeeder::class]);
         }
     }

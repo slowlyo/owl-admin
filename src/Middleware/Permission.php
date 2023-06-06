@@ -2,11 +2,11 @@
 
 namespace Slowlyo\OwlAdmin\Middleware;
 
-use Str;
 use Closure;
+use Illuminate\Support\Str;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
-use Slowlyo\OwlAdmin\OwlAdmin;
 use Slowlyo\OwlAdmin\Models\AdminPermission;
 
 class Permission
@@ -19,7 +19,7 @@ class Permission
             return $next($request);
         }
 
-        $user = OwlAdmin::user();
+        $user = Admin::user();
 
         if (!empty($args) || $this->shouldPassThrough($request) || $this->checkRoutePermission($request) || $user?->isAdministrator()) {
             return $next($request);
@@ -28,7 +28,7 @@ class Permission
         if (!$user?->allPermissions()
             ->first(fn(AdminPermission $permission) => $permission->shouldPassThrough($request))) {
 
-            return OwlAdmin::response()->fail('无权访问');
+            return Admin::response()->fail('无权访问');
         }
 
         return $next($request);
@@ -46,11 +46,11 @@ class Permission
 
         $method = array_shift($args);
 
-        if (!method_exists(AdminPermission::class, $method)) {
+        if (!method_exists(Admin::adminPermissionModel(), $method)) {
             throw new InvalidArgumentException("Invalid permission method [$method].");
         }
 
-        call_user_func([AdminPermission::class, $method], $args);
+        call_user_func([Admin::adminPermissionModel(), $method], $args);
 
         return true;
     }

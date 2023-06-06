@@ -2,7 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Extend;
 
-use Slowlyo\OwlAdmin\Libs\Helper;
+use Slowlyo\OwlAdmin\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Traits\ErrorTrait;

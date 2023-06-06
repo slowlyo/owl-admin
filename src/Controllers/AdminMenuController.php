@@ -2,9 +2,9 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
+use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 
 /**
@@ -81,8 +81,8 @@ class AdminMenuController extends AdminController
                 ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
                 ->placeholder('eg: /admin_menus'),
             amisMake()->ListControl('url_type', __('admin.admin_menu.type'))
-                ->options(AdminMenu::getType())
-                ->value(AdminMenu::TYPE_ROUTE),
+                ->options(Admin::adminMenuModel()::getType())
+                ->value(Admin::adminMenuModel()::TYPE_ROUTE),
             amisMake()->SwitchControl('visible', __('admin.admin_menu.visible'))
                 ->onText(__('admin.admin_menu.show'))
                 ->offText(__('admin.admin_menu.hide'))

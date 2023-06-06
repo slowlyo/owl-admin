@@ -25,7 +25,7 @@
             "Slowlyo\\OwlAdmin\\": "src/"
         },
         "files": [
-            "src/Libs/helpers.php"
+            "src/Support/helpers.php"
         ]
     },
     "extra": {

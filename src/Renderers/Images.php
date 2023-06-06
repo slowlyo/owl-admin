@@ -6,8 +6,8 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图片集展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/images
  * 
  * @author slowlyo
- * @version v3.1.0
- * @since 2023-06-03
+ * @version v3.1.1
+ * @since 2023-06-06
  */
 class Images extends BaseRenderer
 {

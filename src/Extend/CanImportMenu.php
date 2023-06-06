@@ -3,7 +3,7 @@
 namespace Slowlyo\OwlAdmin\Extend;
 
 use Illuminate\Support\Arr;
-use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -141,6 +141,6 @@ trait CanImportMenu
 
     protected function getMenuModel()
     {
-        return new AdminMenu();
+        return Admin::adminMenuModel();
     }
 }

@@ -3,14 +3,14 @@
 namespace Slowlyo\OwlAdmin\Middleware;
 
 use Closure;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
-use Slowlyo\OwlAdmin\OwlAdmin;
 
 class Bootstrap
 {
     public function handle(Request $request, Closure $next)
     {
-        OwlAdmin::bootstrap();
+        Admin::bootstrap();
 
         return $next($request);
     }
