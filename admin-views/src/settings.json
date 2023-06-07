@@ -14,6 +14,6 @@
     "animateOutDuration": 450,
     "loginTemplate": "default",
     "keepAlive": false,
-    "enableTab": false,
+    "enableTab": true,
     "tabIcon": true
 }

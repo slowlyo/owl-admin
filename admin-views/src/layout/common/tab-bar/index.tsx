@@ -7,6 +7,7 @@ import {useHistory} from "react-router"
 import {useAliveController} from "react-activation"
 import Tab from "./components/tab"
 import {getToken} from "@/utils/checkLogin"
+import registerGlobalFunction from "@/utils/registerGlobalFunction"
 
 const TabBar = () => {
     const history = useHistory()
@@ -69,15 +70,29 @@ const TabBar = () => {
         if (_currentTab) {
             const exists = cachedTabs.find((tab) => tab.name === _currentTab.name)
 
-            if (exists) return
             if (_currentTab.path == "/" + defaultRoute) return
 
-            cachedTabs.push(_currentTab)
+            if (exists) {
+                const _index = cachedTabs.findIndex((tab) => tab.name === _currentTab.name)
+                cachedTabs[_index] = _currentTab
+            } else {
+                cachedTabs.push(_currentTab)
+            }
 
             setCacheTab(JSON.stringify(cachedTabs))
             updateTabs(cachedTabs)
         }
     }
+
+    const closeTabByPath = (path) => {
+        const current = cachedTabs.find((tab) => tab.path === path)
+
+        if (current) {
+            closeTab(formatTabValue(current, path))
+        }
+    }
+
+    registerGlobalFunction("closeTabByPath", closeTabByPath)
 
     // 关闭选项卡
     const closeTab = (item) => {

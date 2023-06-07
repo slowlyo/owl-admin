@@ -32,11 +32,14 @@ trait PageElement
      */
     protected function backButton(): OtherAction|null
     {
+        $path   = str_replace(config('admin.route.prefix'), '', request()->path());
+        $script = sprintf('window.$owl.closeTabByPath(\'%s\')', $path);
+
         return OtherAction::make()
             ->label(__('admin.back'))
             ->icon('fa-solid fa-chevron-left')
             ->level('primary')
-            ->onClick('window.history.back()');
+            ->onClick('window.history.back();' . $script);
     }
 
     /**
@@ -217,10 +220,16 @@ trait PageElement
      */
     protected function baseForm(): Form
     {
+        $path = str_replace(config('admin.route.prefix'), '', request()->path());
+
         return Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->onEvent([
             'submitSucc' => [
                 'actions' => [
                     ['actionType' => 'custom', 'script' => 'window.history.back()'],
+                    [
+                        'actionType' => 'custom',
+                        'script'     => sprintf('window.$owl.closeTabByPath(\'%s\')', $path),
+                    ],
                 ],
             ],
         ]);
