@@ -102,6 +102,7 @@ return new class extends Migration {
             $table->tinyInteger('soft_delete')->default(0)->comment('是否需要软删除');
             $table->text('needs')->nullable()->comment('需要生成的代码');
             $table->text('menu_info')->nullable()->comment('菜单信息');
+            $table->text('page_info')->nullable()->comment('页面信息');
             $table->timestamps();
         });
     }
