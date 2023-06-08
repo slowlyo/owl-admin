@@ -39,24 +39,7 @@ const AmisRender = ({schema}) => {
 
     const options: RenderOptions = {
         enableAMISDebug: appSettings.show_development_tools,
-        fetcher: (config) => {
-            let {url, method, data} = config
-
-            if (config?.config?.forceReload) {
-                // 获取hash中的参数
-                const hashParams = getParams(window.location.hash)
-                // 获取url中的参数
-                const urlParams = getParams(url)
-                // 合并参数
-                const params = {...urlParams, ...hashParams}
-                // 拼接参数
-                const paramsStr = Object.keys(params).map(key => `${key}=${params[key]}`).join("&")
-                // 拼接url
-                url = `${url.split("?")[0]}?${paramsStr}`
-            }
-
-            return amisRequest(url, method, data)
-        },
+        fetcher: ({url, method, data}) => amisRequest(url, method, data),
         updateLocation: (location, replace) => {
             replace || history.push(location)
         },
