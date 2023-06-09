@@ -16,12 +16,13 @@ class RouteGenerator
         // 创建菜单
         $adminMenuService = AdminMenuService::make();
 
-        if (!$adminMenuService->getModel()->query()->where('url', $menuInfo['route'])->exists()) {
+        $_url = '/' . ltrim($menuInfo['route'], '/');
+        if (!$adminMenuService->getModel()->query()->where('url', $_url)->exists()) {
             $adminMenuService->store([
                 'title'     => $menuInfo['title'],
                 'icon'      => $menuInfo['icon'],
                 'parent_id' => $menuInfo['parent_id'],
-                'url'       => '/' . ltrim($menuInfo['route'], '/'),
+                'url'       => $_url,
                 'order'     => 100,
             ]);
         }

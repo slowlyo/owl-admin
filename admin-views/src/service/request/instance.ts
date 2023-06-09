@@ -44,10 +44,6 @@ export default class CustomAxiosInstance {
                         }
 
                         return backend
-                    } else {
-                        if (backend?.msg && backend?.doNotDisplayToast == 0 && response.config.url != "/menus") {
-                            Message.error(backend.msg)
-                        }
                     }
 
                     // token失效

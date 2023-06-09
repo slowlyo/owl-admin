@@ -2,37 +2,42 @@
 
 html,
 body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  background-color: var(--color-fill-2);
-  --body-bg: var(--color-fill-2);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    background-color: var(--color-fill-2);
+    --body-bg: var(--color-fill-2);
 }
 
 body[arco-theme='dark'] {
-  background-color: var(--color-bg-1);
-  --body-bg: var(--color-bg-1);
-  --text--loud-color: var(--color-text-2);
+    background-color: var(--color-bg-1);
+    --body-bg: var(--color-bg-1);
+    --text--loud-color: var(--color-text-2);
 }
 
-.arco-menu-collapse{
-  width: 60px !important;
+.arco-menu-collapse {
+    width: 60px !important;
 }
 
-.arco-layout-sider-light{
-  box-shadow: none !important;
+.arco-layout-sider-light {
+    box-shadow: none !important;
 }
 
-.arco-menu-horizontal .arco-menu-item .arco-menu-icon-suffix, .arco-menu-horizontal .arco-menu-group-title .arco-menu-icon-suffix, .arco-menu-horizontal .arco-menu-pop-header .arco-menu-icon-suffix, .arco-menu-horizontal .arco-menu-inline-header .arco-menu-icon-suffix{
+.arco-menu-horizontal .arco-menu-item .arco-menu-icon-suffix, .arco-menu-horizontal .arco-menu-group-title .arco-menu-icon-suffix, .arco-menu-horizontal .arco-menu-pop-header .arco-menu-icon-suffix, .arco-menu-horizontal .arco-menu-inline-header .arco-menu-icon-suffix {
     display: none;
 }
 
-.arco-menu-vertical .arco-menu-item, .arco-menu-vertical .arco-menu-group-title, .arco-menu-vertical .arco-menu-pop-header, .arco-menu-vertical .arco-menu-inline-header{
+.arco-menu-vertical .arco-menu-item, .arco-menu-vertical .arco-menu-group-title, .arco-menu-vertical .arco-menu-pop-header, .arco-menu-vertical .arco-menu-inline-header {
     padding: 0 17px !important;
 }
 
-.arco-message-wrapper{
+.arco-message-wrapper {
     z-index: 2000 !important;
+}
+
+::selection {
+    background-color: rgb(var(--arcoblue-4));
+    color: white;
 }

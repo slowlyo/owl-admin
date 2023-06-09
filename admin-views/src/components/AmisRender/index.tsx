@@ -23,20 +23,6 @@ const AmisRender = ({schema}) => {
         location: history.location,
     }
 
-    // 拆分url中的参数
-    const getParams = (url: string) => {
-        const urlParams = url.split("?")[1]
-        const params = {}
-        if (urlParams) {
-            urlParams.split("&").forEach(item => {
-                const [key, value] = item.split("=")
-                params[key] = value
-            })
-        }
-
-        return params
-    }
-
     const options: RenderOptions = {
         enableAMISDebug: appSettings.show_development_tools,
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
@@ -55,6 +41,9 @@ const AmisRender = ({schema}) => {
 
             Message.success(props.locale === "zh-CN" ? "复制成功" : "Copy success")
         },
+        notify: (type: "error" | "success", msg: string) => {
+            Message[type] ? Message[type](msg) : console.warn("[Notify]", type, msg)
+        }
     }
 
     return (
