@@ -45,6 +45,8 @@ return [
     'order_desc'            => 'Order Desc',
     'order_asc'             => 'Order Asc',
     'menus'                 => 'Menus',
+    'successfully'          => 'Successfully',
+    'failed'                => 'Failed',
     'successfully_message'  => ':attribute Successfully',
     'failed_message'        => ':attribute Failed',
     'action_success'        => 'Action Success',
@@ -141,6 +143,7 @@ return [
         'slug_description'    => 'unique identifier of a role',
         'name_already_exists' => 'Role Name Already Exists',
         'slug_already_exists' => 'Role Slug Already Exists',
+        'set_permissions'     => 'Set Permissions',
     ],
 
     'admin_permissions' => 'Permissions',

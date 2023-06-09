@@ -56,8 +56,8 @@ class AdminRoleController extends AdminController
 
     protected function setPermission()
     {
-        return amisMake()->DrawerAction()->label('设置权限')->icon('fa-solid fa-gear')->level('link')->drawer(
-            amisMake()->Drawer()->title('设置权限')->resizable()->closeOnOutside()->closeOnEsc()->body([
+        return amisMake()->DrawerAction()->label(__('admin.admin_role.set_permissions'))->icon('fa-solid fa-gear')->level('link')->drawer(
+            amisMake()->Drawer()->title(__('admin.admin_role.set_permissions'))->resizable()->closeOnOutside()->closeOnEsc()->body([
                 amisMake()
                     ->Form()
                     ->api(admin_url('system/admin_role_save_permissions'))
@@ -80,8 +80,6 @@ class AdminRoleController extends AdminController
                             ->labelField('name')
                             ->valueField('id'),
                     ]),
-            ])->footer([
-                amisMake()->Button()->label('保存')->type('submit')->level('primary'),
             ])
         );
     }
