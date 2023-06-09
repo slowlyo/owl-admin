@@ -78,7 +78,7 @@ class AdminPermissionController extends AdminController
                 ->extractValue(),
             amisMake()->NumberControl('order', __('admin.order'))
                 ->required()
-                ->labelRemark(__('admin.order_desc'))
+                ->labelRemark(__('admin.order_asc'))
                 ->displayMode('enhance')
                 ->min(0)
                 ->value(0),
@@ -147,7 +147,7 @@ class AdminPermissionController extends AdminController
 
     public function autoGenerate()
     {
-        $menus = Admin::adminMenuModel()->all()->toArray();
+        $menus = Admin::adminMenuModel()::query()->get()->toArray();
 
         $permissions = [];
         foreach ($menus as $menu) {

@@ -26,7 +26,7 @@ class ResetPasswordCommand extends Command
      */
     public function handle()
     {
-        $users = Admin::adminUserModel()::query()->all();
+        $users = Admin::adminUserModel()::query()->get();
 
         askForUserName:
         $username = $this->askWithCompletion('Please enter a username who needs to reset his password', $users->pluck('username')->toArray());

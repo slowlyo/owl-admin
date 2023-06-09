@@ -9,6 +9,11 @@ class AdminTablesSeeder extends Seeder
 {
     public function run()
     {
+        Admin::adminUserModel()::unguard();
+        Admin::adminMenuModel()::unguard();
+        Admin::adminPermissionModel()::unguard();
+        Admin::adminRoleModel()::unguard();
+
         Admin::adminUserModel()::query()->truncate();
         Admin::adminUserModel()::query()->create([
             'username' => 'admin',
