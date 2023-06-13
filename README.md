@@ -33,7 +33,7 @@
 <br>
 
 <div align="center">
-  <img  width="92%" style="border-radius:4px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://slowlyo.gitee.io/static/images/owl-admin/home-page.png" />
+  <img  width="92%" style="border-radius:4px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://slowlyo.gitee.io/static/images/owl-admin/home-page1.png" />
 </div>
 <br>
 
@@ -71,9 +71,9 @@
 
 ### 截图
 
-![登录](https://slowlyo.gitee.io/static/images/owl-admin/login-page.png)
+![登录](https://slowlyo.gitee.io/static/images/owl-admin/login-page1.png)
 <br>
-![首页](https://slowlyo.gitee.io/static/images/owl-admin/home-page.png)
+![首页](https://slowlyo.gitee.io/static/images/owl-admin/home-page1.png)
 
 <br>
 
