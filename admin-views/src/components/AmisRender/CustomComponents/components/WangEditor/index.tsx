@@ -29,8 +29,6 @@ interface IProps {
 }
 
 const WangEditor = forwardRef((props: IProps, ref: any) => {
-    console.clear()
-    console.log(props)
     const {appSettings} = useSelector((state: GlobalState) => state)
     const locale = appSettings.locale == "zh_CN" ? "zh-CN" : "en"
 
