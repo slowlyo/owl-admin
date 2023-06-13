@@ -1,30 +1,51 @@
-# Owl Admin
+<div align="center">
+    <br/>
+    <img src="https://slowlyo.gitee.io/static/images/owl-admin/logo.png" alt="" />
+    <h1 align="center">
+        Owl Admin
+    </h1>
+    <h4 align="center">
+        快速且灵活的后台框架
+    </h4> 
 
-基于 `Laravel` 、 `amis` 开发的后台框架. 快速且灵活~
+[Demo](http://admin-demo.slowlyo.top) | [Github](https://github.com/Slowlyo/owl-admin) | [Gitee](https://gitee.com/slowlyo/owl-admin) | [文档](https://learnku.com/docs/owl-admin) | [论坛](https://github.com/Slowlyo/owl-admin/discussions) | [加群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=ftIIJ4kKr72mvBpoA7-ttvFafvKuu3F8&authKey=Y2nBcGpw%2FDxJ1V4jPtSyQgDJzTZXB2KEVQOm1mKYyxuVbM9SOEkQN4Mbhm%2BsAlTr&noverify=0&group_code=754544686)
 
-### Laravel
+</div>
 
-Laravel 是一个全栈Web应用程序框架，具有富有表现力、优雅的语法。
+<p align="center">
+    <a href="https://www.php.net/">
+        <img src="https://img.shields.io/badge/PHP-8.0%2B-%23268af1" alt="Pear Admin Layui Version">
+    </a>
+&nbsp;
+    <a href="https://laravel.com/">
+        <img src="https://img.shields.io/badge/Laravel-9.0%2B-%23268af1" alt="Jquery Version">
+    </a>
+&nbsp;
+      <a href="https://aisuda.bce.baidu.com/amis/zh-CN/docs/index">
+        <img src="https://img.shields.io/badge/Amis-3.0%2B-%23268af1" alt="Layui Version">
+    </a>
+&nbsp;
+      <a href="https://packagist.org/packages/slowlyo/owl-admin">
+        <img src="https://img.shields.io/badge/license-MIT-%23268af1" alt="Layui Version">
+    </a>
+</p>
 
-### amis
+<br>
 
-amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可以减少页面开发工作量，极大提升效率。
+<div align="center">
+  <img  width="92%" style="border-radius:4px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://slowlyo.gitee.io/static/images/owl-admin/home-page.png" />
+</div>
+<br>
 
-## 特点: 快速且灵活
+### 项目介绍
+
+基于 `Laravel` 、 `amis` 开发的后台框架, 快速且灵活~
+
 - 基于 amis 以 json 的方式构建页面，减少前端开发工作量，提升开发效率。
 - 在 amis 100多个组件都不满足的情况下, 可自行开发前端。
 - 框架为前后端分离 (不用再因为框架而束手束脚~)。
 
-## 演示 Demo
-[Demo 地址](http://admin-demo.slowlyo.top)
-
-## 文档
-
-- [《Laravel 9 中文文档》](https://learnku.com/docs/laravel/9.x/installation/12200)
-- [《amis》](https://aisuda.bce.baidu.com/amis/zh-CN/docs/index)
-- [《框架文档》](https://learnku.com/docs/owl-admin)
-
-## 功能
+### 内置功能
 
 - 基础后台功能
     - 后台用户管理
@@ -37,32 +58,35 @@ amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可
     - 创建模型
     - 创建基础控制器代码
     - 创建Service
-- `Amis` 全组件封装
+    - 保存生成记录
+    - 导入/导出生成记录
+    - 可使用命令清除生成的内容
+    - 无需更改代码即可生成完整功能
+- `Amis` 全组件封装 120+
 - 扩展管理
 
+<br>
 
-## 截图
+### 截图
 
 ![登录](https://slowlyo.gitee.io/static/images/owl-admin/login-page.png)
 <br>
 ![首页](https://slowlyo.gitee.io/static/images/owl-admin/home-page.png)
 
-## 环境
+<br>
 
-- PHP >= 8.0
-- Laravel 9
+### 安装
 
-## 一分钟跑起来
-
-1. 安装 `Laravel`
+1. 创建 `Laravel` 项目
 
 ```php
 composer create-project laravel/laravel example-app
 ```
 
-2. 配置 `.env`
+2. 配置数据库信息
 
-```php
+```dotenv
+# .env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -73,29 +97,30 @@ DB_PASSWORD=
 
 3. 获取 `Owl Admin`
 
-```php
+```shell
 composer require slowlyo/owl-admin
 ```
 
-4. 发布资源
+4. 安装
 
-```php
+```shell
+# 发布资源
 php artisan admin:publish
-```
-
-5. 安装
-
-```php
+# 安装 (可以在执行安装命令前在 config/admin.php 中修改部分配置)
 php artisan admin:install
 ```
 
-6. 运行项目
+5. 运行项目
 
-> 在你的环境把代码跑起来 <br>
-> 或者在 `laravel` 目录执行 `php artisan serve` <br>
-> 在浏览器打开 `http://localhost/admin` 即可访问 <br>
+> 启动服务, 访问 `/admin` 路由即可 <br>
 > 初始账号密码都是 `admin`
 
+<br>
+
+### 支持项目
+
+如果觉得项目不错，或者已经在使用了，希望你可以去 [Github](https://github.com/Slowlyo/owl-admin)
+或者 [Gitee](https://gitee.com/slowlyo/owl-admin) 帮我们点个 ⭐ Star，这将是对我们极大的鼓励与支持。
 
 <br>
 <br>
