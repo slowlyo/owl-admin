@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react"
-import {useRequest} from "ahooks"
+import React, {useState} from "react"
+import {useMount, useRequest} from "ahooks"
 import {initPageSchema} from "@/service/api"
 import {useHistory} from "react-router-dom"
 import AmisRender from "@/components/AmisRender"
@@ -7,6 +7,7 @@ import {useSelector} from "react-redux"
 import {GlobalState} from "@/store"
 import Footer from "@/layout/common/footer"
 import registerGlobalFunction from "@/utils/registerGlobalFunction"
+import {Spin} from "@arco-design/web-react"
 
 
 function AmisPage() {
@@ -18,6 +19,7 @@ function AmisPage() {
 
     const initPage = useRequest(initPageSchema, {
         manual: true,
+        loadingDelay: 300,
         cacheKey: pathname + "-schema",
         onSuccess(res) {
             // 先清空一次, 让数据也重新加载
@@ -28,11 +30,13 @@ function AmisPage() {
 
     registerGlobalFunction("refreshAmisPage", () => initPage.runAsync(pathname))
 
-    useEffect(() => initPage.run(pathname), [])
+    useMount(() => initPage.run(pathname))
 
     return (
         <>
-            <AmisRender schema={schema}/>
+            <Spin loading={initPage.loading} dot size={8} className="w-full min-h-500px">
+                <AmisRender schema={schema}/>
+            </Spin>
             {settings.footer && <Footer/>}
             <div className="h-20px"></div>
         </>

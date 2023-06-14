@@ -16,7 +16,7 @@ import changeTheme from "./utils/changeTheme"
 import useStorage from "./utils/useStorage"
 import {PageLayout} from "@/layout"
 import {fetchSettings, fetchUserInfo} from "@/service/api"
-import {useRequest} from "ahooks"
+import {useMount, useRequest} from "ahooks"
 import {setThemeColor} from "@/utils/themeColor"
 import {dynamicAssetsHandler} from "@/utils/dynamicAssets"
 import {AliveScope} from "react-activation"
@@ -86,7 +86,7 @@ function Index() {
         }
     })
 
-    useEffect(() => {
+    useMount(() => {
         initSettings.run()
         setThemeColor(store.getState().settings.themeColor)
 
@@ -95,7 +95,7 @@ function Index() {
         } else if (window.location.pathname.replace(/\//g, "") !== "login") {
             window.location.hash = "#/login"
         }
-    }, [])
+    })
 
     useEffect(() => {
         changeTheme(theme)

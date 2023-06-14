@@ -65,8 +65,9 @@ class AdminMenuController extends AdminController
                 amisMake()->TreeSelectControl('parent_id', __('admin.admin_menu.parent_id'))
                     ->labelField('title')
                     ->valueField('id')
+                    ->showIcon(false)
                     ->value(0)
-                    ->options($this->service->getTree()),
+                    ->source('/system/admin_menus?_action=getData'),
                 amisMake()->NumberControl('order', __('admin.admin_menu.order'))
                     ->required()
                     ->labelRemark(__('admin.order_asc'))
@@ -96,7 +97,7 @@ class AdminMenuController extends AdminController
             'submitSucc' => [
                 'actions' => [
                     'actionType' => 'custom',
-                    'script'     => 'window.$owl.refreshRoutes()',
+                    'script'     => 'window.location.reload()',
                 ],
             ],
         ]);

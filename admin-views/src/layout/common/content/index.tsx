@@ -21,7 +21,8 @@ export const Content = ({menuCollapsed}: { menuCollapsed?: boolean }) => {
 
     const navbarHeight = 60
     const extraWidth = settings.layoutMode == "double" ? 65 : 0
-    const collapsedWidth = settings.layoutMode == "double" ? 65 : 60
+    const doubleCollapsedWidth = settings.menuWidth == 0 ? 0 : 65
+    const collapsedWidth = settings.layoutMode == "double" ? doubleCollapsedWidth : 60
     const menuWidth = menuCollapsed ? (extraWidth + collapsedWidth) : (extraWidth + settings.menuWidth)
     const noTransition = settings.layoutMode == "double" ? {transition: "none"} : {}
 

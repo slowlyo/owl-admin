@@ -4,20 +4,23 @@ import lazyload from "@/utils/lazyload"
 export const componentMount = (routes) => {
     const mod = import.meta.glob("../pages/**/[a-z[]*.tsx")
 
-    const travel = (_routes) => {
+    const travel = (_routes, parents = []) => {
         return _routes.map((route) => {
             if (route.path && !route.children) {
                 if (isString(route.component)) {
                     route.component = lazyload(mod[`../pages/${route.component}/index.tsx`])
                 }
             } else if (isArray(route.children) && route.children.length) {
-                route.children = travel(route.children)
+                route.children = travel(route.children, [...parents, route])
             }
 
             // 设置默认图标
-            if(!route.meta?.icon || route.meta?.icon == "-"){
+            if (!route.meta?.icon || route.meta?.icon == "-") {
                 route.meta.icon = "ph:circle"
             }
+
+            // 保存父级路由
+            route.meta.parents = parents
 
             return route
         })

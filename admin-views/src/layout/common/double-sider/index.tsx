@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useEffect, useMemo, useRef, useState} from "react"
 import {Layout, Menu as ArcoMenu} from "@arco-design/web-react"
 import {IconMenuFold, IconMenuUnfold,} from "@arco-design/web-react/icon"
 import {useDispatch, useSelector} from "react-redux"
@@ -10,6 +10,7 @@ import Logo from "@/layout/common/Logo"
 import useRoute from "@/routes"
 import {useHistory} from "react-router"
 import {Icon} from "@iconify/react"
+import {getFlattenRoutes} from "@/routes/helpers"
 
 const ArcoSider = Layout.Sider
 
@@ -29,6 +30,8 @@ export const DoubleSider = ({stateChange}) => {
     const defaultSelectedKeys = [currentComponent || defaultRoute]
     const [selectedKeys, setSelectedKeys] = useState<string[]>(defaultSelectedKeys)
     const [childrenRoutes, setChildrenRoutes] = useState<any[]>()
+
+    const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes])
 
     const navbarHeight = 60
 
@@ -57,24 +60,36 @@ export const DoubleSider = ({stateChange}) => {
     }
 
     function updateMenuStatus() {
-        const pathKeys = pathname.split("/")
-        const newSelectedKeys: string[] = []
+        const current = flattenRoutes.find((r) => r.path === pathname)
 
-        while (pathKeys.length > 0) {
-            const menuKey = pathKeys.join("/")
-            newSelectedKeys.push(menuKey)
-            pathKeys.pop()
+        if (!current) {
+            return
         }
-        setSelectedKeys(newSelectedKeys)
+
+        const _parents = current.meta.parents.map((p) => p.path)
+
+        setSelectedKeys([pathname, ..._parents])
+    }
+
+    const getTopRoute = (current) => {
+        const parents = current?.meta?.parents
+
+        let topRoute = null
+        leftMenus.forEach((menu) => {
+            if (menu.path === parents[0].path) {
+                topRoute = menu
+            }
+        })
+
+        return topRoute
     }
 
     const initChildrenRoutes = () => {
-        const pathKeys = pathname.split("/").filter((item) => item)
-        const currentRoute = routes.find((r) => r.path === `/${pathKeys[0]}`)
-        if (currentRoute?.children?.length) {
-            setChildrenRoutes(currentRoute.children)
+        const currentRoute = flattenRoutes.find((r) => r.path === pathname)
+        if (currentRoute?.meta.parents.length) {
+            setChildrenRoutes(getTopRoute(currentRoute).children)
             setShowRight(true)
-        }else{
+        } else {
             setShowRight(false)
         }
     }
@@ -93,7 +108,6 @@ export const DoubleSider = ({stateChange}) => {
         } else {
             setChildrenRoutes([])
 
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             currentRoute.component.preload().then(() => history.push(currentRoute.path))
         }
@@ -150,7 +164,7 @@ export const DoubleSider = ({stateChange}) => {
             <ArcoSider
                 className={styles["layout-sider"]}
                 width={settings.menuWidth}
-                collapsedWidth={65}
+                collapsedWidth={settings.menuWidth == 0 ? 0 :65}
                 collapsed={collapsed}
                 theme={settings.siderTheme}
                 onCollapse={(collapse) => {
@@ -161,7 +175,6 @@ export const DoubleSider = ({stateChange}) => {
                 collapsible
                 breakpoint="xl"
                 style={{
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     "--color-border": settings.siderTheme === "dark" ? "none" : "",
                     left: "65px"

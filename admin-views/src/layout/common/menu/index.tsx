@@ -86,22 +86,16 @@ export const Menu = (
     }
 
     function updateMenuStatus() {
-        const pathKeys = pathname.split("/")
-        const newSelectedKeys: string[] = []
-        const newOpenKeys: string[] = [...openKeys]
-        while (pathKeys.length > 0) {
-            const menuKey = pathKeys.join("/")
-            const menuType = menuMap.current.get(menuKey)
-            if (menuType && menuType.menuItem) {
-                newSelectedKeys.push(menuKey)
-            }
-            if (menuType && menuType.subMenu && !openKeys.includes(menuKey)) {
-                newOpenKeys.push(menuKey)
-            }
-            pathKeys.pop()
+        const current = flattenRoutes.find((r) => r.path === pathname)
+
+        if (!current) {
+            return
         }
-        setSelectedKeys(newSelectedKeys)
-        setOpenKeys(newOpenKeys)
+
+        const _parents = current.meta.parents.map((p) => p.path)
+
+        setSelectedKeys([pathname, ..._parents])
+        setOpenKeys([...openKeys, ..._parents])
     }
 
     useEffect(() => updateMenuStatus(), [pathname, customRoutes])
