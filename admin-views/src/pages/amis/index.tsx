@@ -34,10 +34,14 @@ function AmisPage() {
 
     return (
         <>
-            <Spin loading={initPage.loading} dot size={8} className="w-full min-h-500px">
+            <Spin loading={initPage.loading}
+                  dot
+                  size={8}
+                  className="w-full"
+                  style={{minHeight: initPage.loading ? "500px" : ""}}>
                 <AmisRender schema={schema}/>
             </Spin>
-            {settings.footer && <Footer/>}
+            {(settings.footer && !initPage.loading) && <Footer/>}
             <div className="h-20px"></div>
         </>
     )
