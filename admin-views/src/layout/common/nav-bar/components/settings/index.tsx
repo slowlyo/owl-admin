@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react"
+import React, {useState} from "react"
 import {Button, Drawer, Message, Popconfirm} from "@arco-design/web-react"
 import {IconSettings} from "@arco-design/web-react/icon"
 import {useDispatch, useSelector} from "react-redux"
@@ -8,7 +8,6 @@ import ColorPanel from "./color"
 import IconButton from "@/layout/common/nav-bar/components/icon-button"
 import useLocale from "@/utils/useLocale"
 import defaultSettings from "@/settings.json"
-import {GlobalContext} from "@/context"
 import {useRequest} from "ahooks"
 import {saveSettings} from "@/service/api"
 
@@ -22,7 +21,6 @@ function Setting(props: SettingProps) {
     const locale = useLocale()
     const dispatch = useDispatch()
     const {settings, appSettings} = useSelector((state: GlobalState) => state)
-    const {setTheme} = useContext(GlobalContext)
 
     const save = useRequest(saveSettings, {
         manual: true,
@@ -45,7 +43,6 @@ function Setting(props: SettingProps) {
     }
 
     const resetSettings = () => {
-        setTheme(defaultSettings.theme)
         dispatch({
             type: "update-settings",
             payload: {settings: defaultSettings},
@@ -115,7 +112,6 @@ function Setting(props: SettingProps) {
                 <Block
                     title={locale["settings.content"]}
                     options={[
-                        {name: "settings.theme", value: "theme", type: "select", options: ["light", "dark"]},
                         {name: "settings.keepAlive", value: "keepAlive"},
                         {name: "settings.enableTab", value: "enableTab"},
                         {name: "settings.tabIcon", value: "tabIcon"},

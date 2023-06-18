@@ -59,6 +59,10 @@ class PublishCommand extends Command
         $tags = $this->getTags();
 
         foreach ($tags as $tag) {
+            if($tag == 'admin-assets' && $this->option('force')) {
+                $this->clearAssets();
+            }
+
             $this->call('vendor:publish', $options + ['--tag' => $tag]);
         }
 
@@ -67,6 +71,11 @@ class PublishCommand extends Command
         }
 
         $this->call('view:clear');
+    }
+
+    protected function clearAssets()
+    {
+        $this->files->deleteDirectory(public_path('admin'));
     }
 
     protected function getTags()

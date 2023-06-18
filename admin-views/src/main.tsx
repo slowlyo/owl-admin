@@ -1,6 +1,6 @@
 import "virtual:uno.css"
 import "./style/global.less"
-import React, {useEffect} from "react"
+import React from "react"
 import ReactDOM from "react-dom"
 import {createStore} from "redux"
 import {Provider} from "react-redux"
@@ -12,7 +12,6 @@ import rootReducer from "./store"
 import {GlobalContext} from "./context"
 import Login from "./pages/login"
 import {checkLogin} from "./utils/checkLogin"
-import changeTheme from "./utils/changeTheme"
 import useStorage from "./utils/useStorage"
 import {PageLayout} from "@/layout"
 import {fetchSettings, fetchUserInfo} from "@/service/api"
@@ -28,7 +27,6 @@ const store = createStore(rootReducer)
 
 function Index() {
     const [lang, setLang] = useStorage("arco-lang", "zh-CN")
-    const [theme, setTheme] = useStorage("arco-theme", store.getState().settings.theme)
 
     function getArcoLocale() {
         switch (lang) {
@@ -64,7 +62,6 @@ function Index() {
                 })
             }
             setLang(res.data.locale == "zh_CN" ? "zh-CN" : "en-US")
-            setTheme(res.data.system_theme_setting?.theme || store.getState().settings.theme)
             setThemeColor(store.getState().settings.themeColor)
             dynamicAssetsHandler(res.data.assets)
         },
@@ -97,16 +94,7 @@ function Index() {
         }
     })
 
-    useEffect(() => {
-        changeTheme(theme)
-    }, [theme])
-
-    const contextValue = {
-        lang,
-        setLang,
-        theme,
-        setTheme,
-    }
+    const contextValue = {lang, setLang}
 
     return (
         <HashRouter>

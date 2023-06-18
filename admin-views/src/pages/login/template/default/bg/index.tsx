@@ -6,7 +6,7 @@ import {GlobalState} from "@/store"
 
 const Bg = (props) => {
     const {settings} = useSelector((state: GlobalState) => state)
-    const darkTheme = document.querySelector("body").getAttribute("arco-theme") === "dark"
+    const darkTheme = false
 
     const color = (opacity) => {
         const colorValue = darkTheme ? 180 : 255

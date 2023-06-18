@@ -123,7 +123,7 @@ JS
                             ->label('OwlAdmin 文档')
                             ->blank(true)
                             ->actionType('url')
-                            ->link('https://learnku.com/docs/owl-admin'),
+                            ->link('http://admin-demo.slowlyo.top/doc'),
                         Action::make()
                             ->level('link')
                             ->label('Amis 文档')

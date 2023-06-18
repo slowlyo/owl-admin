@@ -6,7 +6,6 @@ import useRoute, {IRoute} from "@/routes"
 import {useHistory} from "react-router"
 import {useAliveController} from "react-activation"
 import Tab from "./components/tab"
-import {getToken} from "@/utils/checkLogin"
 import registerGlobalFunction from "@/utils/registerGlobalFunction"
 
 const TabBar = () => {
@@ -14,8 +13,7 @@ const TabBar = () => {
     const pathname = history.location.pathname
     const [routes, defaultRoute] = useRoute()
     const flattenRoutes = getFlattenRoutes(routes)
-    const tabCacheKey = "tabs" + getToken().replace(/\|.*$/, "")
-    const [cacheTabs, setCacheTab] = useStorage(tabCacheKey, "")
+    const [cacheTabs, setCacheTab] = useStorage("cached_tabs", "")
     const cachedTabs = JSON.parse(cacheTabs || "[]")
     const defaultTab = flattenRoutes.find((route) => route.path === "/" + defaultRoute)
     const {drop} = useAliveController()

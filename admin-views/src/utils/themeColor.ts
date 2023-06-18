@@ -12,14 +12,7 @@ export const setThemeColor = (color: string) => {
     })
 }
 
-export const getColorList = (color: string) => {
-    const theme = document.querySelector("body").getAttribute("arco-theme") || "light"
-
-    return generate(color, {
-        list: true,
-        dark: theme === "dark",
-    })
-}
+export const getColorList = (color: string) => generate(color, {list: true, dark: false})
 
 const setHtmlStyle = (key: string, value: string) => document.documentElement.style.setProperty(key, value)
 

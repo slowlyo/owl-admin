@@ -36,7 +36,6 @@ const UserMenu = ({userInfo, darkTheme}) => {
 function Navbar() {
     const t = useLocale()
     const {userInfo, settings, appSettings} = useSelector((state: GlobalState) => state)
-    const {theme, setTheme} = useContext(GlobalContext)
     const [refreshing, setRefreshing] = useState(false)
 
     const [fullScreen, setFullScreen] = useState(document.fullscreenElement != null)
@@ -108,18 +107,6 @@ function Navbar() {
                                 <IconButton
                                     icon={fullScreen ? <IconFullscreenExit/> : <IconFullscreen/>}
                                     onClick={toggleFullScreen}
-                                />
-                            </Tooltip>
-                        </li>
-                    )}
-
-                    {/* 主题切换 */}
-                    {appSettings?.layout?.header?.switch_theme && (
-                        <li className="pr-8px flex item-center">
-                            <Tooltip content={theme === "light" ? t["settings.navbar.theme.toDark"] : t["settings.navbar.theme.toLight"]}>
-                                <IconButton
-                                    icon={theme !== "dark" ? <IconMoonFill/> : <IconSunFill/>}
-                                    onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                                 />
                             </Tooltip>
                         </li>
