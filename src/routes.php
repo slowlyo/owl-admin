@@ -3,8 +3,8 @@
 use Slowlyo\OwlAdmin\Controllers;
 
 \Illuminate\Support\Facades\Route::group([
-    'domain'     => config('admin.route.domain'),
-    'prefix'     => config('admin.route.prefix'),
+    'domain' => config('admin.route.domain'),
+    'prefix' => config('admin.route.prefix'),
     'middleware' => config('admin.route.middleware'),
 ], function (\Illuminate\Routing\Router $router) {
     $router->get('/login', [Controllers\AuthController::class, 'loginPage']);
@@ -54,7 +54,7 @@ use Slowlyo\OwlAdmin\Controllers;
         ]);
     });
 
-    if(config('admin.show_development_tools')){
+    if (config('admin.show_development_tools')) {
         // 开发工具
         $router->group(['prefix' => 'dev_tools'], function (\Illuminate\Routing\Router $router) {
             // 代码生成器
@@ -64,9 +64,12 @@ use Slowlyo\OwlAdmin\Controllers;
             // 代码生成器 - 预览
             $router->post('code_generator/preview', [Controllers\DevTools\CodeGeneratorController::class, 'preview']);
             // 代码生成器 - 获取属性选项
-            $router->post('code_generator/get_property_options', [Controllers\DevTools\CodeGeneratorController::class, 'getPropertyOptions']);
+            $router->post('code_generator/get_property_options',
+                [Controllers\DevTools\CodeGeneratorController::class, 'getPropertyOptions']);
             // 代码生成器 - 获取记录
-            $router->post('code_generator/get_record', [Controllers\DevTools\CodeGeneratorController::class, 'getRecord']);
+            $router->post('code_generator/get_record',
+                [Controllers\DevTools\CodeGeneratorController::class, 'getRecord']);
+
             // 扩展
             $router->resource('extensions', Controllers\DevTools\ExtensionController::class);
             // 本地扩展安装
@@ -83,6 +86,9 @@ use Slowlyo\OwlAdmin\Controllers;
             $router->post('extensions/config_form', [Controllers\DevTools\ExtensionController::class, 'configForm']);
             // 更多扩展
             $router->post('extensions/more', [Controllers\DevTools\ExtensionController::class, 'more']);
+
+            // 页面编辑器 - 解析schema
+            $router->post('editor_parse', [Controllers\DevTools\EditorController::class, 'index']);
         });
     }
 });

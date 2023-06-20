@@ -35,7 +35,8 @@ export const Breadcrumb = () => {
     }
 
     useEffect(() => {
-        setBreadcrumb(routeMap().get(pathname) || [])
+        let _pathname = pathname.replace(/\/\d+\//g, "/:id/").replace(/\/\d+$/, "/:id")
+        setBreadcrumb(routeMap().get(_pathname) || [])
     }, [pathname, routes])
 
     const getDropList = (children) => {

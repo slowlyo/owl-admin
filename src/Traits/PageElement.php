@@ -33,7 +33,7 @@ trait PageElement
     protected function backButton(): OtherAction|null
     {
         $path   = str_replace(config('admin.route.prefix'), '', request()->path());
-        $script = sprintf('window.$owl.closeTabByPath(\'%s\')', $path);
+        $script = sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
 
         return OtherAction::make()
             ->label(__('admin.back'))
@@ -228,7 +228,7 @@ trait PageElement
                     ['actionType' => 'custom', 'script' => 'window.history.back()'],
                     [
                         'actionType' => 'custom',
-                        'script'     => sprintf('window.$owl.closeTabByPath(\'%s\')', $path),
+                        'script'     => sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path),
                     ],
                 ],
             ],

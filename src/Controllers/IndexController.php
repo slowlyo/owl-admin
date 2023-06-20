@@ -53,6 +53,15 @@ class IndexController extends AdminController
             ],
             'children'  => [
                 [
+                    'name'      => 'dev_tools_extensions',
+                    'path'      => '/dev_tools/extensions',
+                    'component' => 'amis',
+                    'meta'      => [
+                        'title' => __('admin.extensions.menu'),
+                        'icon'  => 'ion:extension-puzzle-outline',
+                    ],
+                ],
+                [
                     'name'      => 'dev_tools_code_generator',
                     'path'      => '/dev_tools/code_generator',
                     'component' => 'amis',
@@ -62,12 +71,12 @@ class IndexController extends AdminController
                     ],
                 ],
                 [
-                    'name'      => 'dev_tools_extensions',
-                    'path'      => '/dev_tools/extensions',
-                    'component' => 'amis',
+                    'name'      => 'dev_tools_editor',
+                    'path'      => '/dev_tools/editor',
+                    'component' => 'editor',
                     'meta'      => [
-                        'title' => __('admin.extensions.menu'),
-                        'icon'  => 'ion:extension-puzzle-outline',
+                        'title' => __('admin.visual_editor'),
+                        'icon'  => 'mdi:monitor-edit',
                     ],
                 ],
             ],
