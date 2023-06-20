@@ -34,6 +34,7 @@ return [
 
     'developer'             => 'Developer',
     'code_generator'        => 'Code Generator',
+    'visual_editor'         => 'Visual Editor',
     'terminal'              => 'Terminal',
     'administrator'         => 'Administrator',
     'soft_delete'           => 'Soft Delete',
@@ -45,8 +46,8 @@ return [
     'order_desc'            => 'Order Desc',
     'order_asc'             => 'Order Asc',
     'menus'                 => 'Menus',
-    'successfully'          => 'Successfully',
-    'failed'                => 'Failed',
+    'successfully'          => '成功',
+    'failed'                => '失败',
     'successfully_message'  => ':attribute Successfully',
     'failed_message'        => ':attribute Failed',
     'action_success'        => 'Action Success',
