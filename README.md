@@ -71,9 +71,9 @@
 
 ### 截图
 
-![登录](https://slowlyo.gitee.io/static/images/owl-admin/login-page1.png)
-<br>
-![首页](https://slowlyo.gitee.io/static/images/owl-admin/home-page1.png)
+![登录](https://slowlyo.gitee.io/static/images/owl-admin/_login.png)
+![首页](https://slowlyo.gitee.io/static/images/owl-admin/_home.png)
+![可视化编辑器](https://slowlyo.gitee.io/static/images/owl-admin/_editor.png)
 
 <br>
 
