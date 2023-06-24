@@ -67,8 +67,6 @@ class EnsureFrontendRequestsAreStateful
 
         $stateful = array_filter(config('sanctum.stateful', []));
 
-        return Str::is(Collection::make($stateful)->map(function ($uri) {
-            return trim($uri).'/*';
-        })->all(), $domain);
+        return Str::is(Collection::make($stateful)->map(fn($uri) => trim($uri).'/*')->all(), $domain);
     }
 }

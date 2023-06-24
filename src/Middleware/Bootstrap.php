@@ -14,5 +14,4 @@ class Bootstrap
 
         return $next($request);
     }
-
 }

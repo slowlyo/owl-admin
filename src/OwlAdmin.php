@@ -2,22 +2,20 @@
 
 namespace Slowlyo\OwlAdmin;
 
-use Illuminate\Support\Arr;
-use Slowlyo\OwlAdmin\Support\Context;
 use Illuminate\Support\Facades\Auth;
-use Slowlyo\OwlAdmin\Support\Composer;
-use Slowlyo\OwlAdmin\Traits\Assets;
-use Slowlyo\OwlAdmin\Extend\Manager;
-use Slowlyo\OwlAdmin\Models\AdminUser;
-use Slowlyo\OwlAdmin\Models\AdminMenu;
-use Slowlyo\OwlAdmin\Models\AdminRole;
-use Slowlyo\OwlAdmin\Support\JsonResponse;
-use Slowlyo\OwlAdmin\Extend\ServiceProvider;
-use Slowlyo\OwlAdmin\Models\AdminPermission;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\OwlAdmin\Services\AdminMenuService;
+use Psr\Container\NotFoundExceptionInterface;
+use Slowlyo\OwlAdmin\Extend\Manager;
+use Slowlyo\OwlAdmin\Extend\ServiceProvider;
+use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Models\AdminPermission;
+use Slowlyo\OwlAdmin\Models\AdminRole;
+use Slowlyo\OwlAdmin\Models\AdminUser;
 use Slowlyo\OwlAdmin\Services\AdminSettingService;
+use Slowlyo\OwlAdmin\Support\Composer;
+use Slowlyo\OwlAdmin\Support\Context;
+use Slowlyo\OwlAdmin\Support\JsonResponse;
+use Slowlyo\OwlAdmin\Traits\Assets;
 
 class OwlAdmin
 {
@@ -28,99 +26,25 @@ class OwlAdmin
         return new static();
     }
 
-    public static function response(): JsonResponse
+    public static function response()
     {
         return new JsonResponse();
     }
 
     /**
-     * 获取系统菜单
-     *
-     * @return array
+     * @return \Slowlyo\OwlAdmin\Support\Menu;
      */
-    public function getMenus(): array
+    public static function menu()
     {
-        $user = self::user();
-        if ($user->isAdministrator() || config('admin.auth.enable') === false) {
-            $list = AdminMenuService::make()->query()->orderBy('order')->get();
-        } else {
-            $user->load('roles.permissions.menus');
-            $list =
-                $user->roles->pluck('permissions')->flatten()->pluck('menus')->flatten()->unique('id')->sortBy('order');
-        }
-
-        return $this->list2Menu($list);
+        return app('admin.menu');
     }
 
-    private function list2Menu($list, $parentId = 0, $parentName = ''): array
-    {
-        $data = [];
-        foreach ($list as $key => $item) {
-            if ($item['parent_id'] == $parentId) {
-                $idStr = "[{$item['id']}]";
-                $_temp = [
-                    'name'      => $parentName ? $parentName . '-' . $idStr : $idStr,
-                    'path'      => $item['url'],
-                    'component' => 'amis',
-                    'is_home'   => $item['is_home'],
-                    'is_link'   => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
-                    'meta'      => [
-                        'title' => $item['title'],
-                        'icon'  => $item['icon'] ?? '-',
-                        'hide'  => $item['visible'] == 0,
-                        'order' => $item['order'],
-                    ],
-                ];
-
-                $children = $this->list2Menu($list, (int)$item['id'], $_temp['name']);
-
-                if (!empty($children)) {
-                    $_temp['component'] = 'amis';
-                    $_temp['children']  = $children;
-                }
-
-                $data[] = $_temp;
-                if (!in_array($_temp['path'], config('admin.route.without_extra_routes'))) {
-                    array_push($data, ...$this->generateMenus($_temp));
-                }
-                unset($list[$key]);
-            }
-        }
-        return $data;
-    }
-
-    public function generateMenus($item): array
-    {
-        $url = $item['path'] ?? '';
-
-        if (!$url || array_key_exists('children', $item)) {
-            return [];
-        }
-
-        $menu = fn($action, $path) => [
-            'name'      => $item['name'] . '-' . $action,
-            'path'      => $url . $path,
-            'component' => 'amis',
-            'meta'      => [
-                'hide'  => true,
-                'icon'  => Arr::get($item, 'meta.icon'),
-                'title' => Arr::get($item, 'meta.title') . ' - ' . __('admin.' . $action),
-            ],
-        ];
-
-        return [
-            $menu('create', '/create'),
-            $menu('show', '/:id'),
-            $menu('edit', '/:id/edit'),
-        ];
-    }
-
-    public static function guard(): \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
+    public static function guard()
     {
         return Auth::guard(config('admin.auth.guard') ?: 'admin');
     }
 
-    public static function user(): \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|null|AdminUser
+    public static function user()
     {
         return static::guard()->user();
     }
@@ -166,6 +90,14 @@ class OwlAdmin
     }
 
     /**
+     * @return AdminSettingService
+     */
+    public static function setting()
+    {
+        return app('admin.setting');
+    }
+
+    /**
      * 往分组插入中间件.
      *
      * @param array $mix
@@ -173,7 +105,7 @@ class OwlAdmin
     public static function mixMiddlewareGroup(array $mix = [])
     {
         $router = app('router');
-        $group  = $router->getMiddlewareGroups()['admin'] ?? [];
+        $group = $router->getMiddlewareGroups()['admin'] ?? [];
 
         if ($mix) {
             $finalGroup = [];
@@ -200,14 +132,6 @@ class OwlAdmin
         }
 
         $router->middlewareGroup('admin', $group);
-    }
-
-    /**
-     * @return AdminSettingService
-     */
-    public static function setting()
-    {
-        return app('admin.setting');
     }
 
     /**

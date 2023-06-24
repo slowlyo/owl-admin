@@ -183,3 +183,10 @@ if (!function_exists('admin_extension_path')) {
         return $path ? $dir . '/' . $path : $dir;
     }
 }
+
+if (!function_exists('admin_user')) {
+    function admin_user()
+    {
+        return \Slowlyo\OwlAdmin\Admin::user();
+    }
+}

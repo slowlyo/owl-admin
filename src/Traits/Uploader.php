@@ -9,14 +9,14 @@ trait Uploader
     /**
      * 图片上传路径
      *
-     * @return string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
+     * @return string
      */
-    public function uploadImagePath(): string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
+    public function uploadImagePath()
     {
         return admin_url('upload_image');
     }
 
-    public function uploadImage(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+    public function uploadImage()
     {
         return $this->upload('image');
     }
@@ -24,9 +24,9 @@ trait Uploader
     /**
      * 文件上传路径
      *
-     * @return string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
+     * @return string
      */
-    public function uploadFilePath(): string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
+    public function uploadFilePath()
     {
         return admin_url('upload_file');
     }
