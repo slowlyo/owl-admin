@@ -53,7 +53,7 @@ class BaseRenderer implements \JsonSerializable
 
         if (key_exists($permissionKey, $this->amisSchema)) {
             if (!admin_user()->can($this->amisSchema[$permissionKey])) {
-                return [];
+                return null;
             }
         }
 
