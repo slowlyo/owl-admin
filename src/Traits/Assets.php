@@ -5,7 +5,7 @@ namespace Slowlyo\OwlAdmin\Traits;
 trait Assets
 {
     /**
-     * @return \Slowlyo\OwlAdmin\Support\Asset;
+     * @return \Slowlyo\OwlAdmin\Support\Core\Asset;
      */
     public static function asset()
     {

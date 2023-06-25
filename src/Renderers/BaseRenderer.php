@@ -27,7 +27,7 @@ class BaseRenderer implements \JsonSerializable
 
     public function jsonSerialize()
     {
-        return $this->amisSchema;
+        return $this->filteredResults();
     }
 
     public function toJson(): bool|string
@@ -37,6 +37,26 @@ class BaseRenderer implements \JsonSerializable
 
     public function toArray(): array
     {
+        return $this->amisSchema;
+    }
+
+    public function permission($permission)
+    {
+        $this->amisSchema['owl_permission'] = $permission;
+
+        return $this;
+    }
+
+    public function filteredResults()
+    {
+        $permissionKey = 'owl_permission';
+
+        if (key_exists($permissionKey, $this->amisSchema)) {
+            if (!admin_user()->can($this->amisSchema[$permissionKey])) {
+                return [];
+            }
+        }
+
         return $this->amisSchema;
     }
 }

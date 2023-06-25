@@ -42,6 +42,7 @@ const AmisRender = ({schema}) => {
             Message.success(props.locale === "zh-CN" ? "复制成功" : "Copy success")
         },
         notify: (type: "error" | "success", msg: string) => {
+            Message.clear()
             Message[type] ? Message[type](msg) : console.warn("[Notify]", type, msg)
         }
     }

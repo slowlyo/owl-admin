@@ -58,6 +58,8 @@ return [
     'no'                    => '否',
     'need_start_with_slash' => '需要以 / 开头',
     'cancel'                => '取消',
+    'please_login'          => '请先登录',
+    'unauthorized'          => '无权访问',
 
     'code_generators' => [
         'remark1'                   => '额外参数请参考',

@@ -2,25 +2,18 @@
 
 namespace Slowlyo\OwlAdmin\Renderers;
 
-use Slowlyo\OwlAdmin\Traits\Uploader;
-
 /**
  * WangEditor
  * 
  * @author slowlyo
  * @version v3.1.1
- * @since 2023-06-06
  */
 class WangEditor extends BaseRenderer
 {
-    use Uploader;
-
     public function __construct()
     {
         $this->set('type', 'custom-wang-editor');
 
-        $this->uploadImageServer(url($this->uploadRichPath()));
-        $this->uploadVideoServer(url($this->uploadRichPath()));
     }
 
     /**

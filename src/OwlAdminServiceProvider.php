@@ -3,14 +3,14 @@
 namespace Slowlyo\OwlAdmin;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\ServiceProvider;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Slowlyo\OwlAdmin\Console;
 use Slowlyo\OwlAdmin\Extend\Manager;
-use Slowlyo\OwlAdmin\Support\Asset;
 use Slowlyo\OwlAdmin\Support\Context;
-use Slowlyo\OwlAdmin\Support\Menu;
+use Illuminate\Support\ServiceProvider;
+use Slowlyo\OwlAdmin\Support\Core\Menu;
+use Slowlyo\OwlAdmin\Support\Core\Asset;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
 
 class OwlAdminServiceProvider extends ServiceProvider
 {
@@ -25,12 +25,12 @@ class OwlAdminServiceProvider extends ServiceProvider
     ];
 
     protected array $routeMiddleware = [
-        'admin.auth' => Middleware\Authenticate::class,
-        'admin.bootstrap' => Middleware\Bootstrap::class,
-        'admin.session' => Middleware\Session::class,
+        'admin.auth'       => Middleware\Authenticate::class,
+        'admin.bootstrap'  => Middleware\Bootstrap::class,
+        'admin.session'    => Middleware\Session::class,
         'admin.permission' => Middleware\Permission::class,
-        'sanctum' => Middleware\EnsureFrontendRequestsAreStateful::class,
-        'substitute' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'sanctum'          => Middleware\EnsureFrontendRequestsAreStateful::class,
+        'substitute'       => \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ];
 
     protected array $middlewareGroups = [

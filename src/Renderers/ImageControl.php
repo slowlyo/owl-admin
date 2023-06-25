@@ -9,7 +9,6 @@ use Slowlyo\OwlAdmin\Traits\Uploader;
  * 
  * @author slowlyo
  * @version v3.1.1
- * @since 2023-06-06
  */
 class ImageControl extends BaseRenderer
 {

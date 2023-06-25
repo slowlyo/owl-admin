@@ -58,6 +58,8 @@ return [
     'no'                    => 'No',
     'need_start_with_slash' => 'Need Start With /',
     'cancel'                => 'Cancel',
+    'please_login'          => 'Please Login',
+    'unauthorized'          => 'Unauthorized',
 
     'code_generators' => [
         'remark1'                   => 'For more parameters, please refer to',

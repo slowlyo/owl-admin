@@ -43,7 +43,7 @@ trait Uploader
      */
     public function uploadRichPath()
     {
-        return admin_url('upload_rich', true);
+        return admin_url('upload_rich');
     }
 
     public function uploadRich()

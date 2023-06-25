@@ -2,20 +2,21 @@
 
 namespace Slowlyo\OwlAdmin;
 
+use Slowlyo\OwlAdmin\Traits\Assets;
 use Illuminate\Support\Facades\Auth;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Slowlyo\OwlAdmin\Extend\Manager;
-use Slowlyo\OwlAdmin\Extend\ServiceProvider;
+use Slowlyo\OwlAdmin\Support\Context;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
-use Slowlyo\OwlAdmin\Models\AdminPermission;
 use Slowlyo\OwlAdmin\Models\AdminRole;
 use Slowlyo\OwlAdmin\Models\AdminUser;
-use Slowlyo\OwlAdmin\Services\AdminSettingService;
 use Slowlyo\OwlAdmin\Support\Composer;
-use Slowlyo\OwlAdmin\Support\Context;
 use Slowlyo\OwlAdmin\Support\JsonResponse;
-use Slowlyo\OwlAdmin\Traits\Assets;
+use Slowlyo\OwlAdmin\Extend\ServiceProvider;
+use Slowlyo\OwlAdmin\Models\AdminPermission;
+use Slowlyo\OwlAdmin\Support\Core\Permission;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Slowlyo\OwlAdmin\Services\AdminSettingService;
 
 class OwlAdmin
 {
@@ -32,11 +33,19 @@ class OwlAdmin
     }
 
     /**
-     * @return \Slowlyo\OwlAdmin\Support\Menu;
+     * @return \Slowlyo\OwlAdmin\Support\Core\Menu;
      */
     public static function menu()
     {
         return app('admin.menu');
+    }
+
+    /**
+     * @return Permission
+     */
+    public static function permission()
+    {
+        return new Permission;
     }
 
     public static function guard()
@@ -44,9 +53,14 @@ class OwlAdmin
         return Auth::guard(config('admin.auth.guard') ?: 'admin');
     }
 
+    /**
+     * @return AdminUser|\Illuminate\Contracts\Auth\Authenticatable|null
+     */
     public static function user()
     {
-        return static::guard()->user();
+        /** @var AdminUser|null|\Illuminate\Contracts\Auth\Authenticatable $user */
+        $user = static::guard()->user();
+        return $user;
     }
 
     public static function bootstrap()
