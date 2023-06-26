@@ -39,7 +39,7 @@ class Permission
      */
     public function authIntercept($request)
     {
-        if (config('admin.auth.enable')) {
+        if (!config('admin.auth.enable')) {
             return false;
         }
 
