@@ -108,9 +108,9 @@ composer require slowlyo/owl-admin
 ##### 4. 安装
 
 ```shell
-# 发布资源
+# 先发布框架资源
 php artisan admin:publish
-# 安装 (可以在执行安装命令前在 config/admin.php 中修改部分配置)
+# 执行安装 (可以在执行安装命令前在 config/admin.php 中修改部分配置)
 php artisan admin:install
 ```
 
