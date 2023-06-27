@@ -8,7 +8,7 @@
         快速且灵活的后台框架
     </h4> 
 
-[Demo](http://admin-demo.slowlyo.top) | [Github](https://github.com/Slowlyo/owl-admin) | [Gitee](https://gitee.com/slowlyo/owl-admin) | [文档](http://admin-demo.slowlyo.top/doc#/readme) | [论坛](http://admin-discuss.slowlyo.top/) | [加群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=ftIIJ4kKr72mvBpoA7-ttvFafvKuu3F8&authKey=Y2nBcGpw%2FDxJ1V4jPtSyQgDJzTZXB2KEVQOm1mKYyxuVbM9SOEkQN4Mbhm%2BsAlTr&noverify=0&group_code=754544686)
+[官网](https://owladmin.com) | [Demo](http://demo.owladmin.com) | [Github](https://github.com/Slowlyo/owl-admin) | [Gitee](https://gitee.com/slowlyo/owl-admin) | [文档](http://doc.owladmin.com) | [论坛](https://discuss.owladmin.com) | [加群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=ftIIJ4kKr72mvBpoA7-ttvFafvKuu3F8&authKey=Y2nBcGpw%2FDxJ1V4jPtSyQgDJzTZXB2KEVQOm1mKYyxuVbM9SOEkQN4Mbhm%2BsAlTr&noverify=0&group_code=754544686)
 
 </div>
 
