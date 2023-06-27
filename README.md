@@ -97,6 +97,13 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+如果有需要的话，在此时可以在`config/app.php`设置中文
+locale如下设置
+```
+'locale' => 'zh_CN',
+```
+
+
 3. 获取 `Owl Admin`
 
 ```shell
@@ -111,6 +118,20 @@ php artisan admin:publish
 # 安装 (可以在执行安装命令前在 config/admin.php 中修改部分配置)
 php artisan admin:install
 ```
+
+
+上述步骤操作完成之后就可以配置 web 服务了，注意需要把 web 目录也就是运行目录指向 public 目录！
+
+如果用的是 nginx，还需要在配置中加上伪静态配置
+```shell
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+```
+
+另外注意文件权限设置755，否则可能报错
+
+
 
 5. 运行项目
 
