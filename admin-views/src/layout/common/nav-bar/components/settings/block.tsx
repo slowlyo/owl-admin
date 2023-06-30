@@ -1,5 +1,5 @@
 import React, {ReactNode, useContext} from "react"
-import {Divider, InputNumber, Select, Switch} from "@arco-design/web-react"
+import {Divider, InputNumber, Select, Switch, Tag} from "@arco-design/web-react"
 import {useDispatch, useSelector} from "react-redux"
 import {GlobalState} from "@/store"
 import useLocale from "@/utils/useLocale"
@@ -10,7 +10,7 @@ const Option = Select.Option
 
 export interface BlockProps {
     title?: ReactNode;
-    options?: { name: string; value: string; type?: "switch" | "number" | "select"; options?: string[] }[];
+    options?: { name: string; value: string; type?: "switch" | "number" | "select"; options?: string[]; alpha?: boolean; }[];
     children?: ReactNode;
 }
 
@@ -27,7 +27,7 @@ export default function Block(props: BlockProps) {
             [option.value]: value,
         }
 
-        if(option.value === "theme"){
+        if (option.value === "theme") {
             setTheme(value)
         }
 
@@ -45,7 +45,10 @@ export default function Block(props: BlockProps) {
 
                 return (
                     <div className={styles["switch-wrapper"]} key={option.value}>
-                        <span>{locale[option.name]}</span>
+                        <span>
+                            {locale[option.name]}
+                            {option?.alpha && <Tag className="ml-2" bordered color="orange" size="small">Alpha</Tag>}
+                        </span>
                         {type === "switch" && (
                             <Switch
                                 size="small"

@@ -112,7 +112,7 @@ function Setting(props: SettingProps) {
                 <Block
                     title={locale["settings.content"]}
                     options={[
-                        {name: "settings.keepAlive", value: "keepAlive"},
+                        {name: "settings.keepAlive", value: "keepAlive", alpha: true},
                         {name: "settings.enableTab", value: "enableTab"},
                         {name: "settings.tabIcon", value: "tabIcon"},
                         {name: "settings.footer", value: "footer"},

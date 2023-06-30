@@ -8,11 +8,11 @@
     "siderTheme": "light",
     "topTheme": "light",
     "animateInType": "alpha",
-    "animateInDuration": 550,
+    "animateInDuration": 600,
     "animateOutType": "alpha",
-    "animateOutDuration": 450,
+    "animateOutDuration": 600,
     "loginTemplate": "default",
     "keepAlive": false,
-    "enableTab": true,
+    "enableTab": false,
     "tabIcon": true
 }
