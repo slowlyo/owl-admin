@@ -150,18 +150,14 @@ trait PageElement
      *
      * @return Operation
      */
-    protected function rowActions(bool $dialog = false, string $dialogSize = ''): Operation
+    protected function rowActions(bool|array $dialog = false, string $dialogSize = ''): Operation
     {
+        if(is_array($dialog)){
+            return Operation::make()->label(__('admin.actions'))->buttons($dialog);
+        }
+
         return Operation::make()->label(__('admin.actions'))->buttons([
             $this->rowShowButton($dialog, $dialogSize),
-            $this->rowEditButton($dialog, $dialogSize),
-            $this->rowDeleteButton(),
-        ]);
-    }
-
-    protected function rowActionsOnlyEditAndDelete($dialog = false, string $dialogSize = ''): Operation
-    {
-        return Operation::make()->label(__('admin.actions'))->buttons([
             $this->rowEditButton($dialog, $dialogSize),
             $this->rowDeleteButton(),
         ]);
