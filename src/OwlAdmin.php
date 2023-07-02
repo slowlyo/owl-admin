@@ -16,7 +16,6 @@ use Slowlyo\OwlAdmin\Models\AdminPermission;
 use Slowlyo\OwlAdmin\Support\Core\Permission;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 use Slowlyo\OwlAdmin\Services\AdminSettingService;
 
 class OwlAdmin

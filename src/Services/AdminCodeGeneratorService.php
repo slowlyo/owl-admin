@@ -3,7 +3,6 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
-use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Database\Eloquent\Builder;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 

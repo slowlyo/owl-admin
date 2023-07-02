@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Console\Module;
 
 use Illuminate\Console\Command;
 use Nwidart\Modules\Facades\Module;
+use Slowlyo\OwlAdmin\Support\Core\Module as AdminModule;
 
 class UpdateCommand extends Command
 {
@@ -13,6 +14,12 @@ class UpdateCommand extends Command
 
     public function handle(): void
     {
+        if (!AdminModule::installed()) {
+            $this->error('Please install nwidart/laravel-modules first');
+            $this->info('Usage: composer require nwidart/laravel-modules');
+            exit;
+        }
+
         $this->updateViews();
 
         $this->info('Update success');
