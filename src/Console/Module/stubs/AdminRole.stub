@@ -1,0 +1,16 @@
+<?php
+
+namespace {{Namespace}};
+
+use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+
+class AdminRole extends \Slowlyo\OwlAdmin\Models\AdminRole
+{
+    protected $table = '{{module}}_admin_roles';
+    
+    public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(AdminPermission::class, '{{module}}_admin_role_permissions', 'role_id', 'permission_id')
+            ->withTimestamps();
+    }
+}

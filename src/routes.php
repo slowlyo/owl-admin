@@ -3,9 +3,9 @@
 use Slowlyo\OwlAdmin\Controllers;
 
 \Illuminate\Support\Facades\Route::group([
-    'domain' => config('admin.route.domain'),
-    'prefix' => config('admin.route.prefix'),
-    'middleware' => config('admin.route.middleware'),
+    'domain'     => \Slowlyo\OwlAdmin\Admin::config('admin.route.domain'),
+    'prefix'     => \Slowlyo\OwlAdmin\Admin::config('admin.route.prefix'),
+    'middleware' => \Slowlyo\OwlAdmin\Admin::config('admin.route.middleware'),
 ], function (\Illuminate\Routing\Router $router) {
     $router->get('/login', [Controllers\AuthController::class, 'loginPage']);
     $router->post('/login', [Controllers\AuthController::class, 'login']);
@@ -54,7 +54,7 @@ use Slowlyo\OwlAdmin\Controllers;
         ]);
     });
 
-    if (config('admin.show_development_tools')) {
+    if (\Slowlyo\OwlAdmin\Admin::config('admin.show_development_tools')) {
         // 开发工具
         $router->group(['prefix' => 'dev_tools'], function (\Illuminate\Routing\Router $router) {
             // 代码生成器

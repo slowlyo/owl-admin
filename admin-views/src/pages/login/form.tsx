@@ -21,7 +21,8 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
     const [loading, setLoading] = useState(false)
     const [sysCaptcha, setSysCaptcha] = useState("")
     const [captcha, setCaptcha] = useState("")
-    const [loginParams, setLoginParams, removeLoginParams] = useStorage("loginParams")
+    // @ts-ignore
+    const [loginParams, setLoginParams, removeLoginParams] = useStorage(window.$adminApiPrefix.replace(/^\//, "") + "-loginParams")
 
     const t = useLocale(locale)
 
@@ -42,7 +43,7 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
     function afterLoginSuccess(params, token) {
         // 记住密码
         if (params?.username && params?.password) {
-            setLoginParams(JSON.stringify(params))
+            setLoginParams(window.btoa(encodeURIComponent(JSON.stringify(params))))
         } else {
             removeLoginParams()
         }
@@ -106,11 +107,11 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
         const rememberPassword = !!loginParams
         setRememberPassword(rememberPassword)
         if (formRef.current && rememberPassword) {
-            const parseParams = JSON.parse(loginParams)
+            const parseParams = JSON.parse(decodeURIComponent(window.atob(loginParams)))
             formRef.current.setFieldsValue(parseParams)
         }
 
-        if (appSettings.login_captcha){
+        if (appSettings.login_captcha) {
             getCaptcha.run()
         }
     }, [loginParams])

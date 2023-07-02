@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 if (!function_exists('admin_url')) {
     function admin_url($path = null, $needPrefix = false)
     {
-        $prefix = $needPrefix ? config('admin.route.prefix') : '';
+        $prefix = $needPrefix ? \Slowlyo\OwlAdmin\Admin::config('admin.route.prefix') : '';
 
         return $prefix . '/' . trim($path, '/');
     }
@@ -30,7 +30,7 @@ if (!function_exists('array2tree')) {
      * 生成树状数据
      *
      * @param array $list
-     * @param int $parentId
+     * @param int   $parentId
      *
      * @return array
      */
@@ -60,16 +60,16 @@ if (!function_exists('admin_resource_full_path')) {
         } else if ($server) {
             $src = rtrim($server, '/') . '/' . ltrim($path, '/');
         } else {
-            $disk = config('admin.upload.disk');
+            $disk = \Slowlyo\OwlAdmin\Admin::config('admin.upload.disk');
 
-            if (config("filesystems.disks.{$disk}")) {
+            if (\Slowlyo\OwlAdmin\Admin::config("filesystems.disks.{$disk}")) {
                 $src = \Illuminate\Support\Facades\Storage::disk($disk)->url($path);
             } else {
                 $src = '';
             }
         }
         $scheme = 'http:';
-        if (config('admin.https', false)) {
+        if (\Slowlyo\OwlAdmin\Admin::config('admin.https', false)) {
             $scheme = 'https:';
         }
         return preg_replace('/^http[s]{0,1}:/', $scheme, $src, 1);
@@ -133,7 +133,7 @@ if (!function_exists('file_upload_handle')) {
      */
     function file_upload_handle()
     {
-        $storage = \Illuminate\Support\Facades\Storage::disk(config('admin.upload.disk'));
+        $storage = \Illuminate\Support\Facades\Storage::disk(\Slowlyo\OwlAdmin\Admin::config('admin.upload.disk'));
 
         return \Illuminate\Database\Eloquent\Casts\Attribute::make(
             get: fn($value) => $value ? $storage->url($value) : '',

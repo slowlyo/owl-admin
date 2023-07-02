@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Traits;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Storage;
 
 trait Uploader
@@ -63,9 +64,9 @@ trait Uploader
             return $this->response()->additional(['errno' => 1])->fail(__('admin.upload_file_error'));
         }
 
-        $path = $file->store(config('admin.upload.directory.rich'), config('admin.upload.disk'));
+        $path = $file->store(Admin::config('admin.upload.directory.rich'), Admin::config('admin.upload.disk'));
 
-        $link = Storage::disk(config('admin.upload.disk'))->url($path);
+        $link = Storage::disk(Admin::config('admin.upload.disk'))->url($path);
 
         if ($fromWangEditor) {
             return $this->response()->additional(['errno' => 0])->success(['url' => $link]);
@@ -82,7 +83,7 @@ trait Uploader
             return $this->response()->fail(__('admin.upload_file_error'));
         }
 
-        $path = $file->store(config('admin.upload.directory.' . $type), config('admin.upload.disk'));
+        $path = $file->store(Admin::config('admin.upload.directory.' . $type), Admin::config('admin.upload.disk'));
 
         return $this->response()->success(['value' => $path]);
     }

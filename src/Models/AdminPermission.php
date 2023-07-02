@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Models;
 
 use Illuminate\Support\Str;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -38,7 +39,7 @@ class AdminPermission extends BaseModel
         }
         $method  = $this->http_method;
         $matches = array_map(function ($path) use ($method) {
-            $path = trim(config('admin.route.prefix'), '/') . $path;
+            $path = trim(Admin::config('admin.route.prefix'), '/') . $path;
             if (Str::contains($path, ':')) {
                 [$method, $path] = explode(':', $path);
                 $method = explode(',', $method);

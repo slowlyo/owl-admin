@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Models;
 
+use Slowlyo\OwlAdmin\Admin;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Collection;
 use Illuminate\Auth\Authenticatable;
@@ -27,10 +28,10 @@ class AdminUser extends User implements AuthenticatableContract
 
     public function avatar(): Attribute
     {
-        $storage = \Illuminate\Support\Facades\Storage::disk(config('admin.upload.disk'));
+        $storage = \Illuminate\Support\Facades\Storage::disk(Admin::config('admin.upload.disk'));
 
         return Attribute::make(
-            get: fn($value) => $value ? admin_resource_full_path($value) : url(config('admin.default_avatar')),
+            get: fn($value) => $value ? admin_resource_full_path($value) : url(Admin::config('admin.default_avatar')),
             set: fn($value) => str_replace($storage->url(''), '', $value)
         );
     }

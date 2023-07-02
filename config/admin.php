@@ -93,4 +93,7 @@ return [
         'admin_menu'       => \Slowlyo\OwlAdmin\Models\AdminMenu::class,
         'admin_permission' => \Slowlyo\OwlAdmin\Models\AdminPermission::class,
     ],
+
+    'modules' => [
+    ],
 ];

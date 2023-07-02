@@ -23,17 +23,17 @@ class IndexController extends AdminController
     public function settings(): JsonResponse|JsonResource
     {
         return $this->response()->success([
-            'nav' => Admin::getNav(),
-            'assets' => Admin::getAssets(),
-            'app_name' => config('admin.name'),
-            'locale' => config('app.locale'),
-            'layout' => config('admin.layout'),
-            'logo' => url(config('admin.logo')),
+            'nav'      => Admin::getNav(),
+            'assets'   => Admin::getAssets(),
+            'app_name' => Admin::config('admin.name'),
+            'locale'   => config('app.locale'),
+            'layout'   => Admin::config('admin.layout'),
+            'logo'     => url(Admin::config('admin.logo')),
 
-            'login_captcha' => config('admin.auth.login_captcha'),
-            'show_development_tools' => config('admin.show_development_tools'),
-            'system_theme_setting' => Admin::setting()->get('system_theme_setting'),
-            'enabled_extensions' => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
+            'login_captcha'          => Admin::config('admin.auth.login_captcha'),
+            'show_development_tools' => Admin::config('admin.show_development_tools'),
+            'system_theme_setting'   => Admin::setting()->get('system_theme_setting'),
+            'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
         ]);
     }
 

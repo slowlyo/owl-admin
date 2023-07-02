@@ -16,6 +16,7 @@ use Slowlyo\OwlAdmin\Models\AdminPermission;
 use Slowlyo\OwlAdmin\Support\Core\Permission;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
+use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 use Slowlyo\OwlAdmin\Services\AdminSettingService;
 
 class OwlAdmin
@@ -50,7 +51,7 @@ class OwlAdmin
 
     public static function guard()
     {
-        return Auth::guard(config('admin.auth.guard') ?: 'admin');
+        return Auth::guard(self::config('admin.auth.guard') ?: 'admin');
     }
 
     /**
@@ -65,10 +66,10 @@ class OwlAdmin
 
     public static function bootstrap()
     {
-        $file = config('admin.bootstrap');
+        $file = self::config('admin.bootstrap');
 
         if (is_file($file)) {
-            require config('admin.bootstrap');
+            require self::config('admin.bootstrap');
         }
     }
 
@@ -119,7 +120,7 @@ class OwlAdmin
     public static function mixMiddlewareGroup(array $mix = [])
     {
         $router = app('router');
-        $group = $router->getMiddlewareGroups()['admin'] ?? [];
+        $group  = $router->getMiddlewareGroups()['admin'] ?? [];
 
         if ($mix) {
             $finalGroup = [];
@@ -153,7 +154,7 @@ class OwlAdmin
      */
     public static function adminMenuModel()
     {
-        return config('admin.models.admin_menu', AdminMenu::class);
+        return self::config('admin.models.admin_menu', AdminMenu::class);
     }
 
     /**
@@ -161,7 +162,7 @@ class OwlAdmin
      */
     public static function adminPermissionModel()
     {
-        return config('admin.models.admin_permission', AdminPermission::class);
+        return self::config('admin.models.admin_permission', AdminPermission::class);
     }
 
     /**
@@ -169,7 +170,7 @@ class OwlAdmin
      */
     public static function adminRoleModel()
     {
-        return config('admin.models.admin_role', AdminRole::class);
+        return self::config('admin.models.admin_role', AdminRole::class);
     }
 
     /**
@@ -177,6 +178,36 @@ class OwlAdmin
      */
     public static function adminUserModel()
     {
-        return config('admin.models.admin_user', AdminUser::class);
+        return self::config('admin.models.admin_user', AdminUser::class);
+    }
+
+    public static function currentModule($lower = false)
+    {
+        $prefix = data_get(explode('/', request()->path()), 0);
+        if ($prefix) {
+            $modules = config('admin.modules');
+            if (count($modules)) {
+                $_list = collect($modules)
+                    ->combine($modules)
+                    ->map(fn($item) => config(strtolower($item) . '.admin.route.prefix', ''))
+                    ->flip()
+                    ->toArray();
+
+                if (key_exists($prefix, $_list)) {
+                    return $lower ? strtolower($_list[$prefix]) : $_list[$prefix];
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static function config($key, $default = '')
+    {
+        if ($module = self::currentModule(true)) {
+            return config($module . '.' . $key, $default);
+        }
+
+        return config($key, $default);
     }
 }

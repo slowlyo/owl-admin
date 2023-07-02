@@ -24,7 +24,7 @@ class Menu
     private function userMenus()
     {
         $user = Admin::user();
-        if ($user->isAdministrator() || config('admin.auth.enable') === false) {
+        if ($user->isAdministrator() || Admin::config('admin.auth.enable') === false) {
             $list = AdminMenuService::make()->query()->orderBy('order')->get();
         } else {
             $user->load('roles.permissions.menus');
@@ -68,7 +68,7 @@ class Menu
                 }
 
                 $data[] = $_temp;
-                if (!in_array($_temp['path'], config('admin.route.without_extra_routes'))) {
+                if (!in_array($_temp['path'], Admin::config('admin.route.without_extra_routes'))) {
                     array_push($data, ...$this->generateRoute($_temp));
                 }
                 unset($list[$key]);
@@ -146,7 +146,7 @@ class Menu
             ],
         ];
 
-        if (config('admin.show_development_tools')) {
+        if (Admin::config('admin.show_development_tools')) {
             $extraMenus = array_merge($extraMenus, $this->devToolMenus());
         }
 

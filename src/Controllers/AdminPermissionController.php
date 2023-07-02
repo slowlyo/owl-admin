@@ -21,7 +21,7 @@ class AdminPermissionController extends AdminController
     public function list(): Page
     {
         $autoBtn = '';
-        if (config('admin.show_auto_generate_permission_button')) {
+        if (Admin::config('admin.show_auto_generate_permission_button')) {
             $autoBtn = amisMake()->AjaxAction()
                 ->label(__('admin.admin_permission.auto_generate'))
                 ->level('success')
@@ -55,7 +55,10 @@ class AdminPermissionController extends AdminController
                     ->items(
                         Tag::make()->label('${item}')->className('my-1')
                     ),
-                $this->rowActionsOnlyEditAndDelete(true, 'lg'),
+                $this->rowActions([
+                    $this->rowEditButton(true, 'lg'),
+                    $this->rowDeleteButton(),
+                ]),
             ]);
 
         return $this->baseList($crud);
@@ -117,7 +120,7 @@ class AdminPermissionController extends AdminController
 
     public function getRoutes(): array
     {
-        $prefix = (string)config('admin.route.prefix');
+        $prefix = (string)Admin::config('admin.route.prefix');
 
         $container = collect();
         return collect(app('router')->getRoutes())->map(function ($route) use ($prefix, $container) {
@@ -151,7 +154,8 @@ class AdminPermissionController extends AdminController
 
         $permissions = [];
         foreach ($menus as $menu) {
-            $_httpPath = $menu['url_type'] == Admin::adminMenuModel()::TYPE_ROUTE ? $this->getHttpPath($menu['url']) : '';
+            $_httpPath =
+                $menu['url_type'] == Admin::adminMenuModel()::TYPE_ROUTE ? $this->getHttpPath($menu['url']) : '';
 
             $permissions[] = [
                 'id'         => $menu['id'],

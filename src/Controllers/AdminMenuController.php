@@ -44,7 +44,10 @@ class AdminMenuController extends AdminController
                 amisMake()->TableColumn('visible', __('admin.admin_menu.visible'))->set('type', 'status'),
                 amisMake()->TableColumn('is_home', __('admin.admin_menu.is_home'))->set('type', 'status'),
                 amisMake()->TableColumn('created_at', __('admin.created_at'))->set('type', 'datetime')->sortable(),
-                $this->rowActionsOnlyEditAndDelete(true, 'lg'),
+                $this->rowActions([
+                    $this->rowEditButton(true, 'lg'),
+                    $this->rowDeleteButton(),
+                ]),
             ]);
 
         return $this->baseList($crud);

@@ -2,8 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
-use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Admin;
+use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Renderers\Tpl;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\Card;
@@ -388,9 +388,9 @@ class ExtensionController extends AdminController
      */
     protected function getFilePath($file)
     {
-        $disk = config('admin.upload.disk') ?: 'local';
+        $disk = Admin::config('admin.upload.disk') ?: 'local';
 
-        $root = config("filesystems.disks.{$disk}.root");
+        $root = Admin::config("filesystems.disks.{$disk}.root");
 
         if (!$root) {
             throw new \Exception(sprintf('Missing \'root\' for disk [%s].', $disk));

@@ -1,0 +1,10 @@
+<?php
+
+namespace {{Namespace}};
+
+use Slowlyo\OwlAdmin\Controllers\AuthController as AdminAuthController;
+
+class AuthController extends AdminAuthController
+{
+
+}

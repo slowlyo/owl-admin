@@ -1,0 +1,13 @@
+<?php
+
+namespace {{Namespace}};
+
+class AdminUser extends \Slowlyo\OwlAdmin\Models\AdminUser
+{
+    protected $table = '{{module}}_admin_users';
+    
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(AdminRole::class, '{{module}}_admin_role_users', 'user_id', 'role_id')->withTimestamps();
+    }
+}

@@ -8,7 +8,8 @@ interface RequestConfig extends AxiosRequestConfig {
 }
 
 export default <RequestConfig>{
-    baseURL: import.meta.env.VITE_API_PREFIX,
+    // @ts-ignore
+    baseURL: window.$adminApiPrefix || import.meta.env.VITE_API_PREFIX,
     proxyURL: import.meta.env.VITE_PROXY_URL,
     changeOrigin: import.meta.env.VITE_PROXY_CHANGE_ORIGIN === "Y",
 }

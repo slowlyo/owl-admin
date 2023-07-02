@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Models\AdminUser;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,12 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class AdminUserService extends AdminService
 {
-    protected string $modelName = AdminUser::class;
+    protected string $modelName;
+
+    public function __construct()
+    {
+        $this->modelName = Admin::adminUserModel();
+    }
 
     public function getEditData($id): Model|\Illuminate\Database\Eloquent\Collection|Builder|array|null
     {

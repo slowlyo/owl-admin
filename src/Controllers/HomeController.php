@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Renderers\Card;
 use Slowlyo\OwlAdmin\Renderers\Flex;
@@ -108,8 +109,8 @@ JS
         return Card::make()->className('h-96')->body(
             Wrapper::make()->className('h-full')->body([
                 Flex::make()->className('h-full')->direction('column')->justify('center')->alignItems('center')->items([
-                    Image::make()->src(url(config('admin.logo'))),
-                    Wrapper::make()->className('text-3xl mt-9')->body(config('admin.name')),
+                    Image::make()->src(url(Admin::config('admin.logo'))),
+                    Wrapper::make()->className('text-3xl mt-9')->body(Admin::config('admin.name')),
                     Flex::make()->className('w-64 mt-5')->justify('space-around')->items([
                         Action::make()
                             ->level('link')

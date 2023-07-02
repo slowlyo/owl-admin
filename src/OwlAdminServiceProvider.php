@@ -11,6 +11,7 @@ use Slowlyo\OwlAdmin\Support\Core\Menu;
 use Slowlyo\OwlAdmin\Support\Core\Asset;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
+use Slowlyo\OwlAdmin\Support\Core\Module as AdminModule;
 
 class OwlAdminServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,8 @@ class OwlAdminServiceProvider extends ServiceProvider
         Console\CreateUserCommand::class,
         Console\GenCodeClearCommand::class,
         Console\ResetPasswordCommand::class,
+        Console\Module\InitCommand::class,
+        Console\Module\UpdateCommand::class,
     ];
 
     protected array $routeMiddleware = [
@@ -54,7 +57,7 @@ class OwlAdminServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->loadAdminAuthConfig();
-        $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
+        $this->registerConfig();
         $this->registerServices();
         $this->registerExtensions();
         $this->registerRouteMiddleware();
@@ -74,14 +77,44 @@ class OwlAdminServiceProvider extends ServiceProvider
         $this->registerPublishing();
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->bootExtensions();
+        $this->loadRoutes();
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
 
+    protected function loadRoutes()
+    {
         if (file_exists($adminRoutes = base_path('routes/admin.php'))) {
             $this->loadRoutesFrom($adminRoutes);
         }
         if (file_exists($routes = admin_path('routes.php'))) {
             $this->loadRoutesFrom($routes);
         }
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        $modules = config('admin.modules');
+        if (AdminModule::installed() && $modules) {
+            foreach ($modules as $module) {
+                $_path = config('modules.paths.modules') . '/' . $module . '/Routes/admin.php';
+                if (file_exists($_path)) {
+                    $this->loadRoutesFrom($_path);
+                }
+            }
+        }
+    }
+
+    protected function registerConfig()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
+
+        // merge module config
+        $modules = config('admin.modules');
+        if (AdminModule::installed() && $modules) {
+            foreach ($modules as $module) {
+                $_path = config('modules.paths.modules') . '/' . $module . '/Config/admin.php';
+                if (file_exists($_path)) {
+                    $this->mergeConfigFrom($_path, strtolower($module) . '.admin');
+                }
+            }
+        }
     }
 
     protected function registerPublishing()
@@ -97,7 +130,7 @@ class OwlAdminServiceProvider extends ServiceProvider
 
     protected function ensureHttps()
     {
-        if (config('admin.https')) {
+        if (Admin::config('admin.https')) {
             \URL::forceScheme('https');
             $this->app['request']->server->set('HTTPS', true);
         }
@@ -105,7 +138,7 @@ class OwlAdminServiceProvider extends ServiceProvider
 
     protected function loadAdminAuthConfig()
     {
-        config(Arr::dot(config('admin.auth', []), 'auth.'));
+        config(Arr::dot(Admin::config('admin.auth', []), 'auth.'));
     }
 
     public function registerServices()

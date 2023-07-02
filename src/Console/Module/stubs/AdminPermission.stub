@@ -1,0 +1,16 @@
+<?php
+
+namespace {{Namespace}};
+
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class AdminPermission extends \Slowlyo\OwlAdmin\Models\AdminPermission
+{
+    protected $table = '{{module}}_admin_permissions';
+    
+    public function menus(): BelongsToMany
+    {
+        return $this->belongsToMany(AdminMenu::class, '{{module}}_admin_permission_menu', 'permission_id', 'menu_id')
+            ->withTimestamps();
+    }
+}

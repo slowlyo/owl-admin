@@ -1,0 +1,8 @@
+<?php
+
+namespace {{Namespace}};
+
+class AdminMenu extends \Slowlyo\OwlAdmin\Models\AdminMenu
+{
+    protected $table = '{{module}}_admin_menus';
+}

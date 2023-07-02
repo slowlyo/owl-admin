@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\OwlAdmin;
 use Illuminate\Http\JsonResponse;
@@ -42,7 +43,7 @@ abstract class AdminController extends Controller
             $this->service = $this->serviceName::make();
         }
 
-        $this->adminPrefix = config('admin.route.prefix');
+        $this->adminPrefix = Admin::config('admin.route.prefix');
 
         $this->queryPath = str_replace($this->adminPrefix . '/', '', request()->path());
     }

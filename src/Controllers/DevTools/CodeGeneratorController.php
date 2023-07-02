@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Artisan;
@@ -707,7 +708,7 @@ class CodeGeneratorController extends AdminController
 
     public function getNamespace($name, $app = null): string
     {
-        $namespace = collect(explode('\\', config('admin.route.namespace')));
+        $namespace = collect(explode('\\', Admin::config('admin.route.namespace')));
 
         $namespace->pop();
 

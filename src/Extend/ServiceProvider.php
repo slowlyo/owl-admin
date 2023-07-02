@@ -490,9 +490,9 @@ abstract class ServiceProvider extends LaravelServiceProvider
     public function registerRoutes($callback)
     {
         Route::group(array_filter([
-            'domain'     => config('admin.route.domain'),
-            'prefix'     => config('admin.route.prefix'),
-            'middleware' => config('admin.route.middleware'),
+            'domain'     => Admin::config('admin.route.domain'),
+            'prefix'     => Admin::config('admin.route.prefix'),
+            'middleware' => Admin::config('admin.route.middleware'),
         ]),
             $callback);
     }

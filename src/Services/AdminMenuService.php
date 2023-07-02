@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -12,7 +13,12 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class AdminMenuService extends AdminService
 {
-    protected string $modelName = AdminMenu::class;
+    protected string $modelName;
+
+    public function __construct()
+    {
+        $this->modelName = Admin::adminMenuModel();
+    }
 
     public function getTree(): array
     {

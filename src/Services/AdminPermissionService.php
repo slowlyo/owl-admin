@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Slowlyo\OwlAdmin\Models\AdminPermission;
@@ -13,7 +14,12 @@ use Slowlyo\OwlAdmin\Models\AdminPermission;
  */
 class AdminPermissionService extends AdminService
 {
-    protected string $modelName = AdminPermission::class;
+    protected string $modelName;
+
+    public function __construct()
+    {
+        $this->modelName = Admin::adminPermissionModel();
+    }
 
     public function getTree(): array
     {

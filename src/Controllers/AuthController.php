@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\OwlAdmin;
 use Slowlyo\OwlAdmin\Support\Captcha;
@@ -21,7 +22,7 @@ class AuthController extends AdminController
 
     public function login(Request $request)
     {
-        if (config('admin.auth.login_captcha')) {
+        if (Admin::config('admin.auth.login_captcha')) {
             if (!$request->has('captcha')) {
                 return $this->response()->fail(__('admin.required', ['attribute' => __('admin.captcha')]));
             }
@@ -43,10 +44,12 @@ class AuthController extends AdminController
             if ($validator->fails()) {
                 abort(Response::HTTP_BAD_REQUEST, $validator->errors()->first());
             }
-            $adminModel = config("admin.auth.model", AdminUser::class);
+            $adminModel = Admin::config("admin.auth.model", AdminUser::class);
             $user       = $adminModel::query()->where('username', $request->username)->first();
             if ($user && Hash::check($request->password, $user->password)) {
-                $token = $user->createToken('admin')->plainTextToken;
+                $module = Admin::currentModule(true);
+                $prefix = $module ? $module . '.' : '';
+                $token  = $user->createToken($prefix . 'admin')->plainTextToken;
 
                 return $this->response()->success(compact('token'), __('admin.login_successful'));
             }
@@ -60,7 +63,7 @@ class AuthController extends AdminController
     public function loginPage()
     {
         $captcha       = null;
-        $enableCaptcha = config('admin.auth.login_captcha');
+        $enableCaptcha = Admin::config('admin.auth.login_captcha');
 
         // 验证码
         if ($enableCaptcha) {
@@ -132,7 +135,7 @@ if(loginParams){
     })
 }
 JS
-    ,
+                        ,
 
                     ],
                 ],
@@ -158,11 +161,11 @@ JS,
 
         $card = amisMake()->Card()->className('w-96 m:w-full')->body([
             amisMake()->Flex()->justify('space-between')->className('px-2.5 pb-2.5')->items([
-                amisMake()->Image()->src(url(config('admin.logo')))->width(40)->height(40),
+                amisMake()->Image()->src(url(Admin::config('admin.logo')))->width(40)->height(40),
                 amisMake()
                     ->Tpl()
                     ->className('font-medium')
-                    ->tpl('<div style="font-size: 24px">' . config('admin.name') . '</div>'),
+                    ->tpl('<div style="font-size: 24px">' . Admin::config('admin.name') . '</div>'),
             ]),
             $form,
         ]);

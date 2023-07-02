@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Traits;
 
+use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\Button;
@@ -32,8 +33,9 @@ trait PageElement
      */
     protected function backButton(): OtherAction|null
     {
-        $path   = str_replace(config('admin.route.prefix'), '', request()->path());
-        $script = sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
+        $path   = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
+        $script =
+            sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
 
         return OtherAction::make()
             ->label(__('admin.back'))
@@ -59,7 +61,7 @@ trait PageElement
     /**
      * 新增按钮
      *
-     * @param bool $dialog
+     * @param bool   $dialog
      * @param string $dialogSize
      *
      * @return DialogAction|LinkAction
@@ -82,7 +84,7 @@ trait PageElement
     /**
      * 行编辑按钮
      *
-     * @param bool $dialog
+     * @param bool   $dialog
      * @param string $dialogSize
      *
      * @return DialogAction|LinkAction
@@ -109,7 +111,7 @@ trait PageElement
     /**
      * 行详情按钮
      *
-     * @param bool $dialog
+     * @param bool   $dialog
      * @param string $dialogSize
      *
      * @return DialogAction|LinkAction
@@ -145,14 +147,14 @@ trait PageElement
     /**
      * 操作列
      *
-     * @param bool $dialog
+     * @param bool   $dialog
      * @param string $dialogSize
      *
      * @return Operation
      */
     protected function rowActions(bool|array $dialog = false, string $dialogSize = ''): Operation
     {
-        if(is_array($dialog)){
+        if (is_array($dialog)) {
             return Operation::make()->label(__('admin.actions'))->buttons($dialog);
         }
 
@@ -216,7 +218,7 @@ trait PageElement
      */
     protected function baseForm(): Form
     {
-        $path = str_replace(config('admin.route.prefix'), '', request()->path());
+        $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
         return Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->onEvent([
             'submitSucc' => [
