@@ -107,6 +107,11 @@ class Database
             $table->timestamps();
         });
 
+        // 如果是模块，跳过下面的表
+        if ($this->moduleName) {
+            return;
+        }
+
         $this->create('admin_code_generators', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title')->default('')->comment('名称');
@@ -123,11 +128,6 @@ class Database
             $table->text('page_info')->nullable()->comment('页面信息');
             $table->timestamps();
         });
-
-        // 如果是模块，跳过下面的表
-        if ($this->moduleName) {
-            return;
-        }
 
         $this->create('admin_settings', function (Blueprint $table) {
             $table->string('key');
@@ -152,13 +152,13 @@ class Database
         $this->dropIfExists('admin_role_users');
         $this->dropIfExists('admin_role_permissions');
         $this->dropIfExists('admin_permission_menu');
-        $this->dropIfExists('admin_code_generators');
 
         // 如果是模块，跳过下面的表
         if ($this->moduleName) {
             return;
         }
 
+        $this->dropIfExists('admin_code_generators');
         $this->dropIfExists('admin_settings');
         $this->dropIfExists('admin_extensions');
     }
