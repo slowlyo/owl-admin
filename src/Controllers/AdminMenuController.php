@@ -46,7 +46,6 @@ class AdminMenuController extends AdminController
                 amisMake()->TableColumn('is_home', __('admin.admin_menu.is_home'))->quickEdit(
                     amisMake()->SwitchControl()->mode('inline')->saveImmediately(true)
                 ),
-                amisMake()->TableColumn('created_at', __('admin.created_at'))->set('type', 'datetime')->sortable(),
                 $this->rowActions([
                     $this->rowEditButton(true, 'lg'),
                     $this->rowDeleteButton(),
