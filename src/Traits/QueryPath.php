@@ -103,6 +103,21 @@ trait QueryPath
     }
 
     /**
+     * 快速编辑
+     *
+     * @return string
+     */
+    public function getQuickEditPath()
+    {
+        return $this->getStorePath() . '?_action=quickEdit';
+    }
+
+    public function getQuickEditItemPath()
+    {
+        return $this->getStorePath() . '?_action=quickEditItem';
+    }
+
+    /**
      * 详情 获取数据
      *
      * @return string

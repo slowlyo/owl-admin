@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SchemaApi
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class SchemaApi extends BaseRenderer
 {
@@ -136,7 +136,7 @@ class SchemaApi extends BaseRenderer
     }
 
     /**
-     * 当开启自动刷新的时候，默认是 api 的 url 来自动跟踪变量变化的。 如果你希望监控 url 外的变量，请配置 traceExpression。
+     * 当开启自动刷新的时候，默认是 api 的 url 来自动跟踪变量变化的。 如果你希望监控 url 外的变量，请配置 trackExpression。
      */
     public function trackExpression($value = '')
     {

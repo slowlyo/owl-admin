@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUDList
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class CRUDList extends BaseRenderer
 {

@@ -25,7 +25,6 @@ class AdminMenuController extends AdminController
             ])
             ->filterTogglable(false)
             ->footerToolbar(['statistics'])
-            ->quickSaveApi(admin_url('system/admin_menu_quick_save'))
             ->bulkActions([$this->bulkDeleteButton()->reload('window')])
             ->columns([
                 amisMake()->TableColumn('id', 'ID')->sortable(),
@@ -39,10 +38,14 @@ class AdminMenuController extends AdminController
                     ]),
                 amisMake()->TableColumn('url', __('admin.admin_menu.url')),
                 amisMake()->TableColumn('order', __('admin.admin_menu.order'))->quickEdit(
-                    amisMake()->NumberControl()->min(0)
+                    amisMake()->NumberControl()->min(0)->saveImmediately(true)
                 ),
-                amisMake()->TableColumn('visible', __('admin.admin_menu.visible'))->set('type', 'status'),
-                amisMake()->TableColumn('is_home', __('admin.admin_menu.is_home'))->set('type', 'status'),
+                amisMake()->TableColumn('visible', __('admin.admin_menu.visible'))->quickEdit(
+                    amisMake()->SwitchControl()->mode('inline')->saveImmediately(true)
+                ),
+                amisMake()->TableColumn('is_home', __('admin.admin_menu.is_home'))->quickEdit(
+                    amisMake()->SwitchControl()->mode('inline')->saveImmediately(true)
+                ),
                 amisMake()->TableColumn('created_at', __('admin.created_at'))->set('type', 'datetime')->sortable(),
                 $this->rowActions([
                     $this->rowEditButton(true, 'lg'),
@@ -109,20 +112,5 @@ class AdminMenuController extends AdminController
     public function detail(): Form
     {
         return $this->baseDetail()->body([]);
-    }
-
-    public function quickEdit()
-    {
-        $data = request()->rows;
-
-        foreach ($data as $item) {
-            if (isset($item['children'])) {
-                unset($item['children']);
-            }
-
-            $this->service->update($item['id'], $item);
-        }
-
-        return $this->autoResponse(true);
     }
 }

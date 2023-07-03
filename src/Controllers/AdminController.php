@@ -11,6 +11,7 @@ use Slowlyo\OwlAdmin\Traits\Export;
 use Slowlyo\OwlAdmin\Traits\Uploader;
 use Slowlyo\OwlAdmin\Traits\QueryPath;
 use Slowlyo\OwlAdmin\Traits\PageElement;
+use Slowlyo\OwlAdmin\Traits\CheckAction;
 use Slowlyo\OwlAdmin\Services\AdminService;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
@@ -18,10 +19,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class AdminController extends Controller
 {
-    use QueryPath;
-    use PageElement;
-    use Uploader;
     use Export;
+    use Uploader;
+    use QueryPath;
+    use CheckAction;
+    use PageElement;
 
     protected AdminService $service;
 
@@ -51,31 +53,11 @@ abstract class AdminController extends Controller
     /**
      * 获取当前登录用户
      *
-     * @return \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|\Slowlyo\OwlAdmin\Models\AdminUser|null
+     * @return \Illuminate\Contracts\Auth\Authenticatable|\Slowlyo\OwlAdmin\Models\AdminUser|null
      */
     public function user()
     {
         return OwlAdmin::user();
-    }
-
-    /**
-     * 是否为列表数据请求
-     *
-     * @return bool
-     */
-    public function actionOfGetData()
-    {
-        return request()->_action == 'getData';
-    }
-
-    /**
-     * 是否为导出数据请求
-     *
-     * @return bool
-     */
-    public function actionOfExport()
-    {
-        return request()->_action == 'export';
     }
 
     /**
@@ -158,7 +140,17 @@ abstract class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->autoResponse($this->service->store($request->all()), __('admin.save'));
+        $response = fn($result) => $this->autoResponse($result, __('admin.save'));
+
+        if ($this->actionOfQuickEdit()) {
+            return $response($this->service->quickEdit($request->all()));
+        }
+
+        if ($this->actionOfQuickEditItem()) {
+            return $response($this->service->quickEditItem($request->all()));
+        }
+
+        return $response($this->service->store($request->all()));
     }
 
     /**

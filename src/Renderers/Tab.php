@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tab
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class Tab extends BaseRenderer
 {

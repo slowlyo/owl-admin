@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Nav 导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/nav
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class Nav extends BaseRenderer
 {
@@ -14,6 +14,14 @@ class Nav extends BaseRenderer
     {
         $this->set('type', 'nav');
 
+    }
+
+    /**
+     * 手风琴展开 仅垂直inline模式支持
+     */
+    public function accordion($value = true)
+    {
+        return $this->set('accordion', $value);
     }
 
     /**
@@ -33,7 +41,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 控制仅展示指定key菜单下的子菜单项
+     * 控制菜单缩起
      */
     public function collapsed($value = true)
     {
@@ -187,6 +195,14 @@ class Nav extends BaseRenderer
     public function overflow($value = '')
     {
         return $this->set('overflow', $value);
+    }
+
+    /**
+     * 子菜单项展开浮层样式
+     */
+    public function popupClassName($value = '')
+    {
+        return $this->set('popupClassName', $value);
     }
 
     /**

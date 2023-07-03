@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Collapse 折叠渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/collapse
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class Collapse extends BaseRenderer
 {
@@ -78,6 +78,14 @@ class Collapse extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 标题内容分割线
+     */
+    public function divideLine($value = true)
+    {
+        return $this->set('divideLine', $value);
     }
 
     /**

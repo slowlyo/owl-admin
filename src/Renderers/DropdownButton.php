@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 下拉按钮渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dropdown-button
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class DropdownButton extends BaseRenderer
 {
@@ -30,6 +30,14 @@ class DropdownButton extends BaseRenderer
     public function block($value = true)
     {
         return $this->set('block', $value);
+    }
+
+    /**
+     * 内容区域
+     */
+    public function body($value = '')
+    {
+        return $this->set('body', $value);
     }
 
     /**

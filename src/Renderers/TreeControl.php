@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tree 下拉选择框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tree
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class TreeControl extends BaseRenderer
 {

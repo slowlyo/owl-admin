@@ -6,18 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * NavItem
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class NavItem extends BaseRenderer
 {
     public function __construct()
     {
 
-    }
-
-    public function accordion($value = true)
-    {
-        return $this->set('accordion', $value);
     }
 
     public function active($value = true)
@@ -119,11 +114,6 @@ class NavItem extends BaseRenderer
     public function onEvent($value = '')
     {
         return $this->set('onEvent', $value);
-    }
-
-    public function popupClassName($value = '')
-    {
-        return $this->set('popupClassName', $value);
     }
 
     /**

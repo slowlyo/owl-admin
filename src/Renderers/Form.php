@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Form 表单渲染器。说明：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/index
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class Form extends BaseRenderer
 {

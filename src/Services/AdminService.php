@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Services;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Slowlyo\OwlAdmin\Traits\ErrorTrait;
@@ -179,5 +180,35 @@ abstract class AdminService
     public function delete(string $ids): mixed
     {
         return $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
+    }
+
+    /**
+     * 快速编辑
+     *
+     * @param $data
+     *
+     * @return true
+     */
+    public function quickEdit($data)
+    {
+        $rowsDiff = data_get($data, 'rowsDiff', []);
+
+        foreach ($rowsDiff as $item) {
+            $this->update(Arr::pull($item, $this->primaryKey()), $item);
+        }
+
+        return true;
+    }
+
+    /**
+     * 快速编辑单条
+     *
+     * @param $data
+     *
+     * @return bool
+     */
+    public function quickEditItem($data)
+    {
+        return $this->update(Arr::pull($data, $this->primaryKey()), $data);
     }
 }

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Alert 提示渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/alert
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class Alert extends BaseRenderer
 {

@@ -193,6 +193,8 @@ trait PageElement
             ->filterDefaultVisible(false)
             ->set('primaryField', $this->service->primaryKey())
             ->api($this->getListGetDataPath())
+            ->quickSaveApi($this->getQuickEditPath())
+            ->quickSaveItemApi($this->getQuickEditItemPath())
             ->bulkActions([$this->bulkDeleteButton()])
             ->perPageAvailable([10, 20, 30, 50, 100, 200])
             ->footerToolbar(['switch-per-page', 'statistics', 'pagination'])

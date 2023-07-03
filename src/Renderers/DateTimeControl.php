@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Datetime日期时间选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/datetime
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class DateTimeControl extends BaseRenderer
 {
@@ -163,6 +163,14 @@ class DateTimeControl extends BaseRenderer
     public function inputFormat($value = '')
     {
         return $this->set('inputFormat', $value);
+    }
+
+    /**
+     * 是否为结束时间，如果是，那么会自动加上 23:59:59
+     */
+    public function isEndDate($value = true)
+    {
+        return $this->set('isEndDate', $value);
     }
 
     /**

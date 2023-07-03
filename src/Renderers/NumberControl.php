@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 数字输入框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/number
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class NumberControl extends BaseRenderer
 {

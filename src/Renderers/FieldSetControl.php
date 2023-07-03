@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * FieldSet 表单项集合 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/fieldset
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class FieldSetControl extends BaseRenderer
 {
@@ -116,6 +116,14 @@ class FieldSetControl extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 标题内容分割线
+     */
+    public function divideLine($value = true)
+    {
+        return $this->set('divideLine', $value);
     }
 
     /**

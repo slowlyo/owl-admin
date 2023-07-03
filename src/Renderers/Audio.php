@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Audio 音频渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/audio
  * 
  * @author slowlyo
- * @version v3.1.1
+ * @version v3.2.0
  */
 class Audio extends BaseRenderer
 {
