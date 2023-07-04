@@ -8,7 +8,7 @@
         快速且灵活的后台框架
     </h4> 
 
-[官网](https://owladmin.com) | [Demo](http://demo.owladmin.com) | [Github](https://github.com/Slowlyo/owl-admin) | [Gitee](https://gitee.com/slowlyo/owl-admin) | [文档](http://doc.owladmin.com) | [论坛](https://discuss.owladmin.com) | [加群](https://jq.qq.com/?_wv=1027&k=5La4Ir6c)
+[官网](https://owladmin.com) | [Demo](http://demo.owladmin.com) | [Github](https://github.com/Slowlyo/owl-admin) | [Gitee](https://gitee.com/slowlyo/owl-admin) | [文档](http://doc.owladmin.com) | [加群](https://jq.qq.com/?_wv=1027&k=5La4Ir6c)
 
 </div>
 
