@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\OwlAdmin\Support\Core;
+namespace Slowlyo\OwlAdmin\Support\Cores;
 
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;

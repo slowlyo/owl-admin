@@ -5,7 +5,7 @@ namespace Slowlyo\OwlAdmin\Traits;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Storage;
 
-trait Uploader
+trait UploadTrait
 {
     /**
      * 图片上传路径

@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\OwlAdmin\Support\Core;
+namespace Slowlyo\OwlAdmin\Support\Cores;
 
 class Module
 {

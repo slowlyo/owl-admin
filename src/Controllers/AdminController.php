@@ -4,14 +4,9 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
-use Slowlyo\OwlAdmin\OwlAdmin;
+use Slowlyo\OwlAdmin\Traits;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
-use Slowlyo\OwlAdmin\Traits\Export;
-use Slowlyo\OwlAdmin\Traits\Uploader;
-use Slowlyo\OwlAdmin\Traits\QueryPath;
-use Slowlyo\OwlAdmin\Traits\PageElement;
-use Slowlyo\OwlAdmin\Traits\CheckAction;
 use Slowlyo\OwlAdmin\Services\AdminService;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
@@ -19,11 +14,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class AdminController extends Controller
 {
-    use Export;
-    use Uploader;
-    use QueryPath;
-    use CheckAction;
-    use PageElement;
+    use Traits\ExportTrait;
+    use Traits\UploadTrait;
+    use Traits\ElementTrait;
+    use Traits\QueryPathTrait;
+    use Traits\CheckActionTrait;
 
     protected AdminService $service;
 
@@ -57,7 +52,7 @@ abstract class AdminController extends Controller
      */
     public function user()
     {
-        return OwlAdmin::user();
+        return Admin::user();
     }
 
     /**
@@ -79,7 +74,7 @@ abstract class AdminController extends Controller
      */
     protected function response()
     {
-        return OwlAdmin::response();
+        return Admin::response();
     }
 
     protected function autoResponse($flag, $text = '')

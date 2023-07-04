@@ -83,6 +83,5 @@ return [
         'admin_role'           => \{{model_namespace}}\AdminRole::class,
         'admin_menu'           => \{{model_namespace}}\AdminMenu::class,
         'admin_permission'     => \{{model_namespace}}\AdminPermission::class,
-        'admin_code_generator' => \{{model_namespace}}\AdminCodeGenerator::class,
     ],
 ];

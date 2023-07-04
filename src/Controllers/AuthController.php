@@ -4,13 +4,12 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
-use Slowlyo\OwlAdmin\OwlAdmin;
-use Slowlyo\OwlAdmin\Support\Captcha;
 use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Support\Captcha;
 use Slowlyo\OwlAdmin\Models\AdminUser;
 use Illuminate\Support\Facades\Validator;
-use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Slowlyo\OwlAdmin\Renderers\ImageControl;
 use Symfony\Component\HttpFoundation\Response;
@@ -209,12 +208,12 @@ JS,
 
     protected function guard(): \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
     {
-        return OwlAdmin::guard();
+        return Admin::guard();
     }
 
     public function currentUser()
     {
-        $userInfo = OwlAdmin::user()->only(['name', 'avatar']);
+        $userInfo = Admin::user()->only(['name', 'avatar']);
 
         $menus = amisMake()
             ->DropdownButton()

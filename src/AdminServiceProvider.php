@@ -5,15 +5,12 @@ namespace Slowlyo\OwlAdmin;
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Console;
 use Slowlyo\OwlAdmin\Extend\Manager;
-use Slowlyo\OwlAdmin\Support\Context;
 use Illuminate\Support\ServiceProvider;
-use Slowlyo\OwlAdmin\Support\Core\Menu;
-use Slowlyo\OwlAdmin\Support\Core\Asset;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\OwlAdmin\Support\Core\Module as AdminModule;
+use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module as AdminModule};
 
-class OwlAdminServiceProvider extends ServiceProvider
+class AdminServiceProvider extends ServiceProvider
 {
     protected array $commands = [
         Console\UpdateCommand::class,
@@ -75,10 +72,15 @@ class OwlAdminServiceProvider extends ServiceProvider
     {
         $this->ensureHttps();
         $this->registerPublishing();
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->loadBaseRoute();
         $this->bootExtensions();
         $this->loadRoutes();
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
+    protected function loadBaseRoute()
+    {
+        Admin::loadBaseRoute();
     }
 
     protected function loadRoutes()

@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        \Slowlyo\OwlAdmin\Support\Core\Database::make()->up();
+        \Slowlyo\OwlAdmin\Support\Cores\Database::make()->up();
     }
 
     /**
@@ -20,6 +20,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        \Slowlyo\OwlAdmin\Support\Core\Database::make()->down();
+        \Slowlyo\OwlAdmin\Support\Cores\Database::make()->down();
     }
 };

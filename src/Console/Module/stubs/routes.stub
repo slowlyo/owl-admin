@@ -4,6 +4,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
+    'as'         => '{{module}}',
     'domain'     => config('{{module}}.admin.route.domain'),
     'prefix'     => config('{{module}}.admin.route.prefix'),
     'middleware' => config('{{module}}.admin.route.middleware'),

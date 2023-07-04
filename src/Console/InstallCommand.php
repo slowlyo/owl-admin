@@ -4,7 +4,7 @@ namespace Slowlyo\OwlAdmin\Console;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Console\Command;
-use Slowlyo\OwlAdmin\Support\Core\Database;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 class InstallCommand extends Command
 {

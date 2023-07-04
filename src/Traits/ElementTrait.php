@@ -14,7 +14,7 @@ use Slowlyo\OwlAdmin\Renderers\AjaxAction;
 use Slowlyo\OwlAdmin\Renderers\OtherAction;
 use Slowlyo\OwlAdmin\Renderers\DialogAction;
 
-trait PageElement
+trait ElementTrait
 {
     /**
      * 基础页面

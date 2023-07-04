@@ -4,7 +4,7 @@ namespace Slowlyo\OwlAdmin\Console\Module;
 
 use Illuminate\Console\Command;
 use Nwidart\Modules\Facades\Module;
-use Slowlyo\OwlAdmin\Support\Core\Module as AdminModule;
+use Slowlyo\OwlAdmin\Support\Cores\Module as AdminModule;
 
 class UpdateCommand extends Command
 {

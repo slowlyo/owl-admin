@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Support\Excel\AdminExport;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-trait Export
+trait ExportTrait
 {
     /**
      * 导出

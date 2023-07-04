@@ -4,10 +4,10 @@ namespace Slowlyo\OwlAdmin\Extend;
 
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
-use Illuminate\Support\Facades\Route;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Support\ComposerProperty;
+use Illuminate\Support\Facades\Route;
 use Psr\Container\NotFoundExceptionInterface;
+use Slowlyo\OwlAdmin\Support\ComposerProperty;
 use Psr\Container\ContainerExceptionInterface;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 

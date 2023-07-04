@@ -1,6 +1,6 @@
 <?php
 
-namespace Slowlyo\OwlAdmin\Support\Core;
+namespace Slowlyo\OwlAdmin\Support\Cores;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

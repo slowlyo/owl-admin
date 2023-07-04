@@ -1,8 +1,0 @@
-<?php
-
-namespace {{Namespace}};
-
-class AdminCodeGenerator extends \Slowlyo\OwlAdmin\Models\AdminCodeGenerator
-{
-    protected $table = '{{module}}_admin_code_generators';
-}

@@ -2,10 +2,10 @@
 
 namespace Slowlyo\OwlAdmin\Traits;
 
-trait Assets
+trait AssetsTrait
 {
     /**
-     * @return \Slowlyo\OwlAdmin\Support\Core\Asset;
+     * @return \Slowlyo\OwlAdmin\Support\Cores\Asset;
      */
     public static function asset()
     {

@@ -2,17 +2,17 @@
 
 namespace Slowlyo\OwlAdmin\Renderers;
 
-use Slowlyo\OwlAdmin\Traits\Uploader;
+use Slowlyo\OwlAdmin\Traits\UploadTrait;
 
 /**
  * File 文件上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/file
- * 
+ *
  * @author slowlyo
  * @version v3.2.0
  */
 class FileControl extends BaseRenderer
 {
-    use Uploader;
+    use UploadTrait;
 
     public function __construct()
     {

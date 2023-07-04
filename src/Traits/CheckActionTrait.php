@@ -2,7 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Traits;
 
-trait CheckAction
+trait CheckActionTrait
 {
     /**
      * 是否为列表数据请求

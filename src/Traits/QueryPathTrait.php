@@ -4,7 +4,7 @@ namespace Slowlyo\OwlAdmin\Traits;
 
 use Illuminate\Support\Str;
 
-trait QueryPath
+trait QueryPathTrait
 {
     /**
      * 列表获取数据

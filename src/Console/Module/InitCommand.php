@@ -4,8 +4,8 @@ namespace Slowlyo\OwlAdmin\Console\Module;
 
 use Illuminate\Console\Command;
 use Nwidart\Modules\Facades\Module;
-use Slowlyo\OwlAdmin\Support\Core\Database;
-use Slowlyo\OwlAdmin\Support\Core\Module as AdminModule;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
+use Slowlyo\OwlAdmin\Support\Cores\Module as AdminModule;
 
 class InitCommand extends Command
 {
@@ -190,7 +190,6 @@ class InitCommand extends Command
             $this->line('<info>' . $name . ' file was created:</info> ' . str_replace(base_path(), '', $file));
         };
 
-        $run('AdminCodeGenerator');
         $run('AdminMenu');
         $run('AdminPermission');
         $run('AdminRole');
