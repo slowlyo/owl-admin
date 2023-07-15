@@ -172,9 +172,12 @@ class AdminPermissionController extends AdminController
         Admin::adminPermissionModel()::query()->truncate();
         Admin::adminPermissionModel()::query()->insert($permissions);
 
-        DB::table('admin_permission_menu')->truncate();
+        $permissionClass = Admin::adminPermissionModel();
+        $pivotTable      = (new $permissionClass)->menus()->getTable();
+
+        DB::table($pivotTable)->truncate();
         foreach ($permissions as $item) {
-            $query = DB::table('admin_permission_menu');
+            $query = DB::table($pivotTable);
             $query->insert([
                 'permission_id' => $item['id'],
                 'menu_id'       => $item['id'],
