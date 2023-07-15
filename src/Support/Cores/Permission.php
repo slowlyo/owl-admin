@@ -21,10 +21,13 @@ class Permission
     public array $permissionExcept = [
         'menus',
         'current-user',
+        'user_setting',
         'login',
         'logout',
         'no-content',
         '_settings',
+        'upload_image',
+        'upload_file',
         'upload_rich',
         'captcha',
         '_download_export',
