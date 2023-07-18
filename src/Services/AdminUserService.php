@@ -37,6 +37,10 @@ class AdminUserService extends AdminService
             return $this->setError(__('admin.admin_user.username_already_exists'));
         }
 
+        if (!data_get($data, 'password')) {
+            return $this->setError(__('admin.required', ['attribute' => __('admin.password')]));
+        }
+
         if (!$this->passwordHandler($data)) {
             return false;
         }
@@ -107,10 +111,6 @@ class AdminUserService extends AdminService
 
             unset($data['confirm_password']);
             unset($data['old_password']);
-        }else{
-            if(!$id) {
-                return $this->setError(__('admin.required', ['attribute' => __('admin.password')]));
-            }
         }
 
         return true;
@@ -135,8 +135,8 @@ class AdminUserService extends AdminService
     }
 
     /**
-     * @param $data
-     * @param array $columns
+     * @param           $data
+     * @param array     $columns
      * @param AdminUser $model
      *
      * @return bool
