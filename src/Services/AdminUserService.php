@@ -107,6 +107,10 @@ class AdminUserService extends AdminService
 
             unset($data['confirm_password']);
             unset($data['old_password']);
+        }else{
+            if(!$id) {
+                return $this->setError(__('admin.required', ['attribute' => __('admin.password')]));
+            }
         }
 
         return true;
