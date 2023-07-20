@@ -38,28 +38,7 @@ abstract class AdminService
 
     public function query(): Builder
     {
-        $query = $this->modelName::query();
-
-        // 支持 sortable 属性
-        if (request()->orderBy && request()->orderDir) {
-            $query->orderBy(request()->orderBy, request()->orderDir ?? 'asc');
-        }
-
-        // 支持 searchable 属性
-        $this->searchable($query);
-
-        return $query;
-    }
-
-    protected function searchable($query)
-    {
-        collect(array_keys(request()->query()))
-            ->intersect($this->getTableColumns())
-            ->map(function ($field) use ($query) {
-                $query->when(request($field), function ($query) use ($field) {
-                    $query->where($field, 'like', '%' . request($field) . '%');
-                });
-            });
+        return $this->modelName::query();
     }
 
     /**
@@ -95,7 +74,45 @@ abstract class AdminService
      */
     public function listQuery()
     {
-        return $this->query()->orderByDesc($this->sortColumn());
+        $query = $this->query()->orderByDesc($this->sortColumn());
+
+        $this->sortable($query);
+
+        $this->searchable($query);
+
+        return $query;
+    }
+
+    /**
+     * 排序
+     *
+     * @param $query
+     *
+     * @return void
+     */
+    protected function sortable($query)
+    {
+        if (request()->orderBy && request()->orderDir) {
+            $query->orderBy(request()->orderBy, request()->orderDir ?? 'asc');
+        }
+    }
+
+    /**
+     * 搜索
+     *
+     * @param $query
+     *
+     * @return void
+     */
+    protected function searchable($query)
+    {
+        collect(array_keys(request()->query()))
+            ->intersect($this->getTableColumns())
+            ->map(function ($field) use ($query) {
+                $query->when(request($field), function ($query) use ($field) {
+                    $query->where($field, 'like', '%' . request($field) . '%');
+                });
+            });
     }
 
     /**
