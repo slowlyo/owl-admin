@@ -104,7 +104,7 @@ class ExtensionController extends AdminController
                 Card::make()->header([
                     'title'           => '${alias || "-" | truncate: 8}',
                     'subTitle'        => '${name}',
-                    'avatar'          => '${logo || "https://slowlyo.gitee.io/owl-admin-doc/static/logo.png"}',
+                    'avatar'          => '${logo || "https://slowlyo.gitee.io/static/owl-admin/logo.png"}',
                     'avatarClassName' => 'pull-left thumb-md avatar m-r',
                 ])->body([
                     amis()->label(__('admin.extensions.card.author'))
