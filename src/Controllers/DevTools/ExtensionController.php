@@ -73,7 +73,7 @@ class ExtensionController extends AdminController
         ];
     }
 
-    public function list()
+    public function list1()
     {
         return CRUDCards::make()
             ->perPage(20)
@@ -142,12 +142,12 @@ class ExtensionController extends AdminController
                         )->position('left-top')
                     ),
                 ])->toolbar([
-                    DialogAction::make()
+                    DrawerAction::make()
                         ->label(__('admin.extensions.setting'))
                         ->level('link')
                         ->visibleOn('${has_setting && enabled}')
-                        ->dialog(
-                            Dialog::make()->title(__('admin.extensions.setting'))->body(
+                        ->drawer(
+                            Drawer::make()->title(__('admin.extensions.setting'))->resizable()->closeOnOutside()->body(
                                 Service::make()
                                     ->schemaApi([
                                         'url'    => admin_url('dev_tools/extensions/config_form'),
@@ -156,7 +156,7 @@ class ExtensionController extends AdminController
                                             'id' => '${id}',
                                         ],
                                     ])
-                            )->actions([amis('submit')->label(__('admin.save'))->level('primary')])
+                            )->actions([])
                         ),
                     AjaxAction::make()
                         ->label('${enabled ? "' . __('admin.extensions.disable') . '" : "' . __('admin.extensions.enable') . '"}')
@@ -187,6 +187,102 @@ class ExtensionController extends AdminController
                         ->confirmText(__('admin.extensions.uninstall_confirm')),
                 ])
             );
+    }
+
+    public function list()
+    {
+        return CRUDTable::make()
+            ->perPage(20)
+            ->affixHeader(false)
+            ->filterTogglable()
+            ->filterDefaultVisible(false)
+            ->api($this->getListGetDataPath())
+            ->perPageAvailable([10, 20, 30, 50, 100, 200])
+            ->footerToolbar(['switch-per-page', 'statistics', 'pagination'])
+            ->loadDataOnce()
+            ->source('${rows | filter:alias:match:keywords}')
+            ->filter(
+                $this->baseFilter()->body([
+                    TextControl::make()
+                        ->name('keywords')
+                        ->label(__('admin.extensions.form.name'))
+                        ->placeholder(__('admin.extensions.filter_placeholder'))
+                        ->size('md'),
+                ])
+            )
+            ->headerToolbar([
+                $this->createExtend(),
+                $this->localInstall(),
+                $this->moreExtend(),
+                amis('reload')->align('right'),
+                amis('filter-toggler')->align('right'),
+            ])->columns([
+                amisMake()->TableColumn('alias', __('admin.extensions.form.name'))
+                    ->type('tpl')
+                    ->tpl('
+<div class="flex">
+    <div> <img src="${logo}" class="w-10 mr-4"/> </div>
+    <div>
+        <div><a class="text-gray-900" href="${homepage}" target="_blank">${alias | truncate:30}</a></div>
+        <div class="text-gray-400">${name}</div>
+    </div>
+</div>
+'),
+                amisMake()->TableColumn('author', __('admin.extensions.card.author'))
+                    ->type('tpl')
+                    ->tpl('<div>${authors[0].name}</div> <span class="text-gray-400">${authors[0].email}</span>'),
+                $this->rowActions([
+                    DrawerAction::make()->label(__('admin.show'))->className('p-0')->level('link')->drawer(
+                        Drawer::make()
+                            ->size('lg')
+                            ->title('README.md')
+                            ->actions([])
+                            ->closeOnOutside()
+                            ->closeOnEsc()
+                            ->body(Markdown::make()->name('${doc | raw}')->options(['html' => true, 'breaks' => true]))
+                    ),
+                    DrawerAction::make()
+                        ->label(__('admin.extensions.setting'))
+                        ->level('link')
+                        ->visibleOn('${has_setting && enabled}')
+                        ->drawer(
+                            Drawer::make()->title(__('admin.extensions.setting'))->resizable()->closeOnOutside()->body(
+                                Service::make()
+                                    ->schemaApi([
+                                        'url'    => admin_url('dev_tools/extensions/config_form'),
+                                        'method' => 'post',
+                                        'data'   => [
+                                            'id' => '${id}',
+                                        ],
+                                    ])
+                            )->actions([])
+                        ),
+                    AjaxAction::make()
+                        ->label('${enabled ? "' . __('admin.extensions.disable') . '" : "' . __('admin.extensions.enable') . '"}')
+                        ->level('link')
+                        ->className(["text-success" => '${!enabled}', "text-danger" => '${enabled}'])
+                        ->api([
+                            'url'    => admin_url('dev_tools/extensions/enable'),
+                            'method' => 'post',
+                            'data'   => [
+                                'id'      => '${id}',
+                                'enabled' => '${enabled}',
+                            ],
+                        ])
+                        ->confirmText('${enabled ? "' . __('admin.extensions.disable_confirm') . '" : "' . __('admin.extensions.enable_confirm') . '"}'),
+                    AjaxAction::make()
+                        ->label(__('admin.extensions.uninstall'))
+                        ->level('link')
+                        ->className('text-danger')
+                        ->api([
+                            'url'    => admin_url('dev_tools/extensions/uninstall'),
+                            'method' => 'post',
+                            'data'   => ['id' => '${id}'],
+                        ])
+                        ->visibleOn('${used}')
+                        ->confirmText(__('admin.extensions.uninstall_confirm')),
+                ]),
+            ]);
     }
 
     /**
@@ -263,7 +359,7 @@ class ExtensionController extends AdminController
      */
     public function more()
     {
-        $q   = request('q');
+        $q = request('q');
         // 加速
         $url = 'http://admin-packagist.dev.slowlyo.top?q=' . $q;
 

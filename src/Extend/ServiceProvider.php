@@ -597,7 +597,9 @@ abstract class ServiceProvider extends LaravelServiceProvider
     protected function baseSettingForm()
     {
         return Form::make()
-            ->wrapWithPanel(false)
+            ->panelClassName('border-0')
+            ->affixFooter()
+            ->title('')
             ->data(['extension' => $this->getName()])
             ->initApi([
                 'url'    => admin_url('dev_tools/extensions/get_config'),
@@ -606,6 +608,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
                     'extension' => $this->getName(),
                 ],
             ])
+            ->actions([amis('submit')->label(__('admin.save'))->level('primary')])
             ->api('post:' . admin_url('dev_tools/extensions/save_config'));
     }
 
