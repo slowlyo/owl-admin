@@ -6,16 +6,12 @@ use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Renderers\Tpl;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Renderers\Card;
 use Slowlyo\OwlAdmin\Renderers\Alert;
 use Slowlyo\OwlAdmin\Renderers\Dialog;
 use Slowlyo\OwlAdmin\Renderers\Drawer;
 use Slowlyo\OwlAdmin\Extend\Extension;
-use Slowlyo\OwlAdmin\Renderers\Wrapper;
-use Slowlyo\OwlAdmin\Renderers\Divider;
 use Slowlyo\OwlAdmin\Renderers\Service;
 use Slowlyo\OwlAdmin\Renderers\Markdown;
-use Slowlyo\OwlAdmin\Renderers\CRUDCards;
 use Slowlyo\OwlAdmin\Renderers\CRUDTable;
 use Slowlyo\OwlAdmin\Renderers\AjaxAction;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
@@ -100,7 +96,9 @@ class ExtensionController extends AdminController
                 $this->moreExtend(),
                 amis('reload')->align('right'),
                 amis('filter-toggler')->align('right'),
-            ])->columns([
+            ])
+            ->rowClassNameExpr('<%= !data.enabled ? "bg-yellow-50" : "" %>')
+            ->columns([
                 amisMake()->TableColumn('alias', __('admin.extensions.form.name'))
                     ->type('tpl')
                     ->tpl('
@@ -320,7 +318,7 @@ class ExtensionController extends AdminController
                                     ->width(300)
                                     ->copyable()
                                     ->type('tpl')
-                                    ->tpl('${"composer require " + name}')
+                                    ->tpl('${"composer require " + name}'),
                             ])
                     )
                     ->actions([])
