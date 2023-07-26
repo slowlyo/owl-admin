@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Extend;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Illuminate\Support\Facades\Route;
@@ -57,9 +58,11 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     public function boot()
     {
-        $this->autoRegister();
+        if (Schema::hasTable('admin_extensions')) {
+            $this->autoRegister();
 
-        $this->init();
+            $this->init();
+        }
     }
 
     /**
