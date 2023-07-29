@@ -69,7 +69,7 @@ class AdminMenuService extends AdminService
 
     public function changeHomePage($excludeId = 0)
     {
-        $this->query()->where('id', '<>', $excludeId)->update(['is_home' => 0]);
+        $this->query()->when($excludeId, fn($query) => $query->where('id', '<>', $excludeId))->update(['is_home' => 0]);
     }
 
     public function list()
@@ -78,8 +78,8 @@ class AdminMenuService extends AdminService
     }
 
     /**
-     * @param $data
-     * @param array $columns
+     * @param           $data
+     * @param array     $columns
      * @param AdminMenu $model
      *
      * @return bool
@@ -96,7 +96,7 @@ class AdminMenuService extends AdminService
             $model->setAttribute($k, $v);
 
             if ($k == 'is_home' && $v == 1) {
-                $this->changeHomePage();
+                $this->changeHomePage($model->getKey());
             }
         }
 

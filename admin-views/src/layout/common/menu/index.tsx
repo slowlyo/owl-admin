@@ -1,23 +1,23 @@
-import React, {useEffect, useMemo, useRef, useState} from "react"
-import {useHistory} from "react-router-dom"
-import {Menu as ArcoMenu} from "@arco-design/web-react"
-import qs from "query-string"
-import useRoute, {IRoute} from "@/routes"
-import {getFlattenRoutes} from "@/routes/helpers"
-import {Icon} from "@iconify/react"
-import styles from "./style/index.module.less"
+import React, {useEffect, useMemo, useRef, useState} from 'react'
+import {useHistory} from 'react-router-dom'
+import {Menu as ArcoMenu} from '@arco-design/web-react'
+import qs from 'query-string'
+import useRoute, {IRoute} from '@/routes'
+import {getFlattenRoutes} from '@/routes/helpers'
+import {Icon} from '@iconify/react'
+import styles from './style/index.module.less'
 
 const MenuItem = ArcoMenu.Item
 const SubMenu = ArcoMenu.SubMenu
 
 export const Menu = (
     {
-        mode = "vertical",
-        theme = "light",
+        mode = 'vertical',
+        theme = 'light',
         routeProps = [],
     }: {
-        mode?: "vertical" | "horizontal" | "pop" | "popButton",
-        theme?: "light" | "dark",
+        mode?: 'vertical' | 'horizontal' | 'pop' | 'popButton',
+        theme?: 'light' | 'dark',
         routeProps?: any[],
     }
 ) => {
@@ -27,7 +27,7 @@ export const Menu = (
 
     const [routes, defaultRoute] = useRoute()
     const defaultSelectedKeys = [currentComponent || defaultRoute]
-    const paths = (currentComponent || defaultRoute)?.split("/")
+    const paths = (currentComponent || defaultRoute)?.split('/')
     const defaultOpenKeys = paths?.slice(0, paths.length - 1)
 
     const [selectedKeys, setSelectedKeys] = useState<string[]>(defaultSelectedKeys)
@@ -56,9 +56,9 @@ export const Menu = (
                 const {meta} = route
                 const titleDom = (
                     <div className="inline-block w-full h-full">
-                        <div className={"flex items-center"}>
-                            <div className="inline-flex mr-8px" style={{height: "40px"}}>
-                                <Icon icon={meta?.icon} style={{fontSize: "18px"}} className="my-auto"/>
+                        <div className={'flex items-center'}>
+                            <div className="inline-flex mr-8px" style={{height: '40px'}}>
+                                <Icon icon={meta?.icon} style={{fontSize: '18px'}} className="my-auto"/>
                             </div>
                             <div className="inline-flex overflow-hidden"> {route?.meta?.title} </div>
                         </div>
@@ -68,7 +68,7 @@ export const Menu = (
                 const visibleChildren = (route.children || [])
 
                 if (meta?.hide) {
-                    return ""
+                    return ''
                 }
 
                 if (visibleChildren.length) {
@@ -86,7 +86,7 @@ export const Menu = (
     }
 
     function updateMenuStatus() {
-        const current = flattenRoutes.find((r) => r.path === pathname)
+        const current = flattenRoutes.find((r) => r.path.replace(/\?.*$/, '') === pathname)
 
         if (!current) {
             return
@@ -94,7 +94,7 @@ export const Menu = (
 
         const _parents = current.meta.parents.map((p) => p.path)
 
-        setSelectedKeys([pathname, ..._parents])
+        setSelectedKeys([current.path, ..._parents])
         setOpenKeys([...openKeys, ..._parents])
     }
 
@@ -108,7 +108,7 @@ export const Menu = (
             selectedKeys={selectedKeys}
             openKeys={openKeys}
             onClickSubMenu={(_, openKeys) => setOpenKeys(openKeys)}
-            className={styles["custom-menu"]}
+            className={styles['custom-menu']}
         >
             {renderRoutes()(customRoutes, 1)}
         </ArcoMenu>

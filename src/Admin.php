@@ -10,7 +10,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Services\AdminSettingService;
 use Slowlyo\OwlAdmin\Models\{AdminMenu, AdminRole, AdminUser, AdminPermission};
-use Slowlyo\OwlAdmin\Support\{Context, Composer, Cores\Route, JsonResponse, Cores\Permission};
+use Slowlyo\OwlAdmin\Support\{Context, Composer, Cores\Route, Cores\Permission, Cores\JsonResponse};
 
 class Admin
 {

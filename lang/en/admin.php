@@ -183,7 +183,11 @@ return [
         'hide'                   => 'Hide',
         'is_home'                => 'Is Home',
         'is_home_description'    => 'In multi-tab mode, the page label is fixed on the left',
+        'is_full'                => 'Is Full',
+        'is_full_description'    => 'When enabled, the menu bar portion of the page is hidden',
         'parent_id_not_allow'    => 'The parent menu cannot be set to the current submenu',
+        'component'              => 'Component',
+        'component_desc'         => 'amis by default. Not a custom front-end page, please do not modify it',
     ],
 
     'extensions' => [

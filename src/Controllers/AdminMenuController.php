@@ -73,12 +73,10 @@ class AdminMenuController extends AdminController
                     ->showIcon(false)
                     ->value(0)
                     ->source('/system/admin_menus?_action=getData'),
-                amisMake()->NumberControl('order', __('admin.admin_menu.order'))
-                    ->required()
-                    ->labelRemark(__('admin.order_asc'))
-                    ->displayMode('enhance')
-                    ->min(0)
-                    ->value(0),
+                amisMake()
+                    ->TextControl('component', __('admin.admin_menu.component'))
+                    ->description(__('admin.admin_menu.component_desc'))
+                    ->value('amis'),
             ]),
             amisMake()->TextControl('url', __('admin.admin_menu.url'))
                 ->required()
@@ -86,6 +84,12 @@ class AdminMenuController extends AdminController
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
                 ->placeholder('eg: /admin_menus'),
+            amisMake()->NumberControl('order', __('admin.admin_menu.order'))
+                ->required()
+                ->displayMode('enhance')
+                ->description(__('admin.order_asc'))
+                ->min(0)
+                ->value(0),
             amisMake()->ListControl('url_type', __('admin.admin_menu.type'))
                 ->options(Admin::adminMenuModel()::getType())
                 ->value(Admin::adminMenuModel()::TYPE_ROUTE),
@@ -97,6 +101,11 @@ class AdminMenuController extends AdminController
                 ->onText(__('admin.yes'))
                 ->offText(__('admin.no'))
                 ->description(__('admin.admin_menu.is_home_description'))
+                ->value(0),
+            amisMake()->SwitchControl('is_full', __('admin.admin_menu.is_full'))
+                ->onText(__('admin.yes'))
+                ->offText(__('admin.no'))
+                ->description(__('admin.admin_menu.is_full_description'))
                 ->value(0),
         ])->onEvent([
             'submitSucc' => [

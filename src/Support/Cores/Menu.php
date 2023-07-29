@@ -49,8 +49,9 @@ class Menu
                 $_temp = [
                     'name'      => $parentName ? $parentName . '-' . $idStr : $idStr,
                     'path'      => $item['url'],
-                    'component' => 'amis',
+                    'component' => data_get($item, 'component') ?? 'amis',
                     'is_home'   => $item['is_home'],
+                    'is_full'   => $item['is_full'] ?? 0,
                     'is_link'   => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
                     'meta'      => [
                         'title' => $item['title'],
@@ -80,6 +81,7 @@ class Menu
     private function generateRoute($item): array
     {
         $url = $item['path'] ?? '';
+        $url = preg_replace('/\?.*/', '', $url);
 
         if (!$url || array_key_exists('children', $item)) {
             return [];

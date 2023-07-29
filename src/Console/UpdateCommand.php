@@ -111,4 +111,29 @@ class UpdateCommand extends Command
             });
         }
     }
+
+    public function version276()
+    {
+        $this->output->title('Update to version v2.7.6');
+
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--lang'   => true,
+                '--assets' => true,
+                '--force'  => true,
+            ]);
+        }
+
+        if (!Schema::hasColumn('admin_menus', 'component')) {
+            Schema::table('admin_menus', function ($table) {
+                $table->string('component')->nullable()->comment('菜单组件')->after('is_home');
+            });
+        }
+
+        if (!Schema::hasColumn('admin_menus', 'is_full')) {
+            Schema::table('admin_menus', function ($table) {
+                $table->tinyInteger('is_full')->default(0)->comment('是否是完整页面')->after('component');
+            });
+        }
+    }
 }

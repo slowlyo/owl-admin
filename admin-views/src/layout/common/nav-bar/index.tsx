@@ -1,21 +1,20 @@
-import React, {useContext, useEffect, useState} from "react"
-import {Tooltip} from "@arco-design/web-react"
-import {IconFullscreen, IconFullscreenExit, IconMoonFill, IconRefresh, IconSunFill} from "@arco-design/web-react/icon"
-import {useSelector} from "react-redux"
-import {GlobalState} from "@/store"
-import {GlobalContext} from "@/context"
-import useLocale from "@/utils/useLocale"
-import IconButton from "./components/icon-button"
-import Settings from "./components/settings"
-import styles from "./style/index.module.less"
-import {Menu as LayoutMenu} from "../menu"
-import {removeToken} from "@/utils/checkLogin"
-import {useRequest} from "ahooks"
-import {fetchLogout} from "@/service/api"
-import AmisRender from "@/components/AmisRender"
-import {Breadcrumb} from "@/layout/common/breadcrumb"
-import Logo from "@/layout/common/Logo"
-import registerGlobalFunction from "@/utils/registerGlobalFunction"
+import React, {useEffect, useState} from 'react'
+import {Tooltip} from '@arco-design/web-react'
+import {IconFullscreen, IconFullscreenExit, IconRefresh} from '@arco-design/web-react/icon'
+import {useSelector} from 'react-redux'
+import {GlobalState} from '@/store'
+import useLocale from '@/utils/useLocale'
+import IconButton from './components/icon-button'
+import Settings from './components/settings'
+import styles from './style/index.module.less'
+import {Menu as LayoutMenu} from '../menu'
+import {removeToken} from '@/utils/checkLogin'
+import {useRequest} from 'ahooks'
+import {fetchLogout} from '@/service/api'
+import AmisRender from '@/components/AmisRender'
+import {Breadcrumb} from '@/layout/common/breadcrumb'
+import Logo from '@/layout/common/Logo'
+import registerGlobalFunction from '@/utils/registerGlobalFunction'
 
 const UserMenu = ({userInfo, darkTheme}) => {
     if (!userInfo.menus) return null

@@ -60,7 +60,7 @@ export const DoubleSider = ({stateChange}) => {
     }
 
     function updateMenuStatus() {
-        const current = flattenRoutes.find((r) => r.path === pathname)
+        const current = flattenRoutes.find((r) => r.path.replace(/\?.*$/, '') === pathname)
 
         if (!current) {
             return
@@ -68,7 +68,7 @@ export const DoubleSider = ({stateChange}) => {
 
         const _parents = current.meta.parents.map((p) => p.path)
 
-        setSelectedKeys([pathname, ..._parents])
+        setSelectedKeys([current.path, ..._parents])
     }
 
     const getTopRoute = (current) => {

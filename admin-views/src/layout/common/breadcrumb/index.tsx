@@ -23,7 +23,7 @@ export const Breadcrumb = () => {
                     children: route.children
                 })
 
-                map.set(route.path, [...parentNode, getBreadcrumb(route)])
+                map.set(route.path.replace(/\?.*$/, ''), [...parentNode, getBreadcrumb(route)])
 
                 if (route?.children?.length) {
                     travel(route.children, level + 1, [...parentNode, getBreadcrumb(route)])

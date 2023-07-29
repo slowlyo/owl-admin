@@ -183,7 +183,11 @@ return [
         'hide'                   => '隐藏',
         'is_home'                => '首页',
         'is_home_description'    => '在多页签卡模式下，页面标签将固定在左侧',
+        'is_full'                => '全屏',
+        'is_full_description'    => '开启后将隐藏该页面的菜单栏部分',
         'parent_id_not_allow'    => '父级菜单不允许设置为当前子菜单',
+        'component'              => '组件',
+        'component_desc'         => '默认为 amis , 非自定义前端页面请勿修改',
     ],
 
     'extensions' => [

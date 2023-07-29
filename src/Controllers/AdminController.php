@@ -70,7 +70,7 @@ abstract class AdminController extends Controller
     /**
      * 后台响应
      *
-     * @return \Slowlyo\OwlAdmin\Support\JsonResponse
+     * @return \Slowlyo\OwlAdmin\Support\Cores\JsonResponse
      */
     protected function response()
     {
