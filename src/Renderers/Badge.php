@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Badge extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -23,6 +24,9 @@ class Badge extends BaseRenderer
         return $this->set('animation', $value);
     }
 
+    /**
+     *
+     */
     public function className($value = '')
     {
         return $this->set('className', $value);
@@ -99,5 +103,6 @@ class Badge extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

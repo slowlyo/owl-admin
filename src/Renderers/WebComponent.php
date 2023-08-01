@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Web Component
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class WebComponent extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'web-component');
+
 
     }
 
@@ -47,5 +48,6 @@ class WebComponent extends BaseRenderer
     {
         return $this->set('type', $value);
     }
+
 
 }

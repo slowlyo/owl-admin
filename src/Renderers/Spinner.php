@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Spinner
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Spinner extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'spinner');
+
 
     }
 
@@ -57,6 +58,14 @@ class Spinner extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 是否隐藏
      */
     public function hidden($value = true)
@@ -88,11 +97,17 @@ class Spinner extends BaseRenderer
         return $this->set('id', $value);
     }
 
+    /**
+     *
+     */
     public function loadingConfig($value = '')
     {
         return $this->set('loadingConfig', $value);
     }
 
+    /**
+     *
+     */
     public function mode($value = '')
     {
         return $this->set('mode', $value);
@@ -123,7 +138,7 @@ class Spinner extends BaseRenderer
     }
 
     /**
-     * spinner Icon 大小 可选值: sm | lg | 
+     * spinner Icon 大小 可选值: sm | lg |
      */
     public function size($value = '')
     {
@@ -194,6 +209,9 @@ class Spinner extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -246,5 +264,6 @@ class Spinner extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

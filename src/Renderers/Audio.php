@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Audio 音频渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/audio
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Audio extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'audio');
+
 
     }
 
@@ -54,6 +55,14 @@ class Audio extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -168,6 +177,9 @@ class Audio extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -204,5 +216,6 @@ class Audio extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

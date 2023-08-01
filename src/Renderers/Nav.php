@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Nav 导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/nav
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Nav extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'nav');
+
 
     }
 
@@ -97,6 +98,14 @@ class Nav extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 自定义展开图标
      */
     public function expandIcon($value = '')
@@ -136,6 +145,9 @@ class Nav extends BaseRenderer
         return $this->set('id', $value);
     }
 
+    /**
+     *
+     */
     public function indentSize($value = '')
     {
         return $this->set('indentSize', $value);
@@ -230,7 +242,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * true 为垂直排列，false 为水平排列类似如 tabs。 可选值: 1 | 
+     * true 为垂直排列，false 为水平排列类似如 tabs。 可选值: 1 |
      */
     public function stacked($value = true)
     {
@@ -285,6 +297,9 @@ class Nav extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -329,5 +344,6 @@ class Nav extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

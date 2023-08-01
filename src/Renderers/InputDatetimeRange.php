@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputDatetimeRange 日期时间范围
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class InputDatetimeRange extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-datetime-range');
+
 
     }
 
@@ -247,5 +248,6 @@ class InputDatetimeRange extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

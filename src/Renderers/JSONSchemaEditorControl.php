@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * JSON Schema Editor 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/json-schema-editor
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class JSONSchemaEditorControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'json-schema-editor');
+
 
     }
 
@@ -48,6 +49,9 @@ class JSONSchemaEditorControl extends BaseRenderer
         return $this->set('definitions', $value);
     }
 
+    /**
+     *
+     */
     public function desc($value = '')
     {
         return $this->set('desc', $value);
@@ -94,11 +98,27 @@ class JSONSchemaEditorControl extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 开启详情配置
      */
     public function enableAdvancedSetting($value = true)
     {
         return $this->set('enableAdvancedSetting', $value);
+    }
+
+    /**
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
+     */
+    public function extraName($value = '')
+    {
+        return $this->set('extraName', $value);
     }
 
     /**
@@ -333,6 +353,9 @@ class JSONSchemaEditorControl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -386,6 +409,9 @@ class JSONSchemaEditorControl extends BaseRenderer
         return $this->set('validationErrors', $value);
     }
 
+    /**
+     *
+     */
     public function validations($value = '')
     {
         return $this->set('validations', $value);
@@ -422,5 +448,6 @@ class JSONSchemaEditorControl extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

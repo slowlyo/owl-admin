@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 操作栏渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/operation
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Operation extends BaseRenderer
 {
@@ -14,8 +14,12 @@ class Operation extends BaseRenderer
     {
         $this->set('type', 'operation');
 
+
     }
 
+    /**
+     *
+     */
     public function buttons($value = '')
     {
         return $this->set('buttons', $value);
@@ -43,6 +47,14 @@ class Operation extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -141,6 +153,9 @@ class Operation extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -177,5 +192,6 @@ class Operation extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

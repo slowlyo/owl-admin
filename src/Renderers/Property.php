@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Property 属性表
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Property extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'property');
+
 
     }
 
@@ -40,6 +41,9 @@ class Property extends BaseRenderer
         return $this->set('contentStyle', $value);
     }
 
+    /**
+     *
+     */
     public function items($value = '')
     {
         return $this->set('items', $value);
@@ -100,5 +104,6 @@ class Property extends BaseRenderer
     {
         return $this->set('type', $value);
     }
+
 
 }

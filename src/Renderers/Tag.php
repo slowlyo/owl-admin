@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Tag
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Tag extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'tag');
+
 
     }
 
@@ -86,6 +87,14 @@ class Tag extends BaseRenderer
     public function displayMode($value = '')
     {
         return $this->set('displayMode', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -184,6 +193,9 @@ class Tag extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -197,6 +209,9 @@ class Tag extends BaseRenderer
         return $this->set('style', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'tag')
     {
         return $this->set('type', $value);
@@ -217,5 +232,6 @@ class Tag extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

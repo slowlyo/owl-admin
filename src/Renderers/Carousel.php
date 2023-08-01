@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Carousel 轮播图渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Carousel extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'carousel');
+
 
     }
 
@@ -89,6 +90,14 @@ class Carousel extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 设置高度
      */
     public function height($value = '')
@@ -152,6 +161,9 @@ class Carousel extends BaseRenderer
         return $this->set('multiple', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -229,6 +241,9 @@ class Carousel extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -281,5 +296,6 @@ class Carousel extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

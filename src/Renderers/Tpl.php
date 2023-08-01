@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * tpl 渲染器
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Tpl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'tpl');
+
 
     }
 
@@ -49,6 +50,14 @@ class Tpl extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 是否隐藏
      */
     public function hidden($value = true)
@@ -64,6 +73,9 @@ class Tpl extends BaseRenderer
         return $this->set('hiddenOn', $value);
     }
 
+    /**
+     *
+     */
     public function html($value = '')
     {
         return $this->set('html', $value);
@@ -93,6 +105,9 @@ class Tpl extends BaseRenderer
         return $this->set('onEvent', $value);
     }
 
+    /**
+     *
+     */
     public function raw($value = '')
     {
         return $this->set('raw', $value);
@@ -146,6 +161,9 @@ class Tpl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -159,11 +177,17 @@ class Tpl extends BaseRenderer
         return $this->set('style', $value);
     }
 
+    /**
+     *
+     */
     public function text($value = '')
     {
         return $this->set('text', $value);
     }
 
+    /**
+     *
+     */
     public function tpl($value = '')
     {
         return $this->set('tpl', $value);
@@ -200,5 +224,6 @@ class Tpl extends BaseRenderer
     {
         return $this->set('wrapperComponent', $value);
     }
+
 
 }

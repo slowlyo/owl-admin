@@ -4,17 +4,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * GridColumn
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class GridColumn extends BaseRenderer
 {
     public function __construct()
     {
 
+
     }
 
+    /**
+     *
+     */
     public function body($value = '')
     {
         return $this->set('body', $value);
@@ -91,5 +95,6 @@ class GridColumn extends BaseRenderer
     {
         return $this->set('xs', $value);
     }
+
 
 }

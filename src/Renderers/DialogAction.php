@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DialogAction
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class DialogAction extends BaseRenderer
 {
@@ -14,6 +14,7 @@ class DialogAction extends BaseRenderer
     {
         $this->set('type', 'button');
         $this->set('actionType', 'dialog');
+
 
     }
 
@@ -138,6 +139,14 @@ class DialogAction extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 是否隐藏
      */
     public function hidden($value = true)
@@ -249,16 +258,25 @@ class DialogAction extends BaseRenderer
         return $this->set('onEvent', $value);
     }
 
+    /**
+     *
+     */
     public function primary($value = true)
     {
         return $this->set('primary', $value);
     }
 
+    /**
+     *
+     */
     public function redirect($value = '')
     {
         return $this->set('redirect', $value);
     }
 
+    /**
+     *
+     */
     public function reload($value = '')
     {
         return $this->set('reload', $value);
@@ -352,6 +370,9 @@ class DialogAction extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -373,6 +394,9 @@ class DialogAction extends BaseRenderer
         return $this->set('target', $value);
     }
 
+    /**
+     *
+     */
     public function tooltip($value = '')
     {
         return $this->set('tooltip', $value);
@@ -409,5 +433,6 @@ class DialogAction extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

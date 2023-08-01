@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * EmailAction
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class EmailAction extends BaseRenderer
 {
@@ -14,6 +14,7 @@ class EmailAction extends BaseRenderer
     {
         $this->set('type', 'button');
         $this->set('actionType', 'email');
+
 
     }
 
@@ -146,6 +147,14 @@ class EmailAction extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 是否隐藏
      */
     public function hidden($value = true)
@@ -249,6 +258,9 @@ class EmailAction extends BaseRenderer
         return $this->set('onEvent', $value);
     }
 
+    /**
+     *
+     */
     public function primary($value = true)
     {
         return $this->set('primary', $value);
@@ -342,6 +354,9 @@ class EmailAction extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -379,6 +394,9 @@ class EmailAction extends BaseRenderer
         return $this->set('to', $value);
     }
 
+    /**
+     *
+     */
     public function tooltip($value = '')
     {
         return $this->set('tooltip', $value);
@@ -415,5 +433,6 @@ class EmailAction extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUDTable
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class CRUDTable extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'crud');
+
 
     }
 
@@ -177,6 +178,14 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 如果时内嵌模式，可以通过这个来配置默认的展开选项。
      */
     public function expandConfig($value = '')
@@ -192,11 +201,17 @@ class CRUDTable extends BaseRenderer
         return $this->set('filter', $value);
     }
 
+    /**
+     *
+     */
     public function filterDefaultVisible($value = true)
     {
         return $this->set('filterDefaultVisible', $value);
     }
 
+    /**
+     *
+     */
     public function filterTogglable($value = true)
     {
         return $this->set('filterTogglable', $value);
@@ -354,11 +369,17 @@ class CRUDTable extends BaseRenderer
         return $this->set('loadDataOnceFetchOnFilter', $value);
     }
 
+    /**
+     *
+     */
     public function loadingConfig($value = '')
     {
         return $this->set('loadingConfig', $value);
     }
 
+    /**
+     *
+     */
     public function messages($value = '')
     {
         return $this->set('messages', $value);
@@ -372,6 +393,9 @@ class CRUDTable extends BaseRenderer
         return $this->set('mode', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -577,16 +601,25 @@ class CRUDTable extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
     }
 
+    /**
+     *
+     */
     public function stopAutoRefreshWhen($value = '')
     {
         return $this->set('stopAutoRefreshWhen', $value);
     }
 
+    /**
+     *
+     */
     public function stopAutoRefreshWhenModalIsOpen($value = true)
     {
         return $this->set('stopAutoRefreshWhenModalIsOpen', $value);
@@ -622,6 +655,14 @@ class CRUDTable extends BaseRenderer
     public function tableClassName($value = '')
     {
         return $this->set('tableClassName', $value);
+    }
+
+    /**
+     * 配置 table-layout 属性 可选值: auto | fixed
+     */
+    public function tableLayout($value = '')
+    {
+        return $this->set('tableLayout', $value);
     }
 
     /**
@@ -663,5 +704,6 @@ class CRUDTable extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

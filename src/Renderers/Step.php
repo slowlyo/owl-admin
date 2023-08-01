@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Step
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Step extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -45,6 +46,14 @@ class Step extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -135,6 +144,9 @@ class Step extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -164,6 +176,9 @@ class Step extends BaseRenderer
         return $this->set('title', $value);
     }
 
+    /**
+     *
+     */
     public function value($value = '')
     {
         return $this->set('value', $value);
@@ -184,5 +199,6 @@ class Step extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

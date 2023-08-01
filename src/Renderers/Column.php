@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Column
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Column extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -80,6 +81,14 @@ class Column extends BaseRenderer
     }
 
     /**
+     * 配置快速编辑功能
+     */
+    public function quickEdit($value = '')
+    {
+        return $this->set('quickEdit', $value);
+    }
+
+    /**
      * 列表头提示
      */
     public function remark($value = '')
@@ -142,5 +151,6 @@ class Column extends BaseRenderer
     {
         return $this->set('type', $value);
     }
+
 
 }

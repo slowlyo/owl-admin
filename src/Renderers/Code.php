@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Code 代码高亮
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Code extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'code');
+
 
     }
 
@@ -79,5 +80,6 @@ class Code extends BaseRenderer
     {
         return $this->set('wordWrap', $value);
     }
+
 
 }

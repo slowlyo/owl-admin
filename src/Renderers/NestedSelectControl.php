@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Nested Select 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/nested-select
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class NestedSelectControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'nested-select');
+
 
     }
 
@@ -136,6 +137,9 @@ class NestedSelectControl extends BaseRenderer
         return $this->set('delimiter', $value);
     }
 
+    /**
+     *
+     */
     public function desc($value = '')
     {
         return $this->set('desc', $value);
@@ -203,6 +207,22 @@ class NestedSelectControl extends BaseRenderer
     public function editable($value = true)
     {
         return $this->set('editable', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
+     */
+    public function extraName($value = '')
+    {
+        return $this->set('extraName', $value);
     }
 
     /**
@@ -342,6 +362,14 @@ class NestedSelectControl extends BaseRenderer
     }
 
     /**
+     * 标签的最大展示数量，超出数量后以收纳浮层的方式展示，仅在多选模式开启后生效
+     */
+    public function maxTagCount($value = '')
+    {
+        return $this->set('maxTagCount', $value);
+    }
+
+    /**
      * 弹框的 css 类
      */
     public function menuClassName($value = '')
@@ -403,6 +431,14 @@ class NestedSelectControl extends BaseRenderer
     public function options($value = '')
     {
         return $this->set('options', $value);
+    }
+
+    /**
+     * 收纳标签的Popover配置
+     */
+    public function overflowTagPopover($value = '')
+    {
+        return $this->set('overflowTagPopover', $value);
     }
 
     /**
@@ -533,6 +569,9 @@ class NestedSelectControl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -586,6 +625,9 @@ class NestedSelectControl extends BaseRenderer
         return $this->set('validationErrors', $value);
     }
 
+    /**
+     *
+     */
     public function validations($value = '')
     {
         return $this->set('validations', $value);
@@ -630,5 +672,6 @@ class NestedSelectControl extends BaseRenderer
     {
         return $this->set('withChildren', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 选项卡控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tabs
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Tabs extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'tabs');
+
 
     }
 
@@ -118,6 +119,14 @@ class Tabs extends BaseRenderer
     public function editable($value = true)
     {
         return $this->set('editable', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -256,6 +265,9 @@ class Tabs extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -302,14 +314,6 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 类名
-     */
-    public function tabsClassName($value = '')
-    {
-        return $this->set('tabsClassName', $value);
-    }
-
-    /**
      * 展示形式
      */
     public function tabsMode($value = '')
@@ -325,6 +329,9 @@ class Tabs extends BaseRenderer
         return $this->set('toolbar', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'tabs')
     {
         return $this->set('type', $value);
@@ -353,5 +360,6 @@ class Tabs extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

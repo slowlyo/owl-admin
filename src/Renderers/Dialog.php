@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Dialog 弹框渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Dialog extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'dialog');
+
 
     }
 
@@ -96,16 +97,33 @@ class Dialog extends BaseRenderer
         return $this->set('disabledOn', $value);
     }
 
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     *
+     */
     public function footer($value = '')
     {
         return $this->set('footer', $value);
     }
 
+    /**
+     *
+     */
     public function header($value = '')
     {
         return $this->set('header', $value);
     }
 
+    /**
+     *
+     */
     public function headerClassName($value = '')
     {
         return $this->set('headerClassName', $value);
@@ -143,6 +161,9 @@ class Dialog extends BaseRenderer
         return $this->set('id', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -244,6 +265,9 @@ class Dialog extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -265,6 +289,9 @@ class Dialog extends BaseRenderer
         return $this->set('title', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'dialog')
     {
         return $this->set('type', $value);
@@ -293,5 +320,6 @@ class Dialog extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

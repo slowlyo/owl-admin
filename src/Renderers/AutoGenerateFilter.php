@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * AutoGenerateFilter
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class AutoGenerateFilter extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -24,11 +25,20 @@ class AutoGenerateFilter extends BaseRenderer
     }
 
     /**
+     * 是否默认收起
+     */
+    public function defaultCollapsed($value = true)
+    {
+        return $this->set('defaultCollapsed', $value);
+    }
+
+    /**
      * 是否显示设置查询字段
      */
     public function showBtnToolbar($value = true)
     {
         return $this->set('showBtnToolbar', $value);
     }
+
 
 }

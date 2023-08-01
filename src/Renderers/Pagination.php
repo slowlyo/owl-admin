@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Pagination
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Pagination extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'pagination');
+
 
     }
 
@@ -48,6 +49,17 @@ class Pagination extends BaseRenderer
         return $this->set('disabledOn', $value);
     }
 
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     *
+     */
     public function hasNext($value = true)
     {
         return $this->set('hasNext', $value);
@@ -197,6 +209,9 @@ class Pagination extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -218,6 +233,9 @@ class Pagination extends BaseRenderer
         return $this->set('total', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'pagination')
     {
         return $this->set('type', $value);
@@ -238,5 +256,6 @@ class Pagination extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

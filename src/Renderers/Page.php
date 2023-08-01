@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * amis Page 渲染器。详情请见：https://aisuda.bce.baidu.com/amis/zh-CN/components/page
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Page extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'page');
+
 
     }
 
@@ -112,6 +113,9 @@ class Page extends BaseRenderer
         return $this->set('data', $value);
     }
 
+    /**
+     *
+     */
     public function definitions($value = '')
     {
         return $this->set('definitions', $value);
@@ -131,6 +135,14 @@ class Page extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -197,11 +209,17 @@ class Page extends BaseRenderer
         return $this->set('interval', $value);
     }
 
+    /**
+     *
+     */
     public function loadingConfig($value = '')
     {
         return $this->set('loadingConfig', $value);
     }
 
+    /**
+     *
+     */
     public function messages($value = '')
     {
         return $this->set('messages', $value);
@@ -215,6 +233,9 @@ class Page extends BaseRenderer
         return $this->set('mobileCSS', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -316,6 +337,9 @@ class Page extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -392,5 +416,6 @@ class Page extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Service 服务类控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/service
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Service extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'service');
+
 
     }
 
@@ -64,6 +65,17 @@ class Service extends BaseRenderer
         return $this->set('disabledOn', $value);
     }
 
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     *
+     */
     public function fetchOn($value = '')
     {
         return $this->set('fetchOn', $value);
@@ -133,16 +145,25 @@ class Service extends BaseRenderer
         return $this->set('interval', $value);
     }
 
+    /**
+     *
+     */
     public function loadingConfig($value = '')
     {
         return $this->set('loadingConfig', $value);
     }
 
+    /**
+     *
+     */
     public function messages($value = '')
     {
         return $this->set('messages', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -228,6 +249,9 @@ class Service extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -280,5 +304,6 @@ class Service extends BaseRenderer
     {
         return $this->set('ws', $value);
     }
+
 
 }

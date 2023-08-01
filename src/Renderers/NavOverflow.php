@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * NavOverflow
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class NavOverflow extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -88,14 +89,6 @@ class NavOverflow extends BaseRenderer
     }
 
     /**
-     * 菜单DOM挂载点
-     */
-    public function popOverContainer($value = '')
-    {
-        return $this->set('popOverContainer', $value);
-    }
-
-    /**
      * 自定义样式
      */
     public function style($value = '')
@@ -110,5 +103,6 @@ class NavOverflow extends BaseRenderer
     {
         return $this->set('wrapperComponent', $value);
     }
+
 
 }

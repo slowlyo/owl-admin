@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputExcel 解析 Excel
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class InputExcel extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-excel');
+
 
     }
 
@@ -223,5 +224,6 @@ class InputExcel extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

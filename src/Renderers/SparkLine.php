@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SparkLine
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class SparkLine extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'sparkline');
+
 
     }
 
@@ -46,6 +47,14 @@ class SparkLine extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -152,6 +161,9 @@ class SparkLine extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -165,11 +177,17 @@ class SparkLine extends BaseRenderer
         return $this->set('style', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'sparkline')
     {
         return $this->set('type', $value);
     }
 
+    /**
+     *
+     */
     public function value($value = '')
     {
         return $this->set('value', $value);
@@ -198,5 +216,6 @@ class SparkLine extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

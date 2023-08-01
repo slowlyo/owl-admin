@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUD2Cards
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class CRUD2Cards extends BaseRenderer
 {
@@ -14,6 +14,7 @@ class CRUD2Cards extends BaseRenderer
     {
         $this->set('mode', 'cards');
         $this->set('type', 'crud2');
+
 
     }
 
@@ -49,6 +50,9 @@ class CRUD2Cards extends BaseRenderer
         return $this->set('autoJumpToTopOnPagerChange', $value);
     }
 
+    /**
+     *
+     */
     public function card($value = '')
     {
         return $this->set('card', $value);
@@ -84,6 +88,14 @@ class CRUD2Cards extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -246,6 +258,9 @@ class CRUD2Cards extends BaseRenderer
         return $this->set('loadType', $value);
     }
 
+    /**
+     *
+     */
     public function loadingConfig($value = '')
     {
         return $this->set('loadingConfig', $value);
@@ -275,6 +290,9 @@ class CRUD2Cards extends BaseRenderer
         return $this->set('multiple', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -440,11 +458,17 @@ class CRUD2Cards extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
     }
 
+    /**
+     *
+     */
     public function stopAutoRefreshWhen($value = '')
     {
         return $this->set('stopAutoRefreshWhen', $value);
@@ -513,5 +537,6 @@ class CRUD2Cards extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

@@ -103,7 +103,7 @@ class CodeGeneratorController extends AdminController
                 amisMake()->TableColumn('title', __('admin.code_generators.app_title')),
                 amisMake()->TableColumn('table_name', __('admin.code_generators.table_name')),
                 amisMake()->TableColumn('updated_at', __('admin.updated_at'))->sortable(),
-                amisMake()->Operation()->label(__('admin.actions'))->set('width', 320)->buttons([
+                $this->rowActions([
                     amisMake()
                         ->AjaxAction()
                         ->label(__('admin.code_generators.generate_code'))

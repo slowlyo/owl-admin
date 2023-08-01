@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Timeline
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Timeline extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'timeline');
+
 
     }
 
@@ -49,6 +50,14 @@ class Timeline extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 是否隐藏
      */
     public function hidden($value = true)
@@ -70,6 +79,14 @@ class Timeline extends BaseRenderer
     public function id($value = '')
     {
         return $this->set('id', $value);
+    }
+
+    /**
+     * 节点title自定一展示模板
+     */
+    public function itemTitleSchema($value = '')
+    {
+        return $this->set('itemTitleSchema', $value);
     }
 
     /**
@@ -160,6 +177,9 @@ class Timeline extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -196,5 +216,6 @@ class Timeline extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

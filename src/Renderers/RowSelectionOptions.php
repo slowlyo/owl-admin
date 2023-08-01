@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * RowSelectionOptions
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class RowSelectionOptions extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -30,5 +31,6 @@ class RowSelectionOptions extends BaseRenderer
     {
         return $this->set('text', $value);
     }
+
 
 }

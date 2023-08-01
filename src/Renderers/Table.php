@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Table 表格渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/table
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Table extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'table');
+
 
     }
 
@@ -118,6 +119,14 @@ class Table extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -288,6 +297,9 @@ class Table extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -307,6 +319,14 @@ class Table extends BaseRenderer
     public function tableClassName($value = '')
     {
         return $this->set('tableClassName', $value);
+    }
+
+    /**
+     * 配置 table-layout 属性 可选值: auto | fixed
+     */
+    public function tableLayout($value = '')
+    {
+        return $this->set('tableLayout', $value);
     }
 
     /**
@@ -348,5 +368,6 @@ class Table extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

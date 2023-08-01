@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * FeedbackDialog
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class FeedbackDialog extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -95,16 +96,33 @@ class FeedbackDialog extends BaseRenderer
         return $this->set('disabledOn', $value);
     }
 
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     *
+     */
     public function footer($value = '')
     {
         return $this->set('footer', $value);
     }
 
+    /**
+     *
+     */
     public function header($value = '')
     {
         return $this->set('header', $value);
     }
 
+    /**
+     *
+     */
     public function headerClassName($value = '')
     {
         return $this->set('headerClassName', $value);
@@ -142,6 +160,9 @@ class FeedbackDialog extends BaseRenderer
         return $this->set('id', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -259,6 +280,9 @@ class FeedbackDialog extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -303,5 +327,6 @@ class FeedbackDialog extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

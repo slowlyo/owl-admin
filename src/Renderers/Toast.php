@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Toast 轻提示
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Toast extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -78,5 +79,6 @@ class Toast extends BaseRenderer
     {
         return $this->set('title', $value);
     }
+
 
 }

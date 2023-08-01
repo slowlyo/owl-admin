@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Matrix 选择控件。适合做权限勾选。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/matrix
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class MatrixControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'matrix-checkboxes');
+
 
     }
 
@@ -32,11 +33,17 @@ class MatrixControl extends BaseRenderer
         return $this->set('clearValueOnHidden', $value);
     }
 
+    /**
+     *
+     */
     public function columns($value = '')
     {
         return $this->set('columns', $value);
     }
 
+    /**
+     *
+     */
     public function desc($value = '')
     {
         return $this->set('desc', $value);
@@ -72,6 +79,22 @@ class MatrixControl extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
+     */
+    public function extraName($value = '')
+    {
+        return $this->set('extraName', $value);
     }
 
     /**
@@ -250,6 +273,9 @@ class MatrixControl extends BaseRenderer
         return $this->set('rowLabel', $value);
     }
 
+    /**
+     *
+     */
     public function rows($value = '')
     {
         return $this->set('rows', $value);
@@ -327,6 +353,9 @@ class MatrixControl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -380,6 +409,9 @@ class MatrixControl extends BaseRenderer
         return $this->set('validationErrors', $value);
     }
 
+    /**
+     *
+     */
     public function validations($value = '')
     {
         return $this->set('validations', $value);
@@ -416,5 +448,6 @@ class MatrixControl extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputTimeRange 时间范围
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class InputTimeRange extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-time-range');
+
 
     }
 
@@ -231,5 +232,6 @@ class InputTimeRange extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ChartRadios 图表单选框
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class ChartRadios extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'chart-radios');
+
 
     }
 
@@ -47,5 +48,6 @@ class ChartRadios extends BaseRenderer
     {
         return $this->set('type', $value);
     }
+
 
 }

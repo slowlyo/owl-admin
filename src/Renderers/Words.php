@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Words
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Words extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'words');
+
 
     }
 
@@ -62,6 +63,14 @@ class Words extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -176,6 +185,9 @@ class Words extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -189,6 +201,9 @@ class Words extends BaseRenderer
         return $this->set('style', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'words')
     {
         return $this->set('type', $value);
@@ -217,5 +232,6 @@ class Words extends BaseRenderer
     {
         return $this->set('words', $value);
     }
+
 
 }

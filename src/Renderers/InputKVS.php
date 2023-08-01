@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputKVS 键值对象
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class InputKVS extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-kvs');
+
 
     }
 
@@ -191,5 +192,6 @@ class InputKVS extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Tree 下拉选择框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tree
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class TreeControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-tree');
+
 
     }
 
@@ -136,6 +137,9 @@ class TreeControl extends BaseRenderer
         return $this->set('delimiter', $value);
     }
 
+    /**
+     *
+     */
     public function desc($value = '')
     {
         return $this->set('desc', $value);
@@ -206,6 +210,14 @@ class TreeControl extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 是否为选项添加默认的Icon，默认值为true
      */
     public function enableDefaultIcon($value = true)
@@ -219,6 +231,14 @@ class TreeControl extends BaseRenderer
     public function enableNodePath($value = true)
     {
         return $this->set('enableNodePath', $value);
+    }
+
+    /**
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
+     */
+    public function extraName($value = '')
+    {
+        return $this->set('extraName', $value);
     }
 
     /**
@@ -621,6 +641,9 @@ class TreeControl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -674,6 +697,9 @@ class TreeControl extends BaseRenderer
         return $this->set('validationErrors', $value);
     }
 
+    /**
+     *
+     */
     public function validations($value = '')
     {
         return $this->set('validations', $value);
@@ -718,5 +744,6 @@ class TreeControl extends BaseRenderer
     {
         return $this->set('withChildren', $value);
     }
+
 
 }

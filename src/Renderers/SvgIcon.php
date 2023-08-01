@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SvgIcon
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class SvgIcon extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'custom-svg-icon');
+
 
     }
 
@@ -39,5 +40,6 @@ class SvgIcon extends BaseRenderer
     {
         return $this->set('type', $value);
     }
+
 
 }

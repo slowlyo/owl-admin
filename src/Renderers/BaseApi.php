@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * BaseApi
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class BaseApi extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -158,5 +159,6 @@ class BaseApi extends BaseRenderer
     {
         return $this->set('url', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * WangEditor
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class WangEditor extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'custom-wang-editor');
+
 
     }
 
@@ -287,5 +288,6 @@ class WangEditor extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

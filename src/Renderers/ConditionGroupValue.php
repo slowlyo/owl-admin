@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ConditionGroupValue
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class ConditionGroupValue extends BaseRenderer
 {
@@ -14,8 +14,12 @@ class ConditionGroupValue extends BaseRenderer
     {
         $this->set('conjunction', 'and');
 
+
     }
 
+    /**
+     *
+     */
     public function children($value = '')
     {
         return $this->set('children', $value);
@@ -29,14 +33,21 @@ class ConditionGroupValue extends BaseRenderer
         return $this->set('conjunction', $value);
     }
 
+    /**
+     *
+     */
     public function id($value = '')
     {
         return $this->set('id', $value);
     }
 
+    /**
+     *
+     */
     public function not($value = true)
     {
         return $this->set('not', $value);
     }
+
 
 }

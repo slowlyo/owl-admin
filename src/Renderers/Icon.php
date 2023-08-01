@@ -3,16 +3,17 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * Icon 图表渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/icon
- * 
- * @author slowlyo
- * @version v3.2.0
+ * Icon 图标渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/icon
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Icon extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'icon');
+
 
     }
 
@@ -46,6 +47,14 @@ class Icon extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -136,6 +145,9 @@ class Icon extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -149,13 +161,16 @@ class Icon extends BaseRenderer
         return $this->set('style', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'icon')
     {
         return $this->set('type', $value);
     }
 
     /**
-     *  可选值: iconfont | fa | 
+     *  可选值: iconfont | fa |
      */
     public function vendor($value = '')
     {
@@ -177,5 +192,6 @@ class Icon extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

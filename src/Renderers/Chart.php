@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Chart 图表渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class Chart extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'chart');
+
 
     }
 
@@ -56,6 +57,9 @@ class Chart extends BaseRenderer
         return $this->set('config', $value);
     }
 
+    /**
+     *
+     */
     public function dataFilter($value = '')
     {
         return $this->set('dataFilter', $value);
@@ -83,6 +87,14 @@ class Chart extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -165,6 +177,9 @@ class Chart extends BaseRenderer
         return $this->set('mapURL', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -186,6 +201,9 @@ class Chart extends BaseRenderer
         return $this->set('replaceChartOption', $value);
     }
 
+    /**
+     *
+     */
     public function source($value = '')
     {
         return $this->set('source', $value);
@@ -239,6 +257,9 @@ class Chart extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -299,5 +320,6 @@ class Chart extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

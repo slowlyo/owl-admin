@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * RangeControl
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class RangeControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-range');
+
 
     }
 
@@ -48,6 +49,9 @@ class RangeControl extends BaseRenderer
         return $this->set('delimiter', $value);
     }
 
+    /**
+     *
+     */
     public function desc($value = '')
     {
         return $this->set('desc', $value);
@@ -83,6 +87,22 @@ class RangeControl extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
+     */
+    public function extraName($value = '')
+    {
+        return $this->set('extraName', $value);
     }
 
     /**
@@ -365,6 +385,9 @@ class RangeControl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -450,6 +473,9 @@ class RangeControl extends BaseRenderer
         return $this->set('validationErrors', $value);
     }
 
+    /**
+     *
+     */
     public function validations($value = '')
     {
         return $this->set('validations', $value);
@@ -486,5 +512,6 @@ class RangeControl extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

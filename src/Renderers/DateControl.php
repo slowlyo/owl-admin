@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Date日期选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/date
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class DateControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-date');
+
 
     }
 
@@ -56,6 +57,9 @@ class DateControl extends BaseRenderer
         return $this->set('closeOnSelect', $value);
     }
 
+    /**
+     *
+     */
     public function desc($value = '')
     {
         return $this->set('desc', $value);
@@ -86,6 +90,14 @@ class DateControl extends BaseRenderer
     }
 
     /**
+     * 字符串函数，用来决定是否禁用某个日期。(currentDate: moment.Moment, props: any) => boolean;
+     */
+    public function disabledDate($value = '')
+    {
+        return $this->set('disabledDate', $value);
+    }
+
+    /**
      * 是否禁用表达式
      */
     public function disabledOn($value = '')
@@ -94,11 +106,27 @@ class DateControl extends BaseRenderer
     }
 
     /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
      * 是否为内联模式？
      */
     public function emebed($value = true)
     {
         return $this->set('emebed', $value);
+    }
+
+    /**
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
+     */
+    public function extraName($value = '')
+    {
+        return $this->set('extraName', $value);
     }
 
     /**
@@ -357,6 +385,9 @@ class DateControl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -418,6 +449,9 @@ class DateControl extends BaseRenderer
         return $this->set('validationErrors', $value);
     }
 
+    /**
+     *
+     */
     public function validations($value = '')
     {
         return $this->set('validations', $value);
@@ -454,5 +488,6 @@ class DateControl extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

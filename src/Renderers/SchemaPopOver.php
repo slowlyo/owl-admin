@@ -4,17 +4,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SchemaPopOver
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class SchemaPopOver extends BaseRenderer
 {
     public function __construct()
     {
 
+
     }
 
+    /**
+     *
+     */
     public function body($value = '')
     {
         return $this->set('body', $value);
@@ -99,5 +103,6 @@ class SchemaPopOver extends BaseRenderer
     {
         return $this->set('trigger', $value);
     }
+
 
 }

@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUD2Table
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class CRUD2Table extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'crud2');
+
 
     }
 
@@ -102,6 +103,14 @@ class CRUD2Table extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -248,6 +257,9 @@ class CRUD2Table extends BaseRenderer
         return $this->set('loading', $value);
     }
 
+    /**
+     *
+     */
     public function loadingConfig($value = '')
     {
         return $this->set('loadingConfig', $value);
@@ -285,6 +297,9 @@ class CRUD2Table extends BaseRenderer
         return $this->set('multiple', $value);
     }
 
+    /**
+     *
+     */
     public function name($value = '')
     {
         return $this->set('name', $value);
@@ -482,6 +497,9 @@ class CRUD2Table extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -495,6 +513,9 @@ class CRUD2Table extends BaseRenderer
         return $this->set('sticky', $value);
     }
 
+    /**
+     *
+     */
     public function stopAutoRefreshWhen($value = '')
     {
         return $this->set('stopAutoRefreshWhen', $value);
@@ -555,5 +576,6 @@ class CRUD2Table extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

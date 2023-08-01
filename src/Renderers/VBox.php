@@ -4,15 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 垂直布局控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/vbox
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class VBox extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'vbox');
+
 
     }
 
@@ -38,6 +39,14 @@ class VBox extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
     }
 
     /**
@@ -128,6 +137,9 @@ class VBox extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -141,6 +153,9 @@ class VBox extends BaseRenderer
         return $this->set('style', $value);
     }
 
+    /**
+     *
+     */
     public function type($value = 'vbox')
     {
         return $this->set('type', $value);
@@ -161,5 +176,6 @@ class VBox extends BaseRenderer
     {
         return $this->set('visibleOn', $value);
     }
+
 
 }

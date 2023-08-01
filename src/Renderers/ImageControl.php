@@ -7,8 +7,8 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
 /**
  * Image 图片上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/image
  *
- * @author slowlyo
- * @version v3.2.0
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class ImageControl extends BaseRenderer
 {
@@ -85,16 +85,25 @@ class ImageControl extends BaseRenderer
         return $this->set('clearValueOnHidden', $value);
     }
 
+    /**
+     *
+     */
     public function compress($value = true)
     {
         return $this->set('compress', $value);
     }
 
+    /**
+     *
+     */
     public function compressOptions($value = '')
     {
         return $this->set('compressOptions', $value);
     }
 
+    /**
+     *
+     */
     public function crop($value = '')
     {
         return $this->set('crop', $value);
@@ -124,6 +133,9 @@ class ImageControl extends BaseRenderer
         return $this->set('delimiter', $value);
     }
 
+    /**
+     *
+     */
     public function desc($value = '')
     {
         return $this->set('desc', $value);
@@ -183,6 +195,22 @@ class ImageControl extends BaseRenderer
     public function dropCrop($value = true)
     {
         return $this->set('dropCrop', $value);
+    }
+
+    /**
+     * 编辑器配置，运行时可以忽略
+     */
+    public function editorSetting($value = '')
+    {
+        return $this->set('editorSetting', $value);
+    }
+
+    /**
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
+     */
+    public function extraName($value = '')
+    {
+        return $this->set('extraName', $value);
     }
 
     /**
@@ -545,6 +573,9 @@ class ImageControl extends BaseRenderer
         return $this->set('staticPlaceholder', $value);
     }
 
+    /**
+     *
+     */
     public function staticSchema($value = '')
     {
         return $this->set('staticSchema', $value);
@@ -622,6 +653,9 @@ class ImageControl extends BaseRenderer
         return $this->set('validationErrors', $value);
     }
 
+    /**
+     *
+     */
     public function validations($value = '')
     {
         return $this->set('validations', $value);
@@ -658,5 +692,6 @@ class ImageControl extends BaseRenderer
     {
         return $this->set('width', $value);
     }
+
 
 }

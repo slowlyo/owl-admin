@@ -4,14 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 不指定类型默认就是文本
- * 
- * @author slowlyo
- * @version v3.2.0
+ *
+ * @author  slowlyo
+ * @version v3.3.0
  */
 class ListBodyField extends BaseRenderer
 {
     public function __construct()
     {
+
 
     }
 
@@ -70,5 +71,6 @@ class ListBodyField extends BaseRenderer
     {
         return $this->set('quickEdit', $value);
     }
+
 
 }
