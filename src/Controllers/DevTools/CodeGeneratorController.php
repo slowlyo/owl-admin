@@ -354,16 +354,22 @@ class CodeGeneratorController extends AdminController
                     ->searchable()
                     ->clearable()
                     ->source('${component_options}')
-                    ->value($key == 'list_component' ? 'TableColumn' : 'TextControl')
                     ->onEvent([
                         'change' => [
-                            'actions' => [['actionType' => 'clear', 'componentId' => $key . '_property_id']],
+                            'actions' => [
+                                [
+                                    'actionType' => 'clear',
+                                    'componentId' => $key . '_property_id',
+                                    'expression' => '${!!' . $key . '_property}'
+                                ]
+                            ],
                         ],
                     ])->description(__('admin.code_generators.name_label_desc')),
                 amisMake()->Divider()->visibleOn('${!!' . $key . '_type}'),
                 amisMake()
                     ->Service()
                     ->className('px-20')
+                    ->initFetchSchemaOn('${!!' . $key . '_type}')
                     ->schemaApi('post:/dev_tools/code_generator/get_property_options?c=${' . $key . '_type}&t=' . $key),
             ]);
         };
