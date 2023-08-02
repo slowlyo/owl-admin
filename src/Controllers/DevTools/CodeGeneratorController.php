@@ -109,9 +109,9 @@ class CodeGeneratorController extends AdminController
                         ->label(__('admin.code_generators.generate_code'))
                         ->level('link')
                         ->confirmText(__('admin.code_generators.confirm_generate_code'))
-                        ->api('dev_tools/code_generator/generate?id=${id}')
+                        ->api('/dev_tools/code_generator/generate?id=${id}')
                         ->feedback(
-                            amisMake()->Dialog()->title(' ')->body(amisMake()->Tpl()->tpl('${result | raw}'))->onEvent([
+                            amisMake()->Dialog()->title(' ')->bodyClassName('overflow-auto')->body(amisMake()->Tpl()->tpl('${result | raw}'))->onEvent([
                                 'confirm' => [
                                     'actions' => [
                                         ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'],
@@ -134,7 +134,7 @@ class CodeGeneratorController extends AdminController
                             amisMake()->Dialog()->title(false)->body(
                                 amisMake()
                                     ->Form()
-                                    ->initApi('post:dev_tools/code_generator/get_record?id=${id}')
+                                    ->initApi('post:/dev_tools/code_generator/get_record?id=${id}')
                                     ->mode('normal')
                                     ->body(
                                         amisMake()
@@ -364,7 +364,7 @@ class CodeGeneratorController extends AdminController
                     ->Service()
                     ->className('px-20')
                     ->initFetchSchemaOn('${!!' . $key . '_type}')
-                    ->schemaApi('post:dev_tools/code_generator/get_property_options?c=${' . $key . '_type}&t=' . $key),
+                    ->schemaApi('post:/dev_tools/code_generator/get_property_options?c=${' . $key . '_type}&t=' . $key),
             ]);
         };
 
@@ -473,7 +473,7 @@ class CodeGeneratorController extends AdminController
     public function previewCodeDialog()
     {
         return amisMake()->Dialog()->size('lg')->title(__('admin.code_generators.preview_code'))->body(
-            amisMake()->Service()->api('post:dev_tools/code_generator/preview?id=${id}')->body(
+            amisMake()->Service()->api('post:/dev_tools/code_generator/preview?id=${id}')->body(
                 amisMake()->Tabs()->tabs([
                     amisMake()->Tab()->title('Controller')->body(
                         amisMake()->EditorControl('controller')->language('php')->disabled()->size('xxl')
