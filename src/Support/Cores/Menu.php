@@ -166,7 +166,7 @@ class Menu
             [
                 'name'      => 'dev_tools',
                 'path'      => '/dev_tools',
-                'component' => 'basic',
+                'component' => 'amis',
                 'meta'      => [
                     'title' => __('admin.developer'),
                     'icon'  => 'fluent:window-dev-tools-20-regular',
