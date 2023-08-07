@@ -184,11 +184,8 @@ class ControllerGenerator extends BaseGenerator
         if (in_array('show', $_actions) && in_array('edit', $_actions) && in_array('delete', $_actions)) {
             return "\$this->rowActions({$isDialog}{$dialogSize})";
         }
-        if (in_array('edit', $_actions) && in_array('delete', $_actions)) {
-            return "\$this->rowActionsOnlyEditAndDelete({$isDialog}{$dialogSize})";
-        }
 
-        $str = "amisMake()->Operation()->label(__('admin.actions'))->buttons([\n\t\t\t\t";
+        $str = "\$this->rowActions([\n\t\t\t\t";
 
         if (in_array('show', $_actions)) {
             $str .= "\t\$this->rowShowButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
