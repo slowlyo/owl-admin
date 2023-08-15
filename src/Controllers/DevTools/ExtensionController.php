@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
+use Slowlyo\OwlAdmin\Events\ExtensionChanged;
 use Slowlyo\OwlAdmin\Renderers\Tpl;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Renderers\Alert;
@@ -49,23 +50,23 @@ class ExtensionController extends AdminController
     {
         $property = $extension->composerProperty;
 
-        $name    = $extension->getName();
+        $name = $extension->getName();
         $version = $extension->getVersion();
 
         return [
-            'id'          => $name,
-            'alias'       => $extension->getAlias(),
-            'logo'        => $extension->getLogoBase64(),
-            'name'        => $name,
-            'version'     => $version,
+            'id' => $name,
+            'alias' => $extension->getAlias(),
+            'logo' => $extension->getLogoBase64(),
+            'name' => $name,
+            'version' => $version,
             'description' => $property->description,
-            'authors'     => $property->authors,
-            'homepage'    => $property->homepage,
-            'enabled'     => $extension->enabled(),
-            'extension'   => $extension,
-            'doc'         => $extension->getDocs(),
+            'authors' => $property->authors,
+            'homepage' => $property->homepage,
+            'enabled' => $extension->enabled(),
+            'extension' => $extension,
+            'doc' => $extension->getDocs(),
             'has_setting' => $extension->settingForm() instanceof Form,
-            'used'        => $extension->used(),
+            'used' => $extension->used(),
         ];
     }
 
@@ -131,9 +132,9 @@ class ExtensionController extends AdminController
                             Drawer::make()->title(__('admin.extensions.setting'))->resizable()->closeOnOutside()->body(
                                 Service::make()
                                     ->schemaApi([
-                                        'url'    => admin_url('dev_tools/extensions/config_form'),
+                                        'url' => admin_url('dev_tools/extensions/config_form'),
                                         'method' => 'post',
-                                        'data'   => [
+                                        'data' => [
                                             'id' => '${id}',
                                         ],
                                     ])
@@ -144,10 +145,10 @@ class ExtensionController extends AdminController
                         ->level('link')
                         ->className(["text-success" => '${!enabled}', "text-danger" => '${enabled}'])
                         ->api([
-                            'url'    => admin_url('dev_tools/extensions/enable'),
+                            'url' => admin_url('dev_tools/extensions/enable'),
                             'method' => 'post',
-                            'data'   => [
-                                'id'      => '${id}',
+                            'data' => [
+                                'id' => '${id}',
                                 'enabled' => '${enabled}',
                             ],
                         ])
@@ -157,9 +158,9 @@ class ExtensionController extends AdminController
                         ->level('link')
                         ->className('text-danger')
                         ->api([
-                            'url'    => admin_url('dev_tools/extensions/uninstall'),
+                            'url' => admin_url('dev_tools/extensions/uninstall'),
                             'method' => 'post',
-                            'data'   => ['id' => '${id}'],
+                            'data' => ['id' => '${id}'],
                         ])
                         ->visibleOn('${used}')
                         ->confirmText(__('admin.extensions.uninstall_confirm')),
@@ -210,6 +211,9 @@ class ExtensionController extends AdminController
             return $this->response()->fail($extension->getError());
         }
 
+        //创建扩展事件
+        ExtensionChanged::dispatch($request->name, 'create');
+
         return $this->response()->successMessage(
             __('admin.successfully_message', ['attribute' => __('admin.extensions.create')])
         );
@@ -249,7 +253,7 @@ class ExtensionController extends AdminController
 
         // 如果哪天加速服务挂了，就用官方的
         if (!$result) {
-            $url    = 'https://packagist.org/search.json?tags=owl-admin&per_page=15&q=' . $q;
+            $url = 'https://packagist.org/search.json?tags=owl-admin&per_page=15&q=' . $q;
             $result = file_get_contents($url);
         }
 
@@ -351,6 +355,9 @@ class ExtensionController extends AdminController
                 return $this->response()->fail(__('admin.extensions.validation.invalid_package'));
             }
 
+            //安装扩展事件
+            //ExtensionChanged::dispatch($extensionName,'install');
+
             return $this->response()->successMessage(
                 __('admin.successfully_message', ['attribute' => __('admin.extensions.install')])
             );
@@ -392,6 +399,9 @@ class ExtensionController extends AdminController
     {
         Admin::extension()->enable($request->id, !$request->enabled);
 
+        //扩展启用禁用事件
+        ExtensionChanged::dispatch($request->id, $request->enabled ? 'enable' : 'disable');
+
         return $this->response()->successMessage(__('admin.action_success'));
     }
 
@@ -407,6 +417,9 @@ class ExtensionController extends AdminController
     public function uninstall(Request $request)
     {
         Admin::extension($request->id)->uninstall();
+
+        //扩展卸载事件
+        ExtensionChanged::dispatch($request->id, 'uninstall');
 
         return $this->response()->successMessage(__('admin.action_success'));
     }
