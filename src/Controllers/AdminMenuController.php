@@ -18,6 +18,7 @@ class AdminMenuController extends AdminController
     {
         $crud = $this->baseCRUD()
             ->loadDataOnce()
+            ->syncLocation(false)
             ->footerToolbar([])
             ->headerToolbar([
                 $this->createButton(true, 'lg'),
