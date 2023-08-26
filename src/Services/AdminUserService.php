@@ -128,6 +128,8 @@ class AdminUserService extends AdminService
                 $query->where('username', 'like', "%{$keyword}%")->orWhere('name', 'like', "%{$keyword}%");
             });
 
+        $this->sortable($query);
+
         $items = (clone $query)->paginate(request()->input('perPage', 20))->items();
         $total = (clone $query)->count();
 

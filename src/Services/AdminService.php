@@ -12,6 +12,8 @@ abstract class AdminService
 {
     use ErrorTrait;
 
+    protected $tableColumn;
+
     public static function make(): static
     {
         return new static;
@@ -32,8 +34,12 @@ abstract class AdminService
 
     public function getTableColumns()
     {
-        return Schema::connection($this->getModel()->getConnectionName())
-            ->getColumnListing($this->getModel()->getTable());
+        if (!$this->tableColumn) {
+            $this->tableColumn = Schema::connection($this->getModel()->getConnectionName())
+                ->getColumnListing($this->getModel()->getTable());
+        }
+
+        return $this->tableColumn;
     }
 
     public function query(): Builder
@@ -74,7 +80,7 @@ abstract class AdminService
      */
     public function listQuery()
     {
-        $query = $this->query()->orderByDesc($this->sortColumn());
+        $query = $this->query();
 
         $this->sortable($query);
 
@@ -94,6 +100,8 @@ abstract class AdminService
     {
         if (request()->orderBy && request()->orderDir) {
             $query->orderBy(request()->orderBy, request()->orderDir ?? 'asc');
+        } else {
+            $query->orderByDesc($this->sortColumn());
         }
     }
 
@@ -122,7 +130,17 @@ abstract class AdminService
      */
     public function sortColumn()
     {
-        return $this->getModel()->getUpdatedAtColumn() ?? $this->getModel()->getKeyName();
+        $updatedAtColumn = $this->getModel()->getUpdatedAtColumn();
+
+        if (Arr::has($this->getTableColumns(), $updatedAtColumn)) {
+            return $updatedAtColumn;
+        }
+
+        if (Arr::has($this->getTableColumns(), $this->getModel()->getKeyName())) {
+            return $this->getModel()->getKeyName();
+        }
+
+        return Arr::first($this->getTableColumns());
     }
 
     /**

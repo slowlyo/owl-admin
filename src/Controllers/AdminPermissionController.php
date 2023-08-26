@@ -157,9 +157,18 @@ class AdminPermissionController extends AdminController
             $_httpPath =
                 $menu['url_type'] == Admin::adminMenuModel()::TYPE_ROUTE ? $this->getHttpPath($menu['url']) : '';
 
+            $menuTitle = $menu['title'];
+
+            // 避免名称重复
+            foreach ($permissions as $_item){
+                if(data_get($_item, 'name') == $menuTitle){
+                    $menuTitle = sprintf('%s(%s)', $menuTitle, $menu['id']);
+                }
+            }
+
             $permissions[] = [
                 'id'         => $menu['id'],
-                'name'       => $menu['title'],
+                'name'       => $menuTitle,
                 'slug'       => (string)Str::uuid(),
                 'http_path'  => json_encode($_httpPath ? [$_httpPath] : ''),
                 'order'      => $menu['order'],
