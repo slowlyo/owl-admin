@@ -1,3 +1,7 @@
+/**
+ * { data-analysis:  ['read', 'write'] }
+ */
+
 export type UserPermission = Record<string, string[]>;
 
 type Auth = {
