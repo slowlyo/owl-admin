@@ -6,7 +6,7 @@ import zhCN from 'antd/locale/zh_CN'
 import 'dayjs/locale/zh-cn'
 import dayjs from 'dayjs'
 import {appLoaded} from './utils/common.ts'
-import {Layout} from './layout'
+import {Layout} from './layouts'
 
 dayjs.locale('zh-cn')
 
