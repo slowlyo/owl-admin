@@ -8,7 +8,7 @@ export const DefaultLayout = () => {
         <Layout className="h-screen overflow-hidden">
             <Sider width={220} className="border-r" theme="light">Sider</Sider>
             <Layout>
-                <Header className="h-[60px] bg-white border-b">Header</Header>
+                <Header className="h-[60px] bg-white border-b">11111111Header</Header>
                 <Content className="overflow-auto overflow">
                     <div>Content</div>
                     <LayoutFooter/>
