@@ -1,5 +1,5 @@
 import {Layout} from 'antd'
-import {LayoutFooter} from '../components/layout-footer'
+import {LayoutFooter} from '../components/LayoutFooter'
 
 const {Header, Content} = Layout
 
