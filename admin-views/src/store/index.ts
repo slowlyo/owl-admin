@@ -19,10 +19,7 @@ const defaultSettings = {
 
 export interface GlobalState {
     settings?: {};
-    userInfo?: {
-        name?: string;
-        avatar?: string;
-    };
+    userInfo?: { name?: string; avatar?: string; };
     breadcrumb?: [],
     routes?: any[];
 }
