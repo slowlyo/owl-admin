@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Wrapper 容器渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/wrapper
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Wrapper extends BaseRenderer
 {
@@ -146,7 +146,7 @@ class Wrapper extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -170,6 +170,14 @@ class Wrapper extends BaseRenderer
     }
 
     /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
      * 是否显示
      */
     public function visible($value = true)
@@ -186,7 +194,7 @@ class Wrapper extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function wrap($value = true)
     {

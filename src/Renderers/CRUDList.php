@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUDList
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class CRUDList extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('mode', 'list');
-        $this->set('type', 'crud');
+$this->set('type', 'crud');
 
 
     }
@@ -155,7 +155,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function filterDefaultVisible($value = true)
     {
@@ -163,7 +163,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function filterTogglable($value = true)
     {
@@ -363,7 +363,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -371,7 +371,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function messages($value = '')
     {
@@ -387,7 +387,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -579,7 +579,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -587,7 +587,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -595,7 +595,7 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function stopAutoRefreshWhenModalIsOpen($value = true)
     {
@@ -640,6 +640,14 @@ class CRUDList extends BaseRenderer
     public function type($value = 'crud')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

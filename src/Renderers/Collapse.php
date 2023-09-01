@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Collapse 折叠渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/collapse
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Collapse extends BaseRenderer
 {
@@ -242,7 +242,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -271,6 +271,14 @@ class Collapse extends BaseRenderer
     public function unmountOnExit($value = true)
     {
         return $this->set('unmountOnExit', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

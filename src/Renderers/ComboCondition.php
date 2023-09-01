@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ComboCondition
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class ComboCondition extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
     /**
-     *
+     * 
      */
     public function items($value = '')
     {
@@ -25,7 +25,7 @@ class ComboCondition extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function label($value = '')
     {
@@ -33,7 +33,7 @@ class ComboCondition extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function mode($value = '')
     {
@@ -41,7 +41,7 @@ class ComboCondition extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function scaffold($value = '')
     {
@@ -49,7 +49,7 @@ class ComboCondition extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function test($value = '')
     {

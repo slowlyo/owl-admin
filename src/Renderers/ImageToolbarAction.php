@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ImageToolbarAction
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class ImageToolbarAction extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function disabled($value = true)
     {
@@ -26,7 +26,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function icon($value = '')
     {
@@ -34,7 +34,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function iconClassName($value = '')
     {
@@ -50,7 +50,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function label($value = '')
     {

@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 二维码展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/qrcode
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class QRCode extends BaseRenderer
 {
@@ -194,7 +194,7 @@ class QRCode extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -215,6 +215,14 @@ class QRCode extends BaseRenderer
     public function type($value = '')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

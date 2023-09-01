@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Repeat 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/repeat
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class RepeatControl extends BaseRenderer
 {
@@ -34,7 +34,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -210,7 +210,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function options($value = '')
     {
@@ -314,7 +314,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -346,6 +346,14 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
      * 远端校验表单项接口
      */
     public function validateApi($value = '')
@@ -370,7 +378,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

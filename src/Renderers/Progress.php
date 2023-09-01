@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 进度展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/progress
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Progress extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'progress');
-        $this->set('mode', 'line');
+$this->set('mode', 'line');
 
 
     }
@@ -211,7 +211,7 @@ class Progress extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -251,11 +251,19 @@ class Progress extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'progress')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TimelineItem
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class TimelineItem extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
@@ -38,6 +38,14 @@ class TimelineItem extends BaseRenderer
     public function detail($value = '')
     {
         return $this->set('detail', $value);
+    }
+
+    /**
+     * 节点详情的CSS类名（优先级高于统一配置的detailClassName）
+     */
+    public function detailClassName($value = '')
+    {
+        return $this->set('detailClassName', $value);
     }
 
     /**
@@ -177,7 +185,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -201,11 +209,35 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
+     * 节点时间的CSS类名（优先级高于统一配置的timeClassName）
+     */
+    public function timeClassName($value = '')
+    {
+        return $this->set('timeClassName', $value);
+    }
+
+    /**
      * 时间节点标题
      */
     public function title($value = '')
     {
         return $this->set('title', $value);
+    }
+
+    /**
+     * 节点标题的CSS类名（优先级高于统一配置的titleClassName）
+     */
+    public function titleClassName($value = '')
+    {
+        return $this->set('titleClassName', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

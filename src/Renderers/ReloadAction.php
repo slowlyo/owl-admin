@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ReloadAction
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class ReloadAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-        $this->set('actionType', 'reload');
+$this->set('actionType', 'reload');
 
 
     }
@@ -243,7 +243,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function primary($value = true)
     {
@@ -339,7 +339,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -363,7 +363,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltip($value = '')
     {
@@ -384,6 +384,14 @@ class ReloadAction extends BaseRenderer
     public function type($value = '')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

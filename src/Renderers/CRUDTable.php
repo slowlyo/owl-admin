@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUDTable
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class CRUDTable extends BaseRenderer
 {
@@ -202,7 +202,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function filterDefaultVisible($value = true)
     {
@@ -210,7 +210,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function filterTogglable($value = true)
     {
@@ -370,7 +370,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -378,7 +378,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function messages($value = '')
     {
@@ -394,7 +394,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -602,7 +602,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -610,7 +610,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -618,7 +618,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function stopAutoRefreshWhenModalIsOpen($value = true)
     {
@@ -658,14 +658,6 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 配置 table-layout 属性 可选值: auto | fixed
-     */
-    public function tableLayout($value = '')
-    {
-        return $this->set('tableLayout', $value);
-    }
-
-    /**
      * 标题
      */
     public function title($value = '')
@@ -687,6 +679,14 @@ class CRUDTable extends BaseRenderer
     public function type($value = 'crud')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

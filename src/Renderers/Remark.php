@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 提示渲染器，默认会显示个小图标，鼠标放上来的时候显示配置的内容。
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Remark extends BaseRenderer
 {
@@ -74,7 +74,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function icon($value = '')
     {
@@ -90,7 +90,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function label($value = '')
     {
@@ -178,7 +178,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -202,7 +202,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltipClassName($value = '')
     {
@@ -223,6 +223,14 @@ class Remark extends BaseRenderer
     public function type($value = 'remark')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

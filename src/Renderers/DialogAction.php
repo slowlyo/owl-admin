@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DialogAction
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class DialogAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-        $this->set('actionType', 'dialog');
+$this->set('actionType', 'dialog');
 
 
     }
@@ -259,7 +259,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function primary($value = true)
     {
@@ -267,7 +267,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function redirect($value = '')
     {
@@ -275,7 +275,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function reload($value = '')
     {
@@ -371,7 +371,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -395,7 +395,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltip($value = '')
     {
@@ -416,6 +416,14 @@ class DialogAction extends BaseRenderer
     public function type($value = '')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

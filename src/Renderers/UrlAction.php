@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * UrlAction
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class UrlAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-        $this->set('actionType', 'url');
+$this->set('actionType', 'url');
 
 
     }
@@ -259,7 +259,7 @@ class UrlAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function primary($value = true)
     {
@@ -355,7 +355,7 @@ class UrlAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -379,7 +379,7 @@ class UrlAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltip($value = '')
     {
@@ -408,6 +408,14 @@ class UrlAction extends BaseRenderer
     public function url($value = '')
     {
         return $this->set('url', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

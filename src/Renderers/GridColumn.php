@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * GridColumn
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class GridColumn extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
     /**
-     *
+     * 
      */
     public function body($value = '')
     {

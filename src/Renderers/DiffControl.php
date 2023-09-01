@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Diff 编辑器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/diff
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class DiffControl extends BaseRenderer
 {
@@ -34,7 +34,7 @@ class DiffControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -330,7 +330,7 @@ class DiffControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -362,6 +362,14 @@ class DiffControl extends BaseRenderer
     }
 
     /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
      * 远端校验表单项接口
      */
     public function validateApi($value = '')
@@ -386,7 +394,7 @@ class DiffControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

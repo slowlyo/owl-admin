@@ -6,9 +6,9 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
 
 /**
  * Image 图片上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/image
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class ImageControl extends BaseRenderer
 {
@@ -86,7 +86,7 @@ class ImageControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function compress($value = true)
     {
@@ -94,7 +94,7 @@ class ImageControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function compressOptions($value = '')
     {
@@ -102,7 +102,7 @@ class ImageControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function crop($value = '')
     {
@@ -134,7 +134,7 @@ class ImageControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -574,7 +574,7 @@ class ImageControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -630,6 +630,14 @@ class ImageControl extends BaseRenderer
     }
 
     /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
      * 远端校验表单项接口
      */
     public function validateApi($value = '')
@@ -654,7 +662,7 @@ class ImageControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

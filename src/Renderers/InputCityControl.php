@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * City 城市选择框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/city
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class InputCityControl extends BaseRenderer
 {
@@ -66,7 +66,7 @@ class InputCityControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -242,7 +242,7 @@ class InputCityControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -378,7 +378,7 @@ class InputCityControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -410,6 +410,14 @@ class InputCityControl extends BaseRenderer
     }
 
     /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
      * 远端校验表单项接口
      */
     public function validateApi($value = '')
@@ -434,7 +442,7 @@ class InputCityControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

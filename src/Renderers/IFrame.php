@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * IFrame 渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/iframe
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class IFrame extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class IFrame extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function allow($value = '')
     {
@@ -66,7 +66,7 @@ class IFrame extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function height($value = '')
     {
@@ -98,7 +98,7 @@ class IFrame extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -122,7 +122,7 @@ class IFrame extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function sandbox($value = '')
     {
@@ -186,7 +186,7 @@ class IFrame extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -202,11 +202,19 @@ class IFrame extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'iframe')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**
@@ -226,7 +234,7 @@ class IFrame extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function width($value = '')
     {
