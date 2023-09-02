@@ -10,6 +10,8 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@ant-design/colors": "^7.0.0",
+        "@iconify/react": "^4.1.1",
         "ahooks": "^3.7.8",
         "antd": "^5.8.5",
         "axios": "^1.5.0",

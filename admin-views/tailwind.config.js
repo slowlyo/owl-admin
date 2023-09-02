@@ -6,8 +6,15 @@ export default {
         '*'
     ],
     theme  : {
-        extend: {},
+        extend: {
+            borderRadius: {
+                DEFAULT: '6px',
+            }
+        },
     },
     plugins: [],
+    corePlugins: {
+        preflight: false,
+    }
 }
 

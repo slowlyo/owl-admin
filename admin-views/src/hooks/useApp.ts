@@ -9,42 +9,48 @@ import {useSettings} from '@/hooks/useSettings.ts'
 import {useAuth} from '@/hooks/useAuth.ts'
 
 export const useApp = () => {
-    const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
+    const [lang, setLang] = useStorage('owl-admin-lang', 'zh-CN')
     const settings = useSettings()
     const auth = useAuth()
 
+    // 获取全局状态
     const getStore = () => useSelector((state: GlobalState) => state)
 
-    const getLocale = () => {
+    // 获取语言
+    const getAntdLocale = () => {
         switch (lang) {
-            case 'zh-CN':
+            case 'zh_CN':
                 return zhCN
-            case 'en-US':
+            case 'en':
                 return enUS
             default:
                 return zhCN
         }
     }
 
+    // 初始化
     const init = async (store = null) => {
+        // 获取框架设置
         const {data} = await settings.initSettings.runAsync()
-
-        setLang(data.locale == 'zh_CN' ? 'zh-CN' : 'en-US')
+        console.log(data)
+        // 设置语言
+        setLang(data.locale)
+        // 设置动态资源
         dynamicAssetsHandler(data.assets)
-
+        // 保存框架设置
         store.dispatch({
             type: 'update-settings',
             payload: {settings: data},
         })
-
-        auth.checkLogin()
-
+        // 获取用户信息
+        await auth.initUserInfo(store)
+        // 移除加载动画
         appLoaded()
     }
 
     return {
         init,
         getStore,
-        getLocale
+        getAntdLocale
     }
 }

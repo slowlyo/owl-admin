@@ -1,5 +1,6 @@
+import DefaultLogin from '@/pages/login/default-login'
+
 export const Login = () => {
-    return (
-        <div>login</div>
-    )
+
+    return <DefaultLogin/>
 }

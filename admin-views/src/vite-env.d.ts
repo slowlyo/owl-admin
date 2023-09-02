@@ -2,7 +2,12 @@
 
 interface Window {
     $adminApiPrefix: string,
-    $owl: any
+    $owl: {
+        afterLoginSuccess: (params: any, token: string) => void,
+        getToken: () => string,
+        logout: () => void,
+        checkLogin: () => void,
+    }
 }
 
 interface ImportMetaEnv {
