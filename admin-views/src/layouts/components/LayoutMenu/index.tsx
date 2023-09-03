@@ -1,15 +1,15 @@
 import {Menu} from 'antd'
 import {useEffect, useState} from 'react'
 import {useRouter} from '@/hooks/useRouter.tsx'
-import {useHistory} from 'react-router'
+import {useNavigate} from 'react-router'
 
 export const LayoutMenu = ({menus = []}) => {
     const router = useRouter()
-    const history = useHistory()
+    const navigate = useNavigate()
     const [openKeys, setOpenKeys] = useState([])
 
     const clickMenu = (e) => {
-        history.push(e.key)
+        navigate(e.key)
         console.log(e)
     }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {createRoot} from 'react-dom/client'
+import ReactDOM from 'react-dom/client'
 import './index.css'
 import {App, ConfigProvider} from 'antd'
 import 'dayjs/locale/zh-cn'
@@ -10,10 +10,11 @@ import {useMount} from 'ahooks'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import rootReducer from '@/store'
-import {HashRouter, Route, Switch} from 'react-router-dom'
+import {HashRouter, Route, Routes, Switch} from 'react-router-dom'
 import {useAuth} from '@/hooks/useAuth.ts'
 import {registerGlobalFunctions} from '@/utils/common.ts'
 import {Login} from '@/pages/login'
+import {NotFound} from '@/pages/NotFound'
 import {Layout} from '@/layouts'
 import {GlobalContext} from '@/components/GlobalContext'
 
@@ -40,10 +41,10 @@ const Root = () => {
             <ConfigProvider theme={getThemeConfig()} locale={app.getAntdLocale()}>
                 <App className="h-full w-full">
                     <Provider store={store}>
-                        <Switch>
-                            <Route path="/login" component={Login}/>
-                            <Route path="/" component={Layout}/>
-                        </Switch>
+                        <Routes>
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/*" element={<Layout/>}/>
+                        </Routes>
                     </Provider>
                 </App>
             </ConfigProvider>
@@ -51,7 +52,7 @@ const Root = () => {
     )
 }
 
-createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
     <GlobalContext.Provider value={{store}}>
         <Root/>
     </GlobalContext.Provider>

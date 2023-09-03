@@ -1,19 +1,20 @@
 import React from 'react'
-import 'amis/lib/themes/cxd.css'
-import 'amis/lib/helper.css'
-import 'amis/sdk/iconfont.css'
+import 'amis/lib/themes/cxd.css';
+import 'amis/lib/helper.css';
+import 'amis/sdk/iconfont.css';
 import '@fortawesome/fontawesome-free/css/all.css'
-import './style/index.css'
+import "./style/index.css"
 import {render as renderAmis, RenderOptions} from 'amis'
 import {amisRequest} from '@/service/api'
 import {ToastComponent} from 'amis-ui'
 import clipboard from '@/utils/clipboard'
-import {useHistory} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router'
 import {message} from 'antd'
 import {useSettings} from '@/hooks/useSettings.ts'
 
 const AmisRender = ({schema}) => {
-    const history = useHistory()
+    const location = useLocation()
+    const navigate = useNavigate()
     const settings = useSettings().get()
 
     const localeMap = {
@@ -30,13 +31,13 @@ const AmisRender = ({schema}) => {
         enableAMISDebug: settings.show_development_tools,
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
         updateLocation: (location, replace) => {
-            replace || history.push(location)
+            replace || navigate(location)
         },
         jumpTo: (location: string) => {
             if (location.startsWith("http") || location.startsWith("https")) {
                 window.open(location)
             } else {
-                history.push(location.startsWith("/") ? location : `/${location}`)
+                navigate(location.startsWith("/") ? location : `/${location}`)
             }
         },
         copy: async (content) => {
