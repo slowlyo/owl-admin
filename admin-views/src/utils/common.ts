@@ -42,3 +42,9 @@ export const arrayGet = (array, key, def = null) => {
 
     return array
 }
+
+export const isArray = (val): boolean => Object.prototype.toString.call(val) === '[object Array]'
+
+export const isObject = (val): boolean => Object.prototype.toString.call(val) === '[object Object]'
+
+export const isString = (val): boolean => Object.prototype.toString.call(val) === '[object String]'

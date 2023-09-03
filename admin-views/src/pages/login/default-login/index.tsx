@@ -7,14 +7,10 @@ import {useLang} from '@/hooks/useLang.ts'
 import {useRequest} from 'ahooks'
 import {fetchCaptcha, fetchLogin} from '@/service'
 import {useAuth} from '@/hooks/useAuth.ts'
-import {useStore} from 'react-redux'
 
 const DefaultLogin = () => {
-    window.$owl.checkLogin()
-
     const formRef = useRef<FormInstance>()
-    const store = useStore()
-    const auth = useAuth(store)
+    const auth = useAuth()
     const {getSetting, get} = useSettings()
     const settings = get()
     const {t} = useLang()
@@ -27,9 +23,9 @@ const DefaultLogin = () => {
     const getCaptcha = useRequest(fetchCaptcha, {
         manual: true,
         throttleWait: 1000,
-        onSuccess({data}) {
-            setSysCaptcha(data.sys_captcha)
-            setCaptcha(data.captcha_img)
+        onSuccess(res) {
+            setSysCaptcha(res.data.sys_captcha)
+            setCaptcha(res.data.captcha_img)
         }
     })
 
@@ -83,7 +79,7 @@ const DefaultLogin = () => {
             <Card className="p-15px shadow-sm">
                 <div className="w-[320px] p-2">
                     <div className="flex justify-between">
-                        <Image src={getSetting('logo')} width={42}/>
+                        <Image src={getSetting('logo')} width={42} preview={false}/>
                         <div className="text-2xl font-normal">
                             {getSetting('app_name')}
                         </div>

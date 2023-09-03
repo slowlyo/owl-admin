@@ -1,30 +1,30 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import {createRoot} from 'react-dom/client'
 import './index.css'
-import {ConfigProvider} from 'antd'
+import {App, ConfigProvider} from 'antd'
 import 'dayjs/locale/zh-cn'
 import dayjs from 'dayjs'
-import {Layout} from './layouts'
 import {useApp} from '@/hooks/useApp.ts'
 import {useTheme} from '@/hooks/useTheme.ts'
 import {useMount} from 'ahooks'
-import {Provider, useStore} from 'react-redux'
+import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import rootReducer from '@/store'
-import {HashRouter, Route, Routes} from 'react-router-dom'
-import {Login} from '@/pages/login'
+import {HashRouter, Route, Switch} from 'react-router-dom'
 import {useAuth} from '@/hooks/useAuth.ts'
 import {registerGlobalFunctions} from '@/utils/common.ts'
+import {Login} from '@/pages/login'
+import {Layout} from '@/layouts'
+import {GlobalContext} from '@/components/GlobalContext'
 
 dayjs.locale('zh-cn')
 
 const store = createStore(rootReducer)
 
-const App = () => {
+const Root = () => {
     const app = useApp()
+    const auth = useAuth()
     const {getThemeConfig} = useTheme()
-
-    const auth = useAuth(store)
 
     registerGlobalFunctions({
         afterLoginSuccess: auth.afterLoginSuccess,
@@ -33,20 +33,26 @@ const App = () => {
         checkLogin: () => auth.checkLogin(),
     })
 
-    useMount(() => app.init(store))
+    useMount(() => app.init())
 
     return (
         <HashRouter>
             <ConfigProvider theme={getThemeConfig()} locale={app.getAntdLocale()}>
-                <Provider store={store}>
-                    <Routes>
-                        <Route path="/login" element={<Login/>}/>
-                        <Route path="/" element={<Layout/>}/>
-                    </Routes>
-                </Provider>
+                <App className="h-full w-full">
+                    <Provider store={store}>
+                        <Switch>
+                            <Route path="/login" component={Login}/>
+                            <Route path="/" component={Layout}/>
+                        </Switch>
+                    </Provider>
+                </App>
             </ConfigProvider>
         </HashRouter>
     )
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App/>)
+createRoot(document.getElementById('root')!).render(
+    <GlobalContext.Provider value={{store}}>
+        <Root/>
+    </GlobalContext.Provider>
+)

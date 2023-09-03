@@ -22,12 +22,14 @@ export interface GlobalState {
     userInfo?: { name?: string; avatar?: string; };
     breadcrumb?: [],
     routes?: any[];
+    menus?: any[];
 }
 
 const initialState: GlobalState = {
     settings: {},
     userInfo: {},
     routes: [],
+    menus: []
 }
 
 export default function store(state = initialState, action) {
@@ -40,31 +42,23 @@ export default function store(state = initialState, action) {
                 ...defaultSettings,
             }
 
-            return {
-                ...state,
-                settings,
-            }
+            return {...state, settings}
         }
         case 'update-userInfo': {
             const {userInfo = initialState.userInfo} = action.payload
-            return {
-                ...state,
-                userInfo,
-            }
+            return {...state, userInfo}
         }
         case 'update-breadcrumb': {
             const {breadcrumb} = action.payload
-            return {
-                ...state,
-                breadcrumb,
-            }
+            return {...state, breadcrumb}
         }
         case 'update-routes': {
             const {routes} = action.payload
-            return {
-                ...state,
-                routes,
-            }
+            return {...state, routes}
+        }
+        case 'update-menus': {
+            const {menus} = action.payload
+            return {...state, menus}
         }
         default:
             return state
