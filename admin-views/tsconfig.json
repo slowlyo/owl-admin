@@ -1,3 +1,10 @@
 {
-  "extends": "./src/.umi/tsconfig.json"
+    "extends": "./src/.umi/tsconfig.json",
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false,
+    "allowJs": true,
 }

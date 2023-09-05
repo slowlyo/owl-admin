@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #d9d9d9;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height: 100vh;
+    width: 100vw;
+}
