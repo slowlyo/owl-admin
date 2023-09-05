@@ -5,19 +5,18 @@ import {Button, Card, Checkbox, Form, FormInstance, Image, Input, Space, Spin} f
 import {Icon} from '@iconify/react'
 // import {useLang} from '@/hooks/useLang.ts'
 import {useRequest} from 'ahooks'
+import {useModel} from '@@/plugin-model'
 // import {fetchCaptcha, fetchLogin} from '@/service'
 // import {useAuth} from '@/hooks/useAuth.ts'
 
 const DefaultLogin = () => {
     const formRef = useRef<FormInstance>()
+    const {getSetting} = useModel('settingModel')
     // const auth = useAuth()
     // const {getSetting, get} = useSettings()
     // const settings = get()
     // const {t} = useLang()
 
-    const getSetting = (key) => {
-        return key
-    }
     const t = (key) => {
         return key
     }
