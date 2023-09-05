@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "author": "Slowlyo <slowlyo_email@qq.com>",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "umi": "^4.0.79"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "typescript": "^5.2.2",
+    "@umijs/plugins": "^4.0.79",
+    "tailwindcss": "^3"
+  }
+}
