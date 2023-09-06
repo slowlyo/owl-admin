@@ -1,13 +1,12 @@
 import {Layout} from 'antd'
-// import {LayoutFooter} from '../components/LayoutFooter'
-// import {LayoutMenu} from '@/layouts/components/LayoutMenu'
-// import {LayoutLogo} from '@/layouts/components/LayoutLogo'
-// import {useRouter} from '@/hooks/useRouter.tsx'
 import {LayoutBreadcrumb} from '@/layouts/components/LayoutBreadcrumb'
 import {LayoutTopBar} from '@/layouts/components/LayoutTopBar'
 import {useState} from 'react'
 import {CollapseTrigger} from '@/layouts/components/CollapseTrigger'
-// import {LayoutContent} from '@/layouts/components/LayoutContent'
+import {LayoutLogo} from '@/layouts/components/LayoutLogo'
+import {LayoutMenu} from '@/layouts/components/LayoutMenu'
+import {LayoutFooter} from '@/layouts/components/LayoutFooter'
+import {LayoutContent} from '@/layouts/components/LayoutContent'
 
 const {Header, Sider, Content} = Layout
 
@@ -23,8 +22,8 @@ export const DefaultLayout = () => {
                    collapsible
                    trigger={<CollapseTrigger collapsed={collapsed} toggle={setCollapsed} />}
                    collapsedWidth={60}>
-                {/*<LayoutLogo onlyLogo={collapsed}/>*/}
-                {/*<LayoutMenu/>*/}
+                <LayoutLogo onlyLogo={collapsed}/>
+                <LayoutMenu/>
             </Sider>
             <Layout>
                 <Header className="h-[60px] leading-none flex justify-between items-center bg-white border-b">
@@ -32,8 +31,8 @@ export const DefaultLayout = () => {
                     <LayoutTopBar/>
                 </Header>
                 <Content className="overflow-auto overflow">
-                    {/*<LayoutContent/>*/}
-                    {/*<LayoutFooter/>*/}
+                    <LayoutContent/>
+                    <LayoutFooter/>
                 </Content>
             </Layout>
         </Layout>

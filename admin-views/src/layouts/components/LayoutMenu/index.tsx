@@ -1,16 +1,17 @@
 import {Menu} from 'antd'
-import {useEffect, useState} from 'react'
-import {useRouter} from '@/hooks/useRouter.tsx'
-import {useNavigate} from 'react-router'
+import {useState} from 'react'
+import {history} from 'umi'
+import {useModel} from '@@/plugin-model'
 
 export const LayoutMenu = ({menus = []}) => {
-    const router = useRouter()
-    const navigate = useNavigate()
-    const [openKeys, setOpenKeys] = useState([])
+    const [openKeys, setOpenKeys] = useState<string[]>([])
+    if (!menus.length) {
+        const {getMenus} = useModel('menuModel')
+        menus = getMenus()
+    }
 
-    const clickMenu = (e) => {
-        navigate(e.key)
-        console.log(e)
+    const clickMenu = (e: any) => {
+        history.push(e.key)
     }
 
     return (
@@ -20,7 +21,7 @@ export const LayoutMenu = ({menus = []}) => {
             openKeys={openKeys}
             onOpenChange={(keys) => setOpenKeys(keys)}
             onClick={clickMenu}
-            items={menus.length ? menus : router.getMenus()}
+            items={menus}
         />
     )
 }

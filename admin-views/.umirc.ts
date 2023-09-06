@@ -25,10 +25,18 @@ export default defineConfig({
         '@umijs/plugins/dist/request',
         '@umijs/plugins/dist/initial-state',
         '@umijs/plugins/dist/model',
+        '@umijs/plugins/dist/locale',
     ],
     tailwindcss: {},
     request: {},
     model: {},
     initialState: {},
-    proxy
+    locale: {
+        default: 'en-US',
+        useLocalStorage: true,
+    },
+    proxy,
+    headScripts: [
+        'window.$adminApiPrefix = "/admin-api"'
+    ]
 })

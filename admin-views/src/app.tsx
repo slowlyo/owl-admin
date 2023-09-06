@@ -1,14 +1,17 @@
 import type {RequestConfig} from 'umi'
 import {fetchUserRoutes} from '@/services'
 import {message} from 'antd'
+import {getToken} from '@/utils/auth'
+import {patch} from '@/utils/dynamicRoute'
+
+let extraRoutes: any
+
 
 export const getInitialState = async () => {
-    console.log('getInitialState')
-    return {}
+    return {extraRoutes}
 }
 
 export const request: RequestConfig = {
-    timeout: 1000,
     baseURL: '/admin-api',
     headers: {'X-Requested-With': 'XMLHttpRequest'},
     errorConfig: {
@@ -22,9 +25,12 @@ export const request: RequestConfig = {
     // 请求拦截器
     requestInterceptors: [
         (config: any) => {
-            console.log('requestInterceptors', config)
-            // 拦截请求配置，进行个性化处理。
-            return {...config}
+            const handleConfig = {...config}
+            const token = getToken()
+
+            handleConfig.headers.Authorization = `Bearer ${token}`
+
+            return handleConfig
         }
     ],
     // 响应拦截器
@@ -38,7 +44,7 @@ export const request: RequestConfig = {
                     if (window.location.hash != '/login') {
                         window.location.hash = '/login'
                     }
-                }else{
+                } else {
                     message.error(data.msg || '请求失败')
                 }
             }
@@ -48,13 +54,8 @@ export const request: RequestConfig = {
     ]
 }
 
-let extraRoutes: any
-
 export const patchClientRoutes = ({routes}: { routes: any }) => {
-
-    // 根据 extraRoutes 对 routes 做一些修改
-    // patch(routes, extraRoutes);
-    console.log('patchClientRoutes', routes, extraRoutes)
+    patch(routes, extraRoutes)
 }
 
 export const render = (oldRender: any) => {
