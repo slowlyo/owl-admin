@@ -8,11 +8,11 @@ export const appLoaded = () => setTimeout(() => document.getElementById('app-loa
  * @param name
  * @param fn
  */
-export const registerGlobalFunction = (name: string, fn: any) => {
+export const registerGlobalFunction = (name, fn) => {
     window.$owl = {...window.$owl, [name]: fn}
 }
 
-export const registerGlobalFunctions = (fns: any) => {
+export const registerGlobalFunctions = (fns) => {
     window.$owl = {...window.$owl, ...fns}
 }
 
@@ -23,7 +23,7 @@ export const registerGlobalFunctions = (fns: any) => {
  * @param key
  * @param def
  */
-export const arrayGet = (array: any, key: string, def = null) => {
+export const arrayGet = (array, key, def = null) => {
     if (key === null) {
         return array
     }
@@ -43,8 +43,8 @@ export const arrayGet = (array: any, key: string, def = null) => {
     return array
 }
 
-export const isArray = (val: any): boolean => Object.prototype.toString.call(val) === '[object Array]'
+export const isArray = (val): boolean => Object.prototype.toString.call(val) === '[object Array]'
 
-export const isObject = (val: any): boolean => Object.prototype.toString.call(val) === '[object Object]'
+export const isObject = (val): boolean => Object.prototype.toString.call(val) === '[object Object]'
 
-export const isString = (val: any): boolean => Object.prototype.toString.call(val) === '[object String]'
+export const isString = (val): boolean => Object.prototype.toString.call(val) === '[object String]'

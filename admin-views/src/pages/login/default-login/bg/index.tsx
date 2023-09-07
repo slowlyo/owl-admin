@@ -1,10 +1,10 @@
 import React from "react"
 import styles from "./style/index.module.css"
-// import {getColorList} from "@/utils/themeColor"
-// import {useSettings} from '@/hooks/useSettings.ts'
+import {getColorList} from "@/utils/themeColor"
+import {useSettings} from '@/hooks/useSettings.ts'
 
 const Bg = (props) => {
-    // const {getSetting} = useSettings()
+    const {getSetting} = useSettings()
     const darkTheme = false
 
     const color = (opacity) => {
@@ -13,13 +13,12 @@ const Bg = (props) => {
         return `rgba(${colorValue}, ${colorValue}, ${colorValue}, ${opacity / 10})`
     }
 
-    // const themeColorList = getColorList(getSetting('system_theme_setting.themeColor'))
+    const themeColorList = getColorList(getSetting('system_theme_setting.themeColor'))
 
-    // const lightColor = themeColorList[darkTheme ? 5 : 1]
-    // const darkColor = themeColorList[darkTheme ? 1 : 5]
+    const lightColor = themeColorList[darkTheme ? 5 : 1]
+    const darkColor = themeColorList[darkTheme ? 1 : 5]
 
-    // const bg = `linear-gradient(200deg, ${lightColor} 0%, ${darkColor} 100%)`
-    const bg = `linear-gradient(200deg, #ffffff 0%, #ffffff 100%)`
+    const bg = `linear-gradient(200deg, ${lightColor} 0%, ${darkColor} 100%)`
 
     return (
         <div className={styles.bg} style={{background: bg}}>

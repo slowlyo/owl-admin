@@ -1,18 +1,20 @@
-module.exports = {
-    content    : [
-        './src/pages/**/*.tsx',
-        './src/components/**/*.tsx',
-        './src/layouts/**/*.tsx',
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        './index.html',
+        './src/**/*.{js,ts,jsx,tsx}',
+        '*'
     ],
-    theme      : {
+    theme  : {
         extend: {
             borderRadius: {
                 DEFAULT: '6px',
             }
         },
     },
-    plugins    : [],
+    plugins: [],
     corePlugins: {
         preflight: false,
     }
 }
+

@@ -1,31 +1,33 @@
-import React, {useEffect, useState} from 'react'
-import {useRequest} from 'ahooks'
-import {history} from 'umi'
-import {registerGlobalFunction} from '@/utils/common'
-import {fetchPageSchema} from '@/services'
-import AmisRender from '@/components/AmisRender'
+import React, {useState} from "react"
+import {useMount, useRequest} from "ahooks"
+import {fetchPageSchema} from "@/service"
+import AmisRender from "@/components/AmisRender"
+import {useLocation} from 'react-router'
+import {useSettings} from '@/hooks/useSettings.ts'
+import {registerGlobalFunction} from '@/utils/common.ts'
 
 
-const AmisPage = () => {
-    const pathname = history.location.pathname
+function AmisPage() {
+    const location = useLocation()
+    const pathname = location.pathname
+    // const settings = useSettings().get()
 
     const [schema, setSchema] = useState({})
 
     const initPage = useRequest(fetchPageSchema, {
         manual: true,
         loadingDelay: 300,
-        cacheKey: pathname + '-schema',
-        onSuccess(res: IRes) {
+        cacheKey: pathname + "-schema",
+        onSuccess(res) {
             // 先清空一次, 让数据也重新加载
-            // setSchema({})
+            setSchema({})
             setSchema(res.data)
-            console.log(res.data)
         }
     })
 
-    registerGlobalFunction('refreshAmisPage', () => initPage.runAsync(pathname))
+    registerGlobalFunction("refreshAmisPage", () => initPage.runAsync(pathname))
 
-    useEffect(() => initPage.run(pathname), [pathname])
+    useMount(() => initPage.run(pathname))
 
     return (
         <>

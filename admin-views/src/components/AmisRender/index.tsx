@@ -5,28 +5,29 @@ import 'amis/sdk/iconfont.css';
 import '@fortawesome/fontawesome-free/css/all.css'
 import "./style/index.css"
 import {render as renderAmis, RenderOptions} from 'amis'
+import {amisRequest} from '@/service/api'
 import {ToastComponent} from 'amis-ui'
 import clipboard from '@/utils/clipboard'
 import {message} from 'antd'
-import {history} from 'umi'
-import {useModel} from '@@/plugin-model'
-import {amisRequest} from '@/services'
+import {useSettings} from '@/hooks/useSettings.ts'
+import {useHistory} from 'react-router'
 
-const AmisRender = ({schema}:{schema: any}) => {
-    const {getSetting} = useModel('settingModel')
+const AmisRender = ({schema}) => {
+    const history = useHistory()
+    const settings = useSettings().get()
 
-    const localeMap:any = {
+    const localeMap = {
         "zh_CN": "zh-CN",
         "en": "en-US"
     }
 
     const props = {
-        locale: localeMap[getSetting('locale') || "zh_CN"] || "zh-CN",
+        locale: localeMap[settings?.locale || "zh_CN"] || "zh-CN",
         location: history.location,
     } as any
 
     const options: RenderOptions = {
-        enableAMISDebug: getSetting('show_development_tools'),
+        enableAMISDebug: settings.show_development_tools,
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
         updateLocation: (location, replace) => {
             replace || history.push(location)
@@ -49,11 +50,6 @@ const AmisRender = ({schema}:{schema: any}) => {
         }
     }
 
-    if(JSON.stringify(schema) == '{}'){
-        return null
-    }
-
-    // {renderAmis(schema, props, options)}
     return (
         <div>
             <ToastComponent key="toast"></ToastComponent>

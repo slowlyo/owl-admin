@@ -1,15 +1,15 @@
-import {useModel} from '@@/plugin-model'
+import {useSettings} from '@/hooks/useSettings.ts'
 
 export const LayoutFooter = () => {
-    const {getSetting} = useModel('settingModel')
+    const {get} = useSettings()
 
-    if (!getSetting('system_theme_setting.footer')) {
+    if(!get('system_theme_setting.footer')){
         return null
     }
 
     return (
         <div className="h-[60px] flex items-center justify-center">
-            <div dangerouslySetInnerHTML={{__html: getSetting('layout.footer')}}></div>
+            <div dangerouslySetInnerHTML={{__html: get('layout.footer')}}></div>
         </div>
     )
 }

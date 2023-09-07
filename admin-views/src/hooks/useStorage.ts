@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
 
-const getDefaultStorage = (key: string) => localStorage.getItem(key)
+const getDefaultStorage = (key) => localStorage.getItem(key)
 
-function useStorage(key: string, defaultValue?: string): [string, (key: string) => void, () => void] {
-    const [storedValue, setStoredValue]: any = useState(getDefaultStorage(key) || defaultValue)
+function useStorage(key: string, defaultValue?: string): [string, (string) => void, () => void] {
+    const [storedValue, setStoredValue] = useState(getDefaultStorage(key) || defaultValue)
 
     const setStorageValue = (value: string) => {
         localStorage.setItem(key, value)

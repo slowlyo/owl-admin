@@ -1,10 +1,10 @@
 import {Button, Result} from 'antd'
-import {useIntl, useNavigate} from '@@/exports'
+import {useLang} from '@/hooks/useLang.ts'
+import {useHistory} from 'react-router'
 
 export const NotFound = () => {
-    const {formatMessage} = useIntl()
-    const t = (key: string, opt?: any) => formatMessage({id: key}, opt)
-    const navigate = useNavigate()
+    const {t} = useLang()
+    const history = useHistory()
 
     return (
         <div className="h-full w-full flex items-center justify-center">
@@ -13,7 +13,7 @@ export const NotFound = () => {
                 title="404"
                 subTitle={t('not_found.title')}
                 extra={
-                    <Button type="primary" onClick={() => navigate('/', {replace: true})}>
+                    <Button type="primary" onClick={() => history.push('/', {replace: true})}>
                         {t('not_found.back_home')}
                     </Button>
                 }

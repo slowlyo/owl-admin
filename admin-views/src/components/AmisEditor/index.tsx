@@ -1,24 +1,24 @@
 import React from "react"
 import {Editor} from "amis-editor"
+import {amisRequest} from "@/service/api"
+import {useNavigate} from 'react-router'
 import clipboard from "@/utils/clipboard"
 import "amis-editor-core/lib/style.css"
-import "./style/index.less"
+import "./style/index.css"
+import {useSettings} from '@/hooks/useSettings.ts'
 import {message} from 'antd'
-import {useNavigate} from '@@/exports'
-import {useModel} from '@@/plugin-model'
-import {amisRequest} from '@/services'
 
 function AmisEditor({onChange, preview}) {
     const [schema, setSchema] = React.useState({} as any)
     const navigate = useNavigate()
-    const {getSetting} = useModel('settingModel')
+    const settings = useSettings().get()
 
     const change = (val) => {
         onChange(val)
     }
 
     const env = {
-        enableAMISDebug: getSetting('show_development_tools'),
+        enableAMISDebug: settings.show_development_tools,
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
         updateLocation: (location, replace) => {
             replace || navigate(location)

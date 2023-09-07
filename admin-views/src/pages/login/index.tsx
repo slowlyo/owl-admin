@@ -1,40 +1,15 @@
 import DefaultLogin from '@/pages/login/default-login'
-import useStorage from '@/utils/useStorage'
-import {clearLoginInfo, setToken} from '@/utils/auth'
-import {useModel} from '@@/plugin-model'
-import {history} from 'umi'
-import {registerGlobalFunction} from '@/utils/common'
+import {useAuth} from '@/hooks/useAuth.ts'
 import {useEffect} from 'react'
+import {useHistory} from 'react-router'
 
 const Login = () => {
-    const [_, setLoginParams, removeLoginParams] = useStorage(window.$adminApiPrefix.replace(/^\//, '') + '-loginParams')
-    const user = useModel('userModel')
+    const history = useHistory()
+    const auth = useAuth()
 
-    // 登录成功后的操作
-    const afterLoginSuccess = (params: { username?: string, password?: string }, token: string) => {
-        // 记住密码
-        if (params?.username && params?.password) {
-            setLoginParams(window.btoa(encodeURIComponent(JSON.stringify(params))))
-        } else {
-            removeLoginParams()
-        }
-        // 记录登录状态
-        setToken(token)
-        // 获取用户信息
-        user.requestUserInfo.runAsync().then(() => {
-            if (window.location.hash == '#/login') {
-                // 跳转首页
-                history.replace('/')
-                location.reload()
-            }
-        })
+    if (auth.token) {
+        useEffect(() => history.push('/'), [history.location])
     }
-
-    registerGlobalFunction('afterLoginSuccess', afterLoginSuccess)
-
-    useEffect(() => {
-        clearLoginInfo()
-    }, [])
 
     return <DefaultLogin/>
 }

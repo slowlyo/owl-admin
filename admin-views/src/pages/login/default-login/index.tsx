@@ -1,20 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react'
 import Bg from './bg'
-import {Button, Card, Checkbox, Form, Image, Input, Space, Spin} from 'antd'
+import {Button, Card, Checkbox, Form, FormInstance, Image, Input, Space, Spin} from 'antd'
+import {useSettings} from '@/hooks/useSettings.ts'
 import {Icon} from '@iconify/react'
-import {useModel} from '@@/plugin-model'
-import {useIntl} from '@@/plugin-locale'
+import {useLang} from '@/hooks/useLang.ts'
 import {useRequest} from 'ahooks'
-import {fetchCaptcha, fetchLogin} from '@/services'
-import useStorage from '@/utils/useStorage'
+import {fetchCaptcha, fetchLogin} from '@/service'
+import {useAuth} from '@/hooks/useAuth.ts'
 
 const DefaultLogin = () => {
-    const formRef = useRef<any>()
-    const {getSetting} = useModel('settingModel')
-    const {formatMessage} = useIntl()
-    const t = (key: string, opt?: any) => formatMessage({id: key}, opt)
-    const [loginParams] = useStorage(window.$adminApiPrefix.replace(/^\//, '') + '-loginParams')
-
+    const formRef = useRef<FormInstance>()
+    const auth = useAuth()
+    const {getSetting, get} = useSettings()
+    const settings = get()
+    const {t} = useLang()
 
     const [error, setError] = useState('')
     const [sysCaptcha, setSysCaptcha] = useState('')
@@ -24,7 +23,7 @@ const DefaultLogin = () => {
     const getCaptcha = useRequest(fetchCaptcha, {
         manual: true,
         throttleWait: 1000,
-        onSuccess(res: IRes) {
+        onSuccess(res) {
             setSysCaptcha(res.data.sys_captcha)
             setCaptcha(res.data.captcha_img)
         }
@@ -37,7 +36,7 @@ const DefaultLogin = () => {
             setError('')
             setLoading(true)
         },
-        onSuccess(res: IRes, params: any) {
+        onSuccess(res, params: any) {
             const {status, data} = res
             if (status === 0) {
                 params = params[0]
@@ -47,33 +46,33 @@ const DefaultLogin = () => {
             } else {
                 setLoading(false)
                 getCaptcha.run()
-                setError(res.data.msg)
+                setError(res.data.msg || t['login.form.login.errMsg'])
                 formRef.current.setFieldsValue({captcha: ''})
             }
         },
     })
 
-    const submit = (values: any) => {
+    const submit = (values) => {
         setLoading(true)
-        if (getSetting('login_captcha')) {
+        if (settings.login_captcha) {
             Object.assign(values, {sys_captcha: sysCaptcha})
         }
         doLogin.run(values)
     }
 
     useEffect(() => {
-        if (getSetting('login_captcha')) {
+        if (settings.login_captcha) {
             getCaptcha.run()
         }
-    }, [getSetting('login_captcha')])
+    }, [settings.login_captcha])
 
     useEffect(() => {
-        if (!!loginParams) {
-            const parseParams = JSON.parse(decodeURIComponent(window.atob(loginParams)))
+        if (!!auth.loginParams) {
+            const parseParams = JSON.parse(decodeURIComponent(window.atob(auth.loginParams)))
             formRef.current.setFieldsValue(parseParams)
         }
-        formRef.current.setFieldsValue({remember: !!loginParams})
-    }, [loginParams])
+        formRef.current.setFieldsValue({remember: !!auth.loginParams})
+    }, [auth.loginParams])
 
     return (
         <Bg>
@@ -89,20 +88,17 @@ const DefaultLogin = () => {
                     <div className="h-[32px] flex items-center text-red-500 overflow-hidden">{error}</div>
 
                     <Form ref={formRef} initialValues={{remember: true}} onFinish={submit}>
-                        <Form.Item name="username"
-                                   rules={[{required: true, message: t('required', {field: t('login.username')})}]}>
+                        <Form.Item name="username" rules={[{required: true, message: t('login.username_required')}]}>
                             <Input placeholder={t('login.username')} prefix={<Icon icon="ant-design:user-outlined"/>}/>
                         </Form.Item>
 
-                        <Form.Item name="password"
-                                   rules={[{required: true, message: t('required', {field: t('login.password')})}]}>
+                        <Form.Item name="password" rules={[{required: true, message: t('login.password_required')}]}>
                             <Input.Password placeholder={t('login.password')}
                                             prefix={<Icon icon="ant-design:key-outlined"/>}/>
                         </Form.Item>
 
                         <Space>
-                            <Form.Item name="captcha"
-                                       rules={[{required: true, message: t('required', {field: t('login.captcha')})}]}>
+                            <Form.Item name="captcha" rules={[{required: true, message: t('login.captcha_required')}]}>
                                 <Input name="captcha"
                                        placeholder={t('login.captcha')}
                                        prefix={<Icon icon="ant-design:edit-twotone"/>}/>
@@ -110,7 +106,7 @@ const DefaultLogin = () => {
                             <Form.Item>
                                 <Spin spinning={getCaptcha.loading}>
                                     <Image className="border rounded cursor-pointer"
-                                           src={captcha as any}
+                                           src={captcha}
                                            preview={false}
                                            onClick={() => getCaptcha.run()}
                                            width={100}
