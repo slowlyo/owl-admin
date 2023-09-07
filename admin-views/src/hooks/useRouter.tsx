@@ -41,11 +41,6 @@ export const useRouter = () => {
                     route.children = travel(route.children, [...parents, route])
                 }
 
-                // 设置默认图标
-                if (!route.meta?.icon || route.meta?.icon == '-') {
-                    route.meta.icon = 'ph:circle'
-                }
-
                 // 保存父级路由
                 route.meta.parents = parents
 
@@ -56,7 +51,11 @@ export const useRouter = () => {
         return travel(routes)
     }
 
-    const getFlattenRoutes = (routes) => {
+    const getFlattenRoutes = (routes?:any) => {
+        if(!routes){
+            routes = context.store.getState().routes
+        }
+
         const flattenRoutes = []
 
         const stack = [...routes]

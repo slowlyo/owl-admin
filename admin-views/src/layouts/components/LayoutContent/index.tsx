@@ -10,7 +10,6 @@ const LayoutContent = () => {
     const app = useApp()
     const routes = app.getStore('routes')
 
-    // {LazyLoad(route.component)}
     return (
         <div className="p-4">
             <Suspense fallback={<Spin/>}>

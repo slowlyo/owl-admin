@@ -1,19 +1,24 @@
 import {Menu} from 'antd'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router'
 import {Icon} from '@iconify/react'
 import {useApp} from '@/hooks/useApp.ts'
+import {useRouter} from '@/hooks/useRouter.tsx'
 
 const LayoutMenu = ({routes = []}) => {
     const app = useApp()
+    const router = useRouter()
     const history = useHistory()
+    const pathname = history.location.pathname
     const [openKeys, setOpenKeys] = useState([])
+    const [selectedKeys, setSelectedKeys] = useState([])
 
-    const currentRoutes = routes.length ? routes : app.getStore('routes')
+    const currentMenus = routes.length ? routes : app.getStore('routes')
+    const currentRoute = router.getFlattenRoutes().find((item) => item.path == pathname)
 
     const clickMenu = (e) => {
         history.push(e.key)
-        console.log(e)
+        initMenuState()
     }
 
     const getMenus = (routes = []) => {
@@ -34,14 +39,35 @@ const LayoutMenu = ({routes = []}) => {
         return menus
     }
 
+    const initMenuState = () => {
+        const open = [currentRoute?.path]
+        const travel = (route) => {
+            if (route?.meta?.parents) {
+                route.meta.parents.map((item) => {
+                    open.push(item?.path)
+                    travel(item)
+                })
+            }
+        }
+
+        travel(currentRoute)
+        setOpenKeys([...openKeys, ...open])
+        setSelectedKeys([currentRoute?.path])
+    }
+
+    useEffect(() => {
+        initMenuState()
+    }, [pathname, currentRoute])
+
     return (
         <Menu
             className="!border-e-0 flex-1"
             mode="inline"
             openKeys={openKeys}
+            selectedKeys={selectedKeys}
             onOpenChange={(keys) => setOpenKeys(keys)}
             onClick={clickMenu}
-            items={getMenus(currentRoutes)}
+            items={getMenus(currentMenus)}
         />
     )
 }
