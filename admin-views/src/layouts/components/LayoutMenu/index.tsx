@@ -4,7 +4,7 @@ import {useHistory} from 'react-router'
 import {Icon} from '@iconify/react'
 import {useApp} from '@/hooks/useApp.ts'
 
-export const LayoutMenu = ({routes = []}) => {
+const LayoutMenu = ({routes = []}) => {
     const app = useApp()
     const history = useHistory()
     const [openKeys, setOpenKeys] = useState([])
@@ -45,3 +45,5 @@ export const LayoutMenu = ({routes = []}) => {
         />
     )
 }
+
+export default LayoutMenu

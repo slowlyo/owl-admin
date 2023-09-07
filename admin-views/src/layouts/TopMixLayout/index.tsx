@@ -3,7 +3,7 @@ import LayoutLogo from '@/layouts/components/LayoutLogo'
 
 const {Header, Footer, Content} = Layout
 
-export const TopLayout = () => {
+const TopMixLayout = () => {
     return (
         <Layout className="h-screen overflow-hidden">
             <Header className="h-[60px] bg-white border-b">
@@ -16,3 +16,5 @@ export const TopLayout = () => {
         </Layout>
     )
 }
+
+export default TopMixLayout

@@ -1,6 +1,6 @@
 import {Layout} from 'antd'
-import {LayoutFooter} from '../components/LayoutFooter'
-import {LayoutLogo} from '@/layouts/components/LayoutLogo'
+import LayoutFooter from '../components/LayoutFooter'
+import LayoutLogo from '@/layouts/components/LayoutLogo'
 
 const {Header, Sider, Content} = Layout
 

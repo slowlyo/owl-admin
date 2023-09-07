@@ -5,14 +5,14 @@ import {useApp} from '@/hooks/useApp.ts'
 import {Suspense} from 'react'
 import {Spin} from 'antd'
 
-export const LayoutContent = () => {
+const LayoutContent = () => {
     const router = useRouter()
     const app = useApp()
     const routes = app.getStore('routes')
 
     // {LazyLoad(route.component)}
     return (
-        <div className="p-5">
+        <div className="p-4">
             <Suspense fallback={<Spin/>}>
                 <Switch>
                     {router.getFlattenRoutes(routes).map((route) => {
@@ -24,3 +24,5 @@ export const LayoutContent = () => {
         </div>
     )
 }
+
+export default LayoutContent

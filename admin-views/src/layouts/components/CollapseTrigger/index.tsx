@@ -1,11 +1,13 @@
 import {Icon} from '@iconify/react'
 
-export const CollapseTrigger = ({collapsed, toggle}) => {
+const CollapseTrigger = ({collapsed, toggle}) => {
     return (
-        <div className="border-r border-t hover:text-blue-500 text-lg flex justify-center items-center h-full"
+        <div className="text-lg flex justify-center items-center h-full p-3 cursor-pointer hover:bg-gray-100"
              onClick={() => toggle(!collapsed)}>
             {collapsed && <Icon icon="line-md:menu-fold-right"/>}
             {collapsed || <Icon icon="line-md:menu-fold-left"/>}
         </div>
     )
 }
+
+export default CollapseTrigger

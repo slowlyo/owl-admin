@@ -11,6 +11,11 @@ body {
     --Alert--warning-borderColor: #f0dab7;
     --Alert--danger-bg: #feece8;
     --Alert--danger-borderColor: #f0b7b7;
+
+    --color-bg-2: white;
+    --borderRadius: 6px;
+    --color-border: rgba(5, 5, 5, 0.06);
+    --color-text-1: #000;
 }
 
 .cxd-Page-header {
@@ -106,10 +111,6 @@ body {
     border: none;
 }
 
-.sketch-picker {
-    background: var(--color-bg-5) !important;
-}
-
 .cxd-PopOver {
     border: none !important;
 }
@@ -144,9 +145,16 @@ body {
     color: var(--color-text-1);
     padding: 0;
 
-    img {
-        width: 32px;
-    }
+}
+
+.cxd-DropDown-button{
+    display: flex;
+    align-items:center;
+    border-radius: 4px;
+}
+
+.navbar-user img {
+    width: 32px;
 }
 
 .cxd-Table-toolbar {
@@ -168,4 +176,12 @@ body {
 
 .cxd-Page-toolbar {
     padding: 0 0 var(--Page-header-paddingY) 0;
+}
+
+.cxd-Crud-body{
+    margin-bottom: 0 !important;
+}
+
+.cxd-Table-contentWrap{
+    margin-bottom: .75rem;
 }

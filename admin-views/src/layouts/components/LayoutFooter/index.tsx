@@ -1,6 +1,6 @@
 import {useSettings} from '@/hooks/useSettings.ts'
 
-export const LayoutFooter = () => {
+const LayoutFooter = () => {
     const {get} = useSettings()
 
     if(!get('system_theme_setting.footer')){
@@ -13,3 +13,5 @@ export const LayoutFooter = () => {
         </div>
     )
 }
+
+export default LayoutFooter
