@@ -1,5 +1,6 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from "axios"
 import {message} from 'antd'
+import {Token} from '@/utils/common.ts'
 
 export default class CustomAxiosInstance {
     instance: AxiosInstance
@@ -15,7 +16,7 @@ export default class CustomAxiosInstance {
             async config => {
                 const handleConfig = {...config}
                 // 设置token
-                const token = window.$owl.getToken()
+                const token = Token().value
 
                 handleConfig.headers.Authorization = `Bearer ${token}`
 

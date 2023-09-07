@@ -48,3 +48,16 @@ export const isArray = (val): boolean => Object.prototype.toString.call(val) ===
 export const isObject = (val): boolean => Object.prototype.toString.call(val) === '[object Object]'
 
 export const isString = (val): boolean => Object.prototype.toString.call(val) === '[object String]'
+
+export const getCacheKey = (suffix = '') => window.$adminApiPrefix.replace(/^\//, '') + '-' + suffix
+
+export const Token = () => {
+    const cacheKey = getCacheKey('token')
+    return {
+        value: localStorage.getItem(cacheKey),
+        set: (token: string) => localStorage.setItem(cacheKey, token),
+        remove: () => localStorage.removeItem(cacheKey)
+    }
+}
+
+export const inLoginPage = () => window.location.hash == "#/login"
