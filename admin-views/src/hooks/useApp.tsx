@@ -127,6 +127,8 @@ const useApp = () => {
 
     return {
         init,
+        initUserInfo,
+        initRoutes,
         getStore,
         getAntdLocale,
     }

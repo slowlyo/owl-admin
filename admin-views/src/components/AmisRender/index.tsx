@@ -14,7 +14,7 @@ import {useHistory} from 'react-router'
 
 const AmisRender = ({schema}) => {
     const history = useHistory()
-    const settings = useSettings().get()
+    const {settings} = useSettings()
 
     const localeMap = {
         "zh_CN": "zh-CN",

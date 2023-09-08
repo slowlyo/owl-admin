@@ -30,7 +30,6 @@ export const useRouter = () => {
     }
 
     return {
-        initRoutes,
         getFlattenRoutes,
     }
 }

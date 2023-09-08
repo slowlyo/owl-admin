@@ -2,7 +2,7 @@ import {useSettings} from '@/hooks/useSettings.ts'
 import {Image} from 'antd'
 
 const LayoutLogo = ({onlyLogo = false}) => {
-    const settings = useSettings().get()
+    const {settings} = useSettings()
 
     return (
         <div className="w-full h-[60px] flex justify-center items-center">
