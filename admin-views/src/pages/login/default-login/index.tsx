@@ -11,8 +11,7 @@ import {useAuth} from '@/hooks/useAuth.ts'
 const DefaultLogin = () => {
     const formRef = useRef<FormInstance>()
     const auth = useAuth()
-    const {getSetting, get} = useSettings()
-    const settings = get()
+    const {getSetting, settings} = useSettings()
     const {t} = useLang()
 
     const [error, setError] = useState('')
@@ -97,23 +96,26 @@ const DefaultLogin = () => {
                                             prefix={<Icon icon="ant-design:key-outlined"/>}/>
                         </Form.Item>
 
-                        <Space>
-                            <Form.Item name="captcha" rules={[{required: true, message: t('login.captcha_required')}]}>
-                                <Input name="captcha"
-                                       placeholder={t('login.captcha')}
-                                       prefix={<Icon icon="ant-design:edit-twotone"/>}/>
-                            </Form.Item>
-                            <Form.Item>
-                                <Spin spinning={getCaptcha.loading}>
-                                    <Image className="border rounded cursor-pointer"
-                                           src={captcha}
-                                           preview={false}
-                                           onClick={() => getCaptcha.run()}
-                                           width={100}
-                                           height={32}/>
-                                </Spin>
-                            </Form.Item>
-                        </Space>
+                        {settings.login_captcha && (
+                            <Space>
+                                <Form.Item name="captcha"
+                                           rules={[{required: true, message: t('login.captcha_required')}]}>
+                                    <Input name="captcha"
+                                           placeholder={t('login.captcha')}
+                                           prefix={<Icon icon="ant-design:edit-twotone"/>}/>
+                                </Form.Item>
+                                <Form.Item>
+                                    <Spin spinning={getCaptcha.loading}>
+                                        <Image className="border rounded cursor-pointer"
+                                               src={captcha}
+                                               preview={false}
+                                               onClick={() => getCaptcha.run()}
+                                               width={100}
+                                               height={32}/>
+                                    </Spin>
+                                </Form.Item>
+                            </Space>
+                        )}
 
                         <Form.Item name="remember" valuePropName="checked">
                             <Checkbox> {t('login.remember_me')} </Checkbox>

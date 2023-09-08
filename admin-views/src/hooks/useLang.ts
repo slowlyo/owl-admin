@@ -4,11 +4,11 @@ import {useSettings} from '@/hooks/useSettings.ts'
 import {arrayGet} from '@/utils/common.ts'
 
 export const useLang = () => {
-    const settings = useSettings()
+    const {getSetting} = useSettings()
     const lang = {zh_CN, en}
 
     const t = (key: string) => {
-        const locale = settings.get('locale', 'zh_CN')
+        const locale = getSetting('locale', 'zh_CN')
 
         return arrayGet(lang[locale], key, key)
     }

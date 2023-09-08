@@ -1,4 +1,4 @@
-import {useApp} from '@/hooks/useApp.ts'
+import useApp from '@/hooks/useApp.tsx'
 import AmisRender from '@/components/AmisRender'
 
 const LayoutTopBar = () => {

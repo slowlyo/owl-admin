@@ -2,7 +2,7 @@ import {Menu} from 'antd'
 import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router'
 import {Icon} from '@iconify/react'
-import {useApp} from '@/hooks/useApp.ts'
+import useApp from '@/hooks/useApp.tsx'
 import {useRouter} from '@/hooks/useRouter.tsx'
 
 const LayoutMenu = ({routes = []}) => {
