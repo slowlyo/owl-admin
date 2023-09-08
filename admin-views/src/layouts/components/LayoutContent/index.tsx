@@ -1,7 +1,7 @@
 import {Route, Switch} from 'react-router-dom'
 import {useRouter} from '@/hooks/useRouter.tsx'
 import {NotFound} from '@/pages/NotFound'
-import useApp from '@/hooks/useApp.tsx'
+import {useApp} from '@/hooks/useApp.ts'
 import {Suspense} from 'react'
 import {Spin} from 'antd'
 
