@@ -12,7 +12,7 @@
     "record": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login",
     "serve": "umi-serve",
     "start": "cross-env UMI_ENV=dev max dev",
-    "start:dev": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev",
+    "start:dev": "cross-env REACT_APP_ENV=dev UMI_ENV=dev max dev",
     "start:no-mock": "cross-env MOCK=none UMI_ENV=dev max dev",
     "start:pre": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev",
     "start:test": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev",
@@ -20,14 +20,29 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": ["prettier --write"]
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write"
+    ]
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 10"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
   "dependencies": {
+    "@ant-design/colors": "^7.0.0",
     "@ant-design/icons": "^4.8.0",
     "@ant-design/pro-components": "^2.3.57",
     "@ant-design/use-emotion-css": "1.0.4",
+    "@fortawesome/fontawesome-free": "^6.4.2",
+    "@iconify/react": "^4.1.1",
     "@umijs/route-utils": "^2.2.2",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-react": "^1.0.6",
+    "amis": "^3.4.0",
+    "amis-editor": "^5.5.0",
+    "amis-editor-core": "^5.5.0",
+    "amis-ui": "^3.4.0",
     "antd": "^5.2.2",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
@@ -52,13 +67,17 @@
     "@types/react-helmet": "^6.1.6",
     "@umijs/fabric": "^2.14.1",
     "@umijs/max": "^4.0.52",
+    "@umijs/plugins": "^4.0.80",
     "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "mockjs": "^1.1.0",
     "swagger-ui-dist": "^4.15.5",
+    "tailwindcss": "^3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5",
     "umi-presets-pro": "^2.0.2"
   },
-  "engines": { "node": ">=12.0.0" }
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }

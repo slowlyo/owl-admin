@@ -1,0 +1,10 @@
+{
+    "required": "Please enter {field}",
+    "login.title": "Login",
+    "login.username": "Username",
+    "login.password": "Password",
+    "login.captcha": "Captcha",
+    "login.remember_me": "Remember me",
+    "not_found.title": "Sorry, the page you visited does not exist.",
+    "not_found.back_home": "Back Home"
+}
