@@ -1,0 +1,41 @@
+@nav-size-height: 60px;
+@layout-max-width: 1100px;
+
+.layout {
+    width: 100%;
+    height: 100vh;
+}
+
+.layout-navbar {
+    position: fixed;
+    width: 100%;
+    min-width: @layout-max-width;
+    top: 0;
+    left: 0;
+    height: @nav-size-height;
+    z-index: 100;
+    transition: padding-left 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+}
+
+.icon {
+    font-size: 18px;
+    vertical-align: text-bottom;
+}
+
+.icon-empty {
+    width: 12px;
+    height: 18px;
+    display: inline-block;
+}
+
+.layout-breadcrumb {
+    margin-bottom: 16px;
+}
+
+.spin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - @nav-size-height);
+}
