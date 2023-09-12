@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 图片集展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/images
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Images extends BaseRenderer
 {
@@ -138,7 +138,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function options($value = '')
     {
@@ -178,7 +178,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function source($value = '')
     {
@@ -242,7 +242,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -290,7 +290,15 @@ class Images extends BaseRenderer
     }
 
     /**
-     *
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
+     * 
      */
     public function value($value = '')
     {

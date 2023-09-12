@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Hbox 水平布局渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/hbox
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class HBox extends BaseRenderer
 {
@@ -34,7 +34,7 @@ class HBox extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function columns($value = '')
     {
@@ -154,7 +154,7 @@ class HBox extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -191,6 +191,14 @@ class HBox extends BaseRenderer
     public function type($value = 'hbox')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

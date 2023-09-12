@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * AutoGenerateFilter
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class AutoGenerateFilter extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 

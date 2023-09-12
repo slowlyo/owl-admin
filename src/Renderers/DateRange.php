@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DateRange 展示渲染器。
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class DateRange extends BaseRenderer
 {
@@ -55,6 +55,14 @@ class DateRange extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 展示的时间格式，参考 moment 中的格式说明。（新：同format）
+     */
+    public function displayFormat($value = '')
+    {
+        return $this->set('displayFormat', $value);
     }
 
     /**
@@ -154,7 +162,7 @@ class DateRange extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -175,6 +183,14 @@ class DateRange extends BaseRenderer
     public function type($value = 'date-range')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

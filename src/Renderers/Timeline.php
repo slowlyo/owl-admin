@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Timeline
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Timeline extends BaseRenderer
 {
@@ -23,6 +23,14 @@ class Timeline extends BaseRenderer
     public function className($value = '')
     {
         return $this->set('className', $value);
+    }
+
+    /**
+     * 节点详情的CSS类名
+     */
+    public function detailClassName($value = '')
+    {
+        return $this->set('detailClassName', $value);
     }
 
     /**
@@ -71,6 +79,14 @@ class Timeline extends BaseRenderer
     public function hiddenOn($value = '')
     {
         return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 图标的CSS类名
+     */
+    public function iconClassName($value = '')
+    {
+        return $this->set('iconClassName', $value);
     }
 
     /**
@@ -178,7 +194,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -194,11 +210,35 @@ class Timeline extends BaseRenderer
     }
 
     /**
+     * 节点时间的CSS类名
+     */
+    public function timeClassName($value = '')
+    {
+        return $this->set('timeClassName', $value);
+    }
+
+    /**
+     * 节点标题的CSS类名
+     */
+    public function titleClassName($value = '')
+    {
+        return $this->set('titleClassName', $value);
+    }
+
+    /**
      * 指定为 Timeline 时间轴渲染器
      */
     public function type($value = 'timeline')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

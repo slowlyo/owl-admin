@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Chart 图表渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Chart extends BaseRenderer
 {
@@ -58,7 +58,7 @@ class Chart extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function dataFilter($value = '')
     {
@@ -178,7 +178,7 @@ class Chart extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -202,7 +202,7 @@ class Chart extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function source($value = '')
     {
@@ -258,7 +258,7 @@ class Chart extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -295,6 +295,14 @@ class Chart extends BaseRenderer
     public function unMountOnHidden($value = true)
     {
         return $this->set('unMountOnHidden', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Step
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Step extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
@@ -145,7 +145,7 @@ class Step extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -177,7 +177,15 @@ class Step extends BaseRenderer
     }
 
     /**
-     *
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
+     * 
      */
     public function value($value = '')
     {

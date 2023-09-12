@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SchemaCopyable
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class SchemaCopyable extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 

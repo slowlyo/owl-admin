@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 季度选择控件
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class QuarterControl extends BaseRenderer
 {
@@ -50,7 +50,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -95,6 +95,14 @@ class QuarterControl extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 日期展示格式(新：替代inputFormat)
+     */
+    public function displayFormat($value = '')
+    {
+        return $this->set('displayFormat', $value);
     }
 
     /**
@@ -362,7 +370,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -391,6 +399,14 @@ class QuarterControl extends BaseRenderer
     public function type($value = 'input-quarter')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**
@@ -426,7 +442,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {
@@ -439,6 +455,14 @@ class QuarterControl extends BaseRenderer
     public function value($value = '')
     {
         return $this->set('value', $value);
+    }
+
+    /**
+     * 替代format
+     */
+    public function valueFormat($value = '')
+    {
+        return $this->set('valueFormat', $value);
     }
 
     /**

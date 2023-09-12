@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Time 时间选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/time
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class TimeControl extends BaseRenderer
 {
@@ -50,7 +50,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -95,6 +95,14 @@ class TimeControl extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 日期展示格式(新：替代inputFormat)
+     */
+    public function displayFormat($value = '')
+    {
+        return $this->set('displayFormat', $value);
     }
 
     /**
@@ -362,7 +370,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -410,6 +418,14 @@ class TimeControl extends BaseRenderer
     }
 
     /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
      * 设定是否存储 utc 时间。
      */
     public function utc($value = true)
@@ -442,7 +458,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {
@@ -455,6 +471,14 @@ class TimeControl extends BaseRenderer
     public function value($value = '')
     {
         return $this->set('value', $value);
+    }
+
+    /**
+     * 替代format
+     */
+    public function valueFormat($value = '')
+    {
+        return $this->set('valueFormat', $value);
     }
 
     /**

@@ -1,0 +1,88 @@
+{
+  "name": "owl-admin",
+  "version": "1.0.0",
+  "description": "Owl Admin",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "vite build --mode production",
+    "eslint": "eslint src/ --ext .ts,.tsx,.js,.jsx --fix --cache",
+    "stylelint": "stylelint 'src/**/*.less' 'src/**/*.css' --fix --cache",
+    "pre-commit": "pretty-quick --staged && npm run eslint && npm run stylelint",
+    "prepare": "husky install && husky add .husky/pre-commit 'npm run pre-commit'"
+  },
+  "dependencies": {
+    "@arco-design/color": "^0.4.0",
+    "@arco-design/web-react": "^2.32.2",
+    "@arco-materials/context-menu": "^1.0.0",
+    "@arco-plugins/vite-react": "^1.0.5",
+    "@arco-themes/react-amis-design": "^0.0.5",
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "@iconify/react": "^4.1.0",
+    "@loadable/component": "^5.13.2",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-react": "^1.0.6",
+    "ahooks": "^3.7.6",
+    "amis": "^3.4.0",
+    "amis-editor": "^5.5.0",
+    "amis-editor-core": "^5.5.0",
+    "amis-ui": "^3.4.0",
+    "axios": "^0.24.0",
+    "classnames": "^2.3.1",
+    "copy-to-clipboard": "^3.3.1",
+    "lodash": "^4.17.21",
+    "query-string": "^6.13.8",
+    "rc-queue-anim": "^2.0.0",
+    "react": "^17.0.2",
+    "react-activation": "^0.12.4",
+    "react-color": "^2.18.1",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.2"
+  },
+  "devDependencies": {
+    "@arco-design/webpack-plugin": "^1.6.0",
+    "@arco-plugins/vite-plugin-svgr": "^0.7.2",
+    "@svgr/webpack": "^5.5.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vitejs/plugin-react": "^1.1.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.2",
+    "less": "^4.1.2",
+    "less-loader": "7.3.0",
+    "postcss-less": "4",
+    "typescript": "^4.5.2",
+    "unocss": "^0.50.6",
+    "vite": "^4.3.6",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-progress": "^0.0.7"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix --cache"
+    ]
+  }
+}

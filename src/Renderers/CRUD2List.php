@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUD2List
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class CRUD2List extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('mode', 'list');
-        $this->set('type', 'crud2');
+$this->set('type', 'crud2');
 
 
     }
@@ -259,7 +259,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -283,7 +283,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -459,7 +459,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -467,7 +467,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -512,6 +512,14 @@ class CRUD2List extends BaseRenderer
     public function type($value = 'crud2')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

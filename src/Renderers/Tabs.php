@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 选项卡控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tabs
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class Tabs extends BaseRenderer
 {
@@ -266,7 +266,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -330,7 +330,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'tabs')
     {
@@ -343,6 +343,14 @@ class Tabs extends BaseRenderer
     public function unmountOnExit($value = true)
     {
         return $this->set('unmountOnExit', $value);
+    }
+
+    /**
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
     }
 
     /**

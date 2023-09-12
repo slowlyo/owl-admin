@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * WizardStep
- *
- * @author  slowlyo
- * @version v3.3.0
+ * 
+ * @author slowlyo
+ * @version v3.4.0
  */
 class WizardStep extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
@@ -105,7 +105,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function data($value = '')
     {
@@ -169,7 +169,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function fieldSet($value = '')
     {
@@ -297,7 +297,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function label($value = '')
     {
@@ -337,7 +337,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -409,7 +409,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function redirect($value = '')
     {
@@ -417,7 +417,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function reload($value = '')
     {
@@ -457,7 +457,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -481,7 +481,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticOn($value = '')
     {
@@ -497,7 +497,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -553,7 +553,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tabs($value = '')
     {
@@ -577,7 +577,15 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 可以组件级别用来关闭移动端样式
+     */
+    public function useMobileUI($value = true)
+    {
+        return $this->set('useMobileUI', $value);
+    }
+
+    /**
+     * 
      */
     public function value($value = '')
     {
