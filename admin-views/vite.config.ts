@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react"
 // @ts-ignore
 import svgrPlugin from "@arco-plugins/vite-plugin-svgr"
 import compression from "vite-plugin-compression"
-import progress from "vite-plugin-progress"
 import vitePluginForArco from "@arco-plugins/vite-react"
 import UnoCSS from "unocss/vite"
 import {createViteProxy} from "./src/utils/proxy"
@@ -31,7 +30,6 @@ export default defineConfig(configEnv => {
                 modifyVars: {},
             }),
             compression(),
-            progress(),
         ],
         css: {
             preprocessorOptions: {
