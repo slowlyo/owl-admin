@@ -130,6 +130,7 @@ export const DoubleSider = ({stateChange}) => {
             <ArcoSider
                 className={styles["layout-sider"] + " br"}
                 width={65}
+                collapsedWidth={65}
                 theme="dark"
                 trigger={null}
                 collapsible

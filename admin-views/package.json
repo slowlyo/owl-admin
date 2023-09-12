@@ -14,7 +14,7 @@
   "dependencies": {
     "@arco-design/color": "^0.4.0",
     "@arco-design/theme-line": "^0.0.3",
-    "@arco-design/web-react": "^2.32.2",
+    "@arco-design/web-react": "^2.53.0",
     "@arco-materials/context-menu": "^1.0.0",
     "@arco-plugins/vite-react": "^1.0.5",
     "@fortawesome/fontawesome-free": "^6.3.0",

@@ -10,13 +10,13 @@ dependencies:
     version: 0.4.0
   '@arco-design/theme-line':
     specifier: ^0.0.3
-    version: 0.0.3(@arco-design/web-react@2.32.2)
+    version: 0.0.3(@arco-design/web-react@2.53.0)
   '@arco-design/web-react':
-    specifier: ^2.32.2
-    version: 2.32.2(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2)
+    specifier: ^2.53.0
+    version: 2.53.0(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2)
   '@arco-materials/context-menu':
     specifier: ^1.0.0
-    version: 1.0.0(@arco-design/web-react@2.32.2)(react-dom@17.0.2)(react@17.0.2)
+    version: 1.0.0(@arco-design/web-react@2.53.0)(react-dom@17.0.2)(react@17.0.2)
   '@arco-plugins/vite-react':
     specifier: ^1.0.5
     version: 1.0.5
@@ -193,16 +193,16 @@ packages:
       color: 3.2.1
     dev: false
 
-  /@arco-design/theme-line@0.0.3(@arco-design/web-react@2.32.2):
+  /@arco-design/theme-line@0.0.3(@arco-design/web-react@2.53.0):
     resolution: {integrity: sha512-yJ3mCCreQ3pc9As98DFX9BcYj4hY7YGFnq2sJjR9LIMTJwD5Usm9o8J0+hHbYgXaImXLJWe/H0e/RivSsHxFcQ==}
     peerDependencies:
       '@arco-design/web-react': ^2.23.4
     dependencies:
-      '@arco-design/web-react': 2.32.2(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2)
+      '@arco-design/web-react': 2.53.0(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2)
     dev: false
 
-  /@arco-design/web-react@2.32.2(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-AvhXySI6lWLp8x5ce/b4RaQRY9k4hqEl8H7VipEaKFmC1EVY8B5weIYcrIH/GbLmtWNRsqpWuCvq4AlZ9DfWEA==}
+  /@arco-design/web-react@2.53.0(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-tT+VN+d7r1hWKXSLc0RKwcIh6ntOHebRrMoJ7W5rmJ4l6QzhneTcC4YLP9NqwmhDhdWRfCET2XhVh25hRV3Pmw==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -238,14 +238,14 @@ packages:
       webpack: 5.88.2
     dev: true
 
-  /@arco-materials/context-menu@1.0.0(@arco-design/web-react@2.32.2)(react-dom@17.0.2)(react@17.0.2):
+  /@arco-materials/context-menu@1.0.0(@arco-design/web-react@2.53.0)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-WkwQ2GO2m7rrYP/xqj+tXi9iQfTqs4pes+bMPTHxZM8bEOwbXKc8FOTV/Ot+pdW8HPi2ThYMBRCQ1E9o7/J9fg==}
     peerDependencies:
       '@arco-design/web-react': ~2
       react: '>=16'
       react-dom: ^16.0.1
     dependencies:
-      '@arco-design/web-react': 2.32.2(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2)
+      '@arco-design/web-react': 2.53.0(@types/react@17.0.0)(react-dom@17.0.2)(react@17.0.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     dev: false
@@ -2235,8 +2235,8 @@ packages:
     resolution: {integrity: sha512-Mnq3O9Xz52exs3mlxMcQuA7/9VFe/dXcrgAyfjLkABIqxXKOgBRjyazTxUbjsxDa4BP7hhPliyjVTP9RDP14xg==}
     dev: false
 
-  /@types/node@20.5.7:
-    resolution: {integrity: sha512-dP7f3LdZIysZnmvP3ANJYTSwg+wLLl8p7RqniVlV7j+oXSXAbt9h0WIBFmJy5inWZoX9wZN6eXx+YXd9Rh3RBA==}
+  /@types/node@20.6.0:
+    resolution: {integrity: sha512-najjVq5KN2vsH2U/xyh2opaSEz6cZMR2SetLIlxlj08nOcmPOemJmUK2o4kUzfLqfrWE0PIrNeE16XhYDd3nqg==}
     dev: true
 
   /@types/parse-json@4.0.0:
@@ -4141,8 +4141,8 @@ packages:
     resolution: {integrity: sha512-wd6JXUmyHmt8T5a2xreUwKcGPq6f1f+WwIJkijUqiGcJz1qqnZgP6XIK+QyIWU5lT7imeNxUll48bziG+TSYcA==}
     dev: true
 
-  /es-module-lexer@1.3.0:
-    resolution: {integrity: sha512-vZK7T0N2CBmBOixhmjdqx2gWVbFZ4DXZ/NyRMZVlJXPa7CyFS+/a4QQsDGDQy9ZfEzxFuNEsMLeQJnKP2p5/JA==}
+  /es-module-lexer@1.3.1:
+    resolution: {integrity: sha512-JUFAyicQV9mXc3YRxPnDlrfBKpqt6hUYzz9/boprUJHs4e4KVr3XwOF70doO6gwXUor6EWZJAyWAfKki84t20Q==}
     dev: true
 
   /es-set-tostringtag@2.0.1:
@@ -5130,7 +5130,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.6.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -7135,12 +7135,12 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.1
-      terser: 5.19.3
+      terser: 5.19.4
       webpack: 5.88.2
     dev: true
 
-  /terser@5.19.3:
-    resolution: {integrity: sha512-pQzJ9UJzM0IgmT4FAtYI6+VqFf0lj/to58AV0Xfgg0Up37RyPG7Al+1cepC6/BVuAxR9oNb41/DL4DEoHJvTdg==}
+  /terser@5.19.4:
+    resolution: {integrity: sha512-6p1DjHeuluwxDXcuT9VR8p64klWJKo1ILiy19s6C9+0Bh2+NWTX6nD9EPppiER4ICkHDVB1RkVpin/YW2nQn/g==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -7655,7 +7655,7 @@ packages:
       browserslist: 4.21.10
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
-      es-module-lexer: 1.3.0
+      es-module-lexer: 1.3.1
       eslint-scope: 5.1.1
       events: 3.3.0
       glob-to-regexp: 0.4.1

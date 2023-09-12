@@ -1,5 +1,10 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 
+:root {
+    --border-radius-small: 4px !important;
+    --border-radius-medium: 6px !important;
+}
+
 html,
 body {
     width: 100%;
@@ -9,6 +14,9 @@ body {
     font-size: 14px;
     background-color: var(--color-fill-1);
     --body-bg: var(--color-fill-1);
+    --border-radius-small: 4px !important;
+    --border-radius-medium: 6px !important;
+    --color-menu-dark-bg: #001529;
 }
 
 .arco-menu-collapse {
@@ -34,4 +42,18 @@ body {
 ::selection {
     background-color: rgb(var(--arcoblue-5));
     color: white;
+}
+
+.arco-input-group > :last-child {
+    border-top-right-radius: var(--border-radius-small);
+    border-bottom-right-radius: var(--border-radius-small);
+}
+
+.arco-input-group > :first-child {
+    border-top-left-radius: var(--border-radius-small);
+    border-bottom-left-radius: var(--border-radius-small);
+}
+
+.arco-input-inner-wrapper:focus, .arco-input-inner-wrapper.arco-input-inner-wrapper-focus {
+    box-shadow: none !important;
 }
