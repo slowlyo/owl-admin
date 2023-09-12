@@ -222,7 +222,7 @@ JS,
             ->label($userInfo['name'])
             ->align('right')
             ->btnClassName('navbar-user')
-            ->menuClassName('min-w-0 px-2')
+            ->menuClassName('min-w-0 p-2')
             ->set('icon', $userInfo['avatar'])
             ->buttons([
                 amisMake()
