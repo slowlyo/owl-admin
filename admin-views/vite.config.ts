@@ -27,7 +27,7 @@ export default defineConfig(configEnv => {
                 svgrOptions: {},
             }),
             vitePluginForArco({
-                theme: "@arco-themes/react-amis-design",
+                theme: "@arco-design/theme-line",
                 modifyVars: {},
             }),
             compression(),
