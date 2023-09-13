@@ -1,7 +1,7 @@
 /**
  * 应用加载完成
  */
-export const appLoaded = () => setTimeout(() => document.getElementById('app-loader')?.remove(), 300)
+export const appLoaded = () => setTimeout(() => document.getElementById('app-loader')?.remove(), 500)
 
 /**
  * 注册全局函数

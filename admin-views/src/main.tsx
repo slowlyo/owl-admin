@@ -20,6 +20,7 @@ import {AliveScope} from 'react-activation'
 import {registerCustomComponents} from '@/components/AmisRender/CustomComponents'
 import Layout from '@/layouts'
 import {ConfigProvider} from 'antd'
+import {appLoaded} from '@/utils/common'
 
 registerCustomComponents()
 
@@ -70,6 +71,7 @@ function Index() {
                 type: 'update-inited',
                 payload: {inited: true},
             })
+            appLoaded()
         }
     })
 

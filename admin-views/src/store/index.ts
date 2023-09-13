@@ -1,4 +1,5 @@
 import defaultSettings from "../settings.json"
+import {getCacheKey} from '@/utils/common'
 
 export interface GlobalState {
     appSettings?: any;
@@ -51,6 +52,7 @@ export default function store(state = initialState, action) {
         }
         case "update-app-settings": {
             const {appSettings} = action.payload
+            localStorage.setItem(getCacheKey('appSettings'), JSON.stringify(appSettings))
             return {
                 ...state,
                 appSettings,

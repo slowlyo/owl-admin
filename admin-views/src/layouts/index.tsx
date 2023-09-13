@@ -45,6 +45,7 @@ const Layout = () => {
 
     useEffect(() => {
         if (isSm !== isSmallScreen) {
+            window.$owl.appLoader()
             setIsSm(isSmallScreen)
             window.location.reload()
         }

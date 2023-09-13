@@ -87,7 +87,6 @@ const LayoutMenu = (
             className="!border-e-0 flex-1"
             mode={mode}
             theme={theme}
-            inlineCollapsed={collapsed}
             openKeys={openKeys}
             selectedKeys={selectedKeys}
             onOpenChange={(keys) => setOpenKeys(keys)}
