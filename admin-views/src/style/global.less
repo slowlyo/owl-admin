@@ -1,8 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "@fortawesome/fontawesome-free/css/all.css";
 
 :root {
     --border-radius-small: 4px !important;
     --border-radius-medium: 6px !important;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--color-border)
 }
 
 html,

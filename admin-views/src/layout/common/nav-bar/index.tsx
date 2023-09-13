@@ -7,7 +7,7 @@ import useLocale from '@/utils/useLocale'
 import IconButton from './components/icon-button'
 import Settings from './components/settings'
 import styles from './style/index.module.less'
-import {Menu as LayoutMenu} from '../menu'
+import Menu from '../menu'
 import {removeToken} from '@/utils/checkLogin'
 import {useRequest} from 'ahooks'
 import {fetchLogout} from '@/service/api'
@@ -73,7 +73,7 @@ function Navbar() {
             <div className="flex flex-1 pr-8px justify-between list-none">
                 {settings.layoutMode == "top" ? (
                     <div className="flex-1 overflow-hidden custom-menu">
-                        <LayoutMenu mode="horizontal" theme={settings.topTheme}/>
+                        <Menu mode="horizontal" theme={settings.topTheme}/>
                     </div>
                 ) : (
                     <Breadcrumb/>

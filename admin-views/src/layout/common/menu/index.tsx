@@ -10,7 +10,7 @@ import styles from './style/index.module.less'
 const MenuItem = ArcoMenu.Item
 const SubMenu = ArcoMenu.SubMenu
 
-export const Menu = (
+const Menu = (
     {
         mode = 'vertical',
         theme = 'light',
@@ -114,3 +114,5 @@ export const Menu = (
         </ArcoMenu>
     )
 }
+
+export default Menu

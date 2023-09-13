@@ -1,38 +1,38 @@
-import "virtual:uno.css"
-import "./style/global.less"
-import React from "react"
-import ReactDOM from "react-dom"
-import {createStore} from "redux"
-import {Provider} from "react-redux"
-import {ConfigProvider} from "@arco-design/web-react"
-import zhCN from "@arco-design/web-react/es/locale/zh-CN"
-import enUS from "@arco-design/web-react/es/locale/en-US"
-import {HashRouter, Route, Switch} from "react-router-dom"
-import rootReducer from "./store"
-import {GlobalContext} from "./context"
-import Login from "./pages/login"
-import {checkLogin} from "./utils/checkLogin"
-import useStorage from "./utils/useStorage"
-import {PageLayout} from "@/layout"
-import {fetchSettings, fetchUserInfo} from "@/service/api"
-import {useMount, useRequest} from "ahooks"
-import {setThemeColor} from "@/utils/themeColor"
-import {dynamicAssetsHandler} from "@/utils/dynamicAssets"
-import {AliveScope} from "react-activation"
-import {registerCustomComponents} from "@/components/AmisRender/CustomComponents"
+import './style/global.less'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {ConfigProvider as ArcoConfigProvider} from '@arco-design/web-react'
+import zhCN from '@arco-design/web-react/es/locale/zh-CN'
+import enUS from '@arco-design/web-react/es/locale/en-US'
+import {HashRouter, Route, Switch} from 'react-router-dom'
+import rootReducer from './store'
+import {GlobalContext} from './context'
+import Login from './pages/login'
+import {checkLogin} from './utils/checkLogin'
+import useStorage from './utils/useStorage'
+import {fetchSettings, fetchUserInfo} from '@/service/api'
+import {useMount, useRequest} from 'ahooks'
+import {setThemeColor} from '@/utils/themeColor'
+import {dynamicAssetsHandler} from '@/utils/dynamicAssets'
+import {AliveScope} from 'react-activation'
+import {registerCustomComponents} from '@/components/AmisRender/CustomComponents'
+import Layout from '@/layouts'
+import {ConfigProvider} from 'antd'
 
 registerCustomComponents()
 
 const store = createStore(rootReducer)
 
 function Index() {
-    const [lang, setLang] = useStorage("arco-lang", "zh-CN")
+    const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
 
     function getArcoLocale() {
         switch (lang) {
-            case "zh-CN":
+            case 'zh-CN':
                 return zhCN
-            case "en-US":
+            case 'en-US':
                 return enUS
             default:
                 return zhCN
@@ -43,31 +43,31 @@ function Index() {
     const initSettings = useRequest(fetchSettings, {
         manual: true,
         retryCount: 3,
-        cacheKey: "app-settings",
+        cacheKey: 'app-settings',
         onBefore() {
             store.dispatch({
-                type: "update-userInfo",
+                type: 'update-userInfo',
                 payload: {userLoading: true},
             })
         },
         onSuccess(res) {
             store.dispatch({
-                type: "update-app-settings",
+                type: 'update-app-settings',
                 payload: {appSettings: res.data},
             })
             if (res.data.system_theme_setting) {
                 store.dispatch({
-                    type: "update-settings",
+                    type: 'update-settings',
                     payload: {settings: res.data.system_theme_setting},
                 })
             }
-            setLang(res.data.locale == "zh_CN" ? "zh-CN" : "en-US")
+            setLang(res.data.locale == 'zh_CN' ? 'zh-CN' : 'en-US')
             setThemeColor(store.getState().settings.themeColor)
             dynamicAssetsHandler(res.data.assets)
         },
         onFinally() {
             store.dispatch({
-                type: "update-inited",
+                type: 'update-inited',
                 payload: {inited: true},
             })
         }
@@ -77,7 +77,7 @@ function Index() {
         manual: true,
         onSuccess(res) {
             store.dispatch({
-                type: "update-userInfo",
+                type: 'update-userInfo',
                 payload: {userInfo: res.data, userLoading: false},
             })
         }
@@ -89,29 +89,48 @@ function Index() {
 
         if (checkLogin()) {
             initUserInfo.run()
-        } else if (window.location.pathname.replace(/\//g, "") !== "login") {
-            window.location.hash = "#/login"
+        } else if (window.location.pathname.replace(/\//g, '') !== 'login') {
+            window.location.hash = '#/login'
         }
     })
 
     const contextValue = {lang, setLang}
 
+    const token = {
+        token: {
+            borderRadius: 4,
+            wireframe: true
+        },
+        components: {
+            Menu: {
+                iconSize: 18,
+                collapsedIconSize: 18,
+                subMenuItemBg: '#fff',
+                darkSubMenuItemBg: '#001529',
+                itemMarginInline: 8,
+            }
+        }
+    }
+
     return (
         <HashRouter>
-            <ConfigProvider locale={getArcoLocale()}>
-                <Provider store={store}>
-                    <AliveScope>
-                        <GlobalContext.Provider value={contextValue}>
-                            <Switch>
-                                <Route path="/login" component={Login}/>
-                                <Route path="/" component={PageLayout}/>
-                            </Switch>
-                        </GlobalContext.Provider>
-                    </AliveScope>
-                </Provider>
+            <ConfigProvider theme={token}>
+                <ArcoConfigProvider locale={getArcoLocale()}>
+                    <Provider store={store}>
+                        <AliveScope>
+                            <GlobalContext.Provider value={contextValue}>
+                                <Switch>
+                                    <Route path="/login" component={Login}/>
+                                    {/*<Route path="/" component={PageLayout}/>*/}
+                                    <Route path="/" component={Layout}/>
+                                </Switch>
+                            </GlobalContext.Provider>
+                        </AliveScope>
+                    </Provider>
+                </ArcoConfigProvider>
             </ConfigProvider>
         </HashRouter>
     )
 }
 
-ReactDOM.render(<Index/>, document.getElementById("root"))
+ReactDOM.render(<Index/>, document.getElementById('root'))

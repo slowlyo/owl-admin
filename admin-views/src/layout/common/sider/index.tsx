@@ -3,7 +3,7 @@ import {Layout} from "@arco-design/web-react"
 import {IconMenuFold, IconMenuUnfold,} from "@arco-design/web-react/icon"
 import {useSelector} from "react-redux"
 import {GlobalState} from "@/store"
-import {Menu} from "../menu"
+import Menu from "../menu"
 import styles from "./style/index.module.less"
 import Logo from "@/layout/common/Logo"
 

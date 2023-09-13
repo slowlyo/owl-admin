@@ -12,7 +12,7 @@ import useRoute from '@/routes'
 import {getFlattenRoutes} from '@/routes/helpers'
 import {useHistory} from 'react-router'
 
-export default function ({mode}: { mode: string }) {
+export const PageLayout =  ({mode = 'default'}: { mode: string }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false)
     const {settings} = useSelector((state: GlobalState) => state)
     const [routes] = useRoute()

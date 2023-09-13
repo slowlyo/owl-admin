@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux'
 import useRoute from '@/routes'
 import lazyLoad from '@/utils/lazyload'
 import {GlobalState} from '@/store'
-import styles from './style/index.module.less'
 import {useHistory, useLocation} from 'react-router'
 import QueueAnim from 'rc-queue-anim'
 import {getFlattenRoutes} from '@/routes/helpers'
@@ -14,24 +13,10 @@ import TabBar from '@/layout/common/tab-bar'
 
 const ArcoContent = Layout.Content
 
-export const Content = ({menuCollapsed, noPadding}: { menuCollapsed?: boolean, noPadding?: boolean }) => {
+const LayoutContent = () => {
     const {settings, appSettings} = useSelector((state: GlobalState) => state)
-
     const [routes, defaultRoute] = useRoute()
-
-    const navbarHeight = 60
-    const extraWidth = settings.layoutMode == 'double' ? 65 : 0
-    const doubleCollapsedWidth = settings.menuWidth == 0 ? 0 : 65
-    const collapsedWidth = settings.layoutMode == 'double' ? doubleCollapsedWidth : 60
-    const menuWidth = menuCollapsed ? (extraWidth + collapsedWidth) : (extraWidth + settings.menuWidth)
-    const noTransition = settings.layoutMode == 'double' ? {transition: 'none'} : {}
-
     const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes])
-
-    const paddingLeft = {paddingLeft: settings.layoutMode == 'top' ? 0 : menuWidth}
-    const paddingTop = {paddingTop: navbarHeight}
-    const paddingStyle = {...paddingLeft, ...paddingTop, ...noTransition}
-
     const history = useHistory()
     const pathname = history.location.pathname
     const location = useLocation()
@@ -53,9 +38,9 @@ export const Content = ({menuCollapsed, noPadding}: { menuCollapsed?: boolean, n
     }, [pathname, routes])
 
     return (
-        <Layout className={styles['layout-content']} style={noPadding ? {} : paddingStyle}>
+        <div className="p-5">
             {settings.enableTab && <TabBar/>}
-            <div className={styles['layout-content-wrapper']} style={noPadding ? {padding: 0} : {}}>
+            <div>
                 <QueueAnim className="relative"
                            type={[settings.animateInType, settings.animateOutType]}
                            duration={[settings.animateInDuration, settings.animateInDuration]}>
@@ -80,6 +65,8 @@ export const Content = ({menuCollapsed, noPadding}: { menuCollapsed?: boolean, n
                     </ArcoContent>
                 </QueueAnim>
             </div>
-        </Layout>
+        </div>
     )
 }
+
+export default LayoutContent
