@@ -20,9 +20,7 @@ const LayoutTopBar = ({collapsed = false}) => {
         <div className="h-full flex justify-around items-center">
             {collapsed ? (
                 <Popover placement="bottom" content={actions} trigger="click">
-                    <Button type="text" block>
                         <Icon icon="material-symbols:arrow-drop-down-circle-outline" fontSize={18}/>
-                    </Button>
                 </Popover>
             ) : actions}
             <div className="bg-transparent h-full pr-6 cursor-pointer hover:bg-gray-100 transition duartion-300">
