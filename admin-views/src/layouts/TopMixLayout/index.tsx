@@ -30,7 +30,7 @@ const TopMixLayout = () => {
                        collapsed={collapsed}
                        collapsible
                        trigger={null}
-                       collapsedWidth={60}>
+                       collapsedWidth={64}>
                     <LayoutMenu/>
                 </Sider>
                 <Content className="overflow-auto overflow">

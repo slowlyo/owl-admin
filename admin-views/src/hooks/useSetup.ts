@@ -13,7 +13,8 @@ import {registerCustomComponents} from '@/components/AmisRender/CustomComponents
 const defaultToken = {
     token: {
         borderRadius: 4,
-        wireframe: true
+        wireframe: true,
+        colorSplit: 'var(--color-border)'
     },
     components: {
         Menu: {

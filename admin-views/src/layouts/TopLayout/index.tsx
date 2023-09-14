@@ -13,7 +13,7 @@ const TopLayout = () => {
             <Header className="h-[64px] bg-white border-b flex p-0 justify-between items-center leading-none">
                 <div className="flex">
                     <LayoutLogo/>
-                    <div className="leading-[65px]">
+                    <div className="leading-[64px]">
                         <LayoutMenu mode="horizontal"/>
                     </div>
                 </div>
