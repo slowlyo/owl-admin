@@ -1,5 +1,7 @@
 import {useSize} from 'ahooks'
 
-export const useSmallScreen = () => {
+const useSmallScreen = () => {
     return useSize(document.body)?.width < 768
 }
+
+export default useSmallScreen

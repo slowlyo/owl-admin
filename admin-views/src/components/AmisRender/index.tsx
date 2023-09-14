@@ -1,25 +1,25 @@
-import React from "react"
-import "./style/index.less"
-import {render as renderAmis, RenderOptions} from "amis"
-import {Message} from "@arco-design/web-react"
-import {GlobalState} from "@/store"
-import {useSelector} from "react-redux"
-import {amisRequest} from "@/service/api"
-import {ToastComponent} from "amis-ui"
-import {useHistory} from "react-router"
-import clipboard from "@/utils/clipboard"
+import React from 'react'
+import './style/index.less'
+import {render as renderAmis, RenderOptions} from 'amis'
+import {Message} from '@arco-design/web-react'
+import {GlobalState} from '@/store'
+import {useSelector} from 'react-redux'
+import {amisRequest} from '@/service/api'
+import {ToastComponent} from 'amis-ui'
+import {useHistory} from 'react-router'
+import clipboard from '@/utils/clipboard'
 
-const AmisRender = ({schema}) => {
+const AmisRender = ({schema, className = ''}) => {
     const history = useHistory()
     const {appSettings} = useSelector(({appSettings}: GlobalState) => ({appSettings}))
 
     const localeMap = {
-        "zh_CN": "zh-CN",
-        "en": "en-US"
+        'zh_CN': 'zh-CN',
+        'en': 'en-US'
     }
 
     const props = {
-        locale: localeMap[appSettings?.locale || "zh_CN"] || "zh-CN",
+        locale: localeMap[appSettings?.locale || 'zh_CN'] || 'zh-CN',
         location: history.location,
     }
 
@@ -30,25 +30,25 @@ const AmisRender = ({schema}) => {
             replace || history.push(location)
         },
         jumpTo: (location: string) => {
-            if (location.startsWith("http") || location.startsWith("https")) {
+            if (location.startsWith('http') || location.startsWith('https')) {
                 window.open(location)
             } else {
-                history.push(location.startsWith("/") ? location : `/${location}`)
+                history.push(location.startsWith('/') ? location : `/${location}`)
             }
         },
         copy: async (content) => {
             await clipboard(content)
 
-            Message.success(props.locale === "zh-CN" ? "复制成功" : "Copy success")
+            Message.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
         },
-        notify: (type: "error" | "success", msg: string) => {
+        notify: (type: 'error' | 'success', msg: string) => {
             Message.clear()
-            Message[type] ? Message[type](msg) : console.warn("[Notify]", type, msg)
+            Message[type] ? Message[type](msg) : console.warn('[Notify]', type, msg)
         }
     }
 
     return (
-        <div>
+        <div className={className}>
             <ToastComponent key="toast"></ToastComponent>
             {renderAmis(schema, props, options)}
         </div>

@@ -221,6 +221,7 @@ JS,
             ->trigger('hover')
             ->label($userInfo['name'])
             ->align('right')
+            ->className('h-full')
             ->btnClassName('navbar-user')
             ->menuClassName('min-w-0 p-2')
             ->set('icon', $userInfo['avatar'])

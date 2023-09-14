@@ -11,9 +11,9 @@ const SmLayout = () => {
         <Layout className="h-screen overflow-hidden">
             <Header className="h-[64px] leading-none flex justify-between items-center bg-white border-b p-0 pr-2 pl-3">
                 <div className="flex h-full items-center">
-                    <LayoutLogo/>
+                    <LayoutLogo onlyLogo/>
                 </div>
-                <LayoutTopBar/>
+                <LayoutTopBar collapsed/>
             </Header>
             <Content className="overflow-auto overflow">
                 <LayoutContent/>

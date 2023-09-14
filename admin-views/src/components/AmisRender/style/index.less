@@ -201,12 +201,21 @@ body {
 .navbar-user:hover {
     border: 0 !important;
     color: var(--color-text-1) !important;
+    background: #f3f4f6 !important;
 }
 
 .navbar-user {
+    height: 100% !important;
+    border-radius: 0;
     border: 0;
     color: var(--color-text-1);
-    padding: 0;
+    padding: 0 0 0 12px;
+    background: transparent;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
 
     img {
         width: 32px;

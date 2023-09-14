@@ -1,12 +1,14 @@
 import {Icon} from '@iconify/react'
+import IconButton from '@/layouts/components/IconButton'
 
 const CollapseTrigger = ({collapsed, toggle}) => {
     return (
-        <div className="text-lg flex justify-center items-center h-full p-3 cursor-pointer hover:bg-gray-100"
-             onClick={() => toggle(!collapsed)}>
-            {collapsed && <Icon icon="line-md:menu-fold-right"/>}
-            {collapsed || <Icon icon="line-md:menu-fold-left"/>}
-        </div>
+        <IconButton onClick={() => toggle(!collapsed)}>
+            <div className="p-1 h-full flex justify-center items-center">
+                {collapsed && <Icon icon="line-md:menu-fold-right" fontSize={18}/>}
+                {collapsed || <Icon icon="line-md:menu-fold-left" fontSize={18}/>}
+            </div>
+        </IconButton>
     )
 }
 

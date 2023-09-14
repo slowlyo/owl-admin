@@ -1,5 +1,5 @@
 import {Image} from 'antd'
-import {useSettings} from '@/hooks/userSettings'
+import useSettings from '@/hooks/userSettings'
 
 const LayoutLogo = ({onlyLogo = false}) => {
     const {settings} = useSettings()
