@@ -1,12 +1,13 @@
-import {AuthParams} from "@/utils/authentication"
-import {useEffect, useMemo} from "react"
-import {useRequest} from "ahooks"
-import {fetchUserRoutes} from "@/service/api"
-import {useDispatch, useSelector} from "react-redux"
-import {GlobalState} from "@/store"
-import registerGlobalFunction from "@/utils/registerGlobalFunction"
-import {componentMount} from "@/routes/helpers"
-import {isArray} from "@/utils/is"
+import {AuthParams} from '@/utils/authentication'
+import {useEffect, useMemo} from 'react'
+import {useRequest} from 'ahooks'
+import {fetchUserRoutes} from '@/service/api'
+import {useDispatch, useSelector} from 'react-redux'
+import {GlobalState} from '@/store'
+import registerGlobalFunction from '@/utils/registerGlobalFunction'
+import {componentMount, getFlattenRoutes} from '@/routes/helpers'
+import {isArray} from '@/utils/is'
+import {useHistory} from 'react-router'
 
 export type IRoute = AuthParams & {
     name: string;
@@ -49,17 +50,18 @@ export const staticRoutes: IRoute[] = [
     // },
 ]
 
-const useRoute = (): [IRoute[], string] => {
+const useRoute = (): [IRoute[], string, any] => {
     const {routes} = useSelector((state: GlobalState) => state)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const dynamicRoutes = useRequest(fetchUserRoutes, {
         manual: true,
-        cacheKey: "app-dynamic-routes",
+        cacheKey: 'app-dynamic-routes',
         onSuccess: async ({data}) => {
             if (!isArray(data)) return
             dispatch({
-                type: "update-routes",
+                type: 'update-routes',
                 payload: {
                     routes: await componentMount([...staticRoutes, ...data])
                 },
@@ -67,7 +69,7 @@ const useRoute = (): [IRoute[], string] => {
         }
     })
 
-    registerGlobalFunction("refreshRoutes", () => dynamicRoutes.runAsync())
+    registerGlobalFunction('refreshRoutes', () => dynamicRoutes.runAsync())
 
     useEffect(() => {
         dynamicRoutes.run()
@@ -78,12 +80,14 @@ const useRoute = (): [IRoute[], string] => {
         if (first) {
             const _path = first?.children?.[0]?.path || first.path
 
-            return _path?.replace(/^\//, "")
+            return _path?.replace(/^\//, '')
         }
-        return ""
+        return ''
     }, [routes])
 
-    return [routes, defaultRoute]
+    const getCurrentRoute = () => getFlattenRoutes(routes).find((tab) => tab.path === history.location.pathname.replace(/\/\d+/g, '/:id'))
+
+    return [routes, defaultRoute, getCurrentRoute]
 }
 
 export default useRoute
