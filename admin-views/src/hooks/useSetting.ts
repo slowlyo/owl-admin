@@ -2,7 +2,7 @@ import {useSelector} from 'react-redux'
 import {GlobalState} from '@/store'
 import {arrayGet} from '@/utils/common'
 
-const useSettings = () => {
+const useSetting = () => {
     const settings:any = useSelector((state: GlobalState) => state.appSettings)
 
     const getSetting = (key = '', def = '') => {
@@ -16,4 +16,4 @@ const useSettings = () => {
     }
 }
 
-export default useSettings
+export default useSetting

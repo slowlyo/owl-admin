@@ -8,13 +8,13 @@ import IconButton from './components/icon-button'
 import Settings from './components/settings'
 import styles from './style/index.module.less'
 import Menu from '../menu'
-import {removeToken} from '@/utils/checkLogin'
 import {useRequest} from 'ahooks'
 import {fetchLogout} from '@/service/api'
 import AmisRender from '@/components/AmisRender'
 import {Breadcrumb} from '@/layout/common/breadcrumb'
 import Logo from '@/layout/common/Logo'
 import registerGlobalFunction from '@/utils/registerGlobalFunction'
+import {Token} from '@/utils/common'
 
 const UserMenu = ({userInfo, darkTheme}) => {
     if (!userInfo.menus) return null
@@ -54,7 +54,7 @@ function Navbar() {
     const logout = useRequest(fetchLogout, {
         manual: true,
         onSuccess() {
-            removeToken()
+            Token().clear()
             window.location.hash = "#/login"
         }
     })

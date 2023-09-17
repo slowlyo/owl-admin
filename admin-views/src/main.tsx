@@ -3,9 +3,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import {ConfigProvider as ArcoConfigProvider} from '@arco-design/web-react'
-import zhCN from '@arco-design/web-react/es/locale/zh-CN'
-import enUS from '@arco-design/web-react/es/locale/en-US'
 import {HashRouter, Route, Switch} from 'react-router-dom'
 import rootReducer from './store'
 import {GlobalContext} from './context'
@@ -23,35 +20,22 @@ function Index() {
 
     const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
 
-    function getArcoLocale() {
-        switch (lang) {
-            case 'zh-CN':
-                return zhCN
-            case 'en-US':
-                return enUS
-            default:
-                return zhCN
-        }
-    }
-
     const contextValue = {lang, setLang}
 
     return (
         <HashRouter>
-            <ConfigProvider theme={antdToken} wave={{disabled: true}}>
-                <ArcoConfigProvider locale={getArcoLocale()}>
-                    <Provider store={store}>
-                        <AliveScope>
-                            <GlobalContext.Provider value={contextValue}>
-                                <Switch>
-                                    <Route path="/login" component={Login}/>
-                                    {/*<Route path="/" component={PageLayout}/>*/}
-                                    <Route path="/" component={Layout}/>
-                                </Switch>
-                            </GlobalContext.Provider>
-                        </AliveScope>
-                    </Provider>
-                </ArcoConfigProvider>
+            <ConfigProvider theme={antdToken} wave={{disabled: true}} locale={getAntdLocale()}>
+                <Provider store={store}>
+                    <AliveScope>
+                        <GlobalContext.Provider value={contextValue}>
+                            <Switch>
+                                <Route path="/login" component={Login}/>
+                                {/*<Route path="/" component={PageLayout}/>*/}
+                                <Route path="/" component={Layout}/>
+                            </Switch>
+                        </GlobalContext.Provider>
+                    </AliveScope>
+                </Provider>
             </ConfigProvider>
         </HashRouter>
     )

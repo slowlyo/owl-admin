@@ -10,9 +10,9 @@ import {GlobalState} from "@/store"
 import styles from "./style/index.module.less"
 import {useRequest} from "ahooks"
 import {fetchCaptcha, fetchLogin, fetchUserInfo} from "@/service/api"
-import {setToken} from "@/utils/checkLogin"
 import registerGlobalFunction from "@/utils/registerGlobalFunction"
 import useRoute from "@/routes"
+import {Token} from '@/utils/common'
 
 export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
 
     const [rememberPassword, setRememberPassword] = useState(!!loginParams)
     const {appSettings} = useSelector((state: GlobalState) => state)
-    const [_, defaultRoute] = useRoute()
+    const {defaultRoute} = useRoute()
 
     const initUserInfo = useRequest(fetchUserInfo, {
         manual: true,
@@ -48,7 +48,7 @@ export default function LoginForm({onlyFunc}: { onlyFunc?: boolean }) {
             removeLoginParams()
         }
         // 记录登录状态
-        setToken(token)
+        Token().set(token)
         // 获取用户信息
         initUserInfo.runAsync().then(() => {
             window.$owl.refreshRoutes().then(() => {

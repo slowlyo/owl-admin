@@ -24,7 +24,7 @@ export const DoubleSider = ({stateChange}) => {
     const {settings, appSettings} = useSelector((state: GlobalState) => state)
     const [collapsed, setCollapsed] = useState<boolean>(false)
     const routeMap = useRef<Map<string, React.ReactNode[]>>(new Map())
-    const [routes, defaultRoute] = useRoute()
+    const {routes, defaultRoute} = useRoute()
     const leftMenus = routes.filter((route) => !route.meta.hide)
 
     const defaultSelectedKeys = [currentComponent || defaultRoute]

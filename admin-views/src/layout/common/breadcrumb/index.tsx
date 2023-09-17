@@ -7,7 +7,7 @@ import useRoute from "@/routes"
 import {Icon} from "@iconify/react"
 
 export const Breadcrumb = () => {
-    const [routes] = useRoute()
+    const {routes} = useRoute()
     const history = useHistory()
     const pathname = history.location.pathname
     const {settings} = useSelector((state: GlobalState) => state)

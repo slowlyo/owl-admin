@@ -1,4 +1,4 @@
-import useSettings from '@/hooks/userSettings'
+import useSettings from '@/hooks/useSetting'
 
 const LayoutFooter = () => {
     const {getSetting} = useSettings()

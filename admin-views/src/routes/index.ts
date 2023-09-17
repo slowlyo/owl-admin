@@ -50,7 +50,7 @@ export const staticRoutes: IRoute[] = [
     // },
 ]
 
-const useRoute = (): [IRoute[], string, any] => {
+const useRoute = () => {
     const {routes} = useSelector((state: GlobalState) => state)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -87,7 +87,7 @@ const useRoute = (): [IRoute[], string, any] => {
 
     const getCurrentRoute = () => getFlattenRoutes(routes).find((tab) => tab.path === history.location.pathname.replace(/\/\d+/g, '/:id'))
 
-    return [routes, defaultRoute, getCurrentRoute]
+    return {routes, defaultRoute, getCurrentRoute}
 }
 
 export default useRoute

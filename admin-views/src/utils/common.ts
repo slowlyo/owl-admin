@@ -56,8 +56,10 @@ export const Token = () => {
     return {
         value: localStorage.getItem(cacheKey),
         set: (token: string) => localStorage.setItem(cacheKey, token),
-        remove: () => localStorage.removeItem(cacheKey),
+        clear: () => localStorage.removeItem(cacheKey),
     }
 }
 
 export const inLoginPage = () => window.location.hash == '#/login'
+
+export const goToLoginPage = () => window.location.hash = '#/login'

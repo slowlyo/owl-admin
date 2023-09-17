@@ -1,7 +1,6 @@
 import {useMount, useRequest} from 'ahooks'
-import {fetchSettings, fetchUserInfo} from '@/service/api'
-import {appLoaded} from '@/utils/common'
-import {checkLogin} from '@/utils/checkLogin'
+import {fetchLogout, fetchSettings, fetchUserInfo} from '@/service/api'
+import {appLoaded, inLoginPage, registerGlobalFunction, Token} from '@/utils/common'
 import useStorage from '@/utils/useStorage'
 import zhCN from 'antd/locale/zh_CN'
 import enUS from 'antd/locale/en_US'
@@ -65,6 +64,7 @@ const useSetup = (store) => {
         }
     })
 
+    // 初始化用户信息
     const initUserInfo = useRequest(fetchUserInfo, {
         manual: true,
         onSuccess(res) {
@@ -72,6 +72,15 @@ const useSetup = (store) => {
                 type: 'update-userInfo',
                 payload: {userInfo: res.data, userLoading: false},
             })
+        }
+    })
+
+    // 退出登录
+    const logout = useRequest(fetchLogout, {
+        manual: true,
+        onFinally() {
+            Token().clear()
+            window.location.hash = '#/login'
         }
     })
 
@@ -87,17 +96,26 @@ const useSetup = (store) => {
         }
     }
 
+    // 注册全局函数
+    const registerFunctions = () => {
+        registerGlobalFunction('logout', () => logout.run())
+    }
+
+    // 初始化
     const init = async () => {
         await initSettings.runAsync()
+
         setThemeColor(store.getState().settings.themeColor)
 
-        if (checkLogin()) {
+        if (Token().value) {
             await initUserInfo.runAsync()
-        } else if (window.location.pathname.replace(/\//g, '') !== 'login') {
+        } else if (!inLoginPage()) {
             window.location.hash = '#/login'
         }
 
+        registerFunctions()
         registerCustomComponents()
+
         appLoaded()
     }
 

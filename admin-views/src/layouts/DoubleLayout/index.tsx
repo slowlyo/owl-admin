@@ -16,7 +16,7 @@ const {Header, Sider, Content} = Layout
 
 export const DoubleLayout = () => {
     const [collapsed, setCollapsed] = useState(false)
-    const [routes] = useRoute()
+    const {routes} = useRoute()
     const history = useHistory()
     const pathname = history.location.pathname
 

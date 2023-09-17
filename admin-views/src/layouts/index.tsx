@@ -13,7 +13,7 @@ import {DoubleLayout} from '@/layouts/DoubleLayout'
 const Layout = () => {
     // default | top | top-mix | double
     const mode = 'default'
-    const [routes] = useRoute()
+    const {routes} = useRoute()
     const history = useHistory()
     const isSmallScreen = useSmallScreen()
     const [isSm, setIsSm] = useState<boolean>(isSmallScreen)

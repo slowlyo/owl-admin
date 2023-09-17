@@ -15,7 +15,7 @@ import {useHistory} from 'react-router'
 export const PageLayout =  ({mode = 'default'}: { mode: string }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false)
     const {settings} = useSelector((state: GlobalState) => state)
-    const [routes] = useRoute()
+    const {routes} = useRoute()
     const history = useHistory()
     const pathname = history.location.pathname
 

@@ -1,6 +1,6 @@
-import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from "axios"
-import {getToken, removeToken} from "@/utils/checkLogin"
-import {Message} from "@arco-design/web-react"
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios'
+import {Message} from '@arco-design/web-react'
+import {goToLoginPage, inLoginPage, Token} from '@/utils/common'
 
 export default class CustomAxiosInstance {
     instance: AxiosInstance
@@ -16,7 +16,7 @@ export default class CustomAxiosInstance {
             async config => {
                 const handleConfig = {...config}
                 // 设置token
-                const token = getToken()
+                const token = Token().value
 
                 handleConfig.headers.Authorization = `Bearer ${token}`
 
@@ -51,10 +51,10 @@ export default class CustomAxiosInstance {
                     }
 
                     // token失效
-                    if (backend?.code == 401 && window.location.hash != "#/login") {
-                        removeToken()
+                    if (backend?.code == 401 && !inLoginPage()) {
+                        Token().clear()
 
-                        window.location.hash = "#/login"
+                        goToLoginPage()
                     }
 
                     return response

@@ -6,14 +6,16 @@ import SimpleLogin from "./template/simple"
 import DefaultLogin from "./template/default"
 import AmisLogin from "./template/amis"
 import {useMount} from "ahooks"
+import {inLoginPage} from '@/utils/common'
 
 const Login = () => {
     const t = useLocale(locale)
-    const {settings, inited, appSettings} = useSelector((state: GlobalState) => state)
+    const {settings, appSettings} = useSelector((state: GlobalState) => state)
     const loginTemplate = settings.loginTemplate || "default"
 
     useMount(() => {
-        if (window.location.hash === "#/login") {
+        if (inLoginPage()) {
+            // 页面标题
             let title = t["login.form.login"]
             const titleTmp = appSettings.layout?.title
             if (titleTmp) {
@@ -29,7 +31,7 @@ const Login = () => {
         amis: AmisLogin
     }
 
-    return inited && template[loginTemplate]()
+    return template[loginTemplate]()
 }
 
 export default Login

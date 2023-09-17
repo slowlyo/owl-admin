@@ -6,7 +6,7 @@ import {Breadcrumb} from 'antd'
 import {useHistory} from 'react-router'
 
 const LayoutBreadcrumb = () => {
-    const [routes, _, getCurrentRoute] = useRoute()
+    const {routes, getCurrentRoute} = useRoute()
     const {settings} = useSelector((state: GlobalState) => state)
     const [breadcrumb, setBreadcrumb] = useState<any[]>([])
     const history = useHistory()

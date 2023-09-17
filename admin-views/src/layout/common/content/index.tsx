@@ -17,7 +17,7 @@ const ArcoContent = Layout.Content
 export const Content = ({menuCollapsed, noPadding}: { menuCollapsed?: boolean, noPadding?: boolean }) => {
     const {settings, appSettings} = useSelector((state: GlobalState) => state)
 
-    const [routes, defaultRoute] = useRoute()
+    const {routes, defaultRoute} = useRoute()
 
     const navbarHeight = 60
     const extraWidth = settings.layoutMode == 'double' ? 65 : 0

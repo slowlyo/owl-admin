@@ -15,7 +15,7 @@ const ArcoContent = Layout.Content
 
 const LayoutContent = () => {
     const {settings, appSettings} = useSelector((state: GlobalState) => state)
-    const [routes, defaultRoute] = useRoute()
+    const {routes, defaultRoute} = useRoute()
     const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes])
     const history = useHistory()
     const pathname = history.location.pathname

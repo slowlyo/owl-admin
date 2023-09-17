@@ -11,7 +11,7 @@ import registerGlobalFunction from "@/utils/registerGlobalFunction"
 const TabBar = () => {
     const history = useHistory()
     const pathname = history.location.pathname
-    const [routes, defaultRoute] = useRoute()
+    const {routes, defaultRoute} = useRoute()
     const flattenRoutes = getFlattenRoutes(routes)
     const [cacheTabs, setCacheTab] = useStorage("cached_tabs", "")
     const cachedTabs = JSON.parse(cacheTabs || "[]")

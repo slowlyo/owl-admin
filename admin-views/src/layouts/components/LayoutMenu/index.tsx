@@ -23,7 +23,7 @@ const LayoutMenu = (
     const pathname = history.location.pathname
     const currentComponent = qs.parseUrl(pathname).url.slice(1)
 
-    const [routes, defaultRoute] = useRoute()
+    const {routes, defaultRoute} = useRoute()
     const defaultSelectedKeys = [currentComponent || defaultRoute]
     const paths = (currentComponent || defaultRoute)?.split('/')
     const defaultOpenKeys = paths?.slice(0, paths.length - 1)
