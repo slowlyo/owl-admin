@@ -12,5 +12,15 @@ export default {
     not_found: {
         title: 'Sorry, the page you visited does not exist.',
         back_home: 'Back Home',
+    },
+    theme_setting: {
+        title: 'Theme Setting',
+        preinstall: 'Preinstall',
+        theme_color: 'Theme Color',
+        layout_mode: 'Layout Mode',
+        layout_mode_default: 'Default',
+        layout_mode_top: 'Top Menu',
+        layout_mode_top_mix: 'Top Menu Mix',
+        layout_mode_double: 'Double Column',
     }
 }

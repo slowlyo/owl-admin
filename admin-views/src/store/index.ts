@@ -1,4 +1,4 @@
-import defaultSettings from "../settings.json"
+import defaultSettings from '../settings.json'
 import {getCacheKey} from '@/utils/common'
 
 export interface GlobalState {
@@ -14,6 +14,7 @@ export interface GlobalState {
     routes?: any[];
     // 初始化完成
     inited?: boolean;
+    openSetting?: boolean;
 }
 
 const initialState: GlobalState = {
@@ -23,11 +24,12 @@ const initialState: GlobalState = {
     routes: [],
     userLoading: false,
     inited: false,
+    openSetting: false,
 }
 
 export default function store(state = initialState, action) {
     switch (action.type) {
-        case "update-settings": {
+        case 'update-settings': {
             const {settings} = action.payload
 
             return {
@@ -35,7 +37,7 @@ export default function store(state = initialState, action) {
                 settings,
             }
         }
-        case "update-userInfo": {
+        case 'update-userInfo': {
             const {userInfo = initialState.userInfo, userLoading} = action.payload
             return {
                 ...state,
@@ -43,14 +45,14 @@ export default function store(state = initialState, action) {
                 userInfo,
             }
         }
-        case "update-breadcrumb": {
+        case 'update-breadcrumb': {
             const {breadcrumb} = action.payload
             return {
                 ...state,
                 breadcrumb,
             }
         }
-        case "update-app-settings": {
+        case 'update-app-settings': {
             const {appSettings} = action.payload
             localStorage.setItem(getCacheKey('appSettings'), JSON.stringify(appSettings))
             return {
@@ -58,18 +60,25 @@ export default function store(state = initialState, action) {
                 appSettings,
             }
         }
-        case "update-routes": {
+        case 'update-routes': {
             const {routes} = action.payload
             return {
                 ...state,
                 routes,
             }
         }
-        case "update-inited": {
+        case 'update-inited': {
             const {inited} = action.payload
             return {
                 ...state,
                 inited,
+            }
+        }
+        case 'update-open-setting': {
+            const {openSetting} = action.payload
+            return {
+                ...state,
+                openSetting,
             }
         }
         default:

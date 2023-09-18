@@ -9,6 +9,7 @@ import useSmallScreen from '@/hooks/useSmallScreen'
 import TopLayout from '@/layouts/TopLayout'
 import TopMixLayout from '@/layouts/TopMixLayout'
 import {DoubleLayout} from '@/layouts/DoubleLayout'
+import SettingPanel from '@/layouts/components/SettingPanel'
 
 const Layout = () => {
     // default | top | top-mix | double
@@ -51,7 +52,12 @@ const Layout = () => {
         }
     }, [isSmallScreen])
 
-    return isSmallScreen ? <SmLayout/> : RenderLayout(mode)
+    return (
+        <>
+            {isSmallScreen ? <SmLayout/> : RenderLayout(mode)}
+            <SettingPanel/>
+        </>
+    )
 }
 
 export default Layout
