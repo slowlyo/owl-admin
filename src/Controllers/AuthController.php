@@ -83,7 +83,7 @@ class AuthController extends AdminController
             ]);
         }
 
-        $form = amisMake()->Form()->id('login-form')->title()->api(admin_url('/login'))->body([
+        $form = amisMake()->Form()->panelClassName('border-none')->id('login-form')->title()->api(admin_url('/login'))->body([
             amisMake()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
             amisMake()
                 ->TextControl()

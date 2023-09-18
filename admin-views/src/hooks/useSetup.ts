@@ -70,7 +70,7 @@ const useSetup = (store) => {
         onSuccess(res) {
             store.dispatch({
                 type: 'update-userInfo',
-                payload: {userInfo: res.data, userLoading: false},
+                payload: {userInfo: res.data},
             })
         }
     })
@@ -104,8 +104,6 @@ const useSetup = (store) => {
     // 初始化
     const init = async () => {
         await initSettings.runAsync()
-
-        setThemeColor(store.getState().settings.themeColor)
 
         if (Token().value) {
             await initUserInfo.runAsync()

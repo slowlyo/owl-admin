@@ -1,4 +1,3 @@
-import {AuthParams} from '@/utils/authentication'
 import {useEffect, useMemo} from 'react'
 import {useRequest} from 'ahooks'
 import {fetchUserRoutes} from '@/service/api'
@@ -9,7 +8,7 @@ import {componentMount, getFlattenRoutes} from '@/routes/helpers'
 import {isArray} from '@/utils/is'
 import {useHistory} from 'react-router'
 
-export type IRoute = AuthParams & {
+export type IRoute = {
     name: string;
     breadcrumb?: boolean;
     children?: IRoute[];
