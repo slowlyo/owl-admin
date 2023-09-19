@@ -1,6 +1,7 @@
-import {Button, ColorPicker, Drawer, Form, Select} from 'antd'
+import {Button, ColorPicker, Drawer, Form, Space} from 'antd'
 import useStore from '@/hooks/useStore'
 import {useLang} from '@/hooks/useLang'
+import SelectLayout from '@/layouts/components/SettingPanel/components/SelectLayout'
 
 const SettingPanel = () => {
     const {state, dispatch} = useStore()
@@ -23,7 +24,10 @@ const SettingPanel = () => {
                 closeIcon={false}
                 title={t('theme_setting.title')}
                 footer={(
-                    <Button type="primary">保存</Button>
+                    <Space>
+                        <Button type="primary">保存配置</Button>
+                        <Button onClick={closeSetting}>取消</Button>
+                    </Space>
                 )}>
             <Form
                 labelAlign="left"
@@ -38,18 +42,9 @@ const SettingPanel = () => {
                         },
                     ]}/>
                 </Form.Item>
+
                 <Form.Item colon={false} label={t('theme_setting.layout_mode')}>
-                    <Select
-                        style={{width: '100%'}}
-                        defaultValue="default"
-                        onChange={handleChange}
-                        options={[
-                            {value: 'default', label: t('theme_setting.layout_mode_default')},
-                            {value: 'top', label: t('theme_setting.layout_mode_top')},
-                            {value: 'top-mix', label: t('theme_setting.layout_mode_top_mix')},
-                            {value: 'double', label: t('theme_setting.layout_mode_double')},
-                        ]}
-                    />
+                    <SelectLayout current={'default'}/>
                 </Form.Item>
             </Form>
         </Drawer>
