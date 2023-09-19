@@ -1,9 +1,9 @@
 window.$owl = window.$owl || {}
 
 window.$owl.appLoader = () => {
-    const cacheKey = window.$adminApiPrefix.replace(/^\//, '') + '-appSettings'
-    const appSettings = JSON.parse(localStorage.getItem(cacheKey))
-    const color = appSettings?.system_theme_setting?.themeColor || '#1C1C1C'
+    const value = localStorage.getItem(window.$adminApiPrefix.replace(/^\//, '') + '-settings')
+    const settings = JSON.parse(value == 'undefined' ? '{}' : value)
+    const color = settings?.system_theme_setting?.themeColor || '#1C1C1C'
 
     const loader = `
 <style>

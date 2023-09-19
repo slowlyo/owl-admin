@@ -5,6 +5,7 @@ interface Window {
         refreshRoutes: () => Promise,
         appLoader: () => void,
         afterLoginSuccess: (params: any, token: string) => void,
+        refreshAmisPage: () => Promise,
     }
 }
 

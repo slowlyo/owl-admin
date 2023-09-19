@@ -3,10 +3,10 @@ import {useRequest} from 'ahooks'
 import {fetchUserRoutes} from '@/service/api'
 import {useDispatch, useSelector} from 'react-redux'
 import {GlobalState} from '@/store'
-import registerGlobalFunction from '@/utils/registerGlobalFunction'
 import {componentMount, getFlattenRoutes} from '@/routes/helpers'
 import {isArray} from '@/utils/is'
 import {useHistory} from 'react-router'
+import {registerGlobalFunction} from '@/utils/common'
 
 export type IRoute = {
     name: string;

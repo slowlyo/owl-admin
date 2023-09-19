@@ -4,31 +4,13 @@ import {appLoaded, inLoginPage, registerGlobalFunction, Token} from '@/utils/com
 import useStorage from '@/utils/useStorage'
 import zhCN from 'antd/locale/zh_CN'
 import enUS from 'antd/locale/en_US'
-import {setThemeColor} from '@/utils/themeColor'
 import {dynamicAssetsHandler} from '@/utils/dynamicAssets'
-import {useState} from 'react'
 import {registerCustomComponents} from '@/components/AmisRender/CustomComponents'
-
-const defaultToken = {
-    token: {
-        borderRadius: 4,
-        wireframe: true,
-        colorSplit: 'var(--color-border)'
-    },
-    components: {
-        Menu: {
-            iconSize: 18,
-            collapsedIconSize: 18,
-            subMenuItemBg: '#fff',
-            darkSubMenuItemBg: '#001529',
-            itemMarginInline: 8,
-        }
-    }
-}
+import useTheme from '@/hooks/useTheme'
 
 const useSetup = (store) => {
     const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
-    const [antdToken, setAntdToken] = useState(defaultToken)
+    const {setThemeColor} = useTheme(store)
 
     // 初始化配置信息
     const initSettings = useRequest(fetchSettings, {
@@ -43,17 +25,11 @@ const useSetup = (store) => {
         },
         onSuccess(res) {
             store.dispatch({
-                type: 'update-app-settings',
-                payload: {appSettings: res.data},
+                type: 'update-settings',
+                payload: {settings: res.data},
             })
-            if (res.data.system_theme_setting) {
-                store.dispatch({
-                    type: 'update-settings',
-                    payload: {settings: res.data.system_theme_setting},
-                })
-            }
             setLang(res.data.locale == 'zh_CN' ? 'zh-CN' : 'en-US')
-            setThemeColor(store.getState().settings.themeColor)
+            setThemeColor(store.getState().settings.system_theme_setting.themeColor)
             dynamicAssetsHandler(res.data.assets)
         },
         onFinally() {
@@ -123,7 +99,6 @@ const useSetup = (store) => {
 
     return {
         getAntdLocale,
-        antdToken
     }
 }
 

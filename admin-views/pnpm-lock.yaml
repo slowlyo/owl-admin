@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@ant-design/colors':
+    specifier: ^7.0.0
+    version: 7.0.0
   '@arco-design/color':
     specifier: ^0.4.0
     version: 0.4.0
@@ -77,9 +80,6 @@ dependencies:
   react-activation:
     specifier: ^0.12.4
     version: 0.12.4(prop-types@15.8.1)(react@17.0.2)
-  react-color:
-    specifier: ^2.18.1
-    version: 2.18.1(react@17.0.2)
   react-dom:
     specifier: ^17.0.2
     version: 17.0.2(react@17.0.2)
@@ -6688,20 +6688,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.11
       react: 17.0.2
-    dev: false
-
-  /react-color@2.18.1(react@17.0.2):
-    resolution: {integrity: sha512-X5XpyJS6ncplZs74ak0JJoqPi+33Nzpv5RYWWxn17bslih+X7OlgmfpmGC1fNvdkK7/SGWYf1JJdn7D2n5gSuQ==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      '@icons/material': 0.2.4(react@17.0.2)
-      lodash: 4.17.21
-      material-colors: 1.2.6
-      prop-types: 15.8.1
-      react: 17.0.2
-      reactcss: 1.2.3(react@17.0.2)
-      tinycolor2: 1.6.0
     dev: false
 
   /react-color@2.19.3(react@17.0.2):

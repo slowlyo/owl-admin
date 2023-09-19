@@ -6,6 +6,7 @@ import {GlobalState} from "@/store"
 import {i18nChangeLanguage} from "@wangeditor/editor"
 import {Editor, Toolbar} from "@wangeditor/editor-for-react"
 import {IDomEditor, IEditorConfig, IToolbarConfig} from "@wangeditor/editor"
+import useSetting from '@/hooks/useSetting'
 
 interface IProps {
     className?: string,
@@ -29,8 +30,8 @@ interface IProps {
 }
 
 const WangEditor = forwardRef((props: IProps, ref: any) => {
-    const {appSettings} = useSelector((state: GlobalState) => state)
-    const locale = appSettings.locale == "zh_CN" ? "zh-CN" : "en"
+    const {settings} = useSetting()
+    const locale = settings.locale == "zh_CN" ? "zh-CN" : "en"
 
     // editor 实例
     const [editor, setEditor] = useState<IDomEditor | null>(null)
@@ -92,7 +93,7 @@ const WangEditor = forwardRef((props: IProps, ref: any) => {
         setHtml(props.value || "")
     }, [props])
 
-    useEffect(() => i18nChangeLanguage(appSettings.locale ? locale : "zh-CN"), [appSettings])
+    useEffect(() => i18nChangeLanguage(settings.locale ? locale : "zh-CN"), [settings])
 
     // 及时销毁 editor ，重要！
     useEffect(() => {

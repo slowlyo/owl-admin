@@ -1,9 +1,43 @@
-import defaultSettings from '../settings.json'
 import {getCacheKey} from '@/utils/common'
 
+const defaultSettings = {
+    footer: false,
+    breadcrumb: true,
+    breadcrumbIcon: false,
+    themeColor: '#1677ff',
+    menuWidth: 220,
+    layoutMode: 'default',
+    siderTheme: 'light',
+    topTheme: 'light',
+    animateInType: 'alpha',
+    animateInDuration: 600,
+    animateOutType: 'alpha',
+    animateOutDuration: 600,
+    loginTemplate: 'default',
+    keepAlive: false,
+    enableTab: false,
+    tabIcon: true
+}
+
+const defaultToken = {
+    token: {
+        borderRadius: 4,
+        wireframe: true,
+        colorSplit: 'var(--color-border)',
+    },
+    components: {
+        Menu: {
+            iconSize: 18,
+            collapsedIconSize: 18,
+            subMenuItemBg: '#fff',
+            darkSubMenuItemBg: '#001529',
+            itemMarginInline: 8,
+        }
+    }
+}
+
 export interface GlobalState {
-    appSettings?: any;
-    settings?: typeof defaultSettings;
+    settings?: any;
     userInfo?: {
         name?: string;
         avatar?: string;
@@ -15,28 +49,23 @@ export interface GlobalState {
     // 初始化完成
     inited?: boolean;
     openSetting?: boolean;
+    antdToken?: any;
 }
 
 const initialState: GlobalState = {
-    settings: defaultSettings,
+    settings: {
+        system_theme_setting: defaultSettings
+    },
     userInfo: {},
-    appSettings: {},
     routes: [],
     userLoading: false,
     inited: false,
     openSetting: false,
+    antdToken: defaultToken,
 }
 
 export default function store(state = initialState, action) {
     switch (action.type) {
-        case 'update-settings': {
-            const {settings} = action.payload
-
-            return {
-                ...state,
-                settings,
-            }
-        }
         case 'update-userInfo': {
             const {userInfo = initialState.userInfo, userLoading} = action.payload
             return {
@@ -52,12 +81,12 @@ export default function store(state = initialState, action) {
                 breadcrumb,
             }
         }
-        case 'update-app-settings': {
-            const {appSettings} = action.payload
-            localStorage.setItem(getCacheKey('appSettings'), JSON.stringify(appSettings))
+        case 'update-settings': {
+            const {settings} = action.payload
+            localStorage.setItem(getCacheKey('settings'), JSON.stringify(settings))
             return {
                 ...state,
-                appSettings,
+                settings,
             }
         }
         case 'update-routes': {
@@ -79,6 +108,13 @@ export default function store(state = initialState, action) {
             return {
                 ...state,
                 openSetting,
+            }
+        }
+        case 'update-antd-token': {
+            const {antdToken} = action.payload
+            return {
+                ...state,
+                antdToken,
             }
         }
         default:

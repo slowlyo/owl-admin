@@ -8,10 +8,11 @@ import clipboard from "@/utils/clipboard"
 import {Message} from "@arco-design/web-react"
 import "amis-editor-core/lib/style.css"
 import "./style/index.less"
+import useSetting from '@/hooks/useSetting'
 
 function AmisEditor({onChange, preview}) {
     const [schema, setSchema] = React.useState({} as any)
-    const {appSettings} = useSelector(({appSettings}: GlobalState) => ({appSettings}))
+    const {getSetting} = useSetting()
     const history = useHistory()
 
     const change = (val) => {
@@ -19,7 +20,7 @@ function AmisEditor({onChange, preview}) {
     }
 
     const env = {
-        enableAMISDebug: appSettings.show_development_tools,
+        enableAMISDebug: getSetting('show_development_tools'),
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
         updateLocation: (location, replace) => {
             replace || history.push(location)

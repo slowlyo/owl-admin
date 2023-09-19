@@ -43,6 +43,28 @@ export const arrayGet = (array, key, def = null) => {
     return array
 }
 
+/**
+ * 递归合并对象
+ * @param target
+ * @param source
+ */
+export const mergeObject = (target, source) => {
+    for (const key in source) {
+        if (source.hasOwnProperty(key)) {
+            const sourceVal = source[key]
+            const targetVal = target[key]
+
+            if (isObject(sourceVal) && isObject(targetVal)) {
+                target[key] = mergeObject(targetVal, sourceVal)
+            } else {
+                target[key] = sourceVal
+            }
+        }
+    }
+
+    return target
+}
+
 export const isArray = (val): boolean => Object.prototype.toString.call(val) === '[object Array]'
 
 export const isObject = (val): boolean => Object.prototype.toString.call(val) === '[object Object]'

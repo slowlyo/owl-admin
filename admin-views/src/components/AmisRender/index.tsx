@@ -8,10 +8,11 @@ import {amisRequest} from '@/service/api'
 import {ToastComponent} from 'amis-ui'
 import {useHistory} from 'react-router'
 import clipboard from '@/utils/clipboard'
+import useSetting from '@/hooks/useSetting'
 
 const AmisRender = ({schema, className = ''}) => {
     const history = useHistory()
-    const {appSettings} = useSelector(({appSettings}: GlobalState) => ({appSettings}))
+    const {getSetting} = useSetting()
 
     const localeMap = {
         'zh_CN': 'zh-CN',
@@ -19,12 +20,12 @@ const AmisRender = ({schema, className = ''}) => {
     }
 
     const props = {
-        locale: localeMap[appSettings?.locale || 'zh_CN'] || 'zh-CN',
+        locale: localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN',
         location: history.location,
     }
 
     const options: RenderOptions = {
-        enableAMISDebug: appSettings.show_development_tools,
+        enableAMISDebug: getSetting('show_development_tools'),
         fetcher: ({url, method, data}) => amisRequest(url, method, data),
         updateLocation: (location, replace) => {
             replace || history.push(location)
