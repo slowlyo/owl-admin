@@ -539,7 +539,7 @@ class CodeGeneratorController extends AdminController
                     ->generate($record->table_name, $columns);
 
                 $message .= $successMessage('Migration', $path);
-
+                $migration_path = str_replace(base_path(), '', $path);
                 $paths[] = $path;
             }
 
@@ -574,7 +574,7 @@ class CodeGeneratorController extends AdminController
 
             // 创建数据库表
             if ($needs->contains('need_create_table')) {
-                Artisan::call('migrate');
+                Artisan::call('migrate', ['--path' => $migration_path]);
                 $message .= Artisan::output();
             }
         } catch (\Exception $e) {
