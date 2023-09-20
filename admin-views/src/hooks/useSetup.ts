@@ -1,6 +1,6 @@
 import {useMount, useRequest} from 'ahooks'
 import {fetchLogout, fetchSettings, fetchUserInfo} from '@/service/api'
-import {appLoaded, inLoginPage, registerGlobalFunction, Token} from '@/utils/common'
+import {appLoaded, getCacheKey, inLoginPage, registerGlobalFunction, Token} from '@/utils/common'
 import useStorage from '@/utils/useStorage'
 import zhCN from 'antd/locale/zh_CN'
 import enUS from 'antd/locale/en_US'
@@ -22,6 +22,7 @@ const useSetup = (store) => {
             })
         },
         onSuccess(res) {
+            localStorage.setItem(getCacheKey('settings'), JSON.stringify(res.data))
             store.dispatch({
                 type: 'update-settings',
                 payload: {settings: res.data},

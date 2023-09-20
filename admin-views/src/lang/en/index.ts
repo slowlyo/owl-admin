@@ -22,5 +22,8 @@ export default {
         layout_mode_top: 'Top Menu',
         layout_mode_top_mix: 'Top Menu Mix',
         layout_mode_double: 'Double Column',
+        need_save: 'Current configuration is not saved',
+        save_btn: 'Save Configuration',
+        cancel_btn: 'Cancel',
     }
 }

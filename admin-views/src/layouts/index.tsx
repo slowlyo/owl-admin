@@ -11,10 +11,12 @@ import TopMixLayout from '@/layouts/TopMixLayout'
 import {DoubleLayout} from '@/layouts/DoubleLayout'
 import SettingPanel from '@/layouts/components/SettingPanel'
 import useSetting from '@/hooks/useSetting'
+import {appLoaded} from '@/utils/common'
 
 const Layout = () => {
     const {routes} = useRoute()
     const history = useHistory()
+    const pathname = history.location.pathname
     const isSmallScreen = useSmallScreen()
     const [isSm, setIsSm] = useState<boolean>(isSmallScreen)
     const {getSetting} = useSetting()
@@ -46,9 +48,16 @@ const Layout = () => {
 
     useEffect(() => {
         if (isSm !== isSmallScreen) {
+            // 解决刷新后页面不显示的问题
             window.$owl.appLoader()
             setIsSm(isSmallScreen)
-            window.location.reload()
+            history.push('/')
+            setTimeout(() => {
+                history.push(pathname)
+                setTimeout(() => {
+                    appLoaded()
+                }, 500)
+            }, 200)
         }
     }, [isSmallScreen])
 

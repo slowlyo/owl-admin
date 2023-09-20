@@ -83,7 +83,6 @@ export default function store(state = initialState, action) {
         }
         case 'update-settings': {
             const {settings} = action.payload
-            localStorage.setItem(getCacheKey('settings'), JSON.stringify(settings))
             return {
                 ...state,
                 settings,

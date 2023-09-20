@@ -22,5 +22,8 @@ export default {
         layout_mode_top: '顶部菜单',
         layout_mode_top_mix: '顶部菜单混合',
         layout_mode_double: '双栏',
+        need_save: '当前配置未保存',
+        save_btn: '保存配置',
+        cancel_btn: '取消',
     }
 }

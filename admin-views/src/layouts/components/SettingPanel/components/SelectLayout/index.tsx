@@ -1,12 +1,12 @@
 import {Tooltip} from 'antd'
 import {useLang} from '@/hooks/useLang'
 
-const Card = ({children, selected, tips, onClick}) => {
+const Card = ({children, selected, tips, onClick, tipsInBottom = false}) => {
     const selectClass = selected ? ' border-[var(--colors-brand-5)]' : ' border-transparent'
     return (
-        <Tooltip title={tips} arrow={false}>
+        <Tooltip title={tips} arrow={false} placement={tipsInBottom ? 'bottom' : 'top'}>
             <div onClick={onClick}
-                 className={'relative w-[100px] h-[60px] p-[5px] rounded cursor-pointer bg-white shadow border-[2px] hover:border-[var(--colors-brand-5)]' + selectClass}>
+                 className={'relative w-[100px] h-[60px] p-[5px] rounded cursor-pointer bg-white shadow-md border-[2px] hover:border-[var(--colors-brand-5)]' + selectClass}>
                 {children}
             </div>
         </Tooltip>
@@ -45,18 +45,20 @@ const SelectLayout = ({current, change}) => {
                 {/*top-mix*/}
                 <Card selected={current == 'top-mix'}
                       tips={t('theme_setting.layout_mode_top_mix')}
+                      tipsInBottom
                       onClick={() => change('top-mix')}>
                     <div className="flex flex-col h-full">
-                        <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] mb-[5px] rounded"></div>
-                        <div className="w-full flex">
-                            <div className="bg-[var(--colors-brand-5)] opacity-60 w-[20px] h-auto mr-[5px] rounded"></div>
-                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 h-[35px] rounded"></div>
+                        <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] rounded"></div>
+                        <div className="w-full flex flex-1 mt-[5px]">
+                            <div className="bg-[var(--colors-brand-5)] opacity-60 w-[20px] mr-[5px] rounded"></div>
+                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded"></div>
                         </div>
                     </div>
                 </Card>
                 {/*double*/}
                 <Card selected={current == 'double'}
                       tips={t('theme_setting.layout_mode_double')}
+                      tipsInBottom
                       onClick={() => change('double')}>
                     <div className="flex h-full">
                         <div className="bg-[var(--colors-brand-5)] opacity-60 w-[6px] h-auto mr-[5px] rounded"></div>
