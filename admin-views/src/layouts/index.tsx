@@ -10,14 +10,14 @@ import TopLayout from '@/layouts/TopLayout'
 import TopMixLayout from '@/layouts/TopMixLayout'
 import {DoubleLayout} from '@/layouts/DoubleLayout'
 import SettingPanel from '@/layouts/components/SettingPanel'
+import useSetting from '@/hooks/useSetting'
 
 const Layout = () => {
-    // default | top | top-mix | double
-    const mode = 'default'
     const {routes} = useRoute()
     const history = useHistory()
     const isSmallScreen = useSmallScreen()
     const [isSm, setIsSm] = useState<boolean>(isSmallScreen)
+    const {getSetting} = useSetting()
 
     const currentRoute = getFlattenRoutes(routes).find((route) => route.path.replace(/\?.*$/, '') === history.location.pathname)
 
@@ -54,7 +54,7 @@ const Layout = () => {
 
     return (
         <>
-            {isSmallScreen ? <SmLayout/> : RenderLayout(mode)}
+            {isSmallScreen ? <SmLayout/> : RenderLayout(getSetting('system_theme_setting.layoutMode', 'default'))}
             <SettingPanel/>
         </>
     )
