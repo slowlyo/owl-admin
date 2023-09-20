@@ -6,11 +6,9 @@ import zhCN from 'antd/locale/zh_CN'
 import enUS from 'antd/locale/en_US'
 import {dynamicAssetsHandler} from '@/utils/dynamicAssets'
 import {registerCustomComponents} from '@/components/AmisRender/CustomComponents'
-import useTheme from '@/hooks/useTheme'
 
 const useSetup = (store) => {
     const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
-    const {setThemeColor} = useTheme(store)
 
     // 初始化配置信息
     const initSettings = useRequest(fetchSettings, {
@@ -29,7 +27,6 @@ const useSetup = (store) => {
                 payload: {settings: res.data},
             })
             setLang(res.data.locale == 'zh_CN' ? 'zh-CN' : 'en-US')
-            setThemeColor(store.getState().settings.system_theme_setting.themeColor)
             dynamicAssetsHandler(res.data.assets)
         },
         onFinally() {

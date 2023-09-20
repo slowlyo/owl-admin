@@ -1,23 +1,25 @@
 import useStore from '@/hooks/useStore'
-import {generate, presetPalettes} from '@ant-design/colors'
+import {generate} from '@ant-design/colors'
 import {mergeObject} from '@/utils/common'
-import {useState} from 'react'
+import {useContext, useEffect} from 'react'
+import {GlobalContext} from '@/context'
 
 const setHtmlStyle = (key: string, value: string) => document.documentElement.style.setProperty(key, value)
 
-const useTheme = (store) => {
-    if(!store){
+const useTheme = (store = null) => {
+    if (!store) {
         store = useStore()
     }
-    const [antdToken, setAntdToken] = useState(store.getState().antdToken)
+    const themeColor = store.getState().settings.system_theme_setting.themeColor
+    const {antdToken, setAntdToken} = useContext(GlobalContext)
 
     // 设置 antd token
     const setToken = (token) => {
         const _token = mergeObject(store.getState().antdToken, token)
 
-        console.clear()
-        console.log(_token)
-        setAntdToken(_token)
+        if (typeof setAntdToken != 'undefined') {
+            setAntdToken(JSON.parse(JSON.stringify(_token)))
+        }
 
         store.dispatch({
             type: 'update-antd-token',
@@ -36,6 +38,10 @@ const useTheme = (store) => {
 
         setToken({token: {colorPrimary: color}})
     }
+
+    useEffect(() => {
+        setThemeColor(themeColor)
+    }, [themeColor])
 
     return {
         antdToken,
