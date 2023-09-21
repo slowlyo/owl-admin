@@ -25,5 +25,6 @@ export default {
         need_save: 'Current configuration is not saved',
         save_btn: 'Save Configuration',
         cancel_btn: 'Cancel',
+        save_success: 'Save success',
     }
 }
