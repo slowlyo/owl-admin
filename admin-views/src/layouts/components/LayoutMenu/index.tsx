@@ -23,7 +23,7 @@ const LayoutMenu = (
     const pathname = history.location.pathname
     const currentComponent = qs.parseUrl(pathname).url.slice(1)
 
-    const {routes, defaultRoute} = useRoute()
+    const {routes, defaultRoute, getCurrentRoute} = useRoute()
     const defaultSelectedKeys = [currentComponent || defaultRoute]
     const paths = (currentComponent || defaultRoute)?.split('/')
     const defaultOpenKeys = paths?.slice(0, paths.length - 1)
@@ -36,7 +36,7 @@ const LayoutMenu = (
     const flattenRoutes = useMemo(() => getFlattenRoutes(customRoutes) || [], [customRoutes])
 
     function updateMenuStatus() {
-        const current = flattenRoutes.find((r) => r.path.replace(/\?.*$/, '') === pathname)
+        const current = getCurrentRoute()
 
         if (!current) {
             return
@@ -44,7 +44,9 @@ const LayoutMenu = (
 
         const _parents = current.meta.parents.map((p) => p.path)
 
-        setSelectedKeys([current.path, ..._parents])
+        const getListPath = (path: string) => path.replace(/\/create$|\/:id\/edit$|\/:id$/g, '')
+
+        setSelectedKeys([current.path, getListPath(current.path), ..._parents])
 
         if (mode == 'inline') {
             setOpenKeys([...openKeys, ..._parents])

@@ -16,17 +16,15 @@ const {Header, Sider, Content} = Layout
 
 export const DoubleLayout = () => {
     const [collapsed, setCollapsed] = useState(false)
-    const {routes} = useRoute()
+    const {routes, getCurrentRoute} = useRoute()
     const history = useHistory()
     const pathname = history.location.pathname
 
     const [selectedKeys, setSelectedKeys] = useState<string[]>([])
     const [childrenRoutes, setChildrenRoutes] = useState<any[]>()
 
-    const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes])
-
     function updateMenuStatus() {
-        const current = flattenRoutes.find((r) => r.path.replace(/\?.*$/, '') === history.location.pathname)
+        const current = getCurrentRoute()
 
         if (!current) {
             return
@@ -52,7 +50,7 @@ export const DoubleLayout = () => {
     }
 
     const initChildrenRoutes = () => {
-        const currentRoute = flattenRoutes.find((r) => r.path === pathname)
+        const currentRoute = getCurrentRoute()
         if (currentRoute?.meta.parents.length) {
             setChildrenRoutes(getTopRoute(currentRoute).children)
         } else {

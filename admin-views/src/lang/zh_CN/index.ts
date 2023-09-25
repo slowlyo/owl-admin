@@ -25,5 +25,6 @@ export default {
         need_save: '当前配置未保存',
         save_btn: '保存配置',
         cancel_btn: '取消',
+        save_success: '保存成功',
     }
 }

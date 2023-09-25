@@ -1,4 +1,4 @@
-import {Alert, Button, ColorPicker, Drawer, Form, Space} from 'antd'
+import {Alert, Button, ColorPicker, Drawer, Form, message, Space} from 'antd'
 import useStore from '@/hooks/useStore'
 import {useLang} from '@/hooks/useLang'
 import SelectLayout from '@/layouts/components/SettingPanel/components/SelectLayout'
@@ -6,6 +6,8 @@ import useTheme from '@/hooks/useTheme'
 import useSetting from '@/hooks/useSetting'
 import {useHistory} from 'react-router-dom'
 import {appLoaded, getCacheKey} from '@/utils/common'
+import {useRequest} from 'ahooks'
+import {saveSettings} from '@/service/api'
 
 const SettingPanel = () => {
     const history = useHistory()
@@ -44,8 +46,15 @@ const SettingPanel = () => {
         }
     }
 
-    const save = () => {
-        // localStorage.setItem(getCacheKey('settings'), JSON.stringify(res.data))
+    const save = useRequest(saveSettings, {
+        manual: true,
+        onSuccess: () => {
+            message.success(t('theme_setting.save_success'))
+        }
+    })
+
+    const submit = () => {
+        save.run({system_theme_setting: settings.system_theme_setting})
     }
 
     return (
@@ -55,7 +64,7 @@ const SettingPanel = () => {
                 title={t('theme_setting.title')}
                 footer={(
                     <Space>
-                        <Button type="primary">{t('theme_setting.save_btn')}</Button>
+                        <Button type="primary" onClick={submit}>{t('theme_setting.save_btn')}</Button>
                         <Button onClick={closeSetting}>{t('theme_setting.cancel_btn')}</Button>
                     </Space>
                 )}>

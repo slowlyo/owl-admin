@@ -5,7 +5,7 @@ import LayoutContent from '@/layouts/components/LayoutContent'
 import LayoutFooter from '@/layouts/components/LayoutFooter'
 import LayoutTopBar from '@/layouts/components/LayoutTopBar'
 
-const {Header, Footer, Content} = Layout
+const {Header, Content} = Layout
 
 const TopLayout = () => {
     return (

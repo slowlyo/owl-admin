@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import useRoute from '@/routes'
-import {getFlattenRoutes} from '@/routes/helpers'
 import {useHistory} from 'react-router'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import LayoutContent from '@/layouts/components/LayoutContent'
@@ -14,14 +13,14 @@ import useSetting from '@/hooks/useSetting'
 import {appLoaded} from '@/utils/common'
 
 const Layout = () => {
-    const {routes} = useRoute()
+    const {getCurrentRoute} = useRoute()
     const history = useHistory()
     const pathname = history.location.pathname
     const isSmallScreen = useSmallScreen()
     const [isSm, setIsSm] = useState<boolean>(isSmallScreen)
     const {getSetting} = useSetting()
 
-    const currentRoute = getFlattenRoutes(routes).find((route) => route.path.replace(/\?.*$/, '') === history.location.pathname)
+    const currentRoute = getCurrentRoute()
 
     if (currentRoute?.is_full) {
         return (
@@ -31,7 +30,7 @@ const Layout = () => {
         )
     }
 
-    const RenderLayout = (mode: string) => {
+    const RenderLayout = (mode:string) => {
         switch (mode) {
             case 'default':
                 return <DefaultLayout/>
