@@ -73,7 +73,7 @@ const SettingPanel = () => {
                 footer={(
                     <>
                         <Space>
-                            <Badge dot count={cachedSettings != JSON.stringify(state.settings) ? 1 : 0}>
+                            <Badge dot count={cachedSettings != JSON.stringify(state.settings) ? 1 : 0} title={t('theme_setting.need_save')}>
                                 <Button type="primary"
                                         onClick={submit}
                                         disabled={save.loading}>{t('theme_setting.save_btn')}</Button>
