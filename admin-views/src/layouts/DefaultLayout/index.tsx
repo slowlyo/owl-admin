@@ -26,7 +26,7 @@ const DefaultLayout = () => {
                 <LayoutMenu collapsed={collapsed}/>
             </Sider>
             <Layout>
-                <Header className="h-[64px] leading-none flex justify-between items-center bg-white border-b p-0">
+                <Header className="h-[64px] leading-none flex justify-between items-center border-b p-0">
                     <div className="flex h-full items-center">
                         <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>
                         <LayoutBreadcrumb/>

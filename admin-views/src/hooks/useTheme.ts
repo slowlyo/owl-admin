@@ -10,7 +10,7 @@ const useTheme = (store = null) => {
     if (!store) {
         store = useStore()
     }
-    const themeColor = store.getState().settings.system_theme_setting.themeColor
+    const themeSettings = store.getState().settings.system_theme_setting
     const {antdToken, setAntdToken} = useContext(GlobalContext)
 
     // 设置 antd token
@@ -39,9 +39,35 @@ const useTheme = (store = null) => {
         setToken({token: {colorPrimary: color}})
     }
 
+    const refreshToken = () => {
+        setThemeColor(themeSettings.themeColor)
+
+        const textColor = (theme, lightColor = '#fff') => theme == 'light' ? 'rgba(0, 0, 0, 0.88)' : lightColor
+
+        const token = {
+            token: {
+                colorPrimary: themeSettings.themeColor
+            },
+            components: {
+                Layout: {
+                    headerBg: themeSettings.topTheme == 'light' ? '#fff' : '#001529',
+                    headerColor: textColor(themeSettings.topTheme)
+                },
+                Breadcrumb: {
+                    lastItemColor: textColor(themeSettings.topTheme),
+                    itemColor: textColor(themeSettings.topTheme),
+                    separatorColor: textColor(themeSettings.topTheme),
+                    linkHoverColor: textColor(themeSettings.topTheme),
+                },
+            },
+        }
+
+        setAntdToken(token)
+    }
+
     useEffect(() => {
-        setThemeColor(themeColor)
-    }, [themeColor])
+        refreshToken()
+    }, [themeSettings])
 
     return {
         antdToken,
