@@ -41,7 +41,6 @@ const LayoutBreadcrumb = () => {
             let menu = null
             if (route.children?.length) {
                 menu = getDropMenu(route)
-                menu.theme = 'dark'
             }
 
             let item = {title: route.meta?.title} as any
