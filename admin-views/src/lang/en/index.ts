@@ -26,5 +26,11 @@ export default {
         save_btn: 'Save Configuration',
         cancel_btn: 'Cancel',
         save_success: 'Save success',
+        login_template: 'Login Template',
+        default: 'Default',
+        top_theme: 'Top Menu Theme',
+        sider_theme: 'Sider Theme',
+        light: 'Light',
+        dark: 'Dark',
     }
 }

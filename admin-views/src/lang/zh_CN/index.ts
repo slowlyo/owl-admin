@@ -26,5 +26,11 @@ export default {
         save_btn: '保存配置',
         cancel_btn: '取消',
         save_success: '保存成功',
+        login_template: '登录页模板',
+        default: '默认',
+        top_theme: '顶部菜单主题',
+        sider_theme: '侧边栏主题',
+        light: '亮色',
+        dark: '暗色',
     }
 }
