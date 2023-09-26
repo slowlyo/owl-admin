@@ -1,71 +1,13 @@
 @import "amis/lib/themes/cxd.css";
 @import "amis/lib/helper.css";
 @import "amis/sdk/iconfont.css";
-@import "@arco-design/theme-line/variables";
-
-:root {
-    --colors-warning-1: @orange-10;
-    --colors-warning-2: @orange-9;
-    --colors-warning-3: @orange-8;
-    --colors-warning-4: @orange-7;
-    --colors-warning-5: @orange-6;
-    --colors-warning-6: @orange-5;
-    --colors-warning-7: @orange-4;
-    --colors-warning-8: @orange-3;
-    --colors-warning-9: @orange-2;
-    --colors-warning-10: @orange-1;
-
-    --colors-success-1: @green-10;
-    --colors-success-2: @green-9;
-    --colors-success-3: @green-8;
-    --colors-success-4: @green-7;
-    --colors-success-5: @green-6;
-    --colors-success-6: @green-5;
-    --colors-success-7: @green-4;
-    --colors-success-8: @green-3;
-    --colors-success-9: @green-2;
-    --colors-success-10: @green-1;
-
-    --colors-info-1: @blue-10;
-    --colors-info-2: @blue-9;
-    --colors-info-3: @blue-8;
-    --colors-info-4: @blue-7;
-    --colors-info-5: @blue-6;
-    --colors-info-6: @blue-5;
-    --colors-info-7: @blue-4;
-    --colors-info-8: @blue-3;
-    --colors-info-9: @blue-2;
-    --colors-info-10: @blue-1;
-
-    --colors-other-1: @blue-10;
-    --colors-other-2: @blue-9;
-    --colors-other-3: @blue-8;
-    --colors-other-4: @blue-7;
-    --colors-other-5: @blue-6;
-    --colors-other-6: @blue-5;
-    --colors-other-7: @blue-4;
-    --colors-other-8: @blue-3;
-    --colors-other-9: @blue-2;
-    --colors-other-10: @blue-1;
-
-    --colors-error-1: @red-10;
-    --colors-error-2: @red-9;
-    --colors-error-3: @red-8;
-    --colors-error-4: @red-7;
-    --colors-error-5: @red-6;
-    --colors-error-6: @red-5;
-    --colors-error-7: @red-4;
-    --colors-error-8: @red-3;
-    --colors-error-9: @red-2;
-    --colors-error-10: @red-1;
-}
 
 body {
     --Panel-heading-fontSize: 14px;
     --Page-title-fontSize: 20px;
     --Page-title-fontWeight: 600;
-
-    color: var(--color-text-1);
+    --Table-toolbar-marginX: 0;
+    --Tag-normal-borderRadius: var(--borderRadius);
 
     --Alert--success-bg: #e8ffea;
     --Alert--success-borderColor: #b7f0c2;
@@ -111,10 +53,10 @@ body {
 }
 
 .cxd-Crud {
-    padding: 15px;
-    background: var(--color-bg-2);
+    padding: 3px 15px;
+    background: var(--colors-neutral-fill-11);
     border-radius: var(--borderRadius);
-    border: var(--Table-borderWidth) solid var(--color-border);
+    border: var(--Table-borderWidth) solid var(--colors-neutral-text-8);
 }
 
 .cxd-Card {
@@ -126,19 +68,19 @@ body {
 }
 
 .base-filter {
-    background: var(--color-bg-2) !important;
+    background: var(--colors-neutral-fill-11) !important;
     box-shadow: 0 0 0 0 !important;
     border: none;
-    border-bottom: var(--Table-borderWidth) solid var(--color-border) !important;
+    border-bottom: var(--Table-borderWidth) solid var(--colors-neutral-text-8) !important;
     border-radius: 0;
 }
 
 .base-filter .cxd-TextControl-input {
-    background: var(--color-bg-2);
+    background: var(--colors-neutral-fill-11);
 }
 
 .base-filter .cxd-Panel-footer {
-    background: var(--color-bg-2);
+    background: var(--colors-neutral-fill-11);
 }
 
 .cxd-Panel-footer, .cxd-Panel-heading {
@@ -170,49 +112,43 @@ body {
     border: none;
 }
 
-.sketch-picker {
-    background: var(--color-bg-5) !important;
-}
-
 .cxd-PopOver {
     border: none !important;
 }
 
 .cxd-ExcelControl-dropzone {
-    background: var(--color-bg-2);
-    border-color: var(--color-border);
+    background: var(--colors-neutral-fill-11);
+    border-color: var(--colors-neutral-text-8);
 }
 
 .cxd-Tabs--vertical {
-    border-color: var(--color-border);
+    border-color: var(--colors-neutral-text-8);
 }
 
 .cxd-Form .cxd-Collapse-header {
-    background: var(--color-bg-2);
+    background: var(--colors-neutral-fill-11);
     display: flex;
     align-items: center;
 }
 
 .cxd-Collapse-header:hover {
-    background: var(--color-bg-2);
-    color: var(--color-text-1);
+    background: var(--colors-neutral-fill-11);
+    color: var(--colors-neutral-text-1);
 }
 
 .navbar-user:hover {
     border: 0 !important;
-    color: var(--color-text-1) !important;
-    background: #f3f4f6 !important;
+    color: var(--colors-neutral-text-1) !important;
+    background: transparent !important;
 }
 
 .navbar-user {
     height: 100% !important;
     border-radius: 0;
     border: 0;
-    color: var(--color-text-1);
-    padding: 0 0 0 12px;
+    color: var(--colors-neutral-text-1);
+    padding: 0 1.5rem 0 12px;
     background: transparent;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
@@ -222,29 +158,29 @@ body {
     }
 }
 
-.cxd-Table-toolbar {
-    padding: 0 var(--Table-toolbar-marginX) var(--Table-toolbar-marginY) var(--Table-toolbar-marginX);
-}
 
 .base-form .cxd-Card-heading {
     align-items: center;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--colors-neutral-text-8);
     padding: 10px var(--gap-md);
 }
 
 .cxd-Table-searchableForm {
-    background: var(--color-bg-2);
+    background: var(--colors-neutral-fill-11);
     margin-bottom: 15px;
-    border-bottom: 1px solid var(--color-border) !important;
+    border-bottom: 1px solid var(--colors-neutral-text-8) !important;
     padding-bottom: 10px;
 }
 
 .cxd-Page-toolbar {
     padding: 0 0 var(--Page-header-paddingY) 0;
 }
+.cxd-Crud-body{
+    margin-bottom: 0;
+}
 
 .cxd-DropDown-menuItem, .cxd-DropDown-menu > li {
-    border-radius: var(--border-radius-small);
+    border-radius: var(--borders-radius-3);
     display: flex;
     align-items: center;
 }

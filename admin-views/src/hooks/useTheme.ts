@@ -62,7 +62,7 @@ const useTheme = (store = null) => {
             },
         }
 
-        setAntdToken(token)
+        setToken(token)
     }
 
     useEffect(() => {

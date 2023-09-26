@@ -17,7 +17,7 @@ const store = createStore(rootReducer)
 
 function Index() {
     const {getAntdLocale} = useSetup(store)
-    const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
+    const [lang, setLang] = useStorage('owl-lang', 'zh-CN')
     const [antdToken, setAntdToken] = useState(store.getState().antdToken)
 
     const contextValue = {lang, setLang, antdToken, setAntdToken}
