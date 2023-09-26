@@ -151,7 +151,7 @@ class AdminPermissionController extends AdminController
     public function autoGenerate()
     {
         $menus = Admin::adminMenuModel()::query()->get()->toArray();
-        $old_permissions = Admin::adminPermissionModel()::query()->get(['id', 'slug'])->keyBy('id')->toArray();
+        $slugMap = Admin::adminPermissionModel()::query()->get(['id', 'slug'])->keyBy('id')->toArray();
         $permissions = [];
         foreach ($menus as $menu) {
             $_httpPath =
@@ -167,7 +167,7 @@ class AdminPermissionController extends AdminController
             $permissions[] = [
                 'id'         => $menu['id'],
                 'name'       => $menuTitle,
-                'slug'       => data_get($old_permissions, $menu['id'] . '.slug') ?: (string)Str::uuid(),
+                'slug'       => data_get($slugMap, $menu['id'] . '.slug') ?: (string)Str::uuid(),
                 'http_path'  => json_encode($_httpPath ? [$_httpPath] : ''),
                 'order'      => $menu['order'],
                 'parent_id'  => $menu['parent_id'],
