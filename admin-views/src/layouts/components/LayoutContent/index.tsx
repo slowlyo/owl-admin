@@ -10,11 +10,12 @@ import QueueAnim from 'rc-queue-anim'
 import {getFlattenRoutes} from '@/routes/helpers'
 import {KeepAlive} from 'react-activation'
 import TabBar from '@/layout/common/tab-bar'
+import useSetting from '@/hooks/useSetting'
 
 const ArcoContent = Layout.Content
 
 const LayoutContent = () => {
-    const {settings, appSettings} = useSelector((state: GlobalState) => state)
+    const {getSetting} = useSetting()
     const {routes, defaultRoute} = useRoute()
     const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes])
     const history = useHistory()
@@ -24,7 +25,7 @@ const LayoutContent = () => {
     const setPageTitle = () => {
         let title = flattenRoutes.find((route) => route.path === pathname)?.meta?.title
         if (title) {
-            const titleTmp = appSettings.layout?.title
+            const titleTmp = getSetting('layout.title')
             if (titleTmp) {
                 title = titleTmp.replace(/%title%/g, title)
             }
@@ -39,18 +40,18 @@ const LayoutContent = () => {
 
     return (
         <div className="p-5">
-            {settings.enableTab && <TabBar/>}
+            {getSetting('system_theme_setting.enableTab') && <TabBar/>}
             <div>
                 <QueueAnim className="relative"
-                           type={[settings.animateInType, settings.animateOutType]}
-                           duration={[settings.animateInDuration, settings.animateInDuration]}>
+                           type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
+                           duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
                     <ArcoContent key={pathname} id={pathname} className="absolute w-full">
                         <Switch location={location}>
                             {flattenRoutes.map(({name, path, component}, index) => {
                                 return <Route key={index} path={path.replace(/\?.*$/, '')} render={() => (
                                     <KeepAlive name={name}
                                                cacheKey={path}
-                                               when={settings.keepAlive && appSettings.layout?.keep_alive_exclude.indexOf(path) == -1}>
+                                               when={getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1}>
                                         {React.createElement(component)}
                                     </KeepAlive>
                                 )}/>

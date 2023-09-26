@@ -6,8 +6,8 @@ import AmisRender from "@/components/AmisRender"
 import {useSelector} from "react-redux"
 import {GlobalState} from "@/store"
 import Footer from "@/layout/common/footer"
-import registerGlobalFunction from "@/utils/registerGlobalFunction"
 import {Spin} from "@arco-design/web-react"
+import {registerGlobalFunction} from '@/utils/common'
 
 
 function AmisPage() {

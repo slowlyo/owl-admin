@@ -6,7 +6,7 @@ import useRoute, {IRoute} from "@/routes"
 import {useHistory} from "react-router"
 import {useAliveController} from "react-activation"
 import Tab from "./components/tab"
-import registerGlobalFunction from "@/utils/registerGlobalFunction"
+import {registerGlobalFunction} from '@/utils/common'
 
 const TabBar = () => {
     const history = useHistory()

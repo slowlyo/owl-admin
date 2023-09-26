@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import useRoute from '@/routes'
-import {getFlattenRoutes} from '@/routes/helpers'
 import {useHistory} from 'react-router'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import LayoutContent from '@/layouts/components/LayoutContent'
@@ -9,16 +8,19 @@ import useSmallScreen from '@/hooks/useSmallScreen'
 import TopLayout from '@/layouts/TopLayout'
 import TopMixLayout from '@/layouts/TopMixLayout'
 import {DoubleLayout} from '@/layouts/DoubleLayout'
+import SettingPanel from '@/layouts/components/SettingPanel'
+import useSetting from '@/hooks/useSetting'
+import {appLoaded} from '@/utils/common'
 
 const Layout = () => {
-    // default | top | top-mix | double
-    const mode = 'default'
-    const {routes} = useRoute()
+    const {getCurrentRoute} = useRoute()
     const history = useHistory()
+    const pathname = history.location.pathname
     const isSmallScreen = useSmallScreen()
     const [isSm, setIsSm] = useState<boolean>(isSmallScreen)
+    const {getSetting} = useSetting()
 
-    const currentRoute = getFlattenRoutes(routes).find((route) => route.path.replace(/\?.*$/, '') === history.location.pathname)
+    const currentRoute = getCurrentRoute()
 
     if (currentRoute?.is_full) {
         return (
@@ -28,7 +30,7 @@ const Layout = () => {
         )
     }
 
-    const RenderLayout = (mode: string) => {
+    const RenderLayout = (mode:string) => {
         switch (mode) {
             case 'default':
                 return <DefaultLayout/>
@@ -45,13 +47,25 @@ const Layout = () => {
 
     useEffect(() => {
         if (isSm !== isSmallScreen) {
+            // 解决刷新后页面不显示的问题
             window.$owl.appLoader()
             setIsSm(isSmallScreen)
-            window.location.reload()
+            history.push('/')
+            setTimeout(() => {
+                history.push(pathname)
+                setTimeout(() => {
+                    appLoaded()
+                }, 500)
+            }, 200)
         }
     }, [isSmallScreen])
 
-    return isSmallScreen ? <SmLayout/> : RenderLayout(mode)
+    return (
+        <>
+            {isSmallScreen ? <SmLayout/> : RenderLayout(getSetting('system_theme_setting.layoutMode', 'default'))}
+            <SettingPanel/>
+        </>
+    )
 }
 
 export default Layout

@@ -1,5 +1,5 @@
 import './style/global.less'
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
@@ -16,27 +16,26 @@ import useSetup from '@/hooks/useSetup'
 const store = createStore(rootReducer)
 
 function Index() {
-    const {getAntdLocale, antdToken} = useSetup(store)
-
+    const {getAntdLocale} = useSetup(store)
     const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
+    const [antdToken, setAntdToken] = useState(store.getState().antdToken)
 
-    const contextValue = {lang, setLang}
+    const contextValue = {lang, setLang, antdToken, setAntdToken}
 
     return (
         <HashRouter>
-            <ConfigProvider theme={antdToken} wave={{disabled: true}} locale={getAntdLocale()}>
-                <Provider store={store}>
+            <Provider store={store}>
+                <ConfigProvider theme={antdToken} wave={{disabled: true}} locale={getAntdLocale()}>
                     <AliveScope>
                         <GlobalContext.Provider value={contextValue}>
                             <Switch>
                                 <Route path="/login" component={Login}/>
-                                {/*<Route path="/" component={PageLayout}/>*/}
                                 <Route path="/" component={Layout}/>
                             </Switch>
                         </GlobalContext.Provider>
                     </AliveScope>
-                </Provider>
-            </ConfigProvider>
+                </ConfigProvider>
+            </Provider>
         </HashRouter>
     )
 }

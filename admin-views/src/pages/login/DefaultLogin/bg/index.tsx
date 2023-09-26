@@ -1,11 +1,10 @@
 import React from "react"
-import styles from "./style/index.module.less"
+import styles from "./style/index.module.css"
 import {getColorList} from "@/utils/themeColor"
-import {useSelector} from "react-redux"
-import {GlobalState} from "@/store"
+import useSetting from '@/hooks/useSetting'
 
 const Bg = (props) => {
-    const {settings} = useSelector((state: GlobalState) => state)
+    const {getSetting} = useSetting()
     const darkTheme = false
 
     const color = (opacity) => {
@@ -14,7 +13,7 @@ const Bg = (props) => {
         return `rgba(${colorValue}, ${colorValue}, ${colorValue}, ${opacity / 10})`
     }
 
-    const themeColorList = getColorList(settings.themeColor)
+    const themeColorList = getColorList(getSetting('system_theme_setting.themeColor', 'white'))
 
     const lightColor = themeColorList[darkTheme ? 5 : 1]
     const darkColor = themeColorList[darkTheme ? 1 : 5]

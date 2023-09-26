@@ -13,8 +13,7 @@ import {fetchLogout} from '@/service/api'
 import AmisRender from '@/components/AmisRender'
 import {Breadcrumb} from '@/layout/common/breadcrumb'
 import Logo from '@/layout/common/Logo'
-import registerGlobalFunction from '@/utils/registerGlobalFunction'
-import {Token} from '@/utils/common'
+import {registerGlobalFunction, Token} from '@/utils/common'
 
 const UserMenu = ({userInfo, darkTheme}) => {
     if (!userInfo.menus) return null
