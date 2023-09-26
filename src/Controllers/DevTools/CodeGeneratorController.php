@@ -574,7 +574,11 @@ class CodeGeneratorController extends AdminController
 
             // 创建数据库表
             if ($needs->contains('need_create_table')) {
-                Artisan::call('migrate', ['--path' => $migration_path]);
+                if($migration_path ?? false){
+                    Artisan::call('migrate', ['--path' => $migration_path]);
+                }else{
+                    Artisan::call('migrate');
+                }
                 $message .= Artisan::output();
             }
         } catch (\Exception $e) {
