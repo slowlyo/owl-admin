@@ -1,1 +1,66 @@
 <?php
+
+use Slowlyo\OwlAdmin\Admin;
+
+Admin::styles([
+    // crudTable tree 缩进 最多8层，更多请自行添加
+    '.cxd-Table-table tr.cxd-Table-tr--2th.is-expandable .cxd-Table-expandCell+td { padding-left: calc(1.125rem + var(--TableCell-paddingX)); }',
+    '.cxd-Table-table tr.cxd-Table-tr--3th.is-expandable .cxd-Table-expandCell+td { padding-left: calc(2.25rem + var(--TableCell-paddingX)); }',
+    '.cxd-Table-table tr.cxd-Table-tr--4th.is-expandable .cxd-Table-expandCell+td { padding-left: calc(3.375rem + var(--TableCell-paddingX)); }',
+    '.cxd-Table-table tr.cxd-Table-tr--5th.is-expandable .cxd-Table-expandCell+td { padding-left: calc(4.5rem + var(--TableCell-paddingX)); }',
+    '.cxd-Table-table tr.cxd-Table-tr--6th.is-expandable .cxd-Table-expandCell+td { padding-left: calc(5.625rem + var(--TableCell-paddingX)); }',
+    '.cxd-Table-table tr.cxd-Table-tr--7th.is-expandable .cxd-Table-expandCell+td { padding-left: calc(6.75rem + var(--TableCell-paddingX)); }',
+    '.cxd-Table-table tr.cxd-Table-tr--8th.is-expandable .cxd-Table-expandCell+td { padding-left: calc(7.875rem + var(--TableCell-paddingX)); }',
+
+    '.cxd-Table-table tr.cxd-Table-tr--2th .cxd-Table-expandCell+td { padding-left: 1.125rem; }',
+    '.cxd-Table-table tr.cxd-Table-tr--3th .cxd-Table-expandCell+td { padding-left: 2.25rem; }',
+    '.cxd-Table-table tr.cxd-Table-tr--4th .cxd-Table-expandCell+td { padding-left: 3.375rem; }',
+    '.cxd-Table-table tr.cxd-Table-tr--5th .cxd-Table-expandCell+td { padding-left: 4.5rem; }',
+    '.cxd-Table-table tr.cxd-Table-tr--6th .cxd-Table-expandCell+td { padding-left: 5.625rem; }',
+    '.cxd-Table-table tr.cxd-Table-tr--7th .cxd-Table-expandCell+td { padding-left: 6.75rem; }',
+    '.cxd-Table-table tr.cxd-Table-tr--8th .cxd-Table-expandCell+td { padding-left: 7.875rem; }',
+    
+    // crudTable tree 隐藏虚线
+    // '.cxd-Table-table tr .cxd-Table-expandCell::before { display:none }',
+    // '.cxd-Table-table tr .cxd-Table-expandCell>i { display:none }',
+
+    // crudTable tree 虚线缩进 最多8层，更多请自行添加
+    '.cxd-Table-table tr.cxd-Table-tr--1th.is-expandable .cxd-Table-expandCell::before { left: 1.125rem }', // ↑
+    '.cxd-Table-table tr.cxd-Table-tr--2th.is-expandable .cxd-Table-expandCell::before { left: 2.25rem }',  // ↑
+    '.cxd-Table-table tr.cxd-Table-tr--3th.is-expandable .cxd-Table-expandCell::before { left: 3.375rem }', // ↑
+    '.cxd-Table-table tr.cxd-Table-tr--4th.is-expandable .cxd-Table-expandCell::before { left: 4.5rem }',   // ↑
+    '.cxd-Table-table tr.cxd-Table-tr--5th.is-expandable .cxd-Table-expandCell::before { left: 5.625rem }', // ↑
+    '.cxd-Table-table tr.cxd-Table-tr--6th.is-expandable .cxd-Table-expandCell::before { left: 6.75rem }',  // ↑
+    '.cxd-Table-table tr.cxd-Table-tr--7th.is-expandable .cxd-Table-expandCell::before { left: 7.875rem }', // ↑
+    
+    
+    '.cxd-Table-table tr.cxd-Table-tr--2th .cxd-Table-expandCell>.cxd-Table-divider2 { left: 1.125rem }',   // |-
+    '.cxd-Table-table tr.cxd-Table-tr--2th .cxd-Table-expandCell>.cxd-Table-divider3 { left: 1.125rem }',   // |-
+
+    '.cxd-Table-table tr.cxd-Table-tr--3th .cxd-Table-expandCell>.cxd-Table-divider2 { left: 2.25rem }',    // |-
+    '.cxd-Table-table tr.cxd-Table-tr--3th .cxd-Table-expandCell>.cxd-Table-divider3 { left: 2.25rem }',    // |-
+
+    '.cxd-Table-table tr.cxd-Table-tr--4th .cxd-Table-expandCell>.cxd-Table-divider2 { left: 3.375rem }',   // |-
+    '.cxd-Table-table tr.cxd-Table-tr--4th .cxd-Table-expandCell>.cxd-Table-divider3 { left: 3.375rem }',   // |-
+
+    '.cxd-Table-table tr.cxd-Table-tr--5th .cxd-Table-expandCell>.cxd-Table-divider2 { left: 4.5rem }',     // |-
+    '.cxd-Table-table tr.cxd-Table-tr--5th .cxd-Table-expandCell>.cxd-Table-divider3 { left: 4.5rem }',     // |-
+
+    '.cxd-Table-table tr.cxd-Table-tr--6th .cxd-Table-expandCell>.cxd-Table-divider2 { left: 5.625rem }',   // |-
+    '.cxd-Table-table tr.cxd-Table-tr--6th .cxd-Table-expandCell>.cxd-Table-divider3 { left: 5.625rem }',   // |-
+
+    '.cxd-Table-table tr.cxd-Table-tr--7th .cxd-Table-expandCell>.cxd-Table-divider2 { left: 6.75rem }',    // |-
+    '.cxd-Table-table tr.cxd-Table-tr--7th .cxd-Table-expandCell>.cxd-Table-divider3 { left: 6.75rem }',    // |-
+
+    '.cxd-Table-table tr.cxd-Table-tr--8th .cxd-Table-expandCell>.cxd-Table-divider2 { left: 7.875rem }',   // |-
+    '.cxd-Table-table tr.cxd-Table-tr--8th .cxd-Table-expandCell>.cxd-Table-divider3 { left: 7.875rem }',   // |-
+
+    '.cxd-Table-table>tbody>tr>td.cxd-Table-expandCell .cxd-Table-divider-1 { left: 1.125rem }',    // |
+    '.cxd-Table-table>tbody>tr>td.cxd-Table-expandCell .cxd-Table-divider-2 { left: 2.25rem }',     // |
+    '.cxd-Table-table>tbody>tr>td.cxd-Table-expandCell .cxd-Table-divider-3 { left: 3.375rem }',    // |
+    '.cxd-Table-table>tbody>tr>td.cxd-Table-expandCell .cxd-Table-divider-4 { left: 4.5rem }',      // |
+    '.cxd-Table-table>tbody>tr>td.cxd-Table-expandCell .cxd-Table-divider-5 { left: 5.625rem }',    // |
+    '.cxd-Table-table>tbody>tr>td.cxd-Table-expandCell .cxd-Table-divider-6 { left: 6.75rem }',     // |
+    '.cxd-Table-table>tbody>tr>td.cxd-Table-expandCell .cxd-Table-divider-7 { left: 7.875rem }',    // |
+
+]);
