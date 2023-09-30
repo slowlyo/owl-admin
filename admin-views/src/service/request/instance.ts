@@ -1,5 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios'
-import {Message} from '@arco-design/web-react'
+import {toast} from 'amis'
 import {goToLoginPage, inLoginPage, Token} from '@/utils/common'
 
 export default class CustomAxiosInstance {
@@ -40,13 +40,13 @@ export default class CustomAxiosInstance {
                     // 请求成功
                     if (backend.status === 0) {
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            Message.success(backend.msg)
+                            toast.success(backend.msg)
                         }
 
                         return backend
                     }else{
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            Message.error(backend.msg)
+                            toast.error(backend.msg)
                         }
                     }
 

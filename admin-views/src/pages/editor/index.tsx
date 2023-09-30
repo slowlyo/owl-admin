@@ -1,45 +1,49 @@
-import React from "react"
-import AmisEditor from "@/components/AmisEditor"
-import {Card, Space} from "@arco-design/web-react"
-import {Button as AmisBtn} from "amis-ui"
-import AmisRender from "@/components/AmisRender"
+import React from 'react'
+import AmisEditor from '@/components/AmisEditor'
+import {Card, Space} from 'antd'
+import {Button as AmisBtn} from 'amis-ui'
+import AmisRender from '@/components/AmisRender'
+import {useLang} from '@/hooks/useLang'
 
 const Editor = () => {
+    const {t} = useLang()
     const [preview, setPreview] = React.useState(false)
     const [schema, setSchema] = React.useState({} as any)
 
     const btnSchema = {
-        type: "button",
-        label: "获取 PHP 代码",
-        level: "success",
-        actionType: "ajax",
+        type: 'button',
+        label: t('amis_editor.get_php_code'),
+        level: 'success',
+        actionType: 'ajax',
         api: {
-            method: "post",
-            url: "/dev_tools/editor_parse",
+            method: 'post',
+            url: '/dev_tools/editor_parse',
             data: {schema}
         },
         feedback: {
-            title: "PHP Schema",
-            size: "lg",
+            title: 'PHP Schema',
+            size: 'lg',
             body: {
-                type: "editor",
-                language: "php",
-                name: "schema",
+                type: 'editor',
+                language: 'php',
+                name: 'schema',
             }
         }
     }
 
     return (
         <div className="h-screen">
-            <Card className="h-full" title="可视化编辑器" bodyStyle={{padding: 0, height: "calc(100% - 46px)"}} extra={(
+            <Card className="h-full" title="可视化编辑器" bodyStyle={{padding: 0, height: 'calc(100% - 46px)'}} extra={(
                 <Space>
                     <AmisRender schema={btnSchema}/>
                     <AmisBtn level="primary" onClick={() => setPreview(!preview)}>
-                        {preview ? "编辑" : "预览"}
+                        {preview ? t('amis_editor.edit') : t('amis_editor.preview')}
                     </AmisBtn>
                 </Space>
             )}>
-                <AmisEditor onChange={setSchema} preview={preview}/>
+                <div className="w-full h-full overflow-x-auto">
+                    <AmisEditor onChange={setSchema} preview={preview}/>
+                </div>
             </Card>
             <div className="h-20px"></div>
         </div>

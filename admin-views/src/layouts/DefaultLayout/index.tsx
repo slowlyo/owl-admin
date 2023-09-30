@@ -1,5 +1,4 @@
 import {Layout} from 'antd'
-import LayoutFooter from '../components/LayoutFooter'
 import LayoutMenu from '@/layouts/components/LayoutMenu'
 import LayoutLogo from '@/layouts/components/LayoutLogo'
 import LayoutBreadcrumb from '@/layouts/components/LayoutBreadcrumb'
@@ -7,23 +6,26 @@ import LayoutTopBar from '@/layouts/components/LayoutTopBar'
 import {useState} from 'react'
 import CollapseTrigger from '@/layouts/components/CollapseTrigger'
 import LayoutContent from '@/layouts/components/LayoutContent'
+import useSetting from '@/hooks/useSetting'
+import LayoutTabs from '@/layouts/components/LayoutTabs'
 
 const {Header, Sider, Content} = Layout
 
 const DefaultLayout = () => {
+    const {getSetting} = useSetting()
     const [collapsed, setCollapsed] = useState(false)
 
     return (
         <Layout className="h-screen overflow-hidden">
             <Sider width={220}
-                   className="border-r"
-                   theme="light"
+                   className={getSetting('system_theme_setting.siderTheme', 'light') == 'dark' ? '' : 'border-r'}
+                   theme={getSetting('system_theme_setting.siderTheme', 'light')}
                    collapsed={collapsed}
                    collapsible
                    trigger={null}
                    collapsedWidth={64}>
                 <LayoutLogo onlyLogo={collapsed}/>
-                <LayoutMenu collapsed={collapsed}/>
+                <LayoutMenu collapsed={collapsed} theme={getSetting('system_theme_setting.siderTheme', 'light')}/>
             </Sider>
             <Layout>
                 <Header className="h-[64px] leading-none flex justify-between items-center border-b p-0">
@@ -35,7 +37,6 @@ const DefaultLayout = () => {
                 </Header>
                 <Content className="overflow-auto overflow">
                     <LayoutContent/>
-                    <LayoutFooter/>
                 </Content>
             </Layout>
         </Layout>

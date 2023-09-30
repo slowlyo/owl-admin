@@ -72,7 +72,7 @@ const LayoutBreadcrumb = () => {
     }, [currentRoute, routes])
 
     // 面包屑开关
-    if (settings.breadcrumb === false) return (<div></div>)
+    if (settings.system_theme_setting.breadcrumb === false) return (<div></div>)
 
     return (<Breadcrumb className="px-3" items={breadcrumb}/>)
 }

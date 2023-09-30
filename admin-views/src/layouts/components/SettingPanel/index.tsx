@@ -1,4 +1,18 @@
-import {Badge, Button, ColorPicker, Drawer, Form, message, Radio, Space} from 'antd'
+import {
+    Badge,
+    Button,
+    Checkbox,
+    ColorPicker,
+    Drawer,
+    Form,
+    InputNumber,
+    message,
+    Radio,
+    Select,
+    Space,
+    Switch,
+    Tag
+} from 'antd'
 import useStore from '@/hooks/useStore'
 import {useLang} from '@/hooks/useLang'
 import SelectLayout from '@/layouts/components/SettingPanel/components/SelectLayout'
@@ -65,6 +79,17 @@ const SettingPanel = () => {
         save.run({system_theme_setting: settings.system_theme_setting})
     }
 
+    const getAnimateOptions = (type) => {
+        const animateOptions = ['alpha', 'left', 'right', 'top', 'bottom', 'scale', 'scaleBig', 'scaleX', 'scaleY']
+
+        return animateOptions.map((item) => {
+            return {
+                label: t(`theme_setting.animate_${type}_${item}`),
+                value: item
+            }
+        })
+    }
+
     return (
         <Drawer open={state.openSetting}
                 onClose={closeSetting}
@@ -117,27 +142,79 @@ const SettingPanel = () => {
                 </Form.Item>
 
                 {/*顶部菜单主题*/}
-                <Form.Item colon={false} label={t('theme_setting.top_theme')}>
-                    <Radio.Group
-                        onChange={(e) => handleChange('topTheme', e.target.value)}
-                        value={settings.system_theme_setting.topTheme}
-                        optionType="button"
-                        options={[
-                            {label: t('theme_setting.light'), value: 'light'},
-                            {label: t('theme_setting.dark'), value: 'dark'}
-                        ]}/>
-                </Form.Item>
+                {settings.system_theme_setting.layoutMode != 'double' && (
+                    <Form.Item colon={false} label={t('theme_setting.top_theme')}>
+                        <Radio.Group
+                            onChange={(e) => handleChange('topTheme', e.target.value)}
+                            value={settings.system_theme_setting.topTheme}
+                            optionType="button"
+                            options={[
+                                {label: t('theme_setting.light'), value: 'light'},
+                                {label: t('theme_setting.dark'), value: 'dark'}
+                            ]}/>
+                    </Form.Item>
+                )}
 
                 {/*侧边栏主题*/}
-                <Form.Item colon={false} label={t('theme_setting.sider_theme')}>
-                    <Radio.Group
-                        onChange={(e) => handleChange('siderTheme', e.target.value)}
-                        value={settings.system_theme_setting.siderTheme}
-                        optionType="button"
-                        options={[
-                            {label: t('theme_setting.light'), value: 'light'},
-                            {label: t('theme_setting.dark'), value: 'dark'}
-                        ]}/>
+                {(settings.system_theme_setting.layoutMode != 'double' && settings.system_theme_setting.layoutMode != 'top') && (
+                    <Form.Item colon={false} label={t('theme_setting.sider_theme')}>
+                        <Radio.Group
+                            onChange={(e) => handleChange('siderTheme', e.target.value)}
+                            value={settings.system_theme_setting.siderTheme}
+                            optionType="button"
+                            options={[
+                                {label: t('theme_setting.light'), value: 'light'},
+                                {label: t('theme_setting.dark'), value: 'dark'}
+                            ]}/>
+                    </Form.Item>
+                )}
+
+                {/*页面内容*/}
+                <Form.Item colon={false} label={t('theme_setting.page_content')}>
+                    <Space direction="vertical">
+                        <Checkbox onChange={(e) => handleChange('footer', e.target.checked)}
+                                  checked={settings.system_theme_setting.footer}>{t('theme_setting.footer')}</Checkbox>
+                        <Checkbox onChange={(e) => handleChange('breadcrumb', e.target.checked)}
+                                  checked={settings.system_theme_setting.breadcrumb}>{t('theme_setting.breadcrumb')}</Checkbox>
+                        <Checkbox onChange={(e) => handleChange('enableTab', e.target.checked)}
+                                  checked={settings.system_theme_setting.enableTab}>{t('theme_setting.tab')}</Checkbox>
+                        <Checkbox onChange={(e) => handleChange('tabIcon', e.target.checked)}
+                                  checked={settings.system_theme_setting.tabIcon}>{t('theme_setting.tab_icon')}</Checkbox>
+                    </Space>
+                </Form.Item>
+
+                {/*进场动画*/}
+                <Form.Item colon={false} label={t('theme_setting.animate_in')}>
+                    <InputNumber addonAfter="ms"
+                                 onChange={(value) => handleChange('animateInDuration', value)}
+                                 value={settings.system_theme_setting.animateInDuration}
+                                 addonBefore={(
+                                     <Select options={getAnimateOptions('in')}
+                                             dropdownStyle={{width: 100}}
+                                             onChange={(value) => handleChange('animateInType', value)}
+                                             value={settings.system_theme_setting.animateInType}/>
+                                 )}/>
+                </Form.Item>
+
+                {/*离场动画*/}
+                <Form.Item colon={false} label={t('theme_setting.animate_out')}>
+                    <InputNumber addonAfter="ms"
+                                 onChange={(value) => handleChange('animateOutDuration', value)}
+                                 value={settings.system_theme_setting.animateOutDuration}
+                                 addonBefore={(
+                                     <Select options={getAnimateOptions('out')}
+                                             dropdownStyle={{width: 100}}
+                                             onChange={(value) => handleChange('animateOutType', value)}
+                                             value={settings.system_theme_setting.animateOutType}/>
+                                 )}/>
+                </Form.Item>
+
+                <Form.Item colon={false} label={t('theme_setting.keep_alive')}>
+                    <Space size="large">
+                        <Switch checked={settings.system_theme_setting.keepAlive}
+                                onChange={(value) => handleChange('keepAlive', value)}/>
+                        <Tag color="warning">Alpha</Tag>
+                    </Space>
                 </Form.Item>
             </Form>
         </Drawer>

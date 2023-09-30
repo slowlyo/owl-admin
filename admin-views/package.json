@@ -13,11 +13,6 @@
   },
   "dependencies": {
     "@ant-design/colors": "^7.0.0",
-    "@arco-design/color": "^0.4.0",
-    "@arco-design/theme-line": "^0.0.3",
-    "@arco-design/web-react": "^2.53.0",
-    "@arco-materials/context-menu": "^1.0.0",
-    "@arco-plugins/vite-react": "^1.0.5",
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@iconify/react": "^4.1.0",
     "@loadable/component": "^5.13.2",
@@ -30,10 +25,8 @@
     "amis-ui": "^3.4.0",
     "antd": "^5.9.0",
     "axios": "^0.24.0",
-    "classnames": "^2.3.1",
-    "copy-to-clipboard": "^3.3.1",
     "lodash": "^4.17.21",
-    "query-string": "^6.13.8",
+    "query-string": "^8.1.0",
     "rc-queue-anim": "^2.0.0",
     "react": "^17.0.2",
     "react-activation": "^0.12.4",
@@ -44,9 +37,6 @@
     "redux": "^4.1.2"
   },
   "devDependencies": {
-    "@arco-design/webpack-plugin": "^1.6.0",
-    "@arco-plugins/vite-plugin-svgr": "^0.7.2",
-    "@svgr/webpack": "^5.5.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",

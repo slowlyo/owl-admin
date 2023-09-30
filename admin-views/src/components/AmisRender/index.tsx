@@ -1,9 +1,6 @@
 import React from 'react'
 import './style/index.less'
-import {render as renderAmis, RenderOptions} from 'amis'
-import {Message} from '@arco-design/web-react'
-import {GlobalState} from '@/store'
-import {useSelector} from 'react-redux'
+import {render as renderAmis, RenderOptions, toast} from 'amis'
 import {amisRequest} from '@/service/api'
 import {ToastComponent} from 'amis-ui'
 import {useHistory} from 'react-router'
@@ -40,11 +37,10 @@ const AmisRender = ({schema, className = ''}) => {
         copy: async (content) => {
             await clipboard(content)
 
-            Message.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
+            toast.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
         },
         notify: (type: 'error' | 'success', msg: string) => {
-            Message.clear()
-            Message[type] ? Message[type](msg) : console.warn('[Notify]', type, msg)
+            toast[type] ? toast[type](msg) : console.warn('[Notify]', type, msg)
         }
     }
 

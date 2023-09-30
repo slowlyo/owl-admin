@@ -1,19 +1,15 @@
-import React, {useState} from "react"
-import {useMount, useRequest} from "ahooks"
-import {initPageSchema} from "@/service/api"
-import {useHistory} from "react-router-dom"
-import AmisRender from "@/components/AmisRender"
-import {useSelector} from "react-redux"
-import {GlobalState} from "@/store"
-import Footer from "@/layout/common/footer"
-import {Spin} from "@arco-design/web-react"
+import React, {useState} from 'react'
+import {useMount, useRequest} from 'ahooks'
+import {initPageSchema} from '@/service/api'
+import {useHistory} from 'react-router-dom'
+import AmisRender from '@/components/AmisRender'
+import {Spin} from 'antd'
 import {registerGlobalFunction} from '@/utils/common'
 
 
 function AmisPage() {
     const history = useHistory()
     const pathname = history.location.pathname
-    const {settings} = useSelector((state: GlobalState) => state)
 
     const [schema, setSchema] = useState({})
 
@@ -34,14 +30,11 @@ function AmisPage() {
 
     return (
         <>
-            <Spin loading={initPage.loading}
-                  dot
-                  size={8}
+            <Spin spinning={initPage.loading}
                   className="w-full"
                   style={{minHeight: initPage.loading ? "500px" : ""}}>
                 <AmisRender schema={schema}/>
             </Spin>
-            {(settings.footer && !initPage.loading) && <Footer/>}
             <div className="h-20px"></div>
         </>
     )

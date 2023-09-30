@@ -1,15 +1,13 @@
 import {Layout} from 'antd'
-import LayoutFooter from '../components/LayoutFooter'
 import LayoutLogo from '@/layouts/components/LayoutLogo'
 import LayoutContent from '@/layouts/components/LayoutContent'
 import LayoutMenu from '@/layouts/components/LayoutMenu'
 import CollapseTrigger from '@/layouts/components/CollapseTrigger'
 import LayoutBreadcrumb from '@/layouts/components/LayoutBreadcrumb'
 import LayoutTopBar from '@/layouts/components/LayoutTopBar'
-import {useEffect, useMemo, useState} from 'react'
+import {useEffect, useState} from 'react'
 import useRoute from '@/routes'
 import {Icon} from '@iconify/react'
-import {getFlattenRoutes} from '@/routes/helpers'
 import {useHistory} from 'react-router'
 
 const {Header, Sider, Content} = Layout
@@ -82,7 +80,7 @@ export const DoubleLayout = () => {
 
     return (
         <Layout className="h-screen overflow-hidden">
-            <Sider collapsedWidth={64} theme="dark" collapsed>
+            <Sider collapsedWidth={65} theme="dark" collapsed>
                 <LayoutLogo onlyLogo/>
                 <div className="w-full h-full">
                     {routes?.map(item => {
@@ -106,12 +104,12 @@ export const DoubleLayout = () => {
             </Sider>
             <Sider hidden={!childrenRoutes?.length}
                    width={220}
-                   collapsedWidth={64}
+                   collapsedWidth={65}
                    className="border-r"
                    theme="light"
                    collapsed={collapsed}>
                 {(!collapsed && !!childrenRoutes?.length) && (
-                    <div className="h-[64px] border-b flex justify-center items-center text-xl font-semibold truncate">
+                    <div className="h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate">
                         {getTopRoute(childrenRoutes[0])?.meta?.title}
                     </div>
                 )}
@@ -119,7 +117,7 @@ export const DoubleLayout = () => {
                 <LayoutMenu collapsed={collapsed} routeProps={childrenRoutes}/>
             </Sider>
             <Layout>
-                <Header className="h-[64px] leading-none flex justify-between items-center bg-white border-b p-0">
+                <Header className="h-[65px] leading-none flex justify-between items-center border-b p-0">
                     <div className="flex h-full items-center">
                         {!!childrenRoutes?.length && <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>}
                         <LayoutBreadcrumb/>
@@ -128,7 +126,6 @@ export const DoubleLayout = () => {
                 </Header>
                 <Content className="overflow-auto overflow">
                     <LayoutContent/>
-                    <LayoutFooter/>
                 </Content>
             </Layout>
         </Layout>

@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "./style/index.module.css"
-import {getColorList} from "@/utils/themeColor"
 import useSetting from '@/hooks/useSetting'
+import {generate} from '@ant-design/colors'
 
 const Bg = (props) => {
     const {getSetting} = useSetting()
@@ -13,7 +13,7 @@ const Bg = (props) => {
         return `rgba(${colorValue}, ${colorValue}, ${colorValue}, ${opacity / 10})`
     }
 
-    const themeColorList = getColorList(getSetting('system_theme_setting.themeColor', 'white'))
+    const themeColorList = generate(getSetting('system_theme_setting.themeColor', 'white'))
 
     const lightColor = themeColorList[darkTheme ? 5 : 1]
     const darkColor = themeColorList[darkTheme ? 1 : 5]

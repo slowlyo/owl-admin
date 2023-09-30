@@ -1,11 +1,7 @@
-import "@wangeditor/editor/dist/css/style.css" // 引入 css
-
-import React, {useState, useEffect, forwardRef} from "react"
-import {useSelector} from "react-redux"
-import {GlobalState} from "@/store"
-import {i18nChangeLanguage} from "@wangeditor/editor"
-import {Editor, Toolbar} from "@wangeditor/editor-for-react"
-import {IDomEditor, IEditorConfig, IToolbarConfig} from "@wangeditor/editor"
+import '@wangeditor/editor/dist/css/style.css' // 引入 css
+import React, {forwardRef, useEffect, useState} from 'react'
+import {i18nChangeLanguage, IDomEditor, IEditorConfig, IToolbarConfig} from '@wangeditor/editor'
+import {Editor, Toolbar} from '@wangeditor/editor-for-react'
 import useSetting from '@/hooks/useSetting'
 
 interface IProps {
@@ -105,13 +101,13 @@ const WangEditor = forwardRef((props: IProps, ref: any) => {
     }, [editor])
 
     return (
-        <div className={props.className} style={{border: "1px solid var(--color-border)", zIndex: 100}}>
+        <div className={props.className} style={{border: "1px solid var(--colors-neutral-text-8)", zIndex: 100}}>
             {props.static || (
                 <Toolbar
                     editor={editor}
                     defaultConfig={toolbarConfig}
                     mode="default"
-                    style={{borderBottom: "1px solid var(--color-border)"}}
+                    style={{borderBottom: "1px solid var(--colors-neutral-text-8)"}}
                 />
             )}
             <Editor

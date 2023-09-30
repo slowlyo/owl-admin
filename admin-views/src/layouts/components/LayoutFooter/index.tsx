@@ -8,7 +8,7 @@ const LayoutFooter = () => {
     }
 
     return (
-        <div className="h-[64px] flex items-center justify-center">
+        <div className="h-[65px] flex items-center justify-center">
             <div dangerouslySetInnerHTML={{__html: getSetting('layout.footer')}}></div>
         </div>
     )

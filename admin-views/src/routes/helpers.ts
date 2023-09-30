@@ -1,5 +1,5 @@
-import {isArray, isString} from "@/utils/is"
 import lazyload from "@/utils/lazyload"
+import {isArray, isString} from '@/utils/common'
 
 export const componentMount = (routes) => {
     const mod = import.meta.glob("../pages/**/[a-z[]*.tsx")

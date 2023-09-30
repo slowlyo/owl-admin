@@ -71,6 +71,14 @@ export const isObject = (val): boolean => Object.prototype.toString.call(val) ==
 
 export const isString = (val): boolean => Object.prototype.toString.call(val) === '[object String]'
 
+export const isSSR = (function () {
+    try {
+        return !(typeof window !== 'undefined' && document !== undefined);
+    } catch (e) {
+        return true;
+    }
+})();
+
 export const getCacheKey = (key: string) => window.$adminApiPrefix.replace(/^\//, '') + '-' + key
 
 export const Token = () => {

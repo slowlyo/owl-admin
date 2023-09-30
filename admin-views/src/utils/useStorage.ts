@@ -2,7 +2,7 @@
 // 解决 nextJS 无法获取初始localstorage问题
 
 import { useEffect, useState } from 'react';
-import { isSSR } from '@/utils/is';
+import {isSSR} from '@/utils/common'
 
 const getDefaultStorage = (key) => {
   if (!isSSR) {

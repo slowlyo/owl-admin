@@ -1,11 +1,7 @@
-import {getCacheKey} from '@/utils/common'
-
 const defaultSettings = {
     footer: false,
     breadcrumb: true,
-    breadcrumbIcon: false,
     themeColor: '#1677ff',
-    menuWidth: 220,
     layoutMode: 'default',
     siderTheme: 'light',
     topTheme: 'light',

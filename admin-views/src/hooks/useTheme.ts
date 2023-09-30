@@ -42,7 +42,7 @@ const useTheme = (store = null) => {
     const refreshToken = () => {
         setThemeColor(themeSettings.themeColor)
 
-        const textColor = (theme, lightColor = '#fff') => theme == 'light' ? 'rgba(0, 0, 0, 0.88)' : lightColor
+        const textColor = (dark, lightColor = '#fff') => dark ? lightColor : 'rgba(0, 0, 0, 0.88)'
 
         const token = {
             token: {
@@ -50,14 +50,14 @@ const useTheme = (store = null) => {
             },
             components: {
                 Layout: {
-                    headerBg: themeSettings.topTheme == 'light' ? '#fff' : '#001529',
-                    headerColor: textColor(themeSettings.topTheme)
+                    headerBg: (themeSettings.topTheme == 'dark' && themeSettings.layoutMode != 'double') ? '#001529' : '#fff',
+                    headerColor: textColor(themeSettings.topTheme == 'dark' && themeSettings.layoutMode != 'double'),
                 },
                 Breadcrumb: {
-                    lastItemColor: textColor(themeSettings.topTheme),
-                    itemColor: textColor(themeSettings.topTheme),
-                    separatorColor: textColor(themeSettings.topTheme),
-                    linkHoverColor: textColor(themeSettings.topTheme),
+                    lastItemColor: textColor(themeSettings.topTheme == 'dark' && themeSettings.layoutMode != 'double'),
+                    itemColor: textColor(themeSettings.topTheme == 'dark' && themeSettings.layoutMode != 'double'),
+                    separatorColor: textColor(themeSettings.topTheme == 'dark' && themeSettings.layoutMode != 'double'),
+                    linkHoverColor: textColor(themeSettings.topTheme == 'dark' && themeSettings.layoutMode != 'double'),
                 },
             },
         }

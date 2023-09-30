@@ -8,7 +8,7 @@ import {dynamicAssetsHandler} from '@/utils/dynamicAssets'
 import {registerCustomComponents} from '@/components/AmisRender/CustomComponents'
 
 const useSetup = (store) => {
-    const [lang, setLang] = useStorage('arco-lang', 'zh-CN')
+    const [lang, setLang] = useStorage('owl-lang', 'zh-CN')
 
     // 初始化配置信息
     const initSettings = useRequest(fetchSettings, {

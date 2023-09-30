@@ -1,13 +1,11 @@
-import React from "react"
-import {Editor} from "amis-editor"
-import {GlobalState} from "@/store"
-import {useSelector} from "react-redux"
-import {amisRequest} from "@/service/api"
-import {useHistory} from "react-router"
-import clipboard from "@/utils/clipboard"
-import {Message} from "@arco-design/web-react"
-import "amis-editor-core/lib/style.css"
-import "./style/index.less"
+import React from 'react'
+import {Editor} from 'amis-editor'
+import {toast} from 'amis'
+import {amisRequest} from '@/service/api'
+import {useHistory} from 'react-router'
+import clipboard from '@/utils/clipboard'
+import 'amis-editor-core/lib/style.css'
+import './style/index.less'
 import useSetting from '@/hooks/useSetting'
 
 function AmisEditor({onChange, preview}) {
@@ -26,19 +24,19 @@ function AmisEditor({onChange, preview}) {
             replace || history.push(location)
         },
         jumpTo: (location: string) => {
-            if (location.startsWith("http") || location.startsWith("https")) {
+            if (location.startsWith('http') || location.startsWith('https')) {
                 window.open(location)
             } else {
-                history.push(location.startsWith("/") ? location : `/${location}`)
+                history.push(location.startsWith('/') ? location : `/${location}`)
             }
         },
         copy: async (content) => {
             await clipboard(content)
 
-            Message.success("复制成功")
+            toast.success('复制成功')
         },
-        notify: (type: "error" | "success", msg: string) => {
-            Message[type] ? Message[type](msg) : console.warn("[Notify]", type, msg)
+        notify: (type: 'error' | 'success', msg: string) => {
+            toast[type] ? toast[type](msg) : console.warn('[Notify]', type, msg)
         }
     }
 

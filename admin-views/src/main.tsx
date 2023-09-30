@@ -1,4 +1,4 @@
-import './style/global.less'
+import './global.css'
 import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import {createStore} from 'redux'
@@ -7,7 +7,6 @@ import {HashRouter, Route, Switch} from 'react-router-dom'
 import rootReducer from './store'
 import {GlobalContext} from './context'
 import Login from './pages/login'
-import useStorage from './utils/useStorage'
 import {AliveScope} from 'react-activation'
 import Layout from '@/layouts'
 import {ConfigProvider} from 'antd'
@@ -15,12 +14,10 @@ import useSetup from '@/hooks/useSetup'
 
 const store = createStore(rootReducer)
 
-function Index() {
+function Admin() {
     const {getAntdLocale} = useSetup(store)
-    const [lang, setLang] = useStorage('owl-lang', 'zh-CN')
     const [antdToken, setAntdToken] = useState(store.getState().antdToken)
-
-    const contextValue = {lang, setLang, antdToken, setAntdToken}
+    const contextValue = {antdToken, setAntdToken}
 
     return (
         <HashRouter>
@@ -40,4 +37,4 @@ function Index() {
     )
 }
 
-ReactDOM.render(<Index/>, document.getElementById('root'))
+ReactDOM.render(<Admin/>, document.getElementById('root'))

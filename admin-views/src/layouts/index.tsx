@@ -55,8 +55,8 @@ const Layout = () => {
                 history.push(pathname)
                 setTimeout(() => {
                     appLoaded()
-                }, 500)
-            }, 200)
+                }, 600)
+            }, 300)
         }
     }, [isSmallScreen])
 
