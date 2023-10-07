@@ -8,7 +8,7 @@ const LayoutFooter = () => {
     }
 
     return (
-        <div className="h-[65px] flex items-center justify-center bg-white border-t">
+        <div className="owl-footer h-[65px] flex items-center justify-center bg-white border-t">
             <div dangerouslySetInnerHTML={{__html: getSetting('layout.footer')}}></div>
         </div>
     )
