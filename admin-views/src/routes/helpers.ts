@@ -14,11 +14,6 @@ export const componentMount = (routes) => {
                 route.children = travel(route.children, [...parents, route])
             }
 
-            // 设置默认图标
-            if (!route.meta?.icon || route.meta?.icon == "-") {
-                route.meta.icon = "ph:circle"
-            }
-
             // 保存父级路由
             route.meta.parents = parents
 

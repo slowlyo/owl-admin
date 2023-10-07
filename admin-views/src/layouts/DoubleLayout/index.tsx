@@ -91,9 +91,11 @@ export const DoubleLayout = () => {
                         return (
                             <div key={item.name} className={baseStyle + selectStyle}
                                  onClick={() => clickItem(item)}>
-                                <div className="p-1">
-                                    <Icon icon={item?.meta?.icon} fontSize={18}/>
-                                </div>
+                                {(item?.meta?.icon && item?.meta?.icon != '-') && (
+                                    <div className="p-1">
+                                        <Icon icon={item?.meta?.icon} fontSize={18}/>
+                                    </div>
+                                )}
                                 <div className="text-[10px]">
                                     {item?.meta?.title}
                                 </div>

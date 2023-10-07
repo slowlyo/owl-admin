@@ -1,8 +1,8 @@
 import React from 'react'
 import './style/index.less'
-import {render as renderAmis, RenderOptions, toast} from 'amis'
+import {render as renderAmis, RenderOptions} from 'amis'
+import {message} from 'antd'
 import {amisRequest} from '@/service/api'
-import {ToastComponent} from 'amis-ui'
 import {useHistory} from 'react-router'
 import clipboard from '@/utils/clipboard'
 import useSetting from '@/hooks/useSetting'
@@ -37,16 +37,21 @@ const AmisRender = ({schema, className = ''}) => {
         copy: async (content) => {
             await clipboard(content)
 
-            toast.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
+            message.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
         },
-        notify: (type: 'error' | 'success', msg: string) => {
-            toast[type] ? toast[type](msg) : console.warn('[Notify]', type, msg)
+        notify: (type: string, msg: string, conf) => {
+            message.destroy()
+
+            message.open({
+                content: msg,
+                type: (['info', 'success', 'error', 'warning', 'loading'].includes(type) ? type : 'info') as any,
+                duration: (conf?.timeout || 3000) / 1000,
+            })
         }
     }
 
     return (
         <div className={className}>
-            <ToastComponent key="toast"></ToastComponent>
             {renderAmis(schema, props, options)}
         </div>
     )

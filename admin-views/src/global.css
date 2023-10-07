@@ -28,3 +28,7 @@ body {
 .owl-tabs::-webkit-scrollbar {
     display: none;
 }
+
+.ant-message{
+    z-index: 5000;
+}
