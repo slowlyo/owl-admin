@@ -45,7 +45,6 @@ const SettingPanel = () => {
         if (key === 'themeColor') setThemeColor(value)
 
         const system_theme_setting = Object.assign({}, settings.system_theme_setting, {[key]: value})
-        console.log(system_theme_setting)
         dispatch({
             type: 'update-settings',
             payload: {settings: {...settings, system_theme_setting}}

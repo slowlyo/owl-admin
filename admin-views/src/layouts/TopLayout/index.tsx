@@ -9,13 +9,14 @@ const {Header, Content} = Layout
 
 const TopLayout = () => {
     const {getSetting} = useSetting()
+    const border = getSetting('system_theme_setting.topTheme') == 'dark' ? '' : 'border-b'
 
     return (
         <Layout className="h-screen overflow-hidden">
-            <Header className="h-[65px] border-b flex p-0 justify-between items-center leading-none">
-                <div className="flex">
+            <Header className={'h-[65px] flex p-0 justify-between items-center leading-none ' + border}>
+                <div className="flex h-full">
                     <LayoutLogo/>
-                    <div className="leading-[65px]">
+                    <div className="leading-[65px] h-full">
                         <LayoutMenu mode="horizontal" theme={getSetting('system_theme_setting.topTheme')}/>
                     </div>
                 </div>

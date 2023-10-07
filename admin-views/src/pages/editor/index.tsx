@@ -45,7 +45,7 @@ const Editor = () => {
                     <AmisEditor onChange={setSchema} preview={preview}/>
                 </div>
             </Card>
-            <div className="h-20px"></div>
+            <div className="h-5"></div>
         </div>
     )
 }

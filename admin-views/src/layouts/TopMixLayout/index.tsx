@@ -16,7 +16,7 @@ const TopMixLayout = () => {
 
     return (
         <Layout className="h-screen overflow-hidden">
-            <Header className={"h-[64px] leading-none flex justify-between items-center p-0 " + (getSetting('system_theme_setting.siderTheme', 'light') == 'dark' ? '' : 'border-b')}>
+            <Header className={"h-[65px] leading-none flex justify-between items-center p-0 " + (getSetting('system_theme_setting.siderTheme', 'light') == 'dark' ? '' : 'border-b')}>
                 <div className="flex h-full items-center">
                     <LayoutLogo/>
                     <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>

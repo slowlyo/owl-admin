@@ -7,7 +7,6 @@ import {useState} from 'react'
 import CollapseTrigger from '@/layouts/components/CollapseTrigger'
 import LayoutContent from '@/layouts/components/LayoutContent'
 import useSetting from '@/hooks/useSetting'
-import LayoutTabs from '@/layouts/components/LayoutTabs'
 
 const {Header, Sider, Content} = Layout
 
@@ -23,12 +22,12 @@ const DefaultLayout = () => {
                    collapsed={collapsed}
                    collapsible
                    trigger={null}
-                   collapsedWidth={64}>
+                   collapsedWidth={65}>
                 <LayoutLogo onlyLogo={collapsed}/>
                 <LayoutMenu collapsed={collapsed} theme={getSetting('system_theme_setting.siderTheme', 'light')}/>
             </Sider>
             <Layout>
-                <Header className="h-[64px] leading-none flex justify-between items-center border-b p-0">
+                <Header className="h-[65px] leading-none flex justify-between items-center border-b p-0">
                     <div className="flex h-full items-center">
                         <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>
                         <LayoutBreadcrumb/>

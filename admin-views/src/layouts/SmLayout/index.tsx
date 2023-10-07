@@ -31,7 +31,7 @@ const SmLayout = () => {
                     placement="left"
                     onClose={() => setClosed(true)}
                     closeIcon={false}
-                    headerStyle={{padding: 0, height: '64px'}}
+                    headerStyle={{padding: 0, height: '65px'}}
                     title={<LayoutLogo/>}>
                 <LayoutMenu collapsed={!open} theme={getSetting('system_theme_setting.siderTheme')}/>
             </Drawer>

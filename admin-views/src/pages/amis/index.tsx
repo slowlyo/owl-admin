@@ -35,7 +35,7 @@ function AmisPage() {
                   style={{minHeight: initPage.loading ? "500px" : ""}}>
                 <AmisRender schema={schema}/>
             </Spin>
-            <div className="h-20px"></div>
+            <div className="h-5"></div>
         </>
     )
 }

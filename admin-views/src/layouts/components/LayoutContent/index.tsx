@@ -7,8 +7,8 @@ import QueueAnim from 'rc-queue-anim'
 import {getFlattenRoutes} from '@/routes/helpers'
 import {KeepAlive} from 'react-activation'
 import useSetting from '@/hooks/useSetting'
-import LayoutFooter from '@/layouts/components/LayoutFooter'
 import LayoutTabs from '@/layouts/components/LayoutTabs'
+import LayoutFooter from '@/layouts/components/LayoutFooter'
 
 
 const LayoutContent = () => {
@@ -36,9 +36,9 @@ const LayoutContent = () => {
     }, [pathname, routes])
 
     return (
-        <div className="h-full overflow-hidden">
+        <div className="h-full overflow-hidden flex flex-col">
             {getSetting('system_theme_setting.enableTab') && <LayoutTabs/>}
-            <div className="h-full p-5 overflow-auto">
+            <div className="flex-1 p-5 overflow-auto">
                 <QueueAnim className="relative"
                            type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
                            duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
@@ -60,10 +60,10 @@ const LayoutContent = () => {
                                 <Route path="*" component={lazyLoad(() => import('@/pages/404'))}/>
                             )}
                         </Switch>
-                        <LayoutFooter/>
                     </div>
                 </QueueAnim>
             </div>
+            <LayoutFooter/>
         </div>
     )
 }
