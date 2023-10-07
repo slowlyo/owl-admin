@@ -9,7 +9,7 @@ import {registerGlobalFunction} from '@/utils/common'
 
 function AmisPage() {
     const history = useHistory()
-    const pathname = history.location.pathname
+    const pathname = history.location.pathname + history.location.search
 
     const [schema, setSchema] = useState({})
 
