@@ -4,14 +4,33 @@ import useSettings from '@/hooks/useSetting'
 const LayoutLogo = ({onlyLogo = false}) => {
     const {settings, getSetting} = useSettings()
     const width = onlyLogo ? ' w-full' : ' w-[220px]'
-    const textColor = getSetting("system_theme_setting.topTheme") === 'dark' || getSetting("system_theme_setting.siderTheme") === 'dark' ? 'text-white' : 'text-black'
+
+    const textColor = () => {
+        if(getSetting('system_theme_setting.darkTheme')){
+            return 'text-[var(--colors-neutral-text-1)]'
+        }
+
+        if(getSetting('system_theme_setting.topTheme') === 'dark' && getSetting('system_theme_setting.layoutMode') == 'top-mix'){
+            return 'text-white'
+        }
+
+        if(getSetting('system_theme_setting.topTheme') === 'dark' && getSetting('system_theme_setting.layoutMode') == 'top'){
+            return 'text-white'
+        }
+
+        if(getSetting('system_theme_setting.siderTheme') === 'dark' && getSetting('system_theme_setting.layoutMode') == 'default'){
+            return 'text-white'
+        }
+
+        return 'text-[var(--colors-neutral-text-1)]'
+    }
 
     return (
         <div className={'h-[65px] flex justify-center items-center' + width}>
             <div className="w-[35px]">
                 <Image width={35} preview={false} src={settings.logo}/>
             </div>
-            {onlyLogo || <div className={"text-xl font-medium ml-2 truncate " + textColor}>{settings.app_name}</div>}
+            {onlyLogo || <div className={"text-xl font-medium ml-2 truncate " + textColor()}>{settings.app_name}</div>}
         </div>
     )
 }

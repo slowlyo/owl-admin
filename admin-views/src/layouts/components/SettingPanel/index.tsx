@@ -28,7 +28,7 @@ const SettingPanel = () => {
     const history = useHistory()
     const pathname = history.location.pathname
     const {state, dispatch} = useStore()
-    const {setThemeColor} = useTheme()
+    const {setThemeColor, setDarkTheme} = useTheme()
     const {settings} = useSetting()
     const {t} = useLang()
 
@@ -43,6 +43,7 @@ const SettingPanel = () => {
 
     const handleChange = (key, value) => {
         if (key === 'themeColor') setThemeColor(value)
+        if (key === 'darkTheme') setDarkTheme(value)
 
         const system_theme_setting = Object.assign({}, settings.system_theme_setting, {[key]: value})
         dispatch({
@@ -121,6 +122,14 @@ const SettingPanel = () => {
                                      colors: ['#1677FF', '#F5222D', '#FA8C16', '#52C41A', '#13A8A8', '#2F54EB', '#722ED1', '#EB2F96'],
                                  }]}/>
                 </Form.Item>
+
+                {/*暗黑模式*/}
+                {!settings.system_theme_setting.followSystemTheme && (
+                    <Form.Item colon={false} label={t('theme_setting.dark_theme')}>
+                        <Switch checked={settings.system_theme_setting.darkTheme}
+                                onChange={(value) => handleChange('darkTheme', value)}/>
+                    </Form.Item>
+                )}
 
                 {/*布局模式*/}
                 <Form.Item colon={false} label={t('theme_setting.layout_mode')}>

@@ -14,9 +14,17 @@ const TopMixLayout = () => {
     const {getSetting} = useSetting()
     const [collapsed, setCollapsed] = useState(false)
 
+    const darkSider = () => {
+        return getSetting('system_theme_setting.siderTheme') == 'dark' && !getSetting('system_theme_setting.darkTheme')
+    }
+
+    const darkTop = () => {
+        return getSetting('system_theme_setting.topTheme') == 'dark' && !getSetting('system_theme_setting.darkTheme')
+    }
+
     return (
         <Layout className="h-screen overflow-hidden">
-            <Header className={"h-[65px] leading-none flex justify-between items-center p-0 " + (getSetting('system_theme_setting.siderTheme', 'light') == 'dark' ? '' : 'border-b')}>
+            <Header className={"h-[65px] leading-none flex justify-between items-center p-0 " + (darkTop() ? '' : 'border-b')}>
                 <div className="flex h-full items-center">
                     <LayoutLogo/>
                     <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>
@@ -26,13 +34,13 @@ const TopMixLayout = () => {
             </Header>
             <Layout>
                 <Sider width={220}
-                       className="border-r"
-                       theme={getSetting('system_theme_setting.siderTheme', 'light')}
+                       className="border-r overflow-y-auto"
+                       theme={darkSider() ? 'dark' : 'light'}
                        collapsed={collapsed}
                        collapsible
                        trigger={null}
                        collapsedWidth={65}>
-                    <LayoutMenu theme={getSetting('system_theme_setting.siderTheme', 'light')}/>
+                    <LayoutMenu theme={darkSider() ? 'dark' : 'light'}/>
                 </Sider>
                 <Content className="overflow-auto overflow">
                     <LayoutContent/>

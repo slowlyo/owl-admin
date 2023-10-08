@@ -152,7 +152,7 @@ const LayoutTabs = () => {
     useEffect(() => changeTab(), [routes, pathname])
     useEffect(() => initTab(), [routes])
 
-    const tabClass = 'owl-tabs w-full h-[40px] flex px-[20px] overflow-x-auto overflow-y-hidden items-center border-b bg-[var(--body-bg)] scroll-smooth'
+    const tabClass = 'owl-tabs w-full h-[40px] flex px-[20px] overflow-x-auto overflow-y-hidden items-center border-b bg-[var(--owl-main-bg)] scroll-smooth'
 
     return (
         <div className={tabClass} onWheel={horizontalScroll}>

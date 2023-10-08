@@ -9,20 +9,28 @@ import {GlobalContext} from './context'
 import Login from './pages/login'
 import {AliveScope} from 'react-activation'
 import Layout from '@/layouts'
-import {ConfigProvider} from 'antd'
+import {ConfigProvider, theme} from 'antd'
 import useSetup from '@/hooks/useSetup'
+import useTheme from '@/hooks/useTheme'
 
 const store = createStore(rootReducer)
 
-function Admin() {
+const Admin = () => {
     const {getAntdLocale} = useSetup(store)
     const [antdToken, setAntdToken] = useState(store.getState().antdToken)
+    useTheme(store)
+
     const contextValue = {antdToken, setAntdToken}
 
     return (
         <HashRouter>
             <Provider store={store}>
-                <ConfigProvider theme={antdToken} wave={{disabled: true}} locale={getAntdLocale()}>
+                <ConfigProvider theme={{
+                    ...antdToken,
+                    algorithm: store.getState().settings.system_theme_setting.darkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm
+                }}
+                                wave={{disabled: true}}
+                                locale={getAntdLocale()}>
                     <AliveScope>
                         <GlobalContext.Provider value={contextValue}>
                             <Switch>

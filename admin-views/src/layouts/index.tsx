@@ -10,7 +10,7 @@ import TopMixLayout from '@/layouts/TopMixLayout'
 import {DoubleLayout} from '@/layouts/DoubleLayout'
 import SettingPanel from '@/layouts/components/SettingPanel'
 import useSetting from '@/hooks/useSetting'
-import {appLoaded} from '@/utils/common'
+import {appLoaded, goToLoginPage, Token} from '@/utils/common'
 
 const Layout = () => {
     const {getCurrentRoute} = useRoute()
@@ -21,14 +21,6 @@ const Layout = () => {
     const {getSetting} = useSetting()
 
     const currentRoute = getCurrentRoute()
-
-    if (currentRoute?.is_full) {
-        return (
-            <div className="h-screen">
-                <LayoutContent/>
-            </div>
-        )
-    }
 
     const RenderLayout = (mode:string) => {
         switch (mode) {
@@ -59,6 +51,18 @@ const Layout = () => {
             }, 300)
         }
     }, [isSmallScreen])
+
+    if(!Token().value){
+        goToLoginPage()
+    }
+
+    if (currentRoute?.is_full) {
+        return (
+            <div className="h-screen">
+                <LayoutContent/>
+            </div>
+        )
+    }
 
     return (
         <>

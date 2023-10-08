@@ -6,7 +6,7 @@ const Card = ({children, selected, tips, onClick, tipsInBottom = false}) => {
     return (
         <Tooltip title={tips} arrow={false} placement={tipsInBottom ? 'bottom' : 'top'}>
             <div onClick={onClick}
-                 className={'relative w-[100px] h-[60px] p-[5px] rounded cursor-pointer bg-white shadow-md border-[2px] hover:border-[var(--colors-brand-5)]' + selectClass}>
+                 className={'relative w-[100px] h-[60px] p-[5px] rounded cursor-pointer bg-[var(--owl-main-bg)] shadow-md border-[2px] hover:border-[var(--colors-brand-5)]' + selectClass}>
                 {children}
             </div>
         </Tooltip>

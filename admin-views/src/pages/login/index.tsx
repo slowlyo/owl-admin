@@ -10,8 +10,10 @@ import useStorage from '@/utils/useStorage'
 import {fetchUserInfo} from '@/service/api'
 import useRoute from '@/routes'
 import {useLang} from '@/hooks/useLang'
+import useTheme from '@/hooks/useTheme'
 
 const Login = () => {
+    useTheme()
     const {t} = useLang()
     const {getSetting} = useSetting()
     const loginTemplate = getSetting('system_theme_setting.loginTemplate', 'amis')

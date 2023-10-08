@@ -32,3 +32,8 @@ body {
 .ant-message{
     z-index: 5000;
 }
+
+::selection {
+    background: var(--colors-brand-8);
+    color: var(--colors-neutral-text-1);
+}

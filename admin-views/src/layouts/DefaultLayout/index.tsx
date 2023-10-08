@@ -14,17 +14,23 @@ const DefaultLayout = () => {
     const {getSetting} = useSetting()
     const [collapsed, setCollapsed] = useState(false)
 
+    const darkSider = () => {
+        return getSetting('system_theme_setting.siderTheme') == 'dark' && !getSetting('system_theme_setting.darkTheme')
+    }
+
     return (
         <Layout className="h-screen overflow-hidden">
             <Sider width={220}
-                   className={getSetting('system_theme_setting.siderTheme', 'light') == 'dark' ? '' : 'border-r'}
-                   theme={getSetting('system_theme_setting.siderTheme', 'light')}
+                   className={darkSider() ? '' : 'border-r'}
+                   theme={darkSider() ? 'dark' : 'light'}
                    collapsed={collapsed}
                    collapsible
                    trigger={null}
                    collapsedWidth={65}>
                 <LayoutLogo onlyLogo={collapsed}/>
-                <LayoutMenu collapsed={collapsed} theme={getSetting('system_theme_setting.siderTheme', 'light')}/>
+                <div className="h-[calc(100%-65px)] overflow-y-auto">
+                    <LayoutMenu collapsed={collapsed} theme={darkSider() ? 'dark' : 'light'}/>
+                </div>
             </Sider>
             <Layout>
                 <Header className="h-[65px] leading-none flex justify-between items-center border-b p-0">

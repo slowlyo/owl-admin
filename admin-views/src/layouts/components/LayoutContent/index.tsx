@@ -13,14 +13,15 @@ import LayoutFooter from '@/layouts/components/LayoutFooter'
 
 const LayoutContent = () => {
     const {getSetting} = useSetting()
-    const {routes, defaultRoute} = useRoute()
+    const {routes, defaultRoute, getCurrentRoute} = useRoute()
     const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes])
     const history = useHistory()
     const pathname = history.location.pathname
     const location = useLocation()
+    const currentRoute = getCurrentRoute()
 
     const setPageTitle = () => {
-        let title = flattenRoutes.find((route) => route.path === pathname)?.meta?.title
+        let title = currentRoute?.meta?.title
         if (title) {
             const titleTmp = getSetting('layout.title')
             if (titleTmp) {
@@ -36,8 +37,8 @@ const LayoutContent = () => {
     }, [pathname, routes])
 
     return (
-        <div className="h-full overflow-hidden flex flex-col">
-            {getSetting('system_theme_setting.enableTab') && <LayoutTabs/>}
+        <div className="h-full overflow-hidden flex flex-col bg-[var(--owl-body-bg)]">
+            {(getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full) && <LayoutTabs/>}
             <div className="flex-1 p-5 overflow-auto">
                 <QueueAnim className="relative"
                            type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
@@ -63,7 +64,7 @@ const LayoutContent = () => {
                     </div>
                 </QueueAnim>
             </div>
-            <LayoutFooter/>
+            {!currentRoute?.is_full && <LayoutFooter/>}
         </div>
     )
 }

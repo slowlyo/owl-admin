@@ -5,7 +5,7 @@ import {generate} from '@ant-design/colors'
 
 const Bg = (props) => {
     const {getSetting} = useSetting()
-    const darkTheme = false
+    const darkTheme = getSetting('system_theme_setting.darkTheme')
 
     const color = (opacity) => {
         const colorValue = darkTheme ? 180 : 255
@@ -13,10 +13,12 @@ const Bg = (props) => {
         return `rgba(${colorValue}, ${colorValue}, ${colorValue}, ${opacity / 10})`
     }
 
-    const themeColorList = generate(getSetting('system_theme_setting.themeColor', 'white'))
+    const themeColorList = generate(getSetting('system_theme_setting.themeColor', 'white') , {
+        theme: darkTheme ? 'dark' : 'default',
+    })
 
-    const lightColor = themeColorList[darkTheme ? 5 : 1]
-    const darkColor = themeColorList[darkTheme ? 1 : 5]
+    const lightColor = themeColorList[1]
+    const darkColor = themeColorList[6]
 
     const bg = `linear-gradient(200deg, ${lightColor} 0%, ${darkColor} 100%)`
 

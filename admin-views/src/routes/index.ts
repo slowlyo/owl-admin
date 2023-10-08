@@ -1,4 +1,4 @@
-import {useEffect, useMemo} from 'react'
+import {useMemo} from 'react'
 import {useRequest} from 'ahooks'
 import {fetchUserRoutes} from '@/service/api'
 import {useDispatch, useSelector} from 'react-redux'
@@ -68,10 +68,6 @@ const useRoute = () => {
     })
 
     registerGlobalFunction('refreshRoutes', () => dynamicRoutes.runAsync())
-
-    useEffect(() => {
-        dynamicRoutes.run()
-    }, [])
 
     const defaultRoute = useMemo(() => {
         const first = routes.find(r => r.is_home == 1) || routes[0]

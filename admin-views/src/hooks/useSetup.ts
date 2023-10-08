@@ -81,8 +81,9 @@ const useSetup = (store) => {
 
         if (Token().value) {
             await initUserInfo.runAsync()
+            await window.$owl.refreshRoutes()
         } else if (!inLoginPage()) {
-            window.location.hash = '#/login'
+            goToLoginPage()
         }
 
         registerFunctions()

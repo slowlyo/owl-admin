@@ -58,6 +58,7 @@ export default {
         animate_out_scaleX: 'ScaleX',
         animate_out_scaleY: 'ScaleY',
         keep_alive: 'Keep Alive',
+        dark_theme: 'Dark Theme',
     },
     tabMenu: {
         refresh: 'Refresh',

@@ -1,4 +1,6 @@
 const defaultSettings = {
+    darkTheme: false,
+    followSystemTheme: true,
     footer: false,
     breadcrumb: true,
     themeColor: '#1677ff',
@@ -25,8 +27,6 @@ const defaultToken = {
         Menu: {
             iconSize: 18,
             collapsedIconSize: 18,
-            subMenuItemBg: '#fff',
-            darkSubMenuItemBg: '#001529',
             itemMarginInline: 8,
         }
     }

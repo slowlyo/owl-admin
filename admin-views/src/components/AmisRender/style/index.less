@@ -8,15 +8,36 @@ body {
     --Page-title-fontWeight: 600;
     --Table-toolbar-marginX: 0;
     --Tag-normal-borderRadius: var(--borderRadius);
+    --Card-borderColor: var(--colors-neutral-text-8);
+    --Tag-normal-borderColor: var(--colors-neutral-text-8);
+    --Tooltip--attr-color: var(--colors-neutral-text-8);
+    --DropDown-menuItem-color: var(--colors-neutral-text-1);
+    --PopOver-bg: var(--owl-main-bg);
+    --Property-title-bg: var(--colors-neutral-fill-9);
+    --Property-label-bg: var(--colors-neutral-fill-9);
+    --switch-default-on-slider-color: #fff;
+    --switch-default-off-slider-color: #fff;
 
-    --Alert--success-bg: #e8ffea;
-    --Alert--success-borderColor: #b7f0c2;
-    --Alert--info-bg: #e9f3ff;
-    --Alert--info-borderColor: #b7d4f0;
-    --Alert--warning-bg: #fef7e8;
-    --Alert--warning-borderColor: #f0dab7;
-    --Alert--danger-bg: #feece8;
-    --Alert--danger-borderColor: #f0b7b7;
+    --Alert--success-bg: var(--colors-success-9);
+    --Alert--success-borderColor: var(--colors-success-6);
+    --Alert--info-bg: var(--colors-info-9);
+    --Alert--info-borderColor: var(--colors-info-6);
+    --Alert--warning-bg: var(--colors-warning-9);
+    --Alert--warning-borderColor: var(--colors-warning-6);
+    --Alert--danger-bg: var(--colors-error-9);
+    --Alert--danger-borderColor: var(--colors-error-6);
+}
+
+.cxd-CBGroupOrItem-body-group.is-hover{
+    background: var(--colors-neutral-fill-8);
+}
+
+.tox-tinymce {
+    border-radius: 4px;
+}
+
+.cxd-DateRangePicker-rangers {
+    background: var(--owl-main-bg);
 }
 
 .cxd-Page-header {
@@ -58,7 +79,8 @@ body {
     border-radius: var(--borderRadius);
     border: var(--Table-borderWidth) solid var(--colors-neutral-text-8);
 }
-.cxd-Table-contentWrap{
+
+.cxd-Table-contentWrap {
     padding-bottom: 15px;
 }
 
@@ -113,10 +135,6 @@ body {
 
 .cxd-Image {
     border: none;
-}
-
-.cxd-PopOver {
-    border: none !important;
 }
 
 .cxd-ExcelControl-dropzone {
@@ -178,7 +196,8 @@ body {
 .cxd-Page-toolbar {
     padding: 0 0 var(--Page-header-paddingY) 0;
 }
-.cxd-Crud-body{
+
+.cxd-Crud-body {
     margin-bottom: 0;
 }
 
