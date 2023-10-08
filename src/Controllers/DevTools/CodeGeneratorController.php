@@ -530,6 +530,7 @@ class CodeGeneratorController extends AdminController
             }
 
             // Migration
+            $migratePath = '';
             if ($needs->contains('need_database_migration')) {
                 $path = MigrationGenerator::make()
                     ->title($record->title)
@@ -539,7 +540,7 @@ class CodeGeneratorController extends AdminController
                     ->generate($record->table_name, $columns);
 
                 $message .= $successMessage('Migration', $path);
-
+                $migratePath = str_replace(base_path(), '', $path);
                 $paths[] = $path;
             }
 
@@ -574,7 +575,11 @@ class CodeGeneratorController extends AdminController
 
             // 创建数据库表
             if ($needs->contains('need_create_table')) {
-                Artisan::call('migrate');
+                if($migratePath){
+                    Artisan::call('migrate', ['--path' => $migratePath]);
+                }else{
+                    Artisan::call('migrate');
+                }
                 $message .= Artisan::output();
             }
         } catch (\Exception $e) {
