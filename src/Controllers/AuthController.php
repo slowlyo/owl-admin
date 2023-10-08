@@ -74,7 +74,8 @@ class AuthController extends AdminController
                         ->Image()
                         ->src('${captcha_img}')
                         ->height('1.917rem')
-                        ->className('p-0 border captcha-box')
+                        ->className('p-0 captcha-box')
+                        ->imageClassName('rounded-r')
                         ->set(
                             'clickAction',
                             ['actionType' => 'reload', 'target' => 'captcha-service']
@@ -83,7 +84,7 @@ class AuthController extends AdminController
             ]);
         }
 
-        $form = amisMake()->Form()->panelClassName('border-none')->id('login-form')->title()->api(admin_url('/login'))->body([
+        $form = amisMake()->Form()->panelClassName('border-none')->id('login-form')->title()->api(admin_url('/login'))->initApi('/no-content')->body([
             amisMake()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
             amisMake()
                 ->TextControl()
@@ -124,9 +125,9 @@ class AuthController extends AdminController
                     [
                         'actionType' => 'custom',
                         'script'     => <<<JS
-let loginParams = localStorage.getItem('loginParams')
+let loginParams = localStorage.getItem(window.\$owl.getCacheKey('loginParams'))
 if(loginParams){
-    loginParams = JSON.parse(loginParams)
+    loginParams = JSON.parse(decodeURIComponent(window.atob(loginParams)))
     doAction({
         actionType: 'setValue',
         componentId: 'login-form',
@@ -169,7 +170,7 @@ JS,
             $form,
         ]);
 
-        return amisMake()->Page()->css([
+        return amisMake()->Page()->className('login-bg')->css([
             '.captcha-box .cxd-Image--thumb' => [
                 'padding' => '0',
                 'cursor'  => 'pointer',
@@ -179,6 +180,9 @@ JS,
                 'border-bottom-right-radius' => '4px',
             ],
             '.cxd-Image-thumb'               => ['width' => 'auto'],
+            '.login-bg' => [
+                'background' => 'var(--owl-body-bg)'
+            ]
         ])->body(
             amisMake()->Wrapper()->className("h-screen w-full flex items-center justify-center")->body($card)
         );

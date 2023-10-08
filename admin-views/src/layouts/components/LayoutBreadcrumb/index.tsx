@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
-import {GlobalState} from '@/store'
 import useRoute from '@/routes'
 import {Breadcrumb} from 'antd'
 import {useHistory} from 'react-router'
+import useSetting from '@/hooks/useSetting'
 
 const LayoutBreadcrumb = () => {
     const {routes, getCurrentRoute} = useRoute()
-    const {settings} = useSelector((state: GlobalState) => state)
+    const {getSetting} = useSetting()
     const [breadcrumb, setBreadcrumb] = useState<any[]>([])
     const history = useHistory()
 
@@ -72,7 +71,7 @@ const LayoutBreadcrumb = () => {
     }, [currentRoute, routes])
 
     // 面包屑开关
-    if (settings.system_theme_setting.breadcrumb === false) return (<div></div>)
+    if (getSetting('system_theme_setting.breadcrumb') === false) return (<div></div>)
 
     return (<Breadcrumb className="px-3" items={breadcrumb}/>)
 }

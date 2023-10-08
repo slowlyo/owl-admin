@@ -1,6 +1,5 @@
 import AmisRender from '@/components/AmisRender'
 import {useSelector} from 'react-redux'
-import {GlobalState} from '@/store'
 import RefreshButton from '@/layouts/components/LayoutTopBar/components/RefreshButton'
 import FullscreenButton from '@/layouts/components/LayoutTopBar/components/FullscreenButton'
 import SettingButton from '@/layouts/components/LayoutTopBar/components/SettingButton'

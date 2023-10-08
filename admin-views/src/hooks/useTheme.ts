@@ -51,6 +51,8 @@ const useTheme = (store = null) => {
 
     // 设置主题色
     const setThemeColor = (color, dark = false) => {
+        if(!color) return
+
         const list = generate(color, {theme: dark ? 'dark' : 'default'})
 
         list.forEach((c, index) => {
@@ -76,16 +78,16 @@ const useTheme = (store = null) => {
 
     // 刷新 token
     const refreshToken = () => {
-        setThemeColor(themeSettings.themeColor, themeSettings.darkTheme)
-        darkThemeHandler(themeSettings.darkTheme)
+        setThemeColor(themeSettings?.themeColor, themeSettings?.darkTheme)
+        darkThemeHandler(themeSettings?.darkTheme)
 
-        const darkTop = themeSettings.topTheme == 'dark' && themeSettings.layoutMode != 'double' && !themeSettings.darkTheme
+        const darkTop = themeSettings?.topTheme == 'dark' && themeSettings?.layoutMode != 'double' && !themeSettings?.darkTheme
 
         const textColor = (dark, lightColor = '#fff') => dark ? lightColor : 'var(--colors-neutral-text-1)'
 
         const token = {
             token: {
-                colorPrimary: themeSettings.themeColor,
+                colorPrimary: themeSettings?.themeColor,
             },
             components: {
                 Layout: {

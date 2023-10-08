@@ -25,12 +25,13 @@ const Admin = () => {
     return (
         <HashRouter>
             <Provider store={store}>
-                <ConfigProvider theme={{
-                    ...antdToken,
-                    algorithm: store.getState().settings.system_theme_setting.darkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm
-                }}
-                                wave={{disabled: true}}
-                                locale={getAntdLocale()}>
+                <ConfigProvider
+                    wave={{disabled: true}}
+                    locale={getAntdLocale()}
+                    theme={{
+                        ...antdToken,
+                        algorithm: store.getState().settings.system_theme_setting.darkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm
+                    }}>
                     <AliveScope>
                         <GlobalContext.Provider value={contextValue}>
                             <Switch>

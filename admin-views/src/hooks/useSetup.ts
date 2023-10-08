@@ -22,7 +22,6 @@ const useSetup = (store) => {
             })
         },
         onSuccess(res) {
-            localStorage.setItem(getCacheKey('settings'), JSON.stringify(res.data))
             store.dispatch({
                 type: 'update-settings',
                 payload: {settings: res.data},
@@ -73,6 +72,7 @@ const useSetup = (store) => {
     // 注册全局函数
     const registerFunctions = () => {
         registerGlobalFunction('logout', () => logout.run())
+        registerGlobalFunction('getCacheKey', (val: string) => getCacheKey(val))
     }
 
     // 初始化

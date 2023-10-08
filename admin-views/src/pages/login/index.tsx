@@ -16,7 +16,7 @@ const Login = () => {
     useTheme()
     const {t} = useLang()
     const {getSetting} = useSetting()
-    const loginTemplate = getSetting('system_theme_setting.loginTemplate', 'amis')
+    const loginTemplate = getSetting('system_theme_setting.loginTemplate', 'default')
     const {defaultRoute} = useRoute()
     const dispatch = useDispatch()
     const history = useHistory()

@@ -1,6 +1,7 @@
+import {getCacheKey, mergeObject} from '@/utils/common'
+
 const defaultSettings = {
     darkTheme: false,
-    followSystemTheme: true,
     footer: false,
     breadcrumb: true,
     themeColor: '#1677ff',
@@ -30,22 +31,6 @@ const defaultToken = {
             itemMarginInline: 8,
         }
     }
-}
-
-export interface GlobalState {
-    settings?: any;
-    userInfo?: {
-        name?: string;
-        avatar?: string;
-    };
-    userLoading?: boolean;
-    // 面包屑
-    breadcrumb?: [],
-    routes?: any[];
-    // 初始化完成
-    inited?: boolean;
-    openSetting?: boolean;
-    antdToken?: any;
 }
 
 const initialState: GlobalState = {
@@ -79,9 +64,11 @@ export default function store(state = initialState, action) {
         }
         case 'update-settings': {
             const {settings} = action.payload
+            const result = JSON.parse(JSON.stringify(mergeObject(state.settings, settings)))
+            localStorage.setItem(getCacheKey('settings'), JSON.stringify(result))
             return {
                 ...state,
-                settings,
+                settings: result,
             }
         }
         case 'update-routes': {

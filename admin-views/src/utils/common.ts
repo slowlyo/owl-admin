@@ -24,20 +24,24 @@ export const registerGlobalFunctions = (fns) => {
  * @param def
  */
 export const arrayGet = (array, key, def = null) => {
-    if (key === null) {
-        return array
-    }
-
-    if (array[key] !== undefined) {
-        return array[key]
-    }
-
-    for (const segment of key.split('.')) {
-        if (array[segment] !== undefined) {
-            array = array[segment]
-        } else {
-            return def
+    try {
+        if (key === null) {
+            return array
         }
+
+        if (array[key] !== undefined) {
+            return array[key]
+        }
+
+        for (const segment of key.split('.')) {
+            if (array[segment] !== undefined) {
+                array = array[segment]
+            } else {
+                return def
+            }
+        }
+    } catch (e) {
+        return def
     }
 
     return array
@@ -53,6 +57,8 @@ export const mergeObject = (target, source) => {
         if (source.hasOwnProperty(key)) {
             const sourceVal = source[key]
             const targetVal = target[key]
+
+            if(sourceVal === null) continue
 
             if (isObject(sourceVal) && isObject(targetVal)) {
                 target[key] = mergeObject(targetVal, sourceVal)
