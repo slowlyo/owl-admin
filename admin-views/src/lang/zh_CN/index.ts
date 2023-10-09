@@ -20,7 +20,7 @@ export default {
         layout_mode: '布局模式',
         layout_mode_default: '默认',
         layout_mode_top: '顶部菜单',
-        layout_mode_top_mix: '顶部菜单混合',
+        layout_mode_top_mix: '上下布局',
         layout_mode_double: '双栏',
         need_save: '当前配置未保存',
         save_btn: '保存配置',

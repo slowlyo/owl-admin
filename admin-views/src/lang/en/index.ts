@@ -20,7 +20,7 @@ export default {
         layout_mode: 'Layout Mode',
         layout_mode_default: 'Default',
         layout_mode_top: 'Top Menu',
-        layout_mode_top_mix: 'Top Menu Mix',
+        layout_mode_top_mix: 'Top & Bottom',
         layout_mode_double: 'Double Column',
         need_save: 'Current configuration is not saved',
         save_btn: 'Save Configuration',
