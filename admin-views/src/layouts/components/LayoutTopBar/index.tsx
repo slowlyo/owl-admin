@@ -16,10 +16,10 @@ const LayoutTopBar = () => {
             {/* prependNav */}
             {getSetting('nav.prependNav') && <AmisRender schema={getSetting('nav.prependNav')}/>}
 
-            <RefreshButton/>
-            <DarkThemeButton/>
-            <FullscreenButton/>
-            <SettingButton/>
+            {getSetting('layout.header.refresh') && <RefreshButton/>}
+            {getSetting('layout.header.dark') && <DarkThemeButton/>}
+            {getSetting('layout.header.full_screen') && <FullscreenButton/>}
+            {getSetting('layout.header.theme_config') && <SettingButton/>}
 
             {/* appendNav */}
             {getSetting('nav.appendNav') && <AmisRender schema={getSetting('nav.appendNav')}/>}

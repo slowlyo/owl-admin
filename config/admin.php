@@ -68,6 +68,8 @@ return [
         'header'             => [
             // 是否显示 [刷新] 按钮
             'refresh'      => true,
+            // 是否显示 [暗色模式] 按钮
+            'dark'         => true,
             // 是否显示 [全屏] 按钮
             'full_screen'  => true,
             // 是否显示 [主题配置] 按钮
