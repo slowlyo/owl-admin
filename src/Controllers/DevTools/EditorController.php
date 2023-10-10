@@ -24,7 +24,7 @@ class EditorController extends AdminController
         if ($json['type'] ?? null) {
             if (in_array($json['type'], $mapKeys)) {
                 $className = str_replace('Slowlyo\\OwlAdmin\\Renderers\\', '', $map[$json['type']]);
-                $code      .= sprintf('amisMake()->%s()', $className);
+                $code      .= sprintf('amis()->%s()', $className);
             } else {
                 // 没找到对应的组件
                 $code .= sprintf('amis(\'%s\')', $json['type']);

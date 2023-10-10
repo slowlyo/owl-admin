@@ -85,21 +85,17 @@ if (!function_exists('admin_path')) {
 
 
 if (!function_exists('amis')) {
-    function amis($type = null): \Slowlyo\OwlAdmin\Renderers\Component
+    /**
+     * @param $type
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\Amis|\Slowlyo\OwlAdmin\Renderers\Component
+     */
+    function amis($type = null)
     {
-        $component = \Slowlyo\OwlAdmin\Renderers\Component::make();
-
-        if ($type) {
-            $component->setType($type);
+        if (filled($type)) {
+            return \Slowlyo\OwlAdmin\Renderers\Component::make()->setType($type);
         }
 
-        return $component;
-    }
-}
-
-if (!function_exists('amisMake')) {
-    function amisMake(): \Slowlyo\OwlAdmin\Renderers\Amis
-    {
         return \Slowlyo\OwlAdmin\Renderers\Amis::make();
     }
 }

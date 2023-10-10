@@ -22,7 +22,7 @@ class AdminPermissionController extends AdminController
     {
         $autoBtn = '';
         if (Admin::config('admin.show_auto_generate_permission_button')) {
-            $autoBtn = amisMake()->AjaxAction()
+            $autoBtn = amis()->AjaxAction()
                 ->label(__('admin.admin_permission.auto_generate'))
                 ->level('success')
                 ->confirmText(__('admin.admin_permission.auto_generate_confirm'))
@@ -41,16 +41,16 @@ class AdminPermissionController extends AdminController
                 amis('filter-toggler')->align('right'),
             ])
             ->columns([
-                amisMake()->TableColumn('id', 'ID')->sortable(),
-                amisMake()->TableColumn('name', __('admin.admin_permission.name')),
-                amisMake()->TableColumn('slug', __('admin.admin_permission.slug')),
-                amisMake()->TableColumn('http_method', __('admin.admin_permission.http_method'))
+                amis()->TableColumn('id', 'ID')->sortable(),
+                amis()->TableColumn('name', __('admin.admin_permission.name')),
+                amis()->TableColumn('slug', __('admin.admin_permission.slug')),
+                amis()->TableColumn('http_method', __('admin.admin_permission.http_method'))
                     ->type('each')
                     ->items(
                         Tag::make()->label('${item}')->className('my-1')
                     )
                     ->placeholder(Tag::make()->label('ANY')),
-                amisMake()->TableColumn('http_path', __('admin.admin_permission.http_path'))
+                amis()->TableColumn('http_path', __('admin.admin_permission.http_path'))
                     ->type('each')
                     ->items(
                         Tag::make()->label('${item}')->className('my-1')
@@ -67,32 +67,32 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            amisMake()->TextControl('name', __('admin.admin_permission.name'))->required(),
-            amisMake()->TextControl('slug', __('admin.admin_permission.slug'))->required(),
-            amisMake()->TreeSelectControl('parent_id', __('admin.parent'))
+            amis()->TextControl('name', __('admin.admin_permission.name'))->required(),
+            amis()->TextControl('slug', __('admin.admin_permission.slug'))->required(),
+            amis()->TreeSelectControl('parent_id', __('admin.parent'))
                 ->labelField('name')
                 ->valueField('id')
                 ->value(0)
                 ->options($this->service->getTree()),
-            amisMake()->CheckboxesControl('http_method', __('admin.admin_permission.http_method'))
+            amis()->CheckboxesControl('http_method', __('admin.admin_permission.http_method'))
                 ->options($this->getHttpMethods())
                 ->description(__('admin.admin_permission.http_method_description'))
                 ->joinValues(false)
                 ->extractValue(),
-            amisMake()->NumberControl('order', __('admin.order'))
+            amis()->NumberControl('order', __('admin.order'))
                 ->required()
                 ->labelRemark(__('admin.order_asc'))
                 ->displayMode('enhance')
                 ->min(0)
                 ->value(0),
-            amisMake()->SelectControl('http_path', __('admin.admin_permission.http_path'))
+            amis()->SelectControl('http_path', __('admin.admin_permission.http_path'))
                 ->searchable()
                 ->multiple()
                 ->options($this->getRoutes())
                 ->autoCheckChildren(false)
                 ->joinValues(false)
                 ->extractValue(),
-            amisMake()->TreeSelectControl('menus', __('admin.menus'))
+            amis()->TreeSelectControl('menus', __('admin.menus'))
                 ->searchable()
                 ->multiple()
                 ->showIcon(false)

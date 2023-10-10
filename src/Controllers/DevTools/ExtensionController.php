@@ -99,7 +99,7 @@ class ExtensionController extends AdminController
                 amis('filter-toggler')->align('right'),
             ])
             ->columns([
-                amisMake()->TableColumn('alias', __('admin.extensions.form.name'))
+                amis()->TableColumn('alias', __('admin.extensions.form.name'))
                     ->type('tpl')
                     ->tpl('
 <div class="flex">
@@ -110,7 +110,7 @@ class ExtensionController extends AdminController
     </div>
 </div>
 '),
-                amisMake()->TableColumn('author', __('admin.extensions.card.author'))
+                amis()->TableColumn('author', __('admin.extensions.card.author'))
                     ->type('tpl')
                     ->tpl('<div>${authors[0].name}</div> <span class="text-gray-400">${authors[0].email}</span>'),
                 $this->rowActions([

@@ -114,7 +114,7 @@ abstract class AdminController extends Controller
     {
         $this->isCreate = true;
 
-        $form = amisMake()
+        $form = amis()
             ->Card()
             ->className('base-form')
             ->header(['title' => __('admin.create')])
@@ -163,7 +163,7 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getDetail($id));
         }
 
-        $detail = amisMake()
+        $detail = amis()
             ->Card()
             ->className('base-form')
             ->header(['title' => __('admin.detail')])
@@ -192,7 +192,7 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getEditData($id));
         }
 
-        $form = amisMake()
+        $form = amis()
             ->Card()
             ->className('base-form')
             ->header(['title' => __('admin.edit')])

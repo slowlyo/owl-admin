@@ -23,20 +23,20 @@ class AdminRoleController extends AdminController
             ])
             ->filterTogglable(false)
             ->columns([
-                amisMake()->TableColumn()->label('ID')->name('id')->sortable(),
-                amisMake()->TableColumn()->label(__('admin.admin_role.name'))->name('name'),
-                amisMake()->TableColumn()->label(__('admin.admin_role.slug'))->name('slug')->type('tag'),
-                amisMake()->TableColumn()
+                amis()->TableColumn()->label('ID')->name('id')->sortable(),
+                amis()->TableColumn()->label(__('admin.admin_role.name'))->name('name'),
+                amis()->TableColumn()->label(__('admin.admin_role.slug'))->name('slug')->type('tag'),
+                amis()->TableColumn()
                     ->label(__('admin.created_at'))
                     ->name('created_at')
                     ->type('datetime')
                     ->sortable(true),
-                amisMake()->TableColumn()
+                amis()->TableColumn()
                     ->label(__('admin.updated_at'))
                     ->name('updated_at')
                     ->type('datetime')
                     ->sortable(true),
-                amisMake()->Operation()->label(__('admin.actions'))->buttons([
+                amis()->Operation()->label(__('admin.actions'))->buttons([
                     $this->setPermission(),
                     $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${slug != "administrator"}'),
@@ -56,16 +56,16 @@ class AdminRoleController extends AdminController
 
     protected function setPermission()
     {
-        return amisMake()->DrawerAction()->label(__('admin.admin_role.set_permissions'))->icon('fa-solid fa-gear')->level('link')->drawer(
-            amisMake()->Drawer()->title(__('admin.admin_role.set_permissions'))->resizable()->closeOnOutside()->closeOnEsc()->body([
-                amisMake()
+        return amis()->DrawerAction()->label(__('admin.admin_role.set_permissions'))->icon('fa-solid fa-gear')->level('link')->drawer(
+            amis()->Drawer()->title(__('admin.admin_role.set_permissions'))->resizable()->closeOnOutside()->closeOnEsc()->body([
+                amis()
                     ->Form()
                     ->api(admin_url('system/admin_role_save_permissions'))
                     ->initApi($this->getEditGetDataPath())
                     ->mode('normal')
                     ->data(['id' => '${id}'])
                     ->body([
-                        amisMake()->TreeControl()
+                        amis()->TreeControl()
                             ->name('permissions')
                             ->label()
                             ->multiple()
@@ -94,8 +94,8 @@ class AdminRoleController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            amisMake()->TextControl()->label(__('admin.admin_role.name'))->name('name')->required(),
-            amisMake()->TextControl()
+            amis()->TextControl()->label(__('admin.admin_role.name'))->name('name')->required(),
+            amis()->TextControl()
                 ->label(__('admin.admin_role.slug'))
                 ->name('slug')
                 ->description(__('admin.admin_role.slug_description'))

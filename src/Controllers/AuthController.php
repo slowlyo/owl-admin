@@ -66,11 +66,11 @@ class AuthController extends AdminController
 
         // 验证码
         if ($enableCaptcha) {
-            $captcha = amisMake()->InputGroupControl()->body([
-                amisMake()->TextControl()->name('captcha')->placeholder(__('admin.captcha'))->required(),
-                amisMake()->HiddenControl()->name('sys_captcha'),
-                amisMake()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
-                    amisMake()
+            $captcha = amis()->InputGroupControl()->body([
+                amis()->TextControl()->name('captcha')->placeholder(__('admin.captcha'))->required(),
+                amis()->HiddenControl()->name('sys_captcha'),
+                amis()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
+                    amis()
                         ->Image()
                         ->src('${captcha_img}')
                         ->height('1.917rem')
@@ -84,19 +84,19 @@ class AuthController extends AdminController
             ]);
         }
 
-        $form = amisMake()->Form()->panelClassName('border-none')->id('login-form')->title()->api(admin_url('/login'))->initApi('/no-content')->body([
-            amisMake()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
-            amisMake()
+        $form = amis()->Form()->panelClassName('border-none')->id('login-form')->title()->api(admin_url('/login'))->initApi('/no-content')->body([
+            amis()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
+            amis()
                 ->TextControl()
                 ->type('input-password')
                 ->name('password')
                 ->placeholder(__('admin.password'))
                 ->required(),
             $captcha,
-            amisMake()->CheckboxControl()->name('remember_me')->option(__('admin.remember_me'))->value(true),
+            amis()->CheckboxControl()->name('remember_me')->option(__('admin.remember_me'))->value(true),
 
             // 登录按钮
-            amisMake()
+            amis()
                 ->VanillaAction()
                 ->actionType('submit')
                 ->label(__('admin.login'))
@@ -159,10 +159,10 @@ JS,
             ],
         ], $failAction));
 
-        $card = amisMake()->Card()->className('w-96 m:w-full')->body([
-            amisMake()->Flex()->justify('space-between')->className('px-2.5 pb-2.5')->items([
-                amisMake()->Image()->src(url(Admin::config('admin.logo')))->width(40)->height(40),
-                amisMake()
+        $card = amis()->Card()->className('w-96 m:w-full')->body([
+            amis()->Flex()->justify('space-between')->className('px-2.5 pb-2.5')->items([
+                amis()->Image()->src(url(Admin::config('admin.logo')))->width(40)->height(40),
+                amis()
                     ->Tpl()
                     ->className('font-medium')
                     ->tpl('<div style="font-size: 24px">' . Admin::config('admin.name') . '</div>'),
@@ -170,7 +170,7 @@ JS,
             $form,
         ]);
 
-        return amisMake()->Page()->className('login-bg')->css([
+        return amis()->Page()->className('login-bg')->css([
             '.captcha-box .cxd-Image--thumb' => [
                 'padding' => '0',
                 'cursor'  => 'pointer',
@@ -184,7 +184,7 @@ JS,
                 'background' => 'var(--owl-body-bg)'
             ]
         ])->body(
-            amisMake()->Wrapper()->className("h-screen w-full flex items-center justify-center")->body($card)
+            amis()->Wrapper()->className("h-screen w-full flex items-center justify-center")->body($card)
         );
     }
 
@@ -219,7 +219,7 @@ JS,
     {
         $userInfo = Admin::user()->only(['name', 'avatar']);
 
-        $menus = amisMake()
+        $menus = amis()
             ->DropdownButton()
             ->hideCaret()
             ->trigger('hover')
@@ -229,13 +229,13 @@ JS,
             ->menuClassName('min-w-0 p-2')
             ->set('icon', $userInfo['avatar'])
             ->buttons([
-                amisMake()
+                amis()
                     ->VanillaAction()
                     ->iconClassName('pr-2')
                     ->icon('fa fa-user-gear')
                     ->label(__('admin.user_setting'))
                     ->onClick('window.location.hash = "#/user_setting"'),
-                amisMake()
+                amis()
                     ->VanillaAction()
                     ->iconClassName('pr-2')
                     ->label(__('admin.logout'))

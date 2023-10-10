@@ -23,19 +23,19 @@ class AdminUserController extends AdminController
                 ...$this->baseHeaderToolBar(),
             ])
             ->filter($this->baseFilter()->body(
-                amisMake()->TextControl('keyword', __('admin.keyword'))
+                amis()->TextControl('keyword', __('admin.keyword'))
                     ->size('md')
                     ->placeholder(__('admin.admin_user.search_username'))
             ))
             ->columns([
-                amisMake()->TableColumn('id', 'ID')->sortable(),
-                amisMake()->TableColumn('avatar', __('admin.admin_user.avatar'))->type('avatar')->src('${avatar}'),
-                amisMake()->TableColumn('username', __('admin.username')),
-                amisMake()->TableColumn('name', __('admin.admin_user.name')),
-                amisMake()->TableColumn('roles', __('admin.admin_user.roles'))->type('each')->items(
-                    amisMake()->Tag()->label('${name}')->className('my-1')
+                amis()->TableColumn('id', 'ID')->sortable(),
+                amis()->TableColumn('avatar', __('admin.admin_user.avatar'))->type('avatar')->src('${avatar}'),
+                amis()->TableColumn('username', __('admin.username')),
+                amis()->TableColumn('name', __('admin.admin_user.name')),
+                amis()->TableColumn('roles', __('admin.admin_user.roles'))->type('each')->items(
+                    amis()->Tag()->label('${name}')->className('my-1')
                 ),
-                amisMake()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true),
+                amis()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true),
                 Operation::make()->label(__('admin.actions'))->buttons([
                     $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${id != 1}'),
@@ -48,12 +48,12 @@ class AdminUserController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            amisMake()->ImageControl('avatar', __('admin.admin_user.avatar'))->receiver($this->uploadImagePath()),
-            amisMake()->TextControl('username', __('admin.username'))->required(),
-            amisMake()->TextControl('name', __('admin.admin_user.name'))->required(),
-            amisMake()->TextControl('password', __('admin.password'))->type('input-password'),
-            amisMake()->TextControl('confirm_password', __('admin.confirm_password'))->type('input-password'),
-            amisMake()->SelectControl('roles', __('admin.admin_user.roles'))
+            amis()->ImageControl('avatar', __('admin.admin_user.avatar'))->receiver($this->uploadImagePath()),
+            amis()->TextControl('username', __('admin.username'))->required(),
+            amis()->TextControl('name', __('admin.admin_user.name'))->required(),
+            amis()->TextControl('password', __('admin.password'))->type('input-password'),
+            amis()->TextControl('confirm_password', __('admin.confirm_password'))->type('input-password'),
+            amis()->SelectControl('roles', __('admin.admin_user.roles'))
                 ->searchable()
                 ->multiple()
                 ->labelField('name')

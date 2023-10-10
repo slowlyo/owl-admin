@@ -126,7 +126,7 @@ class ControllerGenerator extends BaseGenerator
 
         $primaryKey     = $this->primaryKey ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $list->push("amisMake()->TableColumn('{$primaryKey}', '{$primaryKeyName}')->sortable()");
+        $list->push("amis()->TableColumn('{$primaryKey}', '{$primaryKeyName}')->sortable()");
 
         $this->columns->each(function ($column) use (&$list) {
             if (!$this->columnInTheScope($column, 'list')) {
@@ -143,8 +143,8 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $list->push("amisMake()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true)");
-            $list->push("amisMake()->TableColumn('updated_at', __('admin.updated_at'))->type('datetime')->sortable(true)");
+            $list->push("amis()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true)");
+            $list->push("amis()->TableColumn('updated_at', __('admin.updated_at'))->type('datetime')->sortable(true)");
         }
 
         $list = $list->implode(",\n\t\t\t\t") . ',';
@@ -235,7 +235,7 @@ class ControllerGenerator extends BaseGenerator
 
         $primaryKey     = $this->primaryKey ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $detail->push("amisMake()->TextControl('{$primaryKey}', '{$primaryKeyName}')->static()");
+        $detail->push("amis()->TextControl('{$primaryKey}', '{$primaryKeyName}')->static()");
 
         $this->columns->each(function ($column) use (&$detail) {
             if (!$this->columnInTheScope($column, 'detail')) {
@@ -248,8 +248,8 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $detail->push("amisMake()->TextControl('created_at', __('admin.created_at'))->static()");
-            $detail->push("amisMake()->TextControl('updated_at', __('admin.updated_at'))->static()");
+            $detail->push("amis()->TextControl('created_at', __('admin.created_at'))->static()");
+            $detail->push("amis()->TextControl('updated_at', __('admin.updated_at'))->static()");
         }
 
         $detail = $detail->implode(",\n\t\t\t");
@@ -273,7 +273,7 @@ class ControllerGenerator extends BaseGenerator
         $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
 
         if ($component = Arr::get($column, $type . '_type')) {
-            $item = "amisMake()->{$component}('{$column['name']}', '{$label}')";
+            $item = "amis()->{$component}('{$column['name']}', '{$label}')";
             if ($property = Arr::get($column, $type . '_property')) {
                 $item .= collect($property)->map(function ($item) {
                     $_val = Arr::get($item, 'value');
@@ -290,9 +290,9 @@ class ControllerGenerator extends BaseGenerator
         }
 
         return match ($type) {
-            'list_component' => "amisMake()->TableColumn('{$column['name']}', '{$label}')",
-            'form_component' => "amisMake()->TextControl('{$column['name']}', '{$label}')",
-            'detail_component' => "amisMake()->TextControl('{$column['name']}', '{$label}')->static()",
+            'list_component' => "amis()->TableColumn('{$column['name']}', '{$label}')",
+            'form_component' => "amis()->TextControl('{$column['name']}', '{$label}')",
+            'detail_component' => "amis()->TextControl('{$column['name']}', '{$label}')->static()",
         };
     }
 }

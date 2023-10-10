@@ -268,7 +268,7 @@ trait ElementTrait
     protected function exportAction($disableSelectedItem = false)
     {
         if (!class_exists('\Maatwebsite\Excel\Excel')) {
-            return amisMake()
+            return amis()
                 ->Alert()
                 ->level('warning')
                 ->body(__('admin.export.please_install_laravel_excel'))
@@ -294,7 +294,7 @@ doAction([
 ])
 JS;
         $buttons        = [
-            amisMake()->VanillaAction()->label(__('admin.export.all'))->onEvent(
+            amis()->VanillaAction()->label(__('admin.export.all'))->onEvent(
                 $event(<<<JS
 let data = event.data.__super.__super
 let params = Object.keys(data).filter(key => key !== "page" && key !== "__super").reduce((obj, key) => {
@@ -308,7 +308,7 @@ JS
 
                 )
             ),
-            amisMake()->VanillaAction()->label(__('admin.export.page'))->onEvent(
+            amis()->VanillaAction()->label(__('admin.export.page'))->onEvent(
                 $event(<<<JS
 let ids = event.data.items.map(item => item.{$primaryKey})
 if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$pageNoData}" } }) }
@@ -321,7 +321,7 @@ JS
         ];
 
         if (!$disableSelectedItem) {
-            $buttons[] = amisMake()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
+            $buttons[] = amis()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
                 $event(<<<JS
 let ids = event.data.selectedItems.map(item => item.{$primaryKey})
 if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$selectedNoData}" } }) }
@@ -333,7 +333,7 @@ JS
             );
         }
 
-        return amisMake()
+        return amis()
             ->DropdownButton()
             ->label(__('admin.export.title'))
             ->set('icon', 'fa-solid fa-download')
