@@ -11,8 +11,8 @@ export default defineConfig(configEnv => {
         base: viteEnv.VITE_BASE_URL,
         resolve: {
             alias: [
-                {find: "@", replacement: "/src"},
-                {find: "moment/locale/zh-cn", replacement: "moment/dist/locale/zh-cn"}
+                {find: '@', replacement: '/src'},
+                {find: 'moment/locale/zh-cn', replacement: 'moment/dist/locale/zh-cn'},
             ],
         },
         plugins: [
@@ -27,7 +27,7 @@ export default defineConfig(configEnv => {
             },
         },
         server: {
-            host: "0.0.0.0",
+            host: '0.0.0.0',
             port: 3200,
             open: true,
             proxy: createViteProxy(viteEnv),
@@ -35,6 +35,10 @@ export default defineConfig(configEnv => {
         build: {
             sourcemap: false,
             reportCompressedSize: false,
-        }
+            rollupOptions: {
+                onwarn() {
+                },
+            },
+        },
     }
 })

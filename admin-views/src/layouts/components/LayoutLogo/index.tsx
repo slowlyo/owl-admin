@@ -2,7 +2,7 @@ import {Image} from 'antd'
 import useSettings from '@/hooks/useSetting'
 
 const LayoutLogo = ({onlyLogo = false}) => {
-    const {settings, getSetting} = useSettings()
+    const {getSetting} = useSettings()
     const width = onlyLogo ? ' w-full' : ' w-[220px]'
 
     const textColor = () => {
@@ -28,9 +28,9 @@ const LayoutLogo = ({onlyLogo = false}) => {
     return (
         <div className={'h-[65px] flex justify-center items-center' + width}>
             <div className="w-[35px]">
-                <Image width={35} preview={false} src={settings.logo}/>
+                <Image width={35} preview={false} src={getSetting('logo')}/>
             </div>
-            {onlyLogo || <div className={"text-xl font-medium ml-2 truncate " + textColor()}>{settings.app_name}</div>}
+            {onlyLogo || <div className={"text-xl font-medium ml-2 truncate " + textColor()}>{getSetting('app_name')}</div>}
         </div>
     )
 }

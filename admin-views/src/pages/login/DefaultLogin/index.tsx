@@ -108,7 +108,7 @@ const DefaultLogin = () => {
                                 <Form.Item>
                                     <Spin spinning={getCaptcha.loading}>
                                         <Image className="border rounded cursor-pointer"
-                                               src={captcha}
+                                               src={captcha || ''}
                                                preview={false}
                                                onClick={() => getCaptcha.run()}
                                                width={100}

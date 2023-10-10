@@ -100,7 +100,7 @@ export const DoubleLayout = () => {
                                         <Icon icon={item?.meta?.icon} fontSize={18}/>
                                     </div>
                                 )}
-                                <div className="text-[10px]">
+                                <div className="text-[12px]">
                                     {item?.meta?.title}
                                 </div>
                             </div>
