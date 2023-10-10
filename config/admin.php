@@ -10,10 +10,13 @@ return [
     // 默认头像
     'default_avatar' => '/admin/default-avatar.png',
 
+    // 应用安装目录
     'directory' => app_path('Admin'),
 
+    // 引导文件
     'bootstrap' => app_path('Admin/bootstrap.php'),
 
+    // 应用路由
     'route' => [
         'prefix'               => 'admin-api',
         'domain'               => null,
@@ -30,10 +33,19 @@ return [
         'login_captcha' => env('ADMIN_LOGIN_CAPTCHA', true),
         // 是否开启鉴权
         'enable'        => true,
-        // 用户模型
-        'model'         => \Slowlyo\OwlAdmin\Models\AdminUser::class,
-        'controller'    => \Slowlyo\OwlAdmin\Controllers\AuthController::class,
-        'guard'         => 'sanctum',
+        'guard'         => 'admin',
+        'guards' => [
+            'admin' => [
+                'driver'   => 'sanctum',
+                'provider' => 'admin',
+            ],
+        ],
+        'providers' => [
+            'admin' => [
+                'driver' => 'eloquent',
+                'model'  => \Slowlyo\OwlAdmin\Models\AdminUser::class,
+            ],
+        ],
         'except'        => [
 
         ],

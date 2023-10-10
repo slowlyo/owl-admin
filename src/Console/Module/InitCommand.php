@@ -166,9 +166,9 @@ class InitCommand extends Command
         $config   = $this->directory . '/Config/admin.php';
         $contents = $this->getStub('config');
         $_path    = 'Modules/' . $this->module->getName() . '/bootstrap.php';
-        $content  =
-            str_replace('{{bootstrap}}', 'base_path(\'' . $_path . '\')', $contents);
+        $content  = str_replace('{{bootstrap}}', 'base_path(\'' . $_path . '\')', $contents);
         $content  = str_replace('{{route_prefix}}', $this->module->getLowerName() . '-api', $content);
+        $content  = str_replace('{{module_name}}', $this->module->getLowerName(), $content);
         $content  = str_replace('{{route_namespace}}', $this->getNamespace('Http\Controllers'), $content);
         $content  = str_replace('{{model_namespace}}', $this->getNamespace('Models'), $content);
 

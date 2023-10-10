@@ -10,8 +10,10 @@ return [
     // 默认头像
     'default_avatar' => '/admin/default-avatar.png',
 
+    // 引导文件
     'bootstrap' => {{bootstrap}},
 
+    // 应用路由
     'route' => [
         'prefix'               => '{{route_prefix}}',
         'domain'               => null,
@@ -28,10 +30,19 @@ return [
         'login_captcha' => env('ADMIN_LOGIN_CAPTCHA', true),
         // 是否开启鉴权
         'enable'        => true,
-        // 用户模型
-        'model'         => \{{model_namespace}}\AdminUser::class,
-        'controller'    => \Slowlyo\OwlAdmin\Controllers\AuthController::class,
-        'guard'         => 'sanctum',
+        'guard'         => '{{module_name}}',
+        'guards' => [
+            '{{module_name}}' => [
+                'driver'   => 'sanctum',
+                'provider' => '{{module_name}}',
+            ],
+        ],
+        'providers' => [
+            '{{module_name}}' => [
+                'driver' => 'eloquent',
+                'model'  => \{{model_namespace}}\AdminUser::class,
+            ],
+        ],
         'except'        => [
 
         ],
@@ -59,6 +70,8 @@ return [
         'header'             => [
             // 是否显示 [刷新] 按钮
             'refresh'      => true,
+            // 是否显示 [暗色模式] 按钮
+            'dark'         => true,
             // 是否显示 [全屏] 按钮
             'full_screen'  => true,
             // 是否显示 [主题配置] 按钮

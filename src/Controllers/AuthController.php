@@ -43,7 +43,7 @@ class AuthController extends AdminController
             if ($validator->fails()) {
                 abort(Response::HTTP_BAD_REQUEST, $validator->errors()->first());
             }
-            $adminModel = Admin::config("admin.auth.model", AdminUser::class);
+            $adminModel = Admin::adminUserModel();
             $user       = $adminModel::query()->where('username', $request->username)->first();
             if ($user && Hash::check($request->password, $user->password)) {
                 $module = Admin::currentModule(true);
