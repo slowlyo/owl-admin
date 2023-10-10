@@ -14,11 +14,18 @@ class AdminRole extends BaseModel
             ->withTimestamps();
     }
 
+    public function menus()
+    {
+        return $this->belongsToMany(AdminMenu::class, 'admin_role_menus', 'role_id', 'menu_id')
+            ->withTimestamps();
+    }
+
     protected static function boot(): void
     {
         parent::boot();
         static::deleting(function (AdminRole $model) {
             $model->permissions()->detach();
+            $model->menus()->detach();
         });
     }
 }

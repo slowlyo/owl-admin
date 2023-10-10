@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Support\Cores;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Str;
 
 class Database
 {
@@ -62,12 +63,10 @@ class Database
 
         $this->create('admin_permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->unique();
+            $table->string('name', 50);
             $table->string('slug', 50)->unique();
-            $table->text('http_method')->nullable();
             $table->text('http_path')->nullable();
-            $table->integer('order')->default(0);
-            $table->integer('parent_id')->default(0);
+            $table->integer('menu_id')->default(0);
             $table->timestamps();
         });
 
@@ -100,10 +99,10 @@ class Database
             $table->timestamps();
         });
 
-        $this->create('admin_permission_menu', function (Blueprint $table) {
-            $table->integer('permission_id');
+        $this->create('admin_role_menus', function (Blueprint $table) {
+            $table->integer('role_id');
             $table->integer('menu_id');
-            $table->index(['permission_id', 'menu_id']);
+            $table->index(['role_id', 'menu_id']);
             $table->timestamps();
         });
 
@@ -151,7 +150,7 @@ class Database
         $this->dropIfExists('admin_menus');
         $this->dropIfExists('admin_role_users');
         $this->dropIfExists('admin_role_permissions');
-        $this->dropIfExists('admin_permission_menu');
+        $this->dropIfExists('admin_role_menus');
 
         // 如果是模块，跳过下面的表
         if ($this->moduleName) {
@@ -173,7 +172,8 @@ class Database
         $data = function ($data) {
             foreach ($data as $k => $v) {
                 if (is_array($v)) {
-                    $data[$k] = "['" . implode("','", $v) . "']";
+                    // $data[$k] = "['" . implode("','", $v) . "']";
+                    $data[$k] = json_encode($v, JSON_UNESCAPED_UNICODE);
                 }
             }
             return array_merge($data, ['created_at' => now(), 'updated_at' => now()]);
@@ -206,29 +206,7 @@ class Database
             'user_id' => 1,
         ]));
 
-        // 创建初始权限
-        $adminPermission->truncate();
-        $adminPermission->insert([
-            $data(['name' => '首页', 'slug' => 'home', 'http_path' => ['/home*'], "parent_id" => 0]),
-            $data(['name' => '系统', 'slug' => 'system', 'http_path' => '', "parent_id" => 0]),
-            $data(['name' => '管理员', 'slug' => 'admin_users', 'http_path' => ["/admin_users*"], "parent_id" => 2]),
-            $data(['name' => '角色', 'slug' => 'roles', 'http_path' => ["/roles*"], "parent_id" => 2]),
-            $data(['name' => '权限', 'slug' => 'permissions', 'http_path' => ["/permissions*"], "parent_id" => 2]),
-            $data(['name' => '菜单', 'slug' => 'menus', 'http_path' => ["/menus*"], "parent_id" => 2]),
-            $data(['name' => '设置', 'slug' => 'settings', 'http_path' => ["/settings*"], "parent_id" => 2]),
-        ]);
-
-        // 角色 - 权限绑定
-        DB::table($this->tableName('admin_role_permissions'))->truncate();
-        $permissionIds = DB::table($this->tableName('admin_permissions'))->orderBy('id')->pluck('id');
-        foreach ($permissionIds as $id) {
-            DB::table($this->tableName('admin_role_permissions'))->insert($data([
-                'role_id'       => 1,
-                'permission_id' => $id,
-            ]));
-        }
-
-        // 创建初始菜单
+        // 创建初始菜单   ['add', 'del', 'edit', 'show', 'batchDel']
         $adminMenu->truncate();
         $adminMenu->insert([
             $data([
@@ -282,18 +260,52 @@ class Database
             ]),
         ]);
 
-        // 权限 - 菜单绑定
-        DB::table($this->tableName('admin_permission_menu'))->truncate();
-        $menus = $adminMenu->get();
-        foreach ($menus as $menu) {
-            $_list   = [];
-            $_list[] = $data(['permission_id' => $menu->id, 'menu_id' => $menu->id]);
+        // 角色 - 菜单绑定
+        DB::table($this->tableName('admin_role_menus'))->truncate();
+        $menu_ids = $adminMenu->pluck('id');
+        foreach ($menu_ids as $id) {
+            DB::table($this->tableName('admin_role_menus'))->insert($data([
+                'role_id'       => 1,
+                'menu_id'       => $id,
+            ]));
+        }
 
-            if ($menu->parent_id != 0) {
-                $_list[] = $data(['permission_id' => $menu->parent_id, 'menu_id' => $menu->id]);
-            }
+        // 创建初始权限
+        $adminPermission->truncate();
+        $permissions = [
+            $data(['name' => '列表', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_users'], 'menu_id' => 3]),
+            $data(['name' => '新增', 'slug' => Str::uuid(), 'http_path' => ['post:/system/admin_users'], 'menu_id' => 3]),
+            $data(['name' => '编辑', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_users/*/edit', 'put:/system/admin_users/*'], 'menu_id' => 3]),
+            $data(['name' => '批量删除', 'slug' => Str::uuid(), 'http_path' => ['delete:/system/admin_users/*'], 'menu_id' => 3]),
 
-            DB::table($this->tableName('admin_permission_menu'))->insert($_list);
+            $data(['name' => '列表', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_roles'], 'menu_id' => 4]),
+            $data(['name' => '新增', 'slug' => Str::uuid(), 'http_path' => ['post:/system/admin_roles'], 'menu_id' => 4]),
+            $data(['name' => '编辑', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_roles/*/edit', 'put:/system/admin_roles/*'], 'menu_id' => 4]),
+            $data(['name' => '批量删除', 'slug' => Str::uuid(), 'http_path' => ['delete:/system/admin_roles/*'], 'menu_id' => 4]),
+
+            $data(['name' => '列表', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_permissions'], 'menu_id' => 5]),
+            $data(['name' => '新增', 'slug' => Str::uuid(), 'http_path' => ['post:/system/admin_permissions'], 'menu_id' => 5]),
+            $data(['name' => '删除', 'slug' => Str::uuid(), 'http_path' => ['delete:/system/admin_permissions/*'], 'menu_id' => 5]),
+            $data(['name' => '编辑', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_permissions/*/edit', 'put:/system/admin_permissions/*'], 'menu_id' => 5]),
+            $data(['name' => '批量删除', 'slug' => Str::uuid(), 'http_path' => ['delete:/system/admin_permissions/*'], 'menu_id' => 5]),
+
+            $data(['name' => '列表', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_menus'], 'menu_id' => 6]),
+            $data(['name' => '新增', 'slug' => Str::uuid(), 'http_path' => ['post:/system/admin_menus'], 'menu_id' => 6]),
+            $data(['name' => '删除', 'slug' => Str::uuid(), 'http_path' => ['delete:/system/admin_menus/*'], 'menu_id' => 6]),
+            $data(['name' => '编辑', 'slug' => Str::uuid(), 'http_path' => ['get:/system/admin_menus/*/edit', 'put:/system/admin_menus/*'], 'menu_id' => 6]),
+            $data(['name' => '批量删除', 'slug' => Str::uuid(), 'http_path' => ['delete:/system/admin_menus/*'], 'menu_id' => 6]),
+        ];
+
+        $adminPermission->insert($permissions);
+
+        // 角色 - 权限绑定
+        DB::table($this->tableName('admin_role_permissions'))->truncate();
+        $permission_ids = $adminPermission->pluck('id');
+        foreach ($permission_ids as $id) {
+            DB::table($this->tableName('admin_role_permissions'))->insert($data([
+                'role_id'       => 1,
+                'permission_id' => $id,
+            ]));
         }
     }
 }

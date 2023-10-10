@@ -27,10 +27,8 @@ class Menu
         if ($user->isAdministrator() || Admin::config('admin.auth.enable') === false) {
             $list = AdminMenuService::make()->query()->orderBy('order')->get();
         } else {
-            $user->load('roles.permissions.menus');
+            $user->load('roles.menus');
             $list = $user->roles
-                ->pluck('permissions')
-                ->flatten()
                 ->pluck('menus')
                 ->flatten()
                 ->unique('id')

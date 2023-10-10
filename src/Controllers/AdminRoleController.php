@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
@@ -37,8 +38,8 @@ class AdminRoleController extends AdminController
                     ->type('datetime')
                     ->sortable(true),
                 amisMake()->Operation()->label(__('admin.actions'))->buttons([
-                    $this->setPermission(),
-                    $this->rowEditButton(true),
+                    $this->setPermission()->visibleOn('${slug != "administrator"}'),
+                    $this->rowEditButton(true)->visibleOn('${slug != "administrator"}'),
                     $this->rowDeleteButton()->visibleOn('${slug != "administrator"}'),
                 ]),
             ]);
@@ -56,32 +57,34 @@ class AdminRoleController extends AdminController
 
     protected function setPermission()
     {
-        return amisMake()->DrawerAction()->label(__('admin.admin_role.set_permissions'))->icon('fa-solid fa-gear')->level('link')->drawer(
-            amisMake()->Drawer()->title(__('admin.admin_role.set_permissions'))->resizable()->closeOnOutside()->closeOnEsc()->body([
-                amisMake()
-                    ->Form()
-                    ->api(admin_url('system/admin_role_save_permissions'))
-                    ->initApi($this->getEditGetDataPath())
-                    ->mode('normal')
-                    ->data(['id' => '${id}'])
-                    ->body([
-                        amisMake()->TreeControl()
-                            ->name('permissions')
-                            ->label()
-                            ->multiple()
-                            ->options(AdminPermissionService::make()->getTree())
-                            ->searchable()
-                            ->onlyChildren()
-                            ->joinValues(false)
-                            ->extractValue()
-                            ->size('full')
-                            ->className('h-full b-none')
-                            ->inputClassName('h-full tree-full')
-                            ->labelField('name')
-                            ->valueField('id'),
-                    ]),
-            ])
-        );
+        return amisMake()->DrawerAction()->label(__('admin.admin_role.set_permissions'))
+            ->icon('fa-solid fa-lock')
+            ->level('link')->drawer(
+                amisMake()->Drawer()->title(__('admin.admin_role.set_permissions'))->resizable()->closeOnOutside()->closeOnEsc()->body([
+                    amisMake()
+                        ->Form()
+                        ->api(admin_url('system/admin_role_save_permissions'))
+                        ->initApi($this->getEditGetDataPath())
+                        ->mode('normal')
+                        ->data(['id' => '${id}'])
+                        ->body([
+                            amisMake()->TreeControl()
+                                ->name('permissions')
+                                ->label()
+                                ->multiple()
+                                ->options($this->service->getMenuPermission())
+                                ->searchable()
+                                ->autoCheckChildren(false)
+                                ->joinValues(false)
+                                ->extractValue()
+                                ->size('full')
+                                ->className('h-full b-none')
+                                ->inputClassName('h-full tree-full')
+                                ->labelField('name')
+                                ->valueField('tag'),
+                        ]),
+                ])
+            );
     }
 
     public function savePermissions()
@@ -90,6 +93,7 @@ class AdminRoleController extends AdminController
 
         return $this->autoResponse($result, __('admin.save'));
     }
+
 
     public function form(): Form
     {

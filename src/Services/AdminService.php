@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Services;
 
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
@@ -42,7 +43,7 @@ abstract class AdminService
         return $this->tableColumn;
     }
 
-    public function query(): Builder
+    public function query(): Builder|QueryBuilder
     {
         return $this->modelName::query();
     }
