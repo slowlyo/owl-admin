@@ -19,7 +19,7 @@ class AdminUserController extends AdminController
     {
         $crud = $this->baseCRUD()
             ->headerToolbar([
-                $this->createButton(true),
+                $this->createButton(true)->permission('9cd1e656-5563-47a4-9238-28216746d2e8'),
                 ...$this->baseHeaderToolBar(),
             ])
             ->filter($this->baseFilter()->body(
@@ -37,7 +37,7 @@ class AdminUserController extends AdminController
                 ),
                 amisMake()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true),
                 Operation::make()->label(__('admin.actions'))->buttons([
-                    $this->rowEditButton(true),
+                    $this->rowEditButton(true)->permission('5164d51e-ee69-4fe0-99f4-87f00b33d057'),
                     $this->rowDeleteButton()->visibleOn('${id != 1}'),
                 ]),
             ]);

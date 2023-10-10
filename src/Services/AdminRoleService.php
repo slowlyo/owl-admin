@@ -7,10 +7,12 @@ use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminRole;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
+use Slowlyo\OwlAdmin\Models\AdminPermission;
 
 /**
  * @method AdminRole getModel()
- * @method AdminRole|Builder query()
+ * @method AdminRole|Builder|QueryBuilder query()
  */
 class AdminRoleService extends AdminService
 {
@@ -25,7 +27,10 @@ class AdminRoleService extends AdminService
     {
         $permission = parent::getEditData($id);
 
-        $permission->load(['permissions']);
+        $p = $permission->permissions->pluck('id')->map(fn ($id)=> 'p:'. $id)->values();
+        $m = $permission->menus->pluck('id')->map(fn ($id)=> 'm:'. $id)->values();
+        unset($permission->permissions, $permission->menus);
+        $permission->permissions = collect([...$p, ...$m]);
 
         return $permission;
     }
@@ -92,9 +97,37 @@ class AdminRoleService extends AdminService
     public function savePermissions($primaryKey, $permissions)
     {
         $model = $this->query()->whereKey($primaryKey)->first();
+        $permission_ids = [];
+        $menu_ids = [];
+        foreach($permissions as $tag){
+            if(str_contains($tag, 'm:')){
+                $menu_ids[] = explode(':', $tag)[1];
+            }
+            if(str_contains($tag, 'p:')){
+                $permission_ids[] = explode(':', $tag)[1];
+            }
+        }
 
-        return $model->permissions()->sync(
-            Arr::has($permissions, '0.id') ? Arr::pluck($permissions, 'id') : $permissions
-        );
+        $model->permissions()->sync($permission_ids);
+        $model->menus()->sync($menu_ids);
+        return true;
+    }
+
+    public function getMenuPermission()
+    {
+        $mp = Admin::adminMenuModel()::query()
+            ->with(['permissions:id,name,menu_id'])
+            ->orderBy('order')
+            ->get(['id', 'parent_id', 'title as name', 'order']);
+
+        $mp->map(function($item){
+            $item->name = __('menu.' . $item->name);
+            $item->children = $item->permissions;
+            $item->children->map(fn($permission)=>$permission->tag = 'p:' . $permission->id);
+            $item->tag = 'm:' . $item->id;
+            unset($item->permissions);
+        });
+        
+        return array2tree($mp->toArray());
     }
 }

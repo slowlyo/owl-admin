@@ -5,7 +5,6 @@ namespace Slowlyo\OwlAdmin\Models;
 use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class AdminPermission extends BaseModel
 {
@@ -20,32 +19,38 @@ class AdminPermission extends BaseModel
     ];
 
     protected $casts = [
-        'http_method' => 'array',
-        'http_path'   => 'array',
+        'http_path' => 'array',
     ];
 
-    protected $fillable = ['sign'];
+    public static $base_permission = [
+        ['value'=>'create', 'label' =>'新增'],
+        ['value'=>'edit', 'label' =>'编辑'],
+        ['value'=>'delete', 'label' =>'删除'],
+        ['value'=>'batchDel', 'label' =>'批量删除'],
+        ['value'=>'show', 'label' =>'详情'],
+        ['value'=>'export', 'label' =>'导出'],
+    ];
 
-    public function menus(): BelongsToMany
+    public function menu(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(AdminMenu::class, 'admin_permission_menu', 'permission_id', 'menu_id')
-            ->withTimestamps();
+        return $this->belongsTo(AdminMenu::class, 'menu_id');
     }
 
     public function shouldPassThrough(Request $request): bool
     {
-        if (empty($this->http_method) && empty($this->http_path)) {
+        if (empty($this->http_path)) {
             return true;
         }
-        $method  = $this->http_method;
+
+        $method = '';
         $matches = array_map(function ($path) use ($method) {
-            $path = trim(Admin::config('admin.route.prefix'), '/') . $path;
             if (Str::contains($path, ':')) {
                 [$method, $path] = explode(':', $path);
-                $method = explode(',', $method);
             }
+            $path = trim(Admin::config('admin.route.prefix'), '/') . $path;
             return compact('method', 'path');
         }, $this->http_path);
+
         foreach ($matches as $match) {
             if ($this->matchRequest($match, $request)) {
                 return true;
@@ -73,8 +78,5 @@ class AdminPermission extends BaseModel
     protected static function boot(): void
     {
         parent::boot();
-        static::deleting(function ($model) {
-            $model->menus()->detach();
-        });
     }
 }

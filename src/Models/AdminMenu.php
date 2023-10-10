@@ -36,4 +36,9 @@ class AdminMenu extends BaseModel
             return __("menu.{$value}") == "menu.{$value}" ? $value : __("menu.{$value}");
         });
     }
+
+    public function permissions()
+    {
+        return $this->hasMany(AdminPermission::class, 'menu_id');
+    }
 }
