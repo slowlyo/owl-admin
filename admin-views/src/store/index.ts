@@ -49,6 +49,9 @@ export default function store(state = initialState, action) {
     switch (action.type) {
         case 'update-userInfo': {
             const {userInfo = initialState.userInfo, userLoading} = action.payload
+            if(userInfo?.name){
+                localStorage.setItem(getCacheKey('user_name'), userInfo?.name || '')
+            }
             return {
                 ...state,
                 userLoading,

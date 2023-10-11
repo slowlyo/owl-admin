@@ -12,7 +12,7 @@ const LayoutTabs = () => {
     const pathname = history.location.pathname
     const {routes, defaultRoute, getCurrentRoute} = useRoute()
     const flattenRoutes = getFlattenRoutes(routes)
-    const keyPrefix = localStorage.getItem(getCacheKey('_user_name'))
+    const keyPrefix = localStorage.getItem(getCacheKey('user_name'))
     const [cacheTabs, setCacheTab] = useStorage(getCacheKey(keyPrefix + '_cached_tabs'), '')
     const cachedTabs = JSON.parse(cacheTabs || '[]')
     const defaultTab = flattenRoutes.find((route) => route.path === '/' + defaultRoute)

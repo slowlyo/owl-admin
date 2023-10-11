@@ -41,7 +41,6 @@ const useSetup = (store) => {
     const initUserInfo = useRequest(fetchUserInfo, {
         manual: true,
         onSuccess(res) {
-            localStorage.setItem(getCacheKey('_user_name'), res.data?.name || '')
             store.dispatch({
                 type: 'update-userInfo',
                 payload: {userInfo: res.data},

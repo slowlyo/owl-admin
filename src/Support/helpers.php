@@ -100,6 +100,17 @@ if (!function_exists('amis')) {
     }
 }
 
+if (!function_exists('amisMake')) {
+    /**
+     * @return \Slowlyo\OwlAdmin\Renderers\Amis
+     * @deprecated
+     */
+    function amisMake()
+    {
+        return \Slowlyo\OwlAdmin\Renderers\Amis::make();
+    }
+}
+
 if (!function_exists('admin_encode')) {
     function admin_encode($str)
     {
