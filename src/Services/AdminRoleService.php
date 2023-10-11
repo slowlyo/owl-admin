@@ -32,9 +32,7 @@ class AdminRoleService extends AdminService
 
     public function store($data): bool
     {
-        if ($this->hasRepeated($data)) {
-            return false;
-        }
+        $this->checkRepeated($data);
 
         $columns = $this->getTableColumns();
 
@@ -53,9 +51,7 @@ class AdminRoleService extends AdminService
 
     public function update($primaryKey, $data): bool
     {
-        if ($this->hasRepeated($data, $primaryKey)) {
-            return false;
-        }
+        $this->checkRepeated($data, $primaryKey);
 
         $columns = $this->getTableColumns();
 
@@ -72,19 +68,12 @@ class AdminRoleService extends AdminService
         return $model->save();
     }
 
-    public function hasRepeated($data, $id = 0): bool
+    public function checkRepeated($data, $id = 0): bool
     {
         $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
 
-        if ((clone $query)->where('name', $data['name'])->exists()) {
-            $this->setError(__('admin.admin_role.name_already_exists'));
-            return true;
-        }
-
-        if ((clone $query)->where('slug', $data['slug'])->exists()) {
-            $this->setError(__('admin.admin_role.slug_already_exists'));
-            return true;
-        }
+        amis_abort_if((clone $query)->where('name', $data['name'])->exists(), __('admin.admin_role.name_already_exists'));
+        amis_abort_if((clone $query)->where('slug', $data['slug'])->exists(), __('admin.admin_role.slug_already_exists'));
 
         return false;
     }

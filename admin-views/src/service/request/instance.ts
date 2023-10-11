@@ -44,7 +44,7 @@ export default class CustomAxiosInstance {
                         }
 
                         return backend
-                    }else{
+                    } else {
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
                             message.error(backend.msg)
                         }
@@ -63,12 +63,13 @@ export default class CustomAxiosInstance {
                 return response
             },
             (axiosError: AxiosError | any) => {
-                return {
-                    data: {
-                        status: 1,
-                        msg: axiosError.response?.data?.message || axiosError.message
-                    }
+                const msg = axiosError.response?.data?.message || axiosError.message
+
+                if (msg) {
+                    message.error(msg)
                 }
+
+                return {data: {status: 1, msg}}
             }
         )
     }

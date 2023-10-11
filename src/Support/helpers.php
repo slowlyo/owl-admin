@@ -197,3 +197,46 @@ if (!function_exists('admin_user')) {
         return \Slowlyo\OwlAdmin\Admin::user();
     }
 }
+
+if (!function_exists('admin_abort')) {
+    /**
+     * 抛出异常
+     *
+     * @param string $message           异常信息
+     * @param array  $data              异常数据
+     * @param int    $doNotDisplayToast 是否显示提示 (解决在 amis 中抛出异常时，会显示两次提示的问题)
+     *
+     * @return mixed
+     * @throws null
+     */
+    function admin_abort($message = '', $data = [], $doNotDisplayToast = 0)
+    {
+        throw new \Slowlyo\OwlAdmin\Exceptions\AdminException($message, $data, $doNotDisplayToast);
+    }
+
+    function amis_abort($message = '', $data = []){
+        admin_abort($message, $data, 1);
+    }
+
+    /**
+     * 如果条件成立，抛出异常
+     *
+     * @param boolean $flag              条件
+     * @param string  $message           异常信息
+     * @param array   $data              异常数据
+     * @param int     $doNotDisplayToast 是否显示提示 (解决在 amis 中抛出异常时，会显示两次提示的问题)
+     *
+     * @return void
+     */
+    function admin_abort_if($flag, $message = '', $data = [], $doNotDisplayToast = 0)
+    {
+        if ($flag) {
+            admin_abort($message, $data, $doNotDisplayToast);
+        }
+    }
+
+    function amis_abort_if($flag, $message = '', $data = [])
+    {
+        admin_abort_if($flag, $message, $data, 1);
+    }
+}

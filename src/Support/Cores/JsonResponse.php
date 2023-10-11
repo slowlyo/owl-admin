@@ -104,9 +104,9 @@ class JsonResponse
      *
      * @return $this
      */
-    public function doNotDisplayToast()
+    public function doNotDisplayToast($value = 1)
     {
-        $this->additionalData['doNotDisplayToast'] = 1;
+        $this->additionalData['doNotDisplayToast'] = $value;
 
         return $this;
     }

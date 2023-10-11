@@ -3,7 +3,6 @@
 namespace Slowlyo\OwlAdmin;
 
 use Illuminate\Support\Arr;
-use Slowlyo\OwlAdmin\Console;
 use Slowlyo\OwlAdmin\Extend\Manager;
 use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
