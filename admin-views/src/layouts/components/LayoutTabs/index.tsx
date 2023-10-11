@@ -6,15 +6,14 @@ import {useHistory} from 'react-router'
 import {useAliveController} from 'react-activation'
 import Tab from './components/Tab'
 import {getCacheKey, registerGlobalFunction} from '@/utils/common'
-import useStore from '@/hooks/useStore'
 
 const LayoutTabs = () => {
-    const {state} = useStore()
     const history = useHistory()
     const pathname = history.location.pathname
     const {routes, defaultRoute, getCurrentRoute} = useRoute()
     const flattenRoutes = getFlattenRoutes(routes)
-    const [cacheTabs, setCacheTab] = useStorage(getCacheKey(state?.userInfo?.name + '_cached_tabs'), '')
+    const keyPrefix = localStorage.getItem(getCacheKey('_user_name'))
+    const [cacheTabs, setCacheTab] = useStorage(getCacheKey(keyPrefix + '_cached_tabs'), '')
     const cachedTabs = JSON.parse(cacheTabs || '[]')
     const defaultTab = flattenRoutes.find((route) => route.path === '/' + defaultRoute)
     const {drop} = useAliveController()
