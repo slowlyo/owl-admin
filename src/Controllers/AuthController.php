@@ -224,8 +224,8 @@ JS,
             ->hideCaret()
             ->trigger('hover')
             ->label($userInfo['name'])
-            ->className('h-full')
-            ->btnClassName('navbar-user')
+            ->className('h-full w-full')
+            ->btnClassName('navbar-user w-full')
             ->menuClassName('min-w-0 p-2')
             ->set('icon', $userInfo['avatar'])
             ->buttons([

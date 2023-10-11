@@ -24,11 +24,11 @@ const LayoutTopBar = () => {
             {/* appendNav */}
             {getSetting('nav.appendNav') && <AmisRender schema={getSetting('nav.appendNav')}/>}
 
-            <div className="bg-transparent h-full cursor-pointer" style={darkTheme() ? {
+            <div className="bg-transparent h-full cursor-pointer min-w-[120px]" style={darkTheme() ? {
                 // @ts-ignore
                 '--colors-neutral-text-1': '#fff',
             } : {}}>
-                <AmisRender className="h-full !text-white" schema={userInfo?.menus}/>
+                <AmisRender className="h-full !text-white min-w-[120px]" schema={userInfo?.menus}/>
             </div>
         </div>
     )

@@ -64,7 +64,7 @@ class Permission
      */
     public function permissionIntercept($request, $args)
     {
-        if (Admin::config('admin.auth.enable') === false) {
+        if (Admin::config('admin.auth.permission') === false) {
             return false;
         }
 

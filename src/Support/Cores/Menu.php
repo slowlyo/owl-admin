@@ -24,7 +24,7 @@ class Menu
     private function userMenus()
     {
         $user = Admin::user();
-        if ($user->isAdministrator() || Admin::config('admin.auth.enable') === false) {
+        if ($user->isAdministrator() || Admin::config('admin.auth.permission') === false) {
             $list = AdminMenuService::make()->query()->orderBy('order')->get();
         } else {
             $user->load('roles.permissions.menus');

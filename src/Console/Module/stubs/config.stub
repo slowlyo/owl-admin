@@ -28,8 +28,10 @@ return [
     'auth' => [
         // 是否开启验证码
         'login_captcha' => env('ADMIN_LOGIN_CAPTCHA', true),
-        // 是否开启鉴权
+        // 是否开启认证
         'enable'        => true,
+        // 是否开启鉴权
+        'permission'    => true,
         'guard'         => '{{module_name}}',
         'guards' => [
             '{{module_name}}' => [
