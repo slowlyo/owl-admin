@@ -47,9 +47,7 @@ class Extension
      */
     public function createDir($name, $namespace)
     {
-        if (!preg_match('/^[\w\-_]+\/[\w\-_]+$/', $name)) {
-            return $this->setError('无效的扩展名称');
-        }
+        admin_abort_if(!preg_match('/^[\w\-_]+\/[\w\-_]+$/', $name), __('admin.extensions.name_invalid'));
 
         $this->dirs[] = 'public/extensions/' . $name;
 
@@ -67,9 +65,7 @@ class Extension
 
         $this->basePath = rtrim($this->extensionDir, '/') . '/' . ltrim($this->package, '/');
 
-        if (is_dir($this->basePath)) {
-            return $this->setError(sprintf('The extension [%s] already exists!', $this->package));
-        }
+        admin_abort_if(is_dir($this->basePath), __('admin.extensions.exists') . $this->package);
 
         $this->makeDir($this->dirs);
         $this->makeFiles();
@@ -197,7 +193,7 @@ class Extension
      * Copy files to extension path.
      *
      * @param array|string $from
-     * @param string|null $to
+     * @param string|null  $to
      */
     protected function copy(array|string $from, string $to = null)
     {

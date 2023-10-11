@@ -191,6 +191,8 @@ return [
     ],
 
     'extensions' => [
+        'name_invalid'       => 'Name Invalid',
+        'exists'             => 'This extension already exists: ',
         'menu'               => 'Extensions',
         'page_title'         => 'Extensions',
         'create'             => 'Create',

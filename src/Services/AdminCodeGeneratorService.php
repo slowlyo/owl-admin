@@ -27,9 +27,7 @@ class AdminCodeGeneratorService extends AdminService
 
     public function store($data): bool
     {
-        if ($this->query()->where('table_name', $data['table_name'])->exists()) {
-            return $this->setError(__('admin.code_generators.exists_table'));
-        }
+        admin_abort_if($this->query()->where('table_name', $data['table_name'])->exists(), __('admin.code_generators.exists_table'));
 
         return parent::store($this->filterData($data));
     }
@@ -41,9 +39,7 @@ class AdminCodeGeneratorService extends AdminService
             ->where($this->primaryKey(), '<>', $primaryKey)
             ->exists();
 
-        if ($exists) {
-            return $this->setError(__('admin.code_generators.exists_table'));
-        }
+        admin_abort_if($exists, __('admin.code_generators.exists_table'));
 
         return parent::update($primaryKey, $this->filterData($data));
     }

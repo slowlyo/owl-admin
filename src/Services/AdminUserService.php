@@ -33,13 +33,9 @@ class AdminUserService extends AdminService
 
     public function store($data): bool
     {
-        if ($this->checkUsernameUnique($data['username'])) {
-            return $this->setError(__('admin.admin_user.username_already_exists'));
-        }
+        $this->checkUsernameUnique($data['username']);
 
-        if (!data_get($data, 'password')) {
-            return $this->setError(__('admin.required', ['attribute' => __('admin.password')]));
-        }
+        admin_abort_if(!data_get($data, 'password'), __('admin.required', ['attribute' => __('admin.password')]));
 
         if (!$this->passwordHandler($data)) {
             return false;
@@ -54,13 +50,8 @@ class AdminUserService extends AdminService
 
     public function update($primaryKey, $data): bool
     {
-        if ($this->checkUsernameUnique($data['username'], $primaryKey)) {
-            return $this->setError(__('admin.admin_user.username_already_exists'));
-        }
-
-        if (!$this->passwordHandler($data)) {
-            return false;
-        }
+        $this->checkUsernameUnique($data['username'], $primaryKey);
+        $this->passwordHandler($data);
 
         $columns = $this->getTableColumns();
 
@@ -69,19 +60,19 @@ class AdminUserService extends AdminService
         return $this->saveData($data, $columns, $model);
     }
 
-    public function checkUsernameUnique($username, $id = 0): bool
+    public function checkUsernameUnique($username, $id = 0)
     {
-        return $this->query()
+        $exists = $this->query()
             ->where('username', $username)
             ->when($id, fn($query) => $query->where('id', '<>', $id))
             ->exists();
+
+        admin_abort_if($exists, __('admin.admin_user.username_already_exists'));
     }
 
     public function updateUserSetting($primaryKey, $data): bool
     {
-        if (!$this->passwordHandler($data, $primaryKey)) {
-            return false;
-        }
+        $this->passwordHandler($data, $primaryKey);
 
         return parent::update($primaryKey, $data);
     }
@@ -91,20 +82,14 @@ class AdminUserService extends AdminService
         $password = Arr::get($data, 'password');
 
         if ($password) {
-            if ($password !== Arr::get($data, 'confirm_password')) {
-                return $this->setError(__('admin.admin_user.password_confirmation'));
-            }
+            admin_abort_if($password !== Arr::get($data, 'confirm_password'), __('admin.admin_user.password_confirmation'));
 
             if ($id) {
-                if (!Arr::get($data, 'old_password')) {
-                    return $this->setError(__('admin.admin_user.old_password_required'));
-                }
+                admin_abort_if(!Arr::get($data, 'old_password'), __('admin.admin_user.old_password_required'));
 
                 $oldPassword = $this->query()->where('id', $id)->value('password');
 
-                if (!Hash::check($data['old_password'], $oldPassword)) {
-                    return $this->setError(__('admin.admin_user.old_password_error'));
-                }
+                admin_abort_if(!Hash::check($data['old_password'], $oldPassword), __('admin.admin_user.old_password_error'));
             }
 
             $data['password'] = bcrypt($password);
@@ -112,8 +97,6 @@ class AdminUserService extends AdminService
             unset($data['confirm_password']);
             unset($data['old_password']);
         }
-
-        return true;
     }
 
     public function list()

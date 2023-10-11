@@ -48,9 +48,7 @@ class AdminMenuService extends AdminService
 
         $parent_id = Arr::get($data, 'parent_id');
         if ($parent_id != 0) {
-            if ($this->parentIsChild($primaryKey, $parent_id)) {
-                return $this->setError(__('admin.admin_menu.parent_id_not_allow'));
-            }
+            admin_abort_if($this->parentIsChild($primaryKey, $parent_id), __('admin.admin_menu.parent_id_not_allow'));
         }
 
         $model = $this->query()->whereKey($primaryKey)->first();

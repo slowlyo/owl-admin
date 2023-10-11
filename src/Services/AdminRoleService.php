@@ -68,14 +68,14 @@ class AdminRoleService extends AdminService
         return $model->save();
     }
 
-    public function checkRepeated($data, $id = 0): bool
+    public function checkRepeated($data, $id = 0)
     {
         $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
 
-        amis_abort_if((clone $query)->where('name', $data['name'])->exists(), __('admin.admin_role.name_already_exists'));
-        amis_abort_if((clone $query)->where('slug', $data['slug'])->exists(), __('admin.admin_role.slug_already_exists'));
-
-        return false;
+        amis_abort_if((clone $query)->where('name', $data['name'])
+            ->exists(), __('admin.admin_role.name_already_exists'));
+        amis_abort_if((clone $query)->where('slug', $data['slug'])
+            ->exists(), __('admin.admin_role.slug_already_exists'));
     }
 
     public function savePermissions($primaryKey, $permissions)

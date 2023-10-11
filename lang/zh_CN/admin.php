@@ -191,6 +191,8 @@ return [
     ],
 
     'extensions' => [
+        'name_invalid'       => '无效的扩展名称',
+        'exists'             => '该扩展已存在：',
         'menu'               => '扩展',
         'page_title'         => '扩展',
         'create'             => '创建',

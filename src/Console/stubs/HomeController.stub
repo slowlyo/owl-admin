@@ -141,6 +141,7 @@ JS
     {
         return Card::make()->className('h-96')->body(
             Chart::make()->height(350)->config("{
+  backgroundColor:'',
   tooltip: { trigger: 'item' },
   legend: { bottom: 0, left: 'center' },
   series: [
@@ -182,6 +183,7 @@ JS
         $random2 = $randArr();
 
         $chart = Chart::make()->height(380)->className('h-96')->config("{
+backgroundColor:'',
 title:{ text: '会员增长情况', },
 tooltip: { trigger: 'axis' },
 xAxis: { type: 'category', boundaryGap: false, data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
