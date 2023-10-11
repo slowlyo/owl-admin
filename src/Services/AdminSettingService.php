@@ -31,7 +31,7 @@ class AdminSettingService extends AdminService
             $this->clearCache($key);
             $setting->save();
         } catch (\Exception $e) {
-            admin_abort($e->getMessage());
+            amis_abort($e->getMessage());
         }
 
         return true;
@@ -58,7 +58,7 @@ class AdminSettingService extends AdminService
         } catch (\Exception $e) {
             DB::rollBack();
 
-            admin_abort($e->getMessage());
+            amis_abort($e->getMessage());
         }
 
         return true;
