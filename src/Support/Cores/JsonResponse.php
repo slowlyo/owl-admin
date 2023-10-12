@@ -2,7 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Support\Cores;
 
-use Slowlyo\OwlAdmin\Renderers\BaseRenderer;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class JsonResponse
@@ -43,10 +42,6 @@ class JsonResponse
 
         if ($data === null) {
             $data = (object)$data;
-        }
-
-        if ($data instanceof BaseRenderer) {
-            $data = $data->toArray();
         }
 
         return response()->json(array_merge($this->additionalData, ['data' => $data]));

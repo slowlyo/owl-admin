@@ -30,6 +30,7 @@ class UpdateCommand extends Command
         $modules = config('admin.modules');
 
         if (blank($modules)) {
+            $this->warn('No modules, please check config: [admin.modules]');
             return;
         }
 
