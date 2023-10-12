@@ -90,17 +90,17 @@ export const DoubleLayout = () => {
                 <div className="w-full h-full overflow-y-auto">
                     {routes?.map(item => {
                         if (item?.meta?.hide) return null
-                        const baseStyle = 'text-white flex flex-col items-center py-2 cursor-pointer'
+                        const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
                         const selectStyle = selectedKeys.includes(item.path) ? ' bg-[var(--colors-brand-5)] hover:bg-[var(--colors-brand-5)]' : ' hover:bg-gray-100/20'
 
                         return (
-                            <div key={item.name} className={baseStyle + selectStyle} onClick={() => clickItem(item)}>
+                            <div key={item.name} className={baseStyle + selectStyle} onClick={() => clickItem(item)} title={item?.meta?.title}>
                                 {(item?.meta?.icon && item?.meta?.icon != '-') && (
                                     <div className="p-1">
                                         <Icon icon={item?.meta?.icon} fontSize={18}/>
                                     </div>
                                 )}
-                                <div className="text-[12px]">
+                                <div className="text-[12px] whitespace-nowrap">
                                     {item?.meta?.title}
                                 </div>
                             </div>
