@@ -216,23 +216,31 @@ trait ElementTrait
     /**
      * 基础表单
      *
+     * @param bool $back
+     *
      * @return Form
      */
-    protected function baseForm(): Form
+    protected function baseForm(bool $back = true): Form
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
-        return Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->onEvent([
-            'submitSucc' => [
-                'actions' => [
-                    ['actionType' => 'custom', 'script' => 'window.history.back()'],
-                    [
-                        'actionType' => 'custom',
-                        'script'     => sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path),
+        $form = Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal');
+
+        if ($back) {
+            $form->onEvent([
+                'submitSucc' => [
+                    'actions' => [
+                        ['actionType' => 'custom', 'script' => 'window.history.back()'],
+                        [
+                            'actionType' => 'custom',
+                            'script'     => sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path),
+                        ],
                     ],
                 ],
-            ],
-        ]);
+            ]);
+        }
+
+        return $form;
     }
 
     /**
