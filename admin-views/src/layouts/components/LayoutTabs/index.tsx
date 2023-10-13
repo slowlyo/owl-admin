@@ -21,7 +21,7 @@ const LayoutTabs = () => {
     const [tabs, setTabs] = React.useState<IRoute[]>([])
 
     const updateTabs = (_tabs) => {
-        setTabs([formatTabValue(defaultTab, defaultTab?.path), ..._tabs])
+        setTabs([formatTabValue(defaultTab, defaultTab?.path, true), ..._tabs])
     }
 
     const initTab = () => {
@@ -37,10 +37,10 @@ const LayoutTabs = () => {
         updateTabs(cachedTabs)
     }
 
-    const formatTabValue = (tab, path) => ({
+    const formatTabValue = (tab, path, isDefault = false) => ({
         name: tab?.name,
         path,
-        search: history.location.search,
+        search: isDefault ? '' : history.location.search,
         title: tab?.meta?.title,
         icon: tab?.meta?.icon
     })
