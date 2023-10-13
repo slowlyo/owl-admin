@@ -46,7 +46,7 @@ const LayoutMenu = (
 
         const getListPath = (path: string) => path.replace(/\/create$|\/:id\/edit$|\/:id$/g, '')
 
-        setSelectedKeys([current.path, getListPath(current.path), ..._parents])
+        setSelectedKeys([current.path.split('?')[0], getListPath(current.path), ..._parents])
 
         if (mode == 'inline') {
             setOpenKeys([...openKeys, ..._parents])
@@ -63,7 +63,7 @@ const LayoutMenu = (
             }
 
             menus.push({
-                key: route.path,
+                key: route.path.split('?')[0],
                 label: route.meta.title,
                 icon: <Icon icon={route.meta.icon}/>,
                 children: route.children ? getMenus(route.children) : null,
@@ -74,7 +74,7 @@ const LayoutMenu = (
     }
 
     const clickMenu = (e) => {
-        const currentRoute = flattenRoutes.find((r) => r.path === e.key)
+        const currentRoute = flattenRoutes.find((r) => r.path.split('?')[0] === e.key)
 
         if (currentRoute.is_link) {
             window.open(currentRoute.path)

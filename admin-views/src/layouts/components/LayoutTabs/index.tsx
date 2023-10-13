@@ -37,7 +37,13 @@ const LayoutTabs = () => {
         updateTabs(cachedTabs)
     }
 
-    const formatTabValue = (tab, path) => ({name: tab?.name, path, title: tab?.meta?.title, icon: tab?.meta?.icon})
+    const formatTabValue = (tab, path) => ({
+        name: tab?.name,
+        path,
+        search: history.location.search,
+        title: tab?.meta?.title,
+        icon: tab?.meta?.icon
+    })
 
     const currentTab = () => {
         const current = getCurrentRoute()

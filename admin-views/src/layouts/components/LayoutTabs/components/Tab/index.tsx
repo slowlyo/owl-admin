@@ -38,7 +38,7 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
             {item.title && (
                 <Dropdown menu={getMenu()} trigger={['contextMenu']}>
                     <div className={tabClass + hoverClass + ' ' + (pathname == item.path ? (tabSelectedClass + ' current_selected_tab') : '')}
-                         onClick={() => history.push(item.path)}>
+                         onClick={() => history.push(item.path + (item?.search || ''))}>
                         {settings.system_theme_setting.tabIcon && <Icon icon={item.icon} className="mr-[10px]"/>}
                         {item.title}
                         {closeable && (

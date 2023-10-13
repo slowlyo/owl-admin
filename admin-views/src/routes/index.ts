@@ -78,7 +78,7 @@ const useRoute = () => {
         return ''
     }, [routes])
 
-    const getCurrentRoute = () => getFlattenRoutes(routes).find((tab) => tab.path === history.location.pathname.replace(/\/\d+/g, '/:id'))
+    const getCurrentRoute = () => getFlattenRoutes(routes).find((tab) => tab.path.split('?')[0] === history.location.pathname.replace(/\/\d+/g, '/:id'))
 
     return {routes, defaultRoute, getCurrentRoute}
 }
