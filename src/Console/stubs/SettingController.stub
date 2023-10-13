@@ -24,7 +24,7 @@ class SettingController extends AdminController
 
     public function form()
     {
-        return $this->baseForm()
+        return $this->baseForm(false)
             ->redirect('')
             ->api($this->getStorePath())
             ->data(settings()->all())
