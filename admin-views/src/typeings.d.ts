@@ -8,6 +8,7 @@ interface Window {
         appLoader: () => void,
         afterLoginSuccess: (params: any, token: string) => void,
         refreshAmisPage: () => Promise,
+        closeTabByPath: (path: string) => void,
     }
 }
 

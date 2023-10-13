@@ -114,8 +114,8 @@ const LayoutTabs = () => {
         const updatedCachedTabs = tabs.filter((tab) => (!items.find((item) => item.name === tab.name) && tab.path != '/' + defaultRoute))
 
         // 更新选项卡列表
-        updateTabs(updatedCachedTabs)
         setCacheTab(JSON.stringify(updatedCachedTabs))
+        updateTabs(updatedCachedTabs)
         // 清除页面缓存
         items.forEach((item) => drop(item.name))
     }
