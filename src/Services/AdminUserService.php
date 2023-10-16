@@ -37,9 +37,7 @@ class AdminUserService extends AdminService
 
         amis_abort_if(!data_get($data, 'password'), __('admin.required', ['attribute' => __('admin.password')]));
 
-        if (!$this->passwordHandler($data)) {
-            return false;
-        }
+        $this->passwordHandler($data);
 
         $columns = $this->getTableColumns();
 
@@ -77,7 +75,7 @@ class AdminUserService extends AdminService
         return parent::update($primaryKey, $data);
     }
 
-    public function passwordHandler(&$data, $id = null): bool
+    public function passwordHandler(&$data, $id = null)
     {
         $password = Arr::get($data, 'password');
 
