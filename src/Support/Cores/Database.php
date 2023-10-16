@@ -47,7 +47,7 @@ class Database
             $table->increments('id');
             $table->string('username', 120)->unique();
             $table->string('password', 80);
-            $table->string('name');
+            $table->string('name')->default('');
             $table->string('avatar')->nullable();
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();
@@ -130,8 +130,8 @@ class Database
         });
 
         $this->create('admin_settings', function (Blueprint $table) {
-            $table->string('key');
-            $table->longText('values');
+            $table->string('key')->default('');
+            $table->longText('values')->nullable();
             $table->timestamps();
         });
 
