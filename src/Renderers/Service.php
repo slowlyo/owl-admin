@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Service 服务类控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/service
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Service extends BaseRenderer
 {
@@ -74,7 +74,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function fetchOn($value = '')
     {
@@ -146,7 +146,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function loadingConfig($value = '')
     {
@@ -154,7 +154,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function messages($value = '')
     {
@@ -162,7 +162,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function name($value = '')
     {
@@ -250,7 +250,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

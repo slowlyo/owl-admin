@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputYearRange 年份范围
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class InputYearRange extends BaseRenderer
 {

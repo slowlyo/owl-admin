@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * amis Page 渲染器。详情请见：https://aisuda.bce.baidu.com/amis/zh-CN/components/page
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Page extends BaseRenderer
 {
@@ -114,7 +114,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function definitions($value = '')
     {
@@ -210,7 +210,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function loadingConfig($value = '')
     {
@@ -218,7 +218,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function messages($value = '')
     {
@@ -234,7 +234,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function name($value = '')
     {
@@ -338,7 +338,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

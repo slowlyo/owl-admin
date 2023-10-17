@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Pagination
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Pagination extends BaseRenderer
 {
@@ -58,7 +58,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function hasNext($value = true)
     {
@@ -210,7 +210,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -234,7 +234,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'pagination')
     {

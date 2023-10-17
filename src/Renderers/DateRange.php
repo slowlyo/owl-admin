@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DateRange 展示渲染器。
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class DateRange extends BaseRenderer
 {
@@ -162,7 +162,7 @@ class DateRange extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

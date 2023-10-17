@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUDTable
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class CRUDTable extends BaseRenderer
 {
@@ -202,7 +202,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function filterDefaultVisible($value = true)
     {
@@ -210,7 +210,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function filterTogglable($value = true)
     {
@@ -362,7 +362,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 在开启loadDataOnce时，filter时是否去重新请求api
+     * 在开启loadDataOnce时，当修改过滤条件时是否重新请求api如果没有配置，当查询条件表单触发的会重新请求 api，当是列过滤或者是 search-box 触发的则不重新请求 api 如果配置为 true，则不管是什么触发都会重新请求 api 如果配置为 false 则不管是什么触发都不会重新请求 api
      */
     public function loadDataOnceFetchOnFilter($value = true)
     {
@@ -370,7 +370,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function loadingConfig($value = '')
     {
@@ -378,7 +378,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function messages($value = '')
     {
@@ -394,7 +394,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function name($value = '')
     {
@@ -431,6 +431,14 @@ class CRUDTable extends BaseRenderer
     public function orderField($value = '')
     {
         return $this->set('orderField', $value);
+    }
+
+    /**
+     * 设置分页方向的字段名。单位简单分页时清楚时向前还是向后翻页。
+     */
+    public function pageDirectionField($value = '')
+    {
+        return $this->set('pageDirectionField', $value);
     }
 
     /**
@@ -602,7 +610,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -610,7 +618,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -618,7 +626,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function stopAutoRefreshWhenModalIsOpen($value = true)
     {
@@ -655,6 +663,14 @@ class CRUDTable extends BaseRenderer
     public function tableClassName($value = '')
     {
         return $this->set('tableClassName', $value);
+    }
+
+    /**
+     * table layout 可选值: fixed | auto
+     */
+    public function tableLayout($value = '')
+    {
+        return $this->set('tableLayout', $value);
     }
 
     /**

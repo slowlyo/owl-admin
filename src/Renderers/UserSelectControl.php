@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * UserSelect 移动端人员选择。
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class UserSelectControl extends BaseRenderer
 {
@@ -122,7 +122,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -506,7 +506,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -570,7 +570,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Matrix 选择控件。适合做权限勾选。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/matrix
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class MatrixControl extends BaseRenderer
 {
@@ -34,7 +34,7 @@ class MatrixControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function columns($value = '')
     {
@@ -42,7 +42,7 @@ class MatrixControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -274,7 +274,7 @@ class MatrixControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function rows($value = '')
     {
@@ -354,7 +354,7 @@ class MatrixControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -418,7 +418,7 @@ class MatrixControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

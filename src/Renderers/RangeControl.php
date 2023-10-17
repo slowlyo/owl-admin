@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * RangeControl
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class RangeControl extends BaseRenderer
 {
@@ -50,7 +50,7 @@ class RangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -386,7 +386,7 @@ class RangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -482,7 +482,7 @@ class RangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

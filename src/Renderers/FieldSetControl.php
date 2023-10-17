@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * FieldSet 表单项集合 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/fieldset
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class FieldSetControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'fieldset');
-$this->set('titlePosition', 'top');
+        $this->set('titlePosition', 'top');
 
 
     }
@@ -83,7 +83,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -419,7 +419,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -523,7 +523,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

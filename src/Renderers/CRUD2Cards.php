@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUD2Cards
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class CRUD2Cards extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('mode', 'cards');
-$this->set('type', 'crud2');
+        $this->set('type', 'crud2');
 
 
     }
@@ -51,7 +51,7 @@ $this->set('type', 'crud2');
     }
 
     /**
-     * 
+     *
      */
     public function card($value = '')
     {
@@ -259,7 +259,7 @@ $this->set('type', 'crud2');
     }
 
     /**
-     * 
+     *
      */
     public function loadingConfig($value = '')
     {
@@ -291,7 +291,7 @@ $this->set('type', 'crud2');
     }
 
     /**
-     * 
+     *
      */
     public function name($value = '')
     {
@@ -336,6 +336,14 @@ $this->set('type', 'crud2');
     public function placeholder($value = '')
     {
         return $this->set('placeholder', $value);
+    }
+
+    /**
+     * 行标识符，默认为id
+     */
+    public function primaryField($value = '')
+    {
+        return $this->set('primaryField', $value);
     }
 
     /**
@@ -459,7 +467,7 @@ $this->set('type', 'crud2');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -467,7 +475,7 @@ $this->set('type', 'crud2');
     }
 
     /**
-     * 
+     *
      */
     public function stopAutoRefreshWhen($value = '')
     {

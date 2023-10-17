@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Portlet
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Portlet extends BaseRenderer
 {
@@ -194,7 +194,7 @@ class Portlet extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -210,7 +210,7 @@ class Portlet extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function tabs($value = '')
     {

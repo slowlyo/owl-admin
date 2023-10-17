@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 年份选择控件
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class YearControl extends BaseRenderer
 {
@@ -50,7 +50,7 @@ class YearControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -370,7 +370,7 @@ class YearControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -442,7 +442,7 @@ class YearControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

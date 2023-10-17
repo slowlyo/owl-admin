@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ConditionGroupValue
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class ConditionGroupValue extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class ConditionGroupValue extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function children($value = '')
     {
@@ -34,7 +34,7 @@ class ConditionGroupValue extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function id($value = '')
     {
@@ -42,7 +42,7 @@ class ConditionGroupValue extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function if($value = '')
     {
@@ -50,7 +50,7 @@ class ConditionGroupValue extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function not($value = true)
     {

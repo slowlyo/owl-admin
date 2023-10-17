@@ -27,17 +27,17 @@ dependencies:
     specifier: ^3.7.6
     version: 3.7.6(react@17.0.2)
   amis:
-    specifier: ^3.4.2
-    version: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-ui@3.4.2)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
+    specifier: ^3.4.3
+    version: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-ui@3.4.3)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
   amis-editor:
     specifier: ^5.6.1
-    version: 5.6.1(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(amis-theme-editor-helper@2.0.22-beta.1)(amis-theme-editor@2.0.22-beta.1)(amis-ui@3.4.2)(amis@3.4.2)(i18n-runtime@1.0.2)(mobx@5.15.7)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)
+    version: 5.6.1(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(amis-theme-editor-helper@2.0.22-beta.1)(amis-theme-editor@2.0.22-beta.1)(amis-ui@3.4.3)(amis@3.4.3)(i18n-runtime@1.0.2)(mobx@5.15.7)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)
   amis-editor-core:
     specifier: ^5.6.1
-    version: 5.6.1(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.2)(amis@3.4.2)(i18n-runtime@1.0.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)
+    version: 5.6.1(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.3)(amis@3.4.3)(i18n-runtime@1.0.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)
   amis-ui:
-    specifier: ^3.4.2
-    version: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
+    specifier: ^3.4.3
+    version: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
   antd:
     specifier: ^5.9.0
     version: 5.9.0(react-dom@17.0.2)(react@17.0.2)
@@ -117,7 +117,7 @@ devDependencies:
     version: 4.1.2
   less-loader:
     specifier: 7.3.0
-    version: 7.3.0(less@4.1.2)(webpack@5.88.2)
+    version: 7.3.0(less@4.1.2)(webpack@5.89.0)
   postcss:
     specifier: ^8.4.29
     version: 8.4.29
@@ -970,12 +970,12 @@ packages:
   /@types/eslint-scope@3.7.5:
     resolution: {integrity: sha512-JNvhIEyxVW6EoMIFIvj93ZOywYFatlpu9deeH6eSx6PE3WHYvHaQtmHmQeNw7aA81bYGBPPQqdtBm6b1SsQMmA==}
     dependencies:
-      '@types/eslint': 8.44.3
+      '@types/eslint': 8.44.4
       '@types/estree': 1.0.2
     dev: true
 
-  /@types/eslint@8.44.3:
-    resolution: {integrity: sha512-iM/WfkwAhwmPff3wZuPLYiHX18HI24jU8k1ZSH7P8FHwxTjZ2P6CoX2wnF43oprR+YXJM6UUxATkNvyv/JHd+g==}
+  /@types/eslint@8.44.4:
+    resolution: {integrity: sha512-lOzjyfY/D9QR4hY9oblZ76B90MYTB3RrQ4z2vBIJKj9ROCRqdkYl2gSUx1x1a4IWPjKJZLL4Aw1Zfay7eMnmnA==}
     dependencies:
       '@types/estree': 1.0.2
       '@types/json-schema': 7.0.13
@@ -1024,8 +1024,8 @@ packages:
     resolution: {integrity: sha512-najjVq5KN2vsH2U/xyh2opaSEz6cZMR2SetLIlxlj08nOcmPOemJmUK2o4kUzfLqfrWE0PIrNeE16XhYDd3nqg==}
     dev: false
 
-  /@types/node@20.8.4:
-    resolution: {integrity: sha512-ZVPnqU58giiCjSxjVUESDtdPk4QR5WQhhINbc9UBrKLU68MX5BF6kbQzTrkwbolyr0X8ChBpXfavr5mZFKZQ5A==}
+  /@types/node@20.8.6:
+    resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
     dependencies:
       undici-types: 5.25.3
     dev: true
@@ -1600,14 +1600,14 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /amis-core@3.4.2(@types/react@17.0.0)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-uSVENDnlogBvwzV9Mqx4xmgZGLNjRYRpBi2BD48SZ809i2ycBywq44haf/4Jb0mSDwmxJQgs1WpXjb5Bcg9L0Q==}
+  /amis-core@3.4.3(@types/react@17.0.0)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-6AmRzs7c0lB1mLf7JXc/GWnWBfTc4SCDeMmOp/JHFFJRuIbCzp20/AHOhm6I/qtevIJWvIbgJw1lcH2AlRB/FA==}
     peerDependencies:
       amis-formula: '*'
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
     dependencies:
-      amis-formula: 3.4.2
+      amis-formula: 3.4.3
       classnames: 2.3.2
       file-saver: 2.0.5
       hoist-non-react-statics: 3.3.2
@@ -1631,7 +1631,7 @@ packages:
       - react-native
     dev: false
 
-  /amis-editor-core@5.6.1(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.2)(amis@3.4.2)(i18n-runtime@1.0.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2):
+  /amis-editor-core@5.6.1(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.3)(amis@3.4.3)(i18n-runtime@1.0.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-RV7ZNcT76Cp3Cxm4Rh/qAeTwbaB0Ap8lifGOVKaAmMhZASwdYsVthpBW01k0Eu+fE//7+olxhm+vU2IVAc/Hmg==}
     peerDependencies:
       amis: '*'
@@ -1643,14 +1643,14 @@ packages:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
     dependencies:
-      amis: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-ui@3.4.2)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
-      amis-core: 3.4.2(@types/react@17.0.0)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
-      amis-formula: 3.4.2
+      amis: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-ui@3.4.3)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
+      amis-core: 3.4.3(@types/react@17.0.0)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
+      amis-formula: 3.4.3
       amis-theme-editor-helper: 2.0.22-beta.1
-      amis-ui: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
+      amis-ui: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
       axios: 0.21.1
       deep-diff: 1.0.2
-      i18n-runtime: 1.0.2(amis-core@3.4.2)
+      i18n-runtime: 1.0.2(amis-core@3.4.3)
       json-ast-comments: 1.1.0
       lodash: 4.17.21
       mobx: 4.15.7
@@ -1669,7 +1669,7 @@ packages:
       - react-native
     dev: false
 
-  /amis-editor@5.6.1(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(amis-theme-editor-helper@2.0.22-beta.1)(amis-theme-editor@2.0.22-beta.1)(amis-ui@3.4.2)(amis@3.4.2)(i18n-runtime@1.0.2)(mobx@5.15.7)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2):
+  /amis-editor@5.6.1(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(amis-theme-editor-helper@2.0.22-beta.1)(amis-theme-editor@2.0.22-beta.1)(amis-ui@3.4.3)(amis@3.4.3)(i18n-runtime@1.0.2)(mobx@5.15.7)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-5/uZOSbynwdrZYkA/Jiv2QAVGfDSMAEjBf9UaqNvnu2j7S/kQ+EOUI1N3f7k+0DIyBSZCGJxzDATO1Q9F3mNvg==}
     peerDependencies:
       amis: '*'
@@ -1682,14 +1682,14 @@ packages:
       react-dom: '>=16.8.6'
     dependencies:
       '@webcomponents/webcomponentsjs': 2.8.0
-      amis: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-ui@3.4.2)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
-      amis-core: 3.4.2(@types/react@17.0.0)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
-      amis-editor-core: 5.6.1(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.2)(amis@3.4.2)(i18n-runtime@1.0.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)
-      amis-formula: 3.4.2
+      amis: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-ui@3.4.3)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
+      amis-core: 3.4.3(@types/react@17.0.0)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
+      amis-editor-core: 5.6.1(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.3)(amis@3.4.3)(i18n-runtime@1.0.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)
+      amis-formula: 3.4.3
       amis-postcss: 1.0.0
-      amis-theme-editor: 2.0.22-beta.1(amis-core@3.4.2)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.2)(amis@3.4.2)(i18n-runtime@1.0.2)
-      amis-ui: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
-      i18n-runtime: 1.0.2(amis-core@3.4.2)
+      amis-theme-editor: 2.0.22-beta.1(amis-core@3.4.3)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.3)(amis@3.4.3)(i18n-runtime@1.0.2)
+      amis-ui: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
+      i18n-runtime: 1.0.2(amis-core@3.4.3)
       lodash: 4.17.21
       mobx-state-tree: 3.17.3(mobx@5.15.7)
       react: 17.0.2
@@ -1704,8 +1704,8 @@ packages:
       - react-native
     dev: false
 
-  /amis-formula@3.4.2:
-    resolution: {integrity: sha512-Yu94Rf32bGHJxNxTBISCoDZpaua7D5Qt/aK2VcR6Z2/1FfkWTAtiNF90UmIOhsf/1Daz2m3kU8boy2r4Cq8UMw==}
+  /amis-formula@3.4.3:
+    resolution: {integrity: sha512-m0zxqkcT2Pq3rQDbkrH7CGKQvUNLvg9SwXtzY+gJKrEcc7tK3M+ZH2anzOdvsTwVFbU0MtOuzvJbqv2zuztweg==}
     dependencies:
       lodash: 4.17.21
       moment: 2.29.4
@@ -1720,7 +1720,7 @@ packages:
     resolution: {integrity: sha512-liFpqeYJEjo6/j8WXa+2uFIOU22XmrC4wuYVWnBSZUofWmzLhdsQnG40rP7DbjAEU16H8YhDuGnT+lQheGhzNQ==}
     dev: false
 
-  /amis-theme-editor@2.0.22-beta.1(amis-core@3.4.2)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.2)(amis@3.4.2)(i18n-runtime@1.0.2):
+  /amis-theme-editor@2.0.22-beta.1(amis-core@3.4.3)(amis-theme-editor-helper@2.0.22-beta.1)(amis-ui@3.4.3)(amis@3.4.3)(i18n-runtime@1.0.2):
     resolution: {integrity: sha512-MRLLeu8tYfYRy6jFyNPWcM64P1w+SgBP+Gi4BW0grExHimfMvjFvT7K49rJ2+jtBedWdKRhvowIiRjlJv6LqVw==}
     peerDependencies:
       amis: '*'
@@ -1729,15 +1729,15 @@ packages:
       amis-ui: '*'
       i18n-runtime: '*'
     dependencies:
-      amis: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-ui@3.4.2)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
-      amis-core: 3.4.2(@types/react@17.0.0)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
+      amis: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-ui@3.4.3)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2)
+      amis-core: 3.4.3(@types/react@17.0.0)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
       amis-theme-editor-helper: 2.0.22-beta.1
-      amis-ui: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
-      i18n-runtime: 1.0.2(amis-core@3.4.2)
+      amis-ui: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
+      i18n-runtime: 1.0.2(amis-core@3.4.3)
     dev: false
 
-  /amis-ui@3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-+leOthEub2MzFLgcpRFcXM0m44fMC/zINSiMQOZn2qi4o3eGFJQdWo6/UPPKGN75PFQ19JOj8qtvllyr392zwg==}
+  /amis-ui@3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-zNc1EW3g+OYJkRe0huJbx8wDyscCJ/VaZ62qaF4pGsCEPdlnUg+XtEeW9p9fiJp2z0C5UXMZpRd93RQ9//qnmg==}
     peerDependencies:
       amis-core: '*'
       amis-formula: '*'
@@ -1745,8 +1745,8 @@ packages:
       react-dom: '>=16.8.6'
     dependencies:
       '@rc-component/mini-decimal': 1.1.0
-      amis-core: 3.4.2(@types/react@17.0.0)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
-      amis-formula: 3.4.2
+      amis-core: 3.4.3(@types/react@17.0.0)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
+      amis-formula: 3.4.3
       classnames: 2.3.2
       codemirror: 5.65.15
       downshift: 6.1.12(react@17.0.2)
@@ -1789,8 +1789,8 @@ packages:
       - react-native
     dev: false
 
-  /amis@3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-ui@3.4.2)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-7hwwvU9EERgSqPrKrTbq9traDcQoqUZV6I4tgILGb7+GAApkvuNvmw89rghIfiifLfySJdH5/38gMDBB5/vqiQ==}
+  /amis@3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-ui@3.4.3)(office-viewer@0.2.0)(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-CMxNivPixur/jOF8H0X+kptcmhlOKUELTihPB2L13jdg8dsCEFHrg8yngw6dF2J0zDcJlF+/KaVXz25plYP/dg==}
     peerDependencies:
       amis-core: '*'
       amis-ui: '*'
@@ -1798,8 +1798,8 @@ packages:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
     dependencies:
-      amis-core: 3.4.2(@types/react@17.0.0)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
-      amis-ui: 3.4.2(@types/react@17.0.0)(amis-core@3.4.2)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
+      amis-core: 3.4.3(@types/react@17.0.0)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
+      amis-ui: 3.4.3(@types/react@17.0.0)(amis-core@3.4.3)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
       attr-accept: 2.2.2
       blueimp-canvastoblob: 2.1.0
       classnames: 2.3.2
@@ -2166,8 +2166,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001547
-      electron-to-chromium: 1.4.548
+      caniuse-lite: 1.0.30001549
+      electron-to-chromium: 1.4.556
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
     dev: true
@@ -2217,8 +2217,8 @@ packages:
     resolution: {integrity: sha512-/3z+wB4icFt3r0USMwxujAqRvaD/B7rvGTsKhbhSQErVrJvkZCLhgNLJxU8MevahQVH6hCU9FsHdNUFbiwmE7Q==}
     dev: true
 
-  /caniuse-lite@1.0.30001547:
-    resolution: {integrity: sha512-W7CrtIModMAxobGhz8iXmDfuJiiKg1WADMO/9x7/CLNin5cpSbuBjooyoIUVB5eyCc36QuTVlkVa1iB2S5+/eA==}
+  /caniuse-lite@1.0.30001549:
+    resolution: {integrity: sha512-qRp48dPYSCYaP+KurZLhDYdVE+yEyht/3NlmcJgVQ2VMGt6JL36ndQ/7rgspdZsJuxDPFIo/OzBT2+GmIJ53BA==}
     dev: true
 
   /cfb@1.2.2:
@@ -2577,8 +2577,8 @@ packages:
     resolution: {integrity: sha512-brvPFnO1lu3UYBpBht2qWw9qqhdG4htTjT90/9oOJmxQ77VvTxL9+ghErFqQzgj7n8268ONAmlebqjBR/S+qgA==}
     dev: true
 
-  /electron-to-chromium@1.4.548:
-    resolution: {integrity: sha512-R77KD6mXv37DOyKLN/eW1rGS61N6yHOfapNSX9w+y9DdPG83l9Gkuv7qkCFZ4Ta4JPhrjgQfYbv4Y3TnM1Hi2Q==}
+  /electron-to-chromium@1.4.556:
+    resolution: {integrity: sha512-6RPN0hHfzDU8D56E72YkDvnLw5Cj2NMXZGg3UkgyoHxjVhG99KZpsKgBWMmTy0Ei89xwan+rbRsVB9yzATmYzQ==}
     dev: true
 
   /emojis-list@3.0.0:
@@ -3376,12 +3376,12 @@ packages:
     resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==}
     dev: false
 
-  /i18n-runtime@1.0.2(amis-core@3.4.2):
+  /i18n-runtime@1.0.2(amis-core@3.4.3):
     resolution: {integrity: sha512-h1/wy5P4KIx5IbFP11GFAL/UJxOnZIX8Gxc9XCxYlfgP/cNpXFaHWzmqqeR5bemnLWqDzyTWcFixnYGY+QaAdw==}
     peerDependencies:
       amis-core: '*'
     dependencies:
-      amis-core: 3.4.2(@types/react@17.0.0)(amis-formula@3.4.2)(react-dom@17.0.2)(react@17.0.2)
+      amis-core: 3.4.3(@types/react@17.0.0)(amis-formula@3.4.3)(react-dom@17.0.2)(react@17.0.2)
     dev: false
 
   /i18next@20.6.1:
@@ -3608,7 +3608,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.8.4
+      '@types/node': 20.8.6
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -3732,7 +3732,7 @@ packages:
       readable-stream: 2.3.8
     dev: false
 
-  /less-loader@7.3.0(less@4.1.2)(webpack@5.88.2):
+  /less-loader@7.3.0(less@4.1.2)(webpack@5.89.0):
     resolution: {integrity: sha512-Mi8915g7NMaLlgi77mgTTQvK022xKRQBIVDSyfl3ErTuBhmZBQab0mjeJjNNqGbdR+qrfTleKXqbGI4uEFavxg==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -3743,7 +3743,7 @@ packages:
       less: 4.1.2
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.88.2
+      webpack: 5.89.0
     dev: true
 
   /less@4.1.2:
@@ -5900,7 +5900,7 @@ packages:
       readable-stream: 3.6.2
     dev: false
 
-  /terser-webpack-plugin@5.3.9(webpack@5.88.2):
+  /terser-webpack-plugin@5.3.9(webpack@5.89.0):
     resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -5920,12 +5920,12 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.1
-      terser: 5.21.0
-      webpack: 5.88.2
+      terser: 5.22.0
+      webpack: 5.89.0
     dev: true
 
-  /terser@5.21.0:
-    resolution: {integrity: sha512-WtnFKrxu9kaoXuiZFSGrcAvvBqAdmKx0SFNmVNYdJamMu9yyN3I/QF0FbH4QcqJQ+y1CJnzxGIKH0cSj+FGYRw==}
+  /terser@5.22.0:
+    resolution: {integrity: sha512-hHZVLgRA2z4NWcN6aS5rQDc+7Dcy58HOf2zbYwmFcQ+ua3h6eEFf5lIDKTzbWwlazPyOZsFQO8V80/IjVNExEw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -6326,8 +6326,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /webpack@5.88.2:
-    resolution: {integrity: sha512-JmcgNZ1iKj+aiR0OvTYtWQqJwq37Pf683dY9bVORwVbUrDhLhdn/PlO2sHsFHPkj7sHNQF3JwaAkp49V+Sq1tQ==}
+  /webpack@5.89.0:
+    resolution: {integrity: sha512-qyfIC10pOr70V+jkmud8tMfajraGCZMBWJtrmuBymQKCrLTRejBI8STDp1MCyZu/QTdZSeacCQYpYNQVOzX5kw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -6357,7 +6357,7 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.9(webpack@5.88.2)
+      terser-webpack-plugin: 5.3.9(webpack@5.89.0)
       watchpack: 2.4.0
       webpack-sources: 3.2.3
     transitivePeerDependencies:

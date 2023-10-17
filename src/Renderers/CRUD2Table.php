@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUD2Table
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class CRUD2Table extends BaseRenderer
 {
@@ -258,7 +258,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function loadingConfig($value = '')
     {
@@ -298,7 +298,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function name($value = '')
     {
@@ -346,7 +346,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 设置ID字段名 作用同keyFiled 兼容原CURD属性
+     * 行标识符，默认为id
      */
     public function primaryField($value = '')
     {
@@ -498,7 +498,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -514,7 +514,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -543,6 +543,14 @@ class CRUD2Table extends BaseRenderer
     public function syncResponse2Query($value = true)
     {
         return $this->set('syncResponse2Query', $value);
+    }
+
+    /**
+     *  可选值: fixed | auto
+     */
+    public function tableLayout($value = '')
+    {
+        return $this->set('tableLayout', $value);
     }
 
     /**

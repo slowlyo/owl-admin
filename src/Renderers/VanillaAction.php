@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * VanillaAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class VanillaAction extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function actionType($value = '')
     {
@@ -242,7 +242,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -338,7 +338,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -362,7 +362,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Checkbox 勾选框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/checkbox
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class CheckboxControl extends BaseRenderer
 {
@@ -26,7 +26,7 @@ class CheckboxControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function checked($value = true)
     {
@@ -50,7 +50,7 @@ class CheckboxControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -250,7 +250,7 @@ class CheckboxControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function partial($value = true)
     {
@@ -354,7 +354,7 @@ class CheckboxControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -426,7 +426,7 @@ class CheckboxControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * EmailAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class EmailAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'email');
+        $this->set('actionType', 'email');
 
 
     }
@@ -259,7 +259,7 @@ $this->set('actionType', 'email');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -355,7 +355,7 @@ $this->set('actionType', 'email');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -395,7 +395,7 @@ $this->set('actionType', 'email');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

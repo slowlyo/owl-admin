@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Property 属性表
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Property extends BaseRenderer
 {
@@ -42,7 +42,7 @@ class Property extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function items($value = '')
     {

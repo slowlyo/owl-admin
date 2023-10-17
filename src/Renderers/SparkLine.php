@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SparkLine
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class SparkLine extends BaseRenderer
 {
@@ -162,7 +162,7 @@ class SparkLine extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -178,7 +178,7 @@ class SparkLine extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'sparkline')
     {
@@ -194,7 +194,7 @@ class SparkLine extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function value($value = '')
     {

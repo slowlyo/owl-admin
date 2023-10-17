@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * FeedbackDialog
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class FeedbackDialog extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
@@ -105,7 +105,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function footer($value = '')
     {
@@ -113,7 +113,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function header($value = '')
     {
@@ -121,7 +121,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function headerClassName($value = '')
     {
@@ -161,7 +161,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function name($value = '')
     {
@@ -281,7 +281,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

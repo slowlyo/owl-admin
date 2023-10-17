@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Column
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Column extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
@@ -150,6 +150,14 @@ class Column extends BaseRenderer
     public function type($value = '')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     *
+     */
+    public function width($value = '')
+    {
+        return $this->set('width', $value);
     }
 
 

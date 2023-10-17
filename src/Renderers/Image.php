@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 图片展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/image
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Image extends BaseRenderer
 {
@@ -274,7 +274,7 @@ class Image extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

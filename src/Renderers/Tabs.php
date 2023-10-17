@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 选项卡控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tabs
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Tabs extends BaseRenderer
 {
@@ -266,7 +266,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -330,7 +330,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'tabs')
     {

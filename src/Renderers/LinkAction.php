@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * LinkAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class LinkAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'link');
+        $this->set('actionType', 'link');
 
 
     }
@@ -251,7 +251,7 @@ $this->set('actionType', 'link');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -347,7 +347,7 @@ $this->set('actionType', 'link');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -371,7 +371,7 @@ $this->set('actionType', 'link');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

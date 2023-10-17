@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Steps
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Steps extends BaseRenderer
 {
@@ -170,7 +170,7 @@ class Steps extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -178,7 +178,7 @@ class Steps extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function status($value = '')
     {

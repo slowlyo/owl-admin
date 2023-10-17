@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Words
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Words extends BaseRenderer
 {
@@ -186,7 +186,7 @@ class Words extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -202,7 +202,7 @@ class Words extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'words')
     {

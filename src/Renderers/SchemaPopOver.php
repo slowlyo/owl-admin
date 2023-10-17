@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SchemaPopOver
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class SchemaPopOver extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
     /**
-     * 
+     *
      */
     public function body($value = '')
     {

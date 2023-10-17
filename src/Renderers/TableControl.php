@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TableControl
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class TableControl extends BaseRenderer
 {
@@ -234,7 +234,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -311,6 +311,14 @@ class TableControl extends BaseRenderer
     public function editorSetting($value = '')
     {
         return $this->set('editorSetting', $value);
+    }
+
+    /**
+     * 是否开启 static 状态切换
+     */
+    public function enableStaticTransform($value = true)
+    {
+        return $this->set('enableStaticTransform', $value);
     }
 
     /**
@@ -698,7 +706,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -730,6 +738,14 @@ class TableControl extends BaseRenderer
     }
 
     /**
+     * table layout 可选值: fixed | auto
+     */
+    public function tableLayout($value = '')
+    {
+        return $this->set('tableLayout', $value);
+    }
+
+    /**
      * 标题
      */
     public function title($value = '')
@@ -746,7 +762,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'input-table')
     {
@@ -794,7 +810,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

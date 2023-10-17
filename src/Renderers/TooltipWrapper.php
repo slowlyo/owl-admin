@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TooltipWrapper
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class TooltipWrapper extends BaseRenderer
 {
@@ -210,7 +210,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -234,7 +234,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

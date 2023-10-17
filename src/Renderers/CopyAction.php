@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CopyAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class CopyAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'copy');
+        $this->set('actionType', 'copy');
 
 
     }
@@ -251,7 +251,7 @@ $this->set('actionType', 'copy');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -347,7 +347,7 @@ $this->set('actionType', 'copy');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -371,7 +371,7 @@ $this->set('actionType', 'copy');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

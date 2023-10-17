@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Time 时间选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/time
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class TimeControl extends BaseRenderer
 {
@@ -50,7 +50,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -370,7 +370,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -458,7 +458,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

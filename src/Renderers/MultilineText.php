@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * MultilineText
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class MultilineText extends BaseRenderer
 {
@@ -154,7 +154,7 @@ class MultilineText extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -178,7 +178,7 @@ class MultilineText extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'multiline-text')
     {

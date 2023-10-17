@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Spinner
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Spinner extends BaseRenderer
 {
@@ -98,7 +98,7 @@ class Spinner extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function loadingConfig($value = '')
     {
@@ -106,7 +106,7 @@ class Spinner extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function mode($value = '')
     {
@@ -138,7 +138,7 @@ class Spinner extends BaseRenderer
     }
 
     /**
-     * spinner Icon 大小 可选值: sm | lg | 
+     * spinner Icon 大小 可选值: sm | lg |
      */
     public function size($value = '')
     {
@@ -210,7 +210,7 @@ class Spinner extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TableSchema2
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class TableSchema2 extends BaseRenderer
 {
@@ -338,7 +338,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -359,6 +359,14 @@ class TableSchema2 extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *  可选值: fixed | auto
+     */
+    public function tableLayout($value = '')
+    {
+        return $this->set('tableLayout', $value);
     }
 
     /**

@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ToastAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class ToastAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'toast');
+        $this->set('actionType', 'toast');
 
 
     }
@@ -243,7 +243,7 @@ $this->set('actionType', 'toast');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -339,7 +339,7 @@ $this->set('actionType', 'toast');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -371,7 +371,7 @@ $this->set('actionType', 'toast');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

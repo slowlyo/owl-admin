@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ReloadAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class ReloadAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'reload');
+        $this->set('actionType', 'reload');
 
 
     }
@@ -243,7 +243,7 @@ $this->set('actionType', 'reload');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -339,7 +339,7 @@ $this->set('actionType', 'reload');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -363,7 +363,7 @@ $this->set('actionType', 'reload');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

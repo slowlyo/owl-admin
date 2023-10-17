@@ -6,9 +6,9 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
 
 /**
  * File 文件上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/file
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class FileControl extends BaseRenderer
 {
@@ -134,7 +134,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -550,7 +550,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -638,7 +638,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

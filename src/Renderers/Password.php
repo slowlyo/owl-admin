@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Password
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Password extends BaseRenderer
 {
@@ -138,7 +138,7 @@ class Password extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -154,7 +154,7 @@ class Password extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'password')
     {

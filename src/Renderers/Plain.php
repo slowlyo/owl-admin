@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Plain 纯文本渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/plain
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Plain extends BaseRenderer
 {
@@ -146,7 +146,7 @@ class Plain extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -162,7 +162,7 @@ class Plain extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function text($value = '')
     {
@@ -170,7 +170,7 @@ class Plain extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function tpl($value = '')
     {

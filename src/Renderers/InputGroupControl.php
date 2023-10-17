@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputGroup 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-group
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class InputGroupControl extends BaseRenderer
 {
@@ -42,7 +42,7 @@ class InputGroupControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -314,7 +314,7 @@ class InputGroupControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -386,7 +386,7 @@ class InputGroupControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

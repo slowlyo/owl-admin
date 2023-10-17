@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * RichText 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-rich-text
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class RichTextControl extends BaseRenderer
 {
@@ -42,7 +42,7 @@ class RichTextControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -338,7 +338,7 @@ class RichTextControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -402,7 +402,7 @@ class RichTextControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

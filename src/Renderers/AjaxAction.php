@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * AjaxAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class AjaxAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'ajax');
+        $this->set('actionType', 'ajax');
 
 
     }
@@ -147,7 +147,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     *
      */
     public function feedback($value = '')
     {
@@ -203,7 +203,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     *
      */
     public function ignoreConfirm($value = true)
     {
@@ -275,7 +275,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -283,7 +283,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     *
      */
     public function redirect($value = '')
     {
@@ -291,7 +291,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     *
      */
     public function reload($value = '')
     {
@@ -387,7 +387,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -411,7 +411,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

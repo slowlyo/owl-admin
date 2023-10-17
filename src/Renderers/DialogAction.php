@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DialogAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class DialogAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'dialog');
+        $this->set('actionType', 'dialog');
 
 
     }
@@ -259,7 +259,7 @@ $this->set('actionType', 'dialog');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -267,7 +267,7 @@ $this->set('actionType', 'dialog');
     }
 
     /**
-     * 
+     *
      */
     public function redirect($value = '')
     {
@@ -275,7 +275,7 @@ $this->set('actionType', 'dialog');
     }
 
     /**
-     * 
+     *
      */
     public function reload($value = '')
     {
@@ -371,7 +371,7 @@ $this->set('actionType', 'dialog');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -395,7 +395,7 @@ $this->set('actionType', 'dialog');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

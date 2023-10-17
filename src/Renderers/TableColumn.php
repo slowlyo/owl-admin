@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 表格列，不指定类型时默认为文本类型。
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class TableColumn extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
@@ -102,6 +102,14 @@ class TableColumn extends BaseRenderer
     public function labelClassName($value = '')
     {
         return $this->set('labelClassName', $value);
+    }
+
+    /**
+     * 当一次性渲染太多列上有用，默认为 100，可以用来提升表格渲染性能
+     */
+    public function lazyRenderAfter($value = '')
+    {
+        return $this->set('lazyRenderAfter', $value);
     }
 
     /**

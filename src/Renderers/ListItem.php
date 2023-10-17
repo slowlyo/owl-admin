@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ListItem
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class ListItem extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
     /**
-     * 
+     *
      */
     public function actions($value = '')
     {
@@ -177,7 +177,7 @@ class ListItem extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUDList
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class CRUDList extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('mode', 'list');
-$this->set('type', 'crud');
+        $this->set('type', 'crud');
 
 
     }
@@ -155,7 +155,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function filterDefaultVisible($value = true)
     {
@@ -163,7 +163,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function filterTogglable($value = true)
     {
@@ -355,7 +355,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 在开启loadDataOnce时，filter时是否去重新请求api
+     * 在开启loadDataOnce时，当修改过滤条件时是否重新请求api如果没有配置，当查询条件表单触发的会重新请求 api，当是列过滤或者是 search-box 触发的则不重新请求 api 如果配置为 true，则不管是什么触发都会重新请求 api 如果配置为 false 则不管是什么触发都不会重新请求 api
      */
     public function loadDataOnceFetchOnFilter($value = true)
     {
@@ -363,7 +363,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function loadingConfig($value = '')
     {
@@ -371,7 +371,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function messages($value = '')
     {
@@ -387,7 +387,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function name($value = '')
     {
@@ -424,6 +424,14 @@ $this->set('type', 'crud');
     public function orderField($value = '')
     {
         return $this->set('orderField', $value);
+    }
+
+    /**
+     * 设置分页方向的字段名。单位简单分页时清楚时向前还是向后翻页。
+     */
+    public function pageDirectionField($value = '')
+    {
+        return $this->set('pageDirectionField', $value);
     }
 
     /**
@@ -579,7 +587,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -587,7 +595,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -595,7 +603,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     *
      */
     public function stopAutoRefreshWhenModalIsOpen($value = true)
     {

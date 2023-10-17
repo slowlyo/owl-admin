@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * JSON 数据展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/json
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Json extends BaseRenderer
 {
@@ -202,7 +202,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -231,6 +231,14 @@ class Json extends BaseRenderer
     public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
+    }
+
+    /**
+     * 要展示的 JSON 数据
+     */
+    public function value($value = '')
+    {
+        return $this->set('value', $value);
     }
 
     /**

@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TimelineItem
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class TimelineItem extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
@@ -185,7 +185,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

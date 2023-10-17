@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 视频播放器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/video
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Video extends BaseRenderer
 {
@@ -250,7 +250,7 @@ class Video extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

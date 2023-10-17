@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CollapseGroup 折叠渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/collapse
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class CollapseGroup extends BaseRenderer
 {
@@ -71,6 +71,14 @@ class CollapseGroup extends BaseRenderer
     public function editorSetting($value = '')
     {
         return $this->set('editorSetting', $value);
+    }
+
+    /**
+     * 当Collapse作为Form组件的子元素时，开启该属性后组件样式设置为FieldSet组件的样式，默认开启
+     */
+    public function enableFieldSetStyle($value = true)
+    {
+        return $this->set('enableFieldSetStyle', $value);
     }
 
     /**
@@ -170,7 +178,7 @@ class CollapseGroup extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

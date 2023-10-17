@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * QRCodeImageSettings
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class QRCodeImageSettings extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
     /**
-     * 
+     *
      */
     public function excavate($value = true)
     {
@@ -25,7 +25,7 @@ class QRCodeImageSettings extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function height($value = '')
     {
@@ -33,7 +33,7 @@ class QRCodeImageSettings extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function src($value = '')
     {
@@ -41,7 +41,7 @@ class QRCodeImageSettings extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function width($value = '')
     {
@@ -49,7 +49,7 @@ class QRCodeImageSettings extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function x($value = '')
     {
@@ -57,7 +57,7 @@ class QRCodeImageSettings extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function y($value = '')
     {

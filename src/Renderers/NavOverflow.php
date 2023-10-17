@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * NavOverflow
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class NavOverflow extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 

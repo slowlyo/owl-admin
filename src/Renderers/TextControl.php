@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Text 文本输入框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/text
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class TextControl extends BaseRenderer
 {
@@ -42,7 +42,7 @@ class TextControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function addOn($value = '')
     {
@@ -154,7 +154,7 @@ class TextControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -586,7 +586,7 @@ class TextControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -674,7 +674,7 @@ class TextControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

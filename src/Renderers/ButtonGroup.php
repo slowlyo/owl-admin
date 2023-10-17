@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Button Group 渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/button-group
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class ButtonGroup extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class ButtonGroup extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function btnActiveClassName($value = '')
     {
@@ -34,7 +34,7 @@ class ButtonGroup extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function btnClassName($value = '')
     {
@@ -178,7 +178,7 @@ class ButtonGroup extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {

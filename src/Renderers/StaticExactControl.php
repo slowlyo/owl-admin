@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Static 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/static
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class StaticExactControl extends BaseRenderer
 {
@@ -50,7 +50,7 @@ class StaticExactControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -338,7 +338,7 @@ class StaticExactControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -418,7 +418,7 @@ class StaticExactControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

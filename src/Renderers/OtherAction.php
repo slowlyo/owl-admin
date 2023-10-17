@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * OtherAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class OtherAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'prev');
+        $this->set('actionType', 'prev');
 
 
     }
@@ -243,7 +243,7 @@ $this->set('actionType', 'prev');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -339,7 +339,7 @@ $this->set('actionType', 'prev');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -363,7 +363,7 @@ $this->set('actionType', 'prev');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

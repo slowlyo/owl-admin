@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DateRange 日期范围控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/date-range
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class DateRangeControl extends BaseRenderer
 {
@@ -58,7 +58,7 @@ class DateRangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -434,7 +434,7 @@ class DateRangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -455,6 +455,14 @@ class DateRangeControl extends BaseRenderer
     public function submitOnChange($value = true)
     {
         return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     * 日期数据处理函数，用来处理选择日期之后的的值(value: moment.Moment, config: {type: 'start' | 'end'; originValue: moment.Moment, timeFormat: string}, props: any, data: any, moment: moment) => moment.Moment;
+     */
+    public function transform($value = '')
+    {
+        return $this->set('transform', $value);
     }
 
     /**
@@ -498,7 +506,7 @@ class DateRangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

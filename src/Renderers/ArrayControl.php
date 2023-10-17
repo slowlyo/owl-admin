@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputArray 数组输入框。 combo 的别名。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/array
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class ArrayControl extends BaseRenderer
 {
@@ -98,7 +98,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -498,7 +498,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -594,6 +594,14 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function updatePristineAfterStoreDataReInit($value = true)
+    {
+        return $this->set('updatePristineAfterStoreDataReInit', $value);
+    }
+
+    /**
      * 可以组件级别用来关闭移动端样式
      */
     public function useMobileUI($value = true)
@@ -626,7 +634,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Icon 图标渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/icon
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class Icon extends BaseRenderer
 {
@@ -146,7 +146,7 @@ class Icon extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -162,7 +162,7 @@ class Icon extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function type($value = 'icon')
     {
@@ -178,7 +178,7 @@ class Icon extends BaseRenderer
     }
 
     /**
-     *  可选值: iconfont | fa | 
+     *  可选值: iconfont | fa |
      */
     public function vendor($value = '')
     {

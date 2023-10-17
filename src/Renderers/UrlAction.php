@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * UrlAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class UrlAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'url');
+        $this->set('actionType', 'url');
 
 
     }
@@ -259,7 +259,7 @@ $this->set('actionType', 'url');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -355,7 +355,7 @@ $this->set('actionType', 'url');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -379,7 +379,7 @@ $this->set('actionType', 'url');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {

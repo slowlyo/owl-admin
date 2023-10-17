@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Repeat 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/repeat
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class RepeatControl extends BaseRenderer
 {
@@ -34,7 +34,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function desc($value = '')
     {
@@ -210,7 +210,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function options($value = '')
     {
@@ -314,7 +314,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -378,7 +378,7 @@ class RepeatControl extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function validations($value = '')
     {

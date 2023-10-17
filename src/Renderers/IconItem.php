@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * IconItem
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class IconItem extends BaseRenderer
 {
     public function __construct()
     {
-        
+
 
     }
 
     /**
-     * 
+     *
      */
     public function icon($value = '')
     {
@@ -25,7 +25,7 @@ class IconItem extends BaseRenderer
     }
 
     /**
-     * 
+     *
      */
     public function position($value = '')
     {

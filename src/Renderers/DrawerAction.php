@@ -4,16 +4,16 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DrawerAction
- * 
- * @author slowlyo
- * @version v3.4.0
+ *
+ * @author  slowlyo
+ * @version v3.4.3
  */
 class DrawerAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'drawer');
+        $this->set('actionType', 'drawer');
 
 
     }
@@ -267,7 +267,7 @@ $this->set('actionType', 'drawer');
     }
 
     /**
-     * 
+     *
      */
     public function primary($value = true)
     {
@@ -275,7 +275,7 @@ $this->set('actionType', 'drawer');
     }
 
     /**
-     * 
+     *
      */
     public function redirect($value = '')
     {
@@ -283,7 +283,7 @@ $this->set('actionType', 'drawer');
     }
 
     /**
-     * 
+     *
      */
     public function reload($value = '')
     {
@@ -379,7 +379,7 @@ $this->set('actionType', 'drawer');
     }
 
     /**
-     * 
+     *
      */
     public function staticSchema($value = '')
     {
@@ -403,7 +403,7 @@ $this->set('actionType', 'drawer');
     }
 
     /**
-     * 
+     *
      */
     public function tooltip($value = '')
     {
