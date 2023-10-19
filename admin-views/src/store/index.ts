@@ -29,6 +29,7 @@ const defaultToken = {
             iconSize: 18,
             collapsedIconSize: 18,
             itemMarginInline: 8,
+            subMenuItemBg: 'transparent',
         }
     }
 }
