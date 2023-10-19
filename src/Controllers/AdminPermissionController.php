@@ -85,13 +85,8 @@ class AdminPermissionController extends AdminController
                 ->displayMode('enhance')
                 ->min(0)
                 ->value(0),
-            amis()->SelectControl('http_path', __('admin.admin_permission.http_path'))
-                ->searchable()
-                ->multiple()
-                ->options($this->getRoutes())
-                ->autoCheckChildren(false)
-                ->joinValues(false)
-                ->extractValue(),
+            amis()->ArrayControl('http_path', __('admin.admin_permission.http_path'))
+                ->items(amis()->TextControl()->options($this->getRoutes())->required()),
             amis()->TreeSelectControl('menus', __('admin.menus'))
                 ->searchable()
                 ->multiple()
@@ -150,8 +145,9 @@ class AdminPermissionController extends AdminController
 
     public function autoGenerate()
     {
-        $menus = Admin::adminMenuModel()::query()->get()->toArray();
-        $slugMap = Admin::adminPermissionModel()::query()->get(['id', 'slug'])->keyBy('id')->toArray();
+        $menus       = Admin::adminMenuModel()::query()->get()->toArray();
+        $slugMap     = Admin::adminPermissionModel()::query()->get(['id', 'slug'])->keyBy('id')->toArray();
+        $slugCache =   [];
         $permissions = [];
         foreach ($menus as $menu) {
             $_httpPath =
@@ -164,10 +160,21 @@ class AdminPermissionController extends AdminController
                 $menuTitle = sprintf('%s(%s)', $menuTitle, $menu['id']);
             }
 
+            if($_httpPath){
+                $slug = Str::of(explode('?', $_httpPath)[0])->trim('/')->replace('/', '.')->replace('*', '')->value();
+            }else{
+                $slug = Str::uuid();
+            }
+
+            if(in_array($slug, $slugCache)){
+                $slug = $slug . '.' . $menu['id'];
+            }
+            $slugCache[] = $slug;
+
             $permissions[] = [
                 'id'         => $menu['id'],
                 'name'       => $menuTitle,
-                'slug'       => data_get($slugMap, $menu['id'] . '.slug') ?: (string)Str::uuid(),
+                'slug'       => data_get($slugMap, $menu['id'] . '.slug') ?: $slug,
                 'http_path'  => json_encode($_httpPath ? [$_httpPath] : ''),
                 'order'      => $menu['order'],
                 'parent_id'  => $menu['parent_id'],

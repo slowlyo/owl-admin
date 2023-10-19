@@ -40,10 +40,16 @@ const AmisRender = ({schema, className = ''}) => {
             message.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
         },
         notify: (type: string, msg: string, conf) => {
+            const msgKey = 'msg-' + msg
+            localStorage.setItem(msgKey, msg)
+
             message.open({
+                key: 'owl-message',
                 content: msg,
                 type: (['info', 'success', 'error', 'warning', 'loading'].includes(type) ? type : 'info') as any,
                 duration: (conf?.timeout || 3000) / 1000,
+            }).then(() => {
+                localStorage.removeItem(msgKey)
             })
         }
     }
