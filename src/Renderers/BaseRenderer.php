@@ -40,9 +40,16 @@ class BaseRenderer implements \JsonSerializable
         return $this->amisSchema;
     }
 
-    public function permission($permission)
+    /**
+     * @param string $sign         权限标识
+     * @param mixed  $replaceValue 无权限时替换的值
+     *
+     * @return $this
+     */
+    public function permission(string $sign, mixed $replaceValue = '')
     {
-        $this->amisSchema['owl_permission'] = $permission;
+        $this->amisSchema['owl_permission']               = $sign;
+        $this->amisSchema['owl_permission_replace_value'] = $replaceValue;
 
         return $this;
     }
@@ -53,7 +60,7 @@ class BaseRenderer implements \JsonSerializable
 
         if (key_exists($permissionKey, $this->amisSchema)) {
             if (!admin_user()->can($this->amisSchema[$permissionKey])) {
-                return '';
+                return data_get($this->amisSchema, 'owl_permission_replace_value', '');
             }
         }
 
