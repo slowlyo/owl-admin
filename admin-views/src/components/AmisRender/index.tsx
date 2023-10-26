@@ -6,6 +6,7 @@ import {amisRequest} from '@/service/api'
 import {useHistory} from 'react-router'
 import clipboard from '@/utils/clipboard'
 import useSetting from '@/hooks/useSetting'
+import {msgHandler} from '@/utils/common'
 
 const AmisRender = ({schema, className = ''}) => {
     const history = useHistory()
@@ -40,17 +41,13 @@ const AmisRender = ({schema, className = ''}) => {
             message.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
         },
         notify: (type: string, msg: string, conf) => {
-            const msgKey = 'msg-' + msg
-            localStorage.setItem(msgKey, msg)
-
-            message.open({
-                key: 'owl-message',
+            let handle = () => message.open({
                 content: msg,
                 type: (['info', 'success', 'error', 'warning', 'loading'].includes(type) ? type : 'info') as any,
                 duration: (conf?.timeout || 3000) / 1000,
-            }).then(() => {
-                localStorage.removeItem(msgKey)
             })
+
+            msgHandler(msg, handle)
         }
     }
 

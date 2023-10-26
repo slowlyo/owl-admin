@@ -1,6 +1,6 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios'
 import {message} from 'antd'
-import {goToLoginPage, inLoginPage, Token} from '@/utils/common'
+import {goToLoginPage, inLoginPage, msgHandler, Token} from '@/utils/common'
 
 export default class CustomAxiosInstance {
     instance: AxiosInstance
@@ -40,13 +40,13 @@ export default class CustomAxiosInstance {
                     // 请求成功
                     if (backend.status === 0) {
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            message.success(backend.msg)
+                            msgHandler(backend.msg, () => message.success(backend.msg))
                         }
 
                         return backend
                     } else {
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            message.error(backend.msg)
+                            msgHandler(backend.msg, () => message.error(backend.msg))
                         }
                     }
 
@@ -66,7 +66,7 @@ export default class CustomAxiosInstance {
                 const msg = axiosError.response?.data?.message || axiosError.message
 
                 if (msg) {
-                    message.error(msg)
+                    msgHandler(msg, message.error(msg))
                 }
 
                 return {data: {status: 1, msg}}

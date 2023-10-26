@@ -58,7 +58,7 @@ export const mergeObject = (target, source) => {
             const sourceVal = source[key]
             const targetVal = target[key]
 
-            if(sourceVal === null) continue
+            if (sourceVal === null) continue
 
             if (isObject(sourceVal) && isObject(targetVal)) {
                 target[key] = mergeObject(targetVal, sourceVal)
@@ -99,3 +99,31 @@ export const Token = () => {
 export const inLoginPage = () => window.location.hash == '#/login'
 
 export const goToLoginPage = () => window.location.hash = '#/login'
+
+export const msgHandler = (msg, handle) => {
+    const msgKey = 'owl-msg-' + msg
+
+    if (localStorage.getItem(msgKey)) {
+        return
+    }
+
+    localStorage.setItem(msgKey, msg)
+
+    setTimeout(() => {
+        localStorage.removeItem(msgKey)
+    }, 5000)
+
+    handle().then(() => {
+        localStorage.removeItem(msgKey)
+    })
+}
+
+export const clearMsgSign = () => {
+    const keys = Object.keys(localStorage)
+
+    keys.forEach(key => {
+        if (key.startsWith('owl-msg-')) {
+            localStorage.removeItem(key)
+        }
+    })
+}
