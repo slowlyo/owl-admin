@@ -1,6 +1,6 @@
 {
     "name": "slowlyo/owl-admin",
-    "description": "采用 laravel、amis 打造的后台框架，拥有 120+ 种组件，只用后端代码就能实现复杂的页面效果，让开发者能够快速构建高效的后台管理系统。",
+    "description": "基于 laravel、amis 开发的后台框架~",
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +9,7 @@
             "homepage": "https://gitee.com/slowlyo"
         }
     ],
-    "homepage": "https://gitee.com/slowlyo/owl-admin",
+    "homepage": "https://github.com/slowlyo/owl-admin",
     "keywords": [
         "Laravel",
         "OwlAdmin",
