@@ -191,6 +191,7 @@ class RendererMap
         'submit'               => VanillaAction::class,
         'swift-editor'         => EditorControl::class,
         'switch'               => SwitchControl::class,
+        'switch-container'     => SwitchContainer::class,
         'table'                => Table::class,
         'table-view'           => TableView::class,
         'table2'               => TableSchema2::class,

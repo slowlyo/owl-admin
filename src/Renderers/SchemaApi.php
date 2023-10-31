@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SchemaApi
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class SchemaApi extends BaseRenderer
 {
@@ -62,6 +62,14 @@ class SchemaApi extends BaseRenderer
     public function dataType($value = '')
     {
         return $this->set('dataType', $value);
+    }
+
+    /**
+     * 文件下载时，指定文件名
+     */
+    public function downloadFileName($value = '')
+    {
+        return $this->set('downloadFileName', $value);
     }
 
     /**

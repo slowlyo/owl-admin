@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Calendar
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class Calendar extends BaseRenderer
 {

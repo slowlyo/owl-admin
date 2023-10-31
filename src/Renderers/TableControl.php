@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableControl
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class TableControl extends BaseRenderer
 {
@@ -199,6 +199,14 @@ class TableControl extends BaseRenderer
     public function copyable($value = true)
     {
         return $this->set('copyable', $value);
+    }
+
+    /**
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
+     */
+    public function deferApi($value = '')
+    {
+        return $this->set('deferApi', $value);
     }
 
     /**
@@ -754,7 +762,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 工具栏 CSS 类名
+     * 底部工具栏CSS样式类
      */
     public function toolbarClassName($value = '')
     {

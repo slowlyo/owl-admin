@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * List 复选框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/list
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class ListControl extends BaseRenderer
 {
@@ -15,6 +15,14 @@ class ListControl extends BaseRenderer
         $this->set('type', 'list-select');
 
 
+    }
+
+    /**
+     * 激活态自定义展示模板。
+     */
+    public function activeItemSchema($value = '')
+    {
+        return $this->set('activeItemSchema', $value);
     }
 
     /**

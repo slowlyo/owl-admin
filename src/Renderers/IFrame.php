@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * IFrame 渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/iframe
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class IFrame extends BaseRenderer
 {

@@ -136,4 +136,20 @@ class UpdateCommand extends Command
             });
         }
     }
+
+    public function version300()
+    {
+        $this->output->title('Update to version v3.0.0');
+
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--assets' => true,
+                '--lang'   => true,
+                '--config' => true,
+                '--force'  => true,
+            ]);
+        }
+
+        settings()->set('system_theme_setting');
+    }
 }

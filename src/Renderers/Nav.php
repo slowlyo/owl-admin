@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Nav 导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/nav
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class Nav extends BaseRenderer
 {
@@ -223,6 +223,22 @@ class Nav extends BaseRenderer
     public function saveOrderApi($value = '')
     {
         return $this->set('saveOrderApi', $value);
+    }
+
+    /**
+     * 搜索框相关配置
+     */
+    public function searchConfig($value = '')
+    {
+        return $this->set('searchConfig', $value);
+    }
+
+    /**
+     * 是否开启搜索
+     */
+    public function searchable($value = true)
+    {
+        return $this->set('searchable', $value);
     }
 
     /**

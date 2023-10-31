@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Card2 新卡片渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card2
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class Card2 extends BaseRenderer
 {

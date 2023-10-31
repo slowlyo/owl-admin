@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Each 循环功能渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/each
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class Each extends BaseRenderer
 {
@@ -71,6 +71,22 @@ class Each extends BaseRenderer
     public function id($value = '')
     {
         return $this->set('id', $value);
+    }
+
+    /**
+     * 用来控制通过什么字段读取序号，考虑到可能多层嵌套 如果名字一样会读取不到上层变量，所以这里可以指定一下
+     */
+    public function indexKeyName($value = '')
+    {
+        return $this->set('indexKeyName', $value);
+    }
+
+    /**
+     * 用来控制通过什么字段读取成员数据，考虑到可能多层嵌套 如果名字一样会读取不到上层变量，所以这里可以指定一下
+     */
+    public function itemKeyName($value = '')
+    {
+        return $this->set('itemKeyName', $value);
     }
 
     /**

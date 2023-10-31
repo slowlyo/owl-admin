@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Table 表格渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/table
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class Table extends BaseRenderer
 {
@@ -103,6 +103,14 @@ class Table extends BaseRenderer
     public function data($value = '')
     {
         return $this->set('data', $value);
+    }
+
+    /**
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
+     */
+    public function deferApi($value = '')
+    {
+        return $this->set('deferApi', $value);
     }
 
     /**

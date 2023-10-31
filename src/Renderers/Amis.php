@@ -1214,6 +1214,11 @@ class Amis
         return Spinner::make();
     }
 
+    public function State()
+    {
+        return State::make();
+    }
+
     public function StaticExactControl($name = '', $label = '')
     {
         $instance = StaticExactControl::make();
@@ -1262,6 +1267,11 @@ class Amis
     public function SvgIcon()
     {
         return SvgIcon::make();
+    }
+
+    public function SwitchContainer()
+    {
+        return SwitchContainer::make();
     }
 
     public function SwitchControl($name = '', $label = '')

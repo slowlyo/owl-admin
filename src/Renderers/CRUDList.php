@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUDList
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class CRUDList extends BaseRenderer
 {
@@ -96,6 +96,14 @@ class CRUDList extends BaseRenderer
     public function defaultParams($value = '')
     {
         return $this->set('defaultParams', $value);
+    }
+
+    /**
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
+     */
+    public function deferApi($value = '')
+    {
+        return $this->set('deferApi', $value);
     }
 
     /**
@@ -371,6 +379,14 @@ class CRUDList extends BaseRenderer
     }
 
     /**
+     * 自定义搜索匹配函数，当开启loadDataOnce时，会基于该函数计算的匹配结果进行过滤，主要用于处理列字段类型较为复杂或者字段值格式和后端返回不一致的场景
+     */
+    public function matchFunc($value = '')
+    {
+        return $this->set('matchFunc', $value);
+    }
+
+    /**
      *
      */
     public function messages($value = '')
@@ -440,6 +456,14 @@ class CRUDList extends BaseRenderer
     public function pageField($value = '')
     {
         return $this->set('pageField', $value);
+    }
+
+    /**
+     * 是否开启Query信息转换，开启后将会对url中的Query进行转换，将字符串格式的布尔值转化为同位类型
+     */
+    public function parsePrimitiveQuery($value = true)
+    {
+        return $this->set('parsePrimitiveQuery', $value);
     }
 
     /**

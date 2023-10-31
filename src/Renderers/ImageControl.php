@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
  * Image 图片上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/image
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class ImageControl extends BaseRenderer
 {
@@ -67,6 +67,14 @@ class ImageControl extends BaseRenderer
     public function btnUploadClassName($value = '')
     {
         return $this->set('btnUploadClassName', $value);
+    }
+
+    /**
+     * 可配置移动端的拍照功能，比如配置 `camera` 移动端只能拍照，等
+     */
+    public function capture($value = '')
+    {
+        return $this->set('capture', $value);
     }
 
     /**

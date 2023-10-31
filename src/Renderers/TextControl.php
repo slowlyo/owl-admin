@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Text 文本输入框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/text
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class TextControl extends BaseRenderer
 {
@@ -415,6 +415,14 @@ class TextControl extends BaseRenderer
     public function name($value = '')
     {
         return $this->set('name', $value);
+    }
+
+    /**
+     * 配置原生 input 的 autoComplete 属性
+     */
+    public function nativeAutoComplete($value = '')
+    {
+        return $this->set('nativeAutoComplete', $value);
     }
 
     /**

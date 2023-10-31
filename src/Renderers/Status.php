@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 状态展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/status
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class Status extends BaseRenderer
 {

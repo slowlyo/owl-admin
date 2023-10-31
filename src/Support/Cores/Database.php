@@ -81,6 +81,8 @@ class Database
             $table->tinyInteger('url_type')->default(1)->comment('路由类型(1:路由,2:外链)');
             $table->tinyInteger('visible')->default(1)->comment('是否可见');
             $table->tinyInteger('is_home')->default(0)->comment('是否为首页');
+            $table->string('component')->nullable()->comment('菜单组件');
+            $table->tinyInteger('is_full')->default(0)->comment('是否是完整页面');
             $table->string('extension')->nullable()->comment('扩展');
 
             $table->timestamps();

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Date 展示渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/date
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class Date extends BaseRenderer
 {
@@ -47,6 +47,14 @@ class Date extends BaseRenderer
     public function displayFormat($value = '')
     {
         return $this->set('displayFormat', $value);
+    }
+
+    /**
+     * 时区
+     */
+    public function displayTimeZone($value = '')
+    {
+        return $this->set('displayTimeZone', $value);
     }
 
     /**

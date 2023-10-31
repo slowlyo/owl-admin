@@ -124,7 +124,7 @@ JS
                             ->label('OwlAdmin 文档')
                             ->blank(true)
                             ->actionType('url')
-                            ->link('http://admin-demo.slowlyo.top/doc'),
+                            ->link('http://doc.owladmin.com'),
                         Action::make()
                             ->level('link')
                             ->label('Amis 文档')

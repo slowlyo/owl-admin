@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Support\Captcha;
-use Slowlyo\OwlAdmin\Models\AdminUser;
 use Illuminate\Support\Facades\Validator;
 use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Slowlyo\OwlAdmin\Renderers\ImageControl;

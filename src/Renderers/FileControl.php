@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
  * File 文件上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/file
  *
  * @author  slowlyo
- * @version v3.4.3
+ * @version v3.5.0
  */
 class FileControl extends BaseRenderer
 {
@@ -83,6 +83,14 @@ class FileControl extends BaseRenderer
     public function btnUploadClassName($value = '')
     {
         return $this->set('btnUploadClassName', $value);
+    }
+
+    /**
+     * 控制 input 标签的 capture 属性，用于移动端拍照或录像。
+     */
+    public function capture($value = '')
+    {
+        return $this->set('capture', $value);
     }
 
     /**
