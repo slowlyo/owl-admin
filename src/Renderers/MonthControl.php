@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Month 月份选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/Month
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class MonthControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-month');
-
-
     }
 
     /**

@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图标选择器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/icon-picker
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class IconPickerControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'icon-picker');
-
-
     }
 
     /**

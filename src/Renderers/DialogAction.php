@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DialogAction
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class DialogAction extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class DialogAction extends BaseRenderer
     {
         $this->set('type', 'button');
         $this->set('actionType', 'dialog');
-
-
     }
 
     /**

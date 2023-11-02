@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Flex 布局
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Flex extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'flex');
-
-
     }
 
     /**

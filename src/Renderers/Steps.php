@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Steps
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Steps extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'steps');
-
-
     }
 
     /**

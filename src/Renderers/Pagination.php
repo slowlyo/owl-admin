@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Pagination
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Pagination extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'pagination');
-
-
     }
 
     /**

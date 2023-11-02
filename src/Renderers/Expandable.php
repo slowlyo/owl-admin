@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Expandable
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Expandable extends BaseRenderer
 {

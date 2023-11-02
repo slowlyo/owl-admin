@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UrlAction
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class UrlAction extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class UrlAction extends BaseRenderer
     {
         $this->set('type', 'button');
         $this->set('actionType', 'url');
-
-
     }
 
     /**

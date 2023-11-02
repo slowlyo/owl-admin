@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 搜索框渲染器
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class SearchBox extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'search-box');
-
-
     }
 
     /**

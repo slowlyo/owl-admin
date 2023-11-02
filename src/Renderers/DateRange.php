@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DateRange 展示渲染器。
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class DateRange extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'date-range');
-
-
     }
 
     /**

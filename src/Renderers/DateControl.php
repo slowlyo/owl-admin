@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Date日期选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/date
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class DateControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-date');
-
-
     }
 
     /**

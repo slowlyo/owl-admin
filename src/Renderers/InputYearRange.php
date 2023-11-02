@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * InputYearRange 年份范围
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class InputYearRange extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-year-range');
-
-
     }
 
     /**

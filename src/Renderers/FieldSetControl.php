@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * FieldSet 表单项集合 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/fieldset
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class FieldSetControl extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class FieldSetControl extends BaseRenderer
     {
         $this->set('type', 'fieldset');
         $this->set('titlePosition', 'top');
-
-
     }
 
     /**

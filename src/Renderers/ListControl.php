@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * List 复选框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/list
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class ListControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'list-select');
-
-
     }
 
     /**

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Cards
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class CRUD2Cards extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class CRUD2Cards extends BaseRenderer
     {
         $this->set('mode', 'cards');
         $this->set('type', 'crud2');
-
-
     }
 
     /**

@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 季度选择控件
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class QuarterControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-quarter');
-
-
     }
 
     /**

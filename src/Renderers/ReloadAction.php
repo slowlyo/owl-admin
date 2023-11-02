@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ReloadAction
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class ReloadAction extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class ReloadAction extends BaseRenderer
     {
         $this->set('type', 'button');
         $this->set('actionType', 'reload');
-
-
     }
 
     /**

@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 选项卡控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tabs
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Tabs extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'tabs');
-
-
     }
 
     /**

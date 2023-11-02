@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Code 代码高亮
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Code extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'code');
-
-
     }
 
     /**

@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * GridNav 宫格导航
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class GridNav extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'grid-nav');
-
-
     }
 
     /**

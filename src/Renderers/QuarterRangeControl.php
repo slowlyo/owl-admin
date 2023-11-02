@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * QuarterRange 季度范围控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-quarter-range
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class QuarterRangeControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-quarter-range');
-
-
     }
 
     /**

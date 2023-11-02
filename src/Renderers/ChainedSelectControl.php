@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 链式下拉框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/chained-select
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class ChainedSelectControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'chained-select');
-
-
     }
 
     /**

@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * JSON 数据展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/json
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Json extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'json');
-
-
     }
 
     /**

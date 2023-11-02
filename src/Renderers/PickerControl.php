@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Picker 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/picker
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class PickerControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'picker');
-
-
     }
 
     /**

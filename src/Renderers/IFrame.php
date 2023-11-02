@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * IFrame 渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/iframe
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class IFrame extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'iframe');
-
-
     }
 
     /**

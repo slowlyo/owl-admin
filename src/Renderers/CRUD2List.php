@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2List
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class CRUD2List extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class CRUD2List extends BaseRenderer
     {
         $this->set('mode', 'list');
         $this->set('type', 'crud2');
-
-
     }
 
     /**

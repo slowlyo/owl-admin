@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TooltipWrapper
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class TooltipWrapper extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'tooltip-wrapper');
-
-
     }
 
     /**

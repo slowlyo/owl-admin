@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 状态展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/status
  *
  * @author  slowlyo
- * @version v3.5.1
+ * @version v3.5.2
  */
 class Status extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'status');
-
-
     }
 
     /**
