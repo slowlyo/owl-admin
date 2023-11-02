@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * InputExcel 解析 Excel
  *
  * @author  slowlyo
- * @version v3.5.0
+ * @version v3.5.1
  */
 class InputExcel extends BaseRenderer
 {

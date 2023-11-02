@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * BaseApi
  *
  * @author  slowlyo
- * @version v3.5.0
+ * @version v3.5.1
  */
 class BaseApi extends BaseRenderer
 {

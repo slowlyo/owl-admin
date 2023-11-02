@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Column
  *
  * @author  slowlyo
- * @version v3.5.0
+ * @version v3.5.1
  */
 class Column extends BaseRenderer
 {

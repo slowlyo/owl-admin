@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Table 表格渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/table
  *
  * @author  slowlyo
- * @version v3.5.0
+ * @version v3.5.1
  */
 class Table extends BaseRenderer
 {

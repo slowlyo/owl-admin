@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Each 循环功能渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/each
  *
  * @author  slowlyo
- * @version v3.5.0
+ * @version v3.5.1
  */
 class Each extends BaseRenderer
 {

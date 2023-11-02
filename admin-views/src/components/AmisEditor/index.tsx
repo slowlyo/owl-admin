@@ -41,7 +41,43 @@ function AmisEditor({onChange, preview}) {
     }
 
     return (
-        <div className="h-full">
+        <div className="h-full" style={{
+            // @ts-ignore
+            '--colors-neutral-text-1': '#141414',
+            '--colors-neutral-fill-1': '#141414',
+            '--colors-neutral-line-1': '#141414',
+            '--colors-neutral-text-2': '#1f1f1f',
+            '--colors-neutral-fill-2': '#1f1f1f',
+            '--colors-neutral-line-2': '#1f1f1f',
+            '--colors-neutral-text-3': '#262626',
+            '--colors-neutral-fill-3': '#262626',
+            '--colors-neutral-line-3': '#262626',
+            '--colors-neutral-text-4': '#434343',
+            '--colors-neutral-fill-4': '#434343',
+            '--colors-neutral-line-4': '#434343',
+            '--colors-neutral-text-5': '#595959',
+            '--colors-neutral-fill-5': '#595959',
+            '--colors-neutral-line-5': '#595959',
+            '--colors-neutral-text-6': '#8c8c8c',
+            '--colors-neutral-fill-6': '#8c8c8c',
+            '--colors-neutral-line-6': '#8c8c8c',
+            '--colors-neutral-text-7': '#bfbfbf',
+            '--colors-neutral-fill-7': '#bfbfbf',
+            '--colors-neutral-line-7': '#bfbfbf',
+            '--colors-neutral-text-8': '#d9d9d9',
+            '--colors-neutral-fill-8': '#d9d9d9',
+            '--colors-neutral-line-8': '#d9d9d9',
+            '--colors-neutral-text-9': '#f0f0f0',
+            '--colors-neutral-fill-9': '#f0f0f0',
+            '--colors-neutral-line-9': '#f0f0f0',
+            '--colors-neutral-text-10': '#f5f5f5',
+            '--colors-neutral-fill-10': '#f5f5f5',
+            '--colors-neutral-line-10': '#f5f5f5',
+            '--colors-neutral-text-11': '#ffffff',
+            '--colors-neutral-fill-11': '#ffffff',
+            '--colors-neutral-line-11': '#ffffff',
+            '--Tabs-content-bg': '#ffffff',
+        }}>
             <Editor theme="cxd" onChange={change} value={schema} preview={preview} amisEnv={env}/>
         </div>
     )

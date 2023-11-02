@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SwitchContainer 状态容器渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/state-container
  *
  * @author  slowlyo
- * @version v3.5.0
+ * @version v3.5.1
  */
 class SwitchContainer extends BaseRenderer
 {

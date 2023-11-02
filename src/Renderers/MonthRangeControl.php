@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * MonthRange 月范围控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/month-range
  *
  * @author  slowlyo
- * @version v3.5.0
+ * @version v3.5.1
  */
 class MonthRangeControl extends BaseRenderer
 {
