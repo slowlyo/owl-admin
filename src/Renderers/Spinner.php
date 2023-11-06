@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Spinner
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class Spinner extends BaseRenderer
 {

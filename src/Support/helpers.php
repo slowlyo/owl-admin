@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 if (!function_exists('admin_url')) {
     function admin_url($path = null, $needPrefix = false)
     {
-        $prefix = $needPrefix ? \Slowlyo\OwlAdmin\Admin::config('admin.route.prefix') : '';
+        $prefix = $needPrefix ? '/' . \Slowlyo\OwlAdmin\Admin::config('admin.route.prefix') : '';
 
         return $prefix . '/' . trim($path, '/');
     }
@@ -214,7 +214,8 @@ if (!function_exists('admin_abort')) {
         throw new \Slowlyo\OwlAdmin\Exceptions\AdminException($message, $data, $doNotDisplayToast);
     }
 
-    function amis_abort($message = '', $data = []){
+    function amis_abort($message = '', $data = [])
+    {
         admin_abort($message, $data, 1);
     }
 

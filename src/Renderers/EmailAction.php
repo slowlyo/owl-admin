@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * EmailAction
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class EmailAction extends BaseRenderer
 {

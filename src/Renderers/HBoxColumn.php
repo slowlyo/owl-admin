@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * HBoxColumn
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class HBoxColumn extends BaseRenderer
 {

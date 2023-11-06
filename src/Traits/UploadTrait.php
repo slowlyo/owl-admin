@@ -42,9 +42,9 @@ trait UploadTrait
      *
      * @return string
      */
-    public function uploadRichPath()
+    public function uploadRichPath($needPrefix = false)
     {
-        return admin_url('upload_rich');
+        return admin_url('upload_rich', $needPrefix);
     }
 
     public function uploadRich()

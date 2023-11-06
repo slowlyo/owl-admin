@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Password
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class Password extends BaseRenderer
 {

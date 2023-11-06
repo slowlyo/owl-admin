@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SparkLine
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class SparkLine extends BaseRenderer
 {

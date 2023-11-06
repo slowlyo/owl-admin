@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 年份选择控件
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class YearControl extends BaseRenderer
 {

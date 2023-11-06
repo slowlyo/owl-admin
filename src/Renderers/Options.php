@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Options 选择器表单项
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class Options extends BaseRenderer
 {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * RangeControl
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class RangeControl extends BaseRenderer
 {

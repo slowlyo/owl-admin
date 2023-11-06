@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 垂直布局控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/vbox
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class VBox extends BaseRenderer
 {

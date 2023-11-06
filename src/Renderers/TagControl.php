@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tag 输入框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tag
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class TagControl extends BaseRenderer
 {

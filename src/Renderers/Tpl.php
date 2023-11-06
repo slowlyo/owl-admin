@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * tpl 渲染器
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class Tpl extends BaseRenderer
 {

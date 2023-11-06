@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Card 卡片渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card
  *
  * @author  slowlyo
- * @version v3.5.2
+ * @version 3.5.2
  */
 class Card extends BaseRenderer
 {
