@@ -113,9 +113,13 @@ export const msgHandler = (msg, handle) => {
         localStorage.removeItem(msgKey)
     }, 5000)
 
-    handle().then(() => {
+    try {
+        handle().then(() => {
+            localStorage.removeItem(msgKey)
+        })
+    }catch (e) {
         localStorage.removeItem(msgKey)
-    })
+    }
 }
 
 export const clearMsgSign = () => {
