@@ -52,8 +52,8 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->loadAdminAuthConfig();
         $this->registerConfig();
+        $this->loadAdminAuthConfig();
         $this->registerServices();
         $this->registerExtensions();
         $this->registerRouteMiddleware();
@@ -87,18 +87,13 @@ class AdminServiceProvider extends ServiceProvider
         if (file_exists($adminRoutes = base_path('routes/admin.php'))) {
             $this->loadRoutesFrom($adminRoutes);
         }
+
         if (file_exists($routes = admin_path('routes.php'))) {
             $this->loadRoutesFrom($routes);
         }
 
-        $modules = config('admin.modules');
-        if (AdminModule::installed() && $modules) {
-            foreach ($modules as $module) {
-                $_path = config('modules.paths.modules') . '/' . $module . '/Routes/admin.php';
-                if (file_exists($_path)) {
-                    $this->loadRoutesFrom($_path);
-                }
-            }
+        if ($modulePath = AdminModule::allRoutePath()) {
+            array_map(fn($path) => $this->loadRoutesFrom($path), $modulePath);
         }
     }
 
@@ -106,14 +101,9 @@ class AdminServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
 
-        // merge module config
-        $modules = config('admin.modules');
-        if (AdminModule::installed() && $modules) {
-            foreach ($modules as $module) {
-                $_path = config('modules.paths.modules') . '/' . $module . '/Config/admin.php';
-                if (file_exists($_path)) {
-                    $this->mergeConfigFrom($_path, strtolower($module) . '.admin');
-                }
+        if ($moduleConfig = AdminModule::allConfigPath()) {
+            foreach ($moduleConfig as $key => $path) {
+                $this->mergeConfigFrom($path, $key);
             }
         }
     }

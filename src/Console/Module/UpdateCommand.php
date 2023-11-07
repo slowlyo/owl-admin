@@ -45,7 +45,14 @@ class UpdateCommand extends Command
             $script  = '<script>window.$adminApiPrefix = "/' . $module->getLowerName() . '-api"</script>';
             $content = preg_replace('/<script>window.*?<\/script>/is', $script, $content);
 
-            file_put_contents($module->getPath() . '/Resources/views/index.blade.php', $content);
+            $_path = $module->getPath();
+            if (is_dir($_path . '/app')) {
+                $_path = $_path . '/resources';
+            } else {
+                $_path = $_path . '/Resources';
+            }
+
+            file_put_contents($_path . '/views/index.blade.php', $content);
         }
     }
 }
