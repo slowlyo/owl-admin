@@ -26,7 +26,6 @@ class AdminServiceProvider extends ServiceProvider
     protected array $routeMiddleware = [
         'admin.auth'       => Middleware\Authenticate::class,
         'admin.bootstrap'  => Middleware\Bootstrap::class,
-        'admin.session'    => Middleware\Session::class,
         'admin.permission' => Middleware\Permission::class,
         'sanctum'          => Middleware\EnsureFrontendRequestsAreStateful::class,
         'substitute'       => \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -36,7 +35,6 @@ class AdminServiceProvider extends ServiceProvider
         'admin' => [
             'admin.auth',
             'admin.bootstrap',
-            'admin.session',
             'admin.permission',
             'sanctum',
             'substitute',
