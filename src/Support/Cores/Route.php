@@ -77,6 +77,12 @@ class Route
                         $router->post('generate', [CodeGeneratorController::class, 'generate']);
                         $router->post('get_record', [CodeGeneratorController::class, 'getRecord']);
                         $router->post('get_property_options', [CodeGeneratorController::class, 'getPropertyOptions']);
+
+                        $router->group(['prefix' => 'component_property'], function (Router $router) {
+                            $router->post('/', [CodeGeneratorController::class, 'saveComponentProperty']);
+                            $router->get('/', [CodeGeneratorController::class, 'getComponentProperty']);
+                            $router->delete('/', [CodeGeneratorController::class, 'delComponentProperty']);
+                        });
                     });
 
                     $router->resource('extensions', ExtensionController::class);

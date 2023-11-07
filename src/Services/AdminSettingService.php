@@ -135,6 +135,24 @@ class AdminSettingService extends AdminService
     }
 
     /**
+     * 清除指定设置项
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function del(string $key)
+    {
+        if ($this->query()->where('key', $key)->delete()) {
+            $this->clearCache($key);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * 清除指定设置项的缓存
      *
      * @param $key

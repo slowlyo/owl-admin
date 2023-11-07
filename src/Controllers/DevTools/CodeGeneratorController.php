@@ -111,7 +111,9 @@ class CodeGeneratorController extends AdminController
                         ->confirmText(__('admin.code_generators.confirm_generate_code'))
                         ->api('/dev_tools/code_generator/generate?id=${id}')
                         ->feedback(
-                            amis()->Dialog()->title(' ')->bodyClassName('overflow-auto')->body(amis()->Tpl()->tpl('${result | raw}'))->onEvent([
+                            amis()->Dialog()->title(' ')->bodyClassName('overflow-auto')->body(amis()
+                                ->Tpl()
+                                ->tpl('${result | raw}'))->onEvent([
                                 'confirm' => [
                                     'actions' => [
                                         ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'],
@@ -291,8 +293,7 @@ class CodeGeneratorController extends AdminController
                                     ->value($this->getNamespace('Controllers') . '${' . $nameHandler . '}Controller'),
                                 amis()
                                     ->TextControl('service_name', __('admin.code_generators.service_name'))
-                                    ->value($this->getNamespace('Services',
-                                            1) . '${' . $nameHandler . '}Service'),
+                                    ->value($this->getNamespace('Services', 1) . '${' . $nameHandler . '}Service'),
                                 amis()
                                     ->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')
                                     ->value(1),
@@ -358,10 +359,10 @@ class CodeGeneratorController extends AdminController
                         'change' => [
                             'actions' => [
                                 [
-                                    'actionType' => 'clear',
+                                    'actionType'  => 'clear',
                                     'componentId' => $key . '_property_id',
-                                    'expression' => '${!!' . $key . '_property}'
-                                ]
+                                    'expression'  => '${!!' . $key . '_property}',
+                                ],
                             ],
                         ],
                     ])->description(__('admin.code_generators.name_label_desc')),
@@ -539,9 +540,9 @@ class CodeGeneratorController extends AdminController
                     ->softDelete($record->soft_delete)
                     ->generate($record->table_name, $columns);
 
-                $message .= $successMessage('Migration', $path);
+                $message     .= $successMessage('Migration', $path);
                 $migratePath = str_replace(base_path(), '', $path);
-                $paths[] = $path;
+                $paths[]     = $path;
             }
 
             // Controller
@@ -575,9 +576,9 @@ class CodeGeneratorController extends AdminController
 
             // 创建数据库表
             if ($needs->contains('need_create_table')) {
-                if($migratePath){
+                if ($migratePath) {
                     Artisan::call('migrate', ['--path' => $migratePath]);
-                }else{
+                } else {
                     Artisan::call('migrate');
                 }
                 $message .= Artisan::output();
@@ -690,9 +691,12 @@ class CodeGeneratorController extends AdminController
 
         $type = $request->t;
 
+        $comboName = $type . '_property';
+        $comboId   = $comboName . '_id';
+
         $schema = amis()
-            ->ComboControl($type . '_property', __('admin.code_generators.property'))
-            ->id($type . '_property_id')
+            ->ComboControl($comboName, __('admin.code_generators.property'))
+            ->id($comboId)
             ->multiple()
             ->visibleOn('${!!' . $type . '_type}')
             ->items([
@@ -707,7 +711,63 @@ class CodeGeneratorController extends AdminController
                 amis()->TextControl('value', __('admin.code_generators.value'))->size('md'),
             ]);
 
-        return $this->response()->success($schema);
+        $cacheAction = amis()->Flex()->justify('start')->items([
+            amis()->AjaxAction()->label('加载配置')->className('mr-4')->level('primary'),
+            amis()->DialogAction()->label('保存当前配置')->level('success')->dialog(
+                amis()->Dialog()->title('保存当前配置')->body(
+                    amis()->Form()->mode('normal')->api('post:/dev_tools/code_generator/component_property')->body([
+                        amis()->HiddenControl('key')->value($comboName),
+                        amis()->ComboControl('value')->items([
+                            amis()->TextControl('title')
+                                ->inline(false)
+                                ->required()
+                                ->placeholder('请输入组件配置名称')
+                                ->description('相同名称的配置将会被覆盖'),
+                            amis()->HiddenControl('key')->value($request->c),
+                            amis()->HiddenControl('value')->value('${' . $comboName . '}'),
+                        ]),
+                    ])
+                )
+            ),
+        ]);
+
+        $line = amis()->Divider();
+
+        return $this->response()->success([$schema, $line, $cacheAction]);
+    }
+
+    /**
+     * 保存组件配置
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function saveComponentProperty(Request $request)
+    {
+        $list = [];
+
+        if ($original = settings()->get($request->key)) {
+            foreach ($original as $item) {
+                $list[$item['key'] . '|' . $item['title']] = $item;
+            }
+        }
+
+        $list[$request->value['key'] . '|' . $request->value['title']] = $request->value;
+
+        $res = settings()->set($request->key, array_values($list));
+
+        return $this->autoResponse($res, __('admin.save'));
+    }
+
+    public function getComponentProperty(Request $request)
+    {
+
+    }
+
+    public function delComponentProperty(Request $request)
+    {
+
     }
 
     public function getRecord()
@@ -725,6 +785,15 @@ class CodeGeneratorController extends AdminController
 
         if ($app) {
             $namespace->pop();
+        }
+
+        if ($currentModule = Admin::currentModule()) {
+            if (file_exists(base_path("/Modules/{$currentModule}/app")) && $app) {
+                $namespace->push('app');
+            } else {
+                $_http = $namespace->pop();
+                $namespace->push('app')->push($_http);
+            }
         }
 
         return $namespace->push($name)->implode('/') . '/';
