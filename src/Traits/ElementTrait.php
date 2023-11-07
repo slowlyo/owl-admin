@@ -182,6 +182,16 @@ trait ElementTrait
     }
 
     /**
+     * 基础筛选器 - 条件构造器
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\ConditionBuilderControl
+     */
+    protected function baseFilterConditionBuilder()
+    {
+        return amis()->ConditionBuilderControl('filter_condition_builder');
+    }
+
+    /**
      * @return CRUDTable
      */
     protected function baseCRUD(): CRUDTable
