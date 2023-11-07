@@ -9,9 +9,13 @@ namespace Slowlyo\OwlAdmin\Traits;
  */
 trait ConditionBuilderScopeTrait
 {
-    public function scopeWithConditionBuilder($query)
+    protected bool $conditionBuilderHideTable = false;
+
+    public function scopeWithConditionBuilder($query, $hideTable = false)
     {
         $filter = request('filter_condition_builder');
+
+        $this->conditionBuilderHideTable = $hideTable;
 
         if (blank($filter)) {
             return $query;
@@ -36,7 +40,7 @@ trait ConditionBuilderScopeTrait
     {
         $or = $filter['conjunction'];
 
-        if (method_exists($this, 'qualifyColumn')) {
+        if (method_exists($this, 'qualifyColumn') && !$this->conditionBuilderHideTable) {
             $qualifyColumn = fn($field) => $this->qualifyColumn($field);
         } else {
             $qualifyColumn = fn($field) => $field;
