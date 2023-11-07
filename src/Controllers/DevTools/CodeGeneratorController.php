@@ -712,13 +712,55 @@ class CodeGeneratorController extends AdminController
             ]);
 
         $cacheAction = amis()->Flex()->justify('start')->items([
-            amis()->AjaxAction()->label('加载配置')->className('mr-4')->level('primary'),
+            amis()->DialogAction()->className('mr-3')->label('加载配置')->level('primary')->dialog(
+                amis()->Dialog()
+                    ->title("加载{$request->c}配置")
+                    ->actions([])
+                    ->id('load_config_dialog')
+                    ->closeOnOutside()
+                    ->body(
+                        amis()->Service()
+                            ->name('component_property_list_service')
+                            ->api('post:/dev_tools/code_generator/component_property/list?key=' . $comboName . '&c=' . $request->c)
+                            ->body(
+                                amis()->Table()->source('${component_property_list}')->columns([
+                                    amis()->TableColumn('label'),
+
+                                    amis()->Operation()->buttons([
+                                        amis()->VanillaAction()->label('填充')->level('primary')->onEvent([
+                                            'click' => [
+                                                'actions' => [
+                                                    [
+                                                        'actionType'  => 'setValue',
+                                                        'componentId' => $comboId,
+                                                        'args'        => ['value' => '${value}',],
+                                                    ],
+                                                    [
+                                                        'actionType'  => 'closeDialog',
+                                                        'componentId' => 'load_config_dialog',
+                                                    ],
+                                                ],
+                                            ],
+                                        ]),
+
+                                        amis()->AjaxAction()
+                                            ->label('删除')
+                                            ->level('danger')
+                                            ->confirmText(__('admin.confirm_delete'))
+                                            ->reload('component_property_list_service')
+                                            ->api('post:/dev_tools/code_generator/component_property/del?name=' . $comboName),
+                                    ])->set('width', 150),
+                                ])
+                            )
+                    )
+            ),
+
             amis()->DialogAction()->label('保存当前配置')->level('success')->dialog(
                 amis()->Dialog()->title('保存当前配置')->body(
                     amis()->Form()->mode('normal')->api('post:/dev_tools/code_generator/component_property')->body([
                         amis()->HiddenControl('key')->value($comboName),
                         amis()->ComboControl('value')->items([
-                            amis()->TextControl('title')
+                            amis()->TextControl('label')
                                 ->inline(false)
                                 ->required()
                                 ->placeholder('请输入组件配置名称')
@@ -749,25 +791,55 @@ class CodeGeneratorController extends AdminController
 
         if ($original = settings()->get($request->key)) {
             foreach ($original as $item) {
-                $list[$item['key'] . '|' . $item['title']] = $item;
+                $list[$item['key'] . '|' . $item['label']] = $item;
             }
         }
 
-        $list[$request->value['key'] . '|' . $request->value['title']] = $request->value;
+        $list[$request->value['key'] . '|' . $request->value['label']] = $request->value;
 
         $res = settings()->set($request->key, array_values($list));
 
         return $this->autoResponse($res, __('admin.save'));
     }
 
+    /**
+     * 获取组件配置
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
     public function getComponentProperty(Request $request)
     {
+        $component_property_list = collect(settings()->get($request->key))->where('key', $request->c)->values();
 
+        return $this->response()->success(compact('component_property_list'));
     }
 
+    /**
+     * 删除组件配置
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
     public function delComponentProperty(Request $request)
     {
+        $list = settings()->get($request->name);
 
+        if (blank($list)) {
+            return $this->autoResponse(false);
+        }
+
+        foreach ($list as $key => $item) {
+            if ($item['label'] == $request->label && $item['key'] == $request->key) {
+                unset($list[$key]);
+            }
+        }
+
+        settings()->set($request->name, array_values($list));
+
+        return $this->autoResponse(true);
     }
 
     public function getRecord()

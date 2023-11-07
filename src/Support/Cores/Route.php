@@ -80,8 +80,8 @@ class Route
 
                         $router->group(['prefix' => 'component_property'], function (Router $router) {
                             $router->post('/', [CodeGeneratorController::class, 'saveComponentProperty']);
-                            $router->get('/', [CodeGeneratorController::class, 'getComponentProperty']);
-                            $router->delete('/', [CodeGeneratorController::class, 'delComponentProperty']);
+                            $router->post('/list', [CodeGeneratorController::class, 'getComponentProperty']);
+                            $router->post('/del', [CodeGeneratorController::class, 'delComponentProperty']);
                         });
                     });
 
