@@ -15,15 +15,13 @@ class InitCommand extends Command
 
     protected $module;
 
-    protected $moduleVersion = 9;
-
     protected $directory;
 
     public function handle(): void
     {
         $this->checkOption();
 
-        // $this->initDB();
+        $this->initDB();
         $this->initAdminDirectory();
     }
 
@@ -68,10 +66,6 @@ class InitCommand extends Command
     {
         $this->setDirectory();
 
-        if (is_dir($this->directory . '/app')) {
-            $this->moduleVersion = 10;
-        }
-
         $this->createAuthController();
         $this->createBootstrapFile();
         $this->createRoutesFile();
@@ -87,14 +81,14 @@ class InitCommand extends Command
         $this->laravel['files']->makeDirectory("{$this->directory}/$path", 0755, true, true);
     }
 
-    private function getAppPath()
+    public function getPath($path, $isApp = false)
     {
-        return $this->directory . ($this->moduleVersion == 10 ? '/app' : '');
+        return AdminModule::getModulePath($this->module->getName(), $path, $isApp);
     }
 
     public function createAuthController(): void
     {
-        $authController = $this->getAppPath() . '/Http/Controllers/AuthController.php';
+        $authController = $this->getPath('/Http/Controllers/AuthController.php', true);
         $contents       = $this->getStub('AuthController');
         $this->laravel['files']->put(
             $authController,
@@ -105,17 +99,16 @@ class InitCommand extends Command
 
     protected function createBootstrapFile()
     {
-        $file = $this->getAppPath() . '/bootstrap.php';
-
+        $file     = $this->getPath('/bootstrap.php', true);
         $contents = $this->getStub('bootstrap');
+
         $this->laravel['files']->put($file, $contents);
         $this->line('<info>Bootstrap file was created:</info> ' . str_replace(base_path(), '', $file));
     }
 
     protected function createRoutesFile()
     {
-        $file = $this->directory . ($this->moduleVersion == 10 ? '/routes/admin.php' : '/Routes/admin.php');
-
+        $file     = $this->getPath('/routes/admin.php');
         $contents = $this->getStub('routes');
         $content  = str_replace('{{Namespace}}', $this->getNamespace('Http\Controllers'), $contents);
         $content  = str_replace('{{module}}', $this->module->getLowerName(), $content);
@@ -126,8 +119,9 @@ class InitCommand extends Command
 
     public function createHomeController(): void
     {
-        $homeController = $this->getAppPath() . '/Http/Controllers/HomeController.php';
+        $homeController = $this->getPath('/Http/Controllers/HomeController.php', true);
         $contents       = $this->getStub('HomeController');
+
         $this->laravel['files']->put(
             $homeController,
             str_replace('{{Namespace}}', $this->getNamespace('Http\Controllers'), $contents)
@@ -137,8 +131,9 @@ class InitCommand extends Command
 
     public function createSettingController()
     {
-        $settingController = $this->getAppPath() . '/Http/Controllers/SettingController.php';
+        $settingController = $this->getPath('/Http/Controllers/SettingController.php', true);
         $contents          = $this->getStub('SettingController');
+
         $this->laravel['files']->put(
             $settingController,
             str_replace('{{Namespace}}', $this->getNamespace('Http\Controllers'), $contents)
@@ -150,7 +145,7 @@ class InitCommand extends Command
 
     protected function getNamespace($name = null): string
     {
-        $prefix = $this->moduleVersion == 10 ? 'app\\' : '';
+        $prefix = AdminModule::isV10() ? 'app\\' : '';
 
         return config('modules.namespace') . "\\{$this->module->getName()}\\{$prefix}{$name}";
     }
@@ -176,14 +171,15 @@ class InitCommand extends Command
 
     protected function createConfig()
     {
-        $config   = $this->directory . ($this->moduleVersion == 10 ? "/config/admin.php" : "/Config/admin.php");
+        $config   = $this->getPath("/config/admin.php");
         $contents = $this->getStub('config');
-        $_path    = 'Modules/' . $this->module->getName() . ($this->moduleVersion == 10 ? '/app' : '') . '/bootstrap.php';
-        $content  = str_replace('{{bootstrap}}', 'base_path(\'' . $_path . '\')', $contents);
-        $content  = str_replace('{{route_prefix}}', $this->module->getLowerName() . '-api', $content);
-        $content  = str_replace('{{module_name}}', $this->module->getLowerName(), $content);
-        $content  = str_replace('{{route_namespace}}', $this->getNamespace('Http\Controllers'), $content);
-        $content  = str_replace('{{model_namespace}}', $this->getNamespace('Models'), $content);
+        $_path    = 'Modules/' . $this->module->getName() . (AdminModule::isV10() ? '/app' : '') . '/bootstrap.php';
+
+        $content = str_replace('{{bootstrap}}', 'base_path(\'' . $_path . '\')', $contents);
+        $content = str_replace('{{route_prefix}}', $this->module->getLowerName() . '-api', $content);
+        $content = str_replace('{{module_name}}', $this->module->getLowerName(), $content);
+        $content = str_replace('{{route_namespace}}', $this->getNamespace('Http\Controllers'), $content);
+        $content = str_replace('{{model_namespace}}', $this->getNamespace('Models'), $content);
 
         $this->laravel['files']->put($config, $content);
         $this->line('<info>Config file was created:</info> ' . str_replace(base_path(), '', $config));
@@ -191,12 +187,12 @@ class InitCommand extends Command
 
     protected function createModel()
     {
-        if ($this->moduleVersion == 9) {
+        if (!AdminModule::isV10()) {
             $this->makeDir('Models');
         }
 
         $run = function ($name) {
-            $file     = $this->getAppPath() . "/Models/{$name}.php";
+            $file     = $this->getPath("/Models/{$name}.php", true);
             $contents = $this->getStub($name);
             $content  = str_replace('{{Namespace}}', $this->getNamespace('Models'), $contents);
             $content  = str_replace('{{module}}', $this->module->getLowerName(), $content);
