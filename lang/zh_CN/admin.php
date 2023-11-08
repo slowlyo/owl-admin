@@ -124,6 +124,12 @@ return [
         'import_record'             => '导入记录',
         'import_record_placeholder' => '请输入导入的json记录',
         'import_record_desc'        => '你可以在 <a href="https://github.com/Slowlyo/owl-admin/discussions/categories/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E8%AE%B0%E5%BD%95" target="_blank">Github</a> 找到一些其他人分享的记录',
+        'load_config'               => '加载配置',
+        'load_component_config'     => '加载 :c 配置',
+        'fill'                      => '填充',
+        'save_current_config'       => '保存当前配置',
+        'input_config_name'         => '请填写配置名称',
+        'same_name_tips' => '相同名称的配置将会被覆盖'
     ],
 
     'admin_users' => '管理员',

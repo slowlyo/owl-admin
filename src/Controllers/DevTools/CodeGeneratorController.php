@@ -104,8 +104,7 @@ class CodeGeneratorController extends AdminController
                 amis()->TableColumn('table_name', __('admin.code_generators.table_name')),
                 amis()->TableColumn('updated_at', __('admin.updated_at'))->sortable(),
                 $this->rowActions([
-                    amis()
-                        ->AjaxAction()
+                    amis()->AjaxAction()
                         ->label(__('admin.code_generators.generate_code'))
                         ->level('link')
                         ->confirmText(__('admin.code_generators.confirm_generate_code'))
@@ -127,15 +126,13 @@ class CodeGeneratorController extends AdminController
                             ])
                         )
                         ->icon('fa fa-code'),
-                    amis()
-                        ->DialogAction()
+                    amis()->DialogAction()
                         ->label(__('admin.code_generators.copy_record'))
                         ->icon('fa fa-copy')
                         ->level('link')
                         ->dialog(
                             amis()->Dialog()->title(false)->body(
-                                amis()
-                                    ->Form()
+                                amis()->Form()
                                     ->initApi('post:/dev_tools/code_generator/get_record?id=${id}')
                                     ->mode('normal')
                                     ->body(
@@ -146,23 +143,20 @@ class CodeGeneratorController extends AdminController
                                     ),
                             )->actions([
                                 amis()->VanillaAction()->actionType('cancel')->label(__('admin.cancel')),
-                                amis()
-                                    ->CopyAction()
+                                amis()->CopyAction()
                                     ->label(__('admin.copy'))
                                     ->level('success')
                                     ->content('${ENCODEJSON(record)}'),
                             ])
                         ),
-                    amis()
-                        ->DialogAction()
+                    amis()->DialogAction()
                         ->label(__('admin.code_generators.preview'))
                         ->icon('fa fa-eye')
                         ->level('link')
                         ->dialog(
                             $this->previewCodeDialog()
                         ),
-                    amis()
-                        ->DialogAction()
+                    amis()->DialogAction()
                         ->label(__('admin.edit'))
                         ->icon('fa-regular fa-pen-to-square')
                         ->level('link')
@@ -712,59 +706,66 @@ class CodeGeneratorController extends AdminController
             ]);
 
         $cacheAction = amis()->Flex()->justify('start')->items([
-            amis()->DialogAction()->className('mr-3')->label('加载配置')->level('primary')->dialog(
-                amis()->Dialog()
-                    ->title("加载{$request->c}配置")
-                    ->actions([])
-                    ->id('load_config_dialog')
-                    ->closeOnOutside()
-                    ->body(
-                        amis()->Service()
-                            ->name('component_property_list_service')
-                            ->api('post:/dev_tools/code_generator/component_property/list?key=' . $comboName . '&c=' . $request->c)
-                            ->body(
-                                amis()->Table()->source('${component_property_list}')->columns([
-                                    amis()->TableColumn('label'),
+            amis()->DialogAction()
+                ->className('mr-3')
+                ->label(__('admin.code_generators.load_config'))
+                ->level('primary')
+                ->dialog(
+                    amis()->Dialog()
+                        ->title(__('admin.code_generators.load_component_config', ['c' => $request->c]))
+                        ->actions([])
+                        ->id('load_config_dialog')
+                        ->closeOnOutside()
+                        ->body(
+                            amis()->Service()
+                                ->name('component_property_list_service')
+                                ->api('post:/dev_tools/code_generator/component_property/list?key=' . $comboName . '&c=' . $request->c)
+                                ->body(
+                                    amis()->Table()->source('${component_property_list}')->columns([
+                                        amis()->TableColumn('label'),
 
-                                    amis()->Operation()->buttons([
-                                        amis()->VanillaAction()->label('填充')->level('primary')->onEvent([
-                                            'click' => [
-                                                'actions' => [
-                                                    [
-                                                        'actionType'  => 'setValue',
-                                                        'componentId' => $comboId,
-                                                        'args'        => ['value' => '${value}',],
+                                        amis()->Operation()->buttons([
+                                            amis()->VanillaAction()
+                                                ->label(__('admin.code_generators.fill'))
+                                                ->level('primary')
+                                                ->onEvent([
+                                                    'click' => [
+                                                        'actions' => [
+                                                            [
+                                                                'actionType'  => 'setValue',
+                                                                'componentId' => $comboId,
+                                                                'args'        => ['value' => '${value}',],
+                                                            ],
+                                                            [
+                                                                'actionType'  => 'closeDialog',
+                                                                'componentId' => 'load_config_dialog',
+                                                            ],
+                                                        ],
                                                     ],
-                                                    [
-                                                        'actionType'  => 'closeDialog',
-                                                        'componentId' => 'load_config_dialog',
-                                                    ],
-                                                ],
-                                            ],
-                                        ]),
+                                                ]),
 
-                                        amis()->AjaxAction()
-                                            ->label('删除')
-                                            ->level('danger')
-                                            ->confirmText(__('admin.confirm_delete'))
-                                            ->reload('component_property_list_service')
-                                            ->api('post:/dev_tools/code_generator/component_property/del?name=' . $comboName),
-                                    ])->set('width', 150),
-                                ])
-                            )
-                    )
-            ),
+                                            amis()->AjaxAction()
+                                                ->label(__('admin.delete'))
+                                                ->level('danger')
+                                                ->confirmText(__('admin.confirm_delete'))
+                                                ->reload('component_property_list_service')
+                                                ->api('post:/dev_tools/code_generator/component_property/del?name=' . $comboName),
+                                        ])->set('width', 150),
+                                    ])
+                                )
+                        )
+                ),
 
-            amis()->DialogAction()->label('保存当前配置')->level('success')->dialog(
-                amis()->Dialog()->title('保存当前配置')->body(
+            amis()->DialogAction()->label(__('admin.code_generators.save_current_config'))->level('success')->dialog(
+                amis()->Dialog()->title(__('admin.code_generators.save_current_config'))->body(
                     amis()->Form()->mode('normal')->api('post:/dev_tools/code_generator/component_property')->body([
                         amis()->HiddenControl('key')->value($comboName),
                         amis()->ComboControl('value')->items([
                             amis()->TextControl('label')
                                 ->inline(false)
                                 ->required()
-                                ->placeholder('请输入组件配置名称')
-                                ->description('相同名称的配置将会被覆盖'),
+                                ->placeholder(__('admin.code_generators.input_config_name'))
+                                ->description(__('admin.code_generators.same_name_tips')),
                             amis()->HiddenControl('key')->value($request->c),
                             amis()->HiddenControl('value')->value('${' . $comboName . '}'),
                         ]),
