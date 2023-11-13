@@ -2,8 +2,14 @@
 
 namespace Slowlyo\OwlAdmin\Renderers;
 
+use Illuminate\Support\Traits\Macroable;
+
 class BaseRenderer implements \JsonSerializable
 {
+    use Macroable {
+        __call as macroCall;
+    }
+
     public string $type;
 
     public array $amisSchema = [];
@@ -15,6 +21,10 @@ class BaseRenderer implements \JsonSerializable
 
     public function __call($name, $arguments)
     {
+        if (static::hasMacro($name)) {
+            return $this->macroCall($name, $arguments);
+        }
+
         return $this->set($name, array_shift($arguments));
     }
 
