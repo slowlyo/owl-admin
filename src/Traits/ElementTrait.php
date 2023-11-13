@@ -296,7 +296,7 @@ trait ElementTrait
 
         $primaryKey = $this->service->primaryKey();
 
-        $downloadPath   = '/' . admin_url('_download_export', true);
+        $downloadPath   = admin_url('_download_export', true);
         $exportPath     = $this->getExportPath();
         $pageNoData     = __('admin.export.page_no_data');
         $selectedNoData = __('admin.export.selected_rows_no_data');
