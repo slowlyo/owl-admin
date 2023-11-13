@@ -32,8 +32,18 @@ const LayoutContent = () => {
         }
     }
 
+    const clearModal = () => {
+        if (getSetting('system_theme_setting.keepAlive')) {
+            // 处理 keep-alive 导致 modal 无法关闭的问题
+            if (document.body.classList.contains('is-modalOpened')) {
+                window.location.reload()
+            }
+        }
+    }
+
     useEffect(() => {
         setPageTitle()
+        clearModal()
     }, [pathname, routes])
 
     return (

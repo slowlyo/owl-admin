@@ -221,7 +221,7 @@ const SettingPanel = () => {
                     <Space size="large">
                         <Switch checked={settings.system_theme_setting.keepAlive}
                                 onChange={(value) => handleChange('keepAlive', value)}/>
-                        <Tag color="warning">Alpha</Tag>
+                        {/*<Tag color="warning">Alpha</Tag>*/}
                     </Space>
                 </Form.Item>
             </Form>

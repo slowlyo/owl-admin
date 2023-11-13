@@ -48,7 +48,8 @@ const AmisRender = ({schema, className = ''}) => {
             })
 
             msgHandler(msg, handle)
-        }
+        },
+        isCurrentUrl: (url: string) => history.location.pathname + history.location.search === url,
     }
 
     return (
