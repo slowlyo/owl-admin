@@ -54,6 +54,11 @@ class Amis
         return Audio::make();
     }
 
+    public function AutoFillHeight()
+    {
+        return AutoFillHeight::make();
+    }
+
     public function AutoGenerateFilter()
     {
         return AutoGenerateFilter::make();

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Dialog 弹框渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class Dialog extends BaseRenderer
 {
@@ -93,6 +93,14 @@ class Dialog extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 可拖拽
+     */
+    public function draggable($value = true)
+    {
+        return $this->set('draggable', $value);
     }
 
     /**

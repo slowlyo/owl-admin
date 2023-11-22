@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Switch 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/switch
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class SwitchControl extends BaseRenderer
 {

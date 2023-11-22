@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Group 表单集合渲染器，能让多个表单在一行显示 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/group
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class GroupControl extends BaseRenderer
 {

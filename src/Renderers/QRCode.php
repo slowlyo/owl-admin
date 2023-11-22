@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 二维码展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/qrcode
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class QRCode extends BaseRenderer
 {

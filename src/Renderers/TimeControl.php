@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Time 时间选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/time
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class TimeControl extends BaseRenderer
 {

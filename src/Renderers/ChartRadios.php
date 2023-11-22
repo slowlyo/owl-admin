@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ChartRadios 图表单选框
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class ChartRadios extends BaseRenderer
 {

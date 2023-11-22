@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 操作栏渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/operation
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class Operation extends BaseRenderer
 {

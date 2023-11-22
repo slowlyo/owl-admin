@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * FeedbackDialog
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class FeedbackDialog extends BaseRenderer
 {
@@ -94,6 +94,14 @@ class FeedbackDialog extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 可拖拽
+     */
+    public function draggable($value = true)
+    {
+        return $this->set('draggable', $value);
     }
 
     /**

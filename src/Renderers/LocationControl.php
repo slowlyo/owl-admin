@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Location 选点组件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/location
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class LocationControl extends BaseRenderer
 {
@@ -21,6 +21,14 @@ class LocationControl extends BaseRenderer
     public function ak($value = '')
     {
         return $this->set('ak', $value);
+    }
+
+    /**
+     * 是否自动选中当前地理位置
+     */
+    public function autoSelectCurrentLoc($value = true)
+    {
+        return $this->set('autoSelectCurrentLoc', $value);
     }
 
     /**
@@ -93,6 +101,14 @@ class LocationControl extends BaseRenderer
     public function extraName($value = '')
     {
         return $this->set('extraName', $value);
+    }
+
+    /**
+     * 开启只读模式后的占位提示，默认为“点击获取位置信息” 备注：区分下现有的placeholder（“请选择位置”）
+     */
+    public function getLocationPlaceholder($value = '')
+    {
+        return $this->set('getLocationPlaceholder', $value);
     }
 
     /**
@@ -213,6 +229,14 @@ class LocationControl extends BaseRenderer
     public function onEvent($value = '')
     {
         return $this->set('onEvent', $value);
+    }
+
+    /**
+     * 是否限制只能选中当前地理位置 备注：可用于充当定位组件，只允许选择当前位置
+     */
+    public function onlySelectCurrentLoc($value = true)
+    {
+        return $this->set('onlySelectCurrentLoc', $value);
     }
 
     /**

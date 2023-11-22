@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 选项卡控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tabs
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class Tabs extends BaseRenderer
 {

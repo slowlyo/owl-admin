@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableControl
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class TableControl extends BaseRenderer
 {

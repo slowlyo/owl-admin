@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图标选择器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/icon-picker
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class IconPickerControl extends BaseRenderer
 {

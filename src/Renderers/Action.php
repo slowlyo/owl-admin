@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Action 行为按钮 https://aisuda.bce.baidu.com/amis/zh-CN/components/action
  *
  * @author  slowlyo
- * @version 3.5.2
+ * @version v3.5.3
  */
 class Action extends BaseRenderer
 {
