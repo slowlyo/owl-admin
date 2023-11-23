@@ -33,7 +33,7 @@
 <br>
 
 <div align="center">
-  <img  width="92%" style="border-radius:4px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://slowlyo.gitee.io/static/images/owl-admin/home-page1.png" />
+  <img  width="92%" style="border-radius:4px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://slowlyo.gitee.io/static/images/owl-admin/_home.png" />
 </div>
 <br>
 
