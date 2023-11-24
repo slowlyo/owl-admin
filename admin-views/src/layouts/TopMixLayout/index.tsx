@@ -10,6 +10,7 @@ import useSetting from '@/hooks/useSetting'
 
 const {Header, Sider, Content} = Layout
 
+// 上下布局
 const TopMixLayout = () => {
     const {getSetting} = useSetting()
     const [collapsed, setCollapsed] = useState(false)
@@ -24,7 +25,7 @@ const TopMixLayout = () => {
 
     return (
         <Layout className="h-screen overflow-hidden">
-            <Header className={"h-[65px] leading-none flex justify-between items-center p-0 " + (darkTop() ? '' : 'border-b')}>
+            <Header className={'h-[65px] leading-none flex justify-between items-center p-0 ' + (darkTop() ? '' : 'border-b')}>
                 <div className="flex h-full items-center">
                     <LayoutLogo/>
                     <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>

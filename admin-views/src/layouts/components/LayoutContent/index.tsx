@@ -10,7 +10,7 @@ import useSetting from '@/hooks/useSetting'
 import LayoutTabs from '@/layouts/components/LayoutTabs'
 import LayoutFooter from '@/layouts/components/LayoutFooter'
 
-
+// 内容区域
 const LayoutContent = () => {
     const {getSetting} = useSetting()
     const {routes, defaultRoute, getCurrentRoute} = useRoute()
@@ -20,6 +20,7 @@ const LayoutContent = () => {
     const location = useLocation()
     const currentRoute = getCurrentRoute()
 
+    // 设置页面标题
     const setPageTitle = () => {
         let title = currentRoute?.meta?.title
         if (title) {
@@ -32,9 +33,9 @@ const LayoutContent = () => {
         }
     }
 
+    // 处理 keep-alive 导致 modal 无法关闭的问题
     const clearModal = () => {
         if (getSetting('system_theme_setting.keepAlive')) {
-            // 处理 keep-alive 导致 modal 无法关闭的问题
             if (document.body.classList.contains('is-modalOpened')) {
                 window.location.reload()
             }

@@ -5,6 +5,7 @@ import {useLang} from '@/hooks/useLang'
 import {Dropdown} from 'antd'
 import useSetting from '@/hooks/useSetting'
 
+// Tab 项
 const Tab = ({item, close, menuClick, closeable = true}) => {
     const {t} = useLang()
     const history = useHistory()
@@ -13,6 +14,7 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
 
     if (!item) return null
 
+    // 菜单项
     const items = [
         {label: t('tabMenu.close'), key: 'close', icon: <Icon icon="ant-design:close-outlined"/>},
         {label: t('tabMenu.closeOthers'), key: 'closeOthers', icon: <Icon icon="ant-design:column-width-outlined"/>},
@@ -21,6 +23,7 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
         {label: t('tabMenu.closeAll'), key: 'closeAll', icon: <Icon icon="fluent:subtract-20-filled"/>}
     ]
 
+    // 获取菜单
     const getMenu = () => {
         if (!closeable) {
             items.shift()

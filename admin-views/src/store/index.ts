@@ -1,5 +1,6 @@
 import {getCacheKey, mergeObject} from '@/utils/common'
 
+// 默认设置
 const defaultSettings = {
     darkTheme: false,
     footer: false,
@@ -18,6 +19,7 @@ const defaultSettings = {
     tabIcon: true
 }
 
+// 默认 token
 const defaultToken = {
     token: {
         borderRadius: 4,
@@ -34,6 +36,7 @@ const defaultToken = {
     }
 }
 
+// 初始状态
 const initialState: GlobalState = {
     settings: {
         system_theme_setting: defaultSettings

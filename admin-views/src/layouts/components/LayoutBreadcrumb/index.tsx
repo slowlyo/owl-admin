@@ -4,12 +4,14 @@ import {Breadcrumb} from 'antd'
 import {useHistory} from 'react-router'
 import useSetting from '@/hooks/useSetting'
 
+// 面包屑
 const LayoutBreadcrumb = () => {
     const {routes, getCurrentRoute} = useRoute()
     const {getSetting} = useSetting()
     const [breadcrumb, setBreadcrumb] = useState<any[]>([])
     const history = useHistory()
 
+    // 当前路由
     const currentRoute = getCurrentRoute()
 
     // 获取下拉菜单
@@ -64,6 +66,7 @@ const LayoutBreadcrumb = () => {
         return list
     }
 
+    // 监听路由变化
     useEffect(() => {
         if (currentRoute) {
             setBreadcrumb(getBreadcrumb() as any || [])

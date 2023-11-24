@@ -3,6 +3,7 @@ import en from '@/lang/en'
 import useSetting from '@/hooks/useSetting'
 import {arrayGet} from '@/utils/common'
 
+// 多语言
 export const useLang = () => {
     const {getSetting} = useSetting()
     const lang = {zh_CN, en}

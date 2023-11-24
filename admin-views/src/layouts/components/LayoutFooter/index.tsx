@@ -1,5 +1,6 @@
 import useSettings from '@/hooks/useSetting'
 
+// 页脚
 const LayoutFooter = () => {
     const {getSetting} = useSettings()
 

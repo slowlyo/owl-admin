@@ -6,6 +6,7 @@ import SettingButton from '@/layouts/components/LayoutTopBar/components/SettingB
 import useSetting from '@/hooks/useSetting'
 import DarkThemeButton from '@/layouts/components/LayoutTopBar/components/DarkThemeButton'
 
+// 顶部导航栏
 const LayoutTopBar = () => {
     const {userInfo} = useSelector((state: GlobalState) => state)
     const {getSetting} = useSetting()

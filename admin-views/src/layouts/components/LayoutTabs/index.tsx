@@ -7,6 +7,7 @@ import {useAliveController} from 'react-activation'
 import Tab from './components/Tab'
 import {getCacheKey, registerGlobalFunction} from '@/utils/common'
 
+// Tab
 const LayoutTabs = () => {
     const history = useHistory()
     const pathname = history.location.pathname
@@ -20,10 +21,12 @@ const LayoutTabs = () => {
 
     const [tabs, setTabs] = React.useState<IRoute[]>([])
 
+    // 更新 Tab
     const updateTabs = (_tabs) => {
         setTabs([formatTabValue(defaultTab, defaultTab?.path, true), ..._tabs])
     }
 
+    // 初始化 Tab
     const initTab = () => {
         if (cachedTabs.length != 0) {
             cachedTabs.map((tab) => {
@@ -37,6 +40,7 @@ const LayoutTabs = () => {
         updateTabs(cachedTabs)
     }
 
+    // 格式化 Tab 数据
     const formatTabValue = (tab, path, isDefault = false) => ({
         name: tab?.name,
         path,
@@ -45,15 +49,16 @@ const LayoutTabs = () => {
         icon: tab?.meta?.icon
     })
 
+    // 获取当前 Tab
     const currentTab = () => {
         const current = getCurrentRoute()
 
         return current ? formatTabValue(current, pathname) : null
     }
 
+    // 定位当前 Tab
     const locateTheCurrentTab = () => {
         setTimeout(() => {
-            // 定位当前选项卡
             const tab = document.querySelector('.current_selected_tab')
 
             for (let i = 0; i < 5; i++) {
@@ -64,6 +69,7 @@ const LayoutTabs = () => {
         }, 100)
     }
 
+    // 切换 Tab
     const changeTab = () => {
         locateTheCurrentTab()
 
@@ -87,6 +93,7 @@ const LayoutTabs = () => {
         }
     }
 
+    // 根据路径关闭选项卡
     const closeTabByPath = (path) => {
         const current = cachedTabs.find((tab) => tab.path === path)
 
@@ -95,6 +102,7 @@ const LayoutTabs = () => {
         }
     }
 
+    // 注册全局方法
     registerGlobalFunction('closeTabByPath', closeTabByPath)
 
     // 关闭选项卡
@@ -109,6 +117,7 @@ const LayoutTabs = () => {
         closeTabs([item])
     }
 
+    // 关闭多个选项卡
     const closeTabs = (items) => {
         // 从缓存中移除对应的选项卡信息
         const updatedCachedTabs = tabs.filter((tab) => (!items.find((item) => item.name === tab.name) && tab.path != '/' + defaultRoute))
@@ -120,17 +129,21 @@ const LayoutTabs = () => {
         items.forEach((item) => drop(item.name))
     }
 
+    // 菜单点击事件
     const menuClick = (action, item) => {
         switch (action) {
+            // 关闭选项卡
             case 'close':
                 closeTab(item)
                 break
+            // 关闭其他选项卡
             case 'closeOthers':
                 const needCloseTabs = cachedTabs.filter((tab) => tab.path !== item.path)
 
                 closeTabs(needCloseTabs)
                 history.push(item.path)
                 break
+            // 关闭左侧选项卡
             case 'closeLeft':
                 const currentIndex = cachedTabs.findIndex((tab) => tab.path === item.path)
                 const needCloseLeftTabs = cachedTabs.filter((tab, index) => index < currentIndex)
@@ -138,6 +151,7 @@ const LayoutTabs = () => {
                 closeTabs(needCloseLeftTabs)
                 history.push(item.path)
                 break
+            // 关闭右侧选项卡
             case 'closeRight':
                 const currentIndex2 = cachedTabs.findIndex((tab) => tab.path === item.path)
                 const needCloseRightTabs = cachedTabs.filter((tab, index) => index > currentIndex2)
@@ -145,6 +159,7 @@ const LayoutTabs = () => {
                 closeTabs(needCloseRightTabs)
                 history.push(item.path)
                 break
+            // 关闭全部选项卡
             case 'closeAll':
                 closeTabs(cachedTabs)
                 history.push('/' + defaultRoute)

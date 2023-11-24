@@ -13,6 +13,7 @@ import useSetting from '@/hooks/useSetting'
 
 const {Header, Sider, Content} = Layout
 
+// 双栏布局
 export const DoubleLayout = () => {
     const [collapsed, setCollapsed] = useState(false)
     const {routes, getCurrentRoute} = useRoute()
@@ -23,6 +24,7 @@ export const DoubleLayout = () => {
     const [selectedKeys, setSelectedKeys] = useState<string[]>([])
     const [childrenRoutes, setChildrenRoutes] = useState<any[]>()
 
+    // 更新菜单状态
     function updateMenuStatus() {
         const current = getCurrentRoute()
 
@@ -35,6 +37,7 @@ export const DoubleLayout = () => {
         setSelectedKeys([current.path, ..._parents])
     }
 
+    // 获取顶级菜单
     const getTopRoute = (current) => {
         const parents = current?.meta?.parents
 
@@ -49,6 +52,7 @@ export const DoubleLayout = () => {
         return topRoute
     }
 
+    // 初始化子菜单
     const initChildrenRoutes = () => {
         const currentRoute = getCurrentRoute()
         if (currentRoute?.meta.parents.length) {
@@ -58,6 +62,7 @@ export const DoubleLayout = () => {
         }
     }
 
+    // 点击菜单
     const clickItem = (item) => {
         if (item.is_link) {
             window.open(item.path)
@@ -84,28 +89,33 @@ export const DoubleLayout = () => {
         <Layout className="h-screen overflow-hidden">
             <Sider collapsedWidth={65}
                    theme={getSetting('system_theme_setting.darkTheme') ? 'light' : 'dark'}
-                   className="border-r"
+                   className="border-r h-full"
                    collapsed>
-                <LayoutLogo onlyLogo/>
-                <div className="w-full h-full overflow-y-auto">
-                    {routes?.map(item => {
-                        if (item?.meta?.hide) return null
-                        const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
-                        const selectStyle = selectedKeys.includes(item.path) ? ' bg-[var(--colors-brand-5)] hover:bg-[var(--colors-brand-5)]' : ' hover:bg-gray-100/20'
+                <div>
+                    <LayoutLogo onlyLogo/>
+                    <div className="w-full h-full overflow-y-auto">
+                        {routes?.map(item => {
+                            if (item?.meta?.hide) return null
+                            const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
+                            const selectStyle = selectedKeys.includes(item.path) ? ' bg-[var(--colors-brand-5)] hover:bg-[var(--colors-brand-5)]' : ' hover:bg-gray-100/20'
 
-                        return (
-                            <div key={item.name} className={baseStyle + selectStyle} onClick={() => clickItem(item)} title={item?.meta?.title}>
-                                {(item?.meta?.icon && item?.meta?.icon != '-') && (
-                                    <div className="p-1">
-                                        <Icon icon={item?.meta?.icon} fontSize={18}/>
+                            return (
+                                <div key={item.name}
+                                     className={baseStyle + selectStyle}
+                                     onClick={() => clickItem(item)}
+                                     title={item?.meta?.title}>
+                                    {(item?.meta?.icon && item?.meta?.icon != '-') && (
+                                        <div className="p-1">
+                                            <Icon icon={item?.meta?.icon} fontSize={18}/>
+                                        </div>
+                                    )}
+                                    <div className="text-[12px] whitespace-nowrap">
+                                        {item?.meta?.title}
                                     </div>
-                                )}
-                                <div className="text-[12px] whitespace-nowrap">
-                                    {item?.meta?.title}
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
             </Sider>
             <Sider hidden={!childrenRoutes?.length}

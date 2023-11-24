@@ -1,6 +1,7 @@
 import lazyload from "@/utils/lazyload"
 import {isArray, isString} from '@/utils/common'
 
+// 路由懒加载
 export const componentMount = (routes) => {
     const mod = import.meta.glob("../pages/**/[a-z[]*.tsx")
 
@@ -24,6 +25,7 @@ export const componentMount = (routes) => {
     return travel(routes)
 }
 
+// 获取所有路由
 export const getFlattenRoutes = (routes) => {
     const flattenRoutes = []
 

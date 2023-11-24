@@ -15,6 +15,7 @@ import enUS from 'antd/locale/en_US'
 import {dynamicAssetsHandler} from '@/utils/dynamicAssets'
 import {registerCustomComponents} from '@/components/AmisRender/CustomComponents'
 
+// 应用初始化
 const useSetup = (store) => {
     const [lang, setLang] = useStorage('owl-lang', 'zh-CN')
 
@@ -101,13 +102,12 @@ const useSetup = (store) => {
         appLoaded()
     }
 
+    // 初始化
     useMount(() => {
         init().then()
     })
 
-    return {
-        getAntdLocale,
-    }
+    return {getAntdLocale}
 }
 
 export default useSetup

@@ -12,6 +12,7 @@ import SettingPanel from '@/layouts/components/SettingPanel'
 import useSetting from '@/hooks/useSetting'
 import {appLoaded, goToLoginPage, Token} from '@/utils/common'
 
+// 应用整体布局
 const Layout = () => {
     const {getCurrentRoute} = useRoute()
     const history = useHistory()
@@ -22,6 +23,7 @@ const Layout = () => {
 
     const currentRoute = getCurrentRoute()
 
+    // 根据配置渲染不同布局
     const RenderLayout = (mode:string) => {
         switch (mode) {
             case 'default':
@@ -37,6 +39,7 @@ const Layout = () => {
         }
     }
 
+    // 监听屏幕大小
     useEffect(() => {
         if (isSm !== isSmallScreen) {
             // 解决刷新后页面不显示的问题
@@ -52,10 +55,12 @@ const Layout = () => {
         }
     }, [isSmallScreen])
 
+    // 判断是否登录
     if(!Token().value){
         goToLoginPage()
     }
 
+    // 判断是否全屏
     if (currentRoute?.is_full) {
         return (
             <div className="h-screen">

@@ -27,6 +27,7 @@ export type IRoute = {
     }
 };
 
+// 静态路由
 export const staticRoutes: IRoute[] = [
     // {
     //     name: "menu.dashboard",
@@ -47,11 +48,13 @@ export const staticRoutes: IRoute[] = [
     // },
 ]
 
+// 动态路由
 const useRoute = () => {
     const {routes} = useSelector((state: GlobalState) => state)
     const dispatch = useDispatch()
     const history = useHistory()
 
+    // 获取路由数据
     const dynamicRoutes = useRequest(fetchUserRoutes, {
         manual: true,
         cacheKey: 'app-dynamic-routes',
@@ -66,8 +69,10 @@ const useRoute = () => {
         }
     })
 
+    // 刷新路由全局方法
     registerGlobalFunction('refreshRoutes', () => dynamicRoutes.runAsync())
 
+    // 默认路由
     const defaultRoute = useMemo(() => {
         const first = routes.find(r => r.is_home == 1) || routes[0]
         if (first) {
@@ -78,6 +83,7 @@ const useRoute = () => {
         return ''
     }, [routes])
 
+    // 获取当前路由
     const getCurrentRoute = () => getFlattenRoutes(routes).find((tab) => tab.path.split('?')[0] === history.location.pathname.replace(/\/\d+/g, '/:id'))
 
     return {routes, defaultRoute, getCurrentRoute}

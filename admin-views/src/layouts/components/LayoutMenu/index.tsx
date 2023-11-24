@@ -6,6 +6,7 @@ import useRoute from '@/routes'
 import {getFlattenRoutes} from '@/routes/helpers'
 import {Icon} from '@iconify/react'
 
+// 菜单
 const LayoutMenu = (
     {
         mode = 'inline',
@@ -32,9 +33,9 @@ const LayoutMenu = (
     const [openKeys, setOpenKeys] = useState<string[]>(defaultOpenKeys)
 
     const customRoutes = routeProps.length > 0 ? routeProps : routes
-
     const flattenRoutes = useMemo(() => getFlattenRoutes(customRoutes) || [], [customRoutes])
 
+    // 更新菜单状态
     function updateMenuStatus() {
         const current = getCurrentRoute()
 
@@ -55,6 +56,7 @@ const LayoutMenu = (
 
     useEffect(() => updateMenuStatus(), [pathname, customRoutes, collapsed])
 
+    // 获取菜单
     const getMenus = (routes = []) => {
         let menus = []
         for (let route of routes) {
@@ -73,6 +75,7 @@ const LayoutMenu = (
         return menus
     }
 
+    // 菜单点击事件
     const clickMenu = (e) => {
         const currentRoute = flattenRoutes.find((r) => r.path.split('?')[0] === e.key)
 

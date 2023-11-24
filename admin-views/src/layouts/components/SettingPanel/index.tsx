@@ -24,6 +24,7 @@ import {useRequest} from 'ahooks'
 import {saveSettings} from '@/service/api'
 import {useState} from 'react'
 
+// 设置面板
 const SettingPanel = () => {
     const history = useHistory()
     const pathname = history.location.pathname
@@ -34,6 +35,7 @@ const SettingPanel = () => {
 
     const [cachedSettings, setCachedSettings] = useState(localStorage.getItem(getCacheKey('settings')))
 
+    // 关闭设置面板
     const closeSetting = () => {
         dispatch({
             type: 'update-open-setting',
@@ -41,6 +43,7 @@ const SettingPanel = () => {
         })
     }
 
+    // 保存设置
     const handleChange = (key, value) => {
         if (key === 'themeColor') setThemeColor(value)
         if (key === 'darkTheme') setDarkTheme(value)
@@ -64,6 +67,7 @@ const SettingPanel = () => {
         }
     }
 
+    // 保存设置
     const save = useRequest(saveSettings, {
         manual: true,
         onSuccess: () => {
@@ -75,10 +79,12 @@ const SettingPanel = () => {
         }
     })
 
+    // 提交设置
     const submit = () => {
         save.run({system_theme_setting: settings.system_theme_setting})
     }
 
+    // 获取动画选项
     const getAnimateOptions = (type) => {
         const animateOptions = ['alpha', 'left', 'right', 'top', 'bottom', 'scale', 'scaleBig', 'scaleX', 'scaleY']
 

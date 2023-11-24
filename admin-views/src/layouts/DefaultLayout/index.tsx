@@ -10,6 +10,7 @@ import useSetting from '@/hooks/useSetting'
 
 const {Header, Sider, Content} = Layout
 
+// 默认布局
 const DefaultLayout = () => {
     const {getSetting} = useSetting()
     const [collapsed, setCollapsed] = useState(false)

@@ -1,6 +1,7 @@
 import {Icon} from '@iconify/react'
 import IconButton from '@/layouts/components/IconButton'
 
+// 折叠切换按钮
 const CollapseTrigger = ({collapsed, toggle}) => {
     return (
         <IconButton onClick={() => toggle(!collapsed)}>

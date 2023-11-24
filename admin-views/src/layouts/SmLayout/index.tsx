@@ -9,6 +9,7 @@ import useSetting from '@/hooks/useSetting'
 
 const {Header, Content} = Layout
 
+// 小屏布局
 const SmLayout = () => {
     const {getSetting} = useSetting()
     const [closed, setClosed] = useState(true)
