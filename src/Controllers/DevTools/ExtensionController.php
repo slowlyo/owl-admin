@@ -4,23 +4,11 @@ namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
-use Slowlyo\OwlAdmin\Events\ExtensionChanged;
-use Slowlyo\OwlAdmin\Renderers\Tpl;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Renderers\Alert;
-use Slowlyo\OwlAdmin\Renderers\Dialog;
-use Slowlyo\OwlAdmin\Renderers\Drawer;
 use Slowlyo\OwlAdmin\Extend\Extension;
-use Slowlyo\OwlAdmin\Renderers\Service;
-use Slowlyo\OwlAdmin\Renderers\Markdown;
-use Slowlyo\OwlAdmin\Renderers\CRUDTable;
-use Slowlyo\OwlAdmin\Renderers\AjaxAction;
-use Slowlyo\OwlAdmin\Renderers\TextControl;
-use Slowlyo\OwlAdmin\Renderers\FileControl;
-use Slowlyo\OwlAdmin\Renderers\TableColumn;
 use Slowlyo\OwlAdmin\Renderers\DialogAction;
 use Slowlyo\OwlAdmin\Renderers\DrawerAction;
-use Slowlyo\OwlAdmin\Renderers\SchemaPopOver;
+use Slowlyo\OwlAdmin\Events\ExtensionChanged;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class ExtensionController extends AdminController
@@ -50,29 +38,29 @@ class ExtensionController extends AdminController
     {
         $property = $extension->composerProperty;
 
-        $name = $extension->getName();
+        $name    = $extension->getName();
         $version = $extension->getVersion();
 
         return [
-            'id' => $name,
-            'alias' => $extension->getAlias(),
-            'logo' => $extension->getLogoBase64(),
-            'name' => $name,
-            'version' => $version,
+            'id'          => $name,
+            'alias'       => $extension->getAlias(),
+            'logo'        => $extension->getLogoBase64(),
+            'name'        => $name,
+            'version'     => $version,
             'description' => $property->description,
-            'authors' => $property->authors,
-            'homepage' => $property->homepage,
-            'enabled' => $extension->enabled(),
-            'extension' => $extension,
-            'doc' => $extension->getDocs(),
+            'authors'     => $property->authors,
+            'homepage'    => $property->homepage,
+            'enabled'     => $extension->enabled(),
+            'extension'   => $extension,
+            'doc'         => $extension->getDocs(),
             'has_setting' => $extension->settingForm() instanceof Form,
-            'used' => $extension->used(),
+            'used'        => $extension->used(),
         ];
     }
 
     public function list()
     {
-        return CRUDTable::make()
+        return amis()->CRUDTable()
             ->perPage(20)
             ->affixHeader(false)
             ->filterTogglable()
@@ -84,7 +72,7 @@ class ExtensionController extends AdminController
             ->source('${rows | filter:alias:match:keywords}')
             ->filter(
                 $this->baseFilter()->body([
-                    TextControl::make()
+                    amis()->TextControl()
                         ->name('keywords')
                         ->label(__('admin.extensions.form.name'))
                         ->placeholder(__('admin.extensions.filter_placeholder'))
@@ -114,52 +102,61 @@ class ExtensionController extends AdminController
                     ->type('tpl')
                     ->tpl('<div>${authors[0].name}</div> <span class="text-gray-400">${authors[0].email}</span>'),
                 $this->rowActions([
-                    DrawerAction::make()->label(__('admin.show'))->className('p-0')->level('link')->drawer(
-                        Drawer::make()
+                    amis()->DrawerAction()->label(__('admin.show'))->className('p-0')->level('link')->drawer(
+                        amis()->Drawer()
                             ->size('lg')
                             ->title('README.md')
                             ->actions([])
                             ->closeOnOutside()
                             ->closeOnEsc()
-                            ->body(Markdown::make()->name('${doc | raw}')->options(['html' => true, 'breaks' => true]))
+                            ->body(amis()->Markdown()->name('${doc | raw}')->options([
+                                'html'   => true,
+                                'breaks' => true,
+                            ]))
                     ),
-                    DrawerAction::make()
+                    amis()->DrawerAction()
                         ->label(__('admin.extensions.setting'))
                         ->level('link')
                         ->visibleOn('${has_setting && enabled}')
                         ->drawer(
-                            Drawer::make()->title(__('admin.extensions.setting'))->resizable()->closeOnOutside()->body(
-                                Service::make()
-                                    ->schemaApi([
-                                        'url' => admin_url('dev_tools/extensions/config_form'),
-                                        'method' => 'post',
-                                        'data' => [
-                                            'id' => '${id}',
-                                        ],
-                                    ])
-                            )->actions([])
+                            amis()
+                                ->Drawer()
+                                ->title(__('admin.extensions.setting'))
+                                ->resizable()
+                                ->closeOnOutside()
+                                ->body(
+                                    amis()->Service()
+                                        ->schemaApi([
+                                            'url'    => admin_url('dev_tools/extensions/config_form'),
+                                            'method' => 'post',
+                                            'data'   => [
+                                                'id' => '${id}',
+                                            ],
+                                        ])
+                                )
+                                ->actions([])
                         ),
-                    AjaxAction::make()
+                    amis()->AjaxAction()
                         ->label('${enabled ? "' . __('admin.extensions.disable') . '" : "' . __('admin.extensions.enable') . '"}')
                         ->level('link')
                         ->className(["text-success" => '${!enabled}', "text-danger" => '${enabled}'])
                         ->api([
-                            'url' => admin_url('dev_tools/extensions/enable'),
+                            'url'    => admin_url('dev_tools/extensions/enable'),
                             'method' => 'post',
-                            'data' => [
-                                'id' => '${id}',
+                            'data'   => [
+                                'id'      => '${id}',
                                 'enabled' => '${enabled}',
                             ],
                         ])
                         ->confirmText('${enabled ? "' . __('admin.extensions.disable_confirm') . '" : "' . __('admin.extensions.enable_confirm') . '"}'),
-                    AjaxAction::make()
+                    amis()->AjaxAction()
                         ->label(__('admin.extensions.uninstall'))
                         ->level('link')
                         ->className('text-danger')
                         ->api([
-                            'url' => admin_url('dev_tools/extensions/uninstall'),
+                            'url'    => admin_url('dev_tools/extensions/uninstall'),
                             'method' => 'post',
-                            'data' => ['id' => '${id}'],
+                            'data'   => ['id' => '${id}'],
                         ])
                         ->visibleOn('${used}')
                         ->confirmText(__('admin.extensions.uninstall_confirm')),
@@ -174,23 +171,23 @@ class ExtensionController extends AdminController
      */
     public function createExtend()
     {
-        return DialogAction::make()
+        return amis()->DialogAction()
             ->label(__('admin.extensions.create_extension'))
             ->icon('fa fa-add')
             ->level('success')
             ->dialog(
-                Dialog::make()->title(__('admin.extensions.create_extension'))->body(
-                    Form::make()->mode('normal')->api($this->getStorePath())->body([
-                        Alert::make()
+                amis()->Dialog()->title(__('admin.extensions.create_extension'))->body(
+                    amis()->Form()->mode('normal')->api($this->getStorePath())->body([
+                        amis()->Alert()
                             ->level('info')
                             ->showIcon()
                             ->body(__('admin.extensions.create_tips', ['dir' => config('admin.extension.dir')])),
-                        TextControl::make()
+                        amis()->TextControl()
                             ->name('name')
                             ->label(__('admin.extensions.form.name'))
                             ->placeholder('eg: slowlyo/owl-admin')
                             ->required(),
-                        TextControl::make()
+                        amis()->TextControl()
                             ->name('namespace')
                             ->label(__('admin.extensions.form.namespace'))
                             ->placeholder('eg: Slowlyo\Notice')
@@ -225,13 +222,13 @@ class ExtensionController extends AdminController
      */
     public function localInstall()
     {
-        return DialogAction::make()
+        return amis()->DialogAction()
             ->label(__('admin.extensions.local_install'))
             ->icon('fa-solid fa-cloud-arrow-up')
             ->dialog(
-                Dialog::make()->title(__('admin.extensions.local_install'))->showErrorMsg(false)->body(
-                    Form::make()->mode('normal')->api('post:' . admin_url('dev_tools/extensions/install'))->body([
-                        FileControl::make()->name('file')->label()->required()->drag()->accept('.zip'),
+                amis()->Dialog()->title(__('admin.extensions.local_install'))->showErrorMsg(false)->body(
+                    amis()->Form()->mode('normal')->api('post:' . admin_url('dev_tools/extensions/install'))->body([
+                        amis()->FileControl()->name('file')->label()->required()->drag()->accept('.zip'),
                     ])
                 )
             );
@@ -252,7 +249,7 @@ class ExtensionController extends AdminController
 
         // 如果哪天加速服务挂了，就用官方的
         if (!$result) {
-            $url = 'https://packagist.org/search.json?tags=owl-admin&per_page=15&q=' . $q;
+            $url    = 'https://packagist.org/search.json?tags=owl-admin&per_page=15&q=' . $q;
             $result = file_get_contents($url);
         }
 
@@ -266,24 +263,24 @@ class ExtensionController extends AdminController
      */
     public function moreExtend()
     {
-        return DrawerAction::make()
+        return amis()->DrawerAction()
             ->label(__('admin.extensions.more_extensions'))
             ->icon('fa-regular fa-lightbulb')
             ->drawer(
-                Drawer::make()
+                amis()->Drawer()
                     ->title(__('admin.extensions.more_extensions'))
                     ->size('xl')
                     ->closeOnEsc()
                     ->closeOnOutside()
                     ->body(
-                        CRUDTable::make()
+                        amis()->CRUDTable()
                             ->perPage(20)
                             ->affixHeader(false)
                             ->filterTogglable()
                             ->loadDataOnce()
                             ->filter(
                                 $this->baseFilter()->body([
-                                    TextControl::make()
+                                    amis()->TextControl()
                                         ->name('keywords')
                                         ->label('关键字')
                                         ->placeholder('输入关键字搜索')
@@ -298,24 +295,24 @@ class ExtensionController extends AdminController
                                 amis('reload')->align('right'),
                                 amis('filter-toggler')->align('right'),
                             ])->columns([
-                                TableColumn::make()->name('name')->label('名称')->width(200)
+                                amis()->TableColumn()->name('name')->label('名称')->width(200)
                                     ->type('tpl')
                                     ->tpl('<a href="${url}" target="_blank" title="打开 Packagist">${name}</a>'),
-                                TableColumn::make()
+                                amis()->TableColumn()
                                     ->name('description')
                                     ->label('描述')
                                     ->type('tpl')
                                     ->tpl('${description|truncate: 50}')
                                     ->popOver(
-                                        SchemaPopOver::make()->trigger('hover')->body(
-                                            Tpl::make()->tpl('${description}')
+                                        amis()->SchemaPopOver()->trigger('hover')->body(
+                                            amis()->Tpl()->tpl('${description}')
                                         )->position('left-top')
                                     ),
-                                TableColumn::make()->name('repository')->label('仓库')
+                                amis()->TableColumn()->name('repository')->label('仓库')
                                     ->type('tpl')
                                     ->tpl('<a href="${repository}" target="_blank" title="打开代码仓库">${repository|truncate: 50}</a>'),
-                                TableColumn::make()->name('downloads')->label('下载量')->width(100),
-                                TableColumn::make()
+                                amis()->TableColumn()->name('downloads')->label('下载量')->width(100),
+                                amis()->TableColumn()
                                     ->name('${"composer require " + name}')
                                     ->label('composer 安装命令')
                                     ->width(300)
@@ -355,7 +352,7 @@ class ExtensionController extends AdminController
             }
 
             //安装扩展事件
-            //ExtensionChanged::dispatch($extensionName,'install');
+            ExtensionChanged::dispatch($extensionName, 'install');
 
             return $this->response()->successMessage(
                 __('admin.successfully_message', ['attribute' => __('admin.extensions.install')])
