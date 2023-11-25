@@ -93,7 +93,7 @@ export const DoubleLayout = () => {
                    collapsed>
                 <div>
                     <LayoutLogo onlyLogo/>
-                    <div className="w-full h-full overflow-y-auto">
+                    <div className="w-full h-full overflow-y-auto overflow-x-hidden">
                         {routes?.map(item => {
                             if (item?.meta?.hide) return null
                             const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
