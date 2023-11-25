@@ -126,7 +126,7 @@ export const DoubleLayout = () => {
                    collapsed={collapsed}>
                 {(!collapsed && !!childrenRoutes?.length) && (
                     <div className="h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate">
-                        {getTopRoute(childrenRoutes[0])?.meta?.title}
+                        {getSetting('app_name')}
                     </div>
                 )}
 
