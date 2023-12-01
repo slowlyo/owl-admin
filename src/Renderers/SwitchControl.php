@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Switch 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/switch
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class SwitchControl extends BaseRenderer
 {
@@ -189,6 +189,14 @@ class SwitchControl extends BaseRenderer
     public function labelWidth($value = '')
     {
         return $this->set('labelWidth', $value);
+    }
+
+    /**
+     * 是否处于加载状态
+     */
+    public function loading($value = true)
+    {
+        return $this->set('loading', $value);
     }
 
     /**

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 按钮组控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/button-group
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class ButtonGroupControl extends BaseRenderer
 {
@@ -133,6 +133,14 @@ class ButtonGroupControl extends BaseRenderer
     public function deferApi($value = '')
     {
         return $this->set('deferApi', $value);
+    }
+
+    /**
+     * 懒加载字段
+     */
+    public function deferField($value = '')
+    {
+        return $this->set('deferField', $value);
     }
 
     /**

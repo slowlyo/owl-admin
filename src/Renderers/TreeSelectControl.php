@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tree 下拉选择框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tree
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class TreeSelectControl extends BaseRenderer
 {
@@ -104,11 +104,19 @@ class TreeSelectControl extends BaseRenderer
     }
 
     /**
-     * 延时加载的 API，当选项中有 defer: true 的选项时，点开会通过此接口扩充。
+     * 懒加载接口
      */
     public function deferApi($value = '')
     {
         return $this->set('deferApi', $value);
+    }
+
+    /**
+     * 懒加载字段
+     */
+    public function deferField($value = '')
+    {
+        return $this->set('deferField', $value);
     }
 
     /**

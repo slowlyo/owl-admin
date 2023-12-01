@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * JSON Schema Editor 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/json-schema-editor
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class JSONSchemaEditorControl extends BaseRenderer
 {

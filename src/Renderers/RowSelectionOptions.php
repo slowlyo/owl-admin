@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * RowSelectionOptions
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class RowSelectionOptions extends BaseRenderer
 {

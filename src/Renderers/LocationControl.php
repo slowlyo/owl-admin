@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Location 选点组件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/location
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class LocationControl extends BaseRenderer
 {

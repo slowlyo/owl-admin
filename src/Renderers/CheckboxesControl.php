@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 复选框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/checkboxes
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class CheckboxesControl extends BaseRenderer
 {
@@ -125,6 +125,14 @@ class CheckboxesControl extends BaseRenderer
     public function deferApi($value = '')
     {
         return $this->set('deferApi', $value);
+    }
+
+    /**
+     * 懒加载字段
+     */
+    public function deferField($value = '')
+    {
+        return $this->set('deferField', $value);
     }
 
     /**

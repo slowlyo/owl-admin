@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TooltipWrapper
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class TooltipWrapper extends BaseRenderer
 {

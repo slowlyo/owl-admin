@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Date 展示渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/date
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class Date extends BaseRenderer
 {

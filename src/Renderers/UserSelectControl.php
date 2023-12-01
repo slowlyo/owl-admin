@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UserSelect 移动端人员选择。
  *
  * @author  slowlyo
- * @version v3.5.3
+ * @version v3.6.0
  */
 class UserSelectControl extends BaseRenderer
 {
@@ -93,6 +93,14 @@ class UserSelectControl extends BaseRenderer
     public function deferApi($value = '')
     {
         return $this->set('deferApi', $value);
+    }
+
+    /**
+     * 懒加载字段
+     */
+    public function deferField($value = '')
+    {
+        return $this->set('deferField', $value);
     }
 
     /**
