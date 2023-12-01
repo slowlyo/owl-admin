@@ -101,8 +101,7 @@ class AdminUserService extends AdminService
     {
         $keyword = request()->keyword;
 
-        $query = $this
-            ->query()
+        $query = $this->query()
             ->with('roles')
             ->select(['id', 'name', 'username', 'avatar', 'created_at'])
             ->when($keyword, function ($query) use ($keyword) {
@@ -111,8 +110,8 @@ class AdminUserService extends AdminService
 
         $this->sortable($query);
 
-        $items = (clone $query)->paginate(request()->input('perPage', 20))->items();
-        $total = (clone $query)->count();
+        $items = $query->clone()->paginate(request()->input('perPage', 20))->items();
+        $total = $query->clone()->count();
 
         return compact('items', 'total');
     }

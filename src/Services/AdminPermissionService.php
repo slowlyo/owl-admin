@@ -83,9 +83,10 @@ class AdminPermissionService extends AdminService
     {
         $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
 
-        amis_abort_if((clone $query)->where('name', $data['name'])
+        amis_abort_if($query->clone()->where('name', $data['name'])
             ->exists(), __('admin.admin_permission.name_already_exists'));
-        amis_abort_if((clone $query)->where('slug', $data['slug'])
+
+        amis_abort_if($query->clone()->where('slug', $data['slug'])
             ->exists(), __('admin.admin_permission.slug_already_exists'));
     }
 

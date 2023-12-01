@@ -152,8 +152,8 @@ abstract class AdminService
     {
         $query = $this->listQuery();
 
-        $items = (clone $query)->paginate(request()->input('perPage', 20))->items();
-        $total = (clone $query)->count();
+        $items = $query->clone()->paginate(request()->input('perPage', 20))->items();
+        $total = $query->clone()->count();
 
         return compact('items', 'total');
     }

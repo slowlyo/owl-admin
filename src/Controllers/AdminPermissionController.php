@@ -147,7 +147,7 @@ class AdminPermissionController extends AdminController
     {
         $menus       = Admin::adminMenuModel()::query()->get()->toArray();
         $slugMap     = Admin::adminPermissionModel()::query()->get(['id', 'slug'])->keyBy('id')->toArray();
-        $slugCache =   [];
+        $slugCache   = [];
         $permissions = [];
         foreach ($menus as $menu) {
             $_httpPath =
@@ -160,13 +160,13 @@ class AdminPermissionController extends AdminController
                 $menuTitle = sprintf('%s(%s)', $menuTitle, $menu['id']);
             }
 
-            if($_httpPath){
+            if ($_httpPath) {
                 $slug = Str::of(explode('?', $_httpPath)[0])->trim('/')->replace('/', '.')->replace('*', '')->value();
-            }else{
+            } else {
                 $slug = Str::uuid();
             }
 
-            if(in_array($slug, $slugCache)){
+            if (in_array($slug, $slugCache)) {
                 $slug = $slug . '.' . $menu['id'];
             }
             $slugCache[] = $slug;
@@ -199,7 +199,7 @@ class AdminPermissionController extends AdminController
 
             $_id = $item['id'];
             while ($item['parent_id'] != 0) {
-                (clone $query)->insert([
+                $query->clone()->insert([
                     'permission_id' => $_id,
                     'menu_id'       => $item['parent_id'],
                 ]);
