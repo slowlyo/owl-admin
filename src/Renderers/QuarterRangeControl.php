@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * QuarterRange 季度范围控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-quarter-range
  *
  * @author  slowlyo
- * @version v3.6.0
+ * @version v3.6.1
  */
 class QuarterRangeControl extends BaseRenderer
 {

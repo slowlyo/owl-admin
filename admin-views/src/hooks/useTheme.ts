@@ -12,7 +12,7 @@ const darkThemeHandler = (dark = false) => {
     setHtmlStyle('--owl-body-bg', dark ? '#1F1F1F' : '#f5f5f5')
     setHtmlStyle('--owl-main-bg', dark ? '#141414' : '#fff')
 
-    let neutral = ['#141414', '#1f1f1f', '#262626', '#434343', '#595959', '#8c8c8c', '#bfbfbf', '#d9d9d9', '#f0f0f0', '#f5f5f5', '#ffffff']
+    let neutral = ['#141414', '#1f1f1f', '#262626', '#434343', '#595959', '#8c8c8c', '#bfbfbf', '#e9e9e9', '#f0f0f0', '#f5f5f5', '#ffffff']
 
     if (dark) {
         neutral.reverse()
@@ -51,7 +51,7 @@ const useTheme = (store = null) => {
 
     // 设置主题色
     const setThemeColor = (color, dark = false) => {
-        if(!color) return
+        if (!color) return
 
         const list = generate(color, {theme: dark ? 'dark' : 'default'})
 

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TransferPicker 穿梭器的弹框形态 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/transfer-picker
  *
  * @author  slowlyo
- * @version v3.6.0
+ * @version v3.6.1
  */
 class TransferPickerControl extends BaseRenderer
 {
