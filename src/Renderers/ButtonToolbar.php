@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Button Toolar 渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/button-toolbar
  *
  * @author  slowlyo
- * @version v3.6.0
+ * @version v3.6.1
  */
 class ButtonToolbar extends BaseRenderer
 {
