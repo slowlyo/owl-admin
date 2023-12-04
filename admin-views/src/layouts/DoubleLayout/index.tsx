@@ -124,13 +124,17 @@ export const DoubleLayout = () => {
                    className="border-r overflow-y-auto"
                    theme="light"
                    collapsed={collapsed}>
-                {(!collapsed && !!childrenRoutes?.length) && (
-                    <div className="h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate">
-                        {getSetting('app_name')}
-                    </div>
-                )}
+                <div className="h-full overflow-hidden">
+                    {(!collapsed && !!childrenRoutes?.length) && (
+                        <div className="h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate">
+                            {getSetting('app_name')}
+                        </div>
+                    )}
 
-                <LayoutMenu collapsed={collapsed} routeProps={childrenRoutes}/>
+                    <div className="h-full">
+                        <LayoutMenu collapsed={collapsed} routeProps={childrenRoutes}/>
+                    </div>
+                </div>
             </Sider>
             <Layout>
                 <Header className="h-[65px] leading-none flex justify-between items-center border-b p-0">
