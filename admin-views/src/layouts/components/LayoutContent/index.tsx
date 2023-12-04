@@ -9,6 +9,7 @@ import {KeepAlive} from 'react-activation'
 import useSetting from '@/hooks/useSetting'
 import LayoutTabs from '@/layouts/components/LayoutTabs'
 import LayoutFooter from '@/layouts/components/LayoutFooter'
+import {Scrollbars} from 'react-custom-scrollbars'
 
 // 内容区域
 const LayoutContent = () => {
@@ -50,31 +51,33 @@ const LayoutContent = () => {
     return (
         <div className="h-full overflow-hidden flex flex-col bg-[var(--owl-body-bg)]">
             {(getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full) && <LayoutTabs/>}
-            <div className="flex-1 p-5 overflow-auto">
-                <QueueAnim className="relative"
-                           type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
-                           duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
-                    <div key={pathname} id={pathname} className="absolute w-full">
-                        <Switch location={location}>
-                            {flattenRoutes.map(({name, path, component}, index) => {
-                                return <Route key={index} path={path.replace(/\?.*$/, '')} render={() => (
-                                    <KeepAlive name={name}
-                                               cacheKey={path}
-                                               when={getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1}>
-                                        {React.createElement(component)}
-                                    </KeepAlive>
-                                )}/>
-                            })}
-                            <Route exact path="/">
-                                <Redirect to={`/${defaultRoute}`}/>
-                            </Route>
-                            {flattenRoutes.length && (
-                                <Route path="*" component={lazyLoad(() => import('@/pages/404'))}/>
-                            )}
-                        </Switch>
-                    </div>
-                </QueueAnim>
-            </div>
+            <Scrollbars autoHide>
+                <div className="flex-1 p-5">
+                    <QueueAnim className="relative"
+                               type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
+                               duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
+                        <div key={pathname} id={pathname} className="absolute w-full">
+                            <Switch location={location}>
+                                {flattenRoutes.map(({name, path, component}, index) => {
+                                    return <Route key={index} path={path.replace(/\?.*$/, '')} render={() => (
+                                        <KeepAlive name={name}
+                                                   cacheKey={path}
+                                                   when={getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1}>
+                                            {React.createElement(component)}
+                                        </KeepAlive>
+                                    )}/>
+                                })}
+                                <Route exact path="/">
+                                    <Redirect to={`/${defaultRoute}`}/>
+                                </Route>
+                                {flattenRoutes.length && (
+                                    <Route path="*" component={lazyLoad(() => import('@/pages/404'))}/>
+                                )}
+                            </Switch>
+                        </div>
+                    </QueueAnim>
+                </div>
+            </Scrollbars>
             {!currentRoute?.is_full && <LayoutFooter/>}
         </div>
     )

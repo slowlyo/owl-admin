@@ -28,7 +28,7 @@ const TopLayout = () => {
                 </div>
                 <LayoutTopBar/>
             </Header>
-            <Content className="overflow-auto overflow">
+            <Content className="overflow-hidden">
                 <LayoutContent/>
             </Content>
         </Layout>

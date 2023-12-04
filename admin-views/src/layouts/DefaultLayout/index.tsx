@@ -29,7 +29,7 @@ const DefaultLayout = () => {
                    trigger={null}
                    collapsedWidth={65}>
                 <LayoutLogo onlyLogo={collapsed}/>
-                <div className="h-[calc(100%-65px)] overflow-y-auto">
+                <div className="h-[calc(100%-65px)] overflow-hidden">
                     <LayoutMenu collapsed={collapsed} theme={darkSider() ? 'dark' : 'light'}/>
                 </div>
             </Sider>
@@ -41,7 +41,7 @@ const DefaultLayout = () => {
                     </div>
                     <LayoutTopBar/>
                 </Header>
-                <Content className="overflow-auto overflow">
+                <Content className="overflow-hidden">
                     <LayoutContent/>
                 </Content>
             </Layout>

@@ -22,7 +22,7 @@ const SmLayout = () => {
                 </div>
                 <LayoutTopBar/>
             </Header>
-            <Content className="overflow-auto overflow">
+            <Content className="overflow-hidden">
                 <LayoutContent/>
             </Content>
             <Drawer bodyStyle={{padding: '5px 0'}}

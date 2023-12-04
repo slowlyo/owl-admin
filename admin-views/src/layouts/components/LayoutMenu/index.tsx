@@ -5,6 +5,7 @@ import qs from 'query-string'
 import useRoute from '@/routes'
 import {getFlattenRoutes} from '@/routes/helpers'
 import {Icon} from '@iconify/react'
+import {Scrollbars} from 'react-custom-scrollbars'
 
 // 菜单
 const LayoutMenu = (
@@ -88,16 +89,18 @@ const LayoutMenu = (
     }
 
     return (
-        <Menu
-            className="!border-e-0 flex-1"
-            mode={mode}
-            theme={theme}
-            openKeys={openKeys}
-            selectedKeys={selectedKeys}
-            onOpenChange={(keys) => setOpenKeys(keys)}
-            onClick={clickMenu}
-            items={getMenus(customRoutes)}
-        />
+        <Scrollbars autoHidden>
+            <Menu
+                className="!border-e-0 flex-1"
+                mode={mode}
+                theme={theme}
+                openKeys={openKeys}
+                selectedKeys={selectedKeys}
+                onOpenChange={(keys) => setOpenKeys(keys)}
+                onClick={clickMenu}
+                items={getMenus(customRoutes)}
+            />
+        </Scrollbars>
     )
 }
 

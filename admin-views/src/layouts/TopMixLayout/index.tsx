@@ -35,7 +35,7 @@ const TopMixLayout = () => {
             </Header>
             <Layout>
                 <Sider width={220}
-                       className="border-r overflow-y-auto"
+                       className="border-r overflow-hidden"
                        theme={darkSider() ? 'dark' : 'light'}
                        collapsed={collapsed}
                        collapsible
@@ -43,7 +43,7 @@ const TopMixLayout = () => {
                        collapsedWidth={65}>
                     <LayoutMenu theme={darkSider() ? 'dark' : 'light'}/>
                 </Sider>
-                <Content className="overflow-auto overflow">
+                <Content className="overflow-hidden">
                     <LayoutContent/>
                 </Content>
             </Layout>
