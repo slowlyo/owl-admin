@@ -190,7 +190,7 @@ class WangEditor extends BaseRenderer
     }
 
     /**
-     * 指定为 custom-wang-editor 渲染器。
+     * 指定为 wang-editor 渲染器。
      */
     public function type($value = 'custom-wang-editor')
     {

@@ -1604,6 +1604,11 @@ class Amis
         return $instance;
     }
 
+    public function Watermark()
+    {
+        return Watermark::make();
+    }
+
     public function WebComponent()
     {
         return WebComponent::make();
