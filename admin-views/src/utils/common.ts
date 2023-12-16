@@ -96,9 +96,18 @@ export const Token = () => {
     }
 }
 
-export const inLoginPage = () => window.location.hash == '#/login'
+export const inLoginPage = () => window.location.hash.startsWith('#/login')
 
-export const goToLoginPage = () => window.location.hash = '#/login'
+export const goToLoginPage = () => {
+    const redirect = window.location.hash.includes('?redirect=') ? window.location.hash.split('?redirect=')[1] : window.location.hash
+
+    if(redirect == '#/'){
+        window.location.hash = '#/login'
+        return
+    }
+
+    window.location.hash = '#/login?redirect=' + redirect.replace('#', '')
+}
 
 export const msgHandler = (msg, handle) => {
     const msgKey = 'owl-msg-' + msg
@@ -117,7 +126,7 @@ export const msgHandler = (msg, handle) => {
         handle().then(() => {
             localStorage.removeItem(msgKey)
         })
-    }catch (e) {
+    } catch (e) {
         localStorage.removeItem(msgKey)
     }
 }

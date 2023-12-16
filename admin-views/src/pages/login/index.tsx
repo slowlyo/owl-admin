@@ -47,7 +47,7 @@ const Login = () => {
 
         if (inLoginPage()) {
             // 跳转首页
-            history.replace(defaultRoute)
+            history.replace(window.location.hash.includes('?redirect=') ? window.location.hash.split('?redirect=')[1] : defaultRoute)
         }
     }
 
@@ -55,9 +55,9 @@ const Login = () => {
 
     useEffect(() => {
         if (Token().value) {
-            history.replace(defaultRoute)
+            history.replace(window.location.hash.includes('?redirect=') ? window.location.hash.split('?redirect=')[1] : defaultRoute)
         }
-    }, [history.location])
+    }, [])
 
     useMount(() => {
         if (inLoginPage()) {
