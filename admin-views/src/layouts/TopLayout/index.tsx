@@ -1,9 +1,9 @@
 import {Layout} from 'antd'
 import LayoutLogo from '@/layouts/components/LayoutLogo'
-import LayoutMenu from '@/layouts/components/LayoutMenu'
 import LayoutContent from '@/layouts/components/LayoutContent'
 import LayoutTopBar from '@/layouts/components/LayoutTopBar'
 import useSetting from '@/hooks/useSetting'
+import LayoutTopMenu from '@/layouts/components/LayoutMenu/top'
 
 const {Header, Content} = Layout
 
@@ -20,10 +20,10 @@ const TopLayout = () => {
     return (
         <Layout className="h-screen overflow-hidden">
             <Header className={'h-[65px] flex p-0 justify-between items-center leading-none ' + border}>
-                <div className="flex h-full">
+                <div className="flex h-full flex-1">
                     <LayoutLogo/>
-                    <div className="leading-[65px] h-full">
-                        <LayoutMenu mode="horizontal" theme={darkTop() ? 'dark' : 'light'}/>
+                    <div className="leading-[65px] h-full flex-1">
+                        <LayoutTopMenu theme={darkTop() ? 'dark' : 'light'}/>
                     </div>
                 </div>
                 <LayoutTopBar/>

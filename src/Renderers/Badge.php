@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge
  *
  * @author  slowlyo
- * @version v3.6.1
+ * @version v3.6.3
  */
 class Badge extends BaseRenderer
 {

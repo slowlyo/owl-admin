@@ -1,4 +1,4 @@
-import {Layout} from 'antd'
+import {Affix, Layout} from 'antd'
 import LayoutLogo from '@/layouts/components/LayoutLogo'
 import LayoutContent from '@/layouts/components/LayoutContent'
 import LayoutMenu from '@/layouts/components/LayoutMenu'
@@ -10,6 +10,7 @@ import useRoute from '@/routes'
 import {Icon} from '@iconify/react'
 import {useHistory} from 'react-router'
 import useSetting from '@/hooks/useSetting'
+import {Scrollbars} from 'react-custom-scrollbars'
 
 const {Header, Sider, Content} = Layout
 
@@ -86,14 +87,17 @@ export const DoubleLayout = () => {
     }, [pathname, routes])
 
     return (
-        <Layout className="h-screen overflow-hidden">
+        <Layout className="h-screen" hasSider>
             <Sider collapsedWidth={65}
                    theme={getSetting('system_theme_setting.darkTheme') ? 'light' : 'dark'}
-                   className="border-r h-full"
+                   className="border-r relative"
                    collapsed>
-                <div>
+                <div className="absolute flex items-center justify-center w-full h-[65px]">
                     <LayoutLogo onlyLogo/>
-                    <div className="w-full h-full overflow-y-auto overflow-x-hidden">
+                </div>
+
+                <div className="w-full h-full pt-[65px]">
+                    <Scrollbars autoHide>
                         {routes?.map(item => {
                             if (item?.meta?.hide) return null
                             const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
@@ -115,37 +119,39 @@ export const DoubleLayout = () => {
                                 </div>
                             )
                         })}
-                    </div>
+                    </Scrollbars>
                 </div>
             </Sider>
-            <Sider hidden={!childrenRoutes?.length}
-                   width={220}
-                   collapsedWidth={65}
-                   className="border-r overflow-y-auto"
-                   theme="light"
-                   collapsed={collapsed}>
-                <div className="h-full overflow-hidden">
+            <Layout>
+                <Sider hidden={!childrenRoutes?.length}
+                       width={220}
+                       collapsedWidth={65}
+                       className="border-r relative"
+                       theme="light"
+                       collapsed={collapsed}>
                     {(!collapsed && !!childrenRoutes?.length) && (
-                        <div className="h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate">
+                        <div className="w-full h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate absolute">
                             {getSetting('app_name')}
                         </div>
                     )}
 
-                    <div className="h-full">
+                    <div className="w-full h-full pt-[65px]">
                         <LayoutMenu collapsed={collapsed} routeProps={childrenRoutes}/>
                     </div>
-                </div>
-            </Sider>
-            <Layout>
-                <Header className="h-[65px] leading-none flex justify-between items-center border-b p-0">
-                    <div className="flex h-full items-center">
-                        {!!childrenRoutes?.length && <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>}
-                        <LayoutBreadcrumb/>
+                </Sider>
+
+                <Content className="overflow-hidden relative">
+                    <Header className="h-[65px] w-full leading-none flex justify-between items-center border-b p-0 absolute">
+                        <div className="flex h-full items-center">
+                            {!!childrenRoutes?.length && <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>}
+                            <LayoutBreadcrumb/>
+                        </div>
+                        <LayoutTopBar/>
+                    </Header>
+
+                    <div className="w-full h-full pt-[65px]">
+                        <LayoutContent/>
                     </div>
-                    <LayoutTopBar/>
-                </Header>
-                <Content className="overflow-auto overflow">
-                    <LayoutContent/>
                 </Content>
             </Layout>
         </Layout>

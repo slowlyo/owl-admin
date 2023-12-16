@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Grid 格子布局渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/grid
  *
  * @author  slowlyo
- * @version v3.6.1
+ * @version v3.6.3
  */
 class Grid extends BaseRenderer
 {

@@ -24,7 +24,7 @@ const Layout = () => {
     const currentRoute = getCurrentRoute()
 
     // 根据配置渲染不同布局
-    const RenderLayout = (mode:string) => {
+    const RenderLayout = (mode: string) => {
         switch (mode) {
             case 'default':
                 return <DefaultLayout/>
@@ -56,7 +56,7 @@ const Layout = () => {
     }, [isSmallScreen])
 
     // 判断是否登录
-    if(!Token().value){
+    if (!Token().value) {
         goToLoginPage()
     }
 

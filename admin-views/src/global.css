@@ -35,3 +35,12 @@ html, body {
     background: var(--colors-brand-8);
     color: var(--colors-neutral-text-1);
 }
+
+.clear-children-mb > div{
+    margin-bottom: 0 !important;
+    overflow-x: hidden !important;
+}
+
+.ant-menu-item-icon {
+    vertical-align: -0.225rem !important;
+}

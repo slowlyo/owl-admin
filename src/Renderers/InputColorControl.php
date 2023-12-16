@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Color 颜色选择框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/color
  *
  * @author  slowlyo
- * @version v3.6.1
+ * @version v3.6.3
  */
 class InputColorControl extends BaseRenderer
 {

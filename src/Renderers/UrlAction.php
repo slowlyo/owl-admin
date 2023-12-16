@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UrlAction
  *
  * @author  slowlyo
- * @version v3.6.1
+ * @version v3.6.3
  */
 class UrlAction extends BaseRenderer
 {

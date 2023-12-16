@@ -19,7 +19,7 @@ class AdminUserController extends AdminController
     {
         $crud = $this->baseCRUD()
             ->headerToolbar([
-                $this->createButton(),
+                $this->createButton(true),
                 ...$this->baseHeaderToolBar(),
             ])
             ->filter($this->baseFilter()->body(
@@ -37,7 +37,6 @@ class AdminUserController extends AdminController
                 ),
                 amis()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true),
                 Operation::make()->label(__('admin.actions'))->buttons([
-                    $this->rowShowButton(),
                     $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${id != 1}'),
                 ]),

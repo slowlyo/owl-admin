@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
  * Image 图片上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/image
  *
  * @author  slowlyo
- * @version v3.6.1
+ * @version v3.6.3
  */
 class ImageControl extends BaseRenderer
 {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Dialog 弹框渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
  *
  * @author  slowlyo
- * @version v3.6.1
+ * @version v3.6.3
  */
 class Dialog extends BaseRenderer
 {
