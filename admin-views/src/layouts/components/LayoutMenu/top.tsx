@@ -9,7 +9,6 @@ import {Icon} from '@iconify/react'
 // 菜单
 const LayoutTopMenu = (
     {
-        mode = 'inline',
         theme = 'light',
         routeProps = [],
         collapsed = false,
@@ -47,10 +46,6 @@ const LayoutTopMenu = (
         const getListPath = (path: string) => path.replace(/\/create$|\/:id\/edit$|\/:id$/g, '')
 
         setSelectedKeys([current.path.split('?')[0], getListPath(current.path), ..._parents])
-
-        if (mode == 'inline') {
-            setOpenKeys([...openKeys, ..._parents])
-        }
     }
 
     useEffect(() => updateMenuStatus(), [pathname, customRoutes, collapsed])
