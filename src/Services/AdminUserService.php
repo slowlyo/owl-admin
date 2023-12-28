@@ -110,8 +110,9 @@ class AdminUserService extends AdminService
 
         $this->sortable($query);
 
-        $items = $query->clone()->paginate(request()->input('perPage', 20))->items();
-        $total = $query->clone()->count();
+        $list  = $query->paginate(request()->input('perPage', 20));
+        $items = $list->items();
+        $total = $list->total();
 
         return compact('items', 'total');
     }
