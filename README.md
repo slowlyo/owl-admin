@@ -119,7 +119,7 @@ _初始账号密码都是 `admin`_
 
 ### 小白入门视频
 
-[![入门视频](https://slowlyo.gitee.io/static/images/owl-admin/video.jpeg)](https://www.bilibili.com/video/BV18w411X7BG)
+[![入门视频](https://slowlyo.gitee.io/static/images/owl-admin/video.png)](https://www.bilibili.com/video/BV18w411X7BG)
 
 <br>
 
