@@ -117,6 +117,12 @@ _初始账号密码都是 `admin`_
 
 <br>
 
+### 小白入门视频
+
+[![入门视频](https://slowlyo.gitee.io/static/images/owl-admin/video.jpeg)](https://www.bilibili.com/video/BV18w411X7BG)
+
+<br>
+
 ### 支持项目
 
 如果觉得项目不错，或者已经在使用了，希望你可以去 [Github](https://github.com/Slowlyo/owl-admin)
