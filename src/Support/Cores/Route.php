@@ -31,6 +31,14 @@ class Route
     {
         $config = fn($key) => config($prefix . $key);
 
+        app('router')->get('/admin', function (){
+            $view = app(\Illuminate\View\Factory::class);
+
+            $view->addExtension('html', 'file');
+
+            return $view->make('admin::index');
+        });
+
         app('router')->group([
             'domain'     => $config('admin.route.domain'),
             'prefix'     => $config('admin.route.prefix'),

@@ -75,7 +75,7 @@ class PublishCommand extends Command
 
     protected function clearAssets()
     {
-        $this->files->deleteDirectory(public_path('admin'));
+        $this->files->deleteDirectory(public_path('admin-assets'));
     }
 
     protected function getTags()

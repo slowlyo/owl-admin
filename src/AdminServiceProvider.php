@@ -55,6 +55,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerServices();
         $this->registerExtensions();
         $this->registerRouteMiddleware();
+        $this->loadViewsFrom(public_path('admin-assets'), 'admin');
     }
 
     /**
@@ -109,8 +110,9 @@ class AdminServiceProvider extends ServiceProvider
     protected function registerPublishing()
     {
         $this->commands($this->commands);
+
         if ($this->app->runningInConsole()) {
-            $this->publishes([__DIR__ . '/../admin-views/dist' => public_path('admin')], 'admin-assets');
+            $this->publishes([__DIR__ . '/../admin-views/dist' => public_path('admin-assets')], 'admin-assets');
             $this->publishes([__DIR__ . '/../lang' => lang_path()], 'admin-lang');
             $this->publishes([__DIR__ . '/../config/admin.php' => config_path('admin.php')], 'admin-config');
             $this->publishes([__DIR__ . '/../admin-views' => resource_path('admin-views')], 'admin-views');
