@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Flex 布局
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class Flex extends BaseRenderer
 {

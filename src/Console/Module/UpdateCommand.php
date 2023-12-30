@@ -34,8 +34,8 @@ class UpdateCommand extends Command
             return;
         }
 
-        if (is_file(public_path('admin/index.html'))) {
-            $content = file_get_contents(public_path('admin/index.html'));
+        if (is_file(public_path('admin-assets/index.html'))) {
+            $content = file_get_contents(public_path('admin-assets/index.html'));
         } else {
             $content = file_get_contents(base_path('vendor/slowlyo/owl-admin/admin-views/dist/index.html'));
         }

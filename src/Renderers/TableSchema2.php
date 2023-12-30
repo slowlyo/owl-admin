@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableSchema2
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class TableSchema2 extends BaseRenderer
 {
@@ -37,6 +37,14 @@ class TableSchema2 extends BaseRenderer
     public function bordered($value = true)
     {
         return $this->set('bordered', $value);
+    }
+
+    /**
+     * 表格是否可以获取父级数据域值，默认为false
+     */
+    public function canAccessSuperData($value = true)
+    {
+        return $this->set('canAccessSuperData', $value);
     }
 
     /**
@@ -157,6 +165,14 @@ class TableSchema2 extends BaseRenderer
     public function keyField($value = '')
     {
         return $this->set('keyField', $value);
+    }
+
+    /**
+     * 当一次性渲染太多列上有用，默认为 100，可以用来提升表格渲染性能
+     */
+    public function lazyRenderAfter($value = '')
+    {
+        return $this->set('lazyRenderAfter', $value);
     }
 
     /**

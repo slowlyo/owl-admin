@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUDList
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class CRUDList extends BaseRenderer
 {
@@ -14,6 +14,14 @@ class CRUDList extends BaseRenderer
     {
         $this->set('mode', 'list');
         $this->set('type', 'crud');
+    }
+
+    /**
+     * 是否固底
+     */
+    public function affixFooter($value = true)
+    {
+        return $this->set('affixFooter', $value);
     }
 
     /**
@@ -457,9 +465,9 @@ class CRUDList extends BaseRenderer
     }
 
     /**
-     * 是否开启Query信息转换，开启后将会对url中的Query进行转换，将字符串格式的布尔值转化为同位类型
+     * 是否开启Query信息转换，开启后将会对url中的Query进行转换，默认开启，默认仅转化布尔值
      */
-    public function parsePrimitiveQuery($value = true)
+    public function parsePrimitiveQuery($value = '')
     {
         return $this->set('parsePrimitiveQuery', $value);
     }

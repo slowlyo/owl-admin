@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 搜索框渲染器
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class SearchBox extends BaseRenderer
 {
@@ -93,6 +93,14 @@ class SearchBox extends BaseRenderer
     public function id($value = '')
     {
         return $this->set('id', $value);
+    }
+
+    /**
+     * 是否处于加载状态
+     */
+    public function loading($value = true)
+    {
+        return $this->set('loading', $value);
     }
 
     /**

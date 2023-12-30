@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SvgIcon
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class SvgIcon extends BaseRenderer
 {

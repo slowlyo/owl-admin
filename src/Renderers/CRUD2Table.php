@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Table
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class CRUD2Table extends BaseRenderer
 {
@@ -53,6 +53,14 @@ class CRUD2Table extends BaseRenderer
     public function bordered($value = true)
     {
         return $this->set('bordered', $value);
+    }
+
+    /**
+     * 表格是否可以获取父级数据域值，默认为false
+     */
+    public function canAccessSuperData($value = true)
+    {
+        return $this->set('canAccessSuperData', $value);
     }
 
     /**
@@ -224,6 +232,14 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
+     * 当一次性渲染太多列上有用，默认为 100，可以用来提升表格渲染性能
+     */
+    public function lazyRenderAfter($value = '')
+    {
+        return $this->set('lazyRenderAfter', $value);
+    }
+
+    /**
      * 是否固定内容行高度
      */
     public function lineHeight($value = '')
@@ -320,9 +336,9 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否开启Query信息转换，开启后将会对url中的Query进行转换，将字符串格式的布尔值转化为同位类型
+     * 是否开启Query信息转换，开启后将会对url中的Query进行转换，默认开启，默认仅转化布尔值
      */
-    public function parsePrimitiveQuery($value = true)
+    public function parsePrimitiveQuery($value = '')
     {
         return $this->set('parsePrimitiveQuery', $value);
     }

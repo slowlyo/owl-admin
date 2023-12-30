@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 不指定类型默认就是文本
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class ListBodyField extends BaseRenderer
 {

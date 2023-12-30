@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Column
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class Column extends BaseRenderer
 {
@@ -22,6 +22,14 @@ class Column extends BaseRenderer
     public function align($value = '')
     {
         return $this->set('align', $value);
+    }
+
+    /**
+     * 表格列单元格是否可以获取父级数据域值，默认为true，该配置对当前列内单元格生效
+     */
+    public function canAccessSuperData($value = true)
+    {
+        return $this->set('canAccessSuperData', $value);
     }
 
     /**
@@ -62,6 +70,14 @@ class Column extends BaseRenderer
     public function copyable($value = true)
     {
         return $this->set('copyable', $value);
+    }
+
+    /**
+     * 兼容table列筛选
+     */
+    public function filterable($value = true)
+    {
+        return $this->set('filterable', $value);
     }
 
     /**
@@ -110,6 +126,14 @@ class Column extends BaseRenderer
     public function searchable($value = true)
     {
         return $this->set('searchable', $value);
+    }
+
+    /**
+     * 兼容table快速排序
+     */
+    public function sortable($value = true)
+    {
+        return $this->set('sortable', $value);
     }
 
     /**

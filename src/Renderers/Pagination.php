@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Pagination
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class Pagination extends BaseRenderer
 {

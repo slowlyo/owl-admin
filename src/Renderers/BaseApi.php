@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * BaseApi
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class BaseApi extends BaseRenderer
 {
@@ -38,6 +38,14 @@ class BaseApi extends BaseRenderer
     public function cache($value = '')
     {
         return $this->set('cache', $value);
+    }
+
+    /**
+     * 是否将两次返回的数据字段，做一个合并。配置返回对象中的字段名，支持配置多个。比如：同时返回 log 字段，第一次返回 {log: '1'}，第二次返回 {log: '2'}，合并后的结果是 {log: ['1', '2']]} 再比如：同时返回 items 字段，第一次返回 {items: [1, 2]}，第二次返回 {items: [3, 4]}，合并后的结果是 {items: [1, 2, 3, 4]}
+     */
+    public function concatDataFields($value = '')
+    {
+        return $this->set('concatDataFields', $value);
     }
 
     /**

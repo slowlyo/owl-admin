@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ToastAction
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class ToastAction extends BaseRenderer
 {

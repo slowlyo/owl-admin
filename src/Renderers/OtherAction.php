@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * OtherAction
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class OtherAction extends BaseRenderer
 {

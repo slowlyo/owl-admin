@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * AjaxAction
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class AjaxAction extends BaseRenderer
 {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 提示渲染器，默认会显示个小图标，鼠标放上来的时候显示配置的内容。
  *
  * @author  slowlyo
- * @version v3.6.3
+ * @version v6.0.0
  */
 class Remark extends BaseRenderer
 {

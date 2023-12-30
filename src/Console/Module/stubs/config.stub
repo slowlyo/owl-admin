@@ -5,10 +5,10 @@ return [
     'name'           => 'Owl Admin',
 
     // 应用 logo
-    'logo'           => '/admin/logo.png',
+    'logo'           => '/admin-assets/logo.png',
 
     // 默认头像
-    'default_avatar' => '/admin/default-avatar.png',
+    'default_avatar' => '/admin-assets/default-avatar.png',
 
     // 引导文件
     'bootstrap' => {{bootstrap}},
