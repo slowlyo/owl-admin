@@ -61,7 +61,7 @@ const Layout = () => {
     }
 
     // 判断是否全屏
-    if (currentRoute?.is_full) {
+    if (currentRoute?.is_full == 1) {
         return (
             <div className="h-screen">
                 <LayoutContent/>
