@@ -8,6 +8,8 @@ use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module as AdminModule};
+use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
+use Laravel\Sanctum\Sanctum;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -74,6 +76,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->bootExtensions();
         $this->loadRoutes();
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->usePersonalAccessTokenModel();
     }
 
     protected function loadBaseRoute()
@@ -176,5 +179,13 @@ class AdminServiceProvider extends ServiceProvider
         foreach ($this->middlewareGroups as $key => $middleware) {
             $router->middlewareGroup($key, $middleware);
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function usePersonalAccessTokenModel(): void
+    {
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
 }
