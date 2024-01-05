@@ -103,6 +103,10 @@ return [
         'footer'             => '<a href="https://github.com/slowlyo/owl-admin" target="_blank">Owl Admin</a>',
     ],
 
+    'database' => [
+        'connection' => 'mysql',
+    ],
+
     'models' => [
         'admin_user'       => \Slowlyo\OwlAdmin\Models\AdminUser::class,
         'admin_role'       => \Slowlyo\OwlAdmin\Models\AdminRole::class,

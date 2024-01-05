@@ -14,6 +14,13 @@ class AdminUser extends User implements AuthenticatableContract
 {
     use Authenticatable, HasApiTokens;
 
+    public function __construct(array $attributes = [])
+    {
+        $this->setConnection(Admin::config('admin.database.connection'));
+
+        parent::__construct($attributes);
+    }
+
     protected $guarded = [];
 
     protected function serializeDate(\DateTimeInterface $date): string
