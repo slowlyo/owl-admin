@@ -69,8 +69,11 @@ abstract class AdminService
     public function getEditData($id): Model|\Illuminate\Database\Eloquent\Collection|Builder|array|null
     {
         $model = $this->getModel();
+        $hidden = collect([$model->getCreatedAtColumn(), $model->getUpdatedAtColumn()])->filter(function ($item) {
+            return $item !== null;
+        })->toArray();
 
-        return $this->query()->find($id)->makeHidden([$model->getCreatedAtColumn(), $model->getUpdatedAtColumn()]);
+        return $this->query()->find($id)->makeHidden($hidden);
     }
 
     /**
