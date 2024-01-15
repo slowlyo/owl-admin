@@ -33,7 +33,9 @@ trait QueryPathTrait
      */
     public function getDeletePath(): string
     {
-        return 'delete:' . admin_url($this->queryPath . '/${' . $this->service->primaryKey() . '}');
+        $primaryKey = isset($this->service) ? $this->service->primaryKey() : 'id';
+
+        return 'delete:' . admin_url($this->queryPath . '/${' . $primaryKey . '}');
     }
 
     /**
@@ -68,7 +70,9 @@ trait QueryPathTrait
         $last = collect(explode('/', $path))->last();
 
         if (!is_numeric($last)) {
-            $path .= '/${' . $this->service->primaryKey() . '}/edit';
+            $primaryKey = isset($this->service) ? $this->service->primaryKey() : 'id';
+
+            $path .= '/${' . $primaryKey . '}/edit';
         }
 
         return admin_url($path . '?_action=getData');
@@ -96,7 +100,9 @@ trait QueryPathTrait
         $last = collect(explode('/', $path))->last();
 
         if (!is_numeric($last)) {
-            $path .= '/${' . $this->service->primaryKey() . '}';
+            $primaryKey = isset($this->service) ? $this->service->primaryKey() : 'id';
+
+            $path .= '/${' . $primaryKey . '}';
         }
 
         return 'put:' . admin_url($path);

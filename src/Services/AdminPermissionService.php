@@ -14,8 +14,6 @@ use Slowlyo\OwlAdmin\Models\AdminPermission;
  */
 class AdminPermissionService extends AdminService
 {
-    protected string $modelName;
-
     public function __construct()
     {
         $this->modelName = Admin::adminPermissionModel();

@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class AdminMenuService extends AdminService
 {
-    protected string $modelName;
-
     public function __construct()
     {
         $this->modelName = Admin::adminMenuModel();

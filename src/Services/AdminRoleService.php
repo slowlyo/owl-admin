@@ -14,8 +14,6 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class AdminRoleService extends AdminService
 {
-    protected string $modelName;
-
     public function __construct()
     {
         $this->modelName = Admin::adminRoleModel();
