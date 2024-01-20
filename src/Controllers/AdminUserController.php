@@ -4,7 +4,6 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Renderers\Operation;
 use Slowlyo\OwlAdmin\Services\AdminUserService;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
 
@@ -36,7 +35,7 @@ class AdminUserController extends AdminController
                     amis()->Tag()->label('${name}')->className('my-1')
                 ),
                 amis()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true),
-                Operation::make()->label(__('admin.actions'))->buttons([
+                $this->rowActions([
                     $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${id != 1}'),
                 ]),

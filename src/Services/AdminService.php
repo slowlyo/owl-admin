@@ -68,7 +68,7 @@ abstract class AdminService
      *
      * @return Model|\Illuminate\Database\Eloquent\Collection|Builder|array|null
      */
-    public function getEditData($id): Model|\Illuminate\Database\Eloquent\Collection|Builder|array|null
+    public function getEditData($id)
     {
         $model = $this->getModel();
 
@@ -219,7 +219,7 @@ abstract class AdminService
      *
      * @return mixed
      */
-    public function delete(string $ids): mixed
+    public function delete(string $ids)
     {
         return $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
     }

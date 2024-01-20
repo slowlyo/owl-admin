@@ -5,15 +5,14 @@ namespace Slowlyo\OwlAdmin\Controllers;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Support\Captcha;
 use Illuminate\Support\Facades\Validator;
-use Slowlyo\OwlAdmin\Renderers\TextControl;
-use Slowlyo\OwlAdmin\Renderers\ImageControl;
 use Symfony\Component\HttpFoundation\Response;
 use Slowlyo\OwlAdmin\Services\AdminUserService;
 
+/**
+ * @property AdminUserService $service
+ */
 class AuthController extends AdminController
 {
     protected string $serviceName = AdminUserService::class;
@@ -35,15 +34,16 @@ class AuthController extends AdminController
                 'username' => 'required',
                 'password' => 'required',
             ], [
-                'username' . '.required' => __('admin.required', ['attribute' => __('admin.username')]),
-                'password.required'      => __('admin.required', ['attribute' => __('admin.password')]),
+                'username.required' => __('admin.required', ['attribute' => __('admin.username')]),
+                'password.required' => __('admin.required', ['attribute' => __('admin.password')]),
             ]);
 
             if ($validator->fails()) {
                 abort(Response::HTTP_BAD_REQUEST, $validator->errors()->first());
             }
-            $adminModel = Admin::adminUserModel();
-            $user       = $adminModel::query()->where('username', $request->username)->first();
+
+            $user = Admin::adminUserModel()::query()->where('username', $request->username)->first();
+
             if ($user && Hash::check($request->password, $user->password)) {
                 $module = Admin::currentModule(true);
                 $prefix = $module ? $module . '.' : '';
@@ -69,8 +69,7 @@ class AuthController extends AdminController
                 amis()->TextControl()->name('captcha')->placeholder(__('admin.captcha'))->required(),
                 amis()->HiddenControl()->name('sys_captcha'),
                 amis()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
-                    amis()
-                        ->Image()
+                    amis()->Image()
                         ->src('${captcha_img}')
                         ->height('1.917rem')
                         ->className('p-0 captcha-box')
@@ -83,25 +82,31 @@ class AuthController extends AdminController
             ]);
         }
 
-        $form = amis()->Form()->panelClassName('border-none')->id('login-form')->title()->api(admin_url('/login'))->initApi('/no-content')->body([
-            amis()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
-            amis()
-                ->TextControl()
-                ->type('input-password')
-                ->name('password')
-                ->placeholder(__('admin.password'))
-                ->required(),
-            $captcha,
-            amis()->CheckboxControl()->name('remember_me')->option(__('admin.remember_me'))->value(true),
+        $form = amis()->Form()
+            ->panelClassName('border-none')
+            ->id('login-form')
+            ->title()
+            ->api(admin_url('/login'))
+            ->initApi('/no-content')
+            ->body([
+                amis()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
+                amis()
+                    ->TextControl()
+                    ->type('input-password')
+                    ->name('password')
+                    ->placeholder(__('admin.password'))
+                    ->required(),
+                $captcha,
+                amis()->CheckboxControl()->name('remember_me')->option(__('admin.remember_me'))->value(true),
 
-            // 登录按钮
-            amis()
-                ->VanillaAction()
-                ->actionType('submit')
-                ->label(__('admin.login'))
-                ->level('primary')
-                ->className('w-full'),
-        ])->actions([]); // 清空默认的提交按钮
+                // 登录按钮
+                amis()->VanillaAction()
+                    ->actionType('submit')
+                    ->label(__('admin.login'))
+                    ->level('primary')
+                    ->className('w-full'),
+            ])
+            ->actions([]); // 清空默认的提交按钮
 
         $failAction = [];
         if ($enableCaptcha) {
@@ -179,9 +184,9 @@ JS,
                 'border-bottom-right-radius' => '4px',
             ],
             '.cxd-Image-thumb'               => ['width' => 'auto'],
-            '.login-bg' => [
-                'background' => 'var(--owl-body-bg)'
-            ]
+            '.login-bg'                      => [
+                'background' => 'var(--owl-body-bg)',
+            ],
         ])->body(
             amis()->Wrapper()->className("h-screen w-full flex items-center justify-center")->body($card)
         );
@@ -218,8 +223,7 @@ JS,
     {
         $userInfo = Admin::user()->only(['name', 'avatar']);
 
-        $menus = amis()
-            ->DropdownButton()
+        $menus = amis()->DropdownButton()
             ->hideCaret()
             ->trigger('hover')
             ->label($userInfo['name'])
@@ -228,14 +232,12 @@ JS,
             ->menuClassName('min-w-0 p-2')
             ->set('icon', $userInfo['avatar'])
             ->buttons([
-                amis()
-                    ->VanillaAction()
+                amis()->VanillaAction()
                     ->iconClassName('pr-2')
                     ->icon('fa fa-user-gear')
                     ->label(__('admin.user_setting'))
                     ->onClick('window.location.hash = "#/user_setting"'),
-                amis()
-                    ->VanillaAction()
+                amis()->VanillaAction()
                     ->iconClassName('pr-2')
                     ->label(__('admin.logout'))
                     ->icon('fa-solid fa-right-from-bracket')
@@ -256,27 +258,27 @@ JS,
             'roles',
         ]);
 
-        $form = Form::make()
+        $form = amis()->Form()
             ->title()
             ->panelClassName('px-48 m:px-0')
             ->mode('horizontal')
             ->data($user)
             ->api('put:' . admin_url('/user_setting'))
             ->body([
-                ImageControl::make()
+                amis()->ImageControl()
                     ->label(__('admin.admin_user.avatar'))
                     ->name('avatar')
                     ->receiver($this->uploadImagePath()),
-                TextControl::make()->label(__('admin.admin_user.name'))->name('name')->required(),
-                TextControl::make()->type('input-password')->label(__('admin.old_password'))->name('old_password'),
-                TextControl::make()->type('input-password')->label(__('admin.password'))->name('password'),
-                TextControl::make()
+                amis()->TextControl()->label(__('admin.admin_user.name'))->name('name')->required(),
+                amis()->TextControl()->type('input-password')->label(__('admin.old_password'))->name('old_password'),
+                amis()->TextControl()->type('input-password')->label(__('admin.password'))->name('password'),
+                amis()->TextControl()
                     ->type('input-password')
                     ->label(__('admin.confirm_password'))
                     ->name('confirm_password'),
             ]);
 
-        return $this->response()->success(Page::make()->body($form));
+        return $this->response()->success(amis()->Page()->body($form));
     }
 
     public function saveUserSetting(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource

@@ -36,7 +36,7 @@ class AdminRoleController extends AdminController
                     ->name('updated_at')
                     ->type('datetime')
                     ->sortable(true),
-                amis()->Operation()->label(__('admin.actions'))->buttons([
+                $this->rowActions([
                     $this->setPermission(),
                     $this->rowEditButton(true),
                     $this->rowDeleteButton()->visibleOn('${slug != "administrator"}'),
@@ -44,7 +44,7 @@ class AdminRoleController extends AdminController
             ]);
 
         return $this->baseList($crud)->css([
-            '.tree-full'                               => [
+            '.tree-full'                   => [
                 'overflow' => 'hidden !important',
             ],
             '.cxd-TreeControl > .cxd-Tree' => [
@@ -56,32 +56,40 @@ class AdminRoleController extends AdminController
 
     protected function setPermission()
     {
-        return amis()->DrawerAction()->label(__('admin.admin_role.set_permissions'))->icon('fa-solid fa-gear')->level('link')->drawer(
-            amis()->Drawer()->title(__('admin.admin_role.set_permissions'))->resizable()->closeOnOutside()->closeOnEsc()->body([
-                amis()
-                    ->Form()
-                    ->api(admin_url('system/admin_role_save_permissions'))
-                    ->initApi($this->getEditGetDataPath())
-                    ->mode('normal')
-                    ->data(['id' => '${id}'])
+        return amis()->DrawerAction()
+            ->label(__('admin.admin_role.set_permissions'))
+            ->icon('fa-solid fa-gear')
+            ->level('link')
+            ->drawer(
+                amis()->Drawer()
+                    ->title(__('admin.admin_role.set_permissions'))
+                    ->resizable()
+                    ->closeOnOutside()
+                    ->closeOnEsc()
                     ->body([
-                        amis()->TreeControl()
-                            ->name('permissions')
-                            ->label()
-                            ->multiple()
-                            ->options(AdminPermissionService::make()->getTree())
-                            ->searchable()
-                            ->cascade()
-                            ->joinValues(false)
-                            ->extractValue()
-                            ->size('full')
-                            ->className('h-full b-none')
-                            ->inputClassName('h-full tree-full')
-                            ->labelField('name')
-                            ->valueField('id'),
-                    ]),
-            ])
-        );
+                        amis()->Form()
+                            ->api(admin_url('system/admin_role_save_permissions'))
+                            ->initApi($this->getEditGetDataPath())
+                            ->mode('normal')
+                            ->data(['id' => '${id}'])
+                            ->body([
+                                amis()->TreeControl()
+                                    ->name('permissions')
+                                    ->label()
+                                    ->multiple()
+                                    ->options(AdminPermissionService::make()->getTree())
+                                    ->searchable()
+                                    ->cascade()
+                                    ->joinValues(false)
+                                    ->extractValue()
+                                    ->size('full')
+                                    ->className('h-full b-none')
+                                    ->inputClassName('h-full tree-full')
+                                    ->labelField('name')
+                                    ->valueField('id'),
+                            ]),
+                    ])
+            );
     }
 
     public function savePermissions()
