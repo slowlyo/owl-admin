@@ -375,12 +375,10 @@ class CodeGeneratorController extends AdminController
                 }
                 $message .= Artisan::output();
             }
-        } catch (\Exception $e) {
-            app('files')->delete($paths);
-
-            return $this->response()->fail($e->getMessage());
         } catch (\Throwable $e) {
             app('files')->delete($paths);
+
+            RouteGenerator::refresh();
 
             return $this->response()->fail($e->getMessage());
         }

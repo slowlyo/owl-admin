@@ -34,4 +34,9 @@ class RouteGenerator
         // 刷新路由
         Artisan::call('admin:gen-route');
     }
+
+    public static function refresh()
+    {
+        Artisan::call('admin:gen-route');
+    }
 }
