@@ -10,6 +10,12 @@
         }
     ],
     "homepage": "https://github.com/slowlyo/owl-admin",
+    "support": {
+        "email": "slowlyo_email@qq.com.com",
+        "issues": "https://github.com/Slowlyo/owl-admin/issues",
+        "forum": "https://github.com/Slowlyo/owl-admin/discussions",
+        "wiki": "http://doc.owladmin.com/"
+    },
     "keywords": [
         "Laravel",
         "OwlAdmin",
