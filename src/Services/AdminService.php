@@ -138,11 +138,11 @@ abstract class AdminService
     {
         $updatedAtColumn = $this->getModel()->getUpdatedAtColumn();
 
-        if (Arr::has($this->getTableColumns(), $updatedAtColumn)) {
+        if (in_array($updatedAtColumn, $this->getTableColumns())) {
             return $updatedAtColumn;
         }
 
-        if (Arr::has($this->getTableColumns(), $this->getModel()->getKeyName())) {
+        if (in_array($this->getModel()->getKeyName(), $this->getTableColumns())) {
             return $this->getModel()->getKeyName();
         }
 
