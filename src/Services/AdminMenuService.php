@@ -82,6 +82,13 @@ class AdminMenuService extends AdminService
      */
     protected function saveData($data, array $columns, AdminMenu $model): bool
     {
+        $urlExists = $this->query()
+            ->where('url', data_get($data, 'url'))
+            ->when(data_get($data, 'id'), fn($q) => $q->where('id', '<>', data_get($data, 'id')))
+            ->exists();
+
+        admin_abort_if($urlExists, __('admin.admin_menu.url_exists'));
+
         foreach ($data as $k => $v) {
             if (!in_array($k, $columns)) {
                 continue;

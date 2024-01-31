@@ -129,7 +129,7 @@ return [
         'fill'                      => '填充',
         'save_current_config'       => '保存当前配置',
         'input_config_name'         => '请填写配置名称',
-        'same_name_tips' => '相同名称的配置将会被覆盖'
+        'same_name_tips'            => '相同名称的配置将会被覆盖',
     ],
 
     'admin_users' => '管理员',
@@ -194,6 +194,7 @@ return [
         'parent_id_not_allow'    => '父级菜单不允许设置为当前子菜单',
         'component'              => '组件',
         'component_desc'         => '默认为 amis , 非自定义前端页面请勿修改',
+        'url_exists'             => '菜单路径重复',
     ],
 
     'extensions' => [

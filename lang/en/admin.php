@@ -194,6 +194,7 @@ return [
         'parent_id_not_allow'    => 'The parent menu cannot be set to the current submenu',
         'component'              => 'Component',
         'component_desc'         => 'amis by default. Not a custom front-end page, please do not modify it',
+        'url_exists'             => 'menu path duplication',
     ],
 
     'extensions' => [
