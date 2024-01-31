@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * InputArray 数组输入框。 combo 的别名。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/array
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class ArrayControl extends BaseRenderer
 {

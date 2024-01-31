@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * IconItem
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class IconItem extends BaseRenderer
 {

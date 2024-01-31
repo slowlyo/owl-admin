@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 按钮组控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/button-group
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class ButtonGroupControl extends BaseRenderer
 {
@@ -301,6 +301,14 @@ class ButtonGroupControl extends BaseRenderer
     public function id($value = '')
     {
         return $this->set('id', $value);
+    }
+
+    /**
+     *
+     */
+    public function initAutoFill($value = '')
+    {
+        return $this->set('initAutoFill', $value);
     }
 
     /**

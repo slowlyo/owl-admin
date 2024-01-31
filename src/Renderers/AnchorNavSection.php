@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * AnchorNavSection 锚点区域渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/anchor-nav
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class AnchorNavSection extends BaseRenderer
 {
@@ -22,6 +22,14 @@ class AnchorNavSection extends BaseRenderer
     public function body($value = '')
     {
         return $this->set('body', $value);
+    }
+
+    /**
+     * 子节点
+     */
+    public function children($value = '')
+    {
+        return $this->set('children', $value);
     }
 
     /**
