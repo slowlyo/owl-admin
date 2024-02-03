@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Cards
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class CRUD2Cards extends BaseRenderer
 {

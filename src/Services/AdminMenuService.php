@@ -51,6 +51,8 @@ class AdminMenuService extends AdminService
 
         $model = $this->query()->whereKey($primaryKey)->first();
 
+        $data['id'] = $primaryKey;
+
         return $this->saveData($data, $columns, $model);
     }
 

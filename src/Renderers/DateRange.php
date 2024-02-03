@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DateRange 展示渲染器。
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class DateRange extends BaseRenderer
 {

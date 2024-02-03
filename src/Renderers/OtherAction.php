@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * OtherAction
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class OtherAction extends BaseRenderer
 {
@@ -358,6 +358,14 @@ class OtherAction extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * EmailAction
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class EmailAction extends BaseRenderer
 {
@@ -382,6 +382,14 @@ class EmailAction extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

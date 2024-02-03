@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 表格列，不指定类型时默认为文本类型。
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class TableColumn extends BaseRenderer
 {

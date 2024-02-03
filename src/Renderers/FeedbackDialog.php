@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * FeedbackDialog
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class FeedbackDialog extends BaseRenderer
 {
@@ -302,6 +302,14 @@ class FeedbackDialog extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

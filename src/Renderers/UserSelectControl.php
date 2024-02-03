@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UserSelect 移动端人员选择。
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class UserSelectControl extends BaseRenderer
 {
@@ -261,6 +261,14 @@ class UserSelectControl extends BaseRenderer
     public function id($value = '')
     {
         return $this->set('id', $value);
+    }
+
+    /**
+     *
+     */
+    public function initAutoFill($value = '')
+    {
+        return $this->set('initAutoFill', $value);
     }
 
     /**

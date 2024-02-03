@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Avatar
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class Avatar extends BaseRenderer
 {
@@ -46,6 +46,14 @@ class Avatar extends BaseRenderer
     public function crossOrigin($value = '')
     {
         return $this->set('crossOrigin', $value);
+    }
+
+    /**
+     * 默认头像
+     */
+    public function defaultAvatar($value = '')
+    {
+        return $this->set('defaultAvatar', $value);
     }
 
     /**

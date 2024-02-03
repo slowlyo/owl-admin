@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TextArea 多行文本输入框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/textarea
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class TextareaControl extends BaseRenderer
 {
@@ -381,6 +381,14 @@ class TextareaControl extends BaseRenderer
     public function submitOnChange($value = true)
     {
         return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

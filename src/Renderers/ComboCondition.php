@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ComboCondition
  *
  * @author  slowlyo
- * @version v6.0.0
+ * @version 6.1.0
  */
 class ComboCondition extends BaseRenderer
 {
