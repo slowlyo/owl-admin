@@ -128,6 +128,8 @@ _初始账号密码都是 `admin`_
 如果觉得项目不错，或者已经在使用了，希望你可以去 [Github](https://github.com/Slowlyo/owl-admin)
 或者 [Gitee](https://gitee.com/slowlyo/owl-admin) 帮我们点个 ⭐ Star，这将是对我们极大的鼓励与支持。
 
+[![Stargazers over time](https://starchart.cc/Slowlyo/owl-admin.svg?variant=adaptive)](https://github.com/Slowlyo/owl-admin)
+
 <br>
 <br>
 
