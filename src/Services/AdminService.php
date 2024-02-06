@@ -3,8 +3,11 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
+use Slowlyo\OwlAdmin\Renderers\Page;
+use Slowlyo\OwlAdmin\Renderers\TableColumn;
 use Slowlyo\OwlAdmin\Traits\ErrorTrait;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -90,9 +93,38 @@ abstract class AdminService
 
         $this->sortable($query);
 
+        $this->loadRelations($query);
+
         $this->searchable($query);
 
         return $query;
+    }
+
+    public function loadRelations($query)
+    {
+        # 根据当前控制器取出他的page定义的 column字段，如果字段包含 .证明是从关联关系里取，查询模型是否有这个关联关系，有了自动加with
+        $pageDefinition = Route::getCurrentRoute()->getController()?->list();
+        if (!$pageDefinition instanceof Page) {
+            return;
+        }
+        $columns = $pageDefinition->toArray()['body']->amisSchema['columns'] ?? [];
+        $withRelations = [];
+        foreach ($columns as $column) {
+            // 直接跳过不是 TableColumn 实例跳出
+            if (!$column instanceof TableColumn) continue;
+            $field = $column->amisSchema['name'];
+            // 如果字段名包含点，尝试解析关联关系
+            $splitFieldName = explode('.', $field);
+            if (count($splitFieldName) > 1) {
+                $relationName = $splitFieldName[0];
+                // 检查模型上是否存在该方法，如果存在则加入到关联数组中
+                if (method_exists($this->modelName, $relationName)) {
+                    // 避免重复添加相同的关联关系
+                    $withRelations[$relationName] = $relationName;
+                }
+            }
+        }
+        $query->with(array_values($withRelations));
     }
 
     /**
