@@ -30,13 +30,9 @@ class BaseRenderer implements \JsonSerializable
 
     public function set($name, $value)
     {
-        if(is_string($value) && is_array(json_decode($value, true)) && (json_last_error() == JSON_ERROR_NONE)){
-          $this->amisSchema[$name] = json_decode($value, true);
-        }else{
-          $this->amisSchema[$name] = $value;
-        }
+      $this->amisSchema[$name] = $value;
 
-        return $this;
+      return $this;
     }
 
     public function jsonSerialize()
