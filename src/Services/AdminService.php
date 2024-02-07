@@ -3,13 +3,13 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
-use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\TableColumn;
 use Slowlyo\OwlAdmin\Traits\ErrorTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Slowlyo\OwlAdmin\Renderers\TableColumn;
 
 abstract class AdminService
 {
@@ -27,7 +27,7 @@ abstract class AdminService
     /**
      * @return Model
      */
-    public function getModel(): Model
+    public function getModel()
     {
         return new $this->modelName;
     }
@@ -47,7 +47,7 @@ abstract class AdminService
         return $this->tableColumn;
     }
 
-    public function query(): Builder
+    public function query()
     {
         return $this->modelName::query();
     }
@@ -100,6 +100,13 @@ abstract class AdminService
         return $query;
     }
 
+    /**
+     * 根据 tableColumn 定义的列, 自动加载关联关系
+     *
+     * @param $query
+     *
+     * @return void
+     */
     public function loadRelations($query)
     {
         # 根据当前控制器取出他的page定义的 column字段，如果字段包含 .证明是从关联关系里取，查询模型是否有这个关联关系，有了自动加with
@@ -107,7 +114,7 @@ abstract class AdminService
         if (!$pageDefinition instanceof Page) {
             return;
         }
-        $columns = $pageDefinition->toArray()['body']->amisSchema['columns'] ?? [];
+        $columns       = $pageDefinition->toArray()['body']->amisSchema['columns'] ?? [];
         $withRelations = [];
         foreach ($columns as $column) {
             // 直接跳过不是 TableColumn 实例跳出
@@ -205,7 +212,7 @@ abstract class AdminService
      *
      * @return bool
      */
-    public function update($primaryKey, $data): bool
+    public function update($primaryKey, $data)
     {
         $columns = $this->getTableColumns();
         $model   = $this->query()->whereKey($primaryKey)->first();
@@ -228,7 +235,7 @@ abstract class AdminService
      *
      * @return bool
      */
-    public function store($data): bool
+    public function store($data)
     {
         $columns = $this->getTableColumns();
         $model   = $this->getModel();

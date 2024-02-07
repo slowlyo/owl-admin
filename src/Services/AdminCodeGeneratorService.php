@@ -25,14 +25,17 @@ class AdminCodeGeneratorService extends AdminService
         });
     }
 
-    public function store($data): bool
+    public function store($data)
     {
-        amis_abort_if($this->query()->where('table_name', $data['table_name'])->exists(), __('admin.code_generators.exists_table'));
+        amis_abort_if(
+            $this->query()->where('table_name', $data['table_name'])->exists(),
+            __('admin.code_generators.exists_table')
+        );
 
         return parent::store($this->filterData($data));
     }
 
-    public function update($primaryKey, $data): bool
+    public function update($primaryKey, $data)
     {
         $exists = $this->query()
             ->where('table_name', $data['table_name'])

@@ -4,7 +4,6 @@ namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Slowlyo\OwlAdmin\Models\AdminPermission;
 
@@ -19,14 +18,14 @@ class AdminPermissionService extends AdminService
         $this->modelName = Admin::adminPermissionModel();
     }
 
-    public function getTree(): array
+    public function getTree()
     {
         $list = $this->query()->orderBy('order')->get()->toArray();
 
         return array2tree($list);
     }
 
-    public function parentIsChild($id, $parent_id): bool
+    public function parentIsChild($id, $parent_id)
     {
         $parent = $this->query()->find($parent_id);
 
@@ -41,7 +40,7 @@ class AdminPermissionService extends AdminService
         return false;
     }
 
-    public function getEditData($id): Model|\Illuminate\Database\Eloquent\Collection|Builder|array|null
+    public function getEditData($id)
     {
         $permission = parent::getEditData($id);
 
@@ -50,7 +49,7 @@ class AdminPermissionService extends AdminService
         return $permission;
     }
 
-    public function store($data): bool
+    public function store($data)
     {
         $this->checkRepeated($data);
 
@@ -61,7 +60,7 @@ class AdminPermissionService extends AdminService
         return $this->saveData($data, $columns, $model);
     }
 
-    public function update($primaryKey, $data): bool
+    public function update($primaryKey, $data)
     {
         $this->checkRepeated($data, $primaryKey);
 
@@ -100,7 +99,7 @@ class AdminPermissionService extends AdminService
      *
      * @return bool
      */
-    protected function saveData($data, array $columns, AdminPermission $model): bool
+    protected function saveData($data, array $columns, AdminPermission $model)
     {
         $menus = Arr::pull($data, 'menus');
 

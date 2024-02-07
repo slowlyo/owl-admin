@@ -11,7 +11,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getListGetDataPath(): string
+    public function getListGetDataPath()
     {
         return admin_url($this->queryPath . '?_action=getData');
     }
@@ -31,7 +31,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getDeletePath(): string
+    public function getDeletePath()
     {
         $primaryKey = isset($this->service) ? $this->service->primaryKey() : 'id';
 
@@ -43,7 +43,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getBulkDeletePath(): string
+    public function getBulkDeletePath()
     {
         return 'delete:' . admin_url($this->queryPath . '/${ids}');
     }
@@ -53,7 +53,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getEditPath(): string
+    public function getEditPath()
     {
         return '/' . trim($this->queryPath, '/') . '/${' . $this->service->primaryKey() . '}/edit';
     }
@@ -63,7 +63,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getEditGetDataPath(): string
+    public function getEditGetDataPath()
     {
         $path = str_replace('/edit', '', $this->queryPath);
 
@@ -83,7 +83,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getShowPath(): string
+    public function getShowPath()
     {
         return '/' . trim($this->queryPath, '/') . '/${' . $this->service->primaryKey() . '}';
     }
@@ -93,7 +93,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getUpdatePath(): string
+    public function getUpdatePath()
     {
         $path = str_replace('/edit', '', $this->queryPath);
 
@@ -128,7 +128,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getShowGetDataPath(): string
+    public function getShowGetDataPath()
     {
         $path = $this->queryPath;
 
@@ -146,7 +146,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getCreatePath(): string
+    public function getCreatePath()
     {
         return '/' . trim($this->queryPath, '/') . '/create';
     }
@@ -156,7 +156,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getStorePath(): string
+    public function getStorePath()
     {
         return 'post:' . admin_url(str_replace('/create', '', $this->queryPath));
     }
@@ -166,7 +166,7 @@ trait QueryPathTrait
      *
      * @return string
      */
-    public function getListPath(): string
+    public function getListPath()
     {
         $path = $this->queryPath;
 

@@ -4,15 +4,6 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\JsonResponse;
-use Slowlyo\OwlAdmin\Renderers\Card;
-use Slowlyo\OwlAdmin\Renderers\Flex;
-use Slowlyo\OwlAdmin\Renderers\Html;
-use Slowlyo\OwlAdmin\Renderers\Grid;
-use Slowlyo\OwlAdmin\Renderers\Chart;
-use Slowlyo\OwlAdmin\Renderers\Image;
-use Slowlyo\OwlAdmin\Renderers\Action;
-use Slowlyo\OwlAdmin\Renderers\Custom;
-use Slowlyo\OwlAdmin\Renderers\Wrapper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HomeController extends AdminController
@@ -20,18 +11,18 @@ class HomeController extends AdminController
     public function index(): JsonResponse|JsonResource
     {
         $page = $this->basePage()->css($this->css())->body([
-            Grid::make()->columns([
+            amis()->Grid()->columns([
                 $this->frameworkInfo()->md(5),
-                Flex::make()->items([
+                amis()->Flex()->items([
                     $this->pieChart(),
                     $this->cube(),
                 ]),
             ]),
-            Grid::make()->columns([
+            amis()->Grid()->columns([
                 $this->lineChart()->md(8),
-                Flex::make()->className('h-full')->items([
+                amis()->Flex()->className('h-full')->items([
                     $this->clock(),
-                    $this->hitokoto(),
+                    $this->bingImages(),
                 ])->direction('column'),
             ]),
         ]);
@@ -39,53 +30,34 @@ class HomeController extends AdminController
         return $this->response()->success($page);
     }
 
-    /**
-     * 一言
-     */
-    public function hitokoto()
+    public function bingImages()
     {
-        return Card::make()
-            ->className('h-full clear-card-mb')
-            ->body(
-                Custom::make()->html(<<<HTML
-<div class="h-full flex flex-col mt-5 py-5 px-7">
-    <div>『</div>
-    <div class="flex flex-1 items-center w-full justify-center" id="hitokoto">
-        <a class="text-dark" href="#" id="hitokoto_text" target="_blank"></a>
-    </div>
-    <div class="flex justify-end">』</div>
-</div>
-<div class="flex justify-end mt-3">
-    ——&nbsp;
-    <span id="hitokoto_from_who"></span>
-    <span>「</span>
-    <span id="hitokoto_from"></span>
-    <span>」</span>
-</div>
-HTML
+        $images = cache()->remember('bing_images', 3600, function () {
+            $result = file_get_contents('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=7&mkt=zh-CN');
+            $result = json_decode($result, true);
+            $result = data_get($result, 'images');
 
-                )->onMount(<<<JS
-fetch('https://v1.hitokoto.cn?c=i')
-    .then(response => response.json())
-    .then(data => {
-      const hitokoto = document.querySelector('#hitokoto_text')
-      hitokoto.href = `https://hitokoto.cn/?uuid=\${data.uuid}`
-      hitokoto.innerText = data.hitokoto
-      document.querySelector('#hitokoto_from_who').innerText = data.from_who
-      document.querySelector('#hitokoto_from').innerText = data.from
-    })
-    .catch(console.error)
-JS
-                )
-            );
+            return array_map(fn($i) => [
+                'image' => 'https://cn.bing.com' . data_get($i, 'url'),
+                'href'  => 'https://cn.bing.com' . data_get($i, 'url'),
+                'title' => data_get($i, 'title'),
+            ], $result);
+        });
+
+        return amis()
+            ->Carousel()
+            ->className('h-full clear-card-mb rounded-md')
+            ->options($images)
+            ->thumbMode('cover')
+            ->animation('slide');
     }
 
-    public function clock(): Card
+    public function clock()
     {
-        return Card::make()->className('h-full bg-blingbling')->header([
+        return amis()->Card()->className('h-full bg-blingbling')->header([
             'title' => '时钟',
         ])->body([
-            Custom::make()
+            amis()->Custom()
                 ->name('clock')
                 ->html('<div id="clock" class="text-4xl"></div><div id="clock-date" class="mt-5"></div>')
                 ->onMount(<<<JS
@@ -104,43 +76,49 @@ JS
         ]);
     }
 
-    public function frameworkInfo(): Card
+    public function frameworkInfo()
     {
-        return Card::make()->className('h-96')->body(
-            Wrapper::make()->className('h-full')->body([
-                Flex::make()->className('h-full')->direction('column')->justify('center')->alignItems('center')->items([
-                    Image::make()->src(url(Admin::config('admin.logo'))),
-                    Wrapper::make()->className('text-3xl mt-9')->body(Admin::config('admin.name')),
-                    Flex::make()->className('w-64 mt-5')->justify('space-around')->items([
-                        Action::make()
-                            ->level('link')
-                            ->label('GitHub')
-                            ->blank(true)
-                            ->actionType('url')
-                            ->blank(true)
-                            ->link('https://github.com/slowlyo/owl-admin'),
-                        Action::make()
-                            ->level('link')
-                            ->label('OwlAdmin 文档')
-                            ->blank(true)
-                            ->actionType('url')
-                            ->link('http://doc.owladmin.com'),
-                        Action::make()
-                            ->level('link')
-                            ->label('Amis 文档')
-                            ->blank(true)
-                            ->actionType('url')
-                            ->link('https://aisuda.bce.baidu.com/amis/zh-CN/docs/index'),
+        return amis()->Card()->className('h-96')->body(
+            amis()->Wrapper()->className('h-full')->body([
+                amis()
+                    ->Flex()
+                    ->className('h-full')
+                    ->direction('column')
+                    ->justify('center')
+                    ->alignItems('center')
+                    ->items([
+                        amis()->Image()->src(url(Admin::config('admin.logo'))),
+                        amis()->Wrapper()->className('text-3xl mt-9')->body(Admin::config('admin.name')),
+                        amis()->Flex()->className('w-64 mt-5')->justify('space-around')->items([
+                            amis()->Action()
+                                ->level('link')
+                                ->label('GitHub')
+                                ->blank(true)
+                                ->actionType('url')
+                                ->blank(true)
+                                ->link('https://github.com/slowlyo/owl-admin'),
+                            amis()->Action()
+                                ->level('link')
+                                ->label('OwlAdmin 文档')
+                                ->blank(true)
+                                ->actionType('url')
+                                ->link('http://doc.owladmin.com'),
+                            amis()->Action()
+                                ->level('link')
+                                ->label('Amis 文档')
+                                ->blank(true)
+                                ->actionType('url')
+                                ->link('https://aisuda.bce.baidu.com/amis/zh-CN/docs/index'),
+                        ]),
                     ]),
-                ]),
             ])
         );
     }
 
-    public function pieChart(): Card
+    public function pieChart()
     {
-        return Card::make()->className('h-96')->body(
-            Chart::make()->height(350)->config("{
+        return amis()->Card()->className('h-96')->body(
+            amis()->Chart()->height(350)->config("{
   backgroundColor:'',
   tooltip: { trigger: 'item' },
   legend: { bottom: 0, left: 'center' },
@@ -152,24 +130,16 @@ JS
       avoidLabelOverlap: false,
       itemStyle: { borderRadius: 10, borderColor: '#fff', borderWidth: 2 },
       label: { show: false, position: 'center' },
-      emphasis: {
-        label: { show: true, fontSize: '40', fontWeight: 'bold' }
-      },
+      emphasis: { label: { show: true, fontSize: '40', fontWeight: 'bold' } },
       labelLine: { show: false },
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ]
+      data: [ { value: 1048, name: 'Search Engine' }, { value: 735, name: 'Direct' }, { value: 580, name: 'Email' }, { value: 484, name: 'Union Ads' }, { value: 300, name: 'Video Ads' } ]
     }
   ]
 }")
         );
     }
 
-    public function lineChart(): Card
+    public function lineChart()
     {
         $randArr = function () {
             $_arr = [];
@@ -182,7 +152,7 @@ JS
         $random1 = $randArr();
         $random2 = $randArr();
 
-        $chart = Chart::make()->height(380)->className('h-96')->config("{
+        $chart = amis()->Chart()->height(380)->className('h-96')->config("{
 backgroundColor:'',
 title:{ text: '会员增长情况', },
 tooltip: { trigger: 'axis' },
@@ -195,13 +165,13 @@ series: [
     { name:'注册量', data: {$random2}, type: 'line', areaStyle: {}, smooth: true, symbol: 'none', },
 ]}");
 
-        return Card::make()->className('clear-card-mb')->body($chart);
+        return amis()->Card()->className('clear-card-mb')->body($chart);
     }
 
-    public function cube(): Card
+    public function cube()
     {
-        return Card::make()->className('h-96 ml-4 w-8/12')->body(
-            Html::make()->html(<<<HTML
+        return amis()->Card()->className('h-96 ml-4 w-8/12')->body(
+            amis()->Html()->html(<<<HTML
 <style>
     .cube-box{ height: 300px; display: flex; align-items: center; justify-content: center; }
   .cube { width: 100px; height: 100px; position: relative; transform-style: preserve-3d; animation: rotate 10s linear infinite; }
@@ -270,9 +240,7 @@ HTML
                 'animation'         => 'gradient 60s ease infinite',
             ],
             '@keyframes gradient'            => [
-                '0%{background-position:0% 0%}
-                  50%{background-position:100% 100%}
-                  100%{background-position:0% 0%}',
+                '0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%}',
             ],
             '.bg-blingbling .cxd-Card-title' => [
                 'color' => '#fff',

@@ -30,9 +30,9 @@ class BaseRenderer implements \JsonSerializable
 
     public function set($name, $value)
     {
-      $this->amisSchema[$name] = $value;
+        $this->amisSchema[$name] = $value;
 
-      return $this;
+        return $this;
     }
 
     public function jsonSerialize()

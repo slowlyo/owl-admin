@@ -18,14 +18,14 @@ class AdminMenuService extends AdminService
         $this->modelName = Admin::adminMenuModel();
     }
 
-    public function getTree(): array
+    public function getTree()
     {
         $list = $this->query()->orderBy('order')->get()->toArray();
 
         return array2tree($list);
     }
 
-    public function parentIsChild($id, $parent_id): bool
+    public function parentIsChild($id, $parent_id)
     {
         $parent = $this->query()->find($parent_id);
 
@@ -40,7 +40,7 @@ class AdminMenuService extends AdminService
         return false;
     }
 
-    public function update($primaryKey, $data): bool
+    public function update($primaryKey, $data)
     {
         $columns = $this->getTableColumns();
 
@@ -56,7 +56,7 @@ class AdminMenuService extends AdminService
         return $this->saveData($data, $columns, $model);
     }
 
-    public function store($data): bool
+    public function store($data)
     {
         $columns = $this->getTableColumns();
 
@@ -82,7 +82,7 @@ class AdminMenuService extends AdminService
      *
      * @return bool
      */
-    protected function saveData($data, array $columns, AdminMenu $model): bool
+    protected function saveData($data, array $columns, AdminMenu $model)
     {
         $urlExists = $this->query()
             ->where('url', data_get($data, 'url'))

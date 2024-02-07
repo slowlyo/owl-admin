@@ -21,7 +21,7 @@ trait ElementTrait
      *
      * @return Page
      */
-    protected function basePage(): Page
+    protected function basePage()
     {
         return Page::make()->className('m:overflow-auto');
     }
@@ -31,7 +31,7 @@ trait ElementTrait
      *
      * @return OtherAction|null
      */
-    protected function backButton(): OtherAction|null
+    protected function backButton()
     {
         $path   = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
         $script =
@@ -49,7 +49,7 @@ trait ElementTrait
      *
      * @return AjaxAction
      */
-    protected function bulkDeleteButton(): AjaxAction
+    protected function bulkDeleteButton()
     {
         return AjaxAction::make()
             ->api($this->getBulkDeletePath())
@@ -66,7 +66,7 @@ trait ElementTrait
      *
      * @return DialogAction|LinkAction
      */
-    protected function createButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
+    protected function createButton(bool $dialog = false, string $dialogSize = '')
     {
         if ($dialog) {
             $form = $this->form(false)->api($this->getStorePath())->onEvent([]);
@@ -89,7 +89,7 @@ trait ElementTrait
      *
      * @return DialogAction|LinkAction
      */
-    protected function rowEditButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
+    protected function rowEditButton(bool $dialog = false, string $dialogSize = '')
     {
         if ($dialog) {
             $form = $this->form(true)
@@ -116,7 +116,7 @@ trait ElementTrait
      *
      * @return DialogAction|LinkAction
      */
-    protected function rowShowButton(bool $dialog = false, string $dialogSize = ''): DialogAction|LinkAction
+    protected function rowShowButton(bool $dialog = false, string $dialogSize = '')
     {
         if ($dialog) {
             $button = DialogAction::make()->dialog(
@@ -134,7 +134,7 @@ trait ElementTrait
      *
      * @return AjaxAction
      */
-    protected function rowDeleteButton(): AjaxAction
+    protected function rowDeleteButton()
     {
         return AjaxAction::make()
             ->label(__('admin.delete'))
@@ -152,7 +152,7 @@ trait ElementTrait
      *
      * @return Operation
      */
-    protected function rowActions(bool|array $dialog = false, string $dialogSize = ''): Operation
+    protected function rowActions(bool|array $dialog = false, string $dialogSize = '')
     {
         if (is_array($dialog)) {
             return Operation::make()->label(__('admin.actions'))->buttons($dialog);
@@ -170,7 +170,7 @@ trait ElementTrait
      *
      * @return Form
      */
-    protected function baseFilter(): Form
+    protected function baseFilter()
     {
         return Form::make()
             ->panelClassName('base-filter')
@@ -194,7 +194,7 @@ trait ElementTrait
     /**
      * @return CRUDTable
      */
-    protected function baseCRUD(): CRUDTable
+    protected function baseCRUD()
     {
         $crud = CRUDTable::make()
             ->perPage(20)
@@ -235,7 +235,7 @@ trait ElementTrait
      *
      * @return Form
      */
-    protected function baseForm(bool $back = true): Form
+    protected function baseForm(bool $back = true)
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
@@ -261,7 +261,7 @@ trait ElementTrait
     /**
      * @return Form
      */
-    protected function baseDetail(): Form
+    protected function baseDetail()
     {
         return Form::make()
             ->panelClassName('px-48 m:px-0')
@@ -278,7 +278,7 @@ trait ElementTrait
      *
      * @return Page
      */
-    protected function baseList($crud): Page
+    protected function baseList($crud)
     {
         return $this->basePage()->body($crud);
     }
@@ -319,7 +319,7 @@ JS;
         $buttons        = [
             amis()->VanillaAction()->label(__('admin.export.all'))->onEvent(
                 $event(<<<JS
-let data = event.data.__super.__super
+let data = event.data
 let params = Object.keys(data).filter(key => key !== "page" && key !== "__super").reduce((obj, key) => {
     obj[key] = data[key];
     return obj;

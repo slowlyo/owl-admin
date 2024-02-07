@@ -5,7 +5,6 @@ namespace Slowlyo\OwlAdmin\Services;
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminRole;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -19,7 +18,7 @@ class AdminRoleService extends AdminService
         $this->modelName = Admin::adminRoleModel();
     }
 
-    public function getEditData($id): Model|\Illuminate\Database\Eloquent\Collection|Builder|array|null
+    public function getEditData($id)
     {
         $permission = parent::getEditData($id);
 
@@ -28,7 +27,7 @@ class AdminRoleService extends AdminService
         return $permission;
     }
 
-    public function store($data): bool
+    public function store($data)
     {
         $this->checkRepeated($data);
 
@@ -47,7 +46,7 @@ class AdminRoleService extends AdminService
         return $model->save();
     }
 
-    public function update($primaryKey, $data): bool
+    public function update($primaryKey, $data)
     {
         $this->checkRepeated($data, $primaryKey);
 

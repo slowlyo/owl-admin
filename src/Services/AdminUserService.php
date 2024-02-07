@@ -6,7 +6,6 @@ use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Models\AdminUser;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -20,7 +19,7 @@ class AdminUserService extends AdminService
         $this->modelName = Admin::adminUserModel();
     }
 
-    public function getEditData($id): Model|\Illuminate\Database\Eloquent\Collection|Builder|array|null
+    public function getEditData($id)
     {
         $adminUser = parent::getEditData($id)->makeHidden('password');
 
@@ -29,7 +28,7 @@ class AdminUserService extends AdminService
         return $adminUser;
     }
 
-    public function store($data): bool
+    public function store($data)
     {
         $this->checkUsernameUnique($data['username']);
 
@@ -44,7 +43,7 @@ class AdminUserService extends AdminService
         return $this->saveData($data, $columns, $model);
     }
 
-    public function update($primaryKey, $data): bool
+    public function update($primaryKey, $data)
     {
         $this->checkUsernameUnique($data['username'], $primaryKey);
         $this->passwordHandler($data);
@@ -122,7 +121,7 @@ class AdminUserService extends AdminService
      *
      * @return bool
      */
-    protected function saveData($data, array $columns, AdminUser $model): bool
+    protected function saveData($data, array $columns, AdminUser $model)
     {
         $roles = Arr::pull($data, 'roles');
 
