@@ -5,6 +5,7 @@ namespace {{Namespace}};
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class HomeController extends AdminController
 {
