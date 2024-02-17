@@ -149,6 +149,33 @@ if (!function_exists('file_upload_handle')) {
     }
 }
 
+if (!function_exists('file_upload_handle_multi')) {
+    /**
+     * 处理文件上传回显问题 (多个)
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    function file_upload_handle_multi()
+    {
+        $storage = \Illuminate\Support\Facades\Storage::disk(\Slowlyo\OwlAdmin\Admin::config('admin.upload.disk'));
+
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+            get: function ($value) use ($storage) {
+                return array_map(fn($item) => $item ? $storage->url($item) : '', explode(',', $value));
+            },
+            set: function ($value) use ($storage) {
+                if (is_string($value)) {
+                    return str_replace($storage->url(''), '', $value);
+                }
+
+                $list = array_map(fn($item) => str_replace($storage->url(''), '', $item), \Illuminate\Support\Arr::wrap($value));
+
+                return implode(',', $list);
+            }
+        );
+    }
+}
+
 // 是否是json字符串
 if (!function_exists('is_json')) {
     /**
