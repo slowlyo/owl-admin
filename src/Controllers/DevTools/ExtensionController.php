@@ -80,9 +80,9 @@ class ExtensionController extends AdminController
                 ])
             )
             ->headerToolbar([
-                $this->createExtend(),
-                $this->localInstall(),
                 $this->moreExtend(),
+                $this->localInstall(),
+                $this->createExtend(),
                 amis('reload')->align('right'),
                 amis('filter-toggler')->align('right'),
             ])
@@ -174,7 +174,6 @@ class ExtensionController extends AdminController
         return amis()->DialogAction()
             ->label(__('admin.extensions.create_extension'))
             ->icon('fa fa-add')
-            ->level('success')
             ->dialog(
                 amis()->Dialog()->title(__('admin.extensions.create_extension'))->body(
                     amis()->Form()->mode('normal')->api($this->getStorePath())->body([
@@ -266,6 +265,7 @@ class ExtensionController extends AdminController
         return amis()->DrawerAction()
             ->label(__('admin.extensions.more_extensions'))
             ->icon('fa-regular fa-lightbulb')
+            ->level('success')
             ->drawer(
                 amis()->Drawer()
                     ->title(__('admin.extensions.more_extensions'))
@@ -295,7 +295,7 @@ class ExtensionController extends AdminController
                                 amis('reload')->align('right'),
                                 amis('filter-toggler')->align('right'),
                             ])->columns([
-                                amis()->TableColumn()->name('name')->label('名称')->width(200)
+                                amis()->TableColumn()->name('name')->label('名称')
                                     ->type('tpl')
                                     ->tpl('<a href="${url}" target="_blank" title="打开 Packagist">${name}</a>'),
                                 amis()->TableColumn()
@@ -308,14 +308,10 @@ class ExtensionController extends AdminController
                                             amis()->Tpl()->tpl('${description}')
                                         )->position('left-top')
                                     ),
-                                amis()->TableColumn()->name('repository')->label('仓库')
-                                    ->type('tpl')
-                                    ->tpl('<a href="${repository}" target="_blank" title="打开代码仓库">${repository|truncate: 50}</a>'),
                                 amis()->TableColumn()->name('downloads')->label('下载量')->width(100),
                                 amis()->TableColumn()
                                     ->name('${"composer require " + name}')
                                     ->label('composer 安装命令')
-                                    ->width(300)
                                     ->copyable()
                                     ->type('tpl')
                                     ->tpl('${"composer require " + name}'),
