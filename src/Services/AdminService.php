@@ -109,7 +109,7 @@ abstract class AdminService
      */
     public function loadRelations($query)
     {
-        # 根据当前控制器取出他的page定义的 column字段，如果字段包含 .证明是从关联关系里取，查询模型是否有这个关联关系，有了自动加with
+        // 根据当前控制器取出他的page定义的 column字段，如果字段包含 .证明是从关联关系里取，查询模型是否有这个关联关系，有了自动加with
         $pageDefinition = Route::getCurrentRoute()->getController()?->list();
         if (!$pageDefinition instanceof Page) {
             return;

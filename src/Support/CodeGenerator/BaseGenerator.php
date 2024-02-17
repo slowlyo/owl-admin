@@ -71,9 +71,7 @@ class BaseGenerator
             $namespace = trim($namespace, '\\') . '\\';
 
             return [$namespace => [$namespace, $path]];
-        })->sortBy(function ($_, $namespace) {
-            return strlen($namespace);
-        }, SORT_REGULAR, true);
+        })->sortBy(fn($_, $namespace) => strlen($namespace), SORT_REGULAR, true);
 
         $prefix = explode($class, '\\')[0];
 
@@ -82,9 +80,7 @@ class BaseGenerator
                 $values = ['App\\', 'app/'];
             }
         } else {
-            $values = $map->filter(function ($_, $k) use ($class) {
-                return Str::startsWith($class, $k);
-            })->first();
+            $values = $map->filter(fn($_, $k) => Str::startsWith($class, $k))->first();
         }
 
         if (empty($values)) {

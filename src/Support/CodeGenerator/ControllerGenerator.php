@@ -310,11 +310,11 @@ class ControllerGenerator extends BaseGenerator
     private function jsonToStringArray($jsonString)
     {
         // 首先，检查输入是否为有效的JSON字符串
-        $dataArray = json_decode($jsonString, true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            // 如果json_decode遇到错误，返回错误信息
+        if(!is_json($jsonString)){
             return $jsonString;
         }
+
+        $dataArray = json_decode($jsonString, true);
 
         // 遍历数组，确保所有的字符串都正确处理Unicode编码，特别是中文
         array_walk_recursive($dataArray, function (&$item) {

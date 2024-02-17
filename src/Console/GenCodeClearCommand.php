@@ -19,9 +19,9 @@ class GenCodeClearCommand extends Command
     {
         $record = $this->checkOption();
 
-        $controllerPath = BaseGenerator::guessClassFileName($record->controller_name);
-        $modelPath      = BaseGenerator::guessClassFileName($record->model_name);
-        $servicePath    = BaseGenerator::guessClassFileName($record->service_name);
+        $controllerPath = BaseGenerator::guessClassFileName(str_replace('/', '\\', $record->controller_name));
+        $modelPath      = BaseGenerator::guessClassFileName(str_replace('/', '\\', $record->model_name));
+        $servicePath    = BaseGenerator::guessClassFileName(str_replace('/', '\\', $record->service_name));
         $tableName      = $record->table_name;
         $migrationPath  = $this->getMigrationFileName($tableName);
         $menuRecord     = $this->getMenu($record->menu_info);
@@ -52,15 +52,19 @@ class GenCodeClearCommand extends Command
         $this->info('Clearing...');
         $this->info('- Clearing controller...');
         $this->clearFile($controllerPath);
+        $this->newLine();
 
         $this->info('- Clearing model...');
         $this->clearFile($modelPath);
+        $this->newLine();
 
         $this->info('- Clearing service...');
         $this->clearFile($servicePath);
+        $this->newLine();
 
         $this->info('- Clearing migration...');
         $this->clearFile($migrationPath);
+        $this->newLine();
 
         $this->info('- Clearing menu...');
         if ($menuRecord) {
@@ -70,6 +74,7 @@ class GenCodeClearCommand extends Command
                 $this->error('Delete failed.');
             }
         }
+        $this->newLine();
 
         $this->info('- Refresh route...');
         $this->call('admin:gen-route', ['--excluded' => $record->id]);
@@ -136,6 +141,7 @@ class GenCodeClearCommand extends Command
 
     protected function clearFile($path)
     {
+        dump($path);
         if (!file_exists($path)) {
             $this->error('File not found.');
             return;
