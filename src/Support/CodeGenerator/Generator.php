@@ -5,6 +5,8 @@ namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Slowlyo\OwlAdmin\Support\Cores\Module;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class Generator
 {
@@ -194,5 +196,29 @@ class Generator
         }
 
         return collect($data);
+    }
+
+    public function getAllChildController()
+    {
+        $dirs = [app_path()];
+
+        if (Module::installed()) {
+            $dirs[] = config('modules.paths.modules');
+        }
+
+        foreach ($dirs as $dir) {
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir));
+            $phpFiles = new \RegexIterator($iterator, '/^.+\Controller.php$/i', \RegexIterator::GET_MATCH);
+
+            foreach ($phpFiles as $phpFile) {
+                $filePath = $phpFile[0];
+                require_once $filePath;
+            }
+        }
+
+        return collect(get_declared_classes())
+            ->filter(fn($item) => (new \ReflectionClass($item))->isSubclassOf(AdminController::class))
+            ->values()
+            ->toArray();
     }
 }
