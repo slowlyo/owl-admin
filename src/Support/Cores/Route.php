@@ -56,6 +56,7 @@ class Route
             $router->post('_settings', [IndexController::class, 'saveSettings']);
             $router->get('no-content', [IndexController::class, 'noContentResponse']);
             $router->get('_download_export', [IndexController::class, 'downloadExport']);
+            $router->get('_iconify_search', [IndexController::class, 'iconifySearch']);
 
             $router->any('upload_file', [IndexController::class, 'uploadFile']);
             $router->any('upload_rich', [IndexController::class, 'uploadRich']);
