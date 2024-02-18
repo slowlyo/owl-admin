@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
+use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -106,5 +107,42 @@ class AdminMenuService extends AdminService
         }
 
         return $model->save();
+    }
+
+    /**
+     * 重新排序菜单
+     *
+     * @param $ids
+     *
+     * @return false|int
+     */
+    public function reorder($ids)
+    {
+        if (blank($ids)) {
+            return false;
+        }
+
+        $ids = json_decode('[' . str_replace('[', ',[', $ids) . ']');
+
+        $list = collect($this->refreshOrder($ids))->transform(fn($i) => $i * 10)->all();
+
+        $sql = 'update ' . $this->getModel()->getTable() . ' set `order` = case id ';
+
+        foreach ($list as $k => $v) {
+            $sql .= " when {$k} then {$v} ";
+        }
+
+        return DB::update($sql . ' else `order` end');
+    }
+
+    public function refreshOrder($list)
+    {
+        $result = collect($list)->filter(fn($i) => !is_array($i))->values()->flip()->toArray();
+
+        collect($list)->filter(fn($i) => is_array($i))->each(function ($item) use (&$result) {
+            $result = $this->refreshOrder($item) + $result;
+        });
+
+        return $result;
     }
 }

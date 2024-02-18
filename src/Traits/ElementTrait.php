@@ -3,33 +3,23 @@
 namespace Slowlyo\OwlAdmin\Traits;
 
 use Slowlyo\OwlAdmin\Admin;
-use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Form;
-use Slowlyo\OwlAdmin\Renderers\Button;
-use Slowlyo\OwlAdmin\Renderers\Dialog;
-use Slowlyo\OwlAdmin\Renderers\CRUDTable;
-use Slowlyo\OwlAdmin\Renderers\Operation;
-use Slowlyo\OwlAdmin\Renderers\LinkAction;
-use Slowlyo\OwlAdmin\Renderers\AjaxAction;
-use Slowlyo\OwlAdmin\Renderers\OtherAction;
-use Slowlyo\OwlAdmin\Renderers\DialogAction;
 
 trait ElementTrait
 {
     /**
      * 基础页面
      *
-     * @return Page
+     * @return \Slowlyo\OwlAdmin\Renderers\Page
      */
     protected function basePage()
     {
-        return Page::make()->className('m:overflow-auto');
+        return amis()->Page()->className('m:overflow-auto');
     }
 
     /**
      * 返回列表按钮
      *
-     * @return OtherAction|null
+     * @return \Slowlyo\OwlAdmin\Renderers\OtherAction
      */
     protected function backButton()
     {
@@ -37,7 +27,7 @@ trait ElementTrait
         $script =
             sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
 
-        return OtherAction::make()
+        return amis()->OtherAction()
             ->label(__('admin.back'))
             ->icon('fa-solid fa-chevron-left')
             ->level('primary')
@@ -47,11 +37,11 @@ trait ElementTrait
     /**
      * 批量删除按钮
      *
-     * @return AjaxAction
+     * @return \Slowlyo\OwlAdmin\Renderers\AjaxAction
      */
     protected function bulkDeleteButton()
     {
-        return AjaxAction::make()
+        return amis()->AjaxAction()
             ->api($this->getBulkDeletePath())
             ->icon('fa-solid fa-trash-can')
             ->label(__('admin.delete'))
@@ -64,18 +54,18 @@ trait ElementTrait
      * @param bool   $dialog
      * @param string $dialogSize
      *
-     * @return DialogAction|LinkAction
+     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction|\Slowlyo\OwlAdmin\Renderers\LinkAction
      */
     protected function createButton(bool $dialog = false, string $dialogSize = '')
     {
         if ($dialog) {
             $form = $this->form(false)->api($this->getStorePath())->onEvent([]);
 
-            $button = DialogAction::make()->dialog(
-                Dialog::make()->title(__('admin.create'))->body($form)->size($dialogSize)
+            $button = amis()->DialogAction()->dialog(
+                amis()->Dialog()->title(__('admin.create'))->body($form)->size($dialogSize)
             );
         } else {
-            $button = LinkAction::make()->link($this->getCreatePath());
+            $button = amis()->LinkAction()->link($this->getCreatePath());
         }
 
         return $button->label(__('admin.create'))->icon('fa fa-add')->level('primary');
@@ -87,7 +77,7 @@ trait ElementTrait
      * @param bool   $dialog
      * @param string $dialogSize
      *
-     * @return DialogAction|LinkAction
+     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction|\Slowlyo\OwlAdmin\Renderers\LinkAction
      */
     protected function rowEditButton(bool $dialog = false, string $dialogSize = '')
     {
@@ -98,11 +88,11 @@ trait ElementTrait
                 ->redirect('')
                 ->onEvent([]);
 
-            $button = DialogAction::make()->dialog(
-                Dialog::make()->title(__('admin.edit'))->body($form)->size($dialogSize)
+            $button = amis()->DialogAction()->dialog(
+                amis()->Dialog()->title(__('admin.edit'))->body($form)->size($dialogSize)
             );
         } else {
-            $button = LinkAction::make()->link($this->getEditPath());
+            $button = amis()->LinkAction()->link($this->getEditPath());
         }
 
         return $button->label(__('admin.edit'))->icon('fa-regular fa-pen-to-square')->level('link');
@@ -114,16 +104,16 @@ trait ElementTrait
      * @param bool   $dialog
      * @param string $dialogSize
      *
-     * @return DialogAction|LinkAction
+     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction|\Slowlyo\OwlAdmin\Renderers\LinkAction
      */
     protected function rowShowButton(bool $dialog = false, string $dialogSize = '')
     {
         if ($dialog) {
-            $button = DialogAction::make()->dialog(
-                Dialog::make()->title(__('admin.show'))->body($this->detail('$id'))->size($dialogSize)
+            $button = amis()->DialogAction()->dialog(
+                amis()->Dialog()->title(__('admin.show'))->body($this->detail('$id'))->size($dialogSize)
             );
         } else {
-            $button = LinkAction::make()->link($this->getShowPath());
+            $button = amis()->LinkAction()->link($this->getShowPath());
         }
 
         return $button->label(__('admin.show'))->icon('fa-regular fa-eye')->level('link');
@@ -132,11 +122,11 @@ trait ElementTrait
     /**
      * 行删除按钮
      *
-     * @return AjaxAction
+     * @return \Slowlyo\OwlAdmin\Renderers\AjaxAction
      */
     protected function rowDeleteButton()
     {
-        return AjaxAction::make()
+        return amis()->AjaxAction()
             ->label(__('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
@@ -150,15 +140,15 @@ trait ElementTrait
      * @param bool   $dialog
      * @param string $dialogSize
      *
-     * @return Operation
+     * @return \Slowlyo\OwlAdmin\Renderers\Operation
      */
     protected function rowActions(bool|array $dialog = false, string $dialogSize = '')
     {
         if (is_array($dialog)) {
-            return Operation::make()->label(__('admin.actions'))->buttons($dialog);
+            return amis()->Operation()->label(__('admin.actions'))->buttons($dialog);
         }
 
-        return Operation::make()->label(__('admin.actions'))->buttons([
+        return amis()->Operation()->label(__('admin.actions'))->buttons([
             $this->rowShowButton($dialog, $dialogSize),
             $this->rowEditButton($dialog, $dialogSize),
             $this->rowDeleteButton(),
@@ -168,15 +158,15 @@ trait ElementTrait
     /**
      * 基础筛选器
      *
-     * @return Form
+     * @return \Slowlyo\OwlAdmin\Renderers\Form
      */
     protected function baseFilter()
     {
-        return Form::make()
+        return amis()->Form()
             ->panelClassName('base-filter')
             ->title('')
             ->actions([
-                Button::make()->label(__('admin.reset'))->actionType('clear-and-submit'),
+                amis()->Button()->label(__('admin.reset'))->actionType('clear-and-submit'),
                 amis('submit')->label(__('admin.search'))->level('primary'),
             ]);
     }
@@ -192,11 +182,11 @@ trait ElementTrait
     }
 
     /**
-     * @return CRUDTable
+     * @return \Slowlyo\OwlAdmin\Renderers\CRUDTable
      */
     protected function baseCRUD()
     {
-        $crud = CRUDTable::make()
+        $crud = amis()->CRUDTable()
             ->perPage(20)
             ->affixHeader(false)
             ->filterTogglable()
@@ -233,13 +223,13 @@ trait ElementTrait
      *
      * @param bool $back
      *
-     * @return Form
+     * @return \Slowlyo\OwlAdmin\Renderers\Form
      */
     protected function baseForm(bool $back = true)
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
-        $form = Form::make()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal');
+        $form = amis()->Form()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal');
 
         if ($back) {
             $form->onEvent([
@@ -259,11 +249,11 @@ trait ElementTrait
     }
 
     /**
-     * @return Form
+     * @return \Slowlyo\OwlAdmin\Renderers\Form
      */
     protected function baseDetail()
     {
-        return Form::make()
+        return amis()->Form()
             ->panelClassName('px-48 m:px-0')
             ->title(' ')
             ->mode('horizontal')
@@ -276,7 +266,7 @@ trait ElementTrait
      *
      * @param $crud
      *
-     * @return Page
+     * @return \Slowlyo\OwlAdmin\Renderers\Page
      */
     protected function baseList($crud)
     {

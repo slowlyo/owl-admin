@@ -17,13 +17,15 @@ class AdminMenuController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
+            ->draggable()
+            ->saveOrderApi([
+                'url'  => '/system/admin_menus/save_order',
+                'data' => ['ids' => '${ids}'],
+            ])
             ->loadDataOnce()
             ->syncLocation(false)
             ->footerToolbar([])
-            ->headerToolbar([
-                $this->createButton(true, 'lg'),
-                ...$this->baseHeaderToolBar(),
-            ])
+            ->headerToolbar([$this->createButton(true, 'lg'), ...$this->baseHeaderToolBar()])
             ->filterTogglable(false)
             ->footerToolbar(['statistics'])
             ->bulkActions([$this->bulkDeleteButton()->reload('window')])
@@ -121,5 +123,15 @@ class AdminMenuController extends AdminController
     public function detail(): Form
     {
         return $this->baseDetail()->body([]);
+    }
+
+    /**
+     * 保存排序
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function saveOrder()
+    {
+        return $this->autoResponse($this->service->reorder(request()->input('ids')));
     }
 }

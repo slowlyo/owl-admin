@@ -31,7 +31,7 @@ class Route
     {
         $config = fn($key) => config($prefix . $key);
 
-        app('router')->get('/admin', function (){
+        app('router')->get('/admin', function () {
             $view = app(\Illuminate\View\Factory::class);
 
             $view->addExtension('html', 'file');
@@ -69,6 +69,7 @@ class Route
                 $router->get('/', [AdminUserController::class, 'index']);
 
                 $router->resource('admin_users', AdminUserController::class);
+                $router->post('admin_menus/save_order', [AdminMenuController::class, 'saveOrder']);
                 $router->resource('admin_menus', AdminMenuController::class);
                 $router->resource('admin_roles', AdminRoleController::class);
                 $router->resource('admin_permissions', AdminPermissionController::class);
