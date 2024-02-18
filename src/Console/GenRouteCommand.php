@@ -49,12 +49,15 @@ EOF;
                 $_route      = ltrim($item->menu_info['route'], '/');
                 $_controller = '\\' . str_replace('/', '\\', $item->controller_name);
 
+                if (!class_exists($_controller)) {
+                    return;
+                }
+
                 $routes .= <<<EOF
     // {$item->title}
     \$router->resource('{$_route}', {$_controller}::class);
 
 EOF;
-
             });
 
         $content = str_replace('_content_', $routes, $content);
