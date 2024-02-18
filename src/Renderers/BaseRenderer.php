@@ -30,6 +30,10 @@ class BaseRenderer implements \JsonSerializable
 
     public function set($name, $value)
     {
+        if ($name == 'map' && is_array($value) && array_keys($value) == array_keys(array_keys($value))) {
+            $value = (object)$value;
+        }
+
         $this->amisSchema[$name] = $value;
 
         return $this;
