@@ -17,6 +17,8 @@ class Authenticate
                 ->fail(__('admin.please_login'));
         }
 
+        Admin::permission()->checkUserStatus();
+
         return $next($request);
     }
 }

@@ -55,6 +55,20 @@ class Permission
     }
 
     /**
+     * 检查用户状态
+     *
+     * @return void
+     */
+    public function checkUserStatus()
+    {
+        $user = Admin::user();
+
+        if ($user && !$user->enabled) {
+            Admin::user()->currentAccessToken()->delete();
+        }
+    }
+
+    /**
      * 权限拦截
      *
      * @param $request

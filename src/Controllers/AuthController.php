@@ -45,6 +45,10 @@ class AuthController extends AdminController
             $user = Admin::adminUserModel()::query()->where('username', $request->username)->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
+                if(!$user->enabled){
+                    return $this->response()->fail(__('admin.user_disabled'));
+                }
+
                 $module = Admin::currentModule(true);
                 $prefix = $module ? $module . '.' : '';
                 $token  = $user->createToken($prefix . 'admin')->plainTextToken;

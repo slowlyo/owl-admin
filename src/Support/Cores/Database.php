@@ -47,6 +47,7 @@ class Database
             $table->increments('id');
             $table->string('username', 120)->unique();
             $table->string('password', 80);
+            $table->tinyInteger('enabled')->default(1);
             $table->string('name')->default('');
             $table->string('avatar')->nullable();
             $table->string('remember_token', 100)->nullable();

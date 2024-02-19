@@ -152,4 +152,22 @@ class UpdateCommand extends Command
 
         settings()->set('system_theme_setting');
     }
+
+    public function version322()
+    {
+        $this->output->title('Update to version v3.2.2');
+
+        if (!Schema::hasColumn('admin_users', 'enabled')) {
+            Schema::table('admin_users', function ($table) {
+                $table->tinyInteger('enabled')->default(1);
+            });
+        }
+
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--lang'   => true,
+                '--force'  => true,
+            ]);
+        }
+    }
 }

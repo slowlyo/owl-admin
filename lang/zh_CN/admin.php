@@ -60,6 +60,7 @@ return [
     'cancel'                => '取消',
     'please_login'          => '请先登录',
     'unauthorized'          => '无权访问',
+    'user_disabled'         => '用户已被禁用',
 
     'code_generators' => [
         'remark1'                   => '额外参数请参考',

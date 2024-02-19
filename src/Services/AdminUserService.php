@@ -100,7 +100,7 @@ class AdminUserService extends AdminService
 
         $query = $this->query()
             ->with('roles')
-            ->select(['id', 'name', 'username', 'avatar', 'created_at'])
+            ->select(['id', 'name', 'username', 'avatar', 'enabled', 'created_at'])
             ->when($keyword, function ($query) use ($keyword) {
                 $query->where('username', 'like', "%{$keyword}%")->orWhere('name', 'like', "%{$keyword}%");
             });

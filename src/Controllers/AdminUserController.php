@@ -34,6 +34,9 @@ class AdminUserController extends AdminController
                 amis()->TableColumn('roles', __('admin.admin_user.roles'))->type('each')->items(
                     amis()->Tag()->label('${name}')->className('my-1')
                 ),
+                amis()->TableColumn('enabled', __('admin.extensions.card.status'))->quickEdit(
+                    amis()->SwitchControl()->mode('inline')->saveImmediately(true)
+                ),
                 amis()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true),
                 $this->rowActions([
                     $this->rowEditButton(true),
@@ -60,6 +63,10 @@ class AdminUserController extends AdminController
                 ->joinValues(false)
                 ->extractValue()
                 ->options(AdminRoleService::make()->query()->get(['id', 'name'])),
+            amis()->SwitchControl('enabled', __('admin.extensions.card.status'))
+                ->onText(__('admin.extensions.enable'))
+                ->offText(__('admin.extensions.disable'))
+                ->value(1),
         ]);
     }
 

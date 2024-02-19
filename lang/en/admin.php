@@ -60,6 +60,7 @@ return [
     'cancel'                => 'Cancel',
     'please_login'          => 'Please Login',
     'unauthorized'          => 'Unauthorized',
+    'user_disabled'         => 'The user has been disabled',
 
     'code_generators' => [
         'remark1'                   => 'For more parameters, please refer to',
