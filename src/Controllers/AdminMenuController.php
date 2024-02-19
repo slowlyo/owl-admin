@@ -6,12 +6,15 @@ use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
+use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 
 /**
  * @property AdminMenuService $service
  */
 class AdminMenuController extends AdminController
 {
+    use IconifyPickerTrait;
+
     protected string $serviceName = AdminMenuService::class;
 
     public function list(): Page
@@ -63,11 +66,7 @@ class AdminMenuController extends AdminController
         return $this->baseForm()->body([
             amis()->GroupControl()->body([
                 amis()->TextControl('title', __('admin.admin_menu.title'))->required(),
-                amis()->TextControl('icon', __('admin.admin_menu.icon'))
-                    ->description(
-                        __('admin.admin_menu.icon_description') .
-                        '<a href="https://icones.js.org/collection/all" target="_blank"> https://icones.js.org</a>'
-                    ),
+                $this->iconifyPicker('icon', __('admin.admin_menu.icon')),
             ]),
             amis()->GroupControl()->body([
                 amis()->TreeSelectControl('parent_id', __('admin.admin_menu.parent_id'))
@@ -76,8 +75,7 @@ class AdminMenuController extends AdminController
                     ->showIcon(false)
                     ->value(0)
                     ->source('/system/admin_menus?_action=getData'),
-                amis()
-                    ->TextControl('component', __('admin.admin_menu.component'))
+                amis()->TextControl('component', __('admin.admin_menu.component'))
                     ->description(__('admin.admin_menu.component_desc'))
                     ->value('amis'),
             ]),

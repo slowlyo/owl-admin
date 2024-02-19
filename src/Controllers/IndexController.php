@@ -65,12 +65,14 @@ class IndexController extends AdminController
 
     public function iconifySearch()
     {
-        $query  = request('query', 'home');
-        $result = file_get_contents('https://api.simplesvg.com/search?limit=40&query=' . $query);
-        $result = json_decode($result, true);
-        $result = data_get($result, 'icons', []);
-        $items  = array_map(fn($i) => ['icon' => $i], $result);
-        $total  = data_get($result, 'total', 0);
+        $query = request('query', 'home');
+
+        $result = cache()->remember('iconify_search_' . $query, 3600, function () use ($query) {
+            return json_decode(file_get_contents('https://api.simplesvg.com/search?limit=999&query=' . $query), true);
+        });
+
+        $items = array_map(fn($i) => ['icon' => $i], data_get($result, 'icons', []));
+        $total = data_get($result, 'total', 0);
 
         return $this->response()->success(compact('items', 'total'));
     }
