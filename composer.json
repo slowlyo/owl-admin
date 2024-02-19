@@ -24,7 +24,8 @@
     ],
     "require": {
         "php": ">=8.0",
-        "illuminate/support": "~9|~10"
+        "illuminate/support": "~9|~10",
+        "iconify/json": "*"
     },
     "autoload": {
         "psr-4": {

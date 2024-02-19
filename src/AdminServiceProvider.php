@@ -17,6 +17,7 @@ class AdminServiceProvider extends ServiceProvider
         Console\UpdateCommand::class,
         Console\InstallCommand::class,
         Console\PublishCommand::class,
+        Console\IconifyCommand::class,
         Console\GenRouteCommand::class,
         Console\CreateUserCommand::class,
         Console\GenCodeClearCommand::class,

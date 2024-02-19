@@ -2,11 +2,12 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Slowlyo\OwlAdmin\Admin;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Models\Extension;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class IndexController extends AdminController
 {
@@ -67,12 +68,26 @@ class IndexController extends AdminController
     {
         $query = request('query', 'home');
 
-        $result = cache()->remember('iconify_search_' . $query, 3600, function () use ($query) {
-            return json_decode(file_get_contents('https://api.simplesvg.com/search?limit=999&query=' . $query), true);
-        });
+        $filePath = storage_path('iconify.json');
 
-        $items = array_map(fn($i) => ['icon' => $i], data_get($result, 'icons', []));
-        $total = data_get($result, 'total', 0);
+        if (!is_file($filePath)) {
+            Artisan::call('admin:iconify');
+        }
+
+        $icons = file_get_contents($filePath);
+        $icons = json_decode($icons, true);
+
+        $items = [];
+        foreach ($icons as $item) {
+            if (str_contains($item, $query)) {
+                $items[] = ['icon' => $item];
+            }
+            if (count($items) > 999) {
+                break;
+            }
+        }
+
+        $total = count($items);
 
         return $this->response()->success(compact('items', 'total'));
     }
