@@ -153,7 +153,7 @@ class UpdateCommand extends Command
         settings()->set('system_theme_setting');
     }
 
-    public function version322()
+    public function version323()
     {
         $this->output->title('Update to version v3.2.2');
 
