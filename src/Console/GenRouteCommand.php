@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Console;
 
 use Illuminate\Console\Command;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\ControllerGenerator;
 
 class GenRouteCommand extends Command
 {
@@ -48,6 +49,11 @@ EOF;
 
                 $_route      = ltrim($item->menu_info['route'], '/');
                 $_controller = '\\' . str_replace('/', '\\', $item->controller_name);
+
+                try {
+                    require_once ControllerGenerator::guessClassFileName($_controller);
+                } catch (\Throwable $e) {
+                }
 
                 if (!class_exists($_controller)) {
                     return;
