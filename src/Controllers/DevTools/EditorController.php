@@ -52,7 +52,7 @@ class EditorController extends AdminController
                 }
 
                 if (Arr::isList($json)) {
-                    $code .= $space . sprintf('%s,', $this->parse($value, $level));
+                    $code .= $space . sprintf('%s,', $this->parse($value, $level + 1));
                     continue;
                 }
 
