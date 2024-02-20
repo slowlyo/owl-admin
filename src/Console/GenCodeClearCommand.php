@@ -109,7 +109,9 @@ class GenCodeClearCommand extends Command
 
         $migrationPath = BaseGenerator::guessClassFileName($model_name);
         $migrationPath = dirname(str_replace('/Models/','/../database/migrations/',$migrationPath));
-
+        if (!is_dir($migrationPath)){
+         return '';
+        }
         $files = scandir($migrationPath);
 
         $files = array_filter($files, fn($file) => str_contains($file, $tableName));
