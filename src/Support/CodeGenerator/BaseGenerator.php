@@ -71,25 +71,45 @@ class BaseGenerator
             $namespace = trim($namespace, '\\') . '\\';
 
             return [$namespace => [$namespace, $path]];
-        })->sortBy(fn($_, $namespace) => strlen($namespace), SORT_REGULAR, true);
+        })->sortBy(function ($_, $namespace) {
+            return strlen($namespace);
+        }, SORT_REGULAR, true);
 
+
+        $autoloadFile = base_path('/vendor/autoload.php');
+        $loader = require $autoloadFile;
         $prefix = explode($class, '\\')[0];
+        $map = collect($loader->getPrefixesPsr4())->mapWithKeys(function ($path, $namespace) {
+            $namespace = trim($namespace, '\\') . '\\';
+            $path = current($path);
+            $path = str_replace('\\', '/', $path);
+            $path = str_replace(base_path('/'), "", realpath($path)) . '/';
+            return [$namespace => [$namespace, $path]];
+        })->sortBy(function ($_, $namespace) {
+            return strlen($namespace);
+        }, SORT_REGULAR, true);
+        $prefix = explode($class, '\\')[0];
+
 
         if ($map->isEmpty()) {
             if (Str::startsWith($class, 'App\\')) {
                 $values = ['App\\', 'app/'];
             }
         } else {
-            $values = $map->filter(fn($_, $k) => Str::startsWith($class, $k))->first();
+            $values = $map->filter(function ($_, $k) use ($class) {
+                $class = str_replace('/','\\',$class);
+                return Str::startsWith($class, $k);
+            })->first();
         }
+
+
 
         if (empty($values)) {
             $values = [$prefix . '\\', self::slug($prefix) . '/'];
         }
 
         [$namespace, $path] = $values;
-
-        return base_path(str_replace([$namespace, '\\'], [$path, '/'], $class)) . '.php';
+        return base_path(str_replace(["/",$namespace, '\\'], ["\\",$path, '/'], $class)) . '.php';
     }
 
     public static function slug(string $name, string $symbol = '-'): array|string

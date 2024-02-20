@@ -129,6 +129,7 @@ class Database
             $table->text('needs')->nullable()->comment('需要生成的代码');
             $table->text('menu_info')->nullable()->comment('菜单信息');
             $table->text('page_info')->nullable()->comment('页面信息');
+            $table->text('save_path')->nullable()->comment('保存位置');
             $table->timestamps();
         });
 
