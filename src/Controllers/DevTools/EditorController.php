@@ -15,50 +15,55 @@ class EditorController extends AdminController
         return $this->response()->success(compact('schema'));
     }
 
-    public function parse($json)
+    public function parse($json, $level = 1)
     {
         $code    = '';
         $map     = RendererMap::$map;
         $mapKeys = array_keys($map);
+        $space   = "\n" . str_repeat("\t", $level);
 
         if ($json['type'] ?? null) {
+            // 组件
             if (in_array($json['type'], $mapKeys)) {
                 $className = str_replace('Slowlyo\\OwlAdmin\\Renderers\\', '', $map[$json['type']]);
-                $code      .= sprintf('amis()->%s()', $className);
+                $code      .= $space . sprintf('amis()->%s()', $className);
             } else {
-                // 没找到对应的组件
-                $code .= sprintf('amis(\'%s\')', $json['type']);
+                $code .= $space . sprintf('amis(\'%s\')', $json['type']);
             }
 
+            // 属性
             foreach ($json as $key => $value) {
                 if ($key == 'type') {
                     continue;
                 }
-                // 属性
                 if (is_array($value)) {
-                    $code .= sprintf('->%s(%s)', $key, $this->parse($value));
-                } else {
-                    $code .= sprintf('->%s(\'%s\')', $key, $this->escape($value));
+                    $code .= sprintf('->%s(%s)', $key, $this->parse($value, $level + 1));
+                    continue;
                 }
+                $code .= sprintf('->%s(\'%s\')', $key, $this->escape($value));
             }
         } else {
             // json 转 php 数组
             $code = '[';
             foreach ($json as $key => $value) {
-                if (is_array($value)) {
-                    if (Arr::isList($json)) {
-                        $code .= sprintf('%s,', $this->parse($value));
-                    } else {
-                        $code .= sprintf('\'%s\' => %s,', $key, $this->parse($value));
-                    }
-                } else {
-                    $code .= sprintf('\'%s\' => \'%s\',', $key, $this->escape($value));
+                if (!is_array($value)) {
+                    $code .= $space . sprintf('\'%s\' => \'%s\',', $key, $this->escape($value));
+                    continue;
                 }
+
+                if (Arr::isList($json)) {
+                    $code .= $space . sprintf('%s,', $this->parse($value, $level));
+                    continue;
+                }
+
+                $code .= $space . sprintf('\'%s\' => %s,', $key, $this->parse($value, $level + 1));
             }
-            $code .= ']';
+            $code .= substr($space, 0, -1) . ']';
         }
 
-        return $code;
+        $code = preg_replace("/\[\n\t*]/", "[]", $code);
+
+        return preg_replace("/\n\t*\n/", "\n", $code);
     }
 
     /**
