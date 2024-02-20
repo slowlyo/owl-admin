@@ -142,7 +142,7 @@ class GenCodeClearCommand extends Command
 
     protected function clearFile($path)
     {
-        dump($path);
+//        dump($path);
         if (!file_exists($path)) {
             $this->error('File not found.');
             return;
