@@ -79,17 +79,14 @@ class BaseGenerator
         $autoloadFile = base_path('/vendor/autoload.php');
         $loader = require $autoloadFile;
         $prefix = explode($class, '\\')[0];
-        $map = collect($loader->getPrefixesPsr4())->mapWithKeys(function ($path, $namespace) {
-            $namespace = trim($namespace, '\\') . '\\';
-            $path = current($path);
-            $path = str_replace('\\', '/', $path);
-            $path = str_replace(base_path('/'), "", realpath($path)) . '/';
-            return [$namespace => [$namespace, $path]];
-        })->sortBy(function ($_, $namespace) {
-            return strlen($namespace);
-        }, SORT_REGULAR, true);
-        $prefix = explode($class, '\\')[0];
-
+        // 获取并处理命名空间和路径映射
+        $map = collect($loader->getPrefixesPsr4())
+            ->mapWithKeys(function ($path, $namespace) {
+                $namespace = trim($namespace, '\\') . '\\';
+                $path = str_replace([base_path() . '/', base_path() . '\\'], '', realpath(current($path)) . '/');
+                return [$namespace => [$namespace, $path]];
+            })
+            ->sortKeysDesc(SORT_STRING);
 
         if ($map->isEmpty()) {
             if (Str::startsWith($class, 'App\\')) {
@@ -101,8 +98,6 @@ class BaseGenerator
                 return Str::startsWith($class, $k);
             })->first();
         }
-
-
 
         if (empty($values)) {
             $values = [$prefix . '\\', self::slug($prefix) . '/'];
