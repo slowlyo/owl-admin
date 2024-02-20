@@ -64,18 +64,6 @@ class BaseGenerator
         }
 
         $class = trim($class, '\\');
-
-        $composer = self::fromJson(base_path('composer.json'));
-
-        $map = collect(Arr::get($composer, 'autoload.psr-4', []))->mapWithKeys(function ($path, $namespace) {
-            $namespace = trim($namespace, '\\') . '\\';
-
-            return [$namespace => [$namespace, $path]];
-        })->sortBy(function ($_, $namespace) {
-            return strlen($namespace);
-        }, SORT_REGULAR, true);
-
-
         $autoloadFile = base_path('/vendor/autoload.php');
         $loader = require $autoloadFile;
         $prefix = explode($class, '\\')[0];
