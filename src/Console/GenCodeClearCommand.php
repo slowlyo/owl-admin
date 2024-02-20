@@ -23,7 +23,7 @@ class GenCodeClearCommand extends Command
         $modelPath      = BaseGenerator::guessClassFileName(str_replace('/', '\\', $record->model_name));
         $servicePath    = BaseGenerator::guessClassFileName(str_replace('/', '\\', $record->service_name));
         $tableName      = $record->table_name;
-        $migrationPath  = $this->getMigrationFileName($tableName);
+        $migrationPath  = $this->getMigrationFileName($tableName,$record->model_name);
         $menuRecord     = $this->getMenu($record->menu_info);
 
         // confirm
@@ -103,11 +103,12 @@ class GenCodeClearCommand extends Command
         return $record;
     }
 
-    protected function getMigrationFileName($tableName)
+    protected function getMigrationFileName($tableName, $model_name)
     {
         $tableName = 'create_' . $tableName . '_table';
 
-        $migrationPath = database_path('migrations');
+        $migrationPath = BaseGenerator::guessClassFileName($model_name);
+        $migrationPath = dirname(str_replace('/Models/','/../database/migrations/',$migrationPath));
 
         $files = scandir($migrationPath);
 
@@ -127,7 +128,7 @@ class GenCodeClearCommand extends Command
 
         $files = array_values($files);
 
-        return $migrationPath . '/' . $files[0];
+        return realpath($migrationPath . '/' . $files[0]);
     }
 
     protected function getMenu($menuInfo)
