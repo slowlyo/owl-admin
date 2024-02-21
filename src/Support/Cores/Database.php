@@ -180,7 +180,9 @@ class Database
                     $data[$k] = "['" . implode("','", $v) . "']";
                 }
             }
-            return array_merge($data, ['created_at' => now(), 'updated_at' => now()]);
+            $now = date('Y-m-d H:i:s');
+
+            return array_merge($data, ['created_at' => $now, 'updated_at' => $now]);
         };
 
         $adminUser       = DB::table($this->tableName('admin_users'));
