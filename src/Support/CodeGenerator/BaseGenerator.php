@@ -64,23 +64,27 @@ class BaseGenerator
         }
 
         $class = trim($class, '\\');
-
-        $composer = self::fromJson(base_path('composer.json'));
-
-        $map = collect(Arr::get($composer, 'autoload.psr-4', []))->mapWithKeys(function ($path, $namespace) {
-            $namespace = trim($namespace, '\\') . '\\';
-
-            return [$namespace => [$namespace, $path]];
-        })->sortBy(fn($_, $namespace) => strlen($namespace), SORT_REGULAR, true);
-
+        $autoloadFile = base_path('/vendor/autoload.php');
+        $loader = require $autoloadFile;
         $prefix = explode($class, '\\')[0];
+        // 获取并处理命名空间和路径映射
+        $map = collect($loader->getPrefixesPsr4())
+            ->mapWithKeys(function ($path, $namespace) {
+                $namespace = trim($namespace, '\\') . '\\';
+                $path = str_replace([base_path() . '/', base_path() . '\\'], '', realpath(current($path)) . '/');
+                return [$namespace => [$namespace, $path]];
+            })
+            ->sortKeysDesc(SORT_STRING);
 
         if ($map->isEmpty()) {
             if (Str::startsWith($class, 'App\\')) {
                 $values = ['App\\', 'app/'];
             }
         } else {
-            $values = $map->filter(fn($_, $k) => Str::startsWith($class, $k))->first();
+            $values = $map->filter(function ($_, $k) use ($class) {
+                $class = str_replace('/','\\',$class);
+                return Str::startsWith($class, $k);
+            })->first();
         }
 
         if (empty($values)) {
@@ -88,8 +92,7 @@ class BaseGenerator
         }
 
         [$namespace, $path] = $values;
-
-        return base_path(str_replace([$namespace, '\\'], [$path, '/'], $class)) . '.php';
+        return base_path(str_replace(["/",$namespace, '\\'], ["\\",$path, '/'], $class)) . '.php';
     }
 
     public static function slug(string $name, string $symbol = '-'): array|string

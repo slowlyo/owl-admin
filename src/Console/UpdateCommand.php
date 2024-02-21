@@ -155,11 +155,28 @@ class UpdateCommand extends Command
 
     public function version323()
     {
-        $this->output->title('Update to version v3.2.2');
+        $this->output->title('Update to version v3.2.3');
 
         if (!Schema::hasColumn('admin_users', 'enabled')) {
             Schema::table('admin_users', function ($table) {
                 $table->tinyInteger('enabled')->default(1);
+            });
+        }
+
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--lang'   => true,
+                '--force'  => true,
+            ]);
+        }
+    }
+
+    public function version325()
+    {
+        $this->output->title('Update to version v3.2.5');
+        if (!Schema::hasColumn('admin_code_generators', 'save_path')) {
+            Schema::table('admin_code_generators', function ($table) {
+                $table->text('save_path')->nullable()->comment('保存位置');
             });
         }
 
