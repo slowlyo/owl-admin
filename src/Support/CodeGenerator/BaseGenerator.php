@@ -63,15 +63,15 @@ class BaseGenerator
         } catch (\Throwable $e) {
         }
 
-        $class = trim($class, '\\');
+        $class        = trim($class, '\\');
         $autoloadFile = base_path('/vendor/autoload.php');
-        $loader = require $autoloadFile;
-        $prefix = explode($class, '\\')[0];
+        $loader       = require $autoloadFile;
+        $prefix       = explode($class, '\\')[0];
         // 获取并处理命名空间和路径映射
         $map = collect($loader->getPrefixesPsr4())
             ->mapWithKeys(function ($path, $namespace) {
                 $namespace = trim($namespace, '\\') . '\\';
-                $path = str_replace([base_path() . '/', base_path() . '\\'], '', realpath(current($path)) . '/');
+                $path      = str_replace([base_path() . '/', base_path() . '\\'], '', realpath(current($path)) . '/');
                 return [$namespace => [$namespace, $path]];
             })
             ->sortKeysDesc(SORT_STRING);
@@ -82,7 +82,7 @@ class BaseGenerator
             }
         } else {
             $values = $map->filter(function ($_, $k) use ($class) {
-                $class = str_replace('/','\\',$class);
+                $class = str_replace('/', '\\', $class);
                 return Str::startsWith($class, $k);
             })->first();
         }
@@ -92,7 +92,7 @@ class BaseGenerator
         }
 
         [$namespace, $path] = $values;
-        return base_path(str_replace(["/",$namespace, '\\'], ["\\",$path, '/'], $class)) . '.php';
+        return base_path(str_replace(["/", $namespace, '\\'], ["\\", $path, '/'], $class)) . '.php';
     }
 
     public static function slug(string $name, string $symbol = '-'): array|string
