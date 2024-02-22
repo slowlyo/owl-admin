@@ -25,7 +25,8 @@
     "require": {
         "php": ">=8.0",
         "illuminate/support": "~9|~10",
-        "iconify/json": "*"
+        "iconify/json": "*",
+        "slowlyo/laravel-support": "*"
     },
     "autoload": {
         "psr-4": {
