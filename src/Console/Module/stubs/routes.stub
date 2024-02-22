@@ -3,6 +3,8 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/{{module}}', fn() => \Slowlyo\OwlAdmin\Admin::view(config('{{module}}.admin.route.prefix')));
+
 Route::group([
     'as'         => '{{module}}',
     'domain'     => config('{{module}}.admin.route.domain'),

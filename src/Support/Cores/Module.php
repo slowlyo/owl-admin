@@ -3,50 +3,63 @@
 namespace Slowlyo\OwlAdmin\Support\Cores;
 
 use Illuminate\Support\Str;
-use Slowlyo\OwlAdmin\Support\Composer;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\ProviderRepository;
 
 class Module
 {
-    public static function installed()
-    {
-        return class_exists('Nwidart\Modules\Facades\Module');
-    }
+    public string $namespace = 'AdminModules';
+    public string $dir       = 'admin-modules';
 
-    public static function isV10()
+    public function register()
     {
-        return version_compare(Composer::getVersion('nwidart/laravel-modules'), '10', '>=');
-    }
+        $namespace = 'AdminModules';
+        $modules   = $this->allModules(true);
 
-    public static function getModulePath($module, $path, $isApp = false)
-    {
-        $base = rtrim(config('modules.paths.modules'), '/') . '/' . $module . '/';
-
-        if (self::isV10()) {
-            if ($isApp) {
-                $base .= 'app/';
-            } else {
-                $path = Str::lcfirst(ltrim($path, '/'));
-            }
-        } else {
-            $path = Str::ucfirst(ltrim($path, '/'));
+        if (blank($modules)) {
+            return;
         }
 
-        return $base . $path;
+        $serviceProviders = collect($modules)
+            ->map(fn($i) => sprintf('%s\\%s\\%sServiceProvider', $namespace, $i, $i))
+            ->filter(fn($i) => class_exists($i))
+            ->all();
+
+        (new ProviderRepository(app(), new Filesystem(), app()->getCachedServicesPath()))->load($serviceProviders);
     }
 
-    public static function allModules()
+    public function allModules($onlyEnabled = false)
     {
-        return config('admin.modules');
+        $modules = config('admin.modules', []);
+
+        if ($onlyEnabled) {
+            $modules = array_filter($modules);
+        }
+
+        return array_keys($modules);
     }
 
-    public static function allRoutePath()
+    public function has($module)
+    {
+        return in_array($module, $this->allModules()) || file_exists($this->getModulePath($module));
+    }
+
+    public function getModulePath($module = null)
+    {
+        return base_path($this->dir) . '/' . $module;
+    }
+
+    public function getLowerName($module)
+    {
+        return Str::snake($module);
+    }
+
+    public function allRoutePath()
     {
         $path = [];
-
-        $modules = self::allModules();
-        if (self::installed() && $modules) {
+        if ($modules = $this->allModules(true)) {
             foreach ($modules as $module) {
-                $_path = self::getModulePath($module, '/routes/admin.php');
+                $_path = $this->getModulePath($module . '/routes.php');
 
                 if (file_exists($_path)) {
                     $path[] = $_path;
@@ -57,17 +70,15 @@ class Module
         return $path;
     }
 
-    public static function allConfigPath()
+    public function allConfigPath()
     {
         $path = [];
-
-        $modules = self::allModules();
-        if (self::installed() && $modules) {
+        if ($modules = $this->allModules(true)) {
             foreach ($modules as $module) {
-                $_path = self::getModulePath($module, '/config/admin.php');
+                $_path = $this->getModulePath($module . '/config.php');
 
                 if (file_exists($_path)) {
-                    $path[strtolower($module) . '.admin'] = $_path;
+                    $path[$this->getLowerName($module) . '.admin'] = $_path;
                 }
             }
         }

@@ -202,8 +202,8 @@ class Generator
     {
         $dirs = [app_path()];
 
-        if (Module::installed()) {
-            $dirs[] = config('modules.paths.modules');
+        if (app(Module::class)->allModules()) {
+            $dirs[] = app(Module::class)->getModulePath();
         }
 
         foreach ($dirs as $dir) {

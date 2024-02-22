@@ -7,7 +7,7 @@ use Slowlyo\OwlAdmin\Extend\Manager;
 use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module as AdminModule};
+use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module};
 use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
 use Laravel\Sanctum\Sanctum;
 
@@ -23,7 +23,6 @@ class AdminServiceProvider extends ServiceProvider
         Console\GenCodeClearCommand::class,
         Console\ResetPasswordCommand::class,
         Console\Module\InitCommand::class,
-        Console\Module\UpdateCommand::class,
     ];
 
     protected array $routeMiddleware = [
@@ -56,6 +55,8 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->loadAdminAuthConfig();
         $this->registerServices();
+
+        $this->registerModules();
         $this->registerExtensions();
         $this->registerRouteMiddleware();
         $this->loadViewsFrom(public_path('admin-assets'), 'admin');
@@ -95,7 +96,7 @@ class AdminServiceProvider extends ServiceProvider
             $this->loadRoutesFrom($routes);
         }
 
-        if ($modulePath = AdminModule::allRoutePath()) {
+        if ($modulePath = Admin::module()->allRoutePath()) {
             array_map(fn($path) => $this->loadRoutesFrom($path), $modulePath);
         }
     }
@@ -104,7 +105,7 @@ class AdminServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
 
-        if ($moduleConfig = AdminModule::allConfigPath()) {
+        if ($moduleConfig = app(Module::class)->allConfigPath()) {
             foreach ($moduleConfig as $key => $path) {
                 $this->mergeConfigFrom($path, $key);
             }
@@ -138,11 +139,17 @@ class AdminServiceProvider extends ServiceProvider
 
     public function registerServices()
     {
+        $this->app->singleton('admin.module', Module::class);
         $this->app->singleton('admin.extend', Manager::class);
         $this->app->singleton('admin.context', Context::class);
         $this->app->singleton('admin.setting', fn() => settings());
         $this->app->singleton('admin.asset', Asset::class);
         $this->app->singleton('admin.menu', Menu::class);
+    }
+
+    public function registerModules()
+    {
+        Admin::module()->register();
     }
 
     /**

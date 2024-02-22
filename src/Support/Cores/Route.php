@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Support\Cores;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Routing\Router;
 use Slowlyo\OwlAdmin\Controllers\{
     AuthController,
@@ -20,24 +21,18 @@ class Route
 {
     public static function baseLoad()
     {
-        $modules = config('admin.modules');
+        $modules = Admin::module()->allModules(true);
 
         array_unshift($modules, '');
 
-        array_map(fn($item) => self::baseRoutes(strtolower($item ? "{$item}." : $item)), $modules);
+        array_map(fn($item) => self::baseRoutes($item ? Admin::module()->getLowerName($item) . '.' : $item), $modules);
     }
 
     private static function baseRoutes($prefix)
     {
         $config = fn($key) => config($prefix . $key);
 
-        app('router')->get('/admin', function () {
-            $view = app(\Illuminate\View\Factory::class);
-
-            $view->addExtension('html', 'file');
-
-            return $view->make('admin::index');
-        });
+        app('router')->get('/admin', fn() => Admin::view());
 
         app('router')->group([
             'domain'     => $config('admin.route.domain'),

@@ -5,13 +5,13 @@
     "authors": [
         {
             "name": "Slowlyo",
-            "email": "slowlyo_email@qq.com.com",
-            "homepage": "https://gitee.com/slowlyo"
+            "email": "slowlyo_email@qq.com",
+            "homepage": "https://github.com/slowlyo"
         }
     ],
     "homepage": "https://github.com/slowlyo/owl-admin",
     "support": {
-        "email": "slowlyo_email@qq.com.com",
+        "email": "slowlyo_email@qq.com",
         "issues": "https://github.com/Slowlyo/owl-admin/issues",
         "forum": "https://github.com/Slowlyo/owl-admin/discussions",
         "wiki": "http://doc.owladmin.com/"

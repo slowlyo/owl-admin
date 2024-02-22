@@ -119,8 +119,10 @@ class CodeGeneratorController extends AdminController
 
         // 下划线的表名处理成驼峰文件名
         $nameHandler = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
+        $currentModule = Admin::currentModule();
+
         $defaultPath = [
-            'label' => __('admin.code_generators.save_path_dir'),
+            'label' => $currentModule ?: __('admin.code_generators.save_path_dir'),
             'value' => [
                 'controller_path' => $this->getNamespace('Controllers'),
                 'service_path'    => $this->getNamespace('Services', 1),
@@ -733,17 +735,8 @@ class CodeGeneratorController extends AdminController
 
         $namespace->pop();
 
-        if ($app) {
+        if ($app && !Admin::currentModule()) {
             $namespace->pop();
-        }
-
-        if ($currentModule = Admin::currentModule()) {
-            if (file_exists(base_path("/Modules/{$currentModule}/app")) && $app) {
-                $namespace->push('app');
-            } else {
-                $_http = $namespace->pop();
-                $namespace->push('app')->push($_http);
-            }
         }
 
         return $namespace->push($name)->implode('/') . '/';
