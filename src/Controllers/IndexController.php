@@ -23,6 +23,9 @@ class IndexController extends AdminController
 
     public function settings(): JsonResponse|JsonResource
     {
+        $module = Admin::currentModule(true);
+        $prefix = $module ? $module . '_' : '';
+
         return $this->response()->success([
             'nav'      => Admin::getNav(),
             'assets'   => Admin::getAssets(),
@@ -33,7 +36,7 @@ class IndexController extends AdminController
 
             'login_captcha'          => Admin::config('admin.auth.login_captcha'),
             'show_development_tools' => Admin::config('admin.show_development_tools'),
-            'system_theme_setting'   => Admin::setting()->get('system_theme_setting'),
+            'system_theme_setting'   => Admin::setting()->get($prefix . 'system_theme_setting'),
             'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
         ]);
     }
@@ -47,7 +50,17 @@ class IndexController extends AdminController
      */
     public function saveSettings(Request $request)
     {
-        Admin::setting()->setMany($request->all());
+        $data          = $request->all();
+        $currentModule = Admin::currentModule(true);
+
+        foreach ($data as $key => $value) {
+            if ($key == 'system_theme_setting' && $currentModule) {
+                $data[$currentModule . '_' . $key] = $value;
+                unset($data[$key]);
+            }
+        }
+
+        Admin::setting()->setMany($data);
 
         return $this->response()->successMessage();
     }
