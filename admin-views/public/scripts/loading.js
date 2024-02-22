@@ -37,6 +37,13 @@ window.$owl.appLoader = () => {
     `
 
     document.body.children.item(0).insertAdjacentHTML('afterend', loader)
+
+    // 10s 后加载动画依然在, 刷新重试
+    setTimeout(() => {
+        if(document.getElementById('app-loader')){
+            window.location.reload()
+        }
+    }, 10000)
 }
 
 window.$owl.appLoader()

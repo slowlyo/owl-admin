@@ -59,6 +59,7 @@ export default {
         animate_out_scaleY: 'ScaleY',
         keep_alive: 'Keep Alive',
         dark_theme: 'Dark Theme',
+        accordion_menu: 'Accordion Menu',
     },
     tabMenu: {
         refresh: 'Refresh',

@@ -11,13 +11,14 @@ class JsonResponse
         'status'            => 0,
         'msg'               => '',
         'doNotDisplayToast' => 0,
-        'sql'               => [],
     ];
 
     public function __construct()
     {
         if (config('app.debug')) {
-            $this->additionalData['sql'] = sql_record();
+            $this->additionalData['_debug'] = [
+                'sql' => sql_record(),
+            ];
         }
     }
 

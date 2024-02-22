@@ -1,5 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios'
-import {message} from 'antd'
+import {message, notification} from 'antd'
 import {goToLoginPage, inLoginPage, msgHandler, Token} from '@/utils/common'
 
 export default class CustomAxiosInstance {
@@ -66,7 +66,10 @@ export default class CustomAxiosInstance {
                 const msg = axiosError.response?.data?.message || axiosError.message
 
                 if (msg) {
-                    msgHandler(msg, message.error(msg))
+                    notification.error({
+                        message: axiosError.response?.data?.exception || '',
+                        description: msg
+                    })
                 }
 
                 return {data: {status: 1, msg}}

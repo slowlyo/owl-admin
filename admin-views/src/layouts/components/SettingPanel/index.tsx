@@ -230,6 +230,13 @@ const SettingPanel = () => {
                         {/*<Tag color="warning">Alpha</Tag>*/}
                     </Space>
                 </Form.Item>
+
+                <Form.Item colon={false} label={t('theme_setting.accordion_menu')}>
+                    <Space size="large">
+                        <Switch checked={settings.system_theme_setting.accordionMenu}
+                                onChange={(value) => handleChange('accordionMenu', value)}/>
+                    </Space>
+                </Form.Item>
             </Form>
         </Drawer>
     )
