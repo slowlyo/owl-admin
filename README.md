@@ -125,7 +125,13 @@ _初始账号密码都是 `admin`_
 
 ### 支持项目
 
-如果觉得项目不错，或者已经在使用了，希望你可以去 [Github](https://github.com/Slowlyo/owl-admin)
+你可以通过以下方式支持项目:
+
+- 报告 Bug
+- 提交 PR
+  - 参见 [贡献文档](https://github.com/Slowlyo/owl-admin/blob/master/CONTRIBUTING.md)
+- 点点 Star 
+    - 如果觉得项目不错，或者已经在使用了，希望你可以去 [Github](https://github.com/Slowlyo/owl-admin)
 或者 [Gitee](https://gitee.com/slowlyo/owl-admin) 帮我们点个 ⭐ Star，这将是对我们极大的鼓励与支持。
 
 [![Stargazers over time](https://starchart.cc/Slowlyo/owl-admin.svg?variant=adaptive)](https://github.com/Slowlyo/owl-admin)
