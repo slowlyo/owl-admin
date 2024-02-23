@@ -104,7 +104,7 @@ return [
     ],
 
     'database' => [
-        'connection' => env('DB_CONNECTION', 'mysql'),
+        'connection' => env('ADMIN_DB_CONNECTION', env('DB_CONNECTION', 'mysql')),
     ],
 
     'models' => [
