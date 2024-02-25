@@ -92,7 +92,6 @@ class Route
 
                     $router->resource('extensions', ExtensionController::class);
                     $router->group(['prefix' => 'extensions'], function (Router $router) {
-                        $router->post('more', [ExtensionController::class, 'more']);
                         $router->post('enable', [ExtensionController::class, 'enable']);
                         $router->post('install', [ExtensionController::class, 'install']);
                         $router->post('uninstall', [ExtensionController::class, 'uninstall']);
