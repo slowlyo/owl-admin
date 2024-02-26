@@ -225,6 +225,10 @@ JS,
 
     public function currentUser()
     {
+        if(!Admin::config('admin.auth.enable')){
+            return $this->response()->success([]);
+        }
+
         $userInfo = Admin::user()->only(['name', 'avatar']);
 
         $menus = amis()->DropdownButton()

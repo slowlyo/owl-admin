@@ -21,8 +21,12 @@ class Menu
         return array_merge($this->list2Menu($menus), $this->extra());
     }
 
-    private function userMenus()
+    public function userMenus()
     {
+        if (!Admin::config('admin.auth.enable')) {
+            return collect([]);
+        }
+
         $user = Admin::user();
         if ($user->isAdministrator() || Admin::config('admin.auth.permission') === false) {
             $list = AdminMenuService::make()->query()->orderBy('order')->get();
@@ -40,7 +44,7 @@ class Menu
         return $list;
     }
 
-    private function list2Menu($list, $parentId = 0, $parentName = ''): array
+    public function list2Menu($list, $parentId = 0, $parentName = ''): array
     {
         $data = [];
         foreach ($list as $key => $item) {
@@ -78,7 +82,7 @@ class Menu
         return $data;
     }
 
-    private function generateRoute($item): array
+    public function generateRoute($item): array
     {
         $url = $item['path'] ?? '';
         $url = preg_replace('/\?.*/', '', $url);
@@ -112,7 +116,7 @@ class Menu
         return $this;
     }
 
-    private function formatItem($item)
+    public function formatItem($item)
     {
         return array_merge([
             'title'     => '',
@@ -132,10 +136,12 @@ class Menu
      *
      * @return array|array[]
      */
-    private function extra()
+    public function extra()
     {
-        $extraMenus = [
-            [
+        $extraMenus = [];
+
+        if (Admin::config('admin.auth.enable')) {
+            $extraMenus[] = [
                 'name'      => 'user_setting',
                 'path'      => '/user_setting',
                 'component' => 'amis',
@@ -145,8 +151,8 @@ class Menu
                     'icon'         => 'material-symbols:manage-accounts',
                     'singleLayout' => 'basic',
                 ],
-            ],
-        ];
+            ];
+        }
 
         if (Admin::config('admin.show_development_tools')) {
             $extraMenus = array_merge($extraMenus, $this->devToolMenus());
@@ -160,7 +166,7 @@ class Menu
      *
      * @return array[]
      */
-    private function devToolMenus()
+    public function devToolMenus()
     {
         return [
             [
