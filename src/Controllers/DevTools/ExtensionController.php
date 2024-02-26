@@ -234,91 +234,16 @@ class ExtensionController extends AdminController
     }
 
     /**
-     * 获取更多扩展
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function more()
-    {
-        $q = request('q');
-        // 加速
-        $url = 'http://admin-packagist.dev.slowlyo.top?q=' . $q;
-
-        $result = file_get_contents($url);
-
-        // 如果哪天加速服务挂了，就用官方的
-        if (!$result) {
-            $url    = 'https://packagist.org/search.json?tags=owl-admin&per_page=15&q=' . $q;
-            $result = file_get_contents($url);
-        }
-
-        return $this->response()->success(json_decode($result, true));
-    }
-
-    /**
      * 更多扩展
-     *
-     * @return DrawerAction
      */
     public function moreExtend()
     {
-        return amis()->DrawerAction()
+        return amis()->UrlAction()
+            ->url('https://owladmin.com/ext')
             ->label(__('admin.extensions.more_extensions'))
             ->icon('fa-regular fa-lightbulb')
             ->level('success')
-            ->drawer(
-                amis()->Drawer()
-                    ->title(__('admin.extensions.more_extensions'))
-                    ->size('xl')
-                    ->closeOnEsc()
-                    ->closeOnOutside()
-                    ->body(
-                        amis()->CRUDTable()
-                            ->perPage(20)
-                            ->affixHeader(false)
-                            ->filterTogglable()
-                            ->loadDataOnce()
-                            ->filter(
-                                $this->baseFilter()->body([
-                                    amis()->TextControl()
-                                        ->name('keywords')
-                                        ->label('关键字')
-                                        ->placeholder('输入关键字搜索')
-                                        ->size('md'),
-                                ])
-                            )
-                            ->filterDefaultVisible(false)
-                            ->api('post:' . admin_url('dev_tools/extensions/more') . '?q=${keywords}')
-                            ->perPage(15)
-                            ->footerToolbar(['statistics', 'pagination'])
-                            ->headerToolbar([
-                                amis('reload')->align('right'),
-                                amis('filter-toggler')->align('right'),
-                            ])->columns([
-                                amis()->TableColumn()->name('name')->label('名称')
-                                    ->type('tpl')
-                                    ->tpl('<a href="${url}" target="_blank" title="打开 Packagist">${name}</a>'),
-                                amis()->TableColumn()
-                                    ->name('description')
-                                    ->label('描述')
-                                    ->type('tpl')
-                                    ->tpl('${description|truncate: 50}')
-                                    ->popOver(
-                                        amis()->SchemaPopOver()->trigger('hover')->body(
-                                            amis()->Tpl()->tpl('${description}')
-                                        )->position('left-top')
-                                    ),
-                                amis()->TableColumn()->name('downloads')->label('下载量')->width(100),
-                                amis()->TableColumn()
-                                    ->name('${"composer require " + name}')
-                                    ->label('composer 安装命令')
-                                    ->copyable()
-                                    ->type('tpl')
-                                    ->tpl('${"composer require " + name}'),
-                            ])
-                    )
-                    ->actions([])
-            );
+            ->blank();
     }
 
     /**

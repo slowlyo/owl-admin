@@ -6,6 +6,7 @@ use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
+use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\Generator;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
@@ -20,7 +21,7 @@ use Slowlyo\OwlAdmin\Support\CodeGenerator\ControllerGenerator;
  */
 class CodeGeneratorController extends AdminController
 {
-    use Schema\CodeGeneratorSchema;
+    use Schema\CodeGeneratorSchema, IconifyPickerTrait;
 
     protected string $serviceName = AdminCodeGeneratorService::class;
 
@@ -118,7 +119,7 @@ class CodeGeneratorController extends AdminController
         $databaseColumns = Generator::make()->getDatabaseColumns();
 
         // 下划线的表名处理成驼峰文件名
-        $nameHandler = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
+        $nameHandler   = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
         $currentModule = Admin::currentModule();
 
         $defaultPath = [
@@ -310,12 +311,7 @@ class CodeGeneratorController extends AdminController
                             ->valueField('id')
                             ->value(0)
                             ->options(AdminMenuService::make()->getTree()),
-                        amis()->TextControl('icon', __('admin.code_generators.menu_icon'))
-                            ->value('ph:circle')
-                            ->description(
-                                __('admin.admin_menu.icon_description') .
-                                '<a href="https://icones.js.org/collection/all" target="_blank"> https://icones.js.org</a>'
-                            ),
+                        $this->iconifyPicker('icon', __('admin.code_generators.menu_icon'))->value('ph:circle'),
                     ])
                 ),
                 // 页面配置
