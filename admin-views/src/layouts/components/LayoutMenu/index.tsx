@@ -91,6 +91,10 @@ const LayoutMenu = (
     }
 
     const splitPath = (path: string) => {
+        if(!path){
+            return ''
+        }
+
         let arr = path.split('/')
         let res = []
         do {
