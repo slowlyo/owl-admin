@@ -32,8 +32,11 @@ class AdminMenu extends BaseModel
 
     public function title(): Attribute
     {
-        return Attribute::get(function ($value){
-            return __("menu.{$value}") == "menu.{$value}" ? $value : __("menu.{$value}");
+        return Attribute::get(function ($value) {
+            $transKey  = ($this->extension ? $this->extension . '::' : '') . "menu.{$value}";
+            $translate = __($transKey);
+
+            return $translate == $transKey ? $value : $translate;
         });
     }
 }
