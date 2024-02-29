@@ -77,6 +77,14 @@ abstract class AdminController extends Controller
         return Admin::response();
     }
 
+    /**
+     * 根据传入的条件, 返回消息响应
+     *
+     * @param $flag
+     * @param $text
+     *
+     * @return JsonResponse|JsonResource
+     */
     protected function autoResponse($flag, $text = '')
     {
         if (!$text) {
@@ -114,8 +122,7 @@ abstract class AdminController extends Controller
     {
         $this->isCreate = true;
 
-        $form = amis()
-            ->Card()
+        $form = amis()->Card()
             ->className('base-form')
             ->header(['title' => __('admin.create')])
             ->toolbar([$this->backButton()])
@@ -163,8 +170,7 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getDetail($id));
         }
 
-        $detail = amis()
-            ->Card()
+        $detail = amis()->Card()
             ->className('base-form')
             ->header(['title' => __('admin.detail')])
             ->body($this->detail())
@@ -192,8 +198,7 @@ abstract class AdminController extends Controller
             return $this->response()->success($this->service->getEditData($id));
         }
 
-        $form = amis()
-            ->Card()
+        $form = amis()->Card()
             ->className('base-form')
             ->header(['title' => __('admin.edit')])
             ->toolbar([$this->backButton()])

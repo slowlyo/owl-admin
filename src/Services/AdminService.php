@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +16,16 @@ abstract class AdminService
 {
     use ErrorTrait;
 
-    protected $tableColumn;
+    protected static $tableColumn;
 
     protected string $modelName;
+
+    protected Request $request;
+
+    public function __construct()
+    {
+        $this->request = request();
+    }
 
     public static function make(): static
     {
@@ -39,12 +47,12 @@ abstract class AdminService
 
     public function getTableColumns()
     {
-        if (!$this->tableColumn) {
-            $this->tableColumn = Schema::connection($this->getModel()->getConnectionName())
+        if (!self::$tableColumn) {
+            self::$tableColumn = Schema::connection($this->getModel()->getConnectionName())
                 ->getColumnListing($this->getModel()->getTable());
         }
 
-        return $this->tableColumn;
+        return self::$tableColumn;
     }
 
     public function query()
@@ -61,7 +69,11 @@ abstract class AdminService
      */
     public function getDetail($id)
     {
-        return $this->query()->find($id);
+        $query = $this->query();
+
+        $this->addRelations($query, 'detail');
+
+        return $query->find($id);
     }
 
     /**
@@ -79,7 +91,11 @@ abstract class AdminService
             ->filter(fn($item) => $item !== null)
             ->toArray();
 
-        return $this->query()->find($id)->makeHidden($hidden);
+        $query = $this->query();
+
+        $this->addRelations($query, 'edit');
+
+        return $query->find($id)->makeHidden($hidden);
     }
 
     /**
@@ -91,13 +107,34 @@ abstract class AdminService
     {
         $query = $this->query();
 
+        // 处理排序
         $this->sortable($query);
 
+        // 自动加载 TableColumn 内的关联关系
         $this->loadRelations($query);
 
+        // 处理查询
         $this->searchable($query);
 
+        // 追加关联关系
+        $this->addRelations($query);
+
         return $query;
+    }
+
+    /**
+     * 添加关联关系
+     *
+     * 预留钩子, 方便处理只需要添加 [关联] 的情况
+     *
+     * @param        $query
+     * @param string $scene 场景: list, detail, edit
+     *
+     * @return void
+     */
+    public function addRelations($query, string $scene = 'list')
+    {
+
     }
 
     /**
@@ -141,7 +178,7 @@ abstract class AdminService
      *
      * @return void
      */
-    protected function sortable($query)
+    public function sortable($query)
     {
         if (request()->orderBy && request()->orderDir) {
             $query->orderBy(request()->orderBy, request()->orderDir ?? 'asc');
@@ -157,7 +194,7 @@ abstract class AdminService
      *
      * @return void
      */
-    protected function searchable($query)
+    public function searchable($query)
     {
         collect(array_keys(request()->query()))
             ->intersect($this->getTableColumns())
@@ -214,6 +251,8 @@ abstract class AdminService
      */
     public function update($primaryKey, $data)
     {
+        $this->saving($data, $primaryKey);
+
         $columns = $this->getTableColumns();
         $model   = $this->query()->whereKey($primaryKey)->first();
 
@@ -225,7 +264,13 @@ abstract class AdminService
             $model->setAttribute($k, $v);
         }
 
-        return $model->save();
+        $result = $model->save();
+
+        if ($result) {
+            $this->saved($model, true);
+        }
+
+        return $result;
     }
 
     /**
@@ -237,6 +282,8 @@ abstract class AdminService
      */
     public function store($data)
     {
+        $this->saving($data);
+
         $columns = $this->getTableColumns();
         $model   = $this->getModel();
 
@@ -248,7 +295,13 @@ abstract class AdminService
             $model->setAttribute($k, $v);
         }
 
-        return $model->save();
+        $result = $model->save();
+
+        if ($result) {
+            $this->saved($model);
+        }
+
+        return $result;
     }
 
     /**
@@ -260,7 +313,13 @@ abstract class AdminService
      */
     public function delete(string $ids)
     {
-        return $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
+        $result = $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
+
+        if ($result) {
+            $this->deleted($ids);
+        }
+
+        return $result;
     }
 
     /**
@@ -291,5 +350,47 @@ abstract class AdminService
     public function quickEditItem($data)
     {
         return $this->update(Arr::pull($data, $this->primaryKey()), $data);
+    }
+
+    /**
+     * saving 钩子 (执行于新增/修改前)
+     *
+     * 可以通过判断 $primaryKey 是否存在来判断是新增还是修改
+     *
+     * @param $data
+     * @param $primaryKey
+     *
+     * @return void
+     */
+    public function saving($data, $primaryKey = '')
+    {
+
+    }
+
+    /**
+     * saved 钩子 (执行于新增/修改后)
+     *
+     * 可以通过 $isEdit 来判断是新增还是修改
+     *
+     * @param $model
+     * @param $isEdit
+     *
+     * @return void
+     */
+    public function saved($model, $isEdit = false)
+    {
+
+    }
+
+    /**
+     * deleted 钩子 (执行于删除后)
+     *
+     * @param $ids
+     *
+     * @return void
+     */
+    public function deleted($ids)
+    {
+
     }
 }
