@@ -110,6 +110,10 @@ export const goToLoginPage = () => {
 }
 
 export const msgHandler = (msg, handle) => {
+    if(msg == '_dont_show_msg'){
+        return
+    }
+
     const msgKey = 'owl-msg-' + msg
 
     if (localStorage.getItem(msgKey)) {
