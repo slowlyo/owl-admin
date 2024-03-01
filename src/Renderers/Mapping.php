@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Mapping 映射展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/mapping
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class Mapping extends BaseRenderer
 {

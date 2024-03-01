@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TransferPicker 穿梭器的弹框形态 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/transfer-picker
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class TransferPickerControl extends BaseRenderer
 {
@@ -37,6 +37,14 @@ class TransferPickerControl extends BaseRenderer
     public function addDialog($value = '')
     {
         return $this->set('addDialog', $value);
+    }
+
+    /**
+     * ui级联关系，true代表级联选中，false代表不级联，默认为true
+     */
+    public function autoCheckChildren($value = true)
+    {
+        return $this->set('autoCheckChildren', $value);
     }
 
     /**
@@ -301,6 +309,14 @@ class TransferPickerControl extends BaseRenderer
     public function initFetchOn($value = '')
     {
         return $this->set('initFetchOn', $value);
+    }
+
+    /**
+     * 是否默认都展开
+     */
+    public function initiallyOpen($value = true)
+    {
+        return $this->set('initiallyOpen', $value);
     }
 
     /**

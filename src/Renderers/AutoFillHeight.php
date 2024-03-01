@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * AutoFillHeight
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class AutoFillHeight extends BaseRenderer
 {
