@@ -3,7 +3,6 @@
 namespace Slowlyo\OwlAdmin\Traits;
 
 use Illuminate\Http\JsonResponse;
-use Slowlyo\OwlAdmin\Support\Excel\AdminExport;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 trait ExportTrait
@@ -25,37 +24,23 @@ trait ExportTrait
         $query = $this->service->listQuery()
             ->when($ids, fn($query) => $query->whereIn($this->service->primaryKey(), explode(',', $ids)));
 
-        // 此处使用 laravel-excel 导出，可自行修改
-        AdminExport::make($query)
-            ->setHeadings($this->exportHeadings())
-            ->setMap(fn($row) => $this->exportColumns($row))
-            ->store($path);
+        try {
+            fastexcel($query->get())->export(storage_path('app/' . $path), fn($row) => $this->exportMap($row));
+        } catch (\Throwable $e) {
+            admin_abort(__('admin.action_failed'));
+        }
 
         return $this->response()->success(compact('path'));
     }
 
     /**
-     * 导出表头
-     *
-     * @return array
-     */
-    protected function exportHeadings()
-    {
-        return [];
-    }
-
-    /**
-     * 导出列
-     * eg: return [$row->id, $row->name];
-     * 文档: https://docs.laravel-excel.com/3.1/exports/mapping.html#mapping-rows
-     *
      * @param $row
      *
      * @return mixed
      */
-    protected function exportColumns($row)
+    protected function exportMap($row)
     {
-        return $row->toArray();
+        return $row;
     }
 
     /**

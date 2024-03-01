@@ -16,6 +16,8 @@ class AdminUserService extends AdminService
 {
     public function __construct()
     {
+        parent::__construct();
+
         $this->modelName = Admin::adminUserModel();
     }
 

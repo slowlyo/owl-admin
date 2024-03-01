@@ -280,7 +280,7 @@ trait ElementTrait
      */
     protected function exportAction($disableSelectedItem = false)
     {
-        if (!class_exists('\Maatwebsite\Excel\Excel')) {
+        if (!class_exists('\Rap2hpoutre\FastExcel\FastExcel')) {
             return amis()
                 ->Alert()
                 ->level('warning')
@@ -348,6 +348,7 @@ JS
 
         return amis()
             ->DropdownButton()
+            ->menuClassName('w-12')
             ->label(__('admin.export.title'))
             ->set('icon', 'fa-solid fa-download')
             ->buttons($buttons)

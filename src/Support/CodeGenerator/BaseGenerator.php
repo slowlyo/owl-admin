@@ -3,7 +3,6 @@
 namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 
 class BaseGenerator
 {

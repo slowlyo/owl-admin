@@ -26,7 +26,9 @@
         "php": ">=8.0",
         "illuminate/support": "~9|~10",
         "iconify/json": "*",
-        "slowlyo/laravel-support": "*"
+        "slowlyo/laravel-support": "*",
+        "ext-zip": "*",
+        "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {

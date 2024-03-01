@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Extend\Extension;
 use Slowlyo\OwlAdmin\Renderers\DialogAction;
-use Slowlyo\OwlAdmin\Renderers\DrawerAction;
 use Slowlyo\OwlAdmin\Events\ExtensionChanged;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 
