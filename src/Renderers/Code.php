@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Code 代码高亮
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class Code extends BaseRenderer
 {

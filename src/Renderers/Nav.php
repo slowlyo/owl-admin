@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Nav 导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/nav
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class Nav extends BaseRenderer
 {

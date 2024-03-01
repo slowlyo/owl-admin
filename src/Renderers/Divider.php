@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Divider 分割线渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/divider
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class Divider extends BaseRenderer
 {

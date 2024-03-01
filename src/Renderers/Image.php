@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图片展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/image
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class Image extends BaseRenderer
 {

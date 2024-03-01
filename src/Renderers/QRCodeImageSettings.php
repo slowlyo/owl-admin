@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * QRCodeImageSettings
  *
  * @author  slowlyo
- * @version 6.1.0
+ * @version 6.2.2
  */
 class QRCodeImageSettings extends BaseRenderer
 {
