@@ -129,15 +129,15 @@ class ModelGenerator extends BaseGenerator
 
         $this->columns->each(function ($column) use (&$content) {
             if (Arr::get($column, 'file_column', false)) {
+                $_name   = Str::camel($column['name']);
                 $content .= <<<EOF
 
 
-    public function {$column['name']}():\Illuminate\Database\Eloquent\Casts\Attribute
+    public function {$_name}():\Illuminate\Database\Eloquent\Casts\Attribute
     {
         return file_upload_handle();
     }
 EOF;
-
             }
         });
 
