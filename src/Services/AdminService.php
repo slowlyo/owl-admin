@@ -362,7 +362,7 @@ abstract class AdminService
      *
      * @return void
      */
-    public function saving($data, $primaryKey = '')
+    public function saving(&$data, $primaryKey = '')
     {
 
     }
