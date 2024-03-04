@@ -24,8 +24,7 @@ trait ElementTrait
     protected function backButton()
     {
         $path   = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
-        $script =
-            sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
+        $script = sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
 
         return amis()->OtherAction()
             ->label(__('admin.back'))
@@ -276,83 +275,57 @@ trait ElementTrait
     /**
      * 导出按钮
      *
-     * @return \Slowlyo\OwlAdmin\Renderers\Alert|\Slowlyo\OwlAdmin\Renderers\DropdownButton
+     * @param bool $disableSelectedItem
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\Service
      */
     protected function exportAction($disableSelectedItem = false)
     {
-        if (!class_exists('\Rap2hpoutre\FastExcel\FastExcel')) {
-            return amis()
-                ->Alert()
-                ->level('warning')
-                ->body(__('admin.export.please_install_laravel_excel'))
-                ->showIcon()
-                ->showCloseButton();
-        }
-
+        // 获取主键名称
         $primaryKey = $this->service->primaryKey();
-
-        $downloadPath   = admin_url('_download_export', true);
-        $exportPath     = $this->getExportPath();
-        $pageNoData     = __('admin.export.page_no_data');
+        // 下载路径
+        $downloadPath = admin_url('_download_export', true);
+        // 导出接口地址
+        $exportPath = $this->getExportPath();
+        // 无数据提示
+        $pageNoData = __('admin.export.page_no_data');
+        // 选中行无数据提示
         $selectedNoData = __('admin.export.selected_rows_no_data');
-        $event          = fn($script) => ['click' => ['actions' => [['actionType' => 'custom', 'script' => $script]]]];
-        $doAction       = <<<JS
-doAction([
-    { actionType: "ajax", args: { api: { url: url.toString(), method: "get" } } },
-    {
-        actionType: "custom",
-        expression: "\${event.data.responseResult.responseStatus === 0}",
-        script: "window.open('{$downloadPath}?path='+event.data.responseResult.responseData.path)"
-    }
-])
-JS;
-        $buttons        = [
+        // 按钮点击事件
+        $event = fn($script) => ['click' => ['actions' => [['actionType' => 'custom', 'script' => $script]]]];
+        // 导出处理动作
+        $doAction = "doAction([{actionType:'setValue',componentId:'export-action',args:{value:{showExportLoading:true}}},{actionType:'ajax',args:{api:{url:url.toString(),method:'get'}}},{actionType:'setValue',componentId:'export-action',args:{value:{showExportLoading:false}}},{actionType:'custom',expression:'\${event.data.responseResult.responseStatus===0}',script:'window.open(\'{$downloadPath}?path=\'+event.data.responseResult.responseData.path)'}])";
+        // 按钮
+        $buttons = [
+            // 导出全部
             amis()->VanillaAction()->label(__('admin.export.all'))->onEvent(
-                $event(<<<JS
-let data = event.data
-let params = Object.keys(data).filter(key => key !== "page" && key !== "__super").reduce((obj, key) => {
-    obj[key] = data[key];
-    return obj;
-}, {})
-let url = new URL("{$exportPath}", window.location.origin)
-Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-{$doAction}
-JS
-
-                )
+                $event("let data=event.data;let params=Object.keys(data).filter(key=>key!=='page' && key!=='__super').reduce((obj,key)=>{obj[key]=data[key];return obj;},{});let url=new URL('{$exportPath}',window.location.origin);Object.keys(params).forEach(key=>url.searchParams.append(key,params[key]));{$doAction}")
             ),
+            // 导出本页
             amis()->VanillaAction()->label(__('admin.export.page'))->onEvent(
-                $event(<<<JS
-let ids = event.data.items.map(item => item.{$primaryKey})
-if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$pageNoData}" } }) }
-let url = new URL("{$exportPath}", window.location.origin)
-url.searchParams.append("_ids", ids.join(","))
-{$doAction}
-JS
-                )
+                $event("let ids=event.data.items.map(item=>item.{$primaryKey});if(ids.length===0){return doAction({actionType:'toast',args:{msgType:'warning',msg:'{$pageNoData}'}})};let url=new URL('{$exportPath}',window.location.origin);url.searchParams.append('_ids',ids.join(','));{$doAction}")
             ),
         ];
-
+        // 导出选中项
         if (!$disableSelectedItem) {
             $buttons[] = amis()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
-                $event(<<<JS
-let ids = event.data.selectedItems.map(item => item.{$primaryKey})
-if(ids.length === 0) { return doAction({ actionType: "toast", args: { msgType: "warning", msg: "{$selectedNoData}" } }) }
-let url = new URL("{$exportPath}", window.location.origin)
-url.searchParams.append("_ids", ids.join(","))
-{$doAction}
-JS
-                )
+                $event("let ids=event.data.selectedItems.map(item=>item.{$primaryKey});if(ids.length===0){return doAction({actionType:'toast',args:{msgType:'warning',msg:'{$selectedNoData}'}})};let url=new URL('{$exportPath}',window.location.origin);url.searchParams.append('_ids',ids.join(','));{$doAction}")
             );
         }
 
-        return amis()
-            ->DropdownButton()
-            ->menuClassName('w-12')
-            ->label(__('admin.export.title'))
-            ->set('icon', 'fa-solid fa-download')
-            ->buttons($buttons)
-            ->align('right')
-            ->closeOnClick();
+        return amis()->Service()
+            ->id('export-action')
+            ->set('align', 'right')
+            ->set('data', ['showExportLoading' => false])
+            ->body(
+                amis()->Spinner()->set('showOn', '${showExportLoading}')->overlay()->body(
+                    amis()->DropdownButton()
+                        ->label(__('admin.export.title'))
+                        ->set('icon', 'fa-solid fa-download')
+                        ->buttons($buttons)
+                        ->closeOnClick()
+                        ->align('right')
+                )
+            );
     }
 }
