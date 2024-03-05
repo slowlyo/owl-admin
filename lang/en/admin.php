@@ -147,6 +147,7 @@ return [
         'old_password_required'   => 'Old Password Required',
         'old_password_error'      => 'Old Password Error',
         'username_already_exists' => 'Username Already Exists',
+        'cannot_delete'           => 'The super administrator cannot be deleted',
     ],
 
     'admin_roles' => 'Admin Roles',
@@ -158,6 +159,8 @@ return [
         'name_already_exists' => 'Role Name Already Exists',
         'slug_already_exists' => 'Role Slug Already Exists',
         'set_permissions'     => 'Set Permissions',
+        'cannot_delete'       => 'The super administrator cannot be deleted',
+        'used'                => 'You cannot delete a role that is in use',
     ],
 
     'admin_permissions' => 'Permissions',

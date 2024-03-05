@@ -21,4 +21,9 @@ class AdminRole extends BaseModel
             $model->permissions()->detach();
         });
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(AdminUser::class, 'admin_role_users', 'role_id', 'user_id')->withTimestamps();
+    }
 }

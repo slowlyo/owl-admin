@@ -143,4 +143,16 @@ class AdminUserService extends AdminService
 
         return false;
     }
+
+    public function delete(string $ids)
+    {
+        $exists = $this->query()
+            ->whereIn($this->primaryKey(), explode(',', $ids))
+            ->whereHas('roles', fn($q) => $q->where('slug', 'administrator'))
+            ->exists();
+
+        admin_abort_if($exists, __('admin.admin_user.cannot_delete'));
+
+        return parent::delete($ids);
+    }
 }

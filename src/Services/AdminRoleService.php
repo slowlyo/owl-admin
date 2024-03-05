@@ -88,4 +88,25 @@ class AdminRoleService extends AdminService
             Arr::has($permissions, '0.id') ? Arr::pluck($permissions, 'id') : $permissions
         );
     }
+
+    public function delete(string $ids)
+    {
+        $_ids   = explode(',', $ids);
+        $exists = $this->query()
+            ->whereIn($this->primaryKey(), $_ids)
+            ->where('slug', 'administrator')
+            ->exists();
+
+        admin_abort_if($exists, __('admin.admin_role.cannot_delete'));
+
+        $used = $this->query()
+            ->whereIn($this->primaryKey(), $_ids)
+            ->has('users')
+            ->exists();
+
+        admin_abort_if($used, __('admin.admin_role.used'));
+
+
+        return parent::delete($ids);
+    }
 }
