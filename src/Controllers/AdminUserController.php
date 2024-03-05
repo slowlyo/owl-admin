@@ -40,7 +40,7 @@ class AdminUserController extends AdminController
                 amis()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable(true),
                 $this->rowActions([
                     $this->rowEditButton(true),
-                    $this->rowDeleteButton()->visibleOn('${id != 1}'),
+                    $this->rowDeleteButton()->hiddenOn('${administrator}'),
                 ]),
             ]);
 

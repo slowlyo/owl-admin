@@ -39,7 +39,7 @@ class AdminRoleController extends AdminController
                 $this->rowActions([
                     $this->setPermission(),
                     $this->rowEditButton(true),
-                    $this->rowDeleteButton()->visibleOn('${slug != "administrator"}'),
+                    $this->rowDeleteButton()->hiddenOn('${slug == "administrator"}'),
                 ]),
             ]);
 

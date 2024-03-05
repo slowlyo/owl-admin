@@ -147,6 +147,7 @@ return [
         'old_password_required'   => '请输入原密码',
         'old_password_error'      => '原密码错误',
         'username_already_exists' => '用户名已存在',
+        'cannot_delete'           => '不可删除超级管理员',
     ],
 
     'admin_roles' => '角色',
@@ -158,6 +159,8 @@ return [
         'name_already_exists' => '角色名称已存在',
         'slug_already_exists' => '角色标识已存在',
         'set_permissions'     => '设置权限',
+        'cannot_delete'       => '不可删除超级管理员',
+        'used'                => '不可删除正在使用的角色',
     ],
 
     'admin_permissions' => '权限',

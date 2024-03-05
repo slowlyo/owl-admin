@@ -14,6 +14,8 @@ class AdminUser extends User implements AuthenticatableContract
 {
     use Authenticatable, HasApiTokens;
 
+    protected $appends = ['administrator'];
+
     public function __construct(array $attributes = [])
     {
         $this->setConnection(Admin::config('admin.database.connection'));
@@ -28,7 +30,7 @@ class AdminUser extends User implements AuthenticatableContract
         return $date->format($this->getDateFormat());
     }
 
-    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function roles()
     {
         return $this->belongsToMany(AdminRole::class, 'admin_role_users', 'user_id', 'role_id')->withTimestamps();
     }
@@ -97,5 +99,10 @@ class AdminUser extends User implements AuthenticatableContract
         $roles = array_column($roles, 'slug');
 
         return $this->inRoles($roles);
+    }
+
+    public function administrator(): Attribute
+    {
+        return Attribute::get(fn() => $this->isAdministrator());
     }
 }
