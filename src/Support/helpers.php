@@ -143,7 +143,7 @@ if (!function_exists('file_upload_handle')) {
         $storage = \Illuminate\Support\Facades\Storage::disk(\Slowlyo\OwlAdmin\Admin::config('admin.upload.disk'));
 
         return \Illuminate\Database\Eloquent\Casts\Attribute::make(
-            get: fn($value) => $value ? $storage->url($value) : '',
+            get: fn($value) => $value ? admin_resource_full_path($value) : '',
             set: fn($value) => str_replace($storage->url(''), '', $value)
         );
     }
@@ -161,7 +161,7 @@ if (!function_exists('file_upload_handle_multi')) {
 
         return \Illuminate\Database\Eloquent\Casts\Attribute::make(
             get: function ($value) use ($storage) {
-                return array_map(fn($item) => $item ? $storage->url($item) : '', explode(',', $value));
+                return array_map(fn($item) => $item ? admin_resource_full_path($item) : '', explode(',', $value));
             },
             set: function ($value) use ($storage) {
                 if (is_string($value)) {
