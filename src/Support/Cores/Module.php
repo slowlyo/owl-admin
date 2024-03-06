@@ -8,20 +8,25 @@ use Illuminate\Foundation\ProviderRepository;
 
 class Module
 {
-    public string $namespace = 'AdminModules';
-    public string $dir       = 'admin-modules';
+    public string $namespace = '';
+    public string $dir       = '';
+
+    public function __construct()
+    {
+        $this->namespace = config('admin.modules_namespace', 'AdminModules');
+        $this->dir       = config('admin.modules_dir', 'admin-modules');
+    }
 
     public function register()
     {
-        $namespace = 'AdminModules';
-        $modules   = $this->allModules(true);
+        $modules = $this->allModules(true);
 
         if (blank($modules)) {
             return;
         }
 
         $serviceProviders = collect($modules)
-            ->map(fn($i) => sprintf('%s\\%s\\%sServiceProvider', $namespace, $i, $i))
+            ->map(fn($i) => sprintf('%s\\%s\\%sServiceProvider', $this->namespace, $i, $i))
             ->filter(fn($i) => class_exists($i))
             ->all();
 
@@ -46,7 +51,7 @@ class Module
 
     public function getModulePath($module = null)
     {
-        return base_path($this->dir) . '/' . $module;
+        return $this->dir . '/' . $module;
     }
 
     public function getLowerName($module)

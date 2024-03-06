@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 class InitCommand extends Command
 {
-    protected $signature = 'admin-module:init {--module=}';
+    protected $signature = 'admin-module:init {module*}';
 
     protected $description = 'Init Admin Module';
 
@@ -18,10 +18,15 @@ class InitCommand extends Command
 
     public function handle(): void
     {
-        $this->checkOption();
+        $modules = $this->checkOption();
 
-        $this->initDB();
-        $this->initAdminDirectory();
+        foreach ($modules as $module) {
+            $this->module = $module;
+
+            $this->output->title('Init Module: ' . $module);
+            $this->initDB();
+            $this->initAdminDirectory();
+        }
     }
 
     public function initDB()
@@ -34,18 +39,22 @@ class InitCommand extends Command
 
     public function checkOption()
     {
-        $this->module = $this->option('module');
+        $modules = $this->argument('module');
 
-        if (empty($this->module)) {
+        if (blank($modules)) {
             $this->error('Module name is required');
-            $this->info('Usage: php artisan admin-module:init --module=ModuleName');
+            $this->info('Usage: php artisan admin-module:init ModuleName');
             exit;
         }
 
-        if (Admin::module()->has($this->module)) {
-            $this->error('Module already exists');
-            exit;
+        foreach ($modules as $module) {
+            if (Admin::module()->has($module)) {
+                $this->error("Module [{$module}] already exists");
+                exit;
+            }
         }
+
+        return $modules;
     }
 
     protected function setDirectory()

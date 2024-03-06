@@ -114,6 +114,10 @@ return [
         'admin_permission' => \Slowlyo\OwlAdmin\Models\AdminPermission::class,
     ],
 
+    'modules_namespace' => 'AdminModules',
+
+    'modules_dir' => base_path('admin-modules'),
+
     'modules' => [
     ],
 ];
