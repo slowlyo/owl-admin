@@ -71,7 +71,7 @@ export default class CustomAxiosInstance {
                         description: msg
                     })
 
-                    return {data: {status: 1, msg: '_dont_show_msg'}}
+                    return {data: {status: 1, msg: ''}}
                 }
 
                 return {data: {status: 1, msg}}

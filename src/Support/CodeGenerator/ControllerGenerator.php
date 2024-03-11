@@ -143,8 +143,8 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $list->push("amis()->TableColumn('created_at', __('admin.created_at'))->type('datetime')->sortable()");
-            $list->push("amis()->TableColumn('updated_at', __('admin.updated_at'))->type('datetime')->sortable()");
+            $list->push("amis()->TableColumn('created_at', __('admin.created_at'))->set('type', 'datetime')->sortable()");
+            $list->push("amis()->TableColumn('updated_at', __('admin.updated_at'))->set('type', 'datetime')->sortable()");
         }
 
         $list = $list->implode(",\n\t\t\t\t") . ',';
