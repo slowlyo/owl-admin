@@ -62,7 +62,7 @@ if (!function_exists('admin_resource_full_path')) {
         } else {
             $disk = \Slowlyo\OwlAdmin\Admin::config('admin.upload.disk');
 
-            if (\Slowlyo\OwlAdmin\Admin::config("filesystems.disks.{$disk}")) {
+            if (config("filesystems.disks.{$disk}")) {
                 $src = \Illuminate\Support\Facades\Storage::disk($disk)->url($path);
             } else {
                 $src = '';
