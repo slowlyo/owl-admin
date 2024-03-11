@@ -169,11 +169,10 @@ abstract class AdminService
                     foreach ($list as $item) {
                         $_class = app($_class)->{$item}()->getModel()::class;
                     }
-                    $relation = implode('.', $list);
                 } catch (\Throwable $e) {
                     continue;
                 }
-                $relations[] = $relation;
+                $relations[] = implode('.', $list);
             }
         }
 
