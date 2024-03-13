@@ -4,7 +4,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Slowlyo",
+            "name": "slowlyo",
             "email": "slowlyo_email@qq.com",
             "homepage": "https://github.com/slowlyo"
         }
@@ -17,10 +17,10 @@
         "wiki": "https://doc.owladmin.com/"
     },
     "keywords": [
-        "Laravel",
-        "OwlAdmin",
-        "Admin",
-        "Amis"
+        "laravel",
+        "owl-admin",
+        "admin",
+        "amis"
     ],
     "require": {
         "php": ">=8.0",
