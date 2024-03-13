@@ -14,7 +14,7 @@
         "email": "slowlyo_email@qq.com",
         "issues": "https://github.com/Slowlyo/owl-admin/issues",
         "forum": "https://github.com/Slowlyo/owl-admin/discussions",
-        "wiki": "http://doc.owladmin.com/"
+        "wiki": "https://doc.owladmin.com/"
     },
     "keywords": [
         "Laravel",
@@ -24,7 +24,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "illuminate/support": "~9|~10",
+        "illuminate/support": ">=9",
         "iconify/json": "*",
         "slowlyo/laravel-support": "*",
         "ext-zip": "*",
