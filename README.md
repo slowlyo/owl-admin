@@ -95,6 +95,8 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+> 如果你使用的是 laravel 11 , 还需要执行: `php artisan install:api`
+
 ##### 3. 获取 `Owl Admin`
 
 ```shell
