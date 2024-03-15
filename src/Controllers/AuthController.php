@@ -24,7 +24,7 @@ class AuthController extends AdminController
                 return $this->response()->fail(__('admin.required', ['attribute' => __('admin.captcha')]));
             }
 
-            if (strtolower(admin_decode($request->sys_captcha)) != strtolower($request->captcha)) {
+            if (strtolower(cache()->pull($request->sys_captcha)) != strtolower($request->captcha)) {
                 return $this->response()->fail(__('admin.captcha_error'));
             }
         }
@@ -45,7 +45,7 @@ class AuthController extends AdminController
             $user = Admin::adminUserModel()::query()->where('username', $request->username)->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
-                if(!$user->enabled){
+                if (!$user->enabled) {
                     return $this->response()->fail(__('admin.user_disabled'));
                 }
 
@@ -206,7 +206,9 @@ JS,
         $captcha = new Captcha();
 
         $captcha_img = $captcha->showImg();
-        $sys_captcha = admin_encode($captcha->getCaptcha());
+        $sys_captcha = uniqid('captcha:');
+
+        cache()->put($sys_captcha, $captcha->getCaptcha(), 600);
 
         return $this->response()->success(compact('captcha_img', 'sys_captcha'));
     }
@@ -225,7 +227,7 @@ JS,
 
     public function currentUser()
     {
-        if(!Admin::config('admin.auth.enable')){
+        if (!Admin::config('admin.auth.enable')) {
             return $this->response()->success([]);
         }
 
