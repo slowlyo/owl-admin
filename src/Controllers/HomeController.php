@@ -12,11 +12,6 @@ class HomeController extends AdminController
     {
         $page = $this->basePage()->css($this->css())->body([
             amis()->Grid()->columns([
-                amis()->ToastAction()->label('aaa')->toast([
-                    'items' => [
-                        amis()->Toast()->body('aaa')
-                    ]
-                ]),
                 $this->frameworkInfo()->md(5),
                 amis()->Flex()->items([
                     $this->pieChart(),
