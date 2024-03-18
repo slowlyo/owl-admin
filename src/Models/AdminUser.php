@@ -6,28 +6,23 @@ use Slowlyo\OwlAdmin\Admin;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Collection;
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Slowlyo\OwlAdmin\Traits\DatetimeFormatterTrait;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
 class AdminUser extends User implements AuthenticatableContract
 {
-    use Authenticatable, HasApiTokens;
+    use Authenticatable, HasApiTokens, DatetimeFormatterTrait;
 
     protected $appends = ['administrator'];
+    protected $guarded = [];
 
     public function __construct(array $attributes = [])
     {
         $this->setConnection(Admin::config('admin.database.connection'));
 
         parent::__construct($attributes);
-    }
-
-    protected $guarded = [];
-
-    protected function serializeDate(\DateTimeInterface $date): string
-    {
-        return $date->format($this->getDateFormat());
     }
 
     public function roles()
