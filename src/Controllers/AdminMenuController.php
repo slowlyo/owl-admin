@@ -75,25 +75,51 @@ class AdminMenuController extends AdminController
                     ->showIcon(false)
                     ->value(0)
                     ->source('/system/admin_menus?_action=getData'),
-                amis()->TextControl('component', __('admin.admin_menu.component'))
-                    ->description(__('admin.admin_menu.component_desc'))
-                    ->value('amis'),
+                amis()->NumberControl('order', __('admin.admin_menu.order'))
+                    ->required()
+                    ->displayMode('enhance')
+                    ->description(__('admin.order_asc'))
+                    ->min(0)
+                    ->value(0),
             ]),
+            amis()->ListControl('url_type', __('admin.admin_menu.type'))
+                ->options(Admin::adminMenuModel()::getType())
+                ->value(Admin::adminMenuModel()::TYPE_ROUTE),
             amis()->TextControl('url', __('admin.admin_menu.url'))
                 ->required()
                 ->validateOnChange()
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
-                ->placeholder('eg: /admin_menus'),
-            amis()->NumberControl('order', __('admin.admin_menu.order'))
+                ->placeholder('eg: /admin_menus')->hiddenOn('url_type != 2'),
+
+            amis()->TextControl('url', __('admin.admin_menu.route'))
                 ->required()
-                ->displayMode('enhance')
-                ->description(__('admin.order_asc'))
-                ->min(0)
+                ->validateOnChange()
+                ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
+                ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
+                ->placeholder('eg: /admin_menus')->hiddenOn('url_type == 2'),
+
+
+            amis()->TextControl('component', __('admin.admin_menu.component'))
+                ->description(__('admin.admin_menu.component_desc'))
+                ->value('amis')->hiddenOn('url_type != 1'),
+
+
+            amis()->GroupControl()->body([
+                amis()->TextControl('iframe_url','IframeUrl')
+                    ->required()
+                    ->validateOnChange()
+                    ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
+                    ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
+                    ->placeholder('eg: https://www.qq.com')->hiddenOn('url_type != 3'),
+            ]),
+
+            amis()->SwitchControl('keep_alive',  __('admin.admin_menu.iframe'))
+                ->onText(__('admin.yes'))
+                ->offText(__('admin.no'))
+                ->description( __('admin.admin_menu.iframe_description'))
                 ->value(0),
-            amis()->ListControl('url_type', __('admin.admin_menu.type'))
-                ->options(Admin::adminMenuModel()::getType())
-                ->value(Admin::adminMenuModel()::TYPE_ROUTE),
+
             amis()->SwitchControl('visible', __('admin.admin_menu.visible'))
                 ->onText(__('admin.admin_menu.show'))
                 ->offText(__('admin.admin_menu.hide'))

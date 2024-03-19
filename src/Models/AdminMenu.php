@@ -11,12 +11,14 @@ class AdminMenu extends BaseModel
 
     const TYPE_ROUTE = 1;
     const TYPE_LINK  = 2;
+    const TYPE_IFRAME  = 3;
 
     public static function getType(): array
     {
         return [
             self::TYPE_ROUTE => __('admin.admin_menu.route'),
             self::TYPE_LINK  => __('admin.admin_menu.link'),
+            self::TYPE_IFRAME  => __('admin.admin_menu.iframe'),
         ];
     }
 
