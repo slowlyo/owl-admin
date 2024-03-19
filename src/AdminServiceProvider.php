@@ -3,13 +3,13 @@
 namespace Slowlyo\OwlAdmin;
 
 use Illuminate\Support\Arr;
+use Laravel\Sanctum\Sanctum;
 use Slowlyo\OwlAdmin\Extend\Manager;
 use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module};
 use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
-use Laravel\Sanctum\Sanctum;
+use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module};
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,6 @@ class AdminServiceProvider extends ServiceProvider
         Console\UpdateCommand::class,
         Console\InstallCommand::class,
         Console\PublishCommand::class,
-        Console\IconifyCommand::class,
         Console\GenRouteCommand::class,
         Console\CreateUserCommand::class,
         Console\GenCodeClearCommand::class,

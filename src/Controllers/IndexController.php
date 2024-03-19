@@ -81,13 +81,7 @@ class IndexController extends AdminController
     {
         $query = request('query', 'home');
 
-        $filePath = storage_path('iconify.json');
-
-        if (!is_file($filePath)) {
-            Artisan::call('admin:iconify');
-        }
-
-        $icons = file_get_contents($filePath);
+        $icons = file_get_contents(owl_admin_path('/Support/iconify.json'));
         $icons = json_decode($icons, true);
 
         $items = [];

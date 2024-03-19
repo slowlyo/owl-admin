@@ -264,3 +264,12 @@ if (!function_exists('admin_abort')) {
         admin_abort_if($flag, $message, $data, 1);
     }
 }
+
+if (!function_exists('owl_admin_path')) {
+    function owl_admin_path($path = '')
+    {
+        $path = ltrim($path, '/');
+
+        return __DIR__ . '/../' . $path;
+    }
+}

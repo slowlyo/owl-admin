@@ -25,7 +25,6 @@
     "require": {
         "php": ">=8.0",
         "illuminate/support": ">=9",
-        "iconify/json": "*",
         "slowlyo/laravel-support": "*",
         "ext-zip": "*",
         "ext-gd": "*"
