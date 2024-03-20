@@ -1,14 +1,21 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import AmisEditor from '@/components/AmisEditor'
 import {Card, Space} from 'antd'
 import {Button as AmisBtn} from 'amis-ui'
 import AmisRender from '@/components/AmisRender'
 import {useLang} from '@/hooks/useLang'
 
-const Editor = () => {
+interface IProps {
+    className?: string,
+    value?: string,
+    static?: boolean,
+    onChange?: (schema: string) => void,
+}
+
+const SchemaEditor = forwardRef((props: IProps, ref) => {
     const {t} = useLang()
-    const [preview, setPreview] = React.useState(false)
-    const [schema, setSchema] = React.useState({} as any)
+    const [preview, setPreview] = React.useState(props.static)
+    const [schema, setSchema] = React.useState(props.value)
 
     const btnSchema = {
         type: 'button',
@@ -32,22 +39,26 @@ const Editor = () => {
     }
 
     return (
-        <div className="h-screen">
+        <div className={"h-full " + props.className}>
             <Card className="h-full" title={t('amis_editor.editor')} bodyStyle={{padding: 0, height: 'calc(100% - 55px)'}} extra={(
                 <Space>
                     <AmisRender schema={btnSchema}/>
-                    <AmisBtn level="primary" onClick={() => setPreview(!preview)}>
-                        {preview ? t('amis_editor.edit') : t('amis_editor.preview')}
-                    </AmisBtn>
+                    {!props.static && (
+                        <AmisBtn level="primary" onClick={() => setPreview(!preview)}>
+                            {preview ? t('amis_editor.edit') : t('amis_editor.preview')}
+                        </AmisBtn>
+                    )}
                 </Space>
             )}>
                 <div className="w-full h-full overflow-x-auto">
-                    <AmisEditor onChange={setSchema} preview={preview}/>
+                    <AmisEditor onChange={(value) => {
+                        setSchema(value)
+                        props.onChange(value)
+                    }} preview={preview} defaultSchema={props.value}/>
                 </div>
             </Card>
-            <div className="h-5"></div>
         </div>
     )
-}
+})
 
-export default Editor
+export default SchemaEditor

@@ -1,20 +1,34 @@
 import React from 'react'
 import {Editor} from 'amis-editor'
-import {toast} from 'amis'
 import {amisRequest} from '@/service/api'
 import {useHistory} from 'react-router'
 import clipboard from '@/utils/clipboard'
 import 'amis-editor-core/lib/style.css'
 import './style/index.less'
 import useSetting from '@/hooks/useSetting'
+import {message} from 'antd'
+import {msgHandler} from '@/utils/common'
 
-function AmisEditor({onChange, preview}) {
-    const [schema, setSchema] = React.useState({} as any)
+function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void, preview: boolean, defaultSchema?: any}) {
+    if (!defaultSchema) {
+        defaultSchema = {type: 'page', regions: ['body']}
+    }
+    const [schema, setSchema] = React.useState(defaultSchema as any)
     const {getSetting} = useSetting()
     const history = useHistory()
 
     const change = (val) => {
         onChange(val)
+    }
+
+    const localeMap = {
+        'zh_CN': 'zh-CN',
+        'en': 'en-US'
+    }
+
+    const props = {
+        locale: localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN',
+        location: history.location,
     }
 
     const env = {
@@ -33,11 +47,26 @@ function AmisEditor({onChange, preview}) {
         copy: async (content) => {
             await clipboard(content)
 
-            toast.success('复制成功')
+            message.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
         },
-        notify: (type: 'error' | 'success', msg: string) => {
-            toast[type] ? toast[type](msg) : console.warn('[Notify]', type, msg)
-        }
+        notify: (type: string, msg: any, conf: any) => {
+            if (!(msg instanceof String)) {
+                msg = conf?.body
+            }
+
+            if (!msg?.length) {
+                return
+            }
+
+            let handle = () => message.open({
+                content: msg,
+                type: (['info', 'success', 'error', 'warning', 'loading'].includes(type) ? type : 'info') as any,
+                duration: (conf?.timeout || 3000) / 1000,
+            })
+
+            msgHandler(msg, handle)
+        },
+        isCurrentUrl: (url: string) => history.location.pathname + history.location.search === url,
     }
 
     return (
