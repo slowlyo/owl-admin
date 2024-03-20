@@ -36,11 +36,20 @@ html, body {
     color: var(--colors-neutral-text-1);
 }
 
-.clear-children-mb > div{
+.clear-children-mb > div {
     margin-bottom: 0 !important;
     overflow-x: hidden !important;
 }
 
 .ant-menu-item-icon {
     vertical-align: -0.225rem !important;
+}
+
+.owl-container {
+    height: 100%;
+    padding: 1.25rem;
+}
+
+.owl-container:has(.owl-iframe) {
+    padding: 0;
 }

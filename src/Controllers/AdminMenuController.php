@@ -106,7 +106,7 @@ class AdminMenuController extends AdminController
 
 
             amis()->GroupControl()->body([
-                amis()->TextControl('iframe_url','IframeUrl')
+                amis()->TextControl('iframe_url', 'IframeUrl')
                     ->required()
                     ->validateOnChange()
                     ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
@@ -114,10 +114,10 @@ class AdminMenuController extends AdminController
                     ->placeholder('eg: https://www.qq.com')->hiddenOn('url_type != 3'),
             ]),
 
-            amis()->SwitchControl('keep_alive',  __('admin.admin_menu.iframe'))
+            amis()->SwitchControl('keep_alive', __('admin.admin_menu.keep_alive'))
                 ->onText(__('admin.yes'))
                 ->offText(__('admin.no'))
-                ->description( __('admin.admin_menu.iframe_description'))
+                ->description(__('admin.admin_menu.iframe_description'))
                 ->value(0),
 
             amis()->SwitchControl('visible', __('admin.admin_menu.visible'))

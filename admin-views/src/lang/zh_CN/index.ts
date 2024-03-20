@@ -57,7 +57,7 @@ export default {
         animate_out_scaleBig: '放大',
         animate_out_scaleX: '水平缩放',
         animate_out_scaleY: '垂直缩放',
-        keep_alive: '页面缓存',
+        keep_alive: '全局页面缓存',
         dark_theme: '深色主题',
         accordion_menu: '手风琴菜单',
     },

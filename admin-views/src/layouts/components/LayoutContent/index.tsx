@@ -54,7 +54,7 @@ const LayoutContent = () => {
             {(getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full) && <LayoutTabs/>}
             <div className="flex-1">
                 <Scrollbars autoHide className="clear-children-mb">
-                    <div className="p-5 h-full">
+                    <div className="owl-container">
                         <QueueAnim className="relative"
                                    type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
                                    duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
@@ -66,7 +66,7 @@ const LayoutContent = () => {
                                             <KeepAlive name={name}
                                                        cacheKey={path}
                                                        id={`keep-alive-${name}-${path}`} // 确保ID唯一
-                                                       when={currentRoute?.keep_alive  == 1 || getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1}>
+                                                       when={currentRoute?.keep_alive  == 1 || (getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1)}>
                                                 {React.createElement(component, { currentRoute })}
                                             </KeepAlive>
                                         )}/>
