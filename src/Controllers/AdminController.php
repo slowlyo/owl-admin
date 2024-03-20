@@ -173,7 +173,7 @@ abstract class AdminController extends Controller
         $detail = amis()->Card()
             ->className('base-form')
             ->header(['title' => __('admin.detail')])
-            ->body($this->detail())
+            ->body($this->detail($id))
             ->toolbar([$this->backButton()]);
 
         $page = $this->basePage()->body($detail);

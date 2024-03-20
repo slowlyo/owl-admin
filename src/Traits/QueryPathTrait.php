@@ -65,11 +65,11 @@ trait QueryPathTrait
      */
     public function getEditGetDataPath()
     {
-        $path = str_replace('/edit', '', $this->queryPath);
+        $path = $this->queryPath;
 
         $last = collect(explode('/', $path))->last();
 
-        if (!is_numeric($last)) {
+        if ($last != 'edit') {
             $primaryKey = isset($this->service) ? $this->service->primaryKey() : 'id';
 
             $path .= '/${' . $primaryKey . '}/edit';
@@ -95,11 +95,13 @@ trait QueryPathTrait
      */
     public function getUpdatePath()
     {
-        $path = str_replace('/edit', '', $this->queryPath);
+        $path = $this->queryPath;
 
         $last = collect(explode('/', $path))->last();
 
-        if (!is_numeric($last)) {
+        if ($last == 'edit') {
+            $path = str_replace('/edit', '', $path);
+        } else {
             $primaryKey = isset($this->service) ? $this->service->primaryKey() : 'id';
 
             $path .= '/${' . $primaryKey . '}';
@@ -132,9 +134,7 @@ trait QueryPathTrait
     {
         $path = $this->queryPath;
 
-        $last = collect(explode('/', $this->queryPath))->last();
-
-        if (!is_numeric($last)) {
+        if (blank(request()->route()->signatureParameters())) {
             $path .= '/${' . $this->service->primaryKey() . '}';
         }
 
