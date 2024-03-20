@@ -48,6 +48,7 @@ const LayoutContent = () => {
         clearModal()
     }, [pathname, routes])
 
+
     return (
         <div className="h-full flex flex-col bg-[var(--owl-body-bg)]">
             {(getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full) && <LayoutTabs/>}
@@ -57,14 +58,16 @@ const LayoutContent = () => {
                         <QueueAnim className="relative"
                                    type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
                                    duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
-                            <div key={pathname} id={pathname} className="absolute w-full">
+                            <div key={pathname} id={pathname} className="absolute w-full iframe">
                                 <Switch location={location}>
                                     {flattenRoutes.map(({name, path, component}, index) => {
-                                        return <Route key={index} path={path.replace(/\?.*$/, '')} render={() => (
+                                        return <Route key={index}  path={path.replace(/\?.*$/, '')}  render={() => (
+                                            // @ts-ignore
                                             <KeepAlive name={name}
                                                        cacheKey={path}
-                                                       when={getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1}>
-                                                {React.createElement(component)}
+                                                       id={`keep-alive-${name}-${path}`} // 确保ID唯一
+                                                       when={currentRoute?.keep_alive  == 1 || getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1}>
+                                                {React.createElement(component, { currentRoute })}
                                             </KeepAlive>
                                         )}/>
                                     })}

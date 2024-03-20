@@ -187,4 +187,23 @@ class UpdateCommand extends Command
             ]);
         }
     }
+
+
+    public function version341()
+    {
+        $this->output->title('Update to version v3.4.1');
+        if (!Schema::hasColumn('admin_menus', 'keep_alive')) {
+            Schema::table('admin_menus', function ($table) {
+                $table->tinyInteger('keep_alive')->nullable()->comment('页面缓存');
+                $table->string('iframe_url')->nullable()->comment('iframe_url');
+            });
+        }
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--assets' => true,
+                '--lang'   => true,
+                '--force'  => true,
+            ]);
+        }
+    }
 }
