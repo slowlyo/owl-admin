@@ -51,19 +51,19 @@ class Menu
             if ($item['parent_id'] == $parentId) {
                 $idStr = "[{$item['id']}]";
                 $_temp = [
-                    'name' => $parentName ? $parentName . '-' . $idStr : $idStr,
-                    'path' => $item['url'],
-                    'component' => $item['url_type'] == 3 ? 'iframe' : (data_get($item, 'component') ?? 'amis'),
-                    'is_home' => $item['is_home'],
+                    'name'       => $parentName ? $parentName . '-' . $idStr : $idStr,
+                    'path'       => $item['url'],
+                    'component'  => $item['url_type'] == 3 ? 'iframe' : (data_get($item, 'component') ?? 'amis'),
+                    'is_home'    => $item['is_home'],
                     'iframe_url' => $item['iframe_url'] ?? '',
-                    'url_type' => $item['url_type'] ?? 1,
+                    'url_type'   => $item['url_type'] ?? 1,
                     'keep_alive' => $item['keep_alive'] ?? 0,
-                    'is_full' => $item['is_full'] ?? 0,
-                    'is_link' => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
-                    'meta' => [
+                    'is_full'    => $item['is_full'] ?? 0,
+                    'is_link'    => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
+                    'meta'       => [
                         'title' => $item['title'],
-                        'icon' => $item['icon'] ?? '-',
-                        'hide' => $item['visible'] == 0,
+                        'icon'  => $item['icon'] ?? '-',
+                        'hide'  => $item['visible'] == 0,
                         'order' => $item['order'],
                     ],
                 ];
@@ -72,7 +72,7 @@ class Menu
 
                 if (!empty($children)) {
                     $_temp['component'] = 'amis';
-                    $_temp['children'] = $children;
+                    $_temp['children']  = $children;
                 }
 
                 $data[] = $_temp;
