@@ -39,7 +39,17 @@ const LayoutContent = () => {
 
     // 回到顶部
     const backTop = () => {
-        scrollbarRef?.current?.scrollToTop()
+        const step = scroll / 20
+
+        const back = (top) => {
+            scrollbarRef?.current?.scrollTop(top)
+
+            if (top <= 0) return
+
+            setTimeout(() => back(top - step), 10)
+        }
+
+        back(scroll)
     }
 
     // 处理 keep-alive 导致 modal 无法关闭的问题
