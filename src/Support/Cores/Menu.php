@@ -191,6 +191,15 @@ class Menu
                         ],
                     ],
                     [
+                        'name'      => 'dev_tools_pages',
+                        'path'      => '/dev_tools/pages',
+                        'component' => 'amis',
+                        'meta'      => [
+                            'title' => __('admin.pages.menu'),
+                            'icon'  => 'iconoir:multiple-pages',
+                        ],
+                    ],
+                    [
                         'name'      => 'dev_tools_code_generator',
                         'path'      => '/dev_tools/code_generator',
                         'component' => 'amis',

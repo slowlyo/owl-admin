@@ -44,7 +44,7 @@ class Database
     public function up()
     {
         $this->create('admin_users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('username', 120)->unique();
             $table->string('password', 80);
             $table->tinyInteger('enabled')->default(1);
@@ -55,14 +55,14 @@ class Database
         });
 
         $this->create('admin_roles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name', 50)->unique();
             $table->string('slug', 50)->unique();
             $table->timestamps();
         });
 
         $this->create('admin_permissions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name', 50)->unique();
             $table->string('slug', 50)->unique();
             $table->text('http_method')->nullable();
@@ -73,13 +73,13 @@ class Database
         });
 
         $this->create('admin_menus', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('parent_id')->default(0);
             $table->integer('order')->default(0);
             $table->string('title', 100)->comment('菜单名称');
             $table->string('icon', 100)->nullable()->comment('菜单图标');
             $table->string('url')->nullable()->comment('菜单路由');
-            $table->tinyInteger('url_type')->default(1)->comment('路由类型(1:路由,2:外链)');
+            $table->tinyInteger('url_type')->default(1)->comment('路由类型(1:路由,2:外链,3:iframe)');
             $table->tinyInteger('visible')->default(1)->comment('是否可见');
             $table->tinyInteger('is_home')->default(0)->comment('是否为首页');
             $table->tinyInteger('keep_alive')->nullable()->comment('页面缓存');
@@ -118,7 +118,7 @@ class Database
         }
 
         $this->create('admin_code_generators', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->string('title')->default('')->comment('名称');
             $table->string('table_name')->default('')->comment('表名');
             $table->string('primary_key')->default('id')->comment('主键名');
@@ -142,9 +142,17 @@ class Database
         });
 
         $this->create('admin_extensions', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->string('name', 100)->unique();
             $table->tinyInteger('is_enabled')->default(0);
+            $table->timestamps();
+        });
+
+        $this->create('admin_pages', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->comment('页面名称');
+            $table->string('sign')->comment('页面标识');
+            $table->longText('schema')->comment('页面结构');
             $table->timestamps();
         });
     }
@@ -167,6 +175,7 @@ class Database
         $this->dropIfExists('admin_code_generators');
         $this->dropIfExists('admin_settings');
         $this->dropIfExists('admin_extensions');
+        $this->dropIfExists('admin_pages');
     }
 
     /**

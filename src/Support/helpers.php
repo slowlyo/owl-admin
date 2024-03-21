@@ -273,3 +273,9 @@ if (!function_exists('owl_admin_path')) {
         return __DIR__ . '/../' . $path;
     }
 }
+if (!function_exists('admin_pages')) {
+    function admin_pages($sign)
+    {
+        return \Slowlyo\OwlAdmin\Services\AdminPageService::make()->get($sign);
+    }
+}

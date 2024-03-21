@@ -165,8 +165,8 @@ class UpdateCommand extends Command
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
-                '--lang'   => true,
-                '--force'  => true,
+                '--lang'  => true,
+                '--force' => true,
             ]);
         }
     }
@@ -182,12 +182,11 @@ class UpdateCommand extends Command
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
-                '--lang'   => true,
-                '--force'  => true,
+                '--lang'  => true,
+                '--force' => true,
             ]);
         }
     }
-
 
     public function version341()
     {
@@ -204,6 +203,21 @@ class UpdateCommand extends Command
                 '--lang'   => true,
                 '--force'  => true,
             ]);
+        }
+    }
+
+    public function version342()
+    {
+        $this->output->title('Update to version v3.4.2');
+
+        if (!Schema::hasTable('admin_pages')) {
+            Schema::create('admin_pages', function ($table) {
+                $table->id();
+                $table->string('title')->comment('页面名称');
+                $table->string('sign')->comment('页面标识');
+                $table->longText('schema')->comment('页面结构');
+                $table->timestamps();
+            });
         }
     }
 }

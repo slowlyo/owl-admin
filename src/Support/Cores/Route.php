@@ -6,6 +6,7 @@ use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Routing\Router;
 use Slowlyo\OwlAdmin\Controllers\{
     AuthController,
+    DevTools\PagesController,
     HomeController,
     IndexController,
     AdminUserController,
@@ -14,7 +15,7 @@ use Slowlyo\OwlAdmin\Controllers\{
     AdminPermissionController,
     DevTools\EditorController,
     DevTools\ExtensionController,
-    DevTools\CodeGeneratorController,
+    DevTools\CodeGeneratorController
 };
 
 class Route
@@ -101,6 +102,11 @@ class Route
                     });
 
                     $router->post('editor_parse', [EditorController::class, 'index']);
+
+                    $router->resource('pages', PagesController::class);
+                    $router->group(['prefix' => 'pages'], function (Router $router) {
+
+                    });
                 });
             }
         });

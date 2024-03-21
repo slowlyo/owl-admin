@@ -25,12 +25,22 @@ function AmisPage() {
     const cacheKey = pathname + '-schema'
 
     const [schema, setSchema] = useState(cache().get(cacheKey))
+    const [manual, setManual] = useState(false)
 
     const initPage = useRequest(initPageSchema, {
         cacheKey,
         manual: true,
         loadingDelay: 700,
         onSuccess(res) {
+            if (manual) {
+                setSchema({})
+                setSchema(res.data)
+
+                cache().set(cacheKey, res.data)
+
+                return
+            }
+
             if (JSON.stringify(res.data) != JSON.stringify(cache().get(cacheKey))) {
                 setSchema(res.data)
 
@@ -39,7 +49,10 @@ function AmisPage() {
         }
     })
 
-    registerGlobalFunction('refreshAmisPage', () => initPage.runAsync(pathname))
+    registerGlobalFunction('refreshAmisPage', () => {
+        setManual(true)
+        return initPage.runAsync(pathname)
+    })
 
     useMount(() => initPage.run(pathname))
 
