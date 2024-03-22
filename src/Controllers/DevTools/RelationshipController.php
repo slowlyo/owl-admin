@@ -56,7 +56,8 @@ class RelationshipController extends AdminController
                     amis()->SelectControl('type', '类型')
                         ->required()
                         ->value(AdminRelationship::TYPE_BELONGS_TO)
-                        ->options(map2options(AdminRelationship::TYPE_LABEL_MAP)),
+                        ->menuTpl('${label} <span class="text-gray-300 pl-2">${method}</span>')
+                        ->options(AdminRelationship::typeOptions()),
                 ]),
                 // 一对一
                 amis()->ComboControl('args', '参数')->multiLine()->items([

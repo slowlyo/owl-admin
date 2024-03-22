@@ -53,19 +53,30 @@ class AdminRelationship extends BaseModel
     ];
 
     const TYPE_LABEL_MAP = [
-        self::TYPE_HAS_ONE          => '一对一 (hasOne)',
-        self::TYPE_HAS_MANY         => '一对多 (hasMany)',
-        self::TYPE_BELONGS_TO       => '一对多(反向)/属于 (belongsTo)',
-        self::TYPE_BELONGS_TO_MANY  => '多对多 (belongsToMany)',
-        self::TYPE_HAS_ONE_THROUGH  => '远程一对一 (hasOneThrough)',
-        self::TYPE_HAS_MANY_THROUGH => '远程一对多 (hasManyThrough)',
-        self::TYPE_MORPH_ONE        => '一对一(多态) (morphOne)',
-        self::TYPE_MORPH_MANY       => '一对多(多态) (morphMany)',
-        self::TYPE_MORPH_TO_MANY    => '多对多(多态) (morphToMany)',
+        self::TYPE_HAS_ONE          => '一对一',
+        self::TYPE_HAS_MANY         => '一对多',
+        self::TYPE_BELONGS_TO       => '一对多(反向)/属于',
+        self::TYPE_BELONGS_TO_MANY  => '多对多',
+        self::TYPE_HAS_ONE_THROUGH  => '远程一对一',
+        self::TYPE_HAS_MANY_THROUGH => '远程一对多',
+        self::TYPE_MORPH_ONE        => '一对一(多态)',
+        self::TYPE_MORPH_MANY       => '一对多(多态)',
+        self::TYPE_MORPH_TO_MANY    => '多对多(多态)',
     ];
 
     public function aaa()
     {
-        $this->belongsTo();
+        // $this->belongsTo();
+    }
+
+    public static function typeOptions()
+    {
+        return collect(self::TYPE_MAP)->map(function ($item, $index) {
+            return [
+                'label'  => self::TYPE_LABEL_MAP[$index],
+                'method' => $item,
+                'value'  => $index,
+            ];
+        })->values();
     }
 }
