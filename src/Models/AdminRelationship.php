@@ -59,13 +59,13 @@ class AdminRelationship extends BaseModel
         self::TYPE_BELONGS_TO_MANY  => '多对多 (belongsToMany)',
         self::TYPE_HAS_ONE_THROUGH  => '远程一对一 (hasOneThrough)',
         self::TYPE_HAS_MANY_THROUGH => '远程一对多 (hasManyThrough)',
-        self::TYPE_MORPH_ONE        => '一对多(多态) (morphOne)',
+        self::TYPE_MORPH_ONE        => '一对一(多态) (morphOne)',
         self::TYPE_MORPH_MANY       => '一对多(多态) (morphMany)',
         self::TYPE_MORPH_TO_MANY    => '多对多(多态) (morphToMany)',
     ];
 
     public function aaa()
     {
-        // $this->belongsTo();
+        $this->belongsTo();
     }
 }

@@ -106,6 +106,9 @@ class Route
                     $router->resource('pages', PagesController::class);
 
                     $router->resource('relationships', RelationshipController::class);
+                    $router->group(['prefix' => 'relation'], function (Router $router) {
+                        $router->get('model_options', [RelationshipController::class, 'modelOptions']);
+                    });
                 });
             }
         });
