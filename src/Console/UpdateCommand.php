@@ -219,5 +219,18 @@ class UpdateCommand extends Command
                 $table->timestamps();
             });
         }
+
+        if (!Schema::hasTable('admin_relationships')) {
+            Schema::create('admin_relationships', function ($table) {
+                $table->id();
+                $table->string('model')->comment('模型');
+                $table->string('title')->comment('关联名称');
+                $table->string('type')->comment('关联类型');
+                $table->string('remark')->comment('关联名称')->nullable();
+                $table->text('args')->comment('关联参数')->nullable();
+                $table->text('extra')->comment('额外参数')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 }

@@ -273,9 +273,24 @@ if (!function_exists('owl_admin_path')) {
         return __DIR__ . '/../' . $path;
     }
 }
+
 if (!function_exists('admin_pages')) {
     function admin_pages($sign)
     {
         return \Slowlyo\OwlAdmin\Services\AdminPageService::make()->get($sign);
+    }
+}
+
+if (!function_exists('map2options')) {
+    /**
+     * 键作为value, 值作为label, 返回options格式
+     *
+     * @param $map
+     *
+     * @return array
+     */
+    function map2options($map)
+    {
+        return collect($map)->map(fn($v, $k) => ['label' => $v, 'value' => $k])->toArray();
     }
 }

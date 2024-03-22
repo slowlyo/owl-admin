@@ -155,6 +155,17 @@ class Database
             $table->longText('schema')->comment('页面结构');
             $table->timestamps();
         });
+
+        $this->create('admin_relationships', function (Blueprint $table) {
+            $table->id();
+            $table->string('model')->comment('模型');
+            $table->string('title')->comment('关联名称');
+            $table->string('type')->comment('关联类型');
+            $table->string('remark')->comment('关联名称')->nullable();
+            $table->text('args')->comment('关联参数')->nullable();
+            $table->text('extra')->comment('额外参数')->nullable();
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -176,6 +187,7 @@ class Database
         $this->dropIfExists('admin_settings');
         $this->dropIfExists('admin_extensions');
         $this->dropIfExists('admin_pages');
+        $this->dropIfExists('admin_relationships');
     }
 
     /**

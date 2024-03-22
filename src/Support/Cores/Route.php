@@ -4,9 +4,9 @@ namespace Slowlyo\OwlAdmin\Support\Cores;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Routing\Router;
-use Slowlyo\OwlAdmin\Controllers\{
-    AuthController,
+use Slowlyo\OwlAdmin\Controllers\{AuthController,
     DevTools\PagesController,
+    DevTools\RelationshipController,
     HomeController,
     IndexController,
     AdminUserController,
@@ -104,9 +104,8 @@ class Route
                     $router->post('editor_parse', [EditorController::class, 'index']);
 
                     $router->resource('pages', PagesController::class);
-                    $router->group(['prefix' => 'pages'], function (Router $router) {
 
-                    });
+                    $router->resource('relationships', RelationshipController::class);
                 });
             }
         });

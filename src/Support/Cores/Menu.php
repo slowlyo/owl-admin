@@ -200,6 +200,24 @@ class Menu
                         ],
                     ],
                     [
+                        'name'      => 'dev_tools_relationships',
+                        'path'      => '/dev_tools/relationships',
+                        'component' => 'amis',
+                        'meta'      => [
+                            'title' => __('admin.relationships.menu'),
+                            'icon'  => 'ant-design:node-index-outlined',
+                        ],
+                    ],
+                    [
+                        'name'      => 'dev_tools_apis',
+                        'path'      => '/dev_tools/apis',
+                        'component' => 'amis',
+                        'meta'      => [
+                            'title' => __('admin.apis.menu'),
+                            'icon'  => 'ant-design:api-outlined',
+                        ],
+                    ],
+                    [
                         'name'      => 'dev_tools_code_generator',
                         'path'      => '/dev_tools/code_generator',
                         'component' => 'amis',
