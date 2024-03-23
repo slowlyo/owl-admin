@@ -2,15 +2,14 @@
 
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\Model;
-use Slowlyo\OwlAdmin\Support\Cores\Module;
 use Slowlyo\OwlAdmin\Models\AdminRelationship;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use Slowlyo\OwlAdmin\Services\AdminRelationshipService;
-use Spatie\LaravelIgnition\Support\Composer\ComposerClassMap;
 
+/**
+ * @property AdminRelationshipService $service
+ */
 class RelationshipController extends AdminController
 {
     protected string $serviceName = AdminRelationshipService::class;
@@ -22,18 +21,75 @@ class RelationshipController extends AdminController
             ->headerToolbar([
                 $this->createButton(true, 'lg'),
                 ...$this->baseHeaderToolBar(),
+                $this->modelGenerator(),
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
+                amis()->TableColumn('model', '模型')->searchable(),
                 amis()->TableColumn('title', '名称')->searchable(),
-                amis()->TableColumn('sign', '标识')->searchable(),
+                amis()->TableColumn('remark', '备注')->searchable(),
                 $this->rowActions([
-                    $this->rowEditButton(true),
+                    $this->previewButton(),
+                    $this->rowEditButton(true, 'lg'),
                     $this->rowDeleteButton(),
                 ]),
             ]);
 
         return $this->baseList($crud);
+    }
+
+    public function modelGenerator()
+    {
+        return amis()->DrawerAction()->label('生成模型')->level('success')->drawer(
+            amis()->Drawer()
+                ->title('生成模型')
+                ->size('lg')
+                ->resizable()
+                ->closeOnOutside()
+                ->closeOnEsc()
+                ->actions([
+                    amis()->VanillaAction()->label('生成')->actionType('submit')->level('primary'),
+                ])
+                ->body([
+                    amis()->Form()
+                        ->api('/dev_tools/relation/generate_model')
+                        ->initApi('/dev_tools/relation/all_models')
+                        ->mode('normal')
+                        ->body([
+                            amis()->TreeControl()
+                                ->name('check_tables')
+                                ->label()
+                                ->multiple()
+                                ->heightAuto()
+                                ->required()
+                                ->source('${all_models}')
+                                ->searchable()
+                                ->joinValues(false)
+                                ->extractValue()
+                                ->size('full')
+                                ->className('h-full b-none')
+                                ->inputClassName('h-full tree-full')
+                                ->set('menuTpl', '${label} <span class="text-gray-300 pl-2">${model}</span>'),
+                        ]),
+                ])
+        );
+    }
+
+    public function previewButton()
+    {
+        return amis()->DrawerAction()->label('预览')->level('link')->icon('fa fa-eye')->drawer(
+            amis()->Drawer()
+                ->position('top')
+                ->resizable()
+                ->title('预览')
+                ->actions([])
+                ->showCloseButton(false)
+                ->closeOnEsc()
+                ->closeOnOutside()
+                ->body(
+                    amis()->Code()->value('${preview_code | raw}')->language('php')
+                )
+        );
     }
 
     public function form()
@@ -47,7 +103,26 @@ class RelationshipController extends AdminController
                 ->searchable();
         };
 
-        return $this->baseForm()->body([
+        $columnSelect = function ($name, $label, $modelField = "_blank_model", $tableField = '_blank_table') {
+            return amis()
+                ->TextControl($name, $label)
+                ->source('/dev_tools/relation/column_options?model=${' . $modelField . '}&table=${' . $tableField . '}');
+        };
+
+        $args = function ($type, $items) {
+            return amis()
+                ->ComboControl('args', '参数')
+                ->multiLine()
+                ->strictMode(false)
+                ->items($items)
+                ->visibleOn('${type == "' . $type . '"}');
+        };
+
+        return $this->baseForm()->data([
+            'tables' => collect(json_decode(json_encode(Schema::getAllTables()), true))
+                ->map(fn($i) => array_shift($i))
+                ->toArray(),
+        ])->body([
             amis()->GroupControl()->body([
                 amis()->GroupControl()->direction('vertical')->body([
                     $modelSelect('model', '模型'),
@@ -60,88 +135,88 @@ class RelationshipController extends AdminController
                         ->options(AdminRelationship::typeOptions()),
                 ]),
                 // 一对一
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_HAS_ONE, [
                     // $related, $foreignKey = null, $localKey = null
                     $modelSelect('related', '关联模型'),
-                    amis()->TextControl('foreignKey', 'foreignKey'),
-                    amis()->TextControl('localKey', 'localKey'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_HAS_ONE . '"}'),
+                    $columnSelect('foreignKey', 'foreignKey', 'related'),
+                    $columnSelect('localKey', 'localKey', 'model'),
+                ]),
                 // 一对多
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_HAS_MANY, [
                     // $related, $foreignKey = null, $localKey = null
                     $modelSelect('related', '关联模型'),
-                    amis()->TextControl('foreignKey', 'foreignKey'),
-                    amis()->TextControl('localKey', 'localKey'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_HAS_MANY . '"}'),
+                    $columnSelect('foreignKey', 'foreignKey', 'related'),
+                    $columnSelect('localKey', 'localKey', 'model'),
+                ]),
                 // 一对多(反向)/属于
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_BELONGS_TO, [
                     // $related, $foreignKey = null, $ownerKey = null, $relation = null
                     $modelSelect('related', '关联模型'),
-                    amis()->TextControl('foreignKey', 'foreignKey'),
-                    amis()->TextControl('ownerKey', 'ownerKey'),
+                    $columnSelect('foreignKey', 'foreignKey', 'model'),
+                    $columnSelect('ownerKey', 'ownerKey', 'related'),
                     amis()->TextControl('relation', 'relation'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_BELONGS_TO . '"}'),
+                ]),
                 // 多对多
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_BELONGS_TO_MANY, [
                     // $related, $table = null, $foreignPivotKey = null, $relatedPivotKey = null, $parentKey = null, $relatedKey = null, $relation = null
                     $modelSelect('related', '关联模型'),
-                    amis()->TextControl('table', 'table'),
-                    amis()->TextControl('foreignPivotKey', 'foreignPivotKey'),
-                    amis()->TextControl('relatedPivotKey', 'relatedPivotKey'),
-                    amis()->TextControl('parentKey', 'parentKey'),
-                    amis()->TextControl('relatedKey', 'relatedKey'),
+                    amis()->SelectControl('table', 'table')->source('${tables}')->searchable(),
+                    $columnSelect('foreignPivotKey', 'foreignPivotKey', '_blank_model', 'table'),
+                    $columnSelect('relatedPivotKey', 'relatedPivotKey', '_blank_model', 'table'),
+                    $columnSelect('parentKey', 'parentKey', 'model'),
+                    $columnSelect('relatedKey', 'relatedKey', 'related'),
                     amis()->TextControl('relation', 'relation'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_BELONGS_TO_MANY . '"}'),
+                ]),
                 // 远程一对一
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_HAS_ONE_THROUGH, [
                     // $related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null
                     $modelSelect('related', '关联模型'),
                     $modelSelect('through', '中间模型'),
-                    amis()->TextControl('firstKey', 'firstKey'),
-                    amis()->TextControl('secondKey', 'secondKey'),
-                    amis()->TextControl('localKey', 'localKey'),
-                    amis()->TextControl('secondLocalKey', 'secondLocalKey'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_HAS_ONE_THROUGH . '"}'),
+                    $columnSelect('firstKey', 'firstKey', 'through'),
+                    $columnSelect('secondKey', 'secondKey', 'related'),
+                    $columnSelect('localKey', 'localKey', 'model'),
+                    $columnSelect('secondLocalKey', 'secondLocalKey', 'through'),
+                ]),
                 // 远程一对多
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_HAS_MANY_THROUGH, [
                     // $related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null
                     $modelSelect('related', '关联模型'),
                     $modelSelect('through', '中间模型'),
-                    amis()->TextControl('firstKey', 'firstKey'),
-                    amis()->TextControl('secondKey', 'secondKey'),
-                    amis()->TextControl('localKey', 'localKey'),
-                    amis()->TextControl('secondLocalKey', 'secondLocalKey'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_HAS_MANY_THROUGH . '"}'),
+                    $columnSelect('firstKey', 'firstKey', 'through'),
+                    $columnSelect('secondKey', 'secondKey', 'related'),
+                    $columnSelect('localKey', 'localKey', 'model'),
+                    $columnSelect('secondLocalKey', 'secondLocalKey', 'through'),
+                ]),
                 // 一对一(多态)
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_MORPH_ONE, [
                     // $related, $name, $type = null, $id = null, $localKey = null
                     $modelSelect('related', '关联模型'),
                     amis()->TextControl('name', 'name')->required(),
                     amis()->TextControl('type', 'type'),
                     amis()->TextControl('id', 'id'),
-                    amis()->TextControl('localKey', 'localKey'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_MORPH_ONE . '"}'),
+                    $columnSelect('localKey', 'localKey', 'model'),
+                ]),
                 // 一对多(多态)
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_MORPH_MANY, [
                     // $related, $name, $type = null, $id = null, $localKey = null
                     $modelSelect('related', '关联模型'),
                     amis()->TextControl('name', 'name')->required(),
                     amis()->TextControl('type', 'type'),
                     amis()->TextControl('id', 'id'),
-                    amis()->TextControl('localKey', 'localKey'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_MORPH_MANY . '"}'),
+                    $columnSelect('localKey', 'localKey', 'model'),
+                ]),
                 // 多对多(多态)
-                amis()->ComboControl('args', '参数')->multiLine()->items([
+                $args(AdminRelationship::TYPE_MORPH_TO_MANY, [
                     // $related, $name, $table = null, $foreignPivotKey = null, $relatedPivotKey = null, $parentKey = null, $relatedKey = null, $inverse = false
                     $modelSelect('related', '关联模型'),
                     amis()->TextControl('name', 'name')->required(),
-                    amis()->TextControl('table', 'table'),
-                    amis()->TextControl('foreignPivotKey', 'foreignPivotKey'),
-                    amis()->TextControl('relatedPivotKey', 'relatedPivotKey'),
-                    amis()->TextControl('parentKey', 'parentKey'),
-                    amis()->TextControl('relatedKey', 'relatedKey'),
+                    amis()->SelectControl('table', 'table')->source('${tables}')->searchable(),
+                    $columnSelect('foreignPivotKey', 'foreignPivotKey', '_blank_model', 'table'),
+                    $columnSelect('relatedPivotKey', 'relatedPivotKey', '_blank_model', 'table'),
+                    $columnSelect('parentKey', 'parentKey', 'model'),
+                    $columnSelect('relatedKey', 'relatedKey', 'related'),
                     amis()->TextControl('inverse', 'inverse'),
-                ])->visibleOn('${type == "' . AdminRelationship::TYPE_MORPH_TO_MANY . '"}'),
+                ]),
             ]),
         ]);
     }
@@ -153,31 +228,82 @@ class RelationshipController extends AdminController
     }
 
     /**
-     * 获取所有已经加载的 model
+     * 获取所有 model
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
      */
     public function modelOptions()
     {
-        $composer = require base_path('/vendor/autoload.php');
-        $classMap = $composer->getClassMap();
-
-        $tables = collect(json_decode(json_encode(Schema::getAllTables()), true))
-            ->map(fn($i) => array_shift($i))
-            ->toArray();
-
-        $models = collect($classMap)
-            ->keys()
-            ->filter(fn($item) => str_contains($item, 'Models\\'))
-            ->filter(fn($item) => (new \ReflectionClass($item))->isSubclassOf(Model::class))
-            ->filter(fn($item) => in_array(app($item)->getTable(), $tables))
-            ->values()
-            ->map(fn($item) => [
-                'label' => Str::of($item)->explode('\\')->pop(),
-                'table' => app($item)->getTable(),
-                'value' => $item,
-            ]);
+        $models = $this->service->allModels()['models'];
 
         return $this->response()->success($models);
+    }
+
+    /**
+     * 字段选项
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function columnOptions()
+    {
+        $model = request('model');
+        $table = request('table');
+
+        if (blank($model) && blank($table)) {
+            return $this->response()->success([]);
+        }
+
+        $table = $table ?: app($model)->getTable();
+
+        $columns = Schema::getColumnListing($table);
+
+        return $this->response()->success($columns);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function allModels()
+    {
+        $all    = $this->service->allModels();
+        $tables = $all['tables'];
+        $models = collect($all['models'])->keyBy('table');
+
+        $all_models = collect($tables)->map(function ($item) use ($models) {
+            $model = data_get($models, $item . '.value');
+
+            return [
+                'value'    => $item,
+                'label'    => $item,
+                'model'    => $model,
+                'disabled' => (bool)$model,
+            ];
+        })->sortBy('disabled')->values();
+
+        return $this->response()->success(compact('all_models'));
+    }
+
+    /**
+     * 生成模型
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function generateModel()
+    {
+        $tables     = request('check_tables');
+        $existsList = collect($this->service->allModels()['models'])->pluck('table')->toArray();
+        $exists     = array_intersect($tables, $existsList);
+
+        admin_abort_if(filled($exists), '模型已存在：' . implode(',', $exists));
+
+        try {
+            foreach ($tables as $table) {
+                $this->service->generateModel($table);
+            }
+        } catch (\Throwable $e) {
+            return $this->response()->fail($e->getMessage());
+        }
+
+        return $this->response()->successMessage(__('admin.action_success'));
     }
 }

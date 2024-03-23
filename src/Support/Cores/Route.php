@@ -108,6 +108,9 @@ class Route
                     $router->resource('relationships', RelationshipController::class);
                     $router->group(['prefix' => 'relation'], function (Router $router) {
                         $router->get('model_options', [RelationshipController::class, 'modelOptions']);
+                        $router->get('column_options', [RelationshipController::class, 'columnOptions']);
+                        $router->get('all_models', [RelationshipController::class, 'allModels']);
+                        $router->post('generate_model', [RelationshipController::class, 'generateModel']);
                     });
                 });
             }

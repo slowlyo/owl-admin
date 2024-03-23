@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
-use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module};
+use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module, Cores\Relationships};
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -78,6 +78,8 @@ class AdminServiceProvider extends ServiceProvider
         $this->loadRoutes();
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->usePersonalAccessTokenModel();
+
+        Relationships::loader();
     }
 
     protected function loadBaseRoute()

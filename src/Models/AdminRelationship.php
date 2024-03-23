@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Models;
 
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 
 class AdminRelationship extends BaseModel
@@ -64,11 +66,6 @@ class AdminRelationship extends BaseModel
         self::TYPE_MORPH_TO_MANY    => '多对多(多态)',
     ];
 
-    public function aaa()
-    {
-        // $this->belongsTo();
-    }
-
     public static function typeOptions()
     {
         return collect(self::TYPE_MAP)->map(function ($item, $index) {
@@ -78,5 +75,48 @@ class AdminRelationship extends BaseModel
                 'value'  => $index,
             ];
         })->values();
+    }
+
+    public function method(): Attribute
+    {
+        return Attribute::get(fn() => self::TYPE_MAP[$this->type]);
+    }
+
+    public function buildArgs()
+    {
+        $reflection = new \ReflectionClass($this->model);
+        $params     = $reflection->getMethod($this->method)->getParameters();
+
+        $args = [];
+
+        foreach ($params as $item) {
+            $_value = data_get($this->args, $item->getName());
+            $args[] = [
+                'name'  => $item->getName(),
+                'value' => filled($_value) ? $_value : $item->getDefaultValue(),
+            ];
+        }
+
+        return $args;
+    }
+
+    public function getPreviewCode()
+    {
+        $className = Str::of($this->model)->explode('\\')->pop();
+        $args      = collect($this->buildArgs())
+            ->pluck('value')
+            ->map(fn($item) => is_null($item) ? 'null' : (is_string($item) ? "'{$item}'" : $item))
+            ->implode(', ');
+
+        return <<<PHP
+<?php
+
+class $className extends Model
+{
+    public function $this->title() {
+        return \$this->$this->method($args);
+    }
+}
+PHP;
     }
 }

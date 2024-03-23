@@ -77,6 +77,7 @@ class AdminRoleController extends AdminController
                                     ->name('permissions')
                                     ->label()
                                     ->multiple()
+                                    ->heightAuto()
                                     ->options(AdminPermissionService::make()->getTree())
                                     ->searchable()
                                     ->cascade()

@@ -30,25 +30,27 @@ return [
 
     'auth' => [
         // 是否开启验证码
-        'login_captcha' => env('ADMIN_LOGIN_CAPTCHA', true),
+        'login_captcha'    => env('ADMIN_LOGIN_CAPTCHA', true),
         // 是否开启认证
-        'enable'        => true,
+        'enable'           => true,
         // 是否开启鉴权
-        'permission'    => true,
-        'guard'         => 'admin',
-        'guards'        => [
+        'permission'       => true,
+        // token 有效期 (分钟), 为空则不限时
+        'token_expiration' => null,
+        'guard'            => 'admin',
+        'guards'           => [
             'admin' => [
                 'driver'   => 'sanctum',
                 'provider' => 'admin',
             ],
         ],
-        'providers'     => [
+        'providers'        => [
             'admin' => [
                 'driver' => 'eloquent',
                 'model'  => \Slowlyo\OwlAdmin\Models\AdminUser::class,
             ],
         ],
-        'except'        => [
+        'except'           => [
 
         ],
     ],
