@@ -8,14 +8,7 @@ use Illuminate\Support\Fluent;
 /**
  * Class Context.
  *
- * @property string $favicon
- * @property string $metaTitle
- * @property string $pjaxContainerId
- * @property array|null $html
- * @property array|null $ignoreQueries
- * @property array|null $jsVariables
- * @property string $translation
- * @property array $contents
+ * @property array $apis
  */
 class Context extends Fluent
 {

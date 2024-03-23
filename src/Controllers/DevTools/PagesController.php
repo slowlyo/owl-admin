@@ -21,6 +21,7 @@ class PagesController extends AdminController
                 amis()->TableColumn('id', 'ID')->sortable(),
                 amis()->TableColumn('title', '名称')->searchable(),
                 amis()->TableColumn('sign', '标识')->searchable(),
+                amis()->TableColumn('updated_at', __('admin.created_at'))->type('datetime')->sortable(true),
                 $this->rowActions([
                     $this->rowEditButton(true),
                     $this->rowDeleteButton(),

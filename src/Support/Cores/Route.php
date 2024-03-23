@@ -5,18 +5,18 @@ namespace Slowlyo\OwlAdmin\Support\Cores;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Routing\Router;
 use Slowlyo\OwlAdmin\Controllers\{AuthController,
-    DevTools\PagesController,
-    DevTools\RelationshipController,
     HomeController,
     IndexController,
     AdminUserController,
     AdminMenuController,
     AdminRoleController,
+    DevTools\ApiController,
+    DevTools\PagesController,
     AdminPermissionController,
     DevTools\EditorController,
     DevTools\ExtensionController,
-    DevTools\CodeGeneratorController
-};
+    DevTools\RelationshipController,
+    DevTools\CodeGeneratorController};
 
 class Route
 {
@@ -111,6 +111,12 @@ class Route
                         $router->get('column_options', [RelationshipController::class, 'columnOptions']);
                         $router->get('all_models', [RelationshipController::class, 'allModels']);
                         $router->post('generate_model', [RelationshipController::class, 'generateModel']);
+                    });
+
+                    $router->resource('apis', ApiController::class);
+                    $router->group(['prefix' => 'api'], function (Router $router) {
+                        $router->get('templates', [ApiController::class, 'template']);
+                        $router->get('args_schema', [ApiController::class, 'argsSchema']);
                     });
                 });
             }

@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Console;
 
 use Illuminate\Console\Command;
+use Slowlyo\OwlAdmin\Services\AdminApiService;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\ControllerGenerator;
 
@@ -39,9 +40,9 @@ EOF;
         }
 
         $routes = '';
-        AdminCodeGeneratorService::make()
-            ->getModel()
-            ->query()
+
+        // 代码生成器
+        AdminCodeGeneratorService::make()->query()
             ->when($excluded, fn($query, $excluded) => $query->whereNotIn('id', $excluded))
             ->get()
             ->map(function ($item) use (&$routes) {
@@ -65,6 +66,17 @@ EOF;
 
 EOF;
             });
+
+        // api
+        AdminApiService::make()->query()->where('enabled', 1)->get()->map(function ($item) use (&$routes) {
+            $_route = ltrim($item->path, '/');
+
+            $routes .= <<<EOF
+    // {$item->title}
+    \$router->{$item->method}('{$_route}', [\Slowlyo\OwlAdmin\Controllers\AdminApiController::class, 'index']);
+
+EOF;
+        });
 
         $content = str_replace('_content_', $routes, $content);
 

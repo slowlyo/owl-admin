@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
-use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module, Cores\Relationships};
+use Slowlyo\OwlAdmin\Support\{Apis\DataListApi, Context, Cores\Menu, Cores\Asset, Cores\Module, Cores\Relationships};
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -80,6 +80,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->usePersonalAccessTokenModel();
 
         Relationships::loader();
+        $this->loadApis();
     }
 
     protected function loadBaseRoute()
@@ -196,5 +197,12 @@ class AdminServiceProvider extends ServiceProvider
     protected function usePersonalAccessTokenModel(): void
     {
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+    }
+
+    protected function loadApis()
+    {
+        Admin::context()->set('apis', [
+            DataListApi::class,
+        ]);
     }
 }

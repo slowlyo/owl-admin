@@ -32,6 +32,11 @@ abstract class AdminService
         return new static;
     }
 
+    public function setModelName($modelName)
+    {
+        $this->modelName = $modelName;
+    }
+
     /**
      * @return Model
      */
@@ -146,8 +151,10 @@ abstract class AdminService
      */
     public function loadRelations($query)
     {
+        $controller = Route::getCurrentRoute()->getController();
+
         // 当前列表结构
-        $schema = Route::getCurrentRoute()->getController()?->list();
+        $schema = method_exists($controller, 'list') ? $controller->list() : '';
 
         if (!$schema instanceof Page) return;
 

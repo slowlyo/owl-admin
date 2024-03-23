@@ -169,9 +169,11 @@ class Database
 
         $this->create('admin_apis', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->comment('接口名称');
             $table->string('path')->comment('接口路径');
-            $table->string('type')->comment('接口类型');
-            $table->text('args')->comment('接口参数')->nullable();
+            $table->string('template')->comment('接口模板');
+            $table->tinyInteger('enabled')->default(1)->comment('是否启用');
+            $table->longText('args')->comment('接口参数')->nullable();
             $table->timestamps();
         });
     }
