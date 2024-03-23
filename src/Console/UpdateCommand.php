@@ -206,9 +206,9 @@ class UpdateCommand extends Command
         }
     }
 
-    public function version342()
+    public function version350()
     {
-        $this->output->title('Update to version v3.4.2');
+        $this->output->title('Update to version v3.5.0');
 
         if (!Schema::hasTable('admin_pages')) {
             Schema::create('admin_pages', function ($table) {
@@ -229,6 +229,16 @@ class UpdateCommand extends Command
                 $table->string('remark')->comment('关联名称')->nullable();
                 $table->text('args')->comment('关联参数')->nullable();
                 $table->text('extra')->comment('额外参数')->nullable();
+                $table->timestamps();
+            });
+        }
+
+        if (!Schema::hasTable('admin_apis')) {
+            Schema::create('admin_apis', function ($table) {
+                $table->id();
+                $table->string('path')->comment('接口路径');
+                $table->string('type')->comment('接口类型');
+                $table->text('args')->comment('接口参数')->nullable();
                 $table->timestamps();
             });
         }

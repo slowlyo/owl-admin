@@ -166,6 +166,14 @@ class Database
             $table->text('extra')->comment('额外参数')->nullable();
             $table->timestamps();
         });
+
+        $this->create('admin_apis', function (Blueprint $table) {
+            $table->id();
+            $table->string('path')->comment('接口路径');
+            $table->string('type')->comment('接口类型');
+            $table->text('args')->comment('接口参数')->nullable();
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -188,6 +196,7 @@ class Database
         $this->dropIfExists('admin_extensions');
         $this->dropIfExists('admin_pages');
         $this->dropIfExists('admin_relationships');
+        $this->dropIfExists('admin_apis');
     }
 
     /**
