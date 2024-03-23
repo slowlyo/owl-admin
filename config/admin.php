@@ -35,7 +35,7 @@ return [
         'enable'           => true,
         // 是否开启鉴权
         'permission'       => true,
-        // token 有效期 (分钟), 为空则不限时
+        // token 有效期 (分钟), 为空则不会过期
         'token_expiration' => null,
         'guard'            => 'admin',
         'guards'           => [
