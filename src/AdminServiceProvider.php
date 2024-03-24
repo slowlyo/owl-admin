@@ -9,7 +9,15 @@ use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
-use Slowlyo\OwlAdmin\Support\{Apis\DataListApi, Context, Cores\Menu, Cores\Asset, Cores\Module, Cores\Relationships};
+use Slowlyo\OwlAdmin\Support\{Apis\DataCreateApi,
+    Apis\DataDetailApi,
+    Apis\DataListApi,
+    Context,
+    Cores\Menu,
+    Cores\Asset,
+    Cores\Module,
+    Cores\Relationships
+};
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -203,6 +211,8 @@ class AdminServiceProvider extends ServiceProvider
     {
         Admin::context()->set('apis', [
             DataListApi::class,
+            DataCreateApi::class,
+            DataDetailApi::class,
         ]);
     }
 }

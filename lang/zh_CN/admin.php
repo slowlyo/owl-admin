@@ -298,6 +298,10 @@ return [
         'path_exists' => '接口路径已存在',
     ],
     'api_templates' => [
-        'data_list' => '数据列表',
+        'data_list'   => '获取列表(分页)',
+        'data_create' => '新增数据',
+        'data_update' => '更新数据',
+        'data_delete' => '删除数据',
+        'data_detail' => '获取详情',
     ],
 ];

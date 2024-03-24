@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Support\Apis;
 use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Services\AdminService;
 use Slowlyo\OwlAdmin\Services\AdminApiService;
+use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 
 abstract class AdminBaseApi implements AdminApiInterface
 {
@@ -42,16 +43,17 @@ abstract class AdminBaseApi implements AdminApiInterface
     /**
      * 获取接口参数, 可以通过传入 xxx.xxx 的方式获取指定参数
      *
-     * @param $key
+     * @param null $key
+     * @param null $default
      *
-     * @return array|\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed
+     * @return array|HigherOrderBuilderProxy|mixed
      */
-    public function getArgs($key = null)
+    public function getArgs($key = null, $default = null)
     {
         $args = $this->getApiRecord()->args;
 
         if ($key) {
-            return data_get($args, $key);
+            return data_get($args, $key, $default);
         }
 
         return $args;

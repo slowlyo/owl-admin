@@ -298,6 +298,10 @@ Backup important data before performing operations!!!<br>
         'path_exists' => 'Path already exists',
     ],
     'api_templates' => [
-        'data_list' => 'Data List',
+        'data_list'   => 'Get List (Paginated)',
+        'data_create' => 'Create',
+        'data_update' => 'Update',
+        'data_delete' => 'Delete',
+        'data_detail' => 'Get Detail',
     ],
 ];
