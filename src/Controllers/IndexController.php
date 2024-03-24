@@ -6,7 +6,7 @@ use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Models\Extension;
-use Illuminate\Support\Facades\Artisan;
+use Slowlyo\OwlAdmin\Services\AdminPageService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class IndexController extends AdminController
@@ -77,6 +77,11 @@ class IndexController extends AdminController
         return response()->download(storage_path('app/' . $request->input('path')))->deleteFileAfterSend();
     }
 
+    /**
+     * 图标搜索
+     *
+     * @return JsonResponse|JsonResource
+     */
     public function iconifySearch()
     {
         $query = request('query', 'home');
@@ -97,5 +102,15 @@ class IndexController extends AdminController
         $total = count($items);
 
         return $this->response()->success(compact('items', 'total'));
+    }
+
+    /**
+     * 获取页面结构
+     *
+     * @return JsonResponse|JsonResource
+     */
+    public function pageSchema()
+    {
+        return $this->response()->success(AdminPageService::make()->get(request('sign')));
     }
 }

@@ -49,17 +49,25 @@ class Menu
         $data = [];
         foreach ($list as $key => $item) {
             if ($item['parent_id'] == $parentId) {
+                $_component = match ($item['url_type']) {
+                    Admin::adminMenuModel()::TYPE_IFRAME => 'iframe',
+                    Admin::adminMenuModel()::TYPE_PAGE => 'amis',
+                    default => data_get($item, 'component') ?? 'amis'
+                };
+
+
                 $idStr = "[{$item['id']}]";
                 $_temp = [
                     'name'       => $parentName ? $parentName . '-' . $idStr : $idStr,
                     'path'       => $item['url'],
-                    'component'  => $item['url_type'] == 3 ? 'iframe' : (data_get($item, 'component') ?? 'amis'),
+                    'component'  => $_component,
                     'is_home'    => $item['is_home'],
                     'iframe_url' => $item['iframe_url'] ?? '',
-                    'url_type'   => $item['url_type'] ?? 1,
+                    'url_type'   => $item['url_type'] ?? Admin::adminMenuModel()::TYPE_ROUTE,
                     'keep_alive' => $item['keep_alive'] ?? 0,
                     'is_full'    => $item['is_full'] ?? 0,
                     'is_link'    => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
+                    'page_sign'  => $item['url_type'] == Admin::adminMenuModel()::TYPE_PAGE ? data_get($item, 'component') : '',
                     'meta'       => [
                         'title' => $item['title'],
                         'icon'  => $item['icon'] ?? '-',
@@ -76,7 +84,7 @@ class Menu
                 }
 
                 $data[] = $_temp;
-                if (!in_array($_temp['path'], Admin::config('admin.route.without_extra_routes'))) {
+                if (!in_array($_temp['path'], Admin::config('admin.route.without_extra_routes')) && $item['url_type'] != Admin::adminMenuModel()::TYPE_PAGE) {
                     array_push($data, ...$this->generateRoute($_temp));
                 }
                 unset($list[$key]);

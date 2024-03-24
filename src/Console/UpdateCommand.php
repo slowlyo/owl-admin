@@ -210,6 +210,15 @@ class UpdateCommand extends Command
     {
         $this->output->title('Update to version v3.5.0');
 
+        if (!$this->updateAll) {
+            $this->call('admin:publish', [
+                '--assets' => true,
+                '--lang'   => true,
+                '--config' => true,
+                '--force'  => true,
+            ]);
+        }
+
         if (!Schema::hasTable('admin_pages')) {
             Schema::create('admin_pages', function ($table) {
                 $table->id();

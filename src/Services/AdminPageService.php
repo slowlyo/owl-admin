@@ -69,4 +69,9 @@ class AdminPageService extends AdminService
             return $this->query()->where('sign', $sign)->value('schema');
         });
     }
+
+    public function options()
+    {
+        return $this->query()->get(['sign as value', 'title as label']);
+    }
 }

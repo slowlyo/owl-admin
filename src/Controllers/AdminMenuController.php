@@ -7,6 +7,7 @@ use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
+use Slowlyo\OwlAdmin\Services\AdminPageService;
 
 /**
  * @property AdminMenuService $service
@@ -90,20 +91,25 @@ class AdminMenuController extends AdminController
                 ->validateOnChange()
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
-                ->placeholder('eg: /admin_menus')->hiddenOn('url_type != 2'),
+                ->placeholder('eg: /admin_menus')->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_LINK),
 
             amis()->TextControl('url', __('admin.admin_menu.route'))
                 ->required()
                 ->validateOnChange()
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
-                ->placeholder('eg: /admin_menus')->hiddenOn('url_type == 2'),
-
+                ->placeholder('eg: /admin_menus')->hiddenOn('url_type == ' . Admin::adminMenuModel()::TYPE_LINK),
 
             amis()->TextControl('component', __('admin.admin_menu.component'))
                 ->description(__('admin.admin_menu.component_desc'))
-                ->value('amis')->hiddenOn('url_type != 1'),
+                ->value('amis')->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_ROUTE),
 
+            amis()->SelectControl('component', __('admin.admin_menu.page'))
+                ->required()
+                ->options(AdminPageService::make()->options())
+                ->selectFirst()
+                ->searchable()
+                ->visibleOn('url_type == ' . Admin::adminMenuModel()::TYPE_PAGE),
 
             amis()->GroupControl()->body([
                 amis()->TextControl('iframe_url', 'IframeUrl')
@@ -111,7 +117,8 @@ class AdminMenuController extends AdminController
                     ->validateOnChange()
                     ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                     ->validationErrors(['matchRegexp' => __('admin.need_start_with_slash')])
-                    ->placeholder('eg: https://www.qq.com')->hiddenOn('url_type != 3'),
+                    ->placeholder('eg: https://www.qq.com')
+                    ->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_IFRAME),
             ]),
 
             amis()->SwitchControl('keep_alive', __('admin.admin_menu.keep_alive'))
