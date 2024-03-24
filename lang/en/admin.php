@@ -61,6 +61,7 @@ return [
     'please_login'          => 'Please Login',
     'unauthorized'          => 'Unauthorized',
     'user_disabled'         => 'The user has been disabled',
+    'preview'               => 'Preview',
 
     'code_generators' => [
         'remark1'                   => 'For more parameters, please refer to',
@@ -185,8 +186,8 @@ return [
         'icon'                   => 'Icon',
         'icon_description'       => 'Please refer to ',
         'url'                    => 'Url',
-        'iframe'                    => 'Iframe',
-        'iframe_description'        => 'After opening, the page will be cached and will not be reloaded when reopened',
+        'iframe'                 => 'Iframe',
+        'iframe_description'     => 'After opening, the page will be cached and will not be reloaded when reopened',
         'visible'                => 'Visible',
         'type'                   => 'Type',
         'keep_alive'             => 'KeepAlive',
@@ -208,7 +209,7 @@ return [
         'url_exists'             => 'menu path duplication',
     ],
 
-    'extensions' => [
+    'extensions'    => [
         'name_invalid'       => 'Name Invalid',
         'exists'             => 'This extension already exists: ',
         'menu'               => 'Extensions',
@@ -255,7 +256,7 @@ Backup important data before performing operations!!!<br>
             'invalid_package' => 'Invalid extension package',
         ],
     ],
-    'export'     => [
+    'export'        => [
         'title'                        => 'Export',
         'all'                          => 'All',
         'page'                         => 'Current Page',
@@ -263,5 +264,39 @@ Backup important data before performing operations!!!<br>
         'page_no_data'                 => 'Current page has no data',
         'selected_rows_no_data'        => 'No data is selected',
         'please_install_laravel_excel' => 'Please install the package "rap2hpoutre/fast-excel" first',
+    ],
+    'pages'         => [
+        'menu'                   => 'Pages',
+        'title'                  => 'Title',
+        'sign'                   => 'Sign',
+        'page'                   => 'Page Structure',
+        'schema_cannot_be_empty' => 'Page Structure cannot be empty',
+        'sign_exists'            => 'Sign already exists',
+    ],
+    'relationships' => [
+        'menu'            => 'Dynamic Relationships',
+        'model'           => 'Model',
+        'title'           => 'Title',
+        'remark'          => 'Remark',
+        'generate_model'  => 'Generate Model',
+        'generate'        => 'Generate',
+        'args'            => 'Args',
+        'type'            => 'Type',
+        'related_model'   => 'Related Model',
+        'through_model'   => 'Through Model',
+        'model_exists'    => 'Model already exists: ',
+        'rel_name_exists' => 'Relationship name already exists',
+    ],
+    'apis'          => [
+        'menu'        => 'Dynamic Apis',
+        'title'       => 'Title',
+        'path'        => 'Path',
+        'template'    => 'Template',
+        'enabled'     => 'Enabled',
+        'args'        => 'Args',
+        'path_exists' => 'Path already exists',
+    ],
+    'api_templates' => [
+        'data_list' => 'Data List',
     ],
 ];

@@ -19,8 +19,8 @@ class PagesController extends AdminController
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('title', '名称')->searchable(),
-                amis()->TableColumn('sign', '标识')->searchable(),
+                amis()->TableColumn('title', __('admin.pages.title'))->searchable(),
+                amis()->TableColumn('sign', __('admin.pages.sign'))->searchable(),
                 amis()->TableColumn('updated_at', __('admin.created_at'))->type('datetime')->sortable(true),
                 $this->rowActions([
                     $this->rowEditButton(true),
@@ -34,9 +34,9 @@ class PagesController extends AdminController
     public function form()
     {
         return $this->baseForm()->body([
-            amis()->TextControl('title', '名称')->required(),
-            amis()->TextControl('sign', '标识')->required(),
-            amis()->SubFormControl('page', '页面结构')->form(
+            amis()->TextControl('title', __('admin.pages.title'))->required(),
+            amis()->TextControl('sign', __('admin.pages.sign'))->required(),
+            amis()->SubFormControl('page', __('admin.pages.page'))->form(
                 amis()->Form()->className('h-full')->set('size', 'full')->title('')->body(
                     amis('custom-amis-editor')
                         ->name('schema')

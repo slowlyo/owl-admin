@@ -25,9 +25,9 @@ class RelationshipController extends AdminController
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('model', '模型')->searchable(),
-                amis()->TableColumn('title', '名称')->searchable(),
-                amis()->TableColumn('remark', '备注')->searchable(),
+                amis()->TableColumn('model', __('admin.relationships.model'))->searchable(),
+                amis()->TableColumn('title', __('admin.relationships.title'))->searchable(),
+                amis()->TableColumn('remark', __('admin.relationships.remark'))->searchable(),
                 $this->rowActions([
                     $this->previewButton(),
                     $this->rowEditButton(true, 'lg'),
@@ -40,15 +40,18 @@ class RelationshipController extends AdminController
 
     public function modelGenerator()
     {
-        return amis()->DrawerAction()->label('生成模型')->level('success')->drawer(
+        return amis()->DrawerAction()->label(__('admin.relationships.generate_model'))->level('success')->drawer(
             amis()->Drawer()
-                ->title('生成模型')
+                ->title(__('admin.relationships.generate_model'))
                 ->size('lg')
                 ->resizable()
                 ->closeOnOutside()
                 ->closeOnEsc()
                 ->actions([
-                    amis()->VanillaAction()->label('生成')->actionType('submit')->level('primary'),
+                    amis()->VanillaAction()
+                        ->label(__('admin.relationships.generate'))
+                        ->actionType('submit')
+                        ->level('primary'),
                 ])
                 ->body([
                     amis()->Form()
@@ -77,11 +80,11 @@ class RelationshipController extends AdminController
 
     public function previewButton()
     {
-        return amis()->DrawerAction()->label('预览')->level('link')->icon('fa fa-eye')->drawer(
+        return amis()->DrawerAction()->label(__('admin.preview'))->level('link')->icon('fa fa-eye')->drawer(
             amis()->Drawer()
                 ->position('top')
                 ->resizable()
-                ->title('预览')
+                ->title(__('admin.preview'))
                 ->actions([])
                 ->showCloseButton(false)
                 ->closeOnEsc()
@@ -111,7 +114,7 @@ class RelationshipController extends AdminController
 
         $args = function ($type, $items) {
             return amis()
-                ->ComboControl('args', '参数')
+                ->ComboControl('args', __('admin.relationships.args'))
                 ->multiLine()
                 ->strictMode(false)
                 ->items($items)
@@ -125,10 +128,10 @@ class RelationshipController extends AdminController
         ])->body([
             amis()->GroupControl()->body([
                 amis()->GroupControl()->direction('vertical')->body([
-                    $modelSelect('model', '模型'),
-                    amis()->TextControl('title', '关联名称')->required()->placeholder('comments'),
-                    amis()->TextControl('remark', '备注'),
-                    amis()->SelectControl('type', '类型')
+                    $modelSelect('model', __('admin.relationships.model')),
+                    amis()->TextControl('title', __('admin.relationships.title'))->required()->placeholder('comments'),
+                    amis()->TextControl('remark', __('admin.relationships.remark')),
+                    amis()->SelectControl('type', __('admin.relationships.type'))
                         ->required()
                         ->value(AdminRelationship::TYPE_BELONGS_TO)
                         ->menuTpl('${label} <span class="text-gray-300 pl-2">${method}</span>')
@@ -137,21 +140,21 @@ class RelationshipController extends AdminController
                 // 一对一
                 $args(AdminRelationship::TYPE_HAS_ONE, [
                     // $related, $foreignKey = null, $localKey = null
-                    $modelSelect('related', '关联模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
                     $columnSelect('foreignKey', 'foreignKey', 'related'),
                     $columnSelect('localKey', 'localKey', 'model'),
                 ]),
                 // 一对多
                 $args(AdminRelationship::TYPE_HAS_MANY, [
                     // $related, $foreignKey = null, $localKey = null
-                    $modelSelect('related', '关联模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
                     $columnSelect('foreignKey', 'foreignKey', 'related'),
                     $columnSelect('localKey', 'localKey', 'model'),
                 ]),
                 // 一对多(反向)/属于
                 $args(AdminRelationship::TYPE_BELONGS_TO, [
                     // $related, $foreignKey = null, $ownerKey = null, $relation = null
-                    $modelSelect('related', '关联模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
                     $columnSelect('foreignKey', 'foreignKey', 'model'),
                     $columnSelect('ownerKey', 'ownerKey', 'related'),
                     amis()->TextControl('relation', 'relation'),
@@ -159,7 +162,7 @@ class RelationshipController extends AdminController
                 // 多对多
                 $args(AdminRelationship::TYPE_BELONGS_TO_MANY, [
                     // $related, $table = null, $foreignPivotKey = null, $relatedPivotKey = null, $parentKey = null, $relatedKey = null, $relation = null
-                    $modelSelect('related', '关联模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
                     amis()->SelectControl('table', 'table')->source('${tables}')->searchable(),
                     $columnSelect('foreignPivotKey', 'foreignPivotKey', '_blank_model', 'table'),
                     $columnSelect('relatedPivotKey', 'relatedPivotKey', '_blank_model', 'table'),
@@ -170,8 +173,8 @@ class RelationshipController extends AdminController
                 // 远程一对一
                 $args(AdminRelationship::TYPE_HAS_ONE_THROUGH, [
                     // $related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null
-                    $modelSelect('related', '关联模型'),
-                    $modelSelect('through', '中间模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
+                    $modelSelect('through', __('admin.relationships.through_model')),
                     $columnSelect('firstKey', 'firstKey', 'through'),
                     $columnSelect('secondKey', 'secondKey', 'related'),
                     $columnSelect('localKey', 'localKey', 'model'),
@@ -180,8 +183,8 @@ class RelationshipController extends AdminController
                 // 远程一对多
                 $args(AdminRelationship::TYPE_HAS_MANY_THROUGH, [
                     // $related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null
-                    $modelSelect('related', '关联模型'),
-                    $modelSelect('through', '中间模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
+                    $modelSelect('through', __('admin.relationships.through_model')),
                     $columnSelect('firstKey', 'firstKey', 'through'),
                     $columnSelect('secondKey', 'secondKey', 'related'),
                     $columnSelect('localKey', 'localKey', 'model'),
@@ -190,7 +193,7 @@ class RelationshipController extends AdminController
                 // 一对一(多态)
                 $args(AdminRelationship::TYPE_MORPH_ONE, [
                     // $related, $name, $type = null, $id = null, $localKey = null
-                    $modelSelect('related', '关联模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
                     amis()->TextControl('name', 'name')->required(),
                     amis()->TextControl('type', 'type'),
                     amis()->TextControl('id', 'id'),
@@ -199,7 +202,7 @@ class RelationshipController extends AdminController
                 // 一对多(多态)
                 $args(AdminRelationship::TYPE_MORPH_MANY, [
                     // $related, $name, $type = null, $id = null, $localKey = null
-                    $modelSelect('related', '关联模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
                     amis()->TextControl('name', 'name')->required(),
                     amis()->TextControl('type', 'type'),
                     amis()->TextControl('id', 'id'),
@@ -208,7 +211,7 @@ class RelationshipController extends AdminController
                 // 多对多(多态)
                 $args(AdminRelationship::TYPE_MORPH_TO_MANY, [
                     // $related, $name, $table = null, $foreignPivotKey = null, $relatedPivotKey = null, $parentKey = null, $relatedKey = null, $inverse = false
-                    $modelSelect('related', '关联模型'),
+                    $modelSelect('related', __('admin.relationships.related_model')),
                     amis()->TextControl('name', 'name')->required(),
                     amis()->SelectControl('table', 'table')->source('${tables}')->searchable(),
                     $columnSelect('foreignPivotKey', 'foreignPivotKey', '_blank_model', 'table'),
@@ -294,7 +297,7 @@ class RelationshipController extends AdminController
         $existsList = collect($this->service->allModels()['models'])->pluck('table')->toArray();
         $exists     = array_intersect($tables, $existsList);
 
-        admin_abort_if(filled($exists), '模型已存在：' . implode(',', $exists));
+        admin_abort_if(filled($exists), __('admin.relationships.model_exists') . implode(',', $exists));
 
         try {
             foreach ($tables as $table) {

@@ -70,7 +70,7 @@ class AdminRelationship extends BaseModel
     {
         return collect(self::TYPE_MAP)->map(function ($item, $index) {
             return [
-                'label'  => self::TYPE_LABEL_MAP[$index],
+                'label'  => config('app.locale') == 'zh_CN' ? self::TYPE_LABEL_MAP[$index] : self::TYPE_MAP[$index],
                 'method' => $item,
                 'value'  => $index,
             ];

@@ -61,6 +61,7 @@ return [
     'please_login'          => '请先登录',
     'unauthorized'          => '无权访问',
     'user_disabled'         => '用户已被禁用',
+    'preview'               => '预览',
 
     'code_generators' => [
         'remark1'                   => '额外参数请参考',
@@ -187,8 +188,8 @@ return [
         'url'                    => '链接',
         'visible'                => '可见',
         'type'                   => '类型',
-        'iframe'                    => 'Iframe',
-        'iframe_description'        => '开启后页面将缓存，重新打开时不会重新加载',
+        'iframe'                 => 'Iframe',
+        'iframe_description'     => '开启后页面将缓存，重新打开时不会重新加载',
         'api'                    => '页面Api',
         'api_description'        => 'schemaApi, 页面初始化请求的api, 需要与Controller中的queryPath一致',
         'route'                  => '路由',
@@ -208,7 +209,7 @@ return [
         'url_exists'             => '菜单路径重复',
     ],
 
-    'extensions' => [
+    'extensions'    => [
         'name_invalid'       => '无效的扩展名称',
         'exists'             => '该扩展已存在：',
         'menu'               => '扩展',
@@ -255,7 +256,7 @@ return [
             'invalid_package' => '无效的扩展包',
         ],
     ],
-    'export'     => [
+    'export'        => [
         'title'                        => '导出',
         'all'                          => '全部',
         'page'                         => '本页',
@@ -263,5 +264,39 @@ return [
         'page_no_data'                 => '本页无数据',
         'selected_rows_no_data'        => '请选择要导出的数据',
         'please_install_laravel_excel' => '请先安装 rap2hpoutre/fast-excel 扩展',
+    ],
+    'pages'         => [
+        'menu'                   => '页面管理',
+        'title'                  => '名称',
+        'sign'                   => '标识',
+        'page'                   => '页面结构',
+        'schema_cannot_be_empty' => '页面结构不可为空',
+        'sign_exists'            => '页面标识已存在',
+    ],
+    'relationships' => [
+        'menu'            => '动态关联',
+        'model'           => '模型',
+        'title'           => '名称',
+        'remark'          => '备注',
+        'generate_model'  => '生成模型',
+        'generate'        => '生成',
+        'args'            => '参数',
+        'type'            => '类型',
+        'related_model'   => '关联模型',
+        'through_model'   => '中间模型',
+        'model_exists'    => '模型已存在: ',
+        'rel_name_exists' => '该模型下存在同名关联',
+    ],
+    'apis'          => [
+        'menu'        => '动态API',
+        'title'       => '名称',
+        'path'        => '路径',
+        'template'    => '模板',
+        'enabled'     => '是否启用',
+        'args'        => '参数',
+        'path_exists' => '接口路径已存在',
+    ],
+    'api_templates' => [
+        'data_list' => '数据列表',
     ],
 ];

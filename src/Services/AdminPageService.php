@@ -18,7 +18,7 @@ class AdminPageService extends AdminService
     public function saving(&$data, $primaryKey = '')
     {
         $data['schema'] = data_get($data, 'page.schema');
-        admin_abort_if(blank($data['schema']), '页面结构不可为空');
+        admin_abort_if(blank($data['schema']), __('admin.pages.schema_cannot_be_empty'));
         unset($data['page']);
 
         $exists = $this->query()
@@ -26,7 +26,7 @@ class AdminPageService extends AdminService
             ->when($primaryKey, fn($q) => $q->where('id', '<>', $primaryKey))
             ->exists();
 
-        admin_abort_if($exists, '页面标识已存在');
+        admin_abort_if($exists, __('admin.pages.sign_exists'));
     }
 
     public function saved($model, $isEdit = false)

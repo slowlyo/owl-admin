@@ -7,9 +7,12 @@ namespace Slowlyo\OwlAdmin\Support\Apis;
  */
 class DataListApi extends AdminBaseApi
 {
-    public string $title = '数据列表';
-
     public string $method = 'get';
+
+    public function getTitle()
+    {
+        return __('admin.api_templates.data_list');
+    }
 
     public function handle()
     {
@@ -19,7 +22,7 @@ class DataListApi extends AdminBaseApi
     public function argsSchema()
     {
         return [
-            amis()->SelectControl('model', '模型')
+            amis()->SelectControl('model', __('admin.relationships.model'))
                 ->required()
                 ->menuTpl('${label} <span class="text-gray-300 pl-2">${table}</span>')
                 ->source('/dev_tools/relation/model_options')

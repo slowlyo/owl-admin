@@ -24,10 +24,10 @@ class ApiController extends AdminController
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('title', '名称')->searchable(),
-                amis()->TableColumn('path', '路径')->searchable(),
-                amis()->TableColumn('template_title', '模板'),
-                amis()->TableColumn('enabled', '是否启用')->quickEdit(
+                amis()->TableColumn('title', __('admin.apis.title'))->searchable(),
+                amis()->TableColumn('path', __('admin.apis.path'))->searchable(),
+                amis()->TableColumn('template_title', __('admin.apis.template')),
+                amis()->TableColumn('enabled', __('admin.apis.enabled'))->quickEdit(
                     amis()->SwitchControl()->mode('inline')->saveImmediately(true)
                 ),
                 amis()->TableColumn('updated_at', __('admin.updated_at'))->type('datetime')->sortable(true),
@@ -43,13 +43,19 @@ class ApiController extends AdminController
     public function form()
     {
         return $this->baseForm()->body([
-            amis()->TextControl('title', '名称')->required(),
-            amis()->TextControl('path', '路径')->required(),
-            amis()->SwitchControl('enabled', '是否启用')->value(1),
-            amis()->SelectControl('template', '模板')->required()->source('/dev_tools/api/templates'),
-            amis()->ComboControl('args', '参数')->visibleOn('${template}')->multiLine()->strictMode(false)->items([
-                amis()->Service()->initFetch()->schemaApi('get:/dev_tools/api/args_schema?template=${template}'),
-            ]),
+            amis()->TextControl('title', __('admin.apis.title'))->required(),
+            amis()->TextControl('path', __('admin.apis.path'))->required(),
+            amis()->SwitchControl('enabled', __('admin.apis.enabled'))->value(1),
+            amis()->SelectControl('template', __('admin.apis.template'))
+                ->required()
+                ->source('/dev_tools/api/templates'),
+            amis()->ComboControl('args', __('admin.apis.args'))
+                ->visibleOn('${template}')
+                ->multiLine()
+                ->strictMode(false)
+                ->items([
+                    amis()->Service()->initFetch()->schemaApi('get:/dev_tools/api/args_schema?template=${template}'),
+                ]),
         ]);
     }
 

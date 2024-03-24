@@ -26,7 +26,7 @@ class AdminApiService extends AdminService
             return $item->menu_info['enabled'] ? ltrim($item->menu_info['route'], '/') : '';
         })->filter()->toArray();
 
-        admin_abort_if($exists || in_array(ltrim($data['path'], '/'), $routes), '接口路径已存在');
+        admin_abort_if($exists || in_array(ltrim($data['path'], '/'), $routes), __('admin.apis.path_exists'));
     }
 
     public function saved($model, $isEdit = false)
