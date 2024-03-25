@@ -10,8 +10,10 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
 use Slowlyo\OwlAdmin\Support\{Apis\DataCreateApi,
+    Apis\DataDeleteApi,
     Apis\DataDetailApi,
     Apis\DataListApi,
+    Apis\DataUpdateApi,
     Context,
     Cores\Menu,
     Cores\Asset,
@@ -213,6 +215,8 @@ class AdminServiceProvider extends ServiceProvider
             DataListApi::class,
             DataCreateApi::class,
             DataDetailApi::class,
+            DataDeleteApi::class,
+            DataUpdateApi::class,
         ]);
     }
 }
