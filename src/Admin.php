@@ -226,7 +226,7 @@ class Admin
             return true;
         }
 
-        $has = Schema::hasTable('admin_extensions');
+        $has = Schema::hasTable($table);
 
         if ($has) {
             cache()->forever($key, true);
