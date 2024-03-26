@@ -13,15 +13,6 @@ class JsonResponse
         'doNotDisplayToast' => 0,
     ];
 
-    public function __construct()
-    {
-        if (config('app.debug')) {
-            $this->additionalData['_debug'] = [
-                'sql' => sql_record(),
-            ];
-        }
-    }
-
     /**
      * @param string $message
      * @param null   $data
@@ -32,7 +23,7 @@ class JsonResponse
     {
         $this->setFailMsg($message);
 
-        return response()->json(array_merge($this->additionalData, ['data' => $data]));
+        return $this->json($data);
     }
 
     /**
@@ -51,6 +42,17 @@ class JsonResponse
 
         if ($data === null) {
             $data = (object)$data;
+        }
+
+        return $this->json($data);
+    }
+
+    private function json($data)
+    {
+        if (config('app.debug')) {
+            $this->additionalData['_debug'] = [
+                'sql' => sql_record(),
+            ];
         }
 
         return response()->json(array_merge($this->additionalData, ['data' => $data]));
