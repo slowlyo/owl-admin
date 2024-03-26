@@ -45,18 +45,23 @@ class ApiController extends AdminController
 
     public function appTemplateBtn()
     {
-        return amis()->DialogAction()->label('添加模板')->level('success')->icon('fa fa-upload')->dialog(
-            amis()->Dialog()->title('添加模板')->body([
-                amis()->Form()->mode('normal')->api('/dev_tools/api/add_template')->body([
-                    amis()->TextareaControl('template')
-                        ->required()
-                        ->minRows(10)
-                        ->description('请注意模板来源, 如果你无法辨别模板是否安全, 建议不要使用模板')
-                        ->placeholder('请粘贴模板内容'),
-                    amis()->SwitchControl('overlay', '覆盖已有模板')->value(1),
-                ]),
-            ])
-        );
+        return amis()
+            ->DialogAction()
+            ->label(__('admin.apis.add_template'))
+            ->level('success')
+            ->icon('fa fa-upload')
+            ->dialog(
+                amis()->Dialog()->title(__('admin.apis.add_template'))->body([
+                    amis()->Form()->mode('normal')->api('/dev_tools/api/add_template')->body([
+                        amis()->TextareaControl('template')
+                            ->required()
+                            ->minRows(10)
+                            ->description(__('admin.apis.add_template_tips'))
+                            ->placeholder(__('admin.apis.paste_template')),
+                        amis()->SwitchControl('overlay', __('admin.apis.overlay'))->value(1),
+                    ]),
+                ])
+            );
     }
 
     /**

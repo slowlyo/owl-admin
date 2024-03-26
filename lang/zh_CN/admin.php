@@ -298,6 +298,10 @@ return [
         'path_exists'           => '接口路径已存在',
         'template_format_error' => '模板格式错误',
         'template_exists'       => '模板已存在',
+        'add_template'          => '添加模板',
+        'add_template_tips'     => '请注意模板来源, 如果你无法辨别模板是否安全, 建议不要使用模板',
+        'paste_template'        => '请粘贴模板内容',
+        'overlay'               => '如果模板已存在, 是否覆盖',
     ],
     'api_templates' => [
         'data_list'   => '获取列表(分页)',

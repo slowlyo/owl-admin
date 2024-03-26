@@ -298,6 +298,10 @@ Backup important data before performing operations!!!<br>
         'path_exists'           => 'Path already exists',
         'template_format_error' => 'Template format error',
         'template_exists'       => 'Template already exists',
+        'add_template'          => 'Add Template',
+        'add_template_tips'     => 'Please note the source of the template, if you can not tell whether the template is safe or not, it is recommended not to use a template',
+        'paste_template'        => 'Paste the template content',
+        'overlay'               => 'Whether to overwrite the template if it already exists',
     ],
     'api_templates' => [
         'data_list'   => 'Get List (Paginated)',
