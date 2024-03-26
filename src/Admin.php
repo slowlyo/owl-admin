@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\Auth;
 use Slowlyo\OwlAdmin\Extend\Manager;
+use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Traits\AssetsTrait;
 use Slowlyo\OwlAdmin\Extend\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
@@ -19,7 +20,8 @@ use Slowlyo\OwlAdmin\Support\{Context,
     Cores\Module,
     Cores\Permission,
     Cores\JsonResponse,
-    Cores\Relationships};
+    Cores\Relationships
+};
 
 class Admin
 {
@@ -215,5 +217,21 @@ class Admin
         $script = '<script>window.$adminApiPrefix = "/' . $apiPrefix . '"</script>';
 
         return preg_replace('/<script>window.*?<\/script>/is', $script, $view);
+    }
+
+    public static function hasTable($table)
+    {
+        $key = 'admin_has_table_' . $table;
+        if (cache()->has($key)) {
+            return true;
+        }
+
+        $has = Schema::hasTable('admin_extensions');
+
+        if ($has) {
+            cache()->forever($key, true);
+        }
+
+        return $has;
     }
 }

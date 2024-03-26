@@ -2,12 +2,17 @@
 
 namespace Slowlyo\OwlAdmin\Support\Cores;
 
+use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Services\AdminRelationshipService;
 
 class Relationships
 {
     public static function boot()
     {
+        if (!Admin::hasTable('admin_relationships')) {
+            return;
+        }
+
         $relationships = AdminRelationshipService::make()->getAll();
 
         if (blank($relationships)) {
@@ -21,7 +26,7 @@ class Relationships
 
                     return $model->$method(...array_column($relationship->buildArgs(), 'value'));
                 });
-            }catch (\Throwable $e) {
+            } catch (\Throwable $e) {
             }
         }
     }

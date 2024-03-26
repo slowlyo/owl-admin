@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Extend;
 
 use Illuminate\Support\Str;
+use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Schema;
@@ -40,9 +41,7 @@ class Extension
 
     public static function tableExists()
     {
-        return cache()->rememberForever('_has_table_admin_extensions', function () {
-            return Schema::hasTable('admin_extensions');
-        });
+        return Admin::hasTable('admin_extensions');
     }
 
     /**
