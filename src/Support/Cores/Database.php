@@ -336,4 +336,17 @@ class Database
             DB::table($this->tableName('admin_permission_menu'))->insert($_list);
         }
     }
+
+    public static function getTables()
+    {
+        try {
+            return collect(json_decode(json_encode(Schema::getAllTables()), true))
+                ->map(fn($i) => array_shift($i))
+                ->toArray();
+        } catch (\Throwable $e) {
+        }
+
+        // laravel 11+
+        return array_column(Schema::getTables(), 'name');
+    }
 }

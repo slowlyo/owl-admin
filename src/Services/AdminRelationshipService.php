@@ -3,9 +3,9 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 use Slowlyo\OwlAdmin\Models\AdminRelationship;
 
 /**
@@ -77,10 +77,7 @@ class AdminRelationshipService extends AdminService
 
         $composer = require base_path('/vendor/autoload.php');
         $classMap = $composer->getClassMap();
-
-        $tables = collect(json_decode(json_encode(Schema::getAllTables()), true))
-            ->map(fn($i) => array_shift($i))
-            ->toArray();
+        $tables   = Database::getTables();
 
         $models = collect($classMap)
             ->keys()

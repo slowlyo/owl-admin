@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Illuminate\Support\Facades\Schema;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 use Slowlyo\OwlAdmin\Models\AdminRelationship;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use Slowlyo\OwlAdmin\Services\AdminRelationshipService;
@@ -122,9 +123,7 @@ class RelationshipController extends AdminController
         };
 
         return $this->baseForm()->data([
-            'tables' => collect(json_decode(json_encode(Schema::getAllTables()), true))
-                ->map(fn($i) => array_shift($i))
-                ->toArray(),
+            'tables' => Database::getTables(),
         ])->body([
             amis()->GroupControl()->body([
                 amis()->GroupControl()->direction('vertical')->body([
