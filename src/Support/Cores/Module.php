@@ -17,6 +17,35 @@ class Module
         $this->dir       = config('admin.modules_dir', 'admin-modules');
     }
 
+    /**
+     * 当前模块
+     *
+     * @param bool $lower
+     *
+     * @return mixed|string|null
+     */
+    public static function current(bool $lower = false)
+    {
+        $prefix = data_get(explode('/', request()->path()), 0);
+        if ($prefix) {
+            $m       = app(Module::class);
+            $modules = $m->allModules(true);
+            if (count($modules)) {
+                $_list = collect($modules)
+                    ->combine($modules)
+                    ->map(fn($item) => config($m->getLowerName($item) . '.admin.route.prefix', ''))
+                    ->flip()
+                    ->toArray();
+
+                if (key_exists($prefix, $_list)) {
+                    return $lower ? $m->getLowerName($_list[$prefix]) : $_list[$prefix];
+                }
+            }
+        }
+
+        return null;
+    }
+
     public function register()
     {
         $modules = $this->allModules(true);

@@ -6,7 +6,7 @@ use Slowlyo\OwlAdmin\Services\AdminRelationshipService;
 
 class Relationships
 {
-    public static function loader()
+    public static function boot()
     {
         $relationships = AdminRelationshipService::make()->getAll();
 

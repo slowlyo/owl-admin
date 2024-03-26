@@ -3,23 +3,11 @@
 namespace Slowlyo\OwlAdmin;
 
 use Illuminate\Support\Arr;
-use Laravel\Sanctum\Sanctum;
 use Slowlyo\OwlAdmin\Extend\Manager;
 use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
-use Slowlyo\OwlAdmin\Support\{Apis\DataCreateApi,
-    Apis\DataDeleteApi,
-    Apis\DataDetailApi,
-    Apis\DataListApi,
-    Apis\DataUpdateApi,
-    Context,
-    Cores\Menu,
-    Cores\Asset,
-    Cores\Module,
-    Cores\Relationships
-};
+use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module};
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -65,8 +53,8 @@ class AdminServiceProvider extends ServiceProvider
         $this->loadAdminAuthConfig();
         $this->registerServices();
 
-        $this->registerModules();
-        $this->registerExtensions();
+        Admin::module()->register();
+        Admin::extension()->register();
         $this->registerRouteMiddleware();
         $this->loadViewsFrom(public_path('admin-assets'), 'admin');
     }
@@ -83,19 +71,12 @@ class AdminServiceProvider extends ServiceProvider
     {
         $this->ensureHttps();
         $this->registerPublishing();
-        $this->loadBaseRoute();
-        $this->bootExtensions();
+        Admin::loadBaseRoute();
+        Admin::extension()->boot();
         $this->loadRoutes();
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->usePersonalAccessTokenModel();
 
-        Relationships::loader();
-        $this->loadApis();
-    }
-
-    protected function loadBaseRoute()
-    {
-        Admin::loadBaseRoute();
+        Admin::boot();
     }
 
     protected function loadRoutes()
@@ -159,32 +140,6 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->singleton('admin.menu', Menu::class);
     }
 
-    public function registerModules()
-    {
-        Admin::module()->register();
-    }
-
-    /**
-     * @return void
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws \Exception
-     */
-    public function registerExtensions()
-    {
-        Admin::extension()->register();
-    }
-
-    /**
-     * @return void
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface|\ReflectionException
-     */
-    public function bootExtensions()
-    {
-        Admin::extension()->boot();
-    }
-
     /**
      * @return void
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -199,24 +154,5 @@ class AdminServiceProvider extends ServiceProvider
         foreach ($this->middlewareGroups as $key => $middleware) {
             $router->middlewareGroup($key, $middleware);
         }
-    }
-
-    /**
-     * @return void
-     */
-    protected function usePersonalAccessTokenModel(): void
-    {
-        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
-    }
-
-    protected function loadApis()
-    {
-        Admin::context()->set('apis', [
-            DataListApi::class,
-            DataCreateApi::class,
-            DataDetailApi::class,
-            DataDeleteApi::class,
-            DataUpdateApi::class,
-        ]);
     }
 }

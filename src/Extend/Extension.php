@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Extend;
 use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Traits\ErrorTrait;
 
 class Extension
@@ -35,6 +36,13 @@ class Extension
     public static function make()
     {
         return new self();
+    }
+
+    public static function tableExists()
+    {
+        return cache()->rememberForever('_has_table_admin_extensions', function () {
+            return Schema::hasTable('admin_extensions');
+        });
     }
 
     /**

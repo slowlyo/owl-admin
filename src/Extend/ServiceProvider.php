@@ -3,7 +3,6 @@
 namespace Slowlyo\OwlAdmin\Extend;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +57,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable('admin_extensions')) {
+        if (Extension::tableExists()) {
             $this->autoRegister();
 
             $this->init();
@@ -163,7 +162,6 @@ abstract class ServiceProvider extends LaravelServiceProvider
     public function getAlias()
     {
         return $this->composerProperty?->alias;
-
     }
 
     /**
@@ -312,7 +310,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      * 获取或保存配置.
      *
      * @param string|null $key
-     * @param null $default
+     * @param null        $default
      *
      * @return mixed
      */
@@ -567,8 +565,8 @@ abstract class ServiceProvider extends LaravelServiceProvider
      * 翻译.
      *
      * @param string $key
-     * @param array $replace
-     * @param null $locale
+     * @param array  $replace
+     * @param null   $locale
      *
      * @return array|string|null
      */
