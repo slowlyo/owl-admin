@@ -3,6 +3,8 @@
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Slowlyo\OwlAdmin\Admin;
+use Illuminate\Support\Str;
+use Slowlyo\OwlAdmin\Support\Cores\Api;
 use Slowlyo\OwlAdmin\Services\AdminApiService;
 use Slowlyo\OwlAdmin\Support\Apis\AdminBaseApi;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
@@ -21,6 +23,7 @@ class ApiController extends AdminController
             ->headerToolbar([
                 $this->createButton(true, 'lg'),
                 ...$this->baseHeaderToolBar(),
+                $this->appTemplateBtn(),
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
@@ -38,6 +41,50 @@ class ApiController extends AdminController
             ]);
 
         return $this->baseList($crud);
+    }
+
+    public function appTemplateBtn()
+    {
+        return amis()->DialogAction()->label('添加模板')->level('success')->icon('fa fa-upload')->dialog(
+            amis()->Dialog()->title('添加模板')->body([
+                amis()->Form()->mode('normal')->api('/dev_tools/api/add_template')->body([
+                    amis()->TextareaControl('template')
+                        ->required()
+                        ->minRows(10)
+                        ->description('请注意模板来源, 如果你无法辨别模板是否安全, 建议不要使用模板')
+                        ->placeholder('请粘贴模板内容'),
+                    amis()->SwitchControl('overlay', '覆盖已有模板')->value(1),
+                ]),
+            ])
+        );
+    }
+
+    /**
+     * 添加模板
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function addTemplate()
+    {
+        $template  = request('template');
+        $className = Str::between($template, 'class ', ' extends AdminBaseApi');
+        if (!$className) {
+            $className = Str::between($template, 'class ', ' extends \Slowlyo\OwlAdmin\Support\Apis\AdminBaseApi');
+        }
+
+        admin_abort_if(!$className, __('admin.apis.template_format_error'));
+
+        $file = Api::path($className . '.php');
+
+        admin_abort_if(is_file($file) && !request('overlay'), __('admin.apis.template_exists'));
+
+        try {
+            app('files')->put($file, $template);
+        } catch (\Throwable $e) {
+            return $this->response()->fail(__('admin.save_failed'));
+        }
+
+        return $this->response()->successMessage(__('admin.save_success'));
     }
 
     public function form()

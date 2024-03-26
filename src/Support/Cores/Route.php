@@ -119,6 +119,7 @@ class Route
                     $router->group(['prefix' => 'api'], function (Router $router) {
                         $router->get('templates', [ApiController::class, 'template']);
                         $router->get('args_schema', [ApiController::class, 'argsSchema']);
+                        $router->post('add_template', [ApiController::class, 'addTemplate']);
                     });
                 });
             }
