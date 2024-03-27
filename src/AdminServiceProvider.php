@@ -12,6 +12,7 @@ use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module};
 class AdminServiceProvider extends ServiceProvider
 {
     protected array $commands = [
+        Console\CheckCommand::class,
         Console\UpdateCommand::class,
         Console\InstallCommand::class,
         Console\PublishCommand::class,

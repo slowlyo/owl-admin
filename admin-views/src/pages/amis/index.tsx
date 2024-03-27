@@ -54,10 +54,10 @@ function AmisPage() {
 
     registerGlobalFunction('refreshAmisPage', () => {
         setManual(true)
-        return initPage.runAsync(pathname, currentRoute.page_sign)
+        return initPage.runAsync(pathname, currentRoute?.page_sign)
     })
 
-    useMount(() => initPage.run(pathname, currentRoute.page_sign))
+    useMount(() => initPage.run(pathname, currentRoute?.page_sign))
 
     return (
         <>
