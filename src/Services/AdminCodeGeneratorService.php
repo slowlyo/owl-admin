@@ -49,6 +49,8 @@ class AdminCodeGeneratorService extends AdminService
 
     public function filterData($data)
     {
+        admin_abort_if(!data_get($data, 'columns'), __('admin.required', ['attribute' => __('admin.code_generators.column_info')]));
+
         $data['columns'] = collect($data['columns'])
             ->map(fn($item) => Arr::except($item, ['component_options']))
             ->toArray();
