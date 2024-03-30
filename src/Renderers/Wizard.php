@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 表单向导 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/wizard
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Wizard extends BaseRenderer
 {
@@ -16,7 +16,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 配置按钮 className
+     * 配置按钮 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function actionClassName($value = '')
     {
@@ -64,7 +64,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * Wizard 用来保存数据的 api。 [详情](https://baidu.github.io/amis/docs/api#wizard)
+     * Wizard 用来保存数据的 api。 [详情](https://baidu.github.io/amis/docs/api#wizard) (Wizard 用来保存数据的 api。 [详情](https://baidu.github.io/amis/docs/api#wizard))
      */
     public function api($value = '')
     {
@@ -88,7 +88,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -104,7 +104,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -136,7 +136,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -152,7 +152,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * Wizard 用来获取初始数据的 api。
+     * Wizard 用来获取初始数据的 api。 (Wizard 用来获取初始数据的 api。)
      */
     public function initApi($value = '')
     {
@@ -176,7 +176,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     *
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -208,7 +208,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     *
+     * 配置刷新动作，这个动作通常在完成渲染器本省的固定动作后出发。一般用来配置目标组件的 name 属性。多个目标可以用逗号隔开。当目标是 windows 时表示刷新整个页面。刷新目标的同时还支持传递参数如： `foo?a=${a}&b=${b},boo?c=${c}`
      */
     public function reload($value = '')
     {
@@ -232,7 +232,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -240,7 +240,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -248,7 +248,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -256,7 +256,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -344,7 +344,7 @@ class Wizard extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

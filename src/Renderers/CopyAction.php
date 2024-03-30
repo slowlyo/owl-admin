@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CopyAction
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class CopyAction extends BaseRenderer
 {
@@ -41,7 +41,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 角标
+     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function badge($value = '')
     {
@@ -57,7 +57,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 子内容
+     * 子内容 (子内容)
      */
     public function body($value = '')
     {
@@ -65,7 +65,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -89,7 +89,16 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 复制啥内容由此配置，支持模板语法。
+     * 设置复制的内容
+     */
+    public function content($value = '')
+    {
+        return $this->set('content', $value);
+    }
+
+    /**
+     * 复制啥内容由此配置，支持模板语法。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function copy($value = '')
     {
@@ -121,7 +130,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -153,7 +162,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -169,7 +178,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 按钮图标， iconfont 的类名
+     * 按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function icon($value = '')
     {
@@ -177,7 +186,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * icon 上的css 类名
+     * icon 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function iconClassName($value = '')
     {
@@ -209,7 +218,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * loading 上的css 类名
+     * loading 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function loadingClassName($value = '')
     {
@@ -273,7 +282,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 右侧按钮图标， iconfont 的类名
+     * 右侧按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function rightIcon($value = '')
     {
@@ -281,7 +290,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 右侧 icon 上的 css 类名
+     * 右侧 icon 上的 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function rightIconClassName($value = '')
     {
@@ -305,7 +314,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -313,7 +322,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -321,7 +330,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -329,7 +338,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -417,7 +426,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

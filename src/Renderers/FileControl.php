@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
  * File 文件上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/file
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class FileControl extends BaseRenderer
 {
@@ -62,7 +62,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 按钮 CSS 类名
+     * 按钮 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function btnClassName($value = '')
     {
@@ -78,7 +78,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 上传按钮 CSS 类名
+     * 上传按钮 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function btnUploadClassName($value = '')
     {
@@ -94,7 +94,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 默认 `/api/upload/chunk` 想自己存储时才需要关注。
+     * 默认 `/api/upload/chunk` 想自己存储时才需要关注。 (默认 `/api/upload/chunk` 想自己存储时才需要关注。)
      */
     public function chunkApi($value = '')
     {
@@ -110,7 +110,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -158,7 +158,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 配置描述上的 className
+     * 配置描述上的 className (配置描述上的 className)
      */
     public function descriptionClassName($value = '')
     {
@@ -174,7 +174,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -198,7 +198,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 默认显示文件路径的时候会支持直接下载， 可以支持加前缀如：`http://xx.dom/filename=` ， 如果不希望这样，可以把当前配置项设置为 `false`。1.1.6 版本开始将支持变量 ${xxx} 来自己拼凑个下载地址，并且支持配置成 post.
+     * 默认显示文件路径的时候会支持直接下载， 可以支持加前缀如：`http://xx.dom/filename=` ， 如果不希望这样，可以把当前配置项设置为 `false`。1.1.6 版本开始将支持变量 ${xxx} 来自己拼凑个下载地址，并且支持配置成 post. (默认显示文件路径的时候会支持直接下载， 可以支持加前缀如：`http://xx.dom/filename=` ， 如果不希望这样，可以把当前配置项设置为 `false`。1.1.6 版本开始将支持变量 ${xxx} 来自己拼凑个下载地址，并且支持配置成 post.)
      */
     public function downloadUrl($value = '')
     {
@@ -246,7 +246,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 默认 `/api/upload/finishChunkApi` 想自己存储时才需要关注。
+     * 默认 `/api/upload/finishChunkApi` 想自己存储时才需要关注。 (默认 `/api/upload/finishChunkApi` 想自己存储时才需要关注。)
      */
     public function finishChunkApi($value = '')
     {
@@ -262,7 +262,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -286,7 +286,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 当配置为水平布局的时候，用来配置具体的左右分配。
+     * 当配置为水平布局的时候，用来配置具体的左右分配。 (当配置为水平布局的时候，用来配置具体的左右分配。)
      */
     public function horizontal($value = '')
     {
@@ -318,7 +318,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 配置 input className
+     * 配置 input className (配置 input className)
      */
     public function inputClassName($value = '')
     {
@@ -342,7 +342,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 描述标题
+     * 描述标题 (描述标题) 可选值: right | left
      */
     public function labelAlign($value = '')
     {
@@ -358,7 +358,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起 (显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起)
      */
     public function labelRemark($value = '')
     {
@@ -454,7 +454,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 默认 `/api/upload/file` 如果想自己存储，请设置此选项。
+     * 默认 `/api/upload/file` 如果想自己存储，请设置此选项。 (默认 `/api/upload/file` 如果想自己存储，请设置此选项。)
      */
     public function receiver($value = '')
     {
@@ -462,7 +462,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容 (显示一个小图标, 鼠标放上去的时候显示提示内容)
      */
     public function remark($value = '')
     {
@@ -483,6 +483,14 @@ class FileControl extends BaseRenderer
     public function resetValue($value = '')
     {
         return $this->set('resetValue', $value);
+    }
+
+    /**
+     * 是否立即保存(TableColumn中使用)
+     */
+    public function saveImmediately($value = true)
+    {
+        return $this->set('saveImmediately', $value);
     }
 
     /**
@@ -518,7 +526,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -526,7 +534,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -534,7 +542,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -542,7 +550,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -582,7 +590,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 模板下载地址
+     * 模板下载地址 (模板下载地址)
      */
     public function templateUrl($value = '')
     {
@@ -686,7 +694,7 @@ class FileControl extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

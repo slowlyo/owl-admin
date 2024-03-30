@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tasks 渲染器，格式说明 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tasks
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Tasks extends BaseRenderer
 {
@@ -16,7 +16,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     *
+     * css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     }
      */
     public function btnClassName($value = '')
     {
@@ -40,7 +40,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 用来获取任务状态的 API，当没有进行时任务时不会发送。
+     * 用来获取任务状态的 API，当没有进行时任务时不会发送。 (用来获取任务状态的 API，当没有进行时任务时不会发送。)
      */
     public function checkApi($value = '')
     {
@@ -48,7 +48,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -64,7 +64,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -104,7 +104,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -160,7 +160,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     *
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -184,7 +184,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 如果任务失败，且可以重试，提交的时候会使用此 API
+     * 如果任务失败，且可以重试，提交的时候会使用此 API (如果任务失败，且可以重试，提交的时候会使用此 API)
      */
     public function reSubmitApi($value = '')
     {
@@ -208,7 +208,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 配置容器重试按钮 className
+     * 配置容器重试按钮 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function retryBtnClassName($value = '')
     {
@@ -232,7 +232,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -240,7 +240,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -248,7 +248,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -256,7 +256,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -312,7 +312,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 提交任务使用的 API
+     * 提交任务使用的 API (提交任务使用的 API)
      */
     public function submitApi($value = '')
     {
@@ -320,7 +320,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 配置 table className
+     * 配置 table className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function tableClassName($value = '')
     {
@@ -360,7 +360,7 @@ class Tasks extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

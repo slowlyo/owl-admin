@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 选项卡控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tabs
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Tabs extends BaseRenderer
 {
@@ -40,7 +40,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -72,7 +72,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 内容类名
+     * 内容类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function contentClassName($value = '')
     {
@@ -96,7 +96,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -136,7 +136,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -152,7 +152,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 链接外层类名
+     * 链接外层类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function linksClassName($value = '')
     {
@@ -224,7 +224,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -232,7 +232,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -240,7 +240,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -248,7 +248,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -280,7 +280,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。
+     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。 (如果是水平排版，这个属性可以细化水平排版的左右宽度占比。)
      */
     public function subFormHorizontal($value = '')
     {
@@ -312,7 +312,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 展示形式
+     * 展示形式 (展示形式) 可选值:  | line | card | radio | vertical | chrome | simple | strong | tiled | sidebar
      */
     public function tabsMode($value = '')
     {
@@ -320,7 +320,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 可以在右侧配置点其他功能按钮。
+     * 可以在右侧配置点其他功能按钮。 (可以在右侧配置点其他功能按钮。)
      */
     public function toolbar($value = '')
     {
@@ -360,7 +360,7 @@ class Tabs extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * GridNav 宫格导航
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class GridNav extends BaseRenderer
 {

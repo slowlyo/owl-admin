@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Cards
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class CRUD2Cards extends BaseRenderer
 {
@@ -33,7 +33,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 初始化数据 API
+     * 初始化数据 API (初始化数据 API)
      */
     public function api($value = '')
     {
@@ -73,7 +73,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -89,7 +89,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -105,7 +105,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 底部区域
+     * 底部区域 (底部区域)
      */
     public function footer($value = '')
     {
@@ -113,7 +113,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 底部 CSS 类名
+     * 底部 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function footerClassName($value = '')
     {
@@ -121,7 +121,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 底部区域
+     * 底部区域 (底部区域)
      */
     public function footerToolbar($value = '')
     {
@@ -137,7 +137,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 顶部区域
+     * 顶部区域 (顶部区域)
      */
     public function header($value = '')
     {
@@ -145,7 +145,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 头部 CSS 类名
+     * 头部 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function headerClassName($value = '')
     {
@@ -153,7 +153,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 顶部区域
+     * 顶部区域 (顶部区域)
      */
     public function headerToolbar($value = '')
     {
@@ -177,7 +177,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -217,7 +217,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 配置某项是否可以点选
+     * 配置某项是否可以点选 (表达式，语法 `data.xxx > 5`。)
      */
     public function itemCheckableOn($value = '')
     {
@@ -225,7 +225,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 卡片 CSS 类名
+     * 卡片 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function itemClassName($value = '')
     {
@@ -233,7 +233,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 配置某项是否可拖拽排序，前提是要开启拖拽功能
+     * 配置某项是否可拖拽排序，前提是要开启拖拽功能 (表达式，语法 `data.xxx > 5`。)
      */
     public function itemDraggableOn($value = '')
     {
@@ -297,7 +297,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     *
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -345,7 +345,8 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 无数据提示
+     * 无数据提示 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function placeholder($value = '')
     {
@@ -361,7 +362,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 快速编辑后用来批量保存的 API
+     * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
      */
     public function quickSaveApi($value = '')
     {
@@ -369,7 +370,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 快速编辑配置成及时保存时使用的 API
+     * 快速编辑配置成及时保存时使用的 API (快速编辑配置成及时保存时使用的 API)
      */
     public function quickSaveItemApi($value = '')
     {
@@ -377,7 +378,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 保存排序的 api
+     * 保存排序的 api (保存排序的 api)
      */
     public function saveOrderApi($value = '')
     {
@@ -425,7 +426,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 也可以直接从环境变量中读取，但是不太推荐。
+     * 也可以直接从环境变量中读取，但是不太推荐。 (也可以直接从环境变量中读取，但是不太推荐。)
      */
     public function source($value = '')
     {
@@ -441,7 +442,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -449,7 +450,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -457,7 +458,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -465,7 +466,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -489,7 +490,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     *
+     * 表达式，语法 `data.xxx > 5`。
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -521,7 +522,8 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 标题
+     * 标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function title($value = '')
     {
@@ -561,7 +563,7 @@ class CRUD2Cards extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SchemaCopyable
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class SchemaCopyable extends BaseRenderer
 {
@@ -17,7 +17,8 @@ class SchemaCopyable extends BaseRenderer
     }
 
     /**
-     * 配置复制时的内容模板。
+     * 配置复制时的内容模板。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function content($value = '')
     {
@@ -25,7 +26,7 @@ class SchemaCopyable extends BaseRenderer
     }
 
     /**
-     * 可以配置图标
+     * 可以配置图标 (iconfont 里面的类名。)
      */
     public function icon($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * amis Page 渲染器。详情请见：https://aisuda.bce.baidu.com/amis/zh-CN/components/page
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Page extends BaseRenderer
 {
@@ -16,7 +16,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 边栏区域
+     * 边栏区域 (边栏区域)
      */
     public function aside($value = '')
     {
@@ -24,7 +24,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 边栏区 css 类名
+     * 边栏区 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function asideClassName($value = '')
     {
@@ -64,7 +64,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 内容区域
+     * 内容区域 (内容区域)
      */
     public function body($value = '')
     {
@@ -72,7 +72,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 内容区 css 类名
+     * 内容区 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function bodyClassName($value = '')
     {
@@ -80,7 +80,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 配置容器 className
+     * 配置容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -104,7 +104,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 页面级别的初始数据
+     * 页面级别的初始数据 (初始数据，设置得值可用于组件内部模板使用。)
      */
     public function data($value = '')
     {
@@ -128,7 +128,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -144,7 +144,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 配置 header 容器 className
+     * 配置 header 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function headerClassName($value = '')
     {
@@ -160,7 +160,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -176,7 +176,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 页面初始化的时候，可以设置一个 API 让其取拉取，发送数据会携带当前 data 数据（包含地址栏参数），获取得数据会合并到 data 中，供组件内使用。
+     * 页面初始化的时候，可以设置一个 API 让其取拉取，发送数据会携带当前 data 数据（包含地址栏参数），获取得数据会合并到 data 中，供组件内使用。 (页面初始化的时候，可以设置一个 API 让其取拉取，发送数据会携带当前 data 数据（包含地址栏参数），获取得数据会合并到 data 中，供组件内使用。)
      */
     public function initApi($value = '')
     {
@@ -192,7 +192,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 是否默认就拉取表达式
+     * 是否默认就拉取表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function initFetchOn($value = '')
     {
@@ -216,7 +216,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     *
+     * 消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。
      */
     public function messages($value = '')
     {
@@ -232,7 +232,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     *
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -264,7 +264,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 页面描述, 标题旁边会出现个小图标，放上去会显示这个属性配置的内容。
+     * 页面描述, 标题旁边会出现个小图标，放上去会显示这个属性配置的内容。 (页面描述, 标题旁边会出现个小图标，放上去会显示这个属性配置的内容。)
      */
     public function remark($value = '')
     {
@@ -296,7 +296,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -304,7 +304,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -312,7 +312,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -320,7 +320,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -344,7 +344,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 配置停止轮询的条件。
+     * 配置停止轮询的条件。 (表达式，语法 `data.xxx > 5`。)
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -376,7 +376,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 页面顶部区域，当存在 title 时在右上角显示。
+     * 页面顶部区域，当存在 title 时在右上角显示。 (页面顶部区域，当存在 title 时在右上角显示。)
      */
     public function toolbar($value = '')
     {
@@ -384,7 +384,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 配置 toolbar 容器 className
+     * 配置 toolbar 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function toolbarClassName($value = '')
     {
@@ -416,7 +416,7 @@ class Page extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

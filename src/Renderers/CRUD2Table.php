@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Table
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class CRUD2Table extends BaseRenderer
 {
@@ -24,7 +24,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 初始化数据 API
+     * 初始化数据 API (初始化数据 API)
      */
     public function api($value = '')
     {
@@ -72,7 +72,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -104,7 +104,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -120,7 +120,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 表格行可展开配置
+     * 表格行可展开配置 (表格行可展开配置)
      */
     public function expandable($value = true)
     {
@@ -136,7 +136,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 底部区域
+     * 底部区域 (底部区域)
      */
     public function footerToolbar($value = '')
     {
@@ -152,7 +152,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 顶部区域
+     * 顶部区域 (顶部区域)
      */
     public function headerToolbar($value = '')
     {
@@ -176,7 +176,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -208,7 +208,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 行角标内容
+     * 行角标内容 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function itemBadge($value = '')
     {
@@ -288,7 +288,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 接口报错信息配置
+     * 接口报错信息配置 (消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。)
      */
     public function messages($value = '')
     {
@@ -312,7 +312,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     *
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -376,7 +376,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 快速编辑后用来批量保存的 API
+     * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
      */
     public function quickSaveApi($value = '')
     {
@@ -384,7 +384,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 快速编辑配置成及时保存时使用的 API
+     * 快速编辑配置成及时保存时使用的 API (快速编辑配置成及时保存时使用的 API)
      */
     public function quickSaveItemApi($value = '')
     {
@@ -416,7 +416,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 保存排序的 api
+     * 保存排序的 api (保存排序的 api)
      */
     public function saveOrderApi($value = '')
     {
@@ -464,7 +464,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 也可以直接从环境变量中读取，但是不太推荐。
+     * 也可以直接从环境变量中读取，但是不太推荐。 (也可以直接从环境变量中读取，但是不太推荐。)
      */
     public function source($value = '')
     {
@@ -480,7 +480,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -488,7 +488,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -496,7 +496,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -504,7 +504,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -536,7 +536,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     *
+     * 表达式，语法 `data.xxx > 5`。
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -608,7 +608,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

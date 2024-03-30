@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Watermark
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Watermark extends BaseRenderer
 {

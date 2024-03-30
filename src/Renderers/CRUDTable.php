@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUDTable
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class CRUDTable extends BaseRenderer
 {
@@ -48,7 +48,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 初始化数据 API
+     * 初始化数据 API (初始化数据 API)
      */
     public function api($value = '')
     {
@@ -96,7 +96,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -144,7 +144,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 可以默认给定初始参数如： {"perPage": 24}
+     * 可以默认给定初始参数如： {"perPage": 24} (可以默认给定初始参数如： {"perPage": 24})
      */
     public function defaultParams($value = '')
     {
@@ -152,7 +152,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。 (懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。)
      */
     public function deferApi($value = '')
     {
@@ -168,7 +168,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -184,7 +184,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 是否可通过拖拽排序，通过表达式来配置
+     * 是否可通过拖拽排序，通过表达式来配置 (表达式，语法 `data.xxx > 5`。)
      */
     public function draggableOn($value = '')
     {
@@ -240,7 +240,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 底部外层 CSS 类名
+     * 底部外层 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function footerClassName($value = '')
     {
@@ -256,7 +256,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 顶部外层 CSS 类名
+     * 顶部外层 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function headerClassName($value = '')
     {
@@ -280,7 +280,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -312,7 +312,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 初始是否拉取，用表达式来配置。
+     * 初始是否拉取，用表达式来配置。 (表达式，语法 `data.xxx > 5`。)
      */
     public function initFetchOn($value = '')
     {
@@ -320,7 +320,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 配置内部 DOM 的 className
+     * 配置内部 DOM 的 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function innerClassName($value = '')
     {
@@ -344,7 +344,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 行角标
+     * 行角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function itemBadge($value = '')
     {
@@ -360,7 +360,8 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 当配置 keepItemSelectionOnPageChange 时有用，用来配置已勾选项的文案。
+     * 当配置 keepItemSelectionOnPageChange 时有用，用来配置已勾选项的文案。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function labelTpl($value = '')
     {
@@ -400,7 +401,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。
      */
     public function messages($value = '')
     {
@@ -416,7 +417,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -520,7 +521,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 快速编辑后用来批量保存的 API
+     * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
      */
     public function quickSaveApi($value = '')
     {
@@ -528,7 +529,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 快速编辑配置成及时保存时使用的 API
+     * 快速编辑配置成及时保存时使用的 API (快速编辑配置成及时保存时使用的 API)
      */
     public function quickSaveItemApi($value = '')
     {
@@ -552,7 +553,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 保存排序的 api
+     * 保存排序的 api (保存排序的 api)
      */
     public function saveOrderApi($value = '')
     {
@@ -584,7 +585,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 也可以直接从环境变量中读取，但是不太推荐。
+     * 也可以直接从环境变量中读取，但是不太推荐。 (也可以直接从环境变量中读取，但是不太推荐。)
      */
     public function source($value = '')
     {
@@ -600,7 +601,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -608,7 +609,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -616,7 +617,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -624,7 +625,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -648,7 +649,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 表达式，语法 `data.xxx > 5`。
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -688,7 +689,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 表格 CSS 类名
+     * 表格 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function tableClassName($value = '')
     {
@@ -712,7 +713,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 工具栏 CSS 类名
+     * 工具栏 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function toolbarClassName($value = '')
     {
@@ -744,7 +745,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

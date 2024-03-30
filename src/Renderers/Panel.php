@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Panel渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/panel
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Panel extends BaseRenderer
 {
@@ -24,7 +24,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 按钮集合外层类名
+     * 按钮集合外层类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function actionsClassName($value = '')
     {
@@ -40,7 +40,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 内容区域
+     * 内容区域 (内容区域)
      */
     public function body($value = '')
     {
@@ -48,7 +48,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 配置 Body 容器 className
+     * 配置 Body 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function bodyClassName($value = '')
     {
@@ -56,7 +56,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -72,7 +72,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -88,7 +88,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 底部内容区域
+     * 底部内容区域 (底部内容区域)
      */
     public function footer($value = '')
     {
@@ -96,7 +96,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 配置 footer 容器 className
+     * 配置 footer 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function footerClassName($value = '')
     {
@@ -104,7 +104,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * footer 和 actions 外层 div 类名。
+     * footer 和 actions 外层 div 类名。 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function footerWrapClassName($value = '')
     {
@@ -112,7 +112,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 头部内容, 和 title 二选一。
+     * 头部内容, 和 title 二选一。 (头部内容, 和 title 二选一。)
      */
     public function header($value = '')
     {
@@ -120,7 +120,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 配置 header 容器 className
+     * 配置 header 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function headerClassName($value = '')
     {
@@ -136,7 +136,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -168,7 +168,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -176,7 +176,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -184,7 +184,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -192,7 +192,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -224,7 +224,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。
+     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。 (如果是水平排版，这个属性可以细化水平排版的左右宽度占比。)
      */
     public function subFormHorizontal($value = '')
     {
@@ -240,7 +240,8 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * Panel 标题
+     * Panel 标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function title($value = '')
     {
@@ -272,7 +273,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Editor 代码编辑器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/editor
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class EditorControl extends BaseRenderer
 {
@@ -24,7 +24,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -56,7 +56,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 配置描述上的 className
+     * 配置描述上的 className (配置描述上的 className)
      */
     public function descriptionClassName($value = '')
     {
@@ -72,7 +72,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -112,7 +112,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -128,7 +128,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 当配置为水平布局的时候，用来配置具体的左右分配。
+     * 当配置为水平布局的时候，用来配置具体的左右分配。 (当配置为水平布局的时候，用来配置具体的左右分配。)
      */
     public function horizontal($value = '')
     {
@@ -152,7 +152,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 配置 input className
+     * 配置 input className (配置 input className)
      */
     public function inputClassName($value = '')
     {
@@ -168,7 +168,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 描述标题
+     * 描述标题 (描述标题) 可选值: right | left
      */
     public function labelAlign($value = '')
     {
@@ -272,6 +272,14 @@ class EditorControl extends BaseRenderer
     }
 
     /**
+     * 是否立即保存(TableColumn中使用)
+     */
+    public function saveImmediately($value = true)
+    {
+        return $this->set('saveImmediately', $value);
+    }
+
+    /**
      * 编辑器大小 可选值: sm | md | lg | xl | xxl
      */
     public function size($value = '')
@@ -288,7 +296,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -296,7 +304,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -304,7 +312,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -312,7 +320,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -416,7 +424,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

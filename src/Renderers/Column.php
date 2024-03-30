@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Column
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Column extends BaseRenderer
 {
@@ -97,7 +97,7 @@ class Column extends BaseRenderer
     }
 
     /**
-     * 配置快速编辑功能
+     * 配置快速编辑功能 (配置快速编辑功能)
      */
     public function quickEdit($value = '')
     {

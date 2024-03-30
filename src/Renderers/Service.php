@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Service 服务类控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/service
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Service extends BaseRenderer
 {
@@ -16,7 +16,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 页面初始化的时候，可以设置一个 API 让其取拉取，发送数据会携带当前 data 数据（包含地址栏参数），获取得数据会合并到 data 中，供组件内使用。
+     * 页面初始化的时候，可以设置一个 API 让其取拉取，发送数据会携带当前 data 数据（包含地址栏参数），获取得数据会合并到 data 中，供组件内使用。 (页面初始化的时候，可以设置一个 API 让其取拉取，发送数据会携带当前 data 数据（包含地址栏参数），获取得数据会合并到 data 中，供组件内使用。)
      */
     public function api($value = '')
     {
@@ -24,7 +24,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 内容区域
+     * 内容区域 (内容区域)
      */
     public function body($value = '')
     {
@@ -32,7 +32,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -40,7 +40,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 通过调用外部函数来获取数据
+     * 通过调用外部函数来获取数据 (通过调用外部函数来获取数据)
      */
     public function dataProvider($value = '')
     {
@@ -56,7 +56,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -72,7 +72,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     *
+     * 表达式，语法 `data.xxx > 5`。
      */
     public function fetchOn($value = '')
     {
@@ -88,7 +88,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -112,7 +112,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 是否默认就拉取？通过表达式来决定.
+     * 是否默认就拉取？通过表达式来决定. (表达式，语法 `data.xxx > 5`。)
      */
     public function initFetchOn($value = '')
     {
@@ -128,7 +128,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 用表达式来配置。
+     * 用表达式来配置。 (表达式，语法 `data.xxx > 5`。)
      */
     public function initFetchSchemaOn($value = '')
     {
@@ -152,7 +152,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     *
+     * 消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。
      */
     public function messages($value = '')
     {
@@ -160,7 +160,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     *
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -176,7 +176,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 用来获取远程 Schema 的 api
+     * 用来获取远程 Schema 的 api (用来获取远程 Schema 的 api)
      */
     public function schemaApi($value = '')
     {
@@ -208,7 +208,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -216,7 +216,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -224,7 +224,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -232,7 +232,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -256,7 +256,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 关闭轮询的条件。
+     * 关闭轮询的条件。 (表达式，语法 `data.xxx > 5`。)
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -296,7 +296,7 @@ class Service extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

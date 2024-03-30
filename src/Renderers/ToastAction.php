@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ToastAction
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class ToastAction extends BaseRenderer
 {
@@ -41,7 +41,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 角标
+     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function badge($value = '')
     {
@@ -57,7 +57,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 子内容
+     * 子内容 (子内容)
      */
     public function body($value = '')
     {
@@ -65,7 +65,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -113,7 +113,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -145,7 +145,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -161,7 +161,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 按钮图标， iconfont 的类名
+     * 按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function icon($value = '')
     {
@@ -169,7 +169,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * icon 上的css 类名
+     * icon 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function iconClassName($value = '')
     {
@@ -201,7 +201,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * loading 上的css 类名
+     * loading 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function loadingClassName($value = '')
     {
@@ -265,7 +265,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 右侧按钮图标， iconfont 的类名
+     * 右侧按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function rightIcon($value = '')
     {
@@ -273,7 +273,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 右侧 icon 上的 css 类名
+     * 右侧 icon 上的 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function rightIconClassName($value = '')
     {
@@ -297,7 +297,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -305,7 +305,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -313,7 +313,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -321,7 +321,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -369,7 +369,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 轻提示详情 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/toast
+     * 轻提示详情 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/toast (轻提示详情 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/toast)
      */
     public function toast($value = '')
     {
@@ -417,7 +417,7 @@ class ToastAction extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

@@ -1154,6 +1154,11 @@ class Amis
         return $instance;
     }
 
+    public function Root()
+    {
+        return Root::make();
+    }
+
     public function RowSelection()
     {
         return RowSelection::make();

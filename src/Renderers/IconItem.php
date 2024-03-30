@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * IconItem
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class IconItem extends BaseRenderer
 {
@@ -17,7 +17,7 @@ class IconItem extends BaseRenderer
     }
 
     /**
-     *
+     * iconfont 里面的类名。
      */
     public function icon($value = '')
     {

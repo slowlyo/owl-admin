@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Breadcrumb 面包屑 https://aisuda.bce.baidu.com/amis/zh-CN/components/breadcrumb
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Breadcrumb extends BaseRenderer
 {

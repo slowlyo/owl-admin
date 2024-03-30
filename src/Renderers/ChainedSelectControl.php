@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 链式下拉框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/chained-select
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class ChainedSelectControl extends BaseRenderer
 {
@@ -32,7 +32,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 控制新增弹框设置项
+     * 控制新增弹框设置项 (控制新增弹框设置项)
      */
     public function addDialog($value = '')
     {
@@ -48,7 +48,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -144,7 +144,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 配置描述上的 className
+     * 配置描述上的 className (配置描述上的 className)
      */
     public function descriptionClassName($value = '')
     {
@@ -160,7 +160,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -184,7 +184,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 控制编辑弹框设置项
+     * 控制编辑弹框设置项 (控制编辑弹框设置项)
      */
     public function editDialog($value = '')
     {
@@ -232,7 +232,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -248,7 +248,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 当配置为水平布局的时候，用来配置具体的左右分配。
+     * 当配置为水平布局的时候，用来配置具体的左右分配。 (当配置为水平布局的时候，用来配置具体的左右分配。)
      */
     public function horizontal($value = '')
     {
@@ -296,7 +296,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 配置 input className
+     * 配置 input className (配置 input className)
      */
     public function inputClassName($value = '')
     {
@@ -320,7 +320,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 描述标题
+     * 描述标题 (描述标题) 可选值: right | left
      */
     public function labelAlign($value = '')
     {
@@ -336,7 +336,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起 (显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起)
      */
     public function labelRemark($value = '')
     {
@@ -416,7 +416,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容 (显示一个小图标, 鼠标放上去的时候显示提示内容)
      */
     public function remark($value = '')
     {
@@ -445,6 +445,14 @@ class ChainedSelectControl extends BaseRenderer
     public function resetValue($value = '')
     {
         return $this->set('resetValue', $value);
+    }
+
+    /**
+     * 是否立即保存(TableColumn中使用)
+     */
+    public function saveImmediately($value = true)
+    {
+        return $this->set('saveImmediately', $value);
     }
 
     /**
@@ -480,7 +488,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -488,7 +496,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -496,7 +504,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -504,7 +512,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -616,7 +624,7 @@ class ChainedSelectControl extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

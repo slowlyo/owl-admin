@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableControl
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class TableControl extends BaseRenderer
 {
@@ -16,7 +16,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 新增 API
+     * 新增 API (新增 API)
      */
     public function addApi($value = '')
     {
@@ -112,7 +112,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -208,7 +208,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。 (懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。)
      */
     public function deferApi($value = '')
     {
@@ -216,7 +216,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 删除的 API
+     * 删除的 API (删除的 API)
      */
     public function deleteApi($value = '')
     {
@@ -264,7 +264,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 配置描述上的 className
+     * 配置描述上的 className (配置描述上的 className)
      */
     public function descriptionClassName($value = '')
     {
@@ -280,7 +280,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -352,7 +352,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 底部新增按钮配置
+     * 底部新增按钮配置 (底部新增按钮配置)
      */
     public function footerAddBtn($value = '')
     {
@@ -360,7 +360,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 底部外层 CSS 类名
+     * 底部外层 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function footerClassName($value = '')
     {
@@ -368,7 +368,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 顶部外层 CSS 类名
+     * 顶部外层 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function headerClassName($value = '')
     {
@@ -384,7 +384,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -400,7 +400,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 当配置为水平布局的时候，用来配置具体的左右分配。
+     * 当配置为水平布局的时候，用来配置具体的左右分配。 (当配置为水平布局的时候，用来配置具体的左右分配。)
      */
     public function horizontal($value = '')
     {
@@ -424,7 +424,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 配置 input className
+     * 配置 input className (配置 input className)
      */
     public function inputClassName($value = '')
     {
@@ -432,7 +432,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 行角标
+     * 行角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function itemBadge($value = '')
     {
@@ -448,7 +448,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 描述标题
+     * 描述标题 (描述标题) 可选值: right | left
      */
     public function labelAlign($value = '')
     {
@@ -608,6 +608,14 @@ class TableControl extends BaseRenderer
     }
 
     /**
+     * 是否立即保存(TableColumn中使用)
+     */
+    public function saveImmediately($value = true)
+    {
+        return $this->set('saveImmediately', $value);
+    }
+
+    /**
      * 初始值，新增的时候
      */
     public function scaffold($value = '')
@@ -664,7 +672,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 数据源：绑定当前环境变量
+     * 数据源：绑定当前环境变量 (数据源：绑定当前环境变量)
      */
     public function source($value = '')
     {
@@ -680,7 +688,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -688,7 +696,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -696,7 +704,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -704,7 +712,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -744,7 +752,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 表格 CSS 类名
+     * 表格 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function tableClassName($value = '')
     {
@@ -768,7 +776,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 底部工具栏CSS样式类
+     * 底部工具栏CSS样式类 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function toolbarClassName($value = '')
     {
@@ -784,7 +792,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 更新 API
+     * 更新 API (更新 API)
      */
     public function updateApi($value = '')
     {
@@ -856,7 +864,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

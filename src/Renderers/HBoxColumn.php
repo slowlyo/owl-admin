@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * HBoxColumn
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class HBoxColumn extends BaseRenderer
 {
@@ -17,7 +17,7 @@ class HBoxColumn extends BaseRenderer
     }
 
     /**
-     * 内容区
+     * 内容区 (内容区)
      */
     public function body($value = '')
     {
@@ -41,7 +41,7 @@ class HBoxColumn extends BaseRenderer
     }
 
     /**
-     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。
+     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。 (如果是水平排版，这个属性可以细化水平排版的左右宽度占比。)
      */
     public function horizontal($value = '')
     {
@@ -81,7 +81,7 @@ class HBoxColumn extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

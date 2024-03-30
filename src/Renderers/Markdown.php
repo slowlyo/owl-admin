@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Markdown 渲染
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class Markdown extends BaseRenderer
 {
@@ -29,6 +29,14 @@ class Markdown extends BaseRenderer
     public function name($value = '')
     {
         return $this->set('name', $value);
+    }
+
+    /**
+     * 设置 Markdown 的配置
+     */
+    public function options($value = '')
+    {
+        return $this->set('options', $value);
     }
 
     /**

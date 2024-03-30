@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DialogAction
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class DialogAction extends BaseRenderer
 {
@@ -41,7 +41,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 角标
+     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function badge($value = '')
     {
@@ -57,7 +57,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 子内容
+     * 子内容 (子内容)
      */
     public function body($value = '')
     {
@@ -65,7 +65,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -105,7 +105,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 弹框详情 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
+     * 弹框详情 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog (弹框详情 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog)
      */
     public function dialog($value = '')
     {
@@ -121,7 +121,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -153,7 +153,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -169,7 +169,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 按钮图标， iconfont 的类名
+     * 按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function icon($value = '')
     {
@@ -177,7 +177,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * icon 上的css 类名
+     * icon 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function iconClassName($value = '')
     {
@@ -209,7 +209,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * loading 上的css 类名
+     * loading 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function loadingClassName($value = '')
     {
@@ -233,7 +233,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 是否有下一个的表达式，正常可以不用配置，如果想要刷掉某些数据可以配置这个。
+     * 是否有下一个的表达式，正常可以不用配置，如果想要刷掉某些数据可以配置这个。 (表达式，语法 `data.xxx > 5`。)
      */
     public function nextCondition($value = '')
     {
@@ -273,7 +273,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 配置刷新动作，这个动作通常在完成渲染器本省的固定动作后出发。一般用来配置目标组件的 name 属性。多个目标可以用逗号隔开。当目标是 windows 时表示刷新整个页面。刷新目标的同时还支持传递参数如： `foo?a=${a}&b=${b},boo?c=${c}`
      */
     public function reload($value = '')
     {
@@ -297,7 +297,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 右侧按钮图标， iconfont 的类名
+     * 右侧按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function rightIcon($value = '')
     {
@@ -305,7 +305,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 右侧 icon 上的 css 类名
+     * 右侧 icon 上的 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function rightIconClassName($value = '')
     {
@@ -329,7 +329,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项类名
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -337,7 +337,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -345,7 +345,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -353,7 +353,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -441,7 +441,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

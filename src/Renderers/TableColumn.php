@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 表格列，不指定类型时默认为文本类型。
  *
  * @author  slowlyo
- * @version 6.2.2
+ * @version 6.3.0
  */
 class TableColumn extends BaseRenderer
 {
@@ -57,7 +57,7 @@ class TableColumn extends BaseRenderer
     }
 
     /**
-     * 配置点击复制功能
+     * 配置点击复制功能 (配置点击复制功能)
      */
     public function copyable($value = true)
     {
@@ -121,7 +121,7 @@ class TableColumn extends BaseRenderer
     }
 
     /**
-     * 配置查看详情功能
+     * 配置查看详情功能 (配置查看详情功能)
      */
     public function popOver($value = '')
     {
@@ -129,7 +129,7 @@ class TableColumn extends BaseRenderer
     }
 
     /**
-     * 配置快速编辑功能
+     * 配置快速编辑功能 (配置快速编辑功能)
      */
     public function quickEdit($value = '')
     {
@@ -137,7 +137,7 @@ class TableColumn extends BaseRenderer
     }
 
     /**
-     * 作为表单项时，可以单独配置编辑时的快速编辑面板。
+     * 作为表单项时，可以单独配置编辑时的快速编辑面板。 (作为表单项时，可以单独配置编辑时的快速编辑面板。)
      */
     public function quickEditOnUpdate($value = '')
     {
@@ -145,7 +145,7 @@ class TableColumn extends BaseRenderer
     }
 
     /**
-     * 提示信息
+     * 提示信息 (提示信息)
      */
     public function remark($value = '')
     {
@@ -174,6 +174,14 @@ class TableColumn extends BaseRenderer
     public function toggled($value = true)
     {
         return $this->set('toggled', $value);
+    }
+
+    /**
+     * 设置 TableColumn 的类型
+     */
+    public function type($value = '')
+    {
+        return $this->set('type', $value);
     }
 
     /**
