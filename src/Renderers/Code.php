@@ -32,7 +32,7 @@ class Code extends BaseRenderer
     }
 
     /**
-     * 所使用的高亮语言，默认是 plaintext
+     * 所使用的高亮语言，默认是 plaintext 可选值: bat | c | coffeescript | cpp | csharp | css | dockerfile | fsharp | go | handlebars | html | ini | java | javascript | json | less | lua | markdown | msdax | objective-c | php | plaintext | postiats | powershell | pug | python | r | razor | ruby | sb | scss | shell | sol | sql | swift | typescript | vb | xml | yaml
      */
     public function language($value = '')
     {

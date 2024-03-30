@@ -64,7 +64,7 @@ class Log extends BaseRenderer
     }
 
     /**
-     * 可选日志操作：['stop', 'clear', 'showLineNumber', 'filter']
+     * 可选日志操作：['stop', 'clear', 'showLineNumber', 'filter'] 可选值: stop | clear | showLineNumber | filter
      */
     public function operation($value = '')
     {

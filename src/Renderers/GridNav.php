@@ -48,7 +48,7 @@ class GridNav extends BaseRenderer
     }
 
     /**
-     * 列表项内容排列的方向，可选值为 horizontal 、vertical
+     * 列表项内容排列的方向，可选值为 horizontal 、vertical 可选值: horizontal | vertical
      */
     public function direction($value = '')
     {

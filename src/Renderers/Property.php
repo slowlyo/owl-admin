@@ -56,7 +56,7 @@ class Property extends BaseRenderer
     }
 
     /**
-     * 显示模式，目前只有 'table' 和 'simple'
+     * 显示模式，目前只有 'table' 和 'simple' 可选值: table | simple
      */
     public function mode($value = '')
     {

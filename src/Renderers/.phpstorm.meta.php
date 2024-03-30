@@ -1097,6 +1097,8 @@ namespace PHPSTORM_META {
 		'code' => \Slowlyo\OwlAdmin\Renderers\Code::class,
 		'tooltip-wrapper' => \Slowlyo\OwlAdmin\Renderers\TooltipWrapper::class,
 	]));
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::actionType(), 0, 'ajax','link','url','drawer','dialog','confirm','cancel','prev','next','copy','close');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::tooltipPlacement(), 0, 'top','right','bottom','left');
@@ -1146,6 +1148,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxesControl::labelAlign(), 0, 'right','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxesControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxesControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Code::language(), 0, 'bat','c','coffeescript','cpp','csharp','css','dockerfile','fsharp','go','handlebars','html','ini','java','javascript','json','less','lua','markdown','msdax','objective-c','php','plaintext','postiats','powershell','pug','python','r','razor','ruby','sb','scss','shell','sol','sql','swift','typescript','vb','xml','yaml');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Collapse::headerPosition(), 0, 'top','bottom');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Collapse::size(), 0, 'xs','sm','md','lg','base');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CollapseGroup::expandIconPosition(), 0, 'left','right');
@@ -1218,6 +1221,10 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FileControl::labelAlign(), 0, 'right','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FileControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FileControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Flex::alignContent(), 0, 'normal','flex-start','flex-end','center','space-between','space-around','space-evenly','stretch');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Flex::alignItems(), 0, 'stretch','start','flex-start','flex-end','end','center','baseline');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Flex::direction(), 0, 'row','column','row-reverse','column-reverse');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Flex::justify(), 0, 'start','flex-start','center','end','flex-end','space-around','space-between','space-evenly');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Form::labelAlign(), 0, 'right','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Form::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormControl::labelAlign(), 0, 'right','left');
@@ -1231,6 +1238,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Grid::valign(), 0, 'top','middle','bottom','between');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GridColumn::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GridColumn::valign(), 0, 'top','middle','bottom','between');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GridNav::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::gap(), 0, 'xs','sm','normal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::labelAlign(), 0, 'right','left');
@@ -1295,6 +1303,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::vendor(), 0, 'baidu','gaode','tenxun');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Log::operation(), 0, 'stop','clear','showLineNumber','filter');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Mapping::type(), 0, 'map','mapping');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MatrixControl::labelAlign(), 0, 'right','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MatrixControl::mode(), 0, 'normal','inline','horizontal');
@@ -1336,6 +1345,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PortletTab::iconPosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Progress::gapPosition(), 0, 'top','bottom','left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Progress::mode(), 0, 'line','circle','dashboard');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Property::mode(), 0, 'table','simple');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::level(), 0, 'L','M','Q','H');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::type(), 0, 'qrcode','qr-code');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::borderMode(), 0, 'full','half','none');
@@ -1452,7 +1462,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Timeline::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Timeline::mode(), 0, 'left','right','alternate');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Toast::position(), 0, 'top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Toast::position(), 0, 'top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center 可选值: top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::tooltipPlacement(), 0, 'top','right','bottom','left');

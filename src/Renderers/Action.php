@@ -16,7 +16,7 @@ class Action extends BaseRenderer
     }
 
     /**
-     * 【必填】这是 action 最核心的配置，来指定该 action 的作用类型，支持：ajax、link、url、drawer、dialog、confirm、cancel、prev、next、copy、close。
+     * 【必填】这是 action 最核心的配置，来指定该 action 的作用类型 可选值: ajax | link | url | drawer | dialog | confirm | cancel | prev | next | copy | close
      */
     public function actionType($value = '')
     {
@@ -152,7 +152,7 @@ class Action extends BaseRenderer
     }
 
     /**
-     * 按钮大小，支持：xs、sm、md、lg。
+     * 按钮大小，支持：xs、sm、md、lg。 可选值: xs | sm | md | lg
      */
     public function size($value = '')
     {
