@@ -291,6 +291,6 @@ if (!function_exists('map2options')) {
      */
     function map2options($map)
     {
-        return collect($map)->map(fn($v, $k) => ['label' => $v, 'value' => $k])->toArray();
+        return collect($map)->map(fn($v, $k) => ['label' => $v, 'value' => $k])->values()->toArray();
     }
 }
