@@ -42,7 +42,7 @@ abstract class AdminController extends Controller
 
         $this->adminPrefix = Admin::config('admin.route.prefix');
 
-        $this->queryPath = str_replace($this->adminPrefix . '/', '', request()->path());
+        $this->queryPath = $this->queryPath ?? str_replace($this->adminPrefix . '/', '', request()->path());
     }
 
     /**
