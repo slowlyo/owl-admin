@@ -22,6 +22,7 @@ class AdminRoleController extends AdminController
                 ...$this->baseHeaderToolBar(),
             ])
             ->filterTogglable(false)
+            ->itemCheckableOn('${slug !== "administrator"}')
             ->columns([
                 amis()->TableColumn()->label('ID')->name('id')->sortable(),
                 amis()->TableColumn()->label(__('admin.admin_role.name'))->name('name'),
