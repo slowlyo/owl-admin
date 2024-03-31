@@ -26,7 +26,7 @@ class AdminUserController extends AdminController
                     ->size('md')
                     ->placeholder(__('admin.admin_user.search_username'))
             ))
-            ->itemCheckableOn('${slug !== "administrator"}')
+            ->itemCheckableOn('${!administrator}')
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
                 amis()->TableColumn('avatar', __('admin.admin_user.avatar'))->type('avatar')->src('${avatar}'),
