@@ -41,7 +41,13 @@ class AdminApiService extends AdminService
 
     public function getApiByPath($path)
     {
-        return $this->query()->where('path', $path)->first();
+        $api = $this->query()->where('path', $path)->first();
+
+        if (!$api && str_starts_with($path, '/')) {
+            $api = $this->query()->where('path', ltrim($path, '/'))->first();
+        }
+
+        return $api;
     }
 
     public function getApiByTemplate($template)

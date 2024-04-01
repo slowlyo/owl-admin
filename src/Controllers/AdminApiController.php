@@ -15,7 +15,7 @@ class AdminApiController extends AdminController
 
     public function index()
     {
-        $path = Str::of(request()->path())->replace(Admin::config('admin.route.prefix'), '')->ltrim('/')->value();
+        $path = Str::of(request()->path())->replace(Admin::config('admin.route.prefix'), '')->value();
         $api  = $this->service->getApiByPath($path);
 
         if (!$api) {
