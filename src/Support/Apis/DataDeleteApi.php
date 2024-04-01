@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Support\Apis;
 
+use Slowlyo\OwlAdmin\Admin;
+
 /**
  * 删除数据
  */
@@ -16,7 +18,14 @@ class DataDeleteApi extends AdminBaseApi
 
     public function handle()
     {
-        return $this->service()->delete(request($this->getArgs('primary_key', 'ids')));
+        $result = $this->service()->delete(request($this->getArgs('primary_key', 'ids')));
+
+        if ($result) {
+            return Admin::response()
+                ->successMessage(__('admin.successfully_message', ['attribute' => __('admin.delete')]));
+        }
+
+        return Admin::response()->fail(__('admin.failed_message', ['attribute' => __('admin.delete')]));
     }
 
     public function argsSchema()

@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Support\Apis;
 
+use Slowlyo\OwlAdmin\Admin;
+
 /**
  * 数据列表接口
  */
@@ -16,7 +18,7 @@ class DataListApi extends AdminBaseApi
 
     public function handle()
     {
-        return $this->service()->list();
+        return Admin::response()->success($this->service()->list());
     }
 
     public function argsSchema()

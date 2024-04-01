@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Support\Apis;
 
+use Slowlyo\OwlAdmin\Admin;
+
 /**
  * 数据新增
  */
@@ -16,7 +18,14 @@ class DataCreateApi extends AdminBaseApi
 
     public function handle()
     {
-        return $this->service()->store(request()->all());
+        $result = $this->service()->store(request()->all());
+
+        if ($result) {
+            return Admin::response()
+                ->successMessage(__('admin.successfully_message', ['attribute' => __('admin.create')]));
+        }
+
+        return Admin::response()->fail(__('admin.failed_message', ['attribute' => __('admin.create')]));
     }
 
     public function argsSchema()

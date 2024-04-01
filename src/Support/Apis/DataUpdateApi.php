@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Support\Apis;
 
+use Slowlyo\OwlAdmin\Admin;
+
 /**
  * 数据更新
  */
@@ -16,7 +18,14 @@ class DataUpdateApi extends AdminBaseApi
 
     public function handle()
     {
-        return $this->service()->update(request($this->getArgs('primary_key', 'id')), request()->all());
+        $result = $this->service()->update(request($this->getArgs('primary_key', 'id')), request()->all());
+
+        if ($result) {
+            return Admin::response()
+                ->successMessage(__('admin.successfully_message', ['attribute' => __('admin.save')]));
+        }
+
+        return Admin::response()->fail(__('admin.failed_message', ['attribute' => __('admin.save')]));
     }
 
     public function argsSchema()

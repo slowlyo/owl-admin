@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Support\Apis;
 
+use Slowlyo\OwlAdmin\Admin;
+
 /**
  * 数据详情
  */
@@ -16,7 +18,9 @@ class DataDetailApi extends AdminBaseApi
 
     public function handle()
     {
-        return $this->service()->getDetail(request($this->getArgs('primary_key', 'id')));
+        $data = $this->service()->getDetail(request($this->getArgs('primary_key', 'id')));
+
+        return Admin::response()->success($data);
     }
 
     public function argsSchema()

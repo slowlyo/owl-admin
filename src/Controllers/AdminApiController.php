@@ -22,6 +22,6 @@ class AdminApiController extends AdminController
             return $this->response()->success();
         }
 
-        return $this->response()->success(app($api->template)->handle());
+        return app($api->template)->handle();
     }
 }
