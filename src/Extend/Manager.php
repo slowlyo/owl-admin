@@ -55,6 +55,7 @@ class Manager
      * 注册扩展.
      *
      * @return void
+     * @throws \Exception
      */
     public function register()
     {
@@ -93,7 +94,7 @@ class Manager
      * 启用或禁用扩展.
      *
      * @param string|null $name
-     * @param bool $enable
+     * @param bool        $enable
      *
      * @return void
      * @throws ContainerExceptionInterface|NotFoundExceptionInterface|\Exception
@@ -129,7 +130,6 @@ class Manager
             try {
                 $this->loadExtension($directory);
             } catch (\Throwable $e) {
-                $this->reportException($e);
             }
         }
 
@@ -140,7 +140,7 @@ class Manager
      * 获取扩展路径.
      *
      * @param string|ServiceProvider $name
-     * @param string|null $path
+     * @param string|null            $path
      *
      * @return string|void
      *
@@ -221,7 +221,7 @@ class Manager
      * 加载扩展.
      *
      * @param string $directory
-     * @param bool $addPsr4
+     * @param bool   $addPsr4
      *
      * @return ServiceProvider|null
      */
@@ -244,7 +244,7 @@ class Manager
      * 获取扩展类实例.
      *
      * @param string $directory
-     * @param bool $addPsr4
+     * @param bool   $addPsr4
      *
      * @return ServiceProvider|void
      */
@@ -347,7 +347,7 @@ class Manager
      * 解压缩扩展包.
      *
      * @param string $filePath
-     * @param bool $force
+     * @param bool   $force
      *
      * @return string
      * @throws \Exception
@@ -365,7 +365,7 @@ class Manager
 
     /**
      * @param string $filePath
-     * @param bool $force
+     * @param bool   $force
      *
      * @return string
      * @throws \Exception
@@ -469,8 +469,6 @@ class Manager
                 $this->settings = ExtensionModel::all()->keyBy('name');
             } catch (\Throwable $e) {
                 $this->settings = new Collection();
-
-                $this->reportException($e);
             }
         }
 
@@ -501,7 +499,7 @@ class Manager
      * 注册 PSR4 验证规则.
      *
      * @param string $directory
-     * @param array $psr4
+     * @param array  $psr4
      */
     protected function registerPsr4($directory, array $psr4)
     {
@@ -534,18 +532,6 @@ class Manager
                 require_once $_path;
             }
         }
-    }
-
-    /**
-     * 上报异常.
-     *
-     * @param \Throwable $e
-     *
-     * @throws \Exception
-     */
-    protected function reportException(\Throwable $e)
-    {
-        throw new \Exception($e);
     }
 
     /**

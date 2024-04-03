@@ -341,7 +341,7 @@ class Database
     {
         try {
             return collect(json_decode(json_encode(Schema::getAllTables()), true))
-                ->map(fn($i) => array_shift($i))
+                ->map(fn($i) => config('database.default') == 'sqlite' ? $i['name'] : array_shift($i))
                 ->toArray();
         } catch (\Throwable $e) {
         }
