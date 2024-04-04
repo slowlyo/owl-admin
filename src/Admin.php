@@ -3,8 +3,10 @@
 namespace Slowlyo\OwlAdmin;
 
 use Laravel\Sanctum\Sanctum;
+use Slowlyo\Support\SqlRecord;
 use Illuminate\Support\Facades\Auth;
 use Slowlyo\OwlAdmin\Extend\Manager;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Traits\AssetsTrait;
 use Slowlyo\OwlAdmin\Extend\ServiceProvider;
@@ -20,8 +22,7 @@ use Slowlyo\OwlAdmin\Support\{Context,
     Cores\Module,
     Cores\Permission,
     Cores\JsonResponse,
-    Cores\Relationships
-};
+    Cores\Relationships};
 
 class Admin
 {
@@ -37,6 +38,12 @@ class Admin
         Relationships::boot();
         Api::boot();
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+
+        if (class_exists('\Laravel\Octane\Events\RequestReceived')){
+            Event::listen(\Laravel\Octane\Events\RequestReceived::class, function ($event){
+                SqlRecord::$sql = [];
+            });
+        }
     }
 
     public static function response()
