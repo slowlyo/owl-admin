@@ -89,8 +89,10 @@ const useSetup = (store) => {
         await initSettings.runAsync()
 
         if (Token().value) {
-            await initUserInfo.runAsync()
-            await window.$owl.refreshRoutes()
+            let res = await initUserInfo.runAsync()
+            if (res.data?.code == 200) {
+                await window.$owl.refreshRoutes()
+            }
         } else if (!inLoginPage()) {
             goToLoginPage()
         }

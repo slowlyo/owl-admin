@@ -30,6 +30,16 @@ const Login = () => {
 
     const [_, setLoginParams, removeLoginParams] = useStorage(getCacheKey('loginParams'))
 
+    const gotoDefaultPage = () => {
+        let path = window.location.hash.includes('?redirect=') ? window.location.hash.split('?redirect=')[1] : defaultRoute
+
+        if (path == '/login') {
+            path = defaultRoute
+        }
+
+        history.replace(path)
+    }
+
     // 登录成功后的操作
     const afterLoginSuccess = async (params, token) => {
         // 记住密码
@@ -47,7 +57,7 @@ const Login = () => {
 
         if (inLoginPage()) {
             // 跳转首页
-            history.replace(window.location.hash.includes('?redirect=') ? window.location.hash.split('?redirect=')[1] : defaultRoute)
+            gotoDefaultPage()
         }
     }
 
@@ -55,7 +65,7 @@ const Login = () => {
 
     useEffect(() => {
         if (Token().value) {
-            history.replace(window.location.hash.includes('?redirect=') ? window.location.hash.split('?redirect=')[1] : defaultRoute)
+            gotoDefaultPage()
         }
     }, [])
 
