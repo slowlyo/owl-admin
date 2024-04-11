@@ -25,7 +25,15 @@ class AdminApi extends BaseModel
                 return '';
             }
 
-            return app($this->template)->getTitle();
+            $api = app($this->template);
+
+            $title = $api->getTitle();
+
+            if ($title) {
+                $title = $api->getMethod() . ' - ' . $title;
+            }
+
+            return $title;
         });
     }
 
