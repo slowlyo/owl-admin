@@ -107,6 +107,7 @@ class AdminMenuController extends AdminController
             amis()->SelectControl('component', __('admin.admin_menu.page'))
                 ->required()
                 ->options(AdminPageService::make()->options())
+                ->menuTpl('${label} <span class="text-gray-300 pl-2">${value}</span>')
                 ->selectFirst()
                 ->searchable()
                 ->visibleOn('url_type == ' . Admin::adminMenuModel()::TYPE_PAGE),
