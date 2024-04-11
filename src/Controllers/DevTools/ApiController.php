@@ -100,6 +100,7 @@ class ApiController extends AdminController
             amis()->SwitchControl('enabled', __('admin.apis.enabled'))->value(1),
             amis()->SelectControl('template', __('admin.apis.template'))
                 ->required()
+                ->searchable()
                 ->source('/dev_tools/api/templates'),
             amis()->ComboControl('args', __('admin.apis.args'))
                 ->visibleOn('${template}')
@@ -122,7 +123,7 @@ class ApiController extends AdminController
         $apis = collect(Admin::context()->apis)
             ->filter(fn($item) => (new \ReflectionClass($item))->isSubclassOf(AdminBaseApi::class))
             ->map(fn($item) => [
-                'label' => app($item)->getTitle(),
+                'label' => app($item)->getMethod() . ' - ' . app($item)->getTitle(),
                 'value' => $item,
             ]);
 
