@@ -39,7 +39,7 @@ export default class CustomAxiosInstance {
                 if (status === 200 || status < 300 || status === 304) {
                     const backend = response.data
                     // 请求成功
-                    if (backend.status === 0) {
+                    if (backend.code === 0) {
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
                             msgHandler(backend.msg, () => message.success(backend.msg))
                         }
