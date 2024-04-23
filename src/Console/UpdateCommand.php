@@ -61,6 +61,11 @@ class UpdateCommand extends Command
         exit;
     }
 
+    public function schema()
+    {
+        return Schema::connection(config('admin.database.connection'));
+    }
+
     public function version257()
     {
         $this->output->title('Update to version v2.5.7');
@@ -74,8 +79,8 @@ class UpdateCommand extends Command
             ]);
         }
 
-        if (!Schema::hasTable('admin_code_generators')) {
-            Schema::create('admin_code_generators', function ($table) {
+        if (!$this->schema()->hasTable('admin_code_generators')) {
+            $this->schema()->create('admin_code_generators', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->string('title')->default('')->comment('名称');
                 $table->string('table_name')->default('')->comment('表名');
@@ -105,8 +110,8 @@ class UpdateCommand extends Command
             ]);
         }
 
-        if (!Schema::hasColumn('admin_code_generators', 'page_info')) {
-            Schema::table('admin_code_generators', function ($table) {
+        if (!$this->schema()->hasColumn('admin_code_generators', 'page_info')) {
+            $this->schema()->table('admin_code_generators', function ($table) {
                 $table->text('page_info')->nullable()->comment('页面信息')->after('menu_info');
             });
         }
@@ -124,14 +129,14 @@ class UpdateCommand extends Command
             ]);
         }
 
-        if (!Schema::hasColumn('admin_menus', 'component')) {
-            Schema::table('admin_menus', function ($table) {
+        if (!$this->schema()->hasColumn('admin_menus', 'component')) {
+            $this->schema()->table('admin_menus', function ($table) {
                 $table->string('component')->nullable()->comment('菜单组件')->after('is_home');
             });
         }
 
-        if (!Schema::hasColumn('admin_menus', 'is_full')) {
-            Schema::table('admin_menus', function ($table) {
+        if (!$this->schema()->hasColumn('admin_menus', 'is_full')) {
+            $this->schema()->table('admin_menus', function ($table) {
                 $table->tinyInteger('is_full')->default(0)->comment('是否是完整页面')->after('component');
             });
         }
@@ -157,8 +162,8 @@ class UpdateCommand extends Command
     {
         $this->output->title('Update to version v3.2.3');
 
-        if (!Schema::hasColumn('admin_users', 'enabled')) {
-            Schema::table('admin_users', function ($table) {
+        if (!$this->schema()->hasColumn('admin_users', 'enabled')) {
+            $this->schema()->table('admin_users', function ($table) {
                 $table->tinyInteger('enabled')->default(1);
             });
         }
@@ -174,8 +179,8 @@ class UpdateCommand extends Command
     public function version325()
     {
         $this->output->title('Update to version v3.2.5');
-        if (!Schema::hasColumn('admin_code_generators', 'save_path')) {
-            Schema::table('admin_code_generators', function ($table) {
+        if (!$this->schema()->hasColumn('admin_code_generators', 'save_path')) {
+            $this->schema()->table('admin_code_generators', function ($table) {
                 $table->text('save_path')->nullable()->comment('保存位置');
             });
         }
@@ -191,8 +196,8 @@ class UpdateCommand extends Command
     public function version341()
     {
         $this->output->title('Update to version v3.4.1');
-        if (!Schema::hasColumn('admin_menus', 'keep_alive')) {
-            Schema::table('admin_menus', function ($table) {
+        if (!$this->schema()->hasColumn('admin_menus', 'keep_alive')) {
+            $this->schema()->table('admin_menus', function ($table) {
                 $table->tinyInteger('keep_alive')->nullable()->comment('页面缓存');
                 $table->string('iframe_url')->nullable()->comment('iframe_url');
             });
@@ -219,8 +224,8 @@ class UpdateCommand extends Command
             ]);
         }
 
-        if (!Schema::hasTable('admin_pages')) {
-            Schema::create('admin_pages', function ($table) {
+        if (!$this->schema()->hasTable('admin_pages')) {
+            $this->schema()->create('admin_pages', function ($table) {
                 $table->id();
                 $table->string('title')->comment('页面名称');
                 $table->string('sign')->comment('页面标识');
@@ -229,8 +234,8 @@ class UpdateCommand extends Command
             });
         }
 
-        if (!Schema::hasTable('admin_relationships')) {
-            Schema::create('admin_relationships', function ($table) {
+        if (!$this->schema()->hasTable('admin_relationships')) {
+            $this->schema()->create('admin_relationships', function ($table) {
                 $table->id();
                 $table->string('model')->comment('模型');
                 $table->string('title')->comment('关联名称');
@@ -242,8 +247,8 @@ class UpdateCommand extends Command
             });
         }
 
-        if (!Schema::hasTable('admin_apis')) {
-            Schema::create('admin_apis', function ($table) {
+        if (!$this->schema()->hasTable('admin_apis')) {
+            $this->schema()->create('admin_apis', function ($table) {
                 $table->id();
                 $table->string('title')->comment('接口名称');
                 $table->string('path')->comment('接口路径');
