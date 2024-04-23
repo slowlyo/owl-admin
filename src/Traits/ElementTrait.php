@@ -35,16 +35,26 @@ trait ElementTrait
 
     /**
      * 批量删除按钮
-     *
-     * @return \Slowlyo\OwlAdmin\Renderers\AjaxAction
      */
     protected function bulkDeleteButton()
     {
-        return amis()->AjaxAction()
-            ->api($this->getBulkDeletePath())
-            ->icon('fa-solid fa-trash-can')
+        return amis()->DialogAction()
             ->label(__('admin.delete'))
-            ->confirmText(__('admin.confirm_delete'));
+            ->icon('fa-solid fa-trash-can')
+            ->dialog(
+                amis()->Dialog()
+                    ->title(__('admin.delete'))
+                    ->className('py-2')
+                    ->actions([
+                        amis()->Action()->actionType('cancel')->label(__('admin.cancel')),
+                        amis()->Action()->actionType('submit')->label(__('admin.delete'))->level('danger'),
+                    ])
+                    ->body([
+                        amis()->Form()->wrapWithPanel(false)->api($this->getBulkDeletePath())->body([
+                            amis()->Tpl()->className('py-2')->tpl(__('admin.confirm_delete')),
+                        ]),
+                    ])
+            );
     }
 
     /**
@@ -121,16 +131,27 @@ trait ElementTrait
     /**
      * 行删除按钮
      *
-     * @return \Slowlyo\OwlAdmin\Renderers\AjaxAction
      */
     protected function rowDeleteButton()
     {
-        return amis()->AjaxAction()
+        return amis()->DialogAction()
             ->label(__('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
-            ->confirmText(__('admin.confirm_delete'))
-            ->api($this->getDeletePath());
+            ->dialog(
+                amis()->Dialog()
+                    ->title(__('admin.delete'))
+                    ->className('py-2')
+                    ->actions([
+                        amis()->Action()->actionType('cancel')->label(__('admin.cancel')),
+                        amis()->Action()->actionType('submit')->label(__('admin.delete'))->level('danger'),
+                    ])
+                    ->body([
+                        amis()->Form()->wrapWithPanel(false)->api($this->getDeletePath())->body([
+                            amis()->Tpl()->className('py-2')->tpl(__('admin.confirm_delete')),
+                        ]),
+                    ])
+            );
     }
 
     /**
