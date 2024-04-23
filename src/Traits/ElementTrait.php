@@ -269,7 +269,7 @@ trait ElementTrait
      */
     protected function baseList($crud)
     {
-        return $this->basePage()->body($crud);
+        return amis()->Page()->className('m:overflow-auto pb-48')->body($crud);
     }
 
     /**
