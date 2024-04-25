@@ -116,50 +116,18 @@ class CodeGeneratorController extends AdminController
 
     public function form()
     {
-        $databaseColumns = Generator::make()->getDatabaseColumns();
-
         // 下划线的表名处理成驼峰文件名
-        $nameHandler   = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
-        $currentModule = Admin::currentModule();
-
-        $defaultPath = [
-            'label' => $currentModule ?: __('admin.code_generators.save_path_dir'),
-            'value' => [
-                'controller_path' => $this->getNamespace('Controllers'),
-                'service_path'    => $this->getNamespace('Services', 1),
-                'model_path'      => $this->getNamespace('Models', 1),
-            ],
-        ];
-
-        $paths = [$defaultPath];
-        foreach (Admin::extension()->all() as $extension) {
-            $property  = $extension->composerProperty;
-            $namespace = str_replace('\\', "/", array_key_first($property->get('autoload.psr-4')));
-            $alias     = $extension->getAlias();
-            $paths[]   = [
-                'label' => __("admin.code_generators.save_path_label_prefix") . (empty($alias) ? $extension->getName() : $alias),
-                'value' => [
-                    'controller_path' => $namespace . 'Http/Controllers/',
-                    'service_path'    => $namespace . 'Services/',
-                    'model_path'      => $namespace . 'Models/',
-                ],
-            ];
-        }
+        $nameHandler = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
 
         return amis()->Form()
+            ->promptPageLeave()
             ->id('code_generator_form')
             ->wrapWithPanel(false)
             ->labelWidth(150)
             ->title(' ')
             ->mode('horizontal')
             ->resetAfterSubmit()
-            ->data([
-                'table_info'         => $databaseColumns,
-                'table_primary_keys' => Generator::make()->getDatabasePrimaryKeys(),
-                'model_path'         => $defaultPath['value']['model_path'],
-                'service_path'       => $defaultPath['value']['service_path'],
-                'controller_path'    => $defaultPath['value']['controller_path'],
-            ])
+            ->initApi('post:/dev_tools/code_generator/form_data')
             ->tabs([
                 // 基本信息
                 amis()->Tab()->title(__('admin.code_generators.base_info'))->body(
@@ -204,16 +172,7 @@ class CodeGeneratorController extends AdminController
                                         ->searchable()
                                         ->clearable()
                                         ->selectMode('group')
-                                        ->options(
-                                            $databaseColumns->map(function ($item, $index) {
-                                                return [
-                                                    'label'    => $index,
-                                                    'children' => $item->keys()->map(function ($item) use ($index) {
-                                                        return ['value' => $item . '-' . $index, 'label' => $item];
-                                                    }),
-                                                ];
-                                            })->values()
-                                        )
+                                        ->source('${exists_tables}')
                                         ->onEvent([
                                             'change' => [
                                                 'actions' => [
@@ -255,9 +214,9 @@ class CodeGeneratorController extends AdminController
                                     ->searchable()
                                     ->description(__('admin.code_generators.save_path_select_tips'))
                                     ->clearable()
-                                    ->value($defaultPath)
+                                    ->value('${default_path}')
                                     ->selectMode('group')
-                                    ->options($paths)
+                                    ->source('${save_path_options}')
                                     ->onEvent([
                                         'change' => [
                                             'actions' => [
@@ -310,7 +269,7 @@ class CodeGeneratorController extends AdminController
                             ->labelField('title')
                             ->valueField('id')
                             ->value(0)
-                            ->options(AdminMenuService::make()->getTree()),
+                            ->source('${menu_tree}'),
                         $this->iconifyPicker('icon', __('admin.code_generators.menu_icon'))->value('ph:circle'),
                     ])
                 ),
@@ -483,31 +442,6 @@ class CodeGeneratorController extends AdminController
         }
 
         return $this->response()->doNotDisplayToast()->success(compact('controller', 'service', 'model', 'migration'));
-    }
-
-    /**
-     * 获取所有组件
-     *
-     * @return mixed
-     */
-    public function getComponentOptions()
-    {
-        return collect(get_class_methods(amis()))
-            ->filter(fn($item) => $item != 'make')
-            ->map(function ($item) {
-                $renderer = new \ReflectionClass('\\Slowlyo\\OwlAdmin\\Renderers\\' . $item);
-                $_doc     = $renderer->getDocComment();
-                $_doc     = preg_replace("/[^\x{4e00}-\x{9fa5}]/u", "", $_doc);
-                $_doc     = $_doc ? trim(str_replace('文档', '', $_doc)) : '';
-                $label    = $_doc ? $item . ' - ' . $_doc : $item;
-
-                return [
-                    'label' => $label,
-                    'value' => $item,
-                ];
-            })
-            ->values()
-            ->toArray();
     }
 
     /**
@@ -717,24 +651,49 @@ class CodeGeneratorController extends AdminController
         return $this->response()->success(compact('record'));
     }
 
-    /**
-     * 获取命名空间
-     *
-     * @param $name
-     * @param $app
-     *
-     * @return string
-     */
-    public function getNamespace($name, $app = null): string
+    public function formData()
     {
-        $namespace = collect(explode('\\', Admin::config('admin.route.namespace')));
+        $databaseColumns = Generator::make()->getDatabaseColumns();
 
-        $namespace->pop();
+        $defaultPath = $this->service->getDefaultPath();
 
-        if ($app && !Admin::currentModule()) {
-            $namespace->pop();
+        $savePaths = [$defaultPath];
+        foreach (Admin::extension()->all() as $extension) {
+            $property    = $extension->composerProperty;
+            $namespace   = str_replace('\\', "/", array_key_first($property->get('autoload.psr-4')));
+            $alias       = $extension->getAlias();
+            $savePaths[] = [
+                'label' => __("admin.code_generators.save_path_label_prefix") . (empty($alias) ? $extension->getName() : $alias),
+                'value' => [
+                    'controller_path' => $namespace . 'Http/Controllers/',
+                    'service_path'    => $namespace . 'Services/',
+                    'model_path'      => $namespace . 'Models/',
+                ],
+            ];
         }
 
-        return $namespace->push($name)->implode('/') . '/';
+        $existsTables = $databaseColumns->map(function ($item, $index) {
+            return [
+                'label'    => $index,
+                'children' => $item->keys()->map(function ($item) use ($index) {
+                    return ['value' => $item . '-' . $index, 'label' => $item];
+                }),
+            ];
+        })->values();
+
+        $data = [
+            'table_info'         => $databaseColumns,
+            'table_primary_keys' => Generator::make()->getDatabasePrimaryKeys(),
+            'default_path'       => $defaultPath,
+            'model_path'         => $defaultPath['value']['model_path'],
+            'service_path'       => $defaultPath['value']['service_path'],
+            'controller_path'    => $defaultPath['value']['controller_path'],
+            'exists_tables'      => $existsTables,
+            'menu_tree'          => AdminMenuService::make()->getTree(),
+            'save_path_options'  => $savePaths,
+            'component_options'  => $this->service->getComponentOptions(),
+        ];
+
+        return $this->response()->success($data);
     }
 }

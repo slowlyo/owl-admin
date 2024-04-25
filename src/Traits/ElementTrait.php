@@ -68,7 +68,7 @@ trait ElementTrait
     protected function createButton(bool $dialog = false, string $dialogSize = '')
     {
         if ($dialog) {
-            $form = $this->form(false)->api($this->getStorePath())->onEvent([]);
+            $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath())->onEvent([]);
 
             $button = amis()->DialogAction()->dialog(
                 amis()->Dialog()->title(__('admin.create'))->body($form)->size($dialogSize)
@@ -249,7 +249,7 @@ trait ElementTrait
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
-        $form = amis()->Form()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal');
+        $form = amis()->Form()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->promptPageLeave();
 
         if ($back) {
             $form->onEvent([

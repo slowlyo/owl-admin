@@ -64,7 +64,6 @@ trait CodeGeneratorSchema
                         ->set('title', __('admin.code_generators.add_column'))
                         ->size('lg')
                         ->id('column_form')
-                        ->data(['component_options' => $this->getComponentOptions()])
                         ->tabs([
                             // 基本信息
                             amis()->Tab()->title(__('admin.code_generators.base_info'))->body([
