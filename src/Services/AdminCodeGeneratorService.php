@@ -28,7 +28,6 @@ class AdminCodeGeneratorService extends AdminService
 
     public function store($data)
     {
-        dd($data);
         amis_abort_if(
             $this->query()->where('table_name', $data['table_name'])->exists(),
             __('admin.code_generators.exists_table')
