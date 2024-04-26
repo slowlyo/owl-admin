@@ -100,9 +100,11 @@ class CodeGeneratorController extends AdminController
                 amis()->TableColumn('id', 'ID')->sortable(),
                 amis()->TableColumn('title', __('admin.code_generators.app_title')),
                 amis()->TableColumn('table_name', __('admin.code_generators.table_name')),
+                amis()->TableColumn('menu_info.route', __('admin.code_generators.route')),
                 amis()->TableColumn('updated_at', __('admin.updated_at'))->sortable(),
                 $this->rowActions([
                     $this->generateCodeAction(),
+                    // $this->clearCodeAction(),
                     $this->copyRecordAction(),
                     $this->previewCodeAction(),
                     amis()->DrawerAction()
@@ -924,6 +926,34 @@ class CodeGeneratorController extends AdminController
             ->level('link')
             ->icon('fa fa-code')
             ->label(__('admin.code_generators.generate_code'))
+            ->iconClassName('pr-4')
+            ->api('/dev_tools/code_generator/generate?id=${id}')
+            ->confirmText(__('admin.code_generators.confirm_generate_code'))
+            ->feedback(
+                amis()->Dialog()->title(' ')->bodyClassName('overflow-auto')->body(amis()
+                    ->Tpl()
+                    ->tpl('${result | raw}'))->onEvent([
+                    'confirm' => [
+                        'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
+                    ],
+                    'cancel'  => [
+                        'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
+                    ],
+                ])
+            );
+    }
+
+    /**
+     * 清除代码 按钮
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\AjaxAction
+     */
+    public function clearCodeAction()
+    {
+        return amis()->AjaxAction()
+            ->level('link')
+            ->icon('fa fa-brush')
+            ->label(__('admin.code_generators.clear_code'))
             ->api('/dev_tools/code_generator/generate?id=${id}')
             ->confirmText(__('admin.code_generators.confirm_generate_code'))
             ->feedback(
