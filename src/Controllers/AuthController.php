@@ -259,20 +259,11 @@ JS,
 
     public function userSetting(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
-        $user = $this->user()->makeHidden([
-            'username',
-            'password',
-            'remember_token',
-            'created_at',
-            'updated_at',
-            'roles',
-        ]);
-
         $form = amis()->Form()
             ->title()
             ->panelClassName('px-48 m:px-0')
             ->mode('horizontal')
-            ->data($user)
+            ->initApi('/current-user')
             ->api('put:' . admin_url('/user_setting'))
             ->body([
                 amis()->ImageControl()
