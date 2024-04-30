@@ -136,6 +136,9 @@ return [
         'save_path_select'          => '选择目录',
         'save_path_select_tips'     => '可选择项目根目录或插件根目录',
         'save_path_label_prefix'    => '插件 -> ',
+        'clear_code'                => '清除代码',
+        'select_clear_record'       => '选择要清除的内容',
+        'select_generate_record'    => '选择要生成的内容',
     ],
 
     'admin_users' => '管理员',

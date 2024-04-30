@@ -136,6 +136,9 @@ return [
         'save_path_select'          => 'Select Directory',
         'save_path_select_tips'     => 'Project root directory or plugin root directory can be selected',
         'save_path_label_prefix'    => 'Plugins -> ',
+        'clear_code'                => 'Clear Code',
+        'select_clear_record'       => 'Select what you want to clear',
+        'select_generate_record'    => 'Select the content you want to generate',
     ],
 
     'admin_users' => 'Admin Users',
