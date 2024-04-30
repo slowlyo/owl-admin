@@ -19,7 +19,6 @@ class AdminServiceProvider extends ServiceProvider
         Console\GenRouteCommand::class,
         Console\IdeHelperCommand::class,
         Console\CreateUserCommand::class,
-        Console\GenCodeClearCommand::class,
         Console\ResetPasswordCommand::class,
         Console\Module\InitCommand::class,
     ];

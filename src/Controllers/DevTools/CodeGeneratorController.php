@@ -11,6 +11,7 @@ use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\Generator;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\GenCodeClear;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\ModelGenerator;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\RouteGenerator;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\ServiceGenerator;
@@ -104,15 +105,15 @@ class CodeGeneratorController extends AdminController
                 amis()->TableColumn('updated_at', __('admin.updated_at'))->sortable(),
                 $this->rowActions([
                     $this->generateCodeAction(),
-                    // $this->clearCodeAction(),
-                    $this->copyRecordAction(),
                     $this->previewCodeAction(),
                     amis()->DrawerAction()
                         ->label(__('admin.edit'))
                         ->icon('fa-regular fa-pen-to-square')
                         ->level('link')
                         ->drawer($form(true)),
-                    $this->rowDeleteButton(),
+                    $this->copyRecordAction(),
+                    $this->clearCodeAction(),
+                    $this->rowDeleteButton()->className('text-danger'),
                 ]),
             ]);
     }
@@ -946,28 +947,62 @@ class CodeGeneratorController extends AdminController
     /**
      * 清除代码 按钮
      *
-     * @return \Slowlyo\OwlAdmin\Renderers\AjaxAction
+     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
      */
     public function clearCodeAction()
     {
-        return amis()->AjaxAction()
+        return amis()->DialogAction()
             ->level('link')
             ->icon('fa fa-brush')
             ->label(__('admin.code_generators.clear_code'))
-            ->api('/dev_tools/code_generator/generate?id=${id}')
-            ->confirmText(__('admin.code_generators.confirm_generate_code'))
-            ->feedback(
-                amis()->Dialog()->title(' ')->bodyClassName('overflow-auto')->body(amis()
-                    ->Tpl()
-                    ->tpl('${result | raw}'))->onEvent([
-                    'confirm' => [
-                        'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
-                    ],
-                    'cancel'  => [
-                        'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
-                    ],
+            ->className('text-danger')
+            ->dialog(
+                amis()->Dialog()->title(__('admin.code_generators.select_clear_record'))->body([
+                    amis()->Form()->api('post:/dev_tools/code_generator/clear?id=${id}')->mode('normal')->body([
+                        amis()->CheckboxesControl('selected')
+                            ->checkAll()
+                            ->inline(false)
+                            ->required()
+                            ->menuTpl('<div><div class="font-bold">${label}</div><div class="text-sm text-gray-400">${content}</div></div>')
+                            ->source('post:/dev_tools/code_generator/gen_record_options?id=${id}'),
+                    ])->onEvent([
+                        'submitSucc' => [
+                            'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
+                        ],
+                    ]),
                 ])
             );
+    }
+
+    /**
+     * 清除代码
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function clear()
+    {
+        GenCodeClear::make()->handle(request()->all());
+
+        return $this->response()->successMessage(__('admin.action_success'));
+    }
+
+    /**
+     * 获取生成的内容
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function genRecordOptions()
+    {
+        $list = GenCodeClear::make()->getRecord(request('id'));
+
+        $options = collect($list)->except(['menu_id'])->map(fn($item, $index) => [
+            'label'   => Str::headline($index),
+            'value'   => $index,
+            'content' => $item,
+            'hidden'  => blank($item),
+        ])->values();
+
+        return $this->response()->success($options);
     }
 
     /**

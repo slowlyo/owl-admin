@@ -83,6 +83,8 @@ class Route
                     $router->group(['prefix' => 'code_generator'], function (Router $router) {
                         $router->post('preview', [CodeGeneratorController::class, 'preview']);
                         $router->post('generate', [CodeGeneratorController::class, 'generate']);
+                        $router->post('clear', [CodeGeneratorController::class, 'clear']);
+                        $router->post('gen_record_options', [CodeGeneratorController::class, 'genRecordOptions']);
                         $router->post('form_data', [CodeGeneratorController::class, 'formData']);
                         $router->post('get_record', [CodeGeneratorController::class, 'getRecord']);
                         $router->post('get_property_options', [CodeGeneratorController::class, 'getPropertyOptions']);

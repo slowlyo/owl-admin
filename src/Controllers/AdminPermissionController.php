@@ -30,6 +30,7 @@ class AdminPermissionController extends AdminController
         }
 
         $crud = $this->baseCRUD()
+            ->perPage(999)
             ->loadDataOnce()
             ->filterTogglable(false)
             ->footerToolbar([])

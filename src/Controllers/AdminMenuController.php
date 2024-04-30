@@ -21,6 +21,7 @@ class AdminMenuController extends AdminController
     public function list(): Page
     {
         $crud = $this->baseCRUD()
+            ->perPage(999)
             ->draggable()
             ->saveOrderApi([
                 'url'  => '/system/admin_menus/save_order',
