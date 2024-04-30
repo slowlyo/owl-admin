@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
 use Slowlyo\OwlAdmin\Admin;
+use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Traits\MakeTrait;
 use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
@@ -31,7 +32,9 @@ class GenCodeClear
         }
 
         if (in_array('migration', $selected)) {
-            @unlink($records['migration']);
+            $arr = Arr::wrap($records['migration']);
+
+            array_map(fn($path) => @unlink($path), $arr);
         }
 
         if (in_array('table', $selected)) {
@@ -60,7 +63,13 @@ class GenCodeClear
         $migrationPath  = $this->getMigrationFileName($tableName, $record->model_name);
         $menuRecord     = $this->getMenu($record->menu_info);
 
-        $checkFile = fn($path) => file_exists($path) ? $path : '';
+        $checkFile = function ($path) {
+            if (is_array($path)) {
+                return $path;
+            }
+
+            return file_exists($path) ? $path : '';
+        };
 
         $content = [
             'controller' => $checkFile($controllerPath),
@@ -98,7 +107,7 @@ class GenCodeClear
         $files = array_filter($files, fn($file) => str_contains($file, $tableName));
 
         if (count($files) > 1) {
-            return '';
+            return array_map(fn($i) => realpath($migrationPath . '/' . $i), $files);
         }
 
         if (count($files) == 0) {

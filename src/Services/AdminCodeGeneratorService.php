@@ -56,6 +56,11 @@ class AdminCodeGeneratorService extends AdminService
             ->map(fn($item) => Arr::except($item, ['component_options']))
             ->toArray();
 
+        if (in_array('need_create_table', $data['needs'])) {
+            $data['needs'][] = 'need_database_migration';
+            $data['needs']   = array_unique($data['needs']);
+        }
+
         return Arr::except($data, ['table_info', 'table_primary_keys']);
     }
 

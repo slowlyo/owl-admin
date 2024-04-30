@@ -140,7 +140,7 @@ trait ElementTrait
             ->level('link')
             ->dialog(
                 amis()->Dialog()
-                    ->title(__('admin.delete'))
+                    ->title()
                     ->className('py-2')
                     ->actions([
                         amis()->Action()->actionType('cancel')->label(__('admin.cancel')),

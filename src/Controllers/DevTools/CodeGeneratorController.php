@@ -5,18 +5,12 @@ namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\Generator;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\GenCodeClear;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\ModelGenerator;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\RouteGenerator;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\ServiceGenerator;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\MigrationGenerator;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\ControllerGenerator;
 
 /**
  * @property AdminCodeGeneratorService $service
@@ -304,95 +298,9 @@ class CodeGeneratorController extends AdminController
      */
     public function generate(Request $request)
     {
-        $record = $this->service->getDetail($request->id);
+        $result = Generator::make()->generate($request->id, $request->needs);
 
-        $needs          = collect($record->needs);
-        $columns        = collect($record->columns);
-        $successMessage = function ($type, $path) {
-            return "<b class='text-success'>{$type} generated successfully!</b><br>{$path}<br><br>";
-        };
-
-        $paths   = [];
-        $message = '';
-        try {
-            // Model
-            if ($needs->contains('need_model')) {
-                $path = ModelGenerator::make()
-                    ->title($record->title)
-                    ->columns($columns)
-                    ->primary($record->primary_key)
-                    ->timestamps($record->need_timestamps)
-                    ->softDelete($record->soft_delete)
-                    ->generate($record->table_name, $record->model_name);
-
-                $message .= $successMessage('Model', $path);
-
-                $paths[] = $path;
-            }
-
-            // Migration
-            $migratePath = '';
-            if ($needs->contains('need_database_migration')) {
-                $path = MigrationGenerator::make()
-                    ->title($record->title)
-                    ->primary($record->primary_key)
-                    ->timestamps($record->need_timestamps)
-                    ->softDelete($record->soft_delete)
-                    ->generate($record->table_name, $columns, $record->model_name);
-
-                $message     .= $successMessage('Migration', $path);
-                $migratePath = str_replace(base_path(), '', $path);
-                $paths[]     = $path;
-            }
-
-            // Controller
-            if ($needs->contains('need_controller')) {
-                $path = ControllerGenerator::make()
-                    ->title($record->title)
-                    ->primary($record->primary_key)
-                    ->title($record->title)
-                    ->tableName($record->table_name)
-                    ->pageInfo($record->page_info)
-                    ->serviceName($record->service_name)
-                    ->columns($columns)
-                    ->timestamps($record->need_timestamps)
-                    ->generate($record->controller_name);
-
-                $message .= $successMessage('Controller', $path);
-
-                $paths[] = $path;
-            }
-
-            // Service
-            if ($needs->contains('need_service')) {
-                $path = ServiceGenerator::make()
-                    ->title($record->title)
-                    ->generate($record->service_name, $record->model_name);
-
-                $message .= $successMessage('Service', $path);
-
-                $paths[] = $path;
-            }
-            // Route
-            RouteGenerator::handle($record->menu_info);
-            // 创建数据库表
-            if ($needs->contains('need_create_table')) {
-                if ($migratePath) {
-                    Artisan::call('migrate', ['--path' => $migratePath]);
-                } else {
-                    Artisan::call('migrate');
-                }
-                $message .= Artisan::output();
-            }
-        } catch (\Throwable $e) {
-            app('files')->delete($paths);
-
-            RouteGenerator::refresh();
-
-            return $this->response()->fail($e->getMessage());
-        }
-
-        return $this->response()->doNotDisplayToast()->success(['result' => $message]);
+        return $this->response()->doNotDisplayToast()->success(compact('result'));
     }
 
     /**
@@ -404,48 +312,9 @@ class CodeGeneratorController extends AdminController
      */
     public function preview(Request $request)
     {
-        $record  = $this->service->getDetail($request->id);
-        $columns = collect($record->columns);
+        $data = Generator::make()->preview($request->id);
 
-        try {
-            // Model
-            $model = ModelGenerator::make()
-                ->title($record->title)
-                ->columns($columns)
-                ->primary($record->primary_key)
-                ->timestamps($record->need_timestamps)
-                ->softDelete($record->soft_delete)
-                ->preview($record->table_name, $record->model_name);
-
-            // Migration
-            $migration = MigrationGenerator::make()
-                ->title($record->title)
-                ->primary($record->primary_key)
-                ->timestamps($record->need_timestamps)
-                ->softDelete($record->soft_delete)
-                ->setColumns($columns)
-                ->preview($record->table_name);
-
-            // Controller
-            $controller = ControllerGenerator::make()
-                ->primary($record->primary_key)
-                ->title($record->title)
-                ->tableName($record->table_name)
-                ->pageInfo($record->page_info)
-                ->serviceName($record->service_name)
-                ->columns($columns)
-                ->timestamps($record->need_timestamps)
-                ->preview($record->controller_name);
-
-            // Service
-            $service = ServiceGenerator::make()
-                ->title($record->title)
-                ->preview($record->service_name, $record->model_name);
-        } catch (\Exception $e) {
-            return $this->response()->fail($e->getMessage());
-        }
-
-        return $this->response()->doNotDisplayToast()->success(compact('controller', 'service', 'model', 'migration'));
+        return $this->response()->doNotDisplayToast()->success($data);
     }
 
     /**
@@ -919,27 +788,40 @@ class CodeGeneratorController extends AdminController
     /**
      * 生成代码 按钮
      *
-     * @return \Slowlyo\OwlAdmin\Renderers\AjaxAction
+     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
      */
     public function generateCodeAction()
     {
-        return amis()->AjaxAction()
+        return amis()->DialogAction()
             ->level('link')
             ->icon('fa fa-code')
             ->label(__('admin.code_generators.generate_code'))
             ->iconClassName('pr-4')
-            ->api('/dev_tools/code_generator/generate?id=${id}')
-            ->confirmText(__('admin.code_generators.confirm_generate_code'))
-            ->feedback(
-                amis()->Dialog()->title(' ')->bodyClassName('overflow-auto')->body(amis()
-                    ->Tpl()
-                    ->tpl('${result | raw}'))->onEvent([
-                    'confirm' => [
-                        'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
-                    ],
-                    'cancel'  => [
-                        'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
-                    ],
+            ->dialog(
+                amis()->Dialog()->title(__('admin.code_generators.select_generate_record'))->body([
+                    amis()->Form()->api('post:/dev_tools/code_generator/generate?id=${id}')->mode('normal')->body([
+                        amis()->CheckboxesControl('needs')
+                            ->checkAll()
+                            ->inline(false)
+                            ->required()
+                            ->options(Generator::make()->needCreateOptions()),
+                    ])->feedback(
+                        amis()->Dialog()->title(' ')->bodyClassName('overflow-auto')
+                            ->size('lg')
+                            ->body(amis()->Tpl()->tpl('${result | raw}'))
+                            ->onEvent([
+                                'confirm' => [
+                                    'actions' => [
+                                        ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'],
+                                    ],
+                                ],
+                                'cancel'  => [
+                                    'actions' => [
+                                        ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'],
+                                    ],
+                                ],
+                            ])
+                    ),
                 ])
             );
     }
@@ -998,7 +880,7 @@ class CodeGeneratorController extends AdminController
         $options = collect($list)->except(['menu_id'])->map(fn($item, $index) => [
             'label'   => Str::headline($index),
             'value'   => $index,
-            'content' => $item,
+            'content' => is_array($item) ? implode("\n", $item) : $item,
             'hidden'  => blank($item),
         ])->values();
 
