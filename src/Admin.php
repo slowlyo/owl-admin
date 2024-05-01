@@ -22,7 +22,8 @@ use Slowlyo\OwlAdmin\Support\{Context,
     Cores\Module,
     Cores\Permission,
     Cores\JsonResponse,
-    Cores\Relationships};
+    Cores\Relationships
+};
 
 class Admin
 {
@@ -37,10 +38,13 @@ class Admin
     {
         Relationships::boot();
         Api::boot();
-        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
-        if (class_exists('\Laravel\Octane\Events\RequestReceived')){
-            Event::listen(\Laravel\Octane\Events\RequestReceived::class, function ($event){
+        if (class_exists(Sanctum::class)) {
+            Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+        }
+
+        if (class_exists('\Laravel\Octane\Events\RequestReceived')) {
+            Event::listen(\Laravel\Octane\Events\RequestReceived::class, function ($event) {
                 SqlRecord::$sql = [];
             });
         }
