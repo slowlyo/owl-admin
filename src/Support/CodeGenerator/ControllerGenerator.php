@@ -135,7 +135,7 @@ class ControllerGenerator extends BaseGenerator
 
             $item = $this->getColumnComponent('list_component', $column);
 
-            if ($column['type'] == 'integer') {
+            if ($column['type'] == 'integer' && !Str::contains($column['name'], '_id')) {
                 $item .= '->sortable()';
             }
 
