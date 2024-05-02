@@ -433,7 +433,7 @@ class CodeGeneratorController extends AdminController
         return $this->response()->success(compact('record'));
     }
 
-    public function formData()
+    public function formData($directReturn = false)
     {
         $databaseColumns = Generator::make()->getDatabaseColumns();
 
@@ -475,6 +475,10 @@ class CodeGeneratorController extends AdminController
             'save_path_options'  => $savePaths,
             'component_options'  => $this->service->getComponentOptions(),
         ];
+
+        if($directReturn){
+            return $data;
+        }
 
         return $this->response()->success($data);
     }
@@ -885,6 +889,19 @@ class CodeGeneratorController extends AdminController
         ])->values();
 
         return $this->response()->success($options);
+    }
+
+    public function edit($id)
+    {
+        if ($this->actionOfGetData()) {
+            $data = $this->service->getEditData($id)->toArray();
+
+            $data = array_merge($data, $this->formData(true));
+
+            return $this->response()->success($data);
+        }
+
+        return parent::edit($id);
     }
 
     /**
