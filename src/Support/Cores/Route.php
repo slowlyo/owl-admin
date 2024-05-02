@@ -34,8 +34,6 @@ class Route
     {
         $config = fn($key) => config($prefix . $key);
 
-        app('router')->get('/admin', fn() => Admin::view());
-
         app('router')->group([
             'domain'     => $config('admin.route.domain'),
             'prefix'     => $config('admin.route.prefix'),
