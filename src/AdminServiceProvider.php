@@ -21,6 +21,7 @@ class AdminServiceProvider extends ServiceProvider
         Console\CreateUserCommand::class,
         Console\ResetPasswordCommand::class,
         Console\Module\InitCommand::class,
+        Console\Module\InitDbCommand::class,
     ];
 
     protected array $routeMiddleware = [
