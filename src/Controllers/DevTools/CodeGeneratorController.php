@@ -298,7 +298,7 @@ class CodeGeneratorController extends AdminController
      */
     public function generate(Request $request)
     {
-        $result = Generator::make()->generate($request->id, $request->needs);
+        $result = Generator::make()->generate($request->id, explode(',', $request->needs));
 
         return $this->response()->doNotDisplayToast()->success(compact('result'));
     }

@@ -72,7 +72,7 @@ const LayoutContent = () => {
             {(getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full) && <LayoutTabs/>}
             <div className="flex-1">
                 <Scrollbars autoHide
-                            className="clear-children-mb"
+                            className="clear-children-mb custom-scrollbar"
                             ref={scrollbarRef}
                             onScroll={() => setScroll(scrollbarRef.current.getValues().scrollTop)}>
                     <div className="owl-container">

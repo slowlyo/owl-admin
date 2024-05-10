@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
  * File 文件上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/file
  *
  * @author  slowlyo
- * @version 6.3.0
+ * @version 6.4.1
  */
 class FileControl extends BaseRenderer
 {

@@ -1,6 +1,7 @@
 import React from 'react'
 import './style/index.less'
 import {render as renderAmis, RenderOptions} from 'amis'
+import {AlertComponent} from 'amis-ui'
 import {message} from 'antd'
 import {amisRequest} from '@/service/api'
 import {useHistory} from 'react-router'
@@ -62,6 +63,7 @@ const AmisRender = ({schema, className = ''}) => {
 
     return (
         <div className={className}>
+            <AlertComponent key="alert"/>
             {renderAmis(schema, props, options)}
         </div>
     )

@@ -54,3 +54,8 @@ html, body {
 .owl-container:has(.owl-iframe) {
     padding: 0;
 }
+
+.custom-scrollbar > :first-child {
+    margin-right: -16px !important;
+    margin-bottom: -16px !important;
+}

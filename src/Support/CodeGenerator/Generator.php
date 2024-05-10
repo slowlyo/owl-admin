@@ -225,21 +225,6 @@ class Generator
                 $paths[] = $path;
             }
 
-            // Migration
-            $migratePath = '';
-            if ($needs->contains('need_database_migration')) {
-                $path = MigrationGenerator::make()
-                    ->title($record->title)
-                    ->primary($record->primary_key)
-                    ->timestamps($record->need_timestamps)
-                    ->softDelete($record->soft_delete)
-                    ->generate($record->table_name, $columns, $record->model_name);
-
-                $message     .= $successMessage('Migration', $path);
-                $migratePath = str_replace(base_path(), '', $path);
-                $paths[]     = $path;
-            }
-
             // Controller
             if ($needs->contains('need_controller')) {
                 $path = ControllerGenerator::make()
@@ -268,8 +253,25 @@ class Generator
 
                 $paths[] = $path;
             }
+
             // Route
             RouteGenerator::handle($record->menu_info);
+
+            // Migration
+            $migratePath = '';
+            if ($needs->contains('need_database_migration')) {
+                $path = MigrationGenerator::make()
+                    ->title($record->title)
+                    ->primary($record->primary_key)
+                    ->timestamps($record->need_timestamps)
+                    ->softDelete($record->soft_delete)
+                    ->generate($record->table_name, $columns, $record->model_name);
+
+                $message     .= $successMessage('Migration', $path);
+                $migratePath = str_replace(base_path(), '', $path);
+                $paths[]     = $path;
+            }
+
             // 创建数据库表
             if ($needs->contains('need_create_table')) {
                 if (Schema::hasTable($record->table_name)) {

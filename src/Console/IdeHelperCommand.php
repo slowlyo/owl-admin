@@ -45,7 +45,7 @@ EOF;
 
     public function pushHelper($text)
     {
-        file_put_contents(config('admin.directory') . '/_admin_ide_helper.php', $text . PHP_EOL, FILE_APPEND);
+        file_put_contents(base_path('/_admin_ide_helper.php'), $text . PHP_EOL, FILE_APPEND);
     }
 
     public function handleHelper()
@@ -56,7 +56,7 @@ EOF;
 /** @noinspection all */
 EOF;
 
-        file_put_contents(config('admin.directory') . '/_admin_ide_helper.php', $text);
+        file_put_contents(base_path('/_admin_ide_helper.php'), $text);
 
         collect(Route::getRoutes())
             ->map(function ($route) {

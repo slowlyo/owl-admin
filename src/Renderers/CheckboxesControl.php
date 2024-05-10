@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 复选框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/checkboxes
  *
  * @author  slowlyo
- * @version 6.3.0
+ * @version 6.4.1
  */
 class CheckboxesControl extends BaseRenderer
 {

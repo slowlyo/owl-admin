@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TextArea 多行文本输入框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/textarea
  *
  * @author  slowlyo
- * @version 6.3.0
+ * @version 6.4.1
  */
 class TextareaControl extends BaseRenderer
 {

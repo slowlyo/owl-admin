@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Plain 纯文本渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/plain
  *
  * @author  slowlyo
- * @version 6.3.0
+ * @version 6.4.1
  */
 class Plain extends BaseRenderer
 {

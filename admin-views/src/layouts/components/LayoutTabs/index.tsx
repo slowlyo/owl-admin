@@ -6,7 +6,6 @@ import {useHistory} from 'react-router'
 import {useAliveController} from 'react-activation'
 import Tab from './components/Tab'
 import {getCacheKey, registerGlobalFunction} from '@/utils/common'
-import {Scrollbars} from 'react-custom-scrollbars'
 
 // Tab
 const LayoutTabs = () => {

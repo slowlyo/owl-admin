@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 搜索框渲染器
  *
  * @author  slowlyo
- * @version 6.3.0
+ * @version 6.4.1
  */
 class SearchBox extends BaseRenderer
 {

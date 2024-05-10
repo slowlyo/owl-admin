@@ -97,7 +97,7 @@ export const DoubleLayout = () => {
                 </div>
 
                 <div className="w-full h-full pt-[65px]">
-                    <Scrollbars autoHide>
+                    <Scrollbars autoHide className="custom-scrollbar">
                         {routes?.map(item => {
                             if (item?.meta?.hide) return null
                             const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
