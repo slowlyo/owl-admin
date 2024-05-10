@@ -298,9 +298,7 @@ class CodeGeneratorController extends AdminController
      */
     public function generate(Request $request)
     {
-        $needs = is_string($request->needs) ? explode(',', $request->needs) : $request->needs;
-
-        $result = Generator::make()->generate($request->id, $needs);
+        $result = Generator::make()->generate($request->id, safe_explode(',', $request->needs));
 
         return $this->response()->doNotDisplayToast()->success(compact('result'));
     }
@@ -478,7 +476,7 @@ class CodeGeneratorController extends AdminController
             'component_options'  => $this->service->getComponentOptions(),
         ];
 
-        if ($directReturn) {
+        if($directReturn){
             return $data;
         }
 
