@@ -63,7 +63,7 @@ const AmisRender = ({schema, className = ''}) => {
 
     return (
         <div className={className}>
-            <AlertComponent key="alert"/>
+            <AlertComponent key="alert" locale={getSetting('locale') || 'zh_CN'}/>
             {renderAmis(schema, props, options)}
         </div>
     )
