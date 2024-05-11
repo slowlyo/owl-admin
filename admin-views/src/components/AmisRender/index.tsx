@@ -18,10 +18,9 @@ const AmisRender = ({schema, className = ''}) => {
         'en': 'en-US'
     }
 
-    const props = {
-        locale: localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN',
-        location: history.location,
-    }
+    const localeValue = localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN'
+
+    const props = {locale: localeValue, location: history.location}
 
     const options: RenderOptions = {
         enableAMISDebug: getSetting('show_development_tools'),
@@ -63,7 +62,7 @@ const AmisRender = ({schema, className = ''}) => {
 
     return (
         <div className={className}>
-            <AlertComponent key="alert" locale={getSetting('locale') || 'zh_CN'}/>
+            <AlertComponent key="alert" locale={localeValue}/>
             {renderAmis(schema, props, options)}
         </div>
     )
