@@ -1,6 +1,6 @@
 <div align="center">
     <br/>
-    <img src="https://slowlyo.gitee.io/static/images/owl-admin/logo.png" alt="" />
+    <img src="https://doc.owladmin.com/static/images/demo/logo.png" alt="" />
     <h1 align="center">
         Owl Admin
     </h1>
@@ -33,7 +33,7 @@
 <br>
 
 <div align="center">
-  <img  width="92%" style="border-radius:4px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://slowlyo.gitee.io/static/images/owl-admin/_home.png" />
+  <img  width="92%" style="border-radius:4px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://doc.owladmin.com/static/images/demo/home.png" />
 </div>
 <br>
 
@@ -67,9 +67,9 @@
 
 ### 截图
 
-![登录](https://slowlyo.gitee.io/static/images/owl-admin/_login.png)
-![首页](https://slowlyo.gitee.io/static/images/owl-admin/_home.png)
-![可视化编辑器](https://slowlyo.gitee.io/static/images/owl-admin/_editor.png)
+![登录](https://doc.owladmin.com/static/images/demo/login.png)
+![首页](https://doc.owladmin.com/static/images/demo/home.png)
+![可视化编辑器](https://doc.owladmin.com/static/images/demo/editor.png)
 
 <br>
 
@@ -121,7 +121,7 @@ _初始账号密码都是 `admin`_
 
 ### 小白入门视频
 
-[![入门视频](https://slowlyo.gitee.io/static/images/owl-admin/video.png)](https://www.bilibili.com/video/BV18w411X7BG)
+[![入门视频](https://doc.owladmin.com/static/images/demo/video.png)](https://www.bilibili.com/video/BV18w411X7BG)
 
 <br>
 
