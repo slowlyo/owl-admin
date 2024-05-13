@@ -64,28 +64,6 @@ class AuthController extends AdminController
 
     public function loginPage()
     {
-        $captcha       = null;
-        $enableCaptcha = Admin::config('admin.auth.login_captcha');
-
-        // 验证码
-        if ($enableCaptcha) {
-            $captcha = amis()->InputGroupControl()->body([
-                amis()->TextControl()->name('captcha')->placeholder(__('admin.captcha'))->required(),
-                amis()->HiddenControl()->name('sys_captcha'),
-                amis()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
-                    amis()->Image()
-                        ->src('${captcha_img}')
-                        ->height('1.917rem')
-                        ->className('p-0 captcha-box')
-                        ->imageClassName('rounded-r')
-                        ->set(
-                            'clickAction',
-                            ['actionType' => 'reload', 'target' => 'captcha-service']
-                        )
-                ),
-            ]);
-        }
-
         $form = amis()->Form()
             ->panelClassName('border-none')
             ->id('login-form')
@@ -100,7 +78,21 @@ class AuthController extends AdminController
                     ->name('password')
                     ->placeholder(__('admin.password'))
                     ->required(),
-                $captcha,
+                amis()->InputGroupControl('captcha_group')->body([
+                    amis()->TextControl('captcha', __('admin.captcha'))->placeholder(__('admin.captcha'))->required(),
+                    amis()->HiddenControl()->name('sys_captcha'),
+                    amis()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
+                        amis()->Image()
+                            ->src('${captcha_img}')
+                            ->height('1.917rem')
+                            ->className('p-0 captcha-box')
+                            ->imageClassName('rounded-r')
+                            ->set(
+                                'clickAction',
+                                ['actionType' => 'reload', 'target' => 'captcha-service']
+                            )
+                    ),
+                ])->visibleOn('${!!login_captcha}'),
                 amis()->CheckboxControl()->name('remember_me')->option(__('admin.remember_me'))->value(true),
 
                 // 登录按钮
@@ -110,29 +102,16 @@ class AuthController extends AdminController
                     ->level('primary')
                     ->className('w-full'),
             ])
-            ->actions([]); // 清空默认的提交按钮
-
-        $failAction = [];
-        if ($enableCaptcha) {
-            // 登录失败后刷新验证码
-            $failAction = [
-                // 登录失败事件
-                'submitFail' => [
+            // 清空默认的提交按钮
+            ->actions([])
+            ->onEvent([
+                // 页面初始化事件
+                'inited'     => [
                     'actions' => [
-                        // 刷新验证码外层Service
-                        ['actionType' => 'reload', 'componentId' => 'captcha-service'],
-                    ],
-                ],
-            ];
-        }
-        $form->onEvent(array_merge([
-            // 页面初始化事件
-            'inited'     => [
-                'actions' => [
-                    // 读取本地存储的登录参数
-                    [
-                        'actionType' => 'custom',
-                        'script'     => <<<JS
+                        // 读取本地存储的登录参数
+                        [
+                            'actionType' => 'custom',
+                            'script'     => <<<JS
 let loginParams = localStorage.getItem(window.\$owl.getCacheKey('loginParams'))
 if(loginParams){
     loginParams = JSON.parse(decodeURIComponent(window.atob(loginParams)))
@@ -143,18 +122,18 @@ if(loginParams){
     })
 }
 JS
-                        ,
+                            ,
 
+                        ],
                     ],
                 ],
-            ],
-            // 登录成功事件
-            'submitSucc' => [
-                'actions' => [
-                    // 保存登录参数到本地, 并跳转到首页
-                    [
-                        'actionType' => 'custom',
-                        'script'     => <<<JS
+                // 登录成功事件
+                'submitSucc' => [
+                    'actions' => [
+                        // 保存登录参数到本地, 并跳转到首页
+                        [
+                            'actionType' => 'custom',
+                            'script'     => <<<JS
 let _data = {}
 if(event.data.remember_me){
     _data = { username: event.data.username, password: event.data.password }
@@ -162,20 +141,29 @@ if(event.data.remember_me){
 window.\$owl.afterLoginSuccess(_data, event.data.result.data.token)
 JS,
 
+                        ],
                     ],
                 ],
-            ],
-        ], $failAction));
+
+                // 登录失败事件
+                'submitFail' => [
+                    'actions' => [
+                        // 刷新验证码外层Service
+                        ['actionType' => 'reload', 'componentId' => 'captcha-service'],
+                    ],
+                ],
+            ]);
 
         $card = amis()->Card()->className('w-96 m:w-full')->body([
-            amis()->Flex()->justify('space-between')->className('px-2.5 pb-2.5')->items([
-                amis()->Image()->src(url(Admin::config('admin.logo')))->width(40)->height(40),
-                amis()
-                    ->Tpl()
-                    ->className('font-medium')
-                    ->tpl('<div style="font-size: 24px">' . Admin::config('admin.name') . '</div>'),
+            amis()->Service()->api('/_settings')->body([
+                amis()->Flex()->justify('space-between')->className('px-2.5 pb-2.5')->items([
+                    amis()->Image()->src('${logo}')->width(40)->height(40),
+                    amis()->Tpl()
+                        ->className('font-medium')
+                        ->tpl('<div style="font-size: 24px">${app_name}</div>'),
+                ]),
+                $form,
             ]),
-            $form,
         ]);
 
         return amis()->Page()->className('login-bg')->css([
