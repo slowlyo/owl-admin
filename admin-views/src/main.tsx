@@ -37,7 +37,8 @@ const Admin = () => {
                     locale={getAntdLocale()}
                     theme={{
                         ...antdToken,
-                        algorithm: store.getState().settings.system_theme_setting.darkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm
+                        algorithm: store.getState().settings.system_theme_setting.darkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
+                        cssVar: {key: 'owl'}
                     }}>
                     <AliveScope>
                         <GlobalContext.Provider value={contextValue}>

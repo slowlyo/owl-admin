@@ -57,5 +57,4 @@ html, body {
 
 .custom-scrollbar > :first-child {
     margin-right: -16px !important;
-    margin-bottom: -16px !important;
 }
