@@ -177,6 +177,7 @@ class InitCommand extends Command
         $path     = $this->getPath("/config.php");
         $contents = $this->getStub('config');
         $_path    = sprintf('%s/%s/bootstrap.php', Admin::module()->dir, $this->module);
+        $_path = str_replace(base_path(), '', $_path);
 
         $content = str_replace('{{bootstrap}}', 'base_path(\'' . $_path . '\')', $contents);
         $content = str_replace('{{route_prefix}}', $this->getLowerName() . '-api', $content);
