@@ -11,6 +11,8 @@ const setHtmlStyle = (key: string, value: string) => document.documentElement.st
 const darkThemeHandler = (dark = false) => {
     setHtmlStyle('--owl-body-bg', dark ? '#1F1F1F' : '#fafafa')
     setHtmlStyle('--owl-main-bg', dark ? '#141414' : '#fff')
+    setHtmlStyle('--borders-radius-3', '6px')
+    setHtmlStyle('--borderRadius', '6px')
 
     let neutral = ['#141414', '#1f1f1f', '#262626', '#434343', '#595959', '#8c8c8c', '#bfbfbf', '#e9e9e9', '#f0f0f0', '#f5f5f5', '#ffffff']
 

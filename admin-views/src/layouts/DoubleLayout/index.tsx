@@ -89,6 +89,7 @@ export const DoubleLayout = () => {
     return (
         <Layout className="h-screen" hasSider>
             <Sider collapsedWidth={65}
+                   width={65}
                    theme={getSetting('system_theme_setting.darkTheme') ? 'light' : 'dark'}
                    className="border-r relative"
                    collapsed>
@@ -128,6 +129,7 @@ export const DoubleLayout = () => {
                        collapsedWidth={65}
                        className="border-r relative"
                        theme="light"
+                       style={{marginLeft: '-1px'}}
                        collapsed={collapsed}>
                     {(!collapsed && !!childrenRoutes?.length) && (
                         <div className="w-full h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate absolute">

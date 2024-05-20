@@ -23,7 +23,6 @@ const defaultSettings = {
 // 默认 token
 const defaultToken = {
     token: {
-        borderRadius: 4,
         wireframe: true,
         colorSplit: 'var(--color-border)',
     },

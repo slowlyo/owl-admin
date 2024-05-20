@@ -6,7 +6,7 @@ const Card = ({children, selected, tips, onClick, tipsInBottom = false}) => {
     return (
         <Tooltip title={tips} arrow={false} placement={tipsInBottom ? 'bottom' : 'top'}>
             <div onClick={onClick}
-                 className={'relative w-[100px] h-[60px] p-[5px] rounded cursor-pointer bg-[var(--owl-main-bg)] shadow-md border-[2px] hover:border-[var(--colors-brand-5)]' + selectClass}>
+                 className={'relative w-[100px] h-[60px] p-[5px] rounded-[6px] cursor-pointer bg-[var(--owl-main-bg)] shadow-md border-[2px] hover:border-[var(--colors-brand-5)]' + selectClass}>
                 {children}
             </div>
         </Tooltip>
@@ -24,10 +24,10 @@ const SelectLayout = ({current, change}) => {
                       tips={t('theme_setting.layout_mode_default')}
                       onClick={() => change('default')}>
                     <div className="flex h-full">
-                        <div className="bg-[var(--colors-brand-5)] opacity-60 w-[20px] h-full mr-[5px] rounded"></div>
+                        <div className="bg-[var(--colors-brand-5)] opacity-60 w-[20px] h-full mr-[5px] rounded-[6px]"></div>
                         <div className="flex-1 w-[60px] h-full flex flex-col">
-                            <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] mb-[5px] rounded"></div>
-                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded"></div>
+                            <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] mb-[5px] rounded-[6px]"></div>
+                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded-[6px]"></div>
                         </div>
                     </div>
                 </Card>
@@ -36,8 +36,8 @@ const SelectLayout = ({current, change}) => {
                       tips={t('theme_setting.layout_mode_top')}
                       onClick={() => change('top')}>
                     <div className="flex flex-col h-full">
-                        <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] mb-[5px] rounded"></div>
-                        <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded"></div>
+                        <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] mb-[5px] rounded-[6px]"></div>
+                        <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded-[6px]"></div>
                     </div>
                 </Card>
             </div>
@@ -48,10 +48,10 @@ const SelectLayout = ({current, change}) => {
                       tipsInBottom
                       onClick={() => change('top-mix')}>
                     <div className="flex flex-col h-full">
-                        <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] rounded"></div>
+                        <div className="bg-[var(--colors-brand-5)] opacity-90 h-[10px] rounded-[6px]"></div>
                         <div className="w-full flex flex-1 mt-[5px]">
-                            <div className="bg-[var(--colors-brand-5)] opacity-60 w-[20px] mr-[5px] rounded"></div>
-                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded"></div>
+                            <div className="bg-[var(--colors-brand-5)] opacity-60 w-[20px] mr-[5px] rounded-[6px]"></div>
+                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded-[6px]"></div>
                         </div>
                     </div>
                 </Card>
@@ -61,11 +61,11 @@ const SelectLayout = ({current, change}) => {
                       tipsInBottom
                       onClick={() => change('double')}>
                     <div className="flex h-full">
-                        <div className="bg-[var(--colors-brand-5)] opacity-60 w-[6px] h-auto mr-[5px] rounded"></div>
-                        <div className="bg-[var(--colors-brand-5)] opacity-60 w-[16px] h-auto mr-[5px] rounded"></div>
+                        <div className="bg-[var(--colors-brand-5)] opacity-60 w-[6px] h-auto mr-[5px] rounded-[6px]"></div>
+                        <div className="bg-[var(--colors-brand-5)] opacity-60 w-[16px] h-auto mr-[5px] rounded-[6px]"></div>
                         <div className="flex-1 w-[60px] h-full flex flex-col">
-                            <div className="bg-[var(--colors-brand-5)] h-[10px] mb-[5px] rounded"></div>
-                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded"></div>
+                            <div className="bg-[var(--colors-brand-5)] h-[10px] mb-[5px] rounded-[6px]"></div>
+                            <div className="bg-[var(--colors-brand-5)] opacity-10 flex-1 rounded-[6px]"></div>
                         </div>
                     </div>
                 </Card>

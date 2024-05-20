@@ -26,6 +26,40 @@ body {
     --Alert--warning-borderColor: var(--colors-warning-6);
     --Alert--danger-bg: var(--colors-error-9);
     --Alert--danger-borderColor: var(--colors-error-6);
+    --button-size-default-paddingRight: 15px;
+    --button-size-default-paddingLeft: 15px;
+    --dialog-header-fontWeight: 600;
+    --dialog-header-fontSize: 16px;
+    --dialog-default-border-radius: 6px;
+    --drawer-header-fontSize: 16px;
+    --drawer-header-fontWeight: 600;
+}
+
+.cxd-Picker-valueWrap {
+    flex-grow: 1;
+    position: relative;
+    padding: 0 5px;
+}
+
+.cxd-Button {
+    border-radius: var(--borderRadius);
+}
+
+.cxd-SubForm-value {
+    border-radius: var(--borderRadius);
+    padding: 0 8px;
+}
+
+.cxd-Number--enhance {
+    border-color: var(--colors-neutral-text-8)
+}
+
+.cxd-Number--enhance .cxd-Number--enhance-input {
+    flex: 1;
+    border: 0;
+    border-left: var(--Number-borderWidth) solid var(--colors-neutral-text-8);
+    border-right: var(--Number-borderWidth) solid var(--colors-neutral-text-8);
+    border-radius: 0;
 }
 
 .cxd-Markdown pre {
@@ -37,7 +71,7 @@ body {
 }
 
 .tox-tinymce {
-    border-radius: 4px;
+    border-radius: var(--borderRadius);
 }
 
 .cxd-DateRangePicker-rangers {
@@ -129,10 +163,6 @@ body {
     border: none;
 }
 
-.cxd-Panel-title, .cxd-Modal-title {
-    font-size: 14px;
-}
-
 .cxd-RichTextControl {
     border-radius: var(--borderRadius);
 }
@@ -186,6 +216,9 @@ body {
     }
 }
 
+.user-navbar .cxd-DropDown-button {
+    border-radius: var(--borders-radius-3) !important;
+}
 
 .base-form .cxd-Card-heading {
     align-items: center;
@@ -208,12 +241,10 @@ body {
     margin-bottom: 0;
 }
 
-.cxd-DropDown-menuItem, .cxd-DropDown-menu > li {
-    border-radius: var(--borders-radius-3);
-    display: flex;
-    align-items: center;
+.cxd-DropDown-button > a {
+    width: 100%;
 }
 
-.cxd-DropDown-button > a{
-    width: 100%;
+.cxd-ColumnToggler > .cxd-Button {
+    height: 32px;
 }

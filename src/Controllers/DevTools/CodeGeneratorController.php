@@ -931,7 +931,7 @@ class CodeGeneratorController extends AdminController
             ],
             '.custom-subform-item'                           => [
                 'border'        => '1px solid #eee',
-                'border-radius' => '4px',
+                'border-radius' => 'var(--borderRadius)',
                 'margin'        => '5px',
                 'width'         => '16%',
                 'padding'       => '10px',

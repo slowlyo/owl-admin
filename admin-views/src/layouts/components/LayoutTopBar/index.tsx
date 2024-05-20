@@ -25,7 +25,7 @@ const LayoutTopBar = () => {
             {/* appendNav */}
             {getSetting('nav.appendNav') && <AmisRender schema={getSetting('nav.appendNav')}/>}
 
-            <div className="bg-transparent h-full cursor-pointer min-w-[120px]" style={darkTheme() ? {
+            <div className="user-navbar bg-transparent h-full cursor-pointer min-w-[120px]" style={darkTheme() ? {
                 // @ts-ignore
                 '--colors-neutral-text-1': '#fff',
             } : {}}>
