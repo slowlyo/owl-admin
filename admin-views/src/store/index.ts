@@ -18,6 +18,7 @@ const defaultSettings = {
     enableTab: false,
     tabIcon: true,
     accordionMenu: false,
+    locale: 'zh_CN',
 }
 
 // 默认 token

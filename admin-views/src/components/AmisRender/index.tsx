@@ -18,7 +18,7 @@ const AmisRender = ({schema, className = ''}) => {
         'en': 'en-US'
     }
 
-    const localeValue = localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN'
+    const localeValue = localeMap[getSetting('system_theme_setting.locale') || 'zh_CN'] || 'zh-CN'
 
     const props = {locale: localeValue, location: history.location}
 
