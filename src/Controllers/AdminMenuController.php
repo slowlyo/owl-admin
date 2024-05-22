@@ -39,10 +39,14 @@ class AdminMenuController extends AdminController
                 amis()->TableColumn('title', admin_trans('admin.admin_menu.title')),
                 amis()->TableColumn('icon', admin_trans('admin.admin_menu.icon'))
                     ->type('flex')
+                    ->className('text-center h-full')
                     ->justify('start')
+                    ->items('center')
                     ->items([
-                        amis()->SvgIcon()->icon('${icon}')->className('mr-2 text-lg'),
-                        '${icon}',
+                        amis()->Wrapper()->size('none')->body(
+                            amis()->SvgIcon()->icon('${icon}')->className('mr-2 text-xl h-full')
+                        ),
+                        amis()->Tpl()->tpl('${icon}'),
                     ]),
                 amis()->TableColumn('url', admin_trans('admin.admin_menu.url')),
                 amis()->TableColumn('order', admin_trans('admin.admin_menu.order'))->quickEdit(
