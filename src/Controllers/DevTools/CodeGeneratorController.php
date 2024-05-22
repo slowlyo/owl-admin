@@ -233,18 +233,14 @@ class CodeGeneratorController extends AdminController
                                             ],
                                         ],
                                     ]),
-                                amis()
-                                    ->TextControl('model_name', __('admin.code_generators.model_name'))
-                                    ->value('${model_path}${' . $nameHandler . '}'),
-                                amis()
-                                    ->TextControl('controller_name',
-                                        __('admin.code_generators.controller_name'))
-                                    ->value('${controller_path}${' . $nameHandler . '}Controller'),
-                                amis()
-                                    ->TextControl('service_name', __('admin.code_generators.service_name'))
-                                    ->value('${service_path}${' . $nameHandler . '}Service'),
-                                amis()
-                                    ->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')
+                                amis()->TextControl('model_name', __('admin.code_generators.model_name'))
+                                    ->value('${model_name || (model_path + ' . $nameHandler . ')}'),
+                                amis()->TextControl('controller_name',
+                                    __('admin.code_generators.controller_name'))
+                                    ->value('${controller_name || (controller_path + ' . $nameHandler . ' + "Controller")}'),
+                                amis()->TextControl('service_name', __('admin.code_generators.service_name'))
+                                    ->value('${service_name || (service_path + ' . $nameHandler . ' + "Service")}'),
+                                amis()->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')
                                     ->value(1),
                                 amis()->SwitchControl('soft_delete', __('admin.soft_delete'))->value(1),
                             ]),
@@ -476,7 +472,7 @@ class CodeGeneratorController extends AdminController
             'component_options'  => $this->service->getComponentOptions(),
         ];
 
-        if($directReturn){
+        if ($directReturn) {
             return $data;
         }
 

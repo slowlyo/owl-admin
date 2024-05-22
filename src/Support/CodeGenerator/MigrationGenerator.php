@@ -35,7 +35,7 @@ class MigrationGenerator extends BaseMigrationCreator
         if (Admin::currentModule()) {
             $path = str_replace('/Models/', '/database/migrations/', $path);
         } else {
-            $path = str_replace('/Models/', '/../database/migrations/', $path);
+            $path = database_path('migrations');
         }
         return $this->create($name, dirname($path), $table, null);
     }
