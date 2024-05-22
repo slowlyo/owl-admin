@@ -14,7 +14,7 @@ class Authenticate
             return Admin::response()
                 ->additional(['code' => Response::HTTP_UNAUTHORIZED])
                 ->doNotDisplayToast()
-                ->fail(__('admin.please_login'));
+                ->fail(admin_trans('admin.please_login'));
         }
 
         Admin::permission()->checkUserStatus();

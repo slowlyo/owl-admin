@@ -14,7 +14,7 @@ trait ExportTrait
      */
     protected function export()
     {
-        admin_abort_if(!class_exists('\Rap2hpoutre\FastExcel\FastExcel'), __('admin.export.please_install_laravel_excel'));
+        admin_abort_if(!class_exists('\Rap2hpoutre\FastExcel\FastExcel'), admin_trans('admin.export.please_install_laravel_excel'));
 
         // 默认在 storage/app/ 下
         $path = sprintf('%s-%s.xlsx', $this->exportFileName(), date('YmdHis'));
@@ -29,7 +29,7 @@ trait ExportTrait
         try {
             fastexcel($query->get())->export(storage_path('app/' . $path), fn($row) => $this->exportMap($row));
         } catch (\Throwable $e) {
-            admin_abort(__('admin.action_failed'));
+            admin_abort(admin_trans('admin.action_failed'));
         }
 
         return $this->response()->success(compact('path'));

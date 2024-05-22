@@ -13,7 +13,7 @@ class DataUpdateApi extends AdminBaseApi
 
     public function getTitle()
     {
-        return __('admin.api_templates.data_update');
+        return admin_trans('admin.api_templates.data_update');
     }
 
     public function handle()
@@ -22,21 +22,21 @@ class DataUpdateApi extends AdminBaseApi
 
         if ($result) {
             return Admin::response()
-                ->successMessage(__('admin.successfully_message', ['attribute' => __('admin.save')]));
+                ->successMessage(admin_trans('admin.successfully_message', ['attribute' => admin_trans('admin.save')]));
         }
 
-        return Admin::response()->fail(__('admin.failed_message', ['attribute' => __('admin.save')]));
+        return Admin::response()->fail(admin_trans('admin.failed_message', ['attribute' => admin_trans('admin.save')]));
     }
 
     public function argsSchema()
     {
         return [
-            amis()->SelectControl('model', __('admin.relationships.model'))
+            amis()->SelectControl('model', admin_trans('admin.relationships.model'))
                 ->required()
                 ->menuTpl('${label} <span class="text-gray-300 pl-2">${table}</span>')
                 ->source('/dev_tools/relation/model_options')
                 ->searchable(),
-            amis()->TextControl('primary_id', __('admin.code_generators.primary_key'))->value('id'),
+            amis()->TextControl('primary_id', admin_trans('admin.code_generators.primary_key'))->value('id'),
         ];
     }
 

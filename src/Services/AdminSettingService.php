@@ -73,13 +73,13 @@ class AdminSettingService extends AdminService
      */
     public function adminSetMany(array $data)
     {
-        $prefix = __('admin.save');
+        $prefix = admin_trans('admin.save');
 
         if ($this->setMany($data)) {
-            return Admin::response()->successMessage($prefix . __('admin.successfully'));
+            return Admin::response()->successMessage($prefix . admin_trans('admin.successfully'));
         }
 
-        return Admin::response()->fail($prefix . __('admin.failed'), $this->getError());
+        return Admin::response()->fail($prefix . admin_trans('admin.failed'), $this->getError());
     }
 
     /**

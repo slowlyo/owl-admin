@@ -47,23 +47,23 @@ class Generator
     {
         return [
             [
-                'label' => __('admin.code_generators.create_database_migration'),
+                'label' => admin_trans('admin.code_generators.create_database_migration'),
                 'value' => 'need_database_migration',
             ],
             [
-                'label' => __('admin.code_generators.create_table'),
+                'label' => admin_trans('admin.code_generators.create_table'),
                 'value' => 'need_create_table',
             ],
             [
-                'label' => __('admin.code_generators.create_model'),
+                'label' => admin_trans('admin.code_generators.create_model'),
                 'value' => 'need_model',
             ],
             [
-                'label' => __('admin.code_generators.create_controller'),
+                'label' => admin_trans('admin.code_generators.create_controller'),
                 'value' => 'need_controller',
             ],
             [
-                'label' => __('admin.code_generators.create_service'),
+                'label' => admin_trans('admin.code_generators.create_service'),
                 'value' => 'need_service',
             ],
         ];

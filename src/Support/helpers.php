@@ -294,3 +294,20 @@ if (!function_exists('map2options')) {
         return collect($map)->map(fn($v, $k) => ['label' => $v, 'value' => $k])->values()->toArray();
     }
 }
+
+if (!function_exists('admin_trans')) {
+    function admin_trans($key = null, $replace = [], $locale = null)
+    {
+        if ($key != trans($key)) {
+            return trans($key, $replace, $locale);
+        }
+
+        $adminKey = 'admin::' . $key;
+
+        if ($adminKey != trans($adminKey)) {
+            return trans($adminKey, $replace, $locale);
+        }
+
+        return trans($key, $replace, $locale);
+    }
+}

@@ -13,7 +13,7 @@ class DataCreateApi extends AdminBaseApi
 
     public function getTitle()
     {
-        return __('admin.api_templates.data_create');
+        return admin_trans('admin.api_templates.data_create');
     }
 
     public function handle()
@@ -22,16 +22,16 @@ class DataCreateApi extends AdminBaseApi
 
         if ($result) {
             return Admin::response()
-                ->successMessage(__('admin.successfully_message', ['attribute' => __('admin.create')]));
+                ->successMessage(admin_trans('admin.successfully_message', ['attribute' => admin_trans('admin.create')]));
         }
 
-        return Admin::response()->fail(__('admin.failed_message', ['attribute' => __('admin.create')]));
+        return Admin::response()->fail(admin_trans('admin.failed_message', ['attribute' => admin_trans('admin.create')]));
     }
 
     public function argsSchema()
     {
         return [
-            amis()->SelectControl('model', __('admin.relationships.model'))
+            amis()->SelectControl('model', admin_trans('admin.relationships.model'))
                 ->required()
                 ->menuTpl('${label} <span class="text-gray-300 pl-2">${table}</span>')
                 ->source('/dev_tools/relation/model_options')

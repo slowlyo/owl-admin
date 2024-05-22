@@ -23,9 +23,9 @@ class AdminPermissionController extends AdminController
         $autoBtn = '';
         if (Admin::config('admin.show_auto_generate_permission_button')) {
             $autoBtn = amis()->AjaxAction()
-                ->label(__('admin.admin_permission.auto_generate'))
+                ->label(admin_trans('admin.admin_permission.auto_generate'))
                 ->level('success')
-                ->confirmText(__('admin.admin_permission.auto_generate_confirm'))
+                ->confirmText(admin_trans('admin.admin_permission.auto_generate_confirm'))
                 ->api(admin_url('system/_admin_permissions_auto_generate'));
         }
 
@@ -43,15 +43,15 @@ class AdminPermissionController extends AdminController
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('name', __('admin.admin_permission.name')),
-                amis()->TableColumn('slug', __('admin.admin_permission.slug')),
-                amis()->TableColumn('http_method', __('admin.admin_permission.http_method'))
+                amis()->TableColumn('name', admin_trans('admin.admin_permission.name')),
+                amis()->TableColumn('slug', admin_trans('admin.admin_permission.slug')),
+                amis()->TableColumn('http_method', admin_trans('admin.admin_permission.http_method'))
                     ->type('each')
                     ->items(
                         Tag::make()->label('${item}')->className('my-1')
                     )
                     ->placeholder(Tag::make()->label('ANY')),
-                amis()->TableColumn('http_path', __('admin.admin_permission.http_path'))
+                amis()->TableColumn('http_path', admin_trans('admin.admin_permission.http_path'))
                     ->type('each')
                     ->items(
                         Tag::make()->label('${item}')->className('my-1')
@@ -68,27 +68,27 @@ class AdminPermissionController extends AdminController
     public function form(): Form
     {
         return $this->baseForm()->body([
-            amis()->TextControl('name', __('admin.admin_permission.name'))->required(),
-            amis()->TextControl('slug', __('admin.admin_permission.slug'))->required(),
-            amis()->TreeSelectControl('parent_id', __('admin.parent'))
+            amis()->TextControl('name', admin_trans('admin.admin_permission.name'))->required(),
+            amis()->TextControl('slug', admin_trans('admin.admin_permission.slug'))->required(),
+            amis()->TreeSelectControl('parent_id', admin_trans('admin.parent'))
                 ->labelField('name')
                 ->valueField('id')
                 ->value(0)
                 ->options($this->service->getTree()),
-            amis()->CheckboxesControl('http_method', __('admin.admin_permission.http_method'))
+            amis()->CheckboxesControl('http_method', admin_trans('admin.admin_permission.http_method'))
                 ->options($this->getHttpMethods())
-                ->description(__('admin.admin_permission.http_method_description'))
+                ->description(admin_trans('admin.admin_permission.http_method_description'))
                 ->joinValues(false)
                 ->extractValue(),
-            amis()->NumberControl('order', __('admin.order'))
+            amis()->NumberControl('order', admin_trans('admin.order'))
                 ->required()
-                ->labelRemark(__('admin.order_asc'))
+                ->labelRemark(admin_trans('admin.order_asc'))
                 ->displayMode('enhance')
                 ->min(0)
                 ->value(0),
-            amis()->ArrayControl('http_path', __('admin.admin_permission.http_path'))
+            amis()->ArrayControl('http_path', admin_trans('admin.admin_permission.http_path'))
                 ->items(amis()->TextControl()->options($this->getRoutes())->required()),
-            amis()->TreeSelectControl('menus', __('admin.menus'))
+            amis()->TreeSelectControl('menus', admin_trans('admin.menus'))
                 ->searchable()
                 ->multiple()
                 ->showIcon(false)
@@ -210,7 +210,7 @@ class AdminPermissionController extends AdminController
         }
 
         return $this->response()->successMessage(
-            __('admin.successfully_message', ['attribute' => __('admin.admin_permission.auto_generate')])
+            admin_trans('admin.successfully_message', ['attribute' => admin_trans('admin.admin_permission.auto_generate')])
         );
     }
 

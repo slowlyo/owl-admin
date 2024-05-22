@@ -77,6 +77,7 @@ class AdminServiceProvider extends ServiceProvider
         Admin::extension()->boot();
         $this->loadRoutes();
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'admin');
 
         Admin::boot();
     }

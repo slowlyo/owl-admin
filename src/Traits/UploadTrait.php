@@ -61,7 +61,7 @@ trait UploadTrait
         }
 
         if (!$file) {
-            return $this->response()->additional(['errno' => 1])->fail(__('admin.upload_file_error'));
+            return $this->response()->additional(['errno' => 1])->fail(admin_trans('admin.upload_file_error'));
         }
 
         $path = $file->store(Admin::config('admin.upload.directory.rich'), Admin::config('admin.upload.disk'));
@@ -80,7 +80,7 @@ trait UploadTrait
         $file = request()->file('file');
 
         if (!$file) {
-            return $this->response()->fail(__('admin.upload_file_error'));
+            return $this->response()->fail(admin_trans('admin.upload_file_error'));
         }
 
         $path = $file->store(Admin::config('admin.upload.directory.' . $type), Admin::config('admin.upload.disk'));

@@ -88,14 +88,14 @@ abstract class AdminController extends Controller
     protected function autoResponse($flag, $text = '')
     {
         if (!$text) {
-            $text = __('admin.actions');
+            $text = admin_trans('admin.actions');
         }
 
         if ($flag) {
-            return $this->response()->successMessage($text . __('admin.successfully'));
+            return $this->response()->successMessage($text . admin_trans('admin.successfully'));
         }
 
-        return $this->response()->fail($this->service->getError() ?? $text . __('admin.failed'));
+        return $this->response()->fail($this->service->getError() ?? $text . admin_trans('admin.failed'));
     }
 
     public function index()
@@ -124,7 +124,7 @@ abstract class AdminController extends Controller
 
         $form = amis()->Card()
             ->className('base-form')
-            ->header(['title' => __('admin.create')])
+            ->header(['title' => admin_trans('admin.create')])
             ->toolbar([$this->backButton()])
             ->body($this->form(false)->api($this->getStorePath()));
 
@@ -142,7 +142,7 @@ abstract class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $response = fn($result) => $this->autoResponse($result, __('admin.save'));
+        $response = fn($result) => $this->autoResponse($result, admin_trans('admin.save'));
 
         if ($this->actionOfQuickEdit()) {
             return $response($this->service->quickEdit($request->all()));
@@ -172,7 +172,7 @@ abstract class AdminController extends Controller
 
         $detail = amis()->Card()
             ->className('base-form')
-            ->header(['title' => __('admin.detail')])
+            ->header(['title' => admin_trans('admin.detail')])
             ->body($this->detail($id))
             ->toolbar([$this->backButton()]);
 
@@ -200,7 +200,7 @@ abstract class AdminController extends Controller
 
         $form = amis()->Card()
             ->className('base-form')
-            ->header(['title' => __('admin.edit')])
+            ->header(['title' => admin_trans('admin.edit')])
             ->toolbar([$this->backButton()])
             ->body(
                 $this->form(true)->api($this->getUpdatePath())->initApi($this->getEditGetDataPath())
@@ -222,7 +222,7 @@ abstract class AdminController extends Controller
     {
         $result = $this->service->update($this->getPrimaryValue($request), $request->all());
 
-        return $this->autoResponse($result, __('admin.save'));
+        return $this->autoResponse($result, admin_trans('admin.save'));
     }
 
     /**
@@ -236,6 +236,6 @@ abstract class AdminController extends Controller
     {
         $rows = $this->service->delete($ids);
 
-        return $this->autoResponse($rows, __('admin.delete'));
+        return $this->autoResponse($rows, admin_trans('admin.delete'));
     }
 }

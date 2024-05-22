@@ -21,11 +21,11 @@ class AuthController extends AdminController
     {
         if (Admin::config('admin.auth.login_captcha')) {
             if (!$request->has('captcha')) {
-                return $this->response()->fail(__('admin.required', ['attribute' => __('admin.captcha')]));
+                return $this->response()->fail(admin_trans('admin.required', ['attribute' => admin_trans('admin.captcha')]));
             }
 
             if (strtolower(cache()->pull($request->sys_captcha)) != strtolower($request->captcha)) {
-                return $this->response()->fail(__('admin.captcha_error'));
+                return $this->response()->fail(admin_trans('admin.captcha_error'));
             }
         }
 
@@ -34,8 +34,8 @@ class AuthController extends AdminController
                 'username' => 'required',
                 'password' => 'required',
             ], [
-                'username.required' => __('admin.required', ['attribute' => __('admin.username')]),
-                'password.required' => __('admin.required', ['attribute' => __('admin.password')]),
+                'username.required' => admin_trans('admin.required', ['attribute' => admin_trans('admin.username')]),
+                'password.required' => admin_trans('admin.required', ['attribute' => admin_trans('admin.password')]),
             ]);
 
             if ($validator->fails()) {
@@ -46,17 +46,17 @@ class AuthController extends AdminController
 
             if ($user && Hash::check($request->password, $user->password)) {
                 if (!$user->enabled) {
-                    return $this->response()->fail(__('admin.user_disabled'));
+                    return $this->response()->fail(admin_trans('admin.user_disabled'));
                 }
 
                 $module = Admin::currentModule(true);
                 $prefix = $module ? $module . '.' : '';
                 $token  = $user->createToken($prefix . 'admin')->plainTextToken;
 
-                return $this->response()->success(compact('token'), __('admin.login_successful'));
+                return $this->response()->success(compact('token'), admin_trans('admin.login_successful'));
             }
 
-            abort(Response::HTTP_BAD_REQUEST, __('admin.login_failed'));
+            abort(Response::HTTP_BAD_REQUEST, admin_trans('admin.login_failed'));
         } catch (\Exception $e) {
             return $this->response()->fail($e->getMessage());
         }
@@ -71,15 +71,15 @@ class AuthController extends AdminController
             ->api(admin_url('/login'))
             ->initApi('/no-content')
             ->body([
-                amis()->TextControl()->name('username')->placeholder(__('admin.username'))->required(),
+                amis()->TextControl()->name('username')->placeholder(admin_trans('admin.username'))->required(),
                 amis()
                     ->TextControl()
                     ->type('input-password')
                     ->name('password')
-                    ->placeholder(__('admin.password'))
+                    ->placeholder(admin_trans('admin.password'))
                     ->required(),
                 amis()->InputGroupControl('captcha_group')->body([
-                    amis()->TextControl('captcha', __('admin.captcha'))->placeholder(__('admin.captcha'))->required(),
+                    amis()->TextControl('captcha', admin_trans('admin.captcha'))->placeholder(admin_trans('admin.captcha'))->required(),
                     amis()->HiddenControl()->name('sys_captcha'),
                     amis()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
                         amis()->Image()
@@ -93,12 +93,12 @@ class AuthController extends AdminController
                             )
                     ),
                 ])->visibleOn('${!!login_captcha}'),
-                amis()->CheckboxControl()->name('remember_me')->option(__('admin.remember_me'))->value(true),
+                amis()->CheckboxControl()->name('remember_me')->option(admin_trans('admin.remember_me'))->value(true),
 
                 // 登录按钮
                 amis()->VanillaAction()
                     ->actionType('submit')
-                    ->label(__('admin.login'))
+                    ->label(admin_trans('admin.login'))
                     ->level('primary')
                     ->className('w-full'),
             ])
@@ -233,11 +233,11 @@ JS,
                 amis()->VanillaAction()
                     ->iconClassName('pr-2')
                     ->icon('fa fa-user-gear')
-                    ->label(__('admin.user_setting'))
+                    ->label(admin_trans('admin.user_setting'))
                     ->onClick('window.location.hash = "#/user_setting"'),
                 amis()->VanillaAction()
                     ->iconClassName('pr-2')
-                    ->label(__('admin.logout'))
+                    ->label(admin_trans('admin.logout'))
                     ->icon('fa-solid fa-right-from-bracket')
                     ->onClick('window.$owl.logout()'),
             ]);
@@ -255,15 +255,15 @@ JS,
             ->api('put:' . admin_url('/user_setting'))
             ->body([
                 amis()->ImageControl()
-                    ->label(__('admin.admin_user.avatar'))
+                    ->label(admin_trans('admin.admin_user.avatar'))
                     ->name('avatar')
                     ->receiver($this->uploadImagePath()),
-                amis()->TextControl()->label(__('admin.admin_user.name'))->name('name')->required(),
-                amis()->TextControl()->type('input-password')->label(__('admin.old_password'))->name('old_password'),
-                amis()->TextControl()->type('input-password')->label(__('admin.password'))->name('password'),
+                amis()->TextControl()->label(admin_trans('admin.admin_user.name'))->name('name')->required(),
+                amis()->TextControl()->type('input-password')->label(admin_trans('admin.old_password'))->name('old_password'),
+                amis()->TextControl()->type('input-password')->label(admin_trans('admin.password'))->name('password'),
                 amis()->TextControl()
                     ->type('input-password')
-                    ->label(__('admin.confirm_password'))
+                    ->label(admin_trans('admin.confirm_password'))
                     ->name('confirm_password'),
             ]);
 

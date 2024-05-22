@@ -609,7 +609,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
                     'extension' => $this->getName(),
                 ],
             ])
-            ->actions([amis('submit')->label(__('admin.save'))->level('primary')])
+            ->actions([amis('submit')->label(admin_trans('admin.save'))->level('primary')])
             ->api('post:' . admin_url('dev_tools/extensions/save_config'));
     }
 

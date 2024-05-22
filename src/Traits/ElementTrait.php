@@ -27,7 +27,7 @@ trait ElementTrait
         $script = sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
 
         return amis()->OtherAction()
-            ->label(__('admin.back'))
+            ->label(admin_trans('admin.back'))
             ->icon('fa-solid fa-chevron-left')
             ->level('primary')
             ->onClick('window.history.back();' . $script);
@@ -39,19 +39,19 @@ trait ElementTrait
     protected function bulkDeleteButton()
     {
         return amis()->DialogAction()
-            ->label(__('admin.delete'))
+            ->label(admin_trans('admin.delete'))
             ->icon('fa-solid fa-trash-can')
             ->dialog(
                 amis()->Dialog()
-                    ->title(__('admin.delete'))
+                    ->title(admin_trans('admin.delete'))
                     ->className('py-2')
                     ->actions([
-                        amis()->Action()->actionType('cancel')->label(__('admin.cancel')),
-                        amis()->Action()->actionType('submit')->label(__('admin.delete'))->level('danger'),
+                        amis()->Action()->actionType('cancel')->label(admin_trans('admin.cancel')),
+                        amis()->Action()->actionType('submit')->label(admin_trans('admin.delete'))->level('danger'),
                     ])
                     ->body([
                         amis()->Form()->wrapWithPanel(false)->api($this->getBulkDeletePath())->body([
-                            amis()->Tpl()->className('py-2')->tpl(__('admin.confirm_delete')),
+                            amis()->Tpl()->className('py-2')->tpl(admin_trans('admin.confirm_delete')),
                         ]),
                     ])
             );
@@ -71,13 +71,13 @@ trait ElementTrait
             $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath())->onEvent([]);
 
             $button = amis()->DialogAction()->dialog(
-                amis()->Dialog()->title(__('admin.create'))->body($form)->size($dialogSize)
+                amis()->Dialog()->title(admin_trans('admin.create'))->body($form)->size($dialogSize)
             );
         } else {
             $button = amis()->LinkAction()->link($this->getCreatePath());
         }
 
-        return $button->label(__('admin.create'))->icon('fa fa-add')->level('primary');
+        return $button->label(admin_trans('admin.create'))->icon('fa fa-add')->level('primary');
     }
 
     /**
@@ -98,13 +98,13 @@ trait ElementTrait
                 ->onEvent([]);
 
             $button = amis()->DialogAction()->dialog(
-                amis()->Dialog()->title(__('admin.edit'))->body($form)->size($dialogSize)
+                amis()->Dialog()->title(admin_trans('admin.edit'))->body($form)->size($dialogSize)
             );
         } else {
             $button = amis()->LinkAction()->link($this->getEditPath());
         }
 
-        return $button->label(__('admin.edit'))->icon('fa-regular fa-pen-to-square')->level('link');
+        return $button->label(admin_trans('admin.edit'))->icon('fa-regular fa-pen-to-square')->level('link');
     }
 
     /**
@@ -119,13 +119,13 @@ trait ElementTrait
     {
         if ($dialog) {
             $button = amis()->DialogAction()->dialog(
-                amis()->Dialog()->title(__('admin.show'))->body($this->detail('$id'))->size($dialogSize)
+                amis()->Dialog()->title(admin_trans('admin.show'))->body($this->detail('$id'))->size($dialogSize)
             );
         } else {
             $button = amis()->LinkAction()->link($this->getShowPath());
         }
 
-        return $button->label(__('admin.show'))->icon('fa-regular fa-eye')->level('link');
+        return $button->label(admin_trans('admin.show'))->icon('fa-regular fa-eye')->level('link');
     }
 
     /**
@@ -135,7 +135,7 @@ trait ElementTrait
     protected function rowDeleteButton()
     {
         return amis()->DialogAction()
-            ->label(__('admin.delete'))
+            ->label(admin_trans('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
             ->dialog(
@@ -143,12 +143,12 @@ trait ElementTrait
                     ->title()
                     ->className('py-2')
                     ->actions([
-                        amis()->Action()->actionType('cancel')->label(__('admin.cancel')),
-                        amis()->Action()->actionType('submit')->label(__('admin.delete'))->level('danger'),
+                        amis()->Action()->actionType('cancel')->label(admin_trans('admin.cancel')),
+                        amis()->Action()->actionType('submit')->label(admin_trans('admin.delete'))->level('danger'),
                     ])
                     ->body([
                         amis()->Form()->wrapWithPanel(false)->api($this->getDeletePath())->body([
-                            amis()->Tpl()->className('py-2')->tpl(__('admin.confirm_delete')),
+                            amis()->Tpl()->className('py-2')->tpl(admin_trans('admin.confirm_delete')),
                         ]),
                     ])
             );
@@ -165,10 +165,10 @@ trait ElementTrait
     protected function rowActions(bool|array $dialog = false, string $dialogSize = '')
     {
         if (is_array($dialog)) {
-            return amis()->Operation()->label(__('admin.actions'))->buttons($dialog);
+            return amis()->Operation()->label(admin_trans('admin.actions'))->buttons($dialog);
         }
 
-        return amis()->Operation()->label(__('admin.actions'))->buttons([
+        return amis()->Operation()->label(admin_trans('admin.actions'))->buttons([
             $this->rowShowButton($dialog, $dialogSize),
             $this->rowEditButton($dialog, $dialogSize),
             $this->rowDeleteButton(),
@@ -186,8 +186,8 @@ trait ElementTrait
             ->panelClassName('base-filter')
             ->title('')
             ->actions([
-                amis()->Button()->label(__('admin.reset'))->actionType('clear-and-submit'),
-                amis('submit')->label(__('admin.search'))->level('primary'),
+                amis()->Button()->label(admin_trans('admin.reset'))->actionType('clear-and-submit'),
+                amis('submit')->label(admin_trans('admin.search'))->level('primary'),
             ]);
     }
 
@@ -309,9 +309,9 @@ trait ElementTrait
         // 导出接口地址
         $exportPath = $this->getExportPath();
         // 无数据提示
-        $pageNoData = __('admin.export.page_no_data');
+        $pageNoData = admin_trans('admin.export.page_no_data');
         // 选中行无数据提示
-        $selectedNoData = __('admin.export.selected_rows_no_data');
+        $selectedNoData = admin_trans('admin.export.selected_rows_no_data');
         // 按钮点击事件
         $event = fn($script) => ['click' => ['actions' => [['actionType' => 'custom', 'script' => $script]]]];
         // 导出处理动作
@@ -319,17 +319,17 @@ trait ElementTrait
         // 按钮
         $buttons = [
             // 导出全部
-            amis()->VanillaAction()->label(__('admin.export.all'))->onEvent(
+            amis()->VanillaAction()->label(admin_trans('admin.export.all'))->onEvent(
                 $event("let data=event.data;let params=Object.keys(data).filter(key=>key!=='page' && key!=='__super').reduce((obj,key)=>{obj[key]=data[key];return obj;},{});let url=new URL('{$exportPath}',window.location.origin);Object.keys(params).forEach(key=>url.searchParams.append(key,params[key]));{$doAction}")
             ),
             // 导出本页
-            amis()->VanillaAction()->label(__('admin.export.page'))->onEvent(
+            amis()->VanillaAction()->label(admin_trans('admin.export.page'))->onEvent(
                 $event("let ids=event.data.items.map(item=>item.{$primaryKey});if(ids.length===0){return doAction({actionType:'toast',args:{msgType:'warning',msg:'{$pageNoData}'}})};let url=new URL('{$exportPath}',window.location.origin);url.searchParams.append('_ids',ids.join(','));{$doAction}")
             ),
         ];
         // 导出选中项
         if (!$disableSelectedItem) {
-            $buttons[] = amis()->VanillaAction()->label(__('admin.export.selected_rows'))->onEvent(
+            $buttons[] = amis()->VanillaAction()->label(admin_trans('admin.export.selected_rows'))->onEvent(
                 $event("let ids=event.data.selectedItems.map(item=>item.{$primaryKey});if(ids.length===0){return doAction({actionType:'toast',args:{msgType:'warning',msg:'{$selectedNoData}'}})};let url=new URL('{$exportPath}',window.location.origin);url.searchParams.append('_ids',ids.join(','));{$doAction}")
             );
         }
@@ -341,7 +341,7 @@ trait ElementTrait
             ->body(
                 amis()->Spinner()->set('showOn', '${showExportLoading}')->overlay()->body(
                     amis()->DropdownButton()
-                        ->label(__('admin.export.title'))
+                        ->label(admin_trans('admin.export.title'))
                         ->set('icon', 'fa-solid fa-download')
                         ->buttons($buttons)
                         ->closeOnClick()

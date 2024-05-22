@@ -29,7 +29,7 @@ trait IconifyPickerTrait
                             ->clearable()
                             ->required(),
                         amis()->Button()
-                            ->label(__('admin.search'))
+                            ->label(admin_trans('admin.search'))
                             ->level('primary')
                             ->actionType('submit')
                             ->icon('fa fa-search'),
