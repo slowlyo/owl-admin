@@ -35,7 +35,7 @@ class CodeGeneratorController extends AdminController
     public function list()
     {
         $form = function ($isEdit = false) {
-            $body = $this->form();
+            $body = $this->form($isEdit);
 
             if ($isEdit) {
                 $body = $body->initApi($this->getEditGetDataPath())->api($this->getUpdatePath());
@@ -112,7 +112,7 @@ class CodeGeneratorController extends AdminController
             ]);
     }
 
-    public function form()
+    public function form($isEdit = false)
     {
         // 下划线的表名处理成驼峰文件名
         $nameHandler = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
@@ -203,8 +203,7 @@ class CodeGeneratorController extends AdminController
                                     ->checkAll()
                                     ->defaultCheckAll()
                                     ->options(Generator::make()->needCreateOptions()),
-                                amis()
-                                    ->TextControl('primary_key', __('admin.code_generators.primary_key'))
+                                amis()->TextControl('primary_key', __('admin.code_generators.primary_key'))
                                     ->value('id')
                                     ->description(__('admin.code_generators.primary_key_description'))
                                     ->required(),
@@ -234,12 +233,11 @@ class CodeGeneratorController extends AdminController
                                         ],
                                     ]),
                                 amis()->TextControl('model_name', __('admin.code_generators.model_name'))
-                                    ->value('${model_name || (model_path + ' . $nameHandler . ')}'),
-                                amis()->TextControl('controller_name',
-                                    __('admin.code_generators.controller_name'))
-                                    ->value('${controller_name || (controller_path + ' . $nameHandler . ' + "Controller")}'),
+                                    ->value($isEdit ? '${model_name}' : '${model_path}${' . $nameHandler . '}'),
+                                amis()->TextControl('controller_name', __('admin.code_generators.controller_name'))
+                                    ->value($isEdit ? '${controller_name}' : '${controller_path}${' . $nameHandler . '}Controller'),
                                 amis()->TextControl('service_name', __('admin.code_generators.service_name'))
-                                    ->value('${service_name || (service_path + ' . $nameHandler . ' + "Service")}'),
+                                    ->value($isEdit ? '${service_name}' : '${service_path}${' . $nameHandler . '}Service'),
                                 amis()->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')
                                     ->value(1),
                                 amis()->SwitchControl('soft_delete', __('admin.soft_delete'))->value(1),
