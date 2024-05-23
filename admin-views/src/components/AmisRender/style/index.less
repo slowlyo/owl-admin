@@ -217,7 +217,7 @@ body {
 }
 
 .user-navbar .cxd-DropDown-button {
-    border-radius: var(--borders-radius-3) !important;
+    border-radius: var(--borderRadius) !important;
 }
 
 .base-form .cxd-Card-heading {
@@ -247,4 +247,28 @@ body {
 
 .cxd-ColumnToggler > .cxd-Button {
     height: 32px;
+}
+
+.cxd-Tree-item .is-checked .cxd-Tree-itemLabel-item {
+    border-radius: var(--borderRadius);
+}
+
+.cxd-TreeControl {
+    border-radius: var(--borderRadius);
+}
+
+.cxd-Tree-item:hover {
+    border-radius: var(--borderRadius);
+}
+
+.lable {
+    border-radius: var(--borderRadius);
+}
+
+.cxd-DropDown-menuItem:hover, .cxd-DropDown-menu:not(.is-mobile) > li:not(.is-disabled):hover, .cxd-Select-option.is-highlight {
+    color: var(--Form-select-menu-onHover-color);
+    background: var(--Form-select-menu-onHover-bg);
+    margin: 0 5px;
+    padding: 0 5px;
+    border-radius: var(--borderRadius);
 }

@@ -227,7 +227,7 @@ JS,
             ->label($userInfo['name'])
             ->className('h-full w-full')
             ->btnClassName('navbar-user w-full')
-            ->menuClassName('min-w-0 p-2')
+            ->menuClassName('min-w-0')
             ->set('icon', $userInfo['avatar'])
             ->buttons([
                 amis()->VanillaAction()
