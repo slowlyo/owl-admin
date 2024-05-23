@@ -335,6 +335,9 @@ class Database
 
             DB::table($this->tableName('admin_permission_menu'))->insert($_list);
         }
+
+        // 默认中文
+        settings()->set('admin_locale', 'zh_CN');
     }
 
     public static function getTables()

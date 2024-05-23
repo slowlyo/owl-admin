@@ -79,6 +79,10 @@ return [
             // 是否显示 [主题配置] 按钮
             'theme_config' => true,
         ],
+        'locale_options'     => [
+            'en'    => 'English',
+            'zh-CN' => '简体中文',
+        ],
         /*
          * keep_alive 页面缓存黑名单
          *

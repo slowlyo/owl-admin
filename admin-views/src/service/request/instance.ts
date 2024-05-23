@@ -20,11 +20,9 @@ export default class CustomAxiosInstance {
                 // 设置token
                 const token = Token().value
                 handleConfig.headers.Authorization = `Bearer ${token}`
-
                 // 设置语言
-                const cachedSettings = JSON.parse(localStorage.getItem(getCacheKey('settings')))
-                const locale = cachedSettings.system_theme_setting.locale || 'en'
-                handleConfig.headers.locale = locale
+                handleConfig.headers.locale = localStorage.getItem(getCacheKey('locale'))
+
                 return handleConfig
             },
             (axiosError: AxiosError | any) => {

@@ -5,6 +5,7 @@ import FullscreenButton from '@/layouts/components/LayoutTopBar/components/Fulls
 import SettingButton from '@/layouts/components/LayoutTopBar/components/SettingButton'
 import useSetting from '@/hooks/useSetting'
 import DarkThemeButton from '@/layouts/components/LayoutTopBar/components/DarkThemeButton'
+import LocaleButton from '@/layouts/components/LayoutTopBar/components/LocaleButton'
 
 // 顶部导航栏
 const LayoutTopBar = () => {
@@ -20,6 +21,7 @@ const LayoutTopBar = () => {
             {getSetting('layout.header.refresh') && <RefreshButton/>}
             {getSetting('layout.header.dark') && <DarkThemeButton/>}
             {getSetting('layout.header.full_screen') && <FullscreenButton/>}
+            {getSetting('layout.header.locale_toggle') && <LocaleButton/>}
             {getSetting('layout.header.theme_config') && <SettingButton/>}
 
             {/* appendNav */}

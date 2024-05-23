@@ -88,8 +88,15 @@ return [
             'dark'         => true,
             // 是否显示 [全屏] 按钮
             'full_screen'  => true,
+            // 是否显示 [多语言] 按钮
+            'locale_toggle' => true,
             // 是否显示 [主题配置] 按钮
             'theme_config' => true,
+        ],
+        // 多语言选项
+        'locale_options'     => [
+            'en'    => 'English',
+            'zh_CN' => '简体中文',
         ],
         /*
          * keep_alive 页面缓存黑名单

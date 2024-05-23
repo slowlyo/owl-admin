@@ -9,7 +9,7 @@ export const useLang = () => {
     const lang = {zh_CN, en}
 
     const t = (key: string) => {
-        const locale = getSetting('system_theme_setting.locale', 'zh_CN')
+        const locale = getSetting('locale', 'zh_CN')
 
         return arrayGet(lang[locale], key, key)
     }

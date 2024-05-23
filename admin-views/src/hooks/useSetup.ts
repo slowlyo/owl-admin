@@ -35,6 +35,8 @@ const useSetup = (store) => {
                 type: 'update-settings',
                 payload: {settings: res.data},
             })
+
+            localStorage.setItem(getCacheKey('locale'), res.data.locale)
             setLang(res.data.locale == 'zh_CN' ? 'zh-CN' : 'en-US')
             dynamicAssetsHandler(res.data.assets)
         },
