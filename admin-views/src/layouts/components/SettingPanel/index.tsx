@@ -76,6 +76,13 @@ const SettingPanel = () => {
             // 保存成功后，更新缓存
             localStorage.setItem(getCacheKey('settings'), JSON.stringify(settings))
             setCachedSettings(JSON.stringify(settings))
+
+            // 切换语言后刷新页面
+            if (JSON.parse(cachedSettings).system_theme_setting.locale !== settings.system_theme_setting.locale) {
+                setTimeout(() => {
+                    location.reload()
+                }, 500)
+            }
         }
     })
 
@@ -91,6 +98,17 @@ const SettingPanel = () => {
         return animateOptions.map((item) => {
             return {
                 label: t(`theme_setting.animate_${type}_${item}`),
+                value: item
+            }
+        })
+    }
+
+    // 获取多语言选项
+    const getLocaleOptions = () => {
+        const localeOptions = settings.langs || []
+        return localeOptions.map((item) => {
+            return {
+                label: t(`theme_setting.locale_${item}`),
                 value: item
             }
         })
@@ -117,7 +135,14 @@ const SettingPanel = () => {
                         </Space>
                     </>
                 )}>
-            <Form labelAlign="left" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+            <Form labelAlign="left" labelCol={{span: 8}} labelWrap={true} wrapperCol={{span: 16}}>
+                {/*多语言*/}
+                <Form.Item colon={false} label={t('theme_setting.locale')}>
+                    <Select options={getLocaleOptions()}
+                        onChange={(value) => handleChange('locale', value)}
+                        value={settings.system_theme_setting.locale} />    
+                </Form.Item>
+
                 {/*主题色*/}
                 <Form.Item colon={false} label={t('theme_setting.theme_color')}>
                     <ColorPicker showText

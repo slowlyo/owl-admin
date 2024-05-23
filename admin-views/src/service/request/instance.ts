@@ -2,6 +2,7 @@ import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios'
 import {message, notification} from 'antd'
 import {attachmentAdpator} from 'amis'
 import {goToLoginPage, inLoginPage, msgHandler, Token} from '@/utils/common'
+import {getCacheKey} from '@/utils/common'
 
 export default class CustomAxiosInstance {
     instance: AxiosInstance
@@ -18,9 +19,12 @@ export default class CustomAxiosInstance {
                 const handleConfig = {...config}
                 // 设置token
                 const token = Token().value
-
                 handleConfig.headers.Authorization = `Bearer ${token}`
 
+                // 设置语言
+                const cachedSettings = JSON.parse(localStorage.getItem(getCacheKey('settings')))
+                const locale = cachedSettings.system_theme_setting.locale || 'en'
+                handleConfig.headers.locale = locale
                 return handleConfig
             },
             (axiosError: AxiosError | any) => {

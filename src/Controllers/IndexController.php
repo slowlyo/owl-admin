@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Models\Extension;
 use Slowlyo\OwlAdmin\Services\AdminPageService;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\File;
 
 class IndexController extends AdminController
 {
@@ -26,6 +27,14 @@ class IndexController extends AdminController
         $module = Admin::currentModule(true);
         $prefix = $module ? $module . '_' : '';
 
+        // 获取语言列表
+        $paths = File::directories(lang_path());
+        $langs = [];
+        foreach ($paths as $path) {
+            $tmp = explode(DIRECTORY_SEPARATOR, $path);
+            array_push($langs, end($tmp));
+        }
+
         return $this->response()->success([
             'nav'      => Admin::getNav(),
             'assets'   => Admin::getAssets(),
@@ -38,6 +47,8 @@ class IndexController extends AdminController
             'show_development_tools' => Admin::config('admin.show_development_tools'),
             'system_theme_setting'   => Admin::setting()->get($prefix . 'system_theme_setting'),
             'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
+
+            'langs' => $langs,
         ]);
     }
 

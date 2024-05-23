@@ -25,15 +25,17 @@ class AdminServiceProvider extends ServiceProvider
     ];
 
     protected array $routeMiddleware = [
-        'admin.auth'       => Middleware\Authenticate::class,
-        'admin.bootstrap'  => Middleware\Bootstrap::class,
-        'admin.permission' => Middleware\Permission::class,
-        'sanctum'          => Middleware\EnsureFrontendRequestsAreStateful::class,
-        'substitute'       => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'admin.autoSetLocale' => Middleware\AutoSetLocale::class,
+        'admin.auth'          => Middleware\Authenticate::class,
+        'admin.bootstrap'     => Middleware\Bootstrap::class,
+        'admin.permission'    => Middleware\Permission::class,
+        'sanctum'             => Middleware\EnsureFrontendRequestsAreStateful::class,
+        'substitute'          => \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ];
 
     protected array $middlewareGroups = [
         'admin' => [
+            'admin.autoSetLocale',
             'admin.auth',
             'admin.bootstrap',
             'admin.permission',

@@ -27,7 +27,7 @@ function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void
     }
 
     const props = {
-        locale: localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN',
+        locale: localeMap[getSetting('system_theme_setting.locale') || 'zh_CN'] || 'zh-CN',
         location: history.location,
     }
 
