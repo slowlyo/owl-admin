@@ -2,8 +2,7 @@ import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios'
 import {message, notification} from 'antd'
 import {attachmentAdpator} from 'amis'
 import {goToLoginPage, inLoginPage, msgHandler, Token} from '@/utils/common'
-import {createStore} from 'redux'
-import rootReducer from '@/store'
+import {getCacheKey} from '@/utils/common'
 
 export default class CustomAxiosInstance {
     instance: AxiosInstance
@@ -23,8 +22,8 @@ export default class CustomAxiosInstance {
                 handleConfig.headers.Authorization = `Bearer ${token}`
 
                 // 设置语言
-                const store = createStore(rootReducer)
-                const locale = store.getState().settings.system_theme_setting.locale
+                const cachedSettings = JSON.parse(localStorage.getItem(getCacheKey('settings')))
+                const locale = cachedSettings.system_theme_setting.locale || 'en'
                 handleConfig.headers.locale = locale
                 return handleConfig
             },

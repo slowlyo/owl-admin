@@ -105,7 +105,7 @@ const SettingPanel = () => {
 
     // 获取多语言选项
     const getLocaleOptions = () => {
-        const localeOptions = ['en', 'zh_CN']
+        const localeOptions = settings.langs || []
         return localeOptions.map((item) => {
             return {
                 label: t(`theme_setting.locale_${item}`),
