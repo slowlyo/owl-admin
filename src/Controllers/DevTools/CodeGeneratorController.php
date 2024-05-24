@@ -166,7 +166,8 @@ class CodeGeneratorController extends AdminController
                                                 ],
                                             ],
                                         ]),
-                                    amis()->SelectControl('exists_table', admin_trans('admin.code_generators.exists_table'))
+                                    amis()
+                                        ->SelectControl('exists_table', admin_trans('admin.code_generators.exists_table'))
                                         ->searchable()
                                         ->clearable()
                                         ->selectMode('group')
@@ -207,7 +208,8 @@ class CodeGeneratorController extends AdminController
                                     ->value('id')
                                     ->description(admin_trans('admin.code_generators.primary_key_description'))
                                     ->required(),
-                                amis()->SelectControl('save_path', admin_trans('admin.code_generators.save_path_select'))
+                                amis()
+                                    ->SelectControl('save_path', admin_trans('admin.code_generators.save_path_select'))
                                     ->searchable()
                                     ->description(admin_trans('admin.code_generators.save_path_select_tips'))
                                     ->clearable()
@@ -234,7 +236,8 @@ class CodeGeneratorController extends AdminController
                                     ]),
                                 amis()->TextControl('model_name', admin_trans('admin.code_generators.model_name'))
                                     ->value($isEdit ? '${model_name}' : '${model_path}${' . $nameHandler . '}'),
-                                amis()->TextControl('controller_name', admin_trans('admin.code_generators.controller_name'))
+                                amis()
+                                    ->TextControl('controller_name', admin_trans('admin.code_generators.controller_name'))
                                     ->value($isEdit ? '${controller_name}' : '${controller_path}${' . $nameHandler . '}Controller'),
                                 amis()->TextControl('service_name', admin_trans('admin.code_generators.service_name'))
                                     ->value($isEdit ? '${service_name}' : '${service_path}${' . $nameHandler . '}Service'),
@@ -262,13 +265,16 @@ class CodeGeneratorController extends AdminController
                             ->valueField('id')
                             ->value(0)
                             ->source('${menu_tree}'),
-                        $this->iconifyPicker('icon', admin_trans('admin.code_generators.menu_icon'))->value('ph:circle'),
+                        $this->iconifyPicker('icon', admin_trans('admin.code_generators.menu_icon'))
+                            ->value('ph:circle'),
                     ])
                 ),
                 // 页面配置
                 amis()->Tab()->title(admin_trans('admin.code_generators.page_config'))->body(
                     amis()->ComboControl('page_info', false)->multiLine()->subFormMode('horizontal')->items([
-                        amis()->SwitchControl('dialog_form', admin_trans('admin.code_generators.dialog_form'))->value(1),
+                        amis()
+                            ->SwitchControl('dialog_form', admin_trans('admin.code_generators.dialog_form'))
+                            ->value(1),
                         amis()->SelectControl('dialog_size', admin_trans('admin.code_generators.dialog_size'))
                             ->options(['xs', 'sm', 'md', 'lg', 'xl', 'full'])
                             ->value('md')
@@ -658,7 +664,9 @@ class CodeGeneratorController extends AdminController
                                 ]),
 
                                 amis()->GroupControl()->body([
-                                    amis()->TextControl('comment', admin_trans('admin.code_generators.comment'))->value(),
+                                    amis()
+                                        ->TextControl('comment', admin_trans('admin.code_generators.comment'))
+                                        ->value(),
                                     amis()->TextControl('default', admin_trans('admin.code_generators.default_value')),
                                 ]),
 
@@ -679,7 +687,9 @@ class CodeGeneratorController extends AdminController
                                         ->clearable(),
                                 ]),
 
-                                amis()->SwitchControl('nullable', admin_trans('admin.code_generators.nullable'))->width(60),
+                                amis()
+                                    ->SwitchControl('nullable', admin_trans('admin.code_generators.nullable'))
+                                    ->width(60),
                                 amis()->CheckboxesControl('action_scope', admin_trans('admin.code_generators.scope'))
                                     ->options([
                                         ['label' => admin_trans('admin.list'), 'value' => 'list'],
@@ -715,6 +725,10 @@ class CodeGeneratorController extends AdminController
                                 amis()->SwitchControl('file_column', admin_trans('admin.code_generators.file_column'))
                                     ->value(0)
                                     ->description(admin_trans('admin.code_generators.file_column_desc')),
+                                amis()
+                                    ->SwitchControl('file_column_multi', admin_trans('admin.code_generators.file_column_multi'))
+                                    ->value(0)
+                                    ->visibleOn('${file_column}'),
                             ]),
                         ])
                 ),

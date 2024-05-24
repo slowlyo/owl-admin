@@ -114,6 +114,7 @@ return [
         'detail_component_desc'     => '详情组件, 默认为 TextControl',
         'model_config'              => '模型配置',
         'file_column'               => '文件字段',
+        'file_column_multi'         => '多文件',
         'file_column_desc'          => '文件字段会自动在模型中添加 获取/修改器 方法',
         'preview_code'              => '预览代码',
         'property'                  => '属性',

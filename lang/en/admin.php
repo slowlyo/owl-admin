@@ -114,6 +114,7 @@ return [
         'detail_component_desc'     => 'Detail Component, Default Is TextControl',
         'model_config'              => 'Model Config',
         'file_column'               => 'File Column',
+        'file_column_multi'         => 'Multi File',
         'file_column_desc'          => 'File Column, Automatically Add Attribute Methods In The Model',
         'preview_code'              => 'Preview Code',
         'property'                  => 'Property',
