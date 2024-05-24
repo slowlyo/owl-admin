@@ -92,6 +92,12 @@ class Route
                             $router->post('/list', [CodeGeneratorController::class, 'getComponentProperty']);
                             $router->post('/del', [CodeGeneratorController::class, 'delComponentProperty']);
                         });
+
+                        $router->group(['prefix' => 'common_field'], function (Router $router){
+                            $router->post('/', [CodeGeneratorController::class, 'saveColumnProperty']);
+                            $router->post('/list', [CodeGeneratorController::class, 'getColumnProperty']);
+                            $router->post('/del', [CodeGeneratorController::class, 'delColumnProperty']);
+                        });
                     });
 
                     $router->resource('extensions', ExtensionController::class);

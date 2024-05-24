@@ -140,6 +140,13 @@ return [
         'clear_code'                => 'Clear Code',
         'select_clear_record'       => 'Select what you want to clear',
         'select_generate_record'    => 'Select the content you want to generate',
+        'duplicate_column'          => 'Duplicate column name',
+        'common_field_add'          => 'Add Common Field',
+        'common_field_add_column'   => 'Add Field',
+        'config_name'               => 'Config Name',
+        'field_config'              => 'Field Config',
+        'field_name'                => 'Field Name',
+        'list_display'              => 'List Display :content',
     ],
 
     'admin_users' => 'Admin Users',

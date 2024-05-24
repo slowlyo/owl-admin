@@ -52,6 +52,11 @@ class AdminCodeGeneratorService extends AdminService
     {
         admin_abort_if(!data_get($data, 'columns'), admin_trans('admin.required', ['attribute' => admin_trans('admin.code_generators.column_info')]));
 
+        admin_abort_if(
+            collect($data['columns'])->pluck('name')->unique()->count() != count($data['columns']),
+            admin_trans('admin.code_generators.duplicate_column')
+        );
+
         $data['columns'] = collect($data['columns'])
             ->map(fn($item) => Arr::except($item, ['component_options']))
             ->toArray();
@@ -60,6 +65,9 @@ class AdminCodeGeneratorService extends AdminService
             $data['needs'][] = 'need_database_migration';
             $data['needs']   = array_unique($data['needs']);
         }
+
+        $data['page_info']['list_display_created_at'] = $data['list_display_created_at'];
+        $data['page_info']['list_display_updated_at'] = $data['list_display_updated_at'];
 
         return Arr::except($data, ['table_info', 'table_primary_keys']);
     }

@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
@@ -241,15 +242,25 @@ class CodeGeneratorController extends AdminController
                                     ->value($isEdit ? '${controller_name}' : '${controller_path}${' . $nameHandler . '}Controller'),
                                 amis()->TextControl('service_name', admin_trans('admin.code_generators.service_name'))
                                     ->value($isEdit ? '${service_name}' : '${service_path}${' . $nameHandler . '}Service'),
-                                amis()->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')
-                                    ->value(1),
+                                amis()->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')->value(1),
+                                amis()
+                                    ->SwitchControl('list_display_created_at', admin_trans('admin.code_generators.list_display', ['content' => 'CreatedAt']))
+                                    ->visibleOn('${need_timestamps}')
+                                    ->value($isEdit ? '${page_info.list_display_created_at}' : '${need_timestamps}'),
+                                amis()
+                                    ->SwitchControl('list_display_updated_at', admin_trans('admin.code_generators.list_display', ['content' => 'UpdatedAt']))
+                                    ->visibleOn('${need_timestamps}')
+                                    ->value($isEdit ? '${page_info.list_display_updated_at}' : '${need_timestamps}'),
                                 amis()->SwitchControl('soft_delete', admin_trans('admin.soft_delete'))->value(1),
                             ]),
                         ]),
                     )
                 ),
                 // 字段信息
-                amis()->Tab()->title(admin_trans('admin.code_generators.column_info'))->body($this->columnForm()),
+                amis()->Tab()->title(admin_trans('admin.code_generators.column_info'))->body([
+                    $this->cachedColumns(),
+                    $this->columnForm(),
+                ]),
                 // 路由配置
                 amis()->Tab()->title(admin_trans('admin.code_generators.route_config'))->body(
                     amis()->ComboControl('menu_info', false)->multiLine()->subFormMode('horizontal')->items([
@@ -422,6 +433,69 @@ class CodeGeneratorController extends AdminController
     }
 
     /**
+     * 保存字段配置
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function saveColumnProperty(Request $request)
+    {
+        $value = collect($request->input('value'))->firstWhere('name', $request->column);
+        $list  = settings()->get('admin_common_field', []);
+
+        $list[$request->name] = Arr::except($value, ['component_property_options']);;
+
+        $res = settings()->set('admin_common_field', $list);
+
+        return $this->autoResponse($res, admin_trans('admin.save'));
+    }
+
+    /**
+     * 获取字段配置
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function getColumnProperty(Request $request)
+    {
+        $common_field_list = collect(settings()->get('admin_common_field'))->map(fn($v, $k) => [
+            'name'        => $k,
+            'column_name' => $v['name'],
+            'value'       => $v,
+        ])->values();
+
+        return $this->response()->success(compact('common_field_list'));
+    }
+
+    /**
+     * 删除字段配置
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function delColumnProperty(Request $request)
+    {
+        $list = settings()->get('admin_common_field');
+
+        if (blank($list)) {
+            return $this->autoResponse(false);
+        }
+
+        foreach ($list as $key => $item) {
+            if ($key == $request->name) {
+                unset($list[$key]);
+            }
+        }
+
+        settings()->set('admin_common_field', $list);
+
+        return $this->autoResponse(true);
+    }
+
+    /**
      * 获取记录
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
@@ -483,6 +557,104 @@ class CodeGeneratorController extends AdminController
         return $this->response()->success($data);
     }
 
+    public function cachedColumns()
+    {
+        return amis()->Flex()->justify('end')->className('pb-3')->items([
+            amis()->DrawerAction()
+                ->className('mr-3')
+                ->label(admin_trans('admin.code_generators.common_field_add'))
+                ->level('primary')
+                ->drawer(
+                    amis()->Drawer()
+                        ->title(admin_trans('admin.code_generators.load_config'))
+                        ->bodyClassName('p-0')
+                        ->actions([])
+                        ->id('load_config_dialog')
+                        ->closeOnOutside()
+                        ->body([
+                            amis()->Service()
+                                ->name('common_field_service')
+                                ->api('post:/dev_tools/code_generator/common_field/list')
+                                ->body(
+                                    amis()->CRUDTable()
+                                        ->className('border-none')
+                                        ->loadDataOnce()
+                                        ->source('${common_field_list}')
+                                        ->headerToolbar([
+                                            amis()->DialogAction()
+                                                ->label(admin_trans('admin.code_generators.common_field_add_column'))
+                                                ->level('primary')
+                                                ->dialog(
+                                                    amis()->Dialog()
+                                                        ->title(admin_trans('admin.code_generators.common_field_add_column'))
+                                                        ->body(
+                                                            amis()->Form()
+                                                                ->reload('common_field_service')
+                                                                ->api('post:/dev_tools/code_generator/common_field')
+                                                                ->body([
+                                                                    amis()
+                                                                        ->TextControl('name', admin_trans('admin.code_generators.config_name'))
+                                                                        ->description(admin_trans('admin.code_generators.same_name_tips'))
+                                                                        ->required(),
+                                                                    amis()
+                                                                        ->SelectControl('column', admin_trans('admin.code_generators.field_config'))
+                                                                        ->valueField('name')
+                                                                        ->labelField('name')
+                                                                        ->source('${columns}')
+                                                                        ->menuTpl('<div>${name} (${comment})</div>')
+                                                                        ->required(),
+                                                                    amis()->HiddenControl('value')->value('${columns}'),
+                                                                ])
+                                                        )
+                                                ),
+                                        ])
+                                        ->columns([
+                                            amis()
+                                                ->TableColumn('name', admin_trans('admin.code_generators.config_name'))
+                                                ->searchable(),
+                                            amis()
+                                                ->TableColumn('column_name', admin_trans('admin.code_generators.field_name'))
+                                                ->searchable(),
+                                            amis()->Operation()->label(admin_trans('admin.actions'))->buttons([
+                                                // 填充
+                                                amis()->VanillaAction()
+                                                    ->label(admin_trans('admin.code_generators.fill'))
+                                                    ->level('primary')
+                                                    ->onEvent([
+                                                        'click' => [
+                                                            'actions' => [
+                                                                [
+                                                                    'actionType'  => 'setValue',
+                                                                    'componentId' => 'code_generator_form',
+                                                                    'args'        => [
+                                                                        'value' => [
+                                                                            'columns' => '${CONCAT(columns, [value])}',
+                                                                        ],
+                                                                    ],
+                                                                ],
+                                                                [
+                                                                    'actionType'  => 'closeDialog',
+                                                                    'componentId' => 'load_config_dialog',
+                                                                ],
+                                                            ],
+                                                        ],
+                                                    ]),
+
+                                                // 删除
+                                                amis()->AjaxAction()
+                                                    ->label(admin_trans('admin.delete'))
+                                                    ->level('danger')
+                                                    ->confirmText(admin_trans('admin.confirm_delete'))
+                                                    ->reload('common_field_service')
+                                                    ->api('post:/dev_tools/code_generator/common_field/del?name=${name}'),
+                                            ])->set('width', 150),
+                                        ])
+                                ),
+                        ])
+                ),
+        ]);
+    }
+
     /**
      * 字段表单
      *
@@ -515,9 +687,8 @@ class CodeGeneratorController extends AdminController
                                         ->name('component_property_list_service')
                                         ->api('post:/dev_tools/code_generator/component_property/list?key=' . $comboName . '&c=${' . $key . '_type}')
                                         ->body(
-                                            amis()
-                                                ->CRUDTable()
-                                                ->className('border-0')
+                                            amis()->CRUDTable()
+                                                ->className('border-none')
                                                 ->loadDataOnce()
                                                 ->source('${component_property_list}')
                                                 ->columns([
@@ -963,6 +1134,9 @@ class CodeGeneratorController extends AdminController
                 'position' => 'absolute',
                 'top'      => '5px',
                 'right'    => '10px',
+            ],
+            '.border-none'                                   => [
+                'border' => 'none !important',
             ],
         ];
     }

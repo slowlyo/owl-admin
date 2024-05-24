@@ -140,6 +140,13 @@ return [
         'clear_code'                => '清除代码',
         'select_clear_record'       => '选择要清除的内容',
         'select_generate_record'    => '选择要生成的内容',
+        'duplicate_column'          => '存在同名字段',
+        'common_field_add'          => '添加常用字段',
+        'common_field_add_column'   => '添加字段',
+        'config_name'               => '配置名称',
+        'field_config'              => '字段配置',
+        'field_name'                => '字段名',
+        'list_display'              => '列表显示 :content',
     ],
 
     'admin_users' => '管理员',

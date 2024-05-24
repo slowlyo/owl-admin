@@ -143,8 +143,13 @@ class ControllerGenerator extends BaseGenerator
         });
 
         if ($this->needTimestamp) {
-            $list->push("amis()->TableColumn('created_at', admin_trans('admin.created_at'))->set('type', 'datetime')->sortable()");
-            $list->push("amis()->TableColumn('updated_at', admin_trans('admin.updated_at'))->set('type', 'datetime')->sortable()");
+            if ($this->pageInfo['list_display_created_at']) {
+                $list->push("amis()->TableColumn('created_at', admin_trans('admin.created_at'))->set('type', 'datetime')->sortable()");
+            }
+
+            if ($this->pageInfo['list_display_updated_at']) {
+                $list->push("amis()->TableColumn('updated_at', admin_trans('admin.updated_at'))->set('type', 'datetime')->sortable()");
+            }
         }
 
         $list = $list->implode(",\n\t\t\t\t") . ',';
@@ -310,7 +315,7 @@ class ControllerGenerator extends BaseGenerator
     private function jsonToStringArray($jsonString)
     {
         // 首先，检查输入是否为有效的JSON字符串
-        if(!is_json($jsonString)){
+        if (!is_json($jsonString)) {
             return $jsonString;
         }
 
