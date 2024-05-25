@@ -66,8 +66,8 @@ class AdminCodeGeneratorService extends AdminService
             $data['needs']   = array_unique($data['needs']);
         }
 
-        $data['page_info']['list_display_created_at'] = $data['list_display_created_at'];
-        $data['page_info']['list_display_updated_at'] = $data['list_display_updated_at'];
+        $data['page_info']['list_display_created_at'] = $data['list_display_created_at'] ?? 1;
+        $data['page_info']['list_display_updated_at'] = $data['list_display_updated_at'] ?? 1;
 
         return Arr::except($data, ['table_info', 'table_primary_keys']);
     }
