@@ -164,6 +164,17 @@ class CodeGeneratorController extends AdminController
                                                             'value' => '/${value}',
                                                         ],
                                                     ],
+                                                    [
+                                                        'actionType'  => 'setValue',
+                                                        'componentId' => 'code_generator_form',
+                                                        'args'        => [
+                                                            'value' => [
+                                                                'model_name'      => '${model_path}${' . $nameHandler . '}',
+                                                                'controller_name' => '${controller_path}${' . $nameHandler . '}Controller',
+                                                                'service_name'    => '${service_path}${' . $nameHandler . '}Service',
+                                                            ],
+                                                        ],
+                                                    ],
                                                 ],
                                             ],
                                         ]),
@@ -193,6 +204,17 @@ class CodeGeneratorController extends AdminController
                                                         'componentId' => 'gen_menu_route',
                                                         'args'        => [
                                                             'value' => '/${SPLIT(event.data.value, "-")[0]}',
+                                                        ],
+                                                    ],
+                                                    [
+                                                        'actionType'  => 'setValue',
+                                                        'componentId' => 'code_generator_form',
+                                                        'args'        => [
+                                                            'value' => [
+                                                                'model_name'      => '${model_path}${' . $nameHandler . '}',
+                                                                'controller_name' => '${controller_path}${' . $nameHandler . '}Controller',
+                                                                'service_name'    => '${service_path}${' . $nameHandler . '}Service',
+                                                            ],
                                                         ],
                                                     ],
                                                 ],
@@ -235,13 +257,9 @@ class CodeGeneratorController extends AdminController
                                             ],
                                         ],
                                     ]),
-                                amis()->TextControl('model_name', admin_trans('admin.code_generators.model_name'))
-                                    ->value($isEdit ? '${model_name}' : '${model_path}${' . $nameHandler . '}'),
-                                amis()
-                                    ->TextControl('controller_name', admin_trans('admin.code_generators.controller_name'))
-                                    ->value($isEdit ? '${controller_name}' : '${controller_path}${' . $nameHandler . '}Controller'),
-                                amis()->TextControl('service_name', admin_trans('admin.code_generators.service_name'))
-                                    ->value($isEdit ? '${service_name}' : '${service_path}${' . $nameHandler . '}Service'),
+                                amis()->TextControl('model_name', admin_trans('admin.code_generators.model_name')),
+                                amis()->TextControl('controller_name', admin_trans('admin.code_generators.controller_name')),
+                                amis()->TextControl('service_name', admin_trans('admin.code_generators.service_name')),
                                 amis()->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')->value(1),
                                 amis()
                                     ->SwitchControl('list_display_created_at', admin_trans('admin.code_generators.list_display', ['content' => 'CreatedAt']))
