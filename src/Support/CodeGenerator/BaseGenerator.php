@@ -3,6 +3,8 @@
 namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
+use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 
 class BaseGenerator
 {
@@ -12,9 +14,16 @@ class BaseGenerator
 
     protected string $title = '';
 
-    public static function make(): static
+    protected AdminCodeGenerator $model;
+
+    public function __construct($model)
     {
-        return new static();
+        $this->model = $model;
+    }
+
+    public static function make($model): static
+    {
+        return new static($model);
     }
 
     public function primary($key): static
@@ -29,24 +38,6 @@ class BaseGenerator
         $this->title = $title;
 
         return $this;
-    }
-
-    public static function fromJson(?string $path)
-    {
-        if (isset(static::$files[$path])) {
-            return static::$files[$path];
-        }
-
-        if (!$path || !is_file($path)) {
-            return static::$files[$path] = [];
-        }
-
-        try {
-            return static::$files[$path] = (array)json_decode(app('files')->get($path), true);
-        } catch (\Throwable $e) {
-        }
-
-        return static::$files[$path] = [];
     }
 
     public static function guessClassFileName($class): bool|string
@@ -103,40 +94,32 @@ class BaseGenerator
         return str_replace('_', $symbol, ltrim($text, $symbol));
     }
 
-    protected function replaceClass(&$stub, $name): static
-    {
-        $class = str_replace($this->getNamespace($name) . '\\', '', $name);
-
-        $stub = str_replace('{{ ClassName }}', $class, $stub);
-
-        return $this;
-    }
-
-    protected function replaceTitle(&$stub): static
-    {
-        $stub = str_replace('{{ AppTitle }}', $this->title, $stub);
-
-        return $this;
-    }
-
-    protected function replaceNamespace(&$stub, $name): static
-    {
-        $stub = str_replace(
-            '{{ Namespace }}',
-            $this->getNamespace($name),
-            $stub
-        );
-
-        return $this;
-    }
-
-    public function replaceSpace($stub): array|string
-    {
-        return str_replace(["\n\n\n", "\n    \n"], ["\n\n", ''], $stub);
-    }
-
     protected function getNamespace($name): string
     {
-        return trim(implode('\\', array_slice(explode('\\', $name), 0, -1)), '\\');
+        return trim(implode('\\', array_slice(explode('\\', str_replace('/', '\\', $name)), 0, -1)), '\\');
+    }
+
+    protected function writeFile($name, $type)
+    {
+        $name = str_replace('/', '\\', $name);
+        $path = static::guessClassFileName($name);
+        $dir  = dirname($path);
+
+        $files = app('files');
+
+        if (!is_dir($dir)) {
+            $files->makeDirectory($dir, 0755, true);
+        }
+
+        if ($files->exists($path)) {
+            abort(Response::HTTP_BAD_REQUEST, "{$type} [{$name}] already exists!");
+        }
+
+        $content = $this->assembly();
+
+        $files->put($path, $content);
+        $files->chmod($path, 0777);
+
+        return $path;
     }
 }

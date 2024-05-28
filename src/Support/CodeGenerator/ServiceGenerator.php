@@ -2,63 +2,42 @@
 
 namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
-use Symfony\Component\HttpFoundation\Response as HttpResponse;
+use Illuminate\Support\Str;
 
 class ServiceGenerator extends BaseGenerator
 {
-    protected string $stub = __DIR__ . '/stubs/service.stub';
-
-    public function generate($serviceName, $modelName): bool|string
+    public function generate()
     {
-        $name      = str_replace('/', '\\', $serviceName);
-        $modelName = str_replace('/', '\\', $modelName);
-        $path      = static::guessClassFileName($name);
-        $dir       = dirname($path);
-
-        $files = app('files');
-
-        if (!is_dir($dir)) {
-            $files->makeDirectory($dir, 0755, true);
-        }
-
-        if ($files->exists($path)) {
-            abort(HttpResponse::HTTP_BAD_REQUEST, "Service [$name] already exists!");
-        }
-
-        $stub = $files->get($this->stub);
-
-        $stub = $this->replaceClass($stub, $name)
-            ->replaceTitle($stub)
-            ->replaceModel($stub, $modelName)
-            ->replaceNamespace($stub, $name)
-            ->replaceSpace($stub);
-
-        $files->put($path, $stub);
-        $files->chmod($path, 0777);
-
-        return $path;
+        return $this->writeFile($this->model->service_name, 'Service');
     }
 
-    public function preview($serviceName, $modelName): bool|string
+    public function preview()
     {
-        $name      = str_replace('/', '\\', $serviceName);
-        $modelName = str_replace('/', '\\', $modelName);
-        $files     = app('files');
-        $stub      = $files->get($this->stub);
-
-        return $this->replaceClass($stub, $name)
-            ->replaceTitle($stub)
-            ->replaceModel($stub, $modelName)
-            ->replaceNamespace($stub, $name)
-            ->replaceSpace($stub);
+        return $this->assembly();
     }
 
-    public function replaceModel(&$stub, $name): static
+    public function assembly()
     {
-        $class = str_replace($this->getNamespace($name) . '\\', '', $name);
+        $name           = $this->model->service_name;
+        $class          = Str::of($name)->explode('/')->last();
+        $modelClass     = str_replace('/', '\\', $this->model->model_name);
+        $modelClassName = Str::of($modelClass)->explode('\\')->last();
 
-        $stub = str_replace(['{{ ModelName }}', '{{ UseModel }}'], [$class, $name], $stub);
+        $content = '<?php' . PHP_EOL . PHP_EOL;
+        $content .= 'namespace ' . $this->getNamespace($name) . ';' . PHP_EOL . PHP_EOL;
+        $content .= "use {$modelClass};" . PHP_EOL;
+        $content .= 'use Slowlyo\OwlAdmin\Services\AdminService;' . PHP_EOL . PHP_EOL;
+        $content .= '/**' . PHP_EOL;
+        $content .= ' * ' . $this->model->title . PHP_EOL;
+        $content .= ' *' . PHP_EOL;
+        $content .= " * @method {$modelClassName} getModel()" . PHP_EOL;
+        $content .= " * @method {$modelClassName}|\Illuminate\Database\Query\Builder query()" . PHP_EOL;
+        $content .= ' */' . PHP_EOL;
+        $content .= "class {$class} extends AdminService" . PHP_EOL;
+        $content .= '{' . PHP_EOL;
+        $content .= "\tprotected string \$modelName = {$modelClassName}::class;" . PHP_EOL;
+        $content .= '}';
 
-        return $this;
+        return $content;
     }
 }

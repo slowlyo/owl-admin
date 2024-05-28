@@ -4,40 +4,40 @@ namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
 use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
-use Illuminate\Support\Collection;
+use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Illuminate\Database\Migrations\MigrationCreator as BaseMigrationCreator;
 
 class MigrationGenerator extends BaseMigrationCreator
 {
-    protected string $stub = __DIR__ . '/stubs/model.stub';
+    protected AdminCodeGenerator $model;
 
-    protected Collection $columns;
-
-    protected bool $needSoftDelete = false;
-
-    protected bool $needTimestamp = false;
-
-    protected string $primaryKey = '';
-
-    protected string $title = '';
-
-    public static function make(): static
+    public function __construct($model)
     {
-        return new static(app('files'), __DIR__ . '/stubs');
+        $this->model = $model;
+
+        parent::__construct(app('files'), __DIR__ . '/stubs');
     }
 
-    public function generate($table, $columns, $model_name): string
+    public static function make($model): static
     {
-        $this->columns = $columns;
-        $name          = 'create_' . $table . '_table';
-        $path          = BaseGenerator::guessClassFileName($model_name);
+        return new self($model);
+    }
+
+    public function generate(): string
+    {
+        $this->columns = collect($this->model->columns);
+
+        $name = 'create_' . $this->model->table_name . '_table';
+        $path = BaseGenerator::guessClassFileName($this->model->model_name);
+
         if (Admin::currentModule()) {
             $path = str_replace('/Models/', '/database/migrations/', $path);
         } else {
             $path = database_path('migrations') . '/temp.php';
         }
-        return $this->create($name, dirname($path), $table, null);
+
+        return $this->create($name, dirname($path), $this->model->table_name, null);
     }
 
     protected function populateStub($stub, $table): array|string
@@ -45,41 +45,20 @@ class MigrationGenerator extends BaseMigrationCreator
         return str_replace(['{{ content }}', '{{ table }}'], [$this->generateContent(), $table], $stub);
     }
 
-    public function preview($table)
+    public function preview()
     {
-        return $this->populateStub($this->getStub($table, false), $table);
-    }
-
-    public function primary($key): static
-    {
-        $this->primaryKey = $key;
-
-        return $this;
-    }
-
-    public function title($title): static
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function setColumns($columns)
-    {
-        $this->columns = $columns;
-
-        return $this;
+        return $this->populateStub($this->getStub($this->model->table_name, false), $this->model->table_name);
     }
 
     public function generateContent(): string
     {
-        empty($this->columns) && abort(HttpResponse::HTTP_BAD_REQUEST, 'Table fields can\'t be empty');
+        blank($this->model->columns) && abort(HttpResponse::HTTP_BAD_REQUEST, 'Table fields can\'t be empty');
 
         $rows   = [];
-        $rows[] = "\$table->comment('{$this->title}');\n";
-        $rows[] = "\$table->increments('{$this->primaryKey}');\n";
+        $rows[] = "\$table->comment('{$this->model->title}');\n";
+        $rows[] = "\$table->increments('{$this->model->primary_key}');\n";
 
-        foreach ($this->columns as $field) {
+        foreach ($this->model->columns as $field) {
             $additional = Arr::get($field, 'additional');
 
             $column = "\$table->{$field['type']}('{$field['name']}'";
@@ -117,29 +96,15 @@ class MigrationGenerator extends BaseMigrationCreator
             $rows[] = $column . ";\n";
         }
 
-        if ($this->needTimestamp) {
+        if ($this->model->need_timestamps) {
             $rows[] = "\$table->timestamps();\n";
         }
 
-        if ($this->needSoftDelete) {
+        if ($this->model->soft_delete) {
             $rows[] = "\$table->softDeletes();\n";
         }
 
         return trim(implode(str_repeat(' ', 12), $rows), "\n");
-    }
-
-    public function softDelete(bool $need): static
-    {
-        $this->needSoftDelete = $need;
-
-        return $this;
-    }
-
-    public function timestamps(bool $need): static
-    {
-        $this->needTimestamp = $need;
-
-        return $this;
     }
 
     protected function getStub($table, $create): string

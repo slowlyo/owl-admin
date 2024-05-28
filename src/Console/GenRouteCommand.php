@@ -59,7 +59,7 @@ EOF;
                 } catch (\Throwable $e) {
                 }
 
-                if (!class_exists($_controller)) {
+                if (!@class_exists($_controller)) {
                     return;
                 }
 

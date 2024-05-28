@@ -4,158 +4,76 @@ namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class ModelGenerator extends BaseGenerator
 {
-    protected bool $needSoftDelete = false;
-
-    protected bool $needTimestamp = false;
-
-    protected Collection $columns;
-
-    protected string $stub = __DIR__ . '/stubs/model.stub';
-
-    public function softDelete(bool $need): static
+    public function generate()
     {
-        $this->needSoftDelete = $need;
-
-        return $this;
+        return $this->writeFile($this->model->model_name, 'Model');
     }
 
-    public function timestamps(bool $need): static
+    public function preview()
     {
-        $this->needTimestamp = $need;
-
-        return $this;
+        return $this->assembly();
     }
 
-    public function columns($columns): static
+    public function assembly()
     {
-        $this->columns = $columns;
+        $name  = $this->model->model_name;
+        $class = Str::of($name)->explode('/')->last();
 
-        return $this;
-    }
+        $content = '<?php' . PHP_EOL . PHP_EOL;
+        $content .= 'namespace ' . $this->getNamespace($name) . ';' . PHP_EOL . PHP_EOL;
 
-    public function generate($table, $name): bool|string
-    {
-        $name = str_replace('/', '\\', $name);
-        $path = static::guessClassFileName($name);
-        $dir  = dirname($path);
-
-        $files = app('files');
-
-        if (!is_dir($dir)) {
-            $files->makeDirectory($dir, 0755, true);
+        // 软删
+        if ($this->model->soft_delete) {
+            $content .= 'use Illuminate\\Database\\Eloquent\\SoftDeletes;' . PHP_EOL;
         }
 
-        if ($files->exists($path)) {
-            abort(HttpResponse::HTTP_BAD_REQUEST, "Model [$name] already exists!");
+        $content .= 'use Slowlyo\OwlAdmin\Models\BaseModel as Model;' . PHP_EOL . PHP_EOL;
+        $content .= '/**' . PHP_EOL;
+        $content .= ' * ' . $this->model->title . PHP_EOL;
+        $content .= ' */' . PHP_EOL;
+        $content .= "class {$class} extends Model" . PHP_EOL;
+        $content .= '{' . PHP_EOL;
+
+        if ($this->model->soft_delete) {
+            $content .= "\tuse SoftDeletes;" . PHP_EOL;
         }
 
-        $stub = $files->get($this->stub);
-
-        $stub = $this->replaceClass($stub, $name)
-            ->replaceTitle($stub)
-            ->replaceNamespace($stub, $name)
-            ->replaceSoftDeletes($stub)
-            ->replaceTable($stub, $table, $name)
-            ->replaceTimestamp($stub)
-            ->replaceContent($stub)
-            ->replacePrimaryKey($stub)
-            ->replaceSpace($stub);
-
-        $files->put($path, $stub);
-        $files->chmod($path, 0777);
-
-        return $path;
-    }
-
-    public function preview($table, $name)
-    {
-        $name  = str_replace('/', '\\', $name);
-        $files = app('files');
-        $stub  = $files->get($this->stub);
-
-        return $this->replaceClass($stub, $name)
-            ->replaceTitle($stub)
-            ->replaceNamespace($stub, $name)
-            ->replaceSoftDeletes($stub)
-            ->replaceTable($stub, $table, $name)
-            ->replaceTimestamp($stub)
-            ->replaceContent($stub)
-            ->replacePrimaryKey($stub)
-            ->replaceSpace($stub);
-    }
-
-    protected function replaceSoftDeletes(&$stub): static
-    {
-        $import = $use = '';
-
-        if ($this->needSoftDelete) {
-            $import = 'use Illuminate\\Database\\Eloquent\\SoftDeletes;';
-            $use    = 'use SoftDeletes;';
+        // 表名
+        if (Str::plural(strtolower($class)) !== $this->model->table_name) {
+            $content .= PHP_EOL . "\tprotected \$table = '{$this->model->table_name}';" . PHP_EOL;
         }
-
-        $stub = str_replace(['{{ ImportSoftDelete }}', '{{ SoftDelete }}'], [$import, $use], $stub);
-
-        return $this;
-    }
-
-    protected function replaceTable(&$stub, $table, $name): static
-    {
-        $class = str_replace($this->getNamespace($name) . '\\', '', $name);
-
-        $tableName = Str::plural(strtolower($class)) !== $table ? "protected \$table = '$table';\n" : '';
-
-        $stub = str_replace('{{ ModelTable }}', $tableName, $stub);
-
-        return $this;
-    }
-
-    protected function replaceTimestamp(&$stub): static
-    {
-        $useTimestamps = $this->needTimestamp ? '' : "public \$timestamps = false;\n";
-
-        $stub = str_replace('{{ Timestamp }}', $useTimestamps, $stub);
-
-        return $this;
-    }
-
-    protected function replaceContent(&$stub): static
-    {
-        $content = '';
-
-        $this->columns->each(function ($column) use (&$content) {
+        // 主键
+        if ($this->model->primary_key != 'id') {
+            $content .= PHP_EOL . "protected \$primaryKey = '{$this->model->primary_key}';" . PHP_EOL;
+        }
+        // 时间戳
+        if (!$this->model->need_timestamps) {
+            $content .= PHP_EOL . "\tpublic \$timestamps = false;" . PHP_EOL;
+        }
+        // 处理文件上传
+        foreach ($this->model->columns as $column) {
             if (Arr::get($column, 'file_column', false)) {
-                $_name   = Str::camel($column['name']);
-                $fun = 'file_upload_handle';
-                if(Arr::get($column, 'file_column_multi', false)){
+                $_name = Str::camel($column['name']);
+                $fun   = 'file_upload_handle';
+                if (Arr::get($column, 'file_column_multi', false)) {
                     $fun = 'file_upload_handle_multi';
                 }
                 $content .= <<<EOF
-
 
     public function {$_name}():\Illuminate\Database\Eloquent\Casts\Attribute
     {
         return {$fun}();
     }
+
 EOF;
             }
-        });
+        }
 
-        $stub = str_replace('{{ ModelContent }}', $content, $stub);
+        $content .= '}';
 
-        return $this;
-    }
-
-    protected function replacePrimaryKey(&$stub): static
-    {
-        $modelKey = $this->primaryKey == 'id' ? '' : "protected \$primaryKey = '{$this->primaryKey}';\n";
-
-        $stub = str_replace('{{ ModelKey }}', $modelKey, $stub);
-
-        return $this;
+        return $content;
     }
 }

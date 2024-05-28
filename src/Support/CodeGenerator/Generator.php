@@ -201,9 +201,8 @@ class Generator
     public function generate($id, $needs = [])
     {
         $record = AdminCodeGenerator::find($id);
-
-        $needs   = collect(filled($needs) ? $needs : $record->needs);
-        $columns = collect($record->columns);
+        $model  = AdminCodeGenerator::find($id);
+        $needs  = collect(filled($needs) ? $needs : $record->needs);
 
         $successMessage = fn($type, $path) => "<b class='text-success'>{$type} generated successfully!</b><br>{$path}<br><br>";
 
@@ -212,45 +211,25 @@ class Generator
         try {
             // Model
             if ($needs->contains('need_model')) {
-                $path = ModelGenerator::make()
-                    ->title($record->title)
-                    ->columns($columns)
-                    ->primary($record->primary_key)
-                    ->timestamps($record->need_timestamps)
-                    ->softDelete($record->soft_delete)
-                    ->generate($record->table_name, $record->model_name);
+                $path = ModelGenerator::make($model)->generate();
 
                 $message .= $successMessage('Model', $path);
-
                 $paths[] = $path;
             }
 
             // Controller
             if ($needs->contains('need_controller')) {
-                $path = ControllerGenerator::make()
-                    ->title($record->title)
-                    ->primary($record->primary_key)
-                    ->title($record->title)
-                    ->tableName($record->table_name)
-                    ->pageInfo($record->page_info)
-                    ->serviceName($record->service_name)
-                    ->columns($columns)
-                    ->timestamps($record->need_timestamps)
-                    ->generate($record->controller_name);
+                $path = ControllerGenerator::make($record)->generate();
 
                 $message .= $successMessage('Controller', $path);
-
                 $paths[] = $path;
             }
 
             // Service
             if ($needs->contains('need_service')) {
-                $path = ServiceGenerator::make()
-                    ->title($record->title)
-                    ->generate($record->service_name, $record->model_name);
+                $path = ServiceGenerator::make($record)->generate();
 
                 $message .= $successMessage('Service', $path);
-
                 $paths[] = $path;
             }
 
@@ -260,12 +239,7 @@ class Generator
             // Migration
             $migratePath = '';
             if ($needs->contains('need_database_migration')) {
-                $path = MigrationGenerator::make()
-                    ->title($record->title)
-                    ->primary($record->primary_key)
-                    ->timestamps($record->need_timestamps)
-                    ->softDelete($record->soft_delete)
-                    ->generate($record->table_name, $columns, $record->model_name);
+                $path = MigrationGenerator::make($record)->generate();
 
                 $message     .= $successMessage('Migration', $path);
                 $migratePath = str_replace(base_path(), '', $path);
@@ -298,47 +272,21 @@ class Generator
 
     public function preview($id)
     {
-        $record  = AdminCodeGenerator::find($id);
-        $columns = collect($record->columns);
+        $record = AdminCodeGenerator::find($id);
 
         try {
             // Model
-            $model = ModelGenerator::make()
-                ->title($record->title)
-                ->columns($columns)
-                ->primary($record->primary_key)
-                ->timestamps($record->need_timestamps)
-                ->softDelete($record->soft_delete)
-                ->preview($record->table_name, $record->model_name);
-
+            $model = ModelGenerator::make($record)->preview();
             // Migration
-            $migration = MigrationGenerator::make()
-                ->title($record->title)
-                ->primary($record->primary_key)
-                ->timestamps($record->need_timestamps)
-                ->softDelete($record->soft_delete)
-                ->setColumns($columns)
-                ->preview($record->table_name);
-
+            $migration = MigrationGenerator::make($record)->preview();
             // Controller
-            $controller = ControllerGenerator::make()
-                ->primary($record->primary_key)
-                ->title($record->title)
-                ->tableName($record->table_name)
-                ->pageInfo($record->page_info)
-                ->serviceName($record->service_name)
-                ->columns($columns)
-                ->timestamps($record->need_timestamps)
-                ->preview($record->controller_name);
-
+            $controller = ControllerGenerator::make($record)->preview();
             // Service
-            $service = ServiceGenerator::make()
-                ->title($record->title)
-                ->preview($record->service_name, $record->model_name);
+            $service = ServiceGenerator::make($record)->preview();
         } catch (\Exception $e) {
             admin_abort($e->getMessage());
         }
 
-        return compact('controller', 'service', 'model', 'migration');
+        return compact('model', 'migration', 'controller', 'service');
     }
 }

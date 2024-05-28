@@ -4,133 +4,74 @@ namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class ControllerGenerator extends BaseGenerator
 {
-    protected string $stub = __DIR__ . '/stubs/controller.stub';
-
-    protected string $serviceName = '';
-
-    protected string $tableName = '';
-
-    protected array $pageInfo = [];
-
-    protected Collection $columns;
-
-    protected bool $needTimestamp = false;
-
-    public function timestamps(bool $need): static
+    public function generate()
     {
-        $this->needTimestamp = $need;
-
-        return $this;
+        return $this->writeFile($this->model->controller_name, 'Controller');
     }
 
-    public function serviceName($serviceName): static
+    public function preview()
     {
-        $this->serviceName = $serviceName;
-
-        return $this;
+        return $this->assembly();
     }
 
-    public function tableName($tableName): static
+    public function assembly()
     {
-        $this->tableName = $tableName;
+        $name             = $this->model->controller_name;
+        $class            = Str::of($name)->explode('/')->last();
+        $serviceClass     = str_replace('/', '\\', $this->model->service_name);
+        $serviceClassName = Str::of($serviceClass)->explode('\\')->last();
 
-        return $this;
+        $content = '<?php' . PHP_EOL . PHP_EOL;
+        $content .= 'namespace ' . $this->getNamespace($name) . ';' . PHP_EOL . PHP_EOL;
+        $content .= "use {$serviceClass};" . PHP_EOL;
+        $content .= 'use Slowlyo\OwlAdmin\Controllers\AdminController;' . PHP_EOL . PHP_EOL;
+        $content .= '/**' . PHP_EOL;
+        $content .= ' * ' . $this->model->title . PHP_EOL;
+        $content .= ' *' . PHP_EOL;
+        $content .= " * @property {$serviceClassName} \$service" . PHP_EOL;
+        $content .= ' */' . PHP_EOL;
+        $content .= "class {$class} extends AdminController" . PHP_EOL;
+        $content .= '{' . PHP_EOL;
+        $content .= "\tprotected string \$serviceName = {$serviceClassName}::class;" . PHP_EOL . PHP_EOL;
+
+        $this->replaceListContent($content);
+        $this->replaceFormContent($content);
+        $this->replaceDetailContent($content);
+
+        $content .= '}';
+
+        return $content;
     }
 
-    public function pageInfo($pageInfo): static
+    protected function replaceListContent(&$content)
     {
-        $this->pageInfo = $pageInfo;
+        $content .= "\tpublic function list()" . PHP_EOL;
+        $content .= "\t{" . PHP_EOL;
+        $content .= "\t\t\$crud = \$this->baseCRUD()" . PHP_EOL;
+        $content .= "\t\t\t->filterTogglable(false)" . PHP_EOL;
 
-        return $this;
-    }
-
-    public function columns($columns): static
-    {
-        $this->columns = $columns;
-
-        if ($this->columns->isEmpty()) {
-            abort(HttpResponse::HTTP_BAD_REQUEST, 'Table fields can\'t be empty');
+        // 顶部工具栏
+        if ($this->model->page_info['dialog_form']) {
+            $content .= "\t\t\t->headerToolbar([" . PHP_EOL;
+            $content .= "\t\t\t\t\$this->createButton(true{$this->getDialogSize()})," . PHP_EOL;
+            $content .= "\t\t\t\t...\$this->baseHeaderToolBar()" . PHP_EOL;
+            $content .= "\t\t\t])" . PHP_EOL;
         }
 
-        return $this;
-    }
+        // 字段
+        $content .= "\t\t\t->columns([" . PHP_EOL;
 
-    public function generate($name): bool|string
-    {
-        $name = str_replace('/', '\\', $name);
-        $path = static::guessClassFileName($name);
-        $dir  = dirname($path);
-
-        $files = app('files');
-
-        if (!is_dir($dir)) {
-            $files->makeDirectory($dir, 0755, true);
-        }
-
-        if ($files->exists($path)) {
-            abort(HttpResponse::HTTP_BAD_REQUEST, "Controller [$name] already exists!");
-        }
-
-        $stub = $files->get($this->stub);
-
-        $stub = $this->replaceClass($stub, $name)
-            ->replaceTitle($stub)
-            ->replaceNamespace($stub, $name)
-            ->replaceService($stub)
-            ->replaceListContent($stub)
-            ->replaceFormContent($stub)
-            ->replaceDetailContent($stub)
-            ->replaceSpace($stub);
-
-        $files->put($path, $stub);
-        $files->chmod($path, 0777);
-
-        return $path;
-    }
-
-    public function preview($name)
-    {
-        $name  = str_replace('/', '\\', $name);
-        $files = app('files');
-        $stub  = $files->get($this->stub);
-
-        return $this->replaceClass($stub, $name)
-            ->replaceTitle($stub)
-            ->replaceNamespace($stub, $name)
-            ->replaceService($stub)
-            ->replaceListContent($stub)
-            ->replaceFormContent($stub)
-            ->replaceDetailContent($stub)
-            ->replaceSpace($stub);
-    }
-
-    protected function replaceService(&$stub): static
-    {
-        $name = str_replace('/', '\\', $this->serviceName);
-
-        $class = str_replace($this->getNamespace($name) . '\\', '', $name);
-
-        $stub = str_replace(['{{ ServiceName }}', '{{ UseService }}'], [$class, $name], $stub);
-
-        return $this;
-    }
-
-    protected function replaceListContent(&$stub): static
-    {
-        $list = collect();
-
-        $primaryKey     = $this->primaryKey ?? 'id';
+        $primaryKey     = $this->model->primary_key ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $list->push("amis()->TableColumn('{$primaryKey}', '{$primaryKeyName}')->sortable()");
 
-        $this->columns->each(function ($column) use (&$list) {
+        $content .= "\t\t\t\t" . "amis()->TableColumn('{$primaryKey}', '{$primaryKeyName}')->sortable()," . PHP_EOL;
+
+        foreach ($this->model->columns as $column) {
             if (!$this->columnInTheScope($column, 'list')) {
-                return;
+                continue;
             }
 
             $item = $this->getColumnComponent('list_component', $column);
@@ -139,80 +80,38 @@ class ControllerGenerator extends BaseGenerator
                 $item .= '->sortable()';
             }
 
-            $list->push($item);
-        });
+            $content .= "\t\t\t\t" . $item . ',' . PHP_EOL;
+        }
 
-        if ($this->needTimestamp) {
-            if ($this->pageInfo['list_display_created_at']) {
-                $list->push("amis()->TableColumn('created_at', admin_trans('admin.created_at'))->set('type', 'datetime')->sortable()");
+        if ($this->model->need_timestamps && $this->model->page_info['list_display_created_at']) {
+            $content .= "\t\t\t\t" . "amis()->TableColumn('created_at', admin_trans('admin.created_at'))->type('datetime')->sortable()" . ',' . PHP_EOL;
+        }
+
+        if ($this->model->need_timestamps && $this->model->page_info['list_display_updated_at']) {
+            $content .= "\t\t\t\t" . "amis()->TableColumn('updated_at', admin_trans('admin.updated_at'))->type('datetime')->sortable()" . ',' . PHP_EOL;
+        }
+
+        // 操作按钮
+        $content .= "\t\t\t\t" . $this->makeRowButton($this->model->page_info) . PHP_EOL;
+        $content .= "\t\t\t]);" . PHP_EOL . PHP_EOL;
+        $content .= "\t\treturn \$this->baseList(\$crud);" . PHP_EOL;
+        $content .= "\t}" . PHP_EOL;
+    }
+
+    protected function replaceFormContent(&$content)
+    {
+        $content .= PHP_EOL;
+        $content .= "\tpublic function form(\$isEdit = false)" . PHP_EOL;
+        $content .= "\t{" . PHP_EOL;
+        $content .= "\t\treturn \$this->baseForm()->body([" . PHP_EOL;
+
+        foreach ($this->model->columns as $column) {
+            if (data_get($column, 'index') == 'primary') {
+                continue;
             }
 
-            if ($this->pageInfo['list_display_updated_at']) {
-                $list->push("amis()->TableColumn('updated_at', admin_trans('admin.updated_at'))->set('type', 'datetime')->sortable()");
-            }
-        }
-
-        $list = $list->implode(",\n\t\t\t\t") . ',';
-
-        $stub = str_replace('{{ ListContent }}', $list, $stub);
-
-        // row actions
-        $stub = str_replace('{{ RowActions }}', $this->makeRowButton($this->pageInfo), $stub);
-
-        // header toolbar
-        $headerToolbar = '';
-        if ($this->pageInfo['dialog_form']) {
-            $headerToolbar =
-                "\n\t\t\t->headerToolbar([\n\t\t\t\t\$this->createButton(true{$this->getDialogSize()}),\n\t\t\t\t...\$this->baseHeaderToolBar()\n\t\t\t])";
-        }
-
-        $stub = str_replace('{{ HeaderToolbar }}', $headerToolbar, $stub);
-
-        return $this;
-    }
-
-    private function getDialogSize()
-    {
-        $pageInfo   = $this->pageInfo;
-        $dialogSize = $pageInfo['dialog_size'] ?? 'md';
-        $dialogSize = $dialogSize == 'md' ? '' : ', \'' . $dialogSize . '\'';
-
-        return $pageInfo['dialog_form'] ? $dialogSize : '';
-    }
-
-    private function makeRowButton($pageInfo)
-    {
-        $_actions   = data_get($pageInfo, 'row_actions');
-        $isDialog   = $pageInfo['dialog_form'] ? 'true' : '';
-        $dialogSize = $this->getDialogSize();
-
-        if (in_array('show', $_actions) && in_array('edit', $_actions) && in_array('delete', $_actions)) {
-            return "\$this->rowActions({$isDialog}{$dialogSize})";
-        }
-
-        $str = "\$this->rowActions([\n\t\t\t\t";
-
-        if (in_array('show', $_actions)) {
-            $str .= "\t\$this->rowShowButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
-        }
-        if (in_array('edit', $_actions)) {
-            $str .= "\t\$this->rowEditButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
-        }
-        if (in_array('delete', $_actions)) {
-            $str .= "\t\$this->rowDeleteButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
-        }
-        $str .= "])";
-
-        return $str;
-    }
-
-    protected function replaceFormContent(&$stub): static
-    {
-        $form = collect();
-
-        $this->columns->where('index', '!=', 'primary')->each(function ($column) use (&$form) {
             if (!$this->columnInTheScope($column, 'create') && !$this->columnInTheScope($column, 'edit')) {
-                return;
+                continue;
             }
 
             $item = $this->getColumnComponent('form_component', $column);
@@ -223,45 +122,42 @@ class ControllerGenerator extends BaseGenerator
                 $item .= '->visibleOn(!$isEdit)';
             }
 
+            $content .= "\t\t\t" . $item . ',' . PHP_EOL;
+        }
 
-            $form->push($item);
-        });
-
-        $form = $form->implode(",\n\t\t\t") . ',';
-
-        $stub = str_replace('{{ FormContent }}', $form, $stub);
-
-        return $this;
+        $content .= "\t\t]);" . PHP_EOL;
+        $content .= "\t}" . PHP_EOL;
     }
 
-    protected function replaceDetailContent(&$stub): static
+    protected function replaceDetailContent(&$content)
     {
-        $detail = collect();
+        $content .= PHP_EOL;
+        $content .= "\tpublic function detail()" . PHP_EOL;
+        $content .= "\t{" . PHP_EOL;
+        $content .= "\t\treturn \$this->baseDetail()->body([" . PHP_EOL;
 
-        $primaryKey     = $this->primaryKey ?? 'id';
+        $primaryKey     = $this->model->primary_key ?? 'id';
         $primaryKeyName = strtoupper($primaryKey);
-        $detail->push("amis()->TextControl('{$primaryKey}', '{$primaryKeyName}')->static()");
 
-        $this->columns->each(function ($column) use (&$detail) {
+        $content .= "\t\t\t" . "amis()->TextControl('{$primaryKey}', '{$primaryKeyName}')->static()," . PHP_EOL;
+
+        foreach ($this->model->columns as $column) {
             if (!$this->columnInTheScope($column, 'detail')) {
-                return;
+                continue;
             }
 
             $item = $this->getColumnComponent('detail_component', $column);
 
-            $detail->push($item);
-        });
-
-        if ($this->needTimestamp) {
-            $detail->push("amis()->TextControl('created_at', admin_trans('admin.created_at'))->static()");
-            $detail->push("amis()->TextControl('updated_at', admin_trans('admin.updated_at'))->static()");
+            $content .= "\t\t\t" . $item . ',' . PHP_EOL;
         }
 
-        $detail = $detail->implode(",\n\t\t\t");
+        if ($this->model->need_timestamps) {
+            $content .= "\t\t\tamis()->TextControl('created_at', admin_trans('admin.created_at'))->static()," . PHP_EOL;
+            $content .= "\t\t\tamis()->TextControl('updated_at', admin_trans('admin.updated_at'))->static()," . PHP_EOL;
+        }
 
-        $stub = str_replace('{{ DetailContent }}', $detail, $stub);
-
-        return $this;
+        $content .= "\t\t]);" . PHP_EOL;
+        $content .= "\t}" . PHP_EOL;
     }
 
     public function columnInTheScope($column, $scope)
@@ -303,6 +199,41 @@ class ControllerGenerator extends BaseGenerator
             'form_component' => "amis()->TextControl('{$column['name']}', '{$label}')",
             'detail_component' => "amis()->TextControl('{$column['name']}', '{$label}')->static()",
         };
+    }
+
+    private function makeRowButton($pageInfo)
+    {
+        $_actions   = data_get($pageInfo, 'row_actions');
+        $isDialog   = $pageInfo['dialog_form'] ? 'true' : '';
+        $dialogSize = $this->getDialogSize();
+
+        if (in_array('show', $_actions) && in_array('edit', $_actions) && in_array('delete', $_actions)) {
+            return "\$this->rowActions({$isDialog}{$dialogSize})";
+        }
+
+        $str = "\$this->rowActions([\n\t\t\t\t";
+
+        if (in_array('show', $_actions)) {
+            $str .= "\t\$this->rowShowButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+        }
+        if (in_array('edit', $_actions)) {
+            $str .= "\t\$this->rowEditButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+        }
+        if (in_array('delete', $_actions)) {
+            $str .= "\t\$this->rowDeleteButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+        }
+        $str .= "])";
+
+        return $str;
+    }
+
+    private function getDialogSize()
+    {
+        $pageInfo   = $this->model->page_info;
+        $dialogSize = $pageInfo['dialog_size'] ?? 'md';
+        $dialogSize = $dialogSize == 'md' ? '' : ', \'' . $dialogSize . '\'';
+
+        return $pageInfo['dialog_form'] ? $dialogSize : '';
     }
 
     /**
