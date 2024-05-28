@@ -26,8 +26,6 @@ class MigrationGenerator extends BaseMigrationCreator
 
     public function generate(): string
     {
-        $this->columns = collect($this->model->columns);
-
         $name = 'create_' . $this->model->table_name . '_table';
         $path = BaseGenerator::guessClassFileName($this->model->model_name);
 
