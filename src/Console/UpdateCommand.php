@@ -269,5 +269,11 @@ class UpdateCommand extends Command
                 $table->integer('custom_order')->default(0);
             });
         }
+
+        if (!$this->schema()->hasColumn('admin_permissions', 'custom_order')) {
+            $this->schema()->table('admin_permissions', function ($table) {
+                $table->integer('custom_order')->default(0);
+            });
+        }
     }
 }
