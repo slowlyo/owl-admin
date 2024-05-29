@@ -1081,7 +1081,7 @@ class CodeGeneratorController extends AdminController
         $options = collect($list)->except(['menu_id'])->map(fn($item, $index) => [
             'label'   => Str::headline($index),
             'value'   => $index,
-            'content' => (is_array($item) ? implode("\n", $item) : $item) . '111111111111111111111111111111111111111111111111111111111111',
+            'content' => is_array($item) ? implode("\n", $item) : $item,
             'hidden'  => blank($item),
         ])->values();
 
