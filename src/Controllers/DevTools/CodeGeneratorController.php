@@ -1046,7 +1046,7 @@ class CodeGeneratorController extends AdminController
                             ->checkAll()
                             ->inline(false)
                             ->required()
-                            ->menuTpl('<div><div class="font-bold">${label}</div><div class="text-sm text-gray-400">${content}</div></div>')
+                            ->menuTpl('<div><div class="font-bold">${label}</div><div class="break-words break-all text-sm text-gray-400">${content}</div></div>')
                             ->source('post:/dev_tools/code_generator/gen_record_options?id=${id}'),
                     ])->onEvent([
                         'submitSucc' => [
@@ -1081,7 +1081,7 @@ class CodeGeneratorController extends AdminController
         $options = collect($list)->except(['menu_id'])->map(fn($item, $index) => [
             'label'   => Str::headline($index),
             'value'   => $index,
-            'content' => is_array($item) ? implode("\n", $item) : $item,
+            'content' => (is_array($item) ? implode("\n", $item) : $item) . '111111111111111111111111111111111111111111111111111111111111',
             'hidden'  => blank($item),
         ])->values();
 
