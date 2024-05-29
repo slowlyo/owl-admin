@@ -67,7 +67,7 @@ class Database
             $table->string('slug', 50)->unique();
             $table->text('http_method')->nullable();
             $table->text('http_path')->nullable();
-            $table->integer('order')->default(0);
+            $table->integer('custom_order')->default(0);
             $table->integer('parent_id')->default(0);
             $table->timestamps();
         });
@@ -75,7 +75,7 @@ class Database
         $this->create('admin_menus', function (Blueprint $table) {
             $table->id();
             $table->integer('parent_id')->default(0);
-            $table->integer('order')->default(0);
+            $table->integer('custom_order')->default(0);
             $table->string('title', 100)->comment('菜单名称');
             $table->string('icon', 100)->nullable()->comment('菜单图标');
             $table->string('url')->nullable()->comment('菜单路由');

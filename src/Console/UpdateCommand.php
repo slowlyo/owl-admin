@@ -259,4 +259,15 @@ class UpdateCommand extends Command
             });
         }
     }
+
+    public function version373()
+    {
+        $this->output->title('Update to version v3.7.3');
+
+        if (!$this->schema()->hasColumn('admin_menus', 'custom_order')) {
+            $this->schema()->table('admin_menus', function ($table) {
+                $table->integer('custom_order')->default(0);
+            });
+        }
+    }
 }

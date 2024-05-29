@@ -19,11 +19,11 @@ class RouteGenerator
         $_url = '/' . ltrim($menuInfo['route'], '/');
         if (!$adminMenuService->getModel()->query()->where('url', $_url)->exists()) {
             $adminMenuService->store([
-                'title'     => $menuInfo['title'],
-                'icon'      => $menuInfo['icon'],
-                'parent_id' => $menuInfo['parent_id'],
-                'url'       => $_url,
-                'order'     => 100,
+                'title'        => $menuInfo['title'],
+                'icon'         => $menuInfo['icon'],
+                'parent_id'    => $menuInfo['parent_id'],
+                'url'          => $_url,
+                'custom_order' => 100,
             ]);
         }
 

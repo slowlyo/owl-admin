@@ -80,7 +80,7 @@ class AdminPermissionController extends AdminController
                 ->description(admin_trans('admin.admin_permission.http_method_description'))
                 ->joinValues(false)
                 ->extractValue(),
-            amis()->NumberControl('order', admin_trans('admin.order'))
+            amis()->NumberControl('custom_order', admin_trans('admin.order'))
                 ->required()
                 ->labelRemark(admin_trans('admin.order_asc'))
                 ->displayMode('enhance')
@@ -173,14 +173,14 @@ class AdminPermissionController extends AdminController
             $slugCache[] = $slug;
 
             $permissions[] = [
-                'id'         => $menu['id'],
-                'name'       => $menuTitle,
-                'slug'       => data_get($slugMap, $menu['id'] . '.slug') ?: $slug,
-                'http_path'  => json_encode($_httpPath ? [$_httpPath] : ''),
-                'order'      => $menu['order'],
-                'parent_id'  => $menu['parent_id'],
-                'created_at' => $menu['created_at'],
-                'updated_at' => $menu['updated_at'],
+                'id'           => $menu['id'],
+                'name'         => $menuTitle,
+                'slug'         => data_get($slugMap, $menu['id'] . '.slug') ?: $slug,
+                'http_path'    => json_encode($_httpPath ? [$_httpPath] : ''),
+                'custom_order' => $menu['custom_order'],
+                'parent_id'    => $menu['parent_id'],
+                'created_at'   => $menu['created_at'],
+                'updated_at'   => $menu['updated_at'],
             ];
         }
 

@@ -14,7 +14,7 @@ class Menu
     {
         $menus = $this->userMenus()
             ->push(...array_map(fn($item) => $this->formatItem($item), $this->menus))
-            ->sortBy('order')
+            ->sortBy('custom_order')
             ->values()
             ->toArray();
 
@@ -29,7 +29,7 @@ class Menu
 
         $user = Admin::user();
         if ($user->isAdministrator() || Admin::config('admin.auth.permission') === false) {
-            $list = AdminMenuService::make()->query()->orderBy('order')->get();
+            $list = AdminMenuService::make()->query()->orderBy('custom_order')->get();
         } else {
             $user->load('roles.permissions.menus');
             $list = $user->roles
@@ -38,7 +38,7 @@ class Menu
                 ->pluck('menus')
                 ->flatten()
                 ->unique('id')
-                ->sortBy('order');
+                ->sortBy('custom_order');
         }
 
         return $list;
@@ -69,10 +69,10 @@ class Menu
                     'is_link'    => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
                     'page_sign'  => $item['url_type'] == Admin::adminMenuModel()::TYPE_PAGE ? data_get($item, 'component') : '',
                     'meta'       => [
-                        'title' => $item['title'],
-                        'icon'  => $item['icon'] ?? '-',
-                        'hide'  => $item['visible'] == 0,
-                        'order' => $item['order'],
+                        'title'        => $item['title'],
+                        'icon'         => $item['icon'] ?? '-',
+                        'hide'         => $item['visible'] == 0,
+                        'custom_order' => $item['custom_order'],
                     ],
                 ];
 
@@ -130,15 +130,15 @@ class Menu
     public function formatItem($item)
     {
         return array_merge([
-            'title'     => '',
-            'url'       => '',
-            'url_type'  => 1,
-            'icon'      => '',
-            'parent_id' => 0,
-            'id'        => 999,
-            'is_home'   => 0,
-            'visible'   => 1,
-            'order'     => 99,
+            'title'        => '',
+            'url'          => '',
+            'url_type'     => 1,
+            'icon'         => '',
+            'parent_id'    => 0,
+            'id'           => 999,
+            'is_home'      => 0,
+            'visible'      => 1,
+            'custom_order' => 99,
         ], $item);
     }
 

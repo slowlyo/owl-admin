@@ -49,7 +49,7 @@ class AdminMenuController extends AdminController
                         amis()->Tpl()->tpl('${icon}'),
                     ]),
                 amis()->TableColumn('url', admin_trans('admin.admin_menu.url')),
-                amis()->TableColumn('order', admin_trans('admin.admin_menu.order'))->quickEdit(
+                amis()->TableColumn('custom_order', admin_trans('admin.admin_menu.order'))->quickEdit(
                     amis()->NumberControl()->min(0)->saveImmediately(true)
                 ),
                 amis()->TableColumn('visible', admin_trans('admin.admin_menu.visible'))->quickEdit(
@@ -81,7 +81,7 @@ class AdminMenuController extends AdminController
                     ->showIcon(false)
                     ->value(0)
                     ->source('/system/admin_menus?_action=getData'),
-                amis()->NumberControl('order', admin_trans('admin.admin_menu.order'))
+                amis()->NumberControl('custom_order', admin_trans('admin.admin_menu.order'))
                     ->required()
                     ->displayMode('enhance')
                     ->description(admin_trans('admin.order_asc'))

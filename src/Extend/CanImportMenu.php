@@ -55,11 +55,11 @@ trait CanImportMenu
         }
 
         if ($menuModel = $this->getMenuModel()) {
-            $lastOrder = $menuModel::max('order');
+            $lastOrder = $menuModel::max('custom_order');
 
             $menuModel::create([
                 'parent_id' => $this->getParentMenuId($menu['parent'] ?? 0),
-                'order'     => $lastOrder + 1,
+                'custom_order'     => $lastOrder + 1,
                 'title'     => $menu['title'],
                 'icon'      => (string)($menu['icon'] ?? ''),
                 'url'       => (string)($menu['url'] ?? ''),
