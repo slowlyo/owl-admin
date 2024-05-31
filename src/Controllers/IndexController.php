@@ -31,11 +31,17 @@ class IndexController extends AdminController
             'zh_CN' => '简体中文',
         ];
 
+        $locale = settings()->get('admin_locale', config('app.locale'));
+
+        if($locale == 'null'){
+            $locale = 'zh_CN';
+        }
+
         return $this->response()->success([
             'nav'      => Admin::getNav(),
             'assets'   => Admin::getAssets(),
             'app_name' => Admin::config('admin.name'),
-            'locale'   => settings()->get('admin_locale', config('app.locale')),
+            'locale'   => $locale,
             'layout'   => Admin::config('admin.layout'),
             'logo'     => url(Admin::config('admin.logo')),
 
