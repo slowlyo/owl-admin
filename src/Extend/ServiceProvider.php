@@ -310,7 +310,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      * 获取或保存配置.
      *
      * @param string|null $key
-     * @param null        $default
+     * @param mixed        $default
      *
      * @return mixed
      */
@@ -566,7 +566,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      *
      * @param string $key
      * @param array  $replace
-     * @param null   $locale
+     * @param mixed   $locale
      *
      * @return array|string|null
      */

@@ -68,8 +68,8 @@ class Helper
     /**
      * @param mixed $command
      * @param int $timeout
-     * @param null $input
-     * @param null $cwd
+     * @param mixed $input
+     * @param mixed $cwd
      *
      * @return Process
      */

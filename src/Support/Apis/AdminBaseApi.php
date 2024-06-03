@@ -43,8 +43,8 @@ abstract class AdminBaseApi implements AdminApiInterface
     /**
      * 获取接口参数, 可以通过传入 xxx.xxx 的方式获取指定参数
      *
-     * @param null $key
-     * @param null $default
+     * @param mixed $key
+     * @param mixed $default
      *
      * @return array|HigherOrderBuilderProxy|mixed
      */

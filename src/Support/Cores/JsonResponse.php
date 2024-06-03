@@ -15,7 +15,7 @@ class JsonResponse
 
     /**
      * @param string $message
-     * @param null   $data
+     * @param mixed   $data
      *
      * @return  \Illuminate\Http\JsonResponse
      */
@@ -27,7 +27,7 @@ class JsonResponse
     }
 
     /**
-     * @param null   $data
+     * @param mixed   $data
      * @param string $message
      *
      * @return \Illuminate\Http\JsonResponse|JsonResource
