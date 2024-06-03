@@ -53,11 +53,25 @@ abstract class AdminService
     public function getTableColumns()
     {
         if (!self::$tableColumn) {
-            self::$tableColumn = Schema::connection($this->getModel()->getConnectionName())
-                ->getColumnListing($this->getModel()->getTable());
+            try {
+                // laravel11: sqlite 暂时无法获取字段, 等待 laravel 适配
+                self::$tableColumn = Schema::connection($this->getModel()->getConnectionName())
+                    ->getColumnListing($this->getModel()->getTable());
+            } catch (\Throwable $e) {
+                self::$tableColumn = [];
+            }
         }
 
         return self::$tableColumn;
+    }
+
+    public function hasColumn($column)
+    {
+        $columns = $this->getTableColumns();
+
+        if (blank($columns)) return true;
+
+        return in_array($column, $columns);
     }
 
     public function query()
@@ -230,11 +244,11 @@ abstract class AdminService
     {
         $updatedAtColumn = $this->getModel()->getUpdatedAtColumn();
 
-        if (in_array($updatedAtColumn, $this->getTableColumns())) {
+        if ($this->hasColumn($updatedAtColumn)) {
             return $updatedAtColumn;
         }
 
-        if (in_array($this->getModel()->getKeyName(), $this->getTableColumns())) {
+        if ($this->hasColumn($this->getModel()->getKeyName())) {
             return $this->getModel()->getKeyName();
         }
 
@@ -269,11 +283,10 @@ abstract class AdminService
     {
         $this->saving($data, $primaryKey);
 
-        $columns = $this->getTableColumns();
-        $model   = $this->query()->whereKey($primaryKey)->first();
+        $model = $this->query()->whereKey($primaryKey)->first();
 
         foreach ($data as $k => $v) {
-            if (!in_array($k, $columns)) {
+            if (!$this->hasColumn($k)) {
                 continue;
             }
 
@@ -300,11 +313,10 @@ abstract class AdminService
     {
         $this->saving($data);
 
-        $columns = $this->getTableColumns();
-        $model   = $this->getModel();
+        $model = $this->getModel();
 
         foreach ($data as $k => $v) {
-            if (!in_array($k, $columns)) {
+            if (!$this->hasColumn($k)) {
                 continue;
             }
 
