@@ -108,6 +108,8 @@ return [
         'scope'                     => '作用域',
         'list_component'            => '列表组件',
         'list_component_desc'       => '列表组件, 默认为 TableColumn',
+        'filter_component'          => '列表筛选',
+        'filter_component_desc'     => '列表组件, 默认为 TableColumn',
         'form_component'            => '表单组件',
         'form_component_desc'       => '表单组件, 默认为 TextControl',
         'detail_component'          => '详情组件',

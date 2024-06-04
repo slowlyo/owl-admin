@@ -173,9 +173,10 @@ class ControllerGenerator extends BaseGenerator
     {
         $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
 
-        if ($component = Arr::get($column, $type . '_type')) {
-            $item = "amis()->{$component}('{$column['name']}', '{$label}')";
-            if ($property = Arr::get($column, $type . '_property')) {
+        $component = data_get($column, $type);
+        if ($componentType = data_get($component, $type . '_type')) {
+            $item = "amis()->{$componentType}('{$column['name']}', '{$label}')";
+            if ($property = Arr::get($component, $type . '_property')) {
                 $item .= collect($property)->map(function ($item) {
                     $_val = Arr::get($item, 'value');
 

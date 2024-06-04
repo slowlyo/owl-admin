@@ -108,6 +108,8 @@ return [
         'scope'                     => 'Scope',
         'list_component'            => 'List Component',
         'list_component_desc'       => 'List Component, Default Is TableColumn',
+        'filter_component'          => 'Table Filter',
+        'filter_component_desc'     => 'Filter Component, Default Is TableColumn',
         'form_component'            => 'Form Component',
         'form_component_desc'       => 'Form Component, Default Is TextControl',
         'detail_component'          => 'Detail Component',

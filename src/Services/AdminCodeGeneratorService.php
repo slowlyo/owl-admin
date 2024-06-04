@@ -50,7 +50,10 @@ class AdminCodeGeneratorService extends AdminService
 
     public function filterData($data)
     {
-        admin_abort_if(!data_get($data, 'columns'), admin_trans('admin.required', ['attribute' => admin_trans('admin.code_generators.column_info')]));
+        admin_abort_if(
+            !data_get($data, 'columns'),
+            admin_trans('admin.required', ['attribute' => admin_trans('admin.code_generators.column_info')])
+        );
 
         admin_abort_if(
             collect($data['columns'])->pluck('name')->unique()->count() != count($data['columns']),
@@ -69,7 +72,28 @@ class AdminCodeGeneratorService extends AdminService
         $data['page_info']['list_display_created_at'] = $data['list_display_created_at'] ?? 1;
         $data['page_info']['list_display_updated_at'] = $data['list_display_updated_at'] ?? 1;
 
-        return Arr::except($data, ['table_info', 'table_primary_keys']);
+        foreach ($data['columns'] as &$columnItem) {
+            if (data_get($columnItem, 'list_component.component_property_options')) {
+                unset($columnItem['list_component']['component_property_options']);
+            }
+            if (data_get($columnItem, 'form_component.component_property_options')) {
+                unset($columnItem['form_component']['component_property_options']);
+            }
+            if (data_get($columnItem, 'detail_component.component_property_options')) {
+                unset($columnItem['detail_component']['component_property_options']);
+            }
+        }
+
+        return Arr::except($data, [
+            'table_info',
+            'table_primary_keys',
+            'exists_tables',
+            'menu_tree',
+            'component_options',
+            'save_path_options',
+            'default_path',
+            'save_path',
+        ]);
     }
 
     /**

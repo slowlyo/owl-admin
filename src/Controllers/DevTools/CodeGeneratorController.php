@@ -673,123 +673,25 @@ class CodeGeneratorController extends AdminController
         ]);
     }
 
-    /**
-     * 字段表单
-     *
-     * @return \Slowlyo\OwlAdmin\Renderers\Card
-     */
-    public function columnForm()
+    public function componentSelect($key, $label = '')
     {
-        // 设置组件的 Tab
-        $componentSchema = function ($title, $tips, $key) {
-            $comboName = $key . '_property';
-            $comboId   = $comboName . '_id';
+        $comboName = $key . '_property';
+        $comboId   = $comboName . '_id';
 
-            return amis()->Tab()->title($title)->body([
-                amis()->Alert()->level('info')->showIcon()->body($tips),
-
-                amis()->Flex()->justify('end')->items([
-                    amis()->DrawerAction()
-                        ->className('mr-3')
-                        ->label(admin_trans('admin.code_generators.load_config'))
-                        ->level('primary')
-                        ->drawer(
-                            amis()->Drawer()
-                                ->title(admin_trans('admin.code_generators.load_config'))
-                                ->bodyClassName('p-0')
-                                ->actions([])
-                                ->id('load_config_dialog')
-                                ->closeOnOutside()
-                                ->body(
-                                    amis()->Service()
-                                        ->name('component_property_list_service')
-                                        ->api('post:/dev_tools/code_generator/component_property/list?key=' . $comboName . '&c=${' . $key . '_type}')
-                                        ->body(
-                                            amis()->CRUDTable()
-                                                ->className('border-none')
-                                                ->loadDataOnce()
-                                                ->source('${component_property_list}')
-                                                ->columns([
-                                                    amis()
-                                                        ->TableColumn('label', admin_trans('admin.admin_role.name'))
-                                                        ->searchable(),
-
-                                                    amis()->Operation()->label(admin_trans('admin.actions'))->buttons([
-                                                        // 填充
-                                                        amis()->VanillaAction()
-                                                            ->label(admin_trans('admin.code_generators.fill'))
-                                                            ->level('primary')
-                                                            ->onEvent([
-                                                                'click' => [
-                                                                    'actions' => [
-                                                                        [
-                                                                            'actionType'  => 'setValue',
-                                                                            'componentId' => $comboId,
-                                                                            'args'        => ['value' => '${value}'],
-                                                                        ],
-                                                                        [
-                                                                            'actionType'  => 'setValue',
-                                                                            'componentId' => $key,
-                                                                            'args'        => ['value' => '${key}'],
-                                                                        ],
-                                                                        [
-                                                                            'actionType'  => 'closeDialog',
-                                                                            'componentId' => 'load_config_dialog',
-                                                                        ],
-                                                                    ],
-                                                                ],
-                                                            ]),
-
-                                                        // 删除
-                                                        amis()->AjaxAction()
-                                                            ->label(admin_trans('admin.delete'))
-                                                            ->level('danger')
-                                                            ->confirmText(admin_trans('admin.confirm_delete'))
-                                                            ->reload('component_property_list_service')
-                                                            ->api('post:/dev_tools/code_generator/component_property/del?name=' . $comboName),
-                                                    ])->set('width', 150),
-                                                ])
-                                        )
-                                )
-                        ),
-
-                    amis()->DialogAction()
-                        ->label(admin_trans('admin.code_generators.save_current_config'))
-                        ->level('success')
-                        ->dialog(
-                            amis()->Dialog()->title(admin_trans('admin.code_generators.save_current_config'))->body(
-                                amis()
-                                    ->Form()
-                                    ->mode('normal')
-                                    ->api('post:/dev_tools/code_generator/component_property')
-                                    ->body([
-                                        amis()->HiddenControl('key')->value($comboName),
-                                        amis()->ComboControl('value')->items([
-                                            amis()->TextControl('label')
-                                                ->inline(false)
-                                                ->required()
-                                                ->placeholder(admin_trans('admin.code_generators.input_config_name'))
-                                                ->description(admin_trans('admin.code_generators.same_name_tips')),
-                                            amis()->HiddenControl('key')->value('${' . $key . '_type}'),
-                                            amis()->HiddenControl('value')->value('${' . $comboName . '}'),
-                                        ]),
-                                    ])
-                            )
-                        ),
-                ]),
-
-                amis()->Divider(),
-
-                amis()->Service()
-                    ->className('px-20')
-                    ->initFetchOn('${!!' . $key . '_type}')
-                    ->api('post:/dev_tools/code_generator/get_property_options?c=${' . $key . '_type}&t=' . $key)
-                    ->body([
+        return amis()->ComboControl($key, $label)->items([
+            amis()->Service()
+                ->className('px-20')
+                ->initFetchOn('${!!' . $key . '_type}')
+                ->api('post:/dev_tools/code_generator/get_property_options?c=${' . $key . '_type}&t=' . $key)
+                ->body([
+                    amis('group')->body([
                         amis()->SelectControl($key . '_type', admin_trans('admin.admin_menu.type'))
                             ->searchable()
                             ->id($key)
                             ->clearable()
+                            ->size('lg')
                             ->source('${component_options}')
+                            ->set('columnRatio', 8)
                             ->onEvent([
                                 'change' => [
                                     'actions' => [
@@ -801,21 +703,134 @@ class CodeGeneratorController extends AdminController
                                     ],
                                 ],
                             ])->description(admin_trans('admin.code_generators.name_label_desc')),
+                        amis('group')->body([
+                            amis()->DrawerAction()
+                                ->label(admin_trans('admin.code_generators.load_config'))
+                                ->level('primary')
+                                ->set('columnRatio', 4)
+                                ->drawer(
+                                    amis()->Drawer()
+                                        ->title(admin_trans('admin.code_generators.load_config'))
+                                        ->bodyClassName('p-0')
+                                        ->actions([])
+                                        ->id('load_config_dialog')
+                                        ->closeOnOutside()
+                                        ->body(
+                                            amis()->Service()
+                                                ->name('component_property_list_service')
+                                                ->api('post:/dev_tools/code_generator/component_property/list?key=' . $comboName . '&c=${' . $key . '_type}')
+                                                ->body(
+                                                    amis()->CRUDTable()
+                                                        ->className('border-none')
+                                                        ->loadDataOnce()
+                                                        ->source('${component_property_list}')
+                                                        ->columns([
+                                                            amis()
+                                                                ->TableColumn('label', admin_trans('admin.admin_role.name'))
+                                                                ->searchable(),
 
-                        amis()->ComboControl($comboName, admin_trans('admin.code_generators.property'))
-                            ->id($comboId)
-                            ->multiple()
-                            ->strictMode(false)
-                            ->items([
-                                amis()->TextControl('name', admin_trans('admin.code_generators.property_name'))
-                                    ->required()
-                                    ->set('unique', true)
-                                    ->size('md')
-                                    ->clearable()
-                                    ->source('${component_property_options}'),
-                                amis()->TextControl('value', admin_trans('admin.code_generators.value'))->size('md'),
-                            ]),
+                                                            amis()
+                                                                ->Operation()
+                                                                ->label(admin_trans('admin.actions'))
+                                                                ->buttons([
+                                                                    // 填充
+                                                                    amis()->VanillaAction()
+                                                                        ->label(admin_trans('admin.code_generators.fill'))
+                                                                        ->level('primary')
+                                                                        ->onEvent([
+                                                                            'click' => [
+                                                                                'actions' => [
+                                                                                    [
+                                                                                        'actionType'  => 'setValue',
+                                                                                        'componentId' => $comboId,
+                                                                                        'args'        => ['value' => '${value}'],
+                                                                                    ],
+                                                                                    [
+                                                                                        'actionType'  => 'setValue',
+                                                                                        'componentId' => $key,
+                                                                                        'args'        => ['value' => '${key}'],
+                                                                                    ],
+                                                                                    [
+                                                                                        'actionType'  => 'closeDialog',
+                                                                                        'componentId' => 'load_config_dialog',
+                                                                                    ],
+                                                                                ],
+                                                                            ],
+                                                                        ]),
+
+                                                                    // 删除
+                                                                    amis()->AjaxAction()
+                                                                        ->label(admin_trans('admin.delete'))
+                                                                        ->level('danger')
+                                                                        ->confirmText(admin_trans('admin.confirm_delete'))
+                                                                        ->reload('component_property_list_service')
+                                                                        ->api('post:/dev_tools/code_generator/component_property/del?name=' . $comboName),
+                                                                ])
+                                                                ->set('width', 150),
+                                                        ])
+                                                )
+                                        )
+                                ),
+                            amis()->DialogAction()
+                                ->label(admin_trans('admin.code_generators.save_current_config'))
+                                ->level('success')
+                                ->set('columnRatio', 8)
+                                ->dialog(
+                                    amis()
+                                        ->Dialog()
+                                        ->title(admin_trans('admin.code_generators.save_current_config'))
+                                        ->body(
+                                            amis()
+                                                ->Form()
+                                                ->mode('normal')
+                                                ->api('post:/dev_tools/code_generator/component_property')
+                                                ->body([
+                                                    amis()->HiddenControl('key')->value($comboName),
+                                                    amis()->ComboControl('value')->items([
+                                                        amis()->TextControl('label')
+                                                            ->inline(false)
+                                                            ->required()
+                                                            ->placeholder(admin_trans('admin.code_generators.input_config_name'))
+                                                            ->description(admin_trans('admin.code_generators.same_name_tips')),
+                                                        amis()->HiddenControl('key')->value('${' . $key . '_type}'),
+                                                        amis()->HiddenControl('value')->value('${' . $comboName . '}'),
+                                                    ]),
+                                                ])
+                                        )
+                                ),
+                        ])->set('columnRatio', 4),
                     ]),
+
+                    amis()->ComboControl($comboName, admin_trans('admin.code_generators.property'))
+                        ->id($comboId)
+                        ->multiple()
+                        ->strictMode(false)
+                        ->items([
+                            amis()->TextControl('name', admin_trans('admin.code_generators.property_name'))
+                                ->required()
+                                ->set('unique', true)
+                                ->size('md')
+                                ->clearable()
+                                ->source('${component_property_options}'),
+                            amis()->TextControl('value', admin_trans('admin.code_generators.value'))->size('md'),
+                        ]),
+                ]),
+        ]);
+    }
+
+    /**
+     * 字段表单
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\Card
+     */
+    public function columnForm()
+    {
+        // 设置组件的 Tab
+        $componentSchema = function ($title, $tips, $key) {
+            return amis()->Tab()->title($title)->body([
+                amis()->Alert()->level('info')->showIcon()->body($tips),
+                amis()->Divider(),
+                $this->componentSelect($key)->mode('normal'),
             ]);
         };
 
