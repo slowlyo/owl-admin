@@ -84,6 +84,12 @@ class ApiController extends AdminController
         admin_abort_if(is_file($file) && !request('overlay'), admin_trans('admin.apis.template_exists'));
 
         try {
+            $dir = dirname($file);
+
+            if(!is_dir($dir)){
+                app('files')->makeDirectory($dir, 0755, true);
+            }
+
             app('files')->put($file, $template);
         } catch (\Throwable $e) {
             return $this->response()->fail(admin_trans('admin.save_failed'));
