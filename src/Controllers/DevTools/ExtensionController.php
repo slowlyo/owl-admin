@@ -144,7 +144,7 @@ class ExtensionController extends AdminController
                             'method' => 'post',
                             'data'   => [
                                 'id'      => '${id}',
-                                'enabled' => '${enabled}',
+                                'enabled' => '${!enabled}',
                             ],
                         ])
                         ->confirmText('${enabled ? "' . admin_trans('admin.extensions.disable_confirm') . '" : "' . admin_trans('admin.extensions.enable_confirm') . '"}'),
@@ -313,7 +313,7 @@ class ExtensionController extends AdminController
      */
     public function enable(Request $request)
     {
-        Admin::extension()->enable($request->id, !$request->enabled);
+        Admin::extension()->enable($request->id, $request->enabled);
 
         //扩展启用禁用事件
         ExtensionChanged::dispatch($request->id, $request->enabled ? 'enable' : 'disable');
