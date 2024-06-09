@@ -36,6 +36,13 @@ class ServiceGenerator extends BaseGenerator
         $content .= "class {$class} extends AdminService" . PHP_EOL;
         $content .= '{' . PHP_EOL;
         $content .= "\tprotected string \$modelName = {$modelClassName}::class;" . PHP_EOL;
+
+        $filter = FilterGenerator::make($this->model)->renderQuery();
+
+        if ($filter) {
+            $content .= $filter;
+        }
+
         $content .= '}';
 
         return $content;

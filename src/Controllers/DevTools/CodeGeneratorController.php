@@ -12,6 +12,7 @@ use Slowlyo\OwlAdmin\Controllers\AdminController;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\Generator;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\GenCodeClear;
+use Slowlyo\OwlAdmin\Support\CodeGenerator\FilterGenerator;
 
 /**
  * @property AdminCodeGeneratorService $service
@@ -680,7 +681,6 @@ class CodeGeneratorController extends AdminController
 
         return amis()->ComboControl($key, $label)->items([
             amis()->Service()
-                ->className('px-20')
                 ->initFetchOn('${!!' . $key . '_type}')
                 ->api('post:/dev_tools/code_generator/get_property_options?c=${' . $key . '_type}&t=' . $key)
                 ->body([
@@ -912,6 +912,40 @@ class CodeGeneratorController extends AdminController
                                 admin_trans('admin.code_generators.list_component_desc'),
                                 'list_component'
                             ),
+                            // 列表筛选
+                            amis()->Tab()->title(admin_trans('admin.code_generators.list_filter'))->body([
+                                amis()->ComboControl('list_filter')->items([
+                                    amis()->SelectControl('type', admin_trans('admin.code_generators.filter_type'))
+                                        ->options(map2options(FilterGenerator::$filterMap))
+                                        ->required(),
+                                    amis()->RadiosControl('mode', admin_trans('admin.code_generators.filter_mode'))
+                                        ->selectFirst()
+                                        ->options([
+                                            'fixed' => admin_trans('admin.code_generators.filter_mode_fixed'),
+                                            'input' => admin_trans('admin.code_generators.filter_mode_input'),
+                                        ]),
+                                    amis()
+                                        ->TextControl('value', admin_trans('admin.code_generators.filter_mode_fixed_value'))
+                                        ->visibleOn('${mode == "fixed"}'),
+                                    amis()
+                                        ->TextControl('input_name', admin_trans('admin.code_generators.filter_input_name'))
+                                        ->visibleOn('${mode == "input"}')
+                                        ->required(),
+                                    amis()
+                                        ->TextControl('input_label', admin_trans('admin.code_generators.filter_input_label'))
+                                        ->visibleOn('${mode == "input"}')
+                                        ->required(),
+                                    $this->componentSelect('filter', admin_trans('admin.code_generators.filter_component'))
+                                        ->visibleOn('${mode == "input"}')
+                                        ->value([
+                                            'filter_type'     => 'TextControl',
+                                            'filter_property' => [
+                                                ['name' => 'size', 'value' => 'md'],
+                                                ['name' => 'clearable', 'value' => 1],
+                                            ],
+                                        ]),
+                                ])->multiple()->multiLine()->mode('normal'),
+                            ]),
                             // 表单组件
                             $componentSchema(
                                 admin_trans('admin.code_generators.form_component'),

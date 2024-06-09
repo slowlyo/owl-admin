@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 
@@ -121,5 +122,55 @@ class BaseGenerator
         $files->chmod($path, 0777);
 
         return $path;
+    }
+
+    protected function jsonToStringArray($jsonString)
+    {
+        // 首先，检查输入是否为有效的JSON字符串
+        if (!is_json($jsonString)) {
+            return $jsonString;
+        }
+
+        $dataArray = json_decode($jsonString, true);
+
+        // 遍历数组，确保所有的字符串都正确处理Unicode编码，特别是中文
+        array_walk_recursive($dataArray, function (&$item) {
+            if (is_string($item)) {
+                $item = mb_convert_encoding($item, 'UTF-8', 'UTF-8');
+            }
+        });
+
+        // 使用var_export()生成数组的字符串表示，然后将其返回
+        $phpArrayString = var_export($dataArray, true);
+
+        // 转换为短数组语法
+        $phpArrayString = preg_replace('/array \(/', '[', $phpArrayString);
+        $phpArrayString = preg_replace('/\)$/', ']', $phpArrayString);
+        $phpArrayString = str_replace(')', ']', $phpArrayString);
+
+        // 去除数字索引
+        $phpArrayString = preg_replace('/\d+ => /', '', $phpArrayString);
+
+        // 去除多余的空格和换行，使输出更为紧凑
+        $phpArrayString = preg_replace('/ =>\s+\[/', '=> [', $phpArrayString);
+
+        return str_replace(["\r\n", "\r", "\n", "\t", "  "], '', $phpArrayString);
+    }
+
+    protected function buildComponentProperty($property)
+    {
+        return collect($property)->map(function ($item) {
+            $_val = Arr::get($item, 'value');
+
+            if (is_json($_val)) {
+                return '->' . Arr::get($item, 'name') . '(' . $this->jsonToStringArray($_val) . ')';
+            }
+
+            if (filled($_val) && !in_array($_val, ['true', 'false']) && !is_numeric($_val)) {
+                $_val = "'{$_val}'";
+            }
+
+            return '->' . Arr::get($item, 'name') . '(' . $_val . ')';
+        })->implode('');
     }
 }
