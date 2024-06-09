@@ -18,7 +18,10 @@ class FileControl extends BaseRenderer
     {
         $this->set('type', 'input-file');
 
-        $this->receiver($this->uploadFilePath());
+        $this->receiver(admin_url('upload_file'));
+        $this->startChunkApi(admin_url('upload_chunk_start'));
+        $this->chunkApi(admin_url('upload_chunk'));
+        $this->finishChunkApi(admin_url('upload_chunk_finish'));
     }
 
     /**

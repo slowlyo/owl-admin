@@ -55,6 +55,9 @@ class Route
             $router->get('page_schema', [IndexController::class, 'pageSchema']);
 
             $router->any('upload_file', [IndexController::class, 'uploadFile']);
+            $router->any('upload_chunk_start', [IndexController::class, 'chunkUploadStart']);
+            $router->any('upload_chunk', [IndexController::class, 'chunkUpload']);
+            $router->any('upload_chunk_finish', [IndexController::class, 'chunkUploadFinish']);
             $router->any('upload_rich', [IndexController::class, 'uploadRich']);
             $router->any('upload_image', [IndexController::class, 'uploadImage']);
             $router->get('user_setting', [AuthController::class, 'userSetting']);

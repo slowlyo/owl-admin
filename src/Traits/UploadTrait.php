@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Traits;
 
 use Slowlyo\OwlAdmin\Admin;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 trait UploadTrait
@@ -86,5 +87,71 @@ trait UploadTrait
         $path = $file->store(Admin::config('admin.upload.directory.' . $type), Admin::config('admin.upload.disk'));
 
         return $this->response()->success(['value' => $path]);
+    }
+
+    public function chunkUploadStart()
+    {
+        $uploadId = Str::uuid();
+
+        cache()->put($uploadId, [], 600);
+
+        app('filesystem')->makeDirectory(storage_path('app/public/chunk/' . $uploadId));
+
+        return $this->response()->success(compact('uploadId'));
+    }
+
+    public function chunkUpload()
+    {
+        $uploadId   = request('uploadId');
+        $partNumber = request('partNumber');
+        $file       = request()->file('file');
+
+        $path = 'chunk/' . $uploadId;
+
+        $file->storeAs($path, $partNumber, 'public');
+
+        $eTag = md5(Storage::disk('public')->get($path . '/' . $partNumber));
+
+        return $this->response()->success(compact('eTag'));
+    }
+
+    public function chunkUploadFinish()
+    {
+        $fileName = request('filename');
+        $partList = request('partList');
+        $uploadId = request('uploadId');
+        $type     = request('t');
+
+        $ext      = pathinfo($fileName, PATHINFO_EXTENSION);
+        $path     = $type . '/' . $uploadId . '.' . $ext;
+        $fullPath = storage_path('app/public/' . $path);
+
+        $dir = dirname($fullPath);
+        if (!is_dir($dir)) {
+            app('filesystem')->makeDirectory($dir);
+        }
+
+        for ($i = 0; $i < count($partList); $i++) {
+            $partNumber = $partList[$i]['partNumber'];
+            $eTag       = $partList[$i]['eTag'];
+
+            $partPath = 'chunk/' . $uploadId . '/' . $partNumber;
+
+            $partETag = md5(Storage::disk('public')->get($partPath));
+
+            if ($eTag != $partETag) {
+                return $this->response()->fail('分片上传失败');
+            }
+
+            file_put_contents($fullPath, Storage::disk('public')->get($partPath), FILE_APPEND);
+        }
+
+        clearstatcache();
+
+        $value = admin_resource_full_path($path);
+
+        app('files')->deleteDirectory(storage_path('app/public/chunk/' . $uploadId));
+
+        return $this->response()->success(['value' => $value], '上传成功');
     }
 }
