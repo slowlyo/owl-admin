@@ -118,6 +118,18 @@ class CodeGeneratorController extends AdminController
     {
         // 下划线的表名处理成驼峰文件名
         $nameHandler = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
+        // 填充路径
+        $fillPathAction = [
+            'actionType'  => 'setValue',
+            'componentId' => 'code_generator_form',
+            'args'        => [
+                'value' => [
+                    'model_name'      => '${model_path}${' . $nameHandler . '}',
+                    'controller_name' => '${controller_path}${' . $nameHandler . '}Controller',
+                    'service_name'    => '${service_path}${' . $nameHandler . '}Service',
+                ],
+            ],
+        ];
 
         return amis()->Form()
             ->promptPageLeave()
@@ -143,9 +155,7 @@ class CodeGeneratorController extends AdminController
                                                     [
                                                         'actionType'  => 'setValue',
                                                         'componentId' => 'gen_menu_title',
-                                                        'args'        => [
-                                                            'value' => '${value}',
-                                                        ],
+                                                        'args'        => ['value' => '${value}'],
                                                     ],
                                                 ],
                                             ],
@@ -161,26 +171,15 @@ class CodeGeneratorController extends AdminController
                                                     [
                                                         'actionType'  => 'setValue',
                                                         'componentId' => 'gen_menu_route',
-                                                        'args'        => [
-                                                            'value' => '/${value}',
-                                                        ],
+                                                        'args'        => ['value' => '/${value}'],
                                                     ],
-                                                    [
-                                                        'actionType'  => 'setValue',
-                                                        'componentId' => 'code_generator_form',
-                                                        'args'        => [
-                                                            'value' => [
-                                                                'model_name'      => '${model_path}${' . $nameHandler . '}',
-                                                                'controller_name' => '${controller_path}${' . $nameHandler . '}Controller',
-                                                                'service_name'    => '${service_path}${' . $nameHandler . '}Service',
-                                                            ],
-                                                        ],
-                                                    ],
+                                                    $fillPathAction,
                                                 ],
                                             ],
                                         ]),
                                     amis()
                                         ->SelectControl('exists_table', admin_trans('admin.code_generators.exists_table'))
+                                        ->inputClassName('bg-gray-100')
                                         ->searchable()
                                         ->clearable()
                                         ->selectMode('group')
@@ -203,21 +202,9 @@ class CodeGeneratorController extends AdminController
                                                     [
                                                         'actionType'  => 'setValue',
                                                         'componentId' => 'gen_menu_route',
-                                                        'args'        => [
-                                                            'value' => '/${SPLIT(event.data.value, "-")[0]}',
-                                                        ],
+                                                        'args'        => ['value' => '/${SPLIT(event.data.value, "-")[0]}'],
                                                     ],
-                                                    [
-                                                        'actionType'  => 'setValue',
-                                                        'componentId' => 'code_generator_form',
-                                                        'args'        => [
-                                                            'value' => [
-                                                                'model_name'      => '${model_path}${' . $nameHandler . '}',
-                                                                'controller_name' => '${controller_path}${' . $nameHandler . '}Controller',
-                                                                'service_name'    => '${service_path}${' . $nameHandler . '}Service',
-                                                            ],
-                                                        ],
-                                                    ],
+                                                    $fillPathAction,
                                                 ],
                                             ],
                                         ]),
@@ -236,8 +223,7 @@ class CodeGeneratorController extends AdminController
                                     ->SelectControl('save_path', admin_trans('admin.code_generators.save_path_select'))
                                     ->searchable()
                                     ->description(admin_trans('admin.code_generators.save_path_select_tips'))
-                                    ->clearable()
-                                    ->value('${default_path}')
+                                    ->inputClassName('bg-gray-100')
                                     ->selectMode('group')
                                     ->source('${save_path_options}')
                                     ->onEvent([
@@ -255,6 +241,7 @@ class CodeGeneratorController extends AdminController
                                                         ],
                                                     ],
                                                 ],
+                                                $fillPathAction,
                                             ],
                                         ],
                                     ]),

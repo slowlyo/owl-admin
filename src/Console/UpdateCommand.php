@@ -176,23 +176,6 @@ class UpdateCommand extends Command
         }
     }
 
-    public function version325()
-    {
-        $this->output->title('Update to version v3.2.5');
-        if (!$this->schema()->hasColumn('admin_code_generators', 'save_path')) {
-            $this->schema()->table('admin_code_generators', function ($table) {
-                $table->text('save_path')->nullable()->comment('保存位置');
-            });
-        }
-
-        if (!$this->updateAll) {
-            $this->call('admin:publish', [
-                '--lang'  => true,
-                '--force' => true,
-            ]);
-        }
-    }
-
     public function version341()
     {
         $this->output->title('Update to version v3.4.1');

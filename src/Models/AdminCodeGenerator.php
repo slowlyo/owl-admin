@@ -13,6 +13,5 @@ class AdminCodeGenerator extends BaseModel
         'needs'     => 'array',
         'menu_info' => 'array',
         'page_info' => 'array',
-        'save_path' => 'array',
     ];
 }

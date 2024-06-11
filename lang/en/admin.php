@@ -134,7 +134,7 @@ return [
         'input_config_name'           => 'Please Input Config Name',
         'same_name_tips'              => 'Configurations with the same name will be overwritten',
         'save_path_dir'               => 'Primary application',
-        'save_path_select'            => 'Select Directory',
+        'save_path_select'            => 'Toggle Directory',
         'save_path_select_tips'       => 'Project root directory or plugin root directory can be selected',
         'save_path_label_prefix'      => 'Plugins -> ',
         'clear_code'                  => 'Clear Code',

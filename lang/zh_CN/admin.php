@@ -134,7 +134,7 @@ return [
         'input_config_name'           => '请填写配置名称',
         'same_name_tips'              => '相同名称的配置将会被覆盖',
         'save_path_dir'               => '主应用',
-        'save_path_select'            => '选择目录',
+        'save_path_select'            => '切换目录',
         'save_path_select_tips'       => '可选择项目根目录或插件根目录',
         'save_path_label_prefix'      => '插件 -> ',
         'clear_code'                  => '清除代码',
