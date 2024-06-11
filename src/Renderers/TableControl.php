@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableControl
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class TableControl extends BaseRenderer
 {
@@ -72,6 +72,14 @@ class TableControl extends BaseRenderer
     }
 
     /**
+     * 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
+     */
+    public function autoFill($value = '')
+    {
+        return $this->set('autoFill', $value);
+    }
+
+    /**
      * 表格自动计算高度
      */
     public function autoFillHeight($value = '')
@@ -109,6 +117,14 @@ class TableControl extends BaseRenderer
     public function cancelBtnLabel($value = '')
     {
         return $this->set('cancelBtnLabel', $value);
+    }
+
+    /**
+     * 是否可以新增子项
+     */
+    public function childrenAddable($value = true)
+    {
+        return $this->set('childrenAddable', $value);
     }
 
     /**
@@ -416,6 +432,14 @@ class TableControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function initAutoFill($value = '')
+    {
+        return $this->set('initAutoFill', $value);
+    }
+
+    /**
      * 表单 control 是否为 inline 模式。
      */
     public function inline($value = true)
@@ -448,7 +472,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -600,6 +624,14 @@ class TableControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
+    }
+
+    /**
      * 行样式表表达式
      */
     public function rowClassNameExpr($value = '')
@@ -744,6 +776,22 @@ class TableControl extends BaseRenderer
     }
 
     /**
+     * 孩子新增按钮图标
+     */
+    public function subAddBtnIcon($value = '')
+    {
+        return $this->set('subAddBtnIcon', $value);
+    }
+
+    /**
+     * 孩子新增按钮文字
+     */
+    public function subAddBtnLabel($value = '')
+    {
+        return $this->set('subAddBtnLabel', $value);
+    }
+
+    /**
      * 当修改完的时候是否提交表单。
      */
     public function submitOnChange($value = true)
@@ -765,6 +813,22 @@ class TableControl extends BaseRenderer
     public function tableLayout($value = '')
     {
         return $this->set('tableLayout', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

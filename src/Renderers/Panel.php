@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Panel渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/panel
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Panel extends BaseRenderer
 {
@@ -237,6 +237,22 @@ class Panel extends BaseRenderer
     public function subFormMode($value = '')
     {
         return $this->set('subFormMode', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * List 列表展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class ListRenderer extends BaseRenderer
 {
@@ -278,6 +278,22 @@ class ListRenderer extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

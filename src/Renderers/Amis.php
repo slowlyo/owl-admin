@@ -719,6 +719,21 @@ class Amis
         return InputKVS::make();
     }
 
+    public function InputSignature($name = '', $label = '')
+    {
+        $instance = InputSignature::make();
+
+        if ($name !== '') {
+            $instance->name($name);
+        }
+
+        if ($label !== '') {
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
     public function InputTimeRange()
     {
         return InputTimeRange::make();

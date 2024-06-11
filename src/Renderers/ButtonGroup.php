@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Button Group 渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/button-group
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class ButtonGroup extends BaseRenderer
 {
@@ -189,6 +189,22 @@ class ButtonGroup extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

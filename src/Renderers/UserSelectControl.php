@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UserSelect 移动端人员选择。
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class UserSelectControl extends BaseRenderer
 {
@@ -320,7 +320,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -448,6 +448,14 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
+    }
+
+    /**
      * 是否立即保存(TableColumn中使用)
      */
     public function saveImmediately($value = true)
@@ -549,6 +557,14 @@ class UserSelectControl extends BaseRenderer
     public function submitOnChange($value = true)
     {
         return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

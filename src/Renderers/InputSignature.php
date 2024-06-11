@@ -3,17 +3,16 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * FieldSet 表单项集合 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/fieldset
+ * InputSignature
  *
  * @author  slowlyo
  * @version 6.5.0
  */
-class FieldSetControl extends BaseRenderer
+class InputSignature extends BaseRenderer
 {
     public function __construct()
     {
-        $this->set('type', 'fieldset');
-        $this->set('titlePosition', 'top');
+        $this->set('type', 'input-signature');
     }
 
     /**
@@ -25,19 +24,11 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 内容区域 (内容区域)
+     * 组件背景颜色
      */
-    public function body($value = '')
+    public function bgColor($value = '')
     {
-        return $this->set('body', $value);
-    }
-
-    /**
-     * 配置 Body 容器 className
-     */
-    public function bodyClassName($value = '')
-    {
-        return $this->set('bodyClassName', $value);
+        return $this->set('bgColor', $value);
     }
 
     /**
@@ -49,6 +40,22 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
+     * 清空按钮图标
+     */
+    public function clearBtnIcon($value = '')
+    {
+        return $this->set('clearBtnIcon', $value);
+    }
+
+    /**
+     * 清空按钮名称
+     */
+    public function clearBtnLabel($value = '')
+    {
+        return $this->set('clearBtnLabel', $value);
+    }
+
+    /**
      * 表单项隐藏时，是否在当前 Form 中删除掉该表单项值。注意同名的未隐藏的表单项值也会删掉
      */
     public function clearValueOnHidden($value = true)
@@ -57,37 +64,27 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 是否可折叠
+     * 组件字段颜色
      */
-    public function collapsable($value = true)
+    public function color($value = '')
     {
-        return $this->set('collapsable', $value);
+        return $this->set('color', $value);
     }
 
     /**
-     * 收起的标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 确认按钮图标
      */
-    public function collapseHeader($value = '')
+    public function confirmBtnIcon($value = '')
     {
-        return $this->set('collapseHeader', $value);
+        return $this->set('confirmBtnIcon', $value);
     }
 
     /**
-     * 收起的标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 确认按钮名称
      */
-    public function collapseTitle($value = '')
+    public function confirmBtnLabel($value = '')
     {
-        return $this->set('collapseTitle', $value);
-    }
-
-    /**
-     * 默认是否折叠
-     */
-    public function collapsed($value = true)
-    {
-        return $this->set('collapsed', $value);
+        return $this->set('confirmBtnLabel', $value);
     }
 
     /**
@@ -131,11 +128,19 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 标题内容分割线
+     * 弹窗取消按钮图标
      */
-    public function divideLine($value = true)
+    public function ebmedCancelIcon($value = '')
     {
-        return $this->set('divideLine', $value);
+        return $this->set('ebmedCancelIcon', $value);
+    }
+
+    /**
+     * 弹窗取消按钮名称
+     */
+    public function ebmedCancelLabel($value = '')
+    {
+        return $this->set('ebmedCancelLabel', $value);
     }
 
     /**
@@ -147,11 +152,43 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 自定义切换图标 (自定义切换图标)
+     * 是否内嵌
      */
-    public function expandIcon($value = '')
+    public function embed($value = true)
     {
-        return $this->set('expandIcon', $value);
+        return $this->set('embed', $value);
+    }
+
+    /**
+     * 弹窗按钮图标
+     */
+    public function embedBtnIcon($value = '')
+    {
+        return $this->set('embedBtnIcon', $value);
+    }
+
+    /**
+     * 弹窗按钮文案
+     */
+    public function embedBtnLabel($value = '')
+    {
+        return $this->set('embedBtnLabel', $value);
+    }
+
+    /**
+     * 弹窗确认按钮图标
+     */
+    public function embedConfirmIcon($value = '')
+    {
+        return $this->set('embedConfirmIcon', $value);
+    }
+
+    /**
+     * 弹窗确认按钮名称
+     */
+    public function embedConfirmLabel($value = '')
+    {
+        return $this->set('embedConfirmLabel', $value);
     }
 
     /**
@@ -163,27 +200,11 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 标题
+     * 组件高度，默认占满父容器
      */
-    public function header($value = '')
+    public function height($value = '')
     {
-        return $this->set('header', $value);
-    }
-
-    /**
-     * 标题展示位置 可选值: top | bottom
-     */
-    public function headerPosition($value = '')
-    {
-        return $this->set('headerPosition', $value);
-    }
-
-    /**
-     * 标题 CSS 类名
-     */
-    public function headingClassName($value = '')
-    {
-        return $this->set('headingClassName', $value);
+        return $this->set('height', $value);
     }
 
     /**
@@ -251,14 +272,6 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 标识
-     */
-    public function key($value = '')
-    {
-        return $this->set('key', $value);
-    }
-
-    /**
      * 描述标题
      */
     public function label($value = '')
@@ -283,7 +296,7 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起 (显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起)
      */
     public function labelRemark($value = '')
     {
@@ -304,14 +317,6 @@ class FieldSetControl extends BaseRenderer
     public function mode($value = '')
     {
         return $this->set('mode', $value);
-    }
-
-    /**
-     * 点开时才加载内容
-     */
-    public function mountOnEnter($value = true)
-    {
-        return $this->set('mountOnEnter', $value);
     }
 
     /**
@@ -355,7 +360,7 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容 (显示一个小图标, 鼠标放上去的时候显示提示内容)
      */
     public function remark($value = '')
     {
@@ -379,23 +384,7 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 是否立即保存(TableColumn中使用)
-     */
-    public function saveImmediately($value = true)
-    {
-        return $this->set('saveImmediately', $value);
-    }
-
-    /**
-     * 图标是否展示
-     */
-    public function showArrow($value = true)
-    {
-        return $this->set('showArrow', $value);
-    }
-
-    /**
-     * 控件大小 可选值: xs | sm | md | lg | base
+     * 表单项大小 可选值: xs | sm | md | lg | full
      */
     public function size($value = '')
     {
@@ -467,22 +456,6 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。 (如果是水平排版，这个属性可以细化水平排版的左右宽度占比。)
-     */
-    public function subFormHorizontal($value = '')
-    {
-        return $this->set('subFormHorizontal', $value);
-    }
-
-    /**
-     * 配置子表单项默认的展示方式。 可选值: normal | inline | horizontal
-     */
-    public function subFormMode($value = '')
-    {
-        return $this->set('subFormMode', $value);
-    }
-
-    /**
      * 当修改完的时候是否提交表单。
      */
     public function submitOnChange($value = true)
@@ -499,44 +472,27 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     *
+     * 表单项类型
      */
-    public function testid($value = '')
-    {
-        return $this->set('testid', $value);
-    }
-
-    /**
-     * 标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
-     */
-    public function title($value = '')
-    {
-        return $this->set('title', $value);
-    }
-
-    /**
-     * 标题展示位置 可选值: top | bottom
-     */
-    public function titlePosition($value = '')
-    {
-        return $this->set('titlePosition', $value);
-    }
-
-    /**
-     * 指定为表单项集合 可选值: fieldset | fieldSet
-     */
-    public function type($value = '')
+    public function type($value = 'input-signature')
     {
         return $this->set('type', $value);
     }
 
     /**
-     * 卡片隐藏就销毁内容。
+     * 清空按钮图标
      */
-    public function unmountOnExit($value = true)
+    public function undoBtnIcon($value = '')
     {
-        return $this->set('unmountOnExit', $value);
+        return $this->set('undoBtnIcon', $value);
+    }
+
+    /**
+     * 撤销按钮名称
+     */
+    public function undoBtnLabel($value = '')
+    {
+        return $this->set('undoBtnLabel', $value);
     }
 
     /**
@@ -604,7 +560,7 @@ class FieldSetControl extends BaseRenderer
     }
 
     /**
-     * 在Table中调整宽度
+     * 组件宽度，默认占满父容器
      */
     public function width($value = '')
     {

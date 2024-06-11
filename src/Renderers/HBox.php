@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Hbox 水平布局渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/hbox
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class HBox extends BaseRenderer
 {
@@ -181,6 +181,22 @@ class HBox extends BaseRenderer
     public function subFormMode($value = '')
     {
         return $this->set('subFormMode', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

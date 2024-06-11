@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ReloadAction
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class ReloadAction extends BaseRenderer
 {
@@ -358,6 +358,14 @@ class ReloadAction extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

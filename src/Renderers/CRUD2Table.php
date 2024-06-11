@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Table
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class CRUD2Table extends BaseRenderer
 {
@@ -573,6 +573,22 @@ class CRUD2Table extends BaseRenderer
     public function tableLayout($value = '')
     {
         return $this->set('tableLayout', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

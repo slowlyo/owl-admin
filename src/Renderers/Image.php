@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图片展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/image
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Image extends BaseRenderer
 {
@@ -288,6 +288,22 @@ class Image extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

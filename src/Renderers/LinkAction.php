@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * LinkAction
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class LinkAction extends BaseRenderer
 {
@@ -366,6 +366,14 @@ class LinkAction extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

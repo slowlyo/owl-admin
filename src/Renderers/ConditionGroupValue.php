@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ConditionGroupValue
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class ConditionGroupValue extends BaseRenderer
 {

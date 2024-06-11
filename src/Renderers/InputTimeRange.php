@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * InputTimeRange 时间范围
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class InputTimeRange extends BaseRenderer
 {

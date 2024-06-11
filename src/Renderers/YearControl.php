@@ -6,13 +6,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 年份选择控件
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class YearControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-year');
+    }
+
+    /**
+     * 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
+     */
+    public function autoFill($value = '')
+    {
+        return $this->set('autoFill', $value);
     }
 
     /**
@@ -176,6 +184,14 @@ class YearControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function initAutoFill($value = '')
+    {
+        return $this->set('initAutoFill', $value);
+    }
+
+    /**
      * 表单 control 是否为 inline 模式。
      */
     public function inline($value = true)
@@ -208,7 +224,7 @@ class YearControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -301,6 +317,14 @@ class YearControl extends BaseRenderer
     public function required($value = true)
     {
         return $this->set('required', $value);
+    }
+
+    /**
+     *
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
     }
 
     /**
@@ -397,6 +421,14 @@ class YearControl extends BaseRenderer
     public function submitOnChange($value = true)
     {
         return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

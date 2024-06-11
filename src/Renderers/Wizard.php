@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 表单向导 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/wizard
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Wizard extends BaseRenderer
 {
@@ -317,6 +317,22 @@ class Wizard extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

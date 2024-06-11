@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Portlet
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Portlet extends BaseRenderer
 {
@@ -230,6 +230,22 @@ class Portlet extends BaseRenderer
     public function tabsMode($value = '')
     {
         return $this->set('tabsMode', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

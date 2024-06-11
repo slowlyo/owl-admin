@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * GridColumn
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class GridColumn extends BaseRenderer
 {

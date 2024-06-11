@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Form 表单渲染器。说明：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/index
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Form extends BaseRenderer
 {
@@ -264,7 +264,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 表单label的对齐方式 (表单label的对齐方式) 可选值: right | left
+     * 表单label的对齐方式 (表单label的对齐方式) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -288,7 +288,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 配置表单项默认的展示方式。 可选值: normal | inline | horizontal
+     * 配置表单项默认的展示方式。 可选值: normal | inline | horizontal | flex
      */
     public function mode($value = '')
     {
@@ -517,6 +517,22 @@ class Form extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

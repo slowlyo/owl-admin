@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 栏目容器渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/portlet
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class PortletTab extends BaseRenderer
 {
@@ -190,6 +190,22 @@ class PortletTab extends BaseRenderer
     public function tab($value = '')
     {
         return $this->set('tab', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

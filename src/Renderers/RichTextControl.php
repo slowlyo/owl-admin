@@ -6,13 +6,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * RichText 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-rich-text
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class RichTextControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-rich-text');
+    }
+
+    /**
+     * 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
+     */
+    public function autoFill($value = '')
+    {
+        return $this->set('autoFill', $value);
     }
 
     /**
@@ -144,6 +152,14 @@ class RichTextControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function initAutoFill($value = '')
+    {
+        return $this->set('initAutoFill', $value);
+    }
+
+    /**
      * 表单 control 是否为 inline 模式。
      */
     public function inline($value = true)
@@ -168,7 +184,7 @@ class RichTextControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -280,6 +296,14 @@ class RichTextControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
+    }
+
+    /**
      * 是否立即保存(TableColumn中使用)
      */
     public function saveImmediately($value = true)
@@ -365,6 +389,14 @@ class RichTextControl extends BaseRenderer
     public function submitOnChange($value = true)
     {
         return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

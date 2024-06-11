@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Color 显示渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/color
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Color extends BaseRenderer
 {
@@ -157,6 +157,22 @@ class Color extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

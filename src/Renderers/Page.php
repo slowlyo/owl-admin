@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * amis Page 渲染器。详情请见：https://aisuda.bce.baidu.com/amis/zh-CN/components/page
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Page extends BaseRenderer
 {
@@ -365,6 +365,22 @@ class Page extends BaseRenderer
     public function subTitle($value = '')
     {
         return $this->set('subTitle', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DialogAction
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class DialogAction extends BaseRenderer
 {
@@ -102,6 +102,14 @@ class DialogAction extends BaseRenderer
     public function countDownTpl($value = '')
     {
         return $this->set('countDownTpl', $value);
+    }
+
+    /**
+     * 数据映射
+     */
+    public function data($value = '')
+    {
+        return $this->set('data', $value);
     }
 
     /**
@@ -390,6 +398,14 @@ class DialogAction extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 垂直布局控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/vbox
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class VBox extends BaseRenderer
 {
@@ -149,6 +149,22 @@ class VBox extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

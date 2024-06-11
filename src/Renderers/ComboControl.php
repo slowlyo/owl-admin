@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Combo 组合输入框类型 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/combo
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class ComboControl extends BaseRenderer
 {
@@ -45,6 +45,14 @@ class ComboControl extends BaseRenderer
     public function addattop($value = true)
     {
         return $this->set('addattop', $value);
+    }
+
+    /**
+     * 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
+     */
+    public function autoFill($value = '')
+    {
+        return $this->set('autoFill', $value);
     }
 
     /**
@@ -232,6 +240,14 @@ class ComboControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function initAutoFill($value = '')
+    {
+        return $this->set('initAutoFill', $value);
+    }
+
+    /**
      * 表单 control 是否为 inline 模式。
      */
     public function inline($value = true)
@@ -272,7 +288,7 @@ class ComboControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -440,6 +456,14 @@ class ComboControl extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
+    }
+
+    /**
      * 是否立即保存(TableColumn中使用)
      */
     public function saveImmediately($value = true)
@@ -590,6 +614,14 @@ class ComboControl extends BaseRenderer
     public function tabsStyle($value = '')
     {
         return $this->set('tabsStyle', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

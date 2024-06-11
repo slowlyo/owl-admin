@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TransferPicker 穿梭器的弹框形态 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/transfer-picker
- *
- * @author  slowlyo
- * @version 6.4.1
+ * 
+ * @author slowlyo
+ * @version 6.5.0
  */
 class TransferPickerControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'transfer-picker');
+
+
     }
 
     /**
@@ -152,7 +154,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -288,7 +290,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -360,7 +362,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -408,7 +410,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -584,6 +586,14 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
+     * 
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
+    }
+
+    /**
      * 是否立即保存(TableColumn中使用)
      */
     public function saveImmediately($value = true)
@@ -744,7 +754,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -776,7 +786,15 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     * 
      */
     public function type($value = 'transfer-picker')
     {
@@ -816,7 +834,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

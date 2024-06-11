@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2List
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class CRUD2List extends BaseRenderer
 {
@@ -519,6 +519,22 @@ class CRUD2List extends BaseRenderer
     public function syncResponse2Query($value = true)
     {
         return $this->set('syncResponse2Query', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

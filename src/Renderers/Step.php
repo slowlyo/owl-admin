@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Step
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Step extends BaseRenderer
 {
@@ -166,6 +166,22 @@ class Step extends BaseRenderer
     public function subTitle($value = '')
     {
         return $this->set('subTitle', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

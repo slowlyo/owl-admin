@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableSchema2
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class TableSchema2 extends BaseRenderer
 {
@@ -389,6 +389,22 @@ class TableSchema2 extends BaseRenderer
     public function tableLayout($value = '')
     {
         return $this->set('tableLayout', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

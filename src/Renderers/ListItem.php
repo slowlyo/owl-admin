@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ListItem
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class ListItem extends BaseRenderer
 {
@@ -200,6 +200,22 @@ class ListItem extends BaseRenderer
     public function subTitle($value = '')
     {
         return $this->set('subTitle', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

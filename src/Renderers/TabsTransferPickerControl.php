@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TabsTransferPicker 穿梭器的弹框形态 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tabs-transfer-picker
- *
- * @author  slowlyo
- * @version 6.4.1
+ * 
+ * @author slowlyo
+ * @version 6.5.0
  */
 class TabsTransferPickerControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'tabs-transfer-picker');
+
+
     }
 
     /**
@@ -144,7 +146,7 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -280,7 +282,7 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -352,7 +354,7 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -400,7 +402,7 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -568,6 +570,14 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
+     * 
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
+    }
+
+    /**
      * 是否立即保存(TableColumn中使用)
      */
     public function saveImmediately($value = true)
@@ -728,7 +738,7 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -760,7 +770,15 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     * 
      */
     public function type($value = 'tabs-transfer-picker')
     {
@@ -800,7 +818,7 @@ class TabsTransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

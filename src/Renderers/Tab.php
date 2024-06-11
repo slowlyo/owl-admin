@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tab
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Tab extends BaseRenderer
 {
@@ -230,6 +230,22 @@ class Tab extends BaseRenderer
     public function tab($value = '')
     {
         return $this->set('tab', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

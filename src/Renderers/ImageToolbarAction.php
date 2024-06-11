@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ImageToolbarAction
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class ImageToolbarAction extends BaseRenderer
 {

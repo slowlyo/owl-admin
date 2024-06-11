@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Flex 布局 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/flex
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class Flex extends BaseRenderer
 {
@@ -181,6 +181,22 @@ class Flex extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

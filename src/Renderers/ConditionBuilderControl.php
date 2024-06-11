@@ -4,19 +4,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 条件组合控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/condition-builder
- *
- * @author  slowlyo
- * @version 6.4.1
+ * 
+ * @author slowlyo
+ * @version 6.5.0
  */
 class ConditionBuilderControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'condition-builder');
+
+
     }
 
     /**
-     *
+     * 
      */
     public function addBtnVisibleOn($value = '')
     {
@@ -29,6 +31,14 @@ class ConditionBuilderControl extends BaseRenderer
     public function addGroupBtnVisibleOn($value = '')
     {
         return $this->set('addGroupBtnVisibleOn', $value);
+    }
+
+    /**
+     * 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
+     */
+    public function autoFill($value = '')
+    {
+        return $this->set('autoFill', $value);
     }
 
     /**
@@ -64,7 +74,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -152,6 +162,14 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
+     * if 里面公式编辑器配置
+     */
+    public function formulaForIf($value = '')
+    {
+        return $this->set('formulaForIf', $value);
+    }
+
+    /**
      * 函数集合 (函数集合)
      */
     public function funcs($value = '')
@@ -200,6 +218,14 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
+     * 
+     */
+    public function initAutoFill($value = '')
+    {
+        return $this->set('initAutoFill', $value);
+    }
+
+    /**
      * 表单 control 是否为 inline 模式。
      */
     public function inline($value = true)
@@ -224,7 +250,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -328,6 +354,14 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
+     * 
+     */
+    public function row($value = '')
+    {
+        return $this->set('row', $value);
+    }
+
+    /**
      * 是否立即保存(TableColumn中使用)
      */
     public function saveImmediately($value = true)
@@ -408,7 +442,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -429,6 +463,14 @@ class ConditionBuilderControl extends BaseRenderer
     public function submitOnChange($value = true)
     {
         return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -472,7 +514,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

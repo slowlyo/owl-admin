@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * MultilineText
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class MultilineText extends BaseRenderer
 {
@@ -165,6 +165,22 @@ class MultilineText extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     *
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
     }
 
     /**

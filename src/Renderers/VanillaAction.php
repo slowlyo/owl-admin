@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * VanillaAction
  *
  * @author  slowlyo
- * @version 6.4.1
+ * @version 6.5.0
  */
 class VanillaAction extends BaseRenderer
 {
@@ -365,6 +365,14 @@ class VanillaAction extends BaseRenderer
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     *
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**

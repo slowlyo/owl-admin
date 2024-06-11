@@ -179,7 +179,6 @@ class CodeGeneratorController extends AdminController
                                         ]),
                                     amis()
                                         ->SelectControl('exists_table', admin_trans('admin.code_generators.exists_table'))
-                                        ->inputClassName('bg-gray-100')
                                         ->searchable()
                                         ->clearable()
                                         ->selectMode('group')
@@ -221,9 +220,9 @@ class CodeGeneratorController extends AdminController
                                     ->required(),
                                 amis()
                                     ->SelectControl('save_path', admin_trans('admin.code_generators.save_path_select'))
+                                    ->clearable()
                                     ->searchable()
                                     ->description(admin_trans('admin.code_generators.save_path_select_tips'))
-                                    ->inputClassName('bg-gray-100')
                                     ->selectMode('group')
                                     ->source('${save_path_options}')
                                     ->onEvent([
