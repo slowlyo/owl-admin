@@ -30,6 +30,10 @@ class AdminMenuService extends AdminService
 
     public function parentIsChild($id, $parent_id)
     {
+        if($id == $parent_id){
+            return true;
+        }
+
         $parent = $this->query()->find($parent_id);
 
         do {
