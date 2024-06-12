@@ -60,36 +60,48 @@ trait ElementTrait
     /**
      * 新增按钮
      *
-     * @param bool   $dialog
-     * @param string $dialogSize
+     * @param bool|string $dialog     是否弹窗, 弹窗: true|dialog, 抽屉: drawer,
+     * @param string      $dialogSize 弹窗大小, 默认: md, 可选值: xs | sm | md | lg | xl | full
+     * @param string      $title      弹窗标题 & 按钮文字, 默认: 新增
      *
      * @return \Slowlyo\OwlAdmin\Renderers\DialogAction|\Slowlyo\OwlAdmin\Renderers\LinkAction
      */
-    protected function createButton(bool $dialog = false, string $dialogSize = '')
+    protected function createButton(bool|string $dialog = false, string $dialogSize = 'md', string $title = '')
     {
+        $title  = $title ?: admin_trans('admin.create');
+        $button = amis()->LinkAction()->link($this->getCreatePath());
+
         if ($dialog) {
             $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath())->onEvent([]);
 
-            $button = amis()->DialogAction()->dialog(
-                amis()->Dialog()->title(admin_trans('admin.create'))->body($form)->size($dialogSize)
-            );
-        } else {
-            $button = amis()->LinkAction()->link($this->getCreatePath());
+            if ($dialog === 'drawer') {
+                $button = amis()->DrawerAction()->drawer(
+                    amis()->Drawer()->title($title)->body($form)->size($dialogSize)
+                );
+            } else {
+                $button = amis()->DialogAction()->dialog(
+                    amis()->Dialog()->title($title)->body($form)->size($dialogSize)
+                );
+            }
         }
 
-        return $button->label(admin_trans('admin.create'))->icon('fa fa-add')->level('primary');
+        return $button->label($title)->icon('fa fa-add')->level('primary');
     }
 
     /**
      * 行编辑按钮
      *
-     * @param bool   $dialog
-     * @param string $dialogSize
+     * @param bool|string $dialog     是否弹窗, 弹窗: true|dialog, 抽屉: drawer,
+     * @param string      $dialogSize 弹窗大小, 默认: md, 可选值: xs | sm | md | lg | xl | full
+     * @param string      $title      弹窗标题 & 按钮文字, 默认: 编辑
      *
      * @return \Slowlyo\OwlAdmin\Renderers\DialogAction|\Slowlyo\OwlAdmin\Renderers\LinkAction
      */
-    protected function rowEditButton(bool $dialog = false, string $dialogSize = '')
+    protected function rowEditButton(bool|string $dialog = false, string $dialogSize = 'md', string $title = '')
     {
+        $title  = $title ?: admin_trans('admin.edit');
+        $button = amis()->LinkAction()->link($this->getEditPath());
+
         if ($dialog) {
             $form = $this->form(true)
                 ->api($this->getUpdatePath())
@@ -97,45 +109,60 @@ trait ElementTrait
                 ->redirect('')
                 ->onEvent([]);
 
-            $button = amis()->DialogAction()->dialog(
-                amis()->Dialog()->title(admin_trans('admin.edit'))->body($form)->size($dialogSize)
-            );
-        } else {
-            $button = amis()->LinkAction()->link($this->getEditPath());
+            if ($dialog === 'drawer') {
+                $button = amis()->DrawerAction()->drawer(
+                    amis()->Drawer()->title($title)->body($form)->size($dialogSize)
+                );
+            } else {
+                $button = amis()->DialogAction()->dialog(
+                    amis()->Dialog()->title($title)->body($form)->size($dialogSize)
+                );
+            }
         }
 
-        return $button->label(admin_trans('admin.edit'))->icon('fa-regular fa-pen-to-square')->level('link');
+        return $button->label($title)->icon('fa-regular fa-pen-to-square')->level('link');
     }
 
     /**
      * 行详情按钮
      *
-     * @param bool   $dialog
-     * @param string $dialogSize
+     * @param bool|string $dialog     是否弹窗, 弹窗: true|dialog, 抽屉: drawer
+     * @param string      $dialogSize 弹窗大小, 默认: md, 可选值: xs | sm | md | lg | xl | full
+     * @param string      $title      弹窗标题 & 按钮文字, 默认: 详情
      *
      * @return \Slowlyo\OwlAdmin\Renderers\DialogAction|\Slowlyo\OwlAdmin\Renderers\LinkAction
      */
-    protected function rowShowButton(bool $dialog = false, string $dialogSize = '')
+    protected function rowShowButton(bool|string $dialog = false, string $dialogSize = 'md', string $title = '')
     {
+        $title  = $title ?: admin_trans('admin.show');
+        $button = amis()->LinkAction()->link($this->getShowPath());
+
         if ($dialog) {
-            $button = amis()->DialogAction()->dialog(
-                amis()->Dialog()->title(admin_trans('admin.show'))->body($this->detail('$id'))->size($dialogSize)
-            );
-        } else {
-            $button = amis()->LinkAction()->link($this->getShowPath());
+            if ($dialog === 'drawer') {
+                $button = amis()->DrawerAction()->drawer(
+                    amis()->Drawer()->title($title)->body($this->detail('$id'))->size($dialogSize)
+                );
+            } else {
+                $button = amis()->DialogAction()->dialog(
+                    amis()->Dialog()->title($title)->body($this->detail('$id'))->size($dialogSize)
+                );
+            }
         }
 
-        return $button->label(admin_trans('admin.show'))->icon('fa-regular fa-eye')->level('link');
+        return $button->label($title)->icon('fa-regular fa-eye')->level('link');
     }
 
     /**
      * 行删除按钮
      *
+     * @param string $title
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
      */
-    protected function rowDeleteButton()
+    protected function rowDeleteButton(string $title = '')
     {
         return amis()->DialogAction()
-            ->label(admin_trans('admin.delete'))
+            ->label($title ?: admin_trans('admin.delete'))
             ->icon('fa-regular fa-trash-can')
             ->level('link')
             ->dialog(
@@ -157,12 +184,12 @@ trait ElementTrait
     /**
      * 操作列
      *
-     * @param bool   $dialog
-     * @param string $dialogSize
+     * @param bool|array|string $dialog     是否弹窗, 弹窗: true|dialog, 抽屉: drawer
+     * @param string            $dialogSize 弹窗大小, 默认: md, 可选值: xs | sm | md | lg | xl | full
      *
      * @return \Slowlyo\OwlAdmin\Renderers\Operation
      */
-    protected function rowActions(bool|array $dialog = false, string $dialogSize = '')
+    protected function rowActions(bool|array|string $dialog = false, string $dialogSize = 'md')
     {
         if (is_array($dialog)) {
             return amis()->Operation()->label(admin_trans('admin.actions'))->buttons($dialog);
@@ -249,7 +276,7 @@ trait ElementTrait
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
-        $form = amis()->Form()->panelClassName('px-48 m:px-0')->title(' ')->mode('horizontal')->promptPageLeave();
+        $form = amis()->Form()->panelClassName('px-48 m:px-0')->title(' ')->mode('normal')->promptPageLeave();
 
         if ($back) {
             $form->onEvent([

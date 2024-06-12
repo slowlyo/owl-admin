@@ -288,13 +288,21 @@ class CodeGeneratorController extends AdminController
                 // 页面配置
                 amis()->Tab()->title(admin_trans('admin.code_generators.page_config'))->body(
                     amis()->ComboControl('page_info', false)->multiLine()->subFormMode('horizontal')->items([
-                        amis()
-                            ->SwitchControl('dialog_form', admin_trans('admin.code_generators.dialog_form'))
-                            ->value(1),
+                        amis()->RadiosControl('dialog_form', admin_trans('admin.code_generators.dialog_form'))
+                            ->options([
+                                ['label' => admin_trans('admin.code_generators.dialog'), 'value' => 'dialog'],
+                                ['label' => admin_trans('admin.code_generators.drawer'), 'value' => 'drawer'],
+                                ['label' => admin_trans('admin.code_generators.page'), 'value' => 'page'],
+                            ])
+                            ->selectFirst(),
                         amis()->SelectControl('dialog_size', admin_trans('admin.code_generators.dialog_size'))
                             ->options(['xs', 'sm', 'md', 'lg', 'xl', 'full'])
                             ->value('md')
-                            ->visibleOn('${!!dialog_form}'),
+                            ->visibleOn('${dialog_form == "dialog"}'),
+                        amis()->SelectControl('dialog_size', admin_trans('admin.code_generators.drawer_size'))
+                            ->options(['xs', 'sm', 'md', 'lg', 'full'])
+                            ->value('md')
+                            ->visibleOn('${dialog_form == "drawer"}'),
                         amis()->CheckboxesControl('row_actions', admin_trans('admin.actions'))->options([
                             'show'   => admin_trans('admin.show'),
                             'edit'   => admin_trans('admin.edit'),

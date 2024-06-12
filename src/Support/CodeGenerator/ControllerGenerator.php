@@ -61,9 +61,10 @@ class ControllerGenerator extends BaseGenerator
         }
 
         // 顶部工具栏
-        if ($this->model->page_info['dialog_form']) {
+        $dialog = $this->model->page_info['dialog_form'];
+        if ($dialog != 'page') {
             $content .= "\t\t\t->headerToolbar([" . PHP_EOL;
-            $content .= "\t\t\t\t\$this->createButton(true{$this->getDialogSize()})," . PHP_EOL;
+            $content .= "\t\t\t\t\$this->createButton('{$dialog}'{$this->getDialogSize()})," . PHP_EOL;
             $content .= "\t\t\t\t...\$this->baseHeaderToolBar()" . PHP_EOL;
             $content .= "\t\t\t])" . PHP_EOL;
         }
@@ -191,8 +192,8 @@ class ControllerGenerator extends BaseGenerator
         }
 
         return match ($type) {
-            'list_component' => "amis()->TableColumn('{$column['name']}', '{$label}')",
-            'form_component' => "amis()->TextControl('{$column['name']}', '{$label}')",
+            'list_component'   => "amis()->TableColumn('{$column['name']}', '{$label}')",
+            'form_component'   => "amis()->TextControl('{$column['name']}', '{$label}')",
             'detail_component' => "amis()->TextControl('{$column['name']}', '{$label}')->static()",
         };
     }
@@ -200,23 +201,23 @@ class ControllerGenerator extends BaseGenerator
     private function makeRowButton($pageInfo)
     {
         $_actions   = data_get($pageInfo, 'row_actions');
-        $isDialog   = $pageInfo['dialog_form'] ? 'true' : '';
+        $dialog     = $pageInfo['dialog_form'] ? "'{$pageInfo['dialog_form']}'" : '';
         $dialogSize = $this->getDialogSize();
 
         if (in_array('show', $_actions) && in_array('edit', $_actions) && in_array('delete', $_actions)) {
-            return "\$this->rowActions({$isDialog}{$dialogSize})";
+            return "\$this->rowActions({$dialog}{$dialogSize})";
         }
 
         $str = "\$this->rowActions([\n\t\t\t\t";
 
         if (in_array('show', $_actions)) {
-            $str .= "\t\$this->rowShowButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+            $str .= "\t\$this->rowShowButton({$dialog}{$dialogSize}),\n\t\t\t\t";
         }
         if (in_array('edit', $_actions)) {
-            $str .= "\t\$this->rowEditButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+            $str .= "\t\$this->rowEditButton({$dialog}{$dialogSize}),\n\t\t\t\t";
         }
         if (in_array('delete', $_actions)) {
-            $str .= "\t\$this->rowDeleteButton({$isDialog}{$dialogSize}),\n\t\t\t\t";
+            $str .= "\t\$this->rowDeleteButton({$dialog}{$dialogSize}),\n\t\t\t\t";
         }
         $str .= "])";
 

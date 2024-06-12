@@ -97,9 +97,13 @@ EOF;
                     $class   = $value['class'];
                     $service = $value['serviceRaw'];
 
+                    $this->pushMeta("expectedArguments(\\{$value['raw']}::createButton(), 0, 'dialog', 'drawer', true);");
                     $this->pushMeta("expectedArguments(\\{$value['raw']}::createButton(), 1, 'xs', 'sm', 'md', 'lg', 'xl', 'full');");
+                    $this->pushMeta("expectedArguments(\\{$value['raw']}::rowEditButton(), 0, 'dialog', 'drawer', true);");
                     $this->pushMeta("expectedArguments(\\{$value['raw']}::rowEditButton(), 1, 'xs', 'sm', 'md', 'lg', 'xl', 'full');");
+                    $this->pushMeta("expectedArguments(\\{$value['raw']}::rowShowButton(), 0, 'dialog', 'drawer', true);");
                     $this->pushMeta("expectedArguments(\\{$value['raw']}::rowShowButton(), 1, 'xs', 'sm', 'md', 'lg', 'xl', 'full');");
+                    $this->pushMeta("expectedArguments(\\{$value['raw']}::rowActions(), 0, 'dialog', 'drawer', true);");
                     $this->pushMeta("expectedArguments(\\{$value['raw']}::rowActions(), 1, 'xs', 'sm', 'md', 'lg', 'xl', 'full');");
 
                     return <<<PHP
