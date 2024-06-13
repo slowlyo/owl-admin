@@ -111,7 +111,11 @@ class ControllerGenerator extends BaseGenerator
         $content .= PHP_EOL;
         $content .= "\tpublic function form(\$isEdit = false)" . PHP_EOL;
         $content .= "\t{" . PHP_EOL;
-        $content .= "\t\treturn \$this->baseForm()->body([" . PHP_EOL;
+        if ($this->model->page_info['dialog_form'] == 'drawer') {
+            $content .= "\t\treturn \$this->baseForm()->mode('normal')->body([" . PHP_EOL;
+        } else {
+            $content .= "\t\treturn \$this->baseForm()->body([" . PHP_EOL;
+        }
 
         foreach ($this->model->columns as $column) {
             if (data_get($column, 'index') == 'primary') {

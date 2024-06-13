@@ -276,7 +276,7 @@ trait ElementTrait
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
-        $form = amis()->Form()->panelClassName('px-48 m:px-0')->title(' ')->mode('normal')->promptPageLeave();
+        $form = amis()->Form()->panelClassName('px-48 m:px-0')->title(' ')->promptPageLeave();
 
         if ($back) {
             $form->onEvent([
