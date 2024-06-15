@@ -95,9 +95,9 @@ class AdminSettingService extends AdminService
     /**
      * 获取设置项
      *
-     * @param string $key 设置项key
+     * @param string     $key     设置项key
      * @param mixed|null $default 默认值
-     * @param bool $fresh 是否直接从数据库获取
+     * @param bool       $fresh   是否直接从数据库获取
      *
      * @return mixed|null
      */
@@ -115,11 +115,28 @@ class AdminSettingService extends AdminService
     }
 
     /**
+     * 获取模块设置项
+     *
+     * @param string     $key
+     * @param mixed|null $default
+     * @param bool       $fresh
+     *
+     * @return mixed|null
+     */
+    public function getByModule(string $key, mixed $default = null, bool $fresh = false)
+    {
+        $module = Admin::currentModule(true);
+        $prefix = $module ? $module . '_' : '';
+
+        return $this->get($prefix . $key, $default, $fresh);
+    }
+
+    /**
      * 获取设置项中的某个值
      *
-     * @param string $key 设置项key
+     * @param string $key  设置项key
      * @param string $path 通过点号分隔的路径, 同Arr::get()
-     * @param $default
+     * @param        $default
      *
      * @return array|\ArrayAccess|mixed|null
      */

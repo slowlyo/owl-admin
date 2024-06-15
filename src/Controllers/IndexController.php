@@ -23,17 +23,14 @@ class IndexController extends AdminController
 
     public function settings(): JsonResponse|JsonResource
     {
-        $module = Admin::currentModule(true);
-        $prefix = $module ? $module . '_' : '';
-
         $localeOptions = Admin::config('admin.layout.locale_options') ?? [
             'en'    => 'English',
             'zh_CN' => '简体中文',
         ];
 
-        $locale = settings()->get('admin_locale', config('app.locale'));
+        $locale = settings()->getByModule('admin_locale', config('app.locale'));
 
-        if($locale == 'null'){
+        if ($locale == 'null') {
             $locale = 'zh_CN';
         }
 
@@ -48,7 +45,7 @@ class IndexController extends AdminController
             'login_captcha'          => Admin::config('admin.auth.login_captcha'),
             'locale_options'         => map2options($localeOptions),
             'show_development_tools' => Admin::config('admin.show_development_tools'),
-            'system_theme_setting'   => Admin::setting()->get($prefix . 'system_theme_setting'),
+            'system_theme_setting'   => settings()->getByModule('system_theme_setting'),
             'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
         ]);
     }
@@ -65,8 +62,9 @@ class IndexController extends AdminController
         $data          = $request->all();
         $currentModule = Admin::currentModule(true);
 
+        $distinguishingModule = ['system_theme_setting', 'admin_locale'];
         foreach ($data as $key => $value) {
-            if ($key == 'system_theme_setting' && $currentModule) {
+            if (in_array($key, $distinguishingModule) && $currentModule) {
                 $data[$currentModule . '_' . $key] = $value;
                 unset($data[$key]);
             }
