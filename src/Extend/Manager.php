@@ -466,7 +466,7 @@ class Manager
     {
         if ($this->settings === null) {
             try {
-                $this->settings = ExtensionModel::all()->keyBy('name');
+                $this->settings = ExtensionModel::keyByNameList();
             } catch (\Throwable $e) {
                 $this->settings = new Collection();
             }
