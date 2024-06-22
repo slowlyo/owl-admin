@@ -220,7 +220,8 @@ abstract class AdminController extends Controller
      */
     public function update(Request $request)
     {
-        $result = $this->service->update($this->getPrimaryValue($request), $request->all());
+        $primaryKey = $this->getPrimaryValue($request) ?: data_get(func_get_args(), 1);
+        $result     = $this->service->update($primaryKey, $request->all());
 
         return $this->autoResponse($result, admin_trans('admin.save'));
     }
