@@ -14,10 +14,8 @@ class Extension extends BaseModel
 
     protected $table = 'admin_extensions';
 
-    protected static function boot()
+    protected static function booted()
     {
-        parent::boot();
-
         $clearCache = function () {
             cache()->forget(self::CACHE_KEY);
         };

@@ -421,7 +421,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
         $this->flushMenu();
         $this->unpublishable();
         $this->runMigrations(true);
-        \Slowlyo\OwlAdmin\Models\Extension::query()->where('name', $this->getName())->delete();
+        \Slowlyo\OwlAdmin\Models\Extension::query()->where('name', $this->getName())->first()->delete();
     }
 
     /**
