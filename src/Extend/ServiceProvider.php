@@ -370,8 +370,14 @@ abstract class ServiceProvider extends LaravelServiceProvider
     {
         if ($enable) {
             $this->refreshMenu();
+            if(method_exists($this,'refreshDict')){
+                $this->refreshDict();
+            }
         } else {
             $this->flushMenu();
+            if(method_exists($this,'flushDict')){
+                $this->flushDict();
+            }
         }
     }
 
