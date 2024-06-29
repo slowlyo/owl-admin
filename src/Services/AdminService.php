@@ -16,7 +16,7 @@ abstract class AdminService
 {
     use ErrorTrait;
 
-    protected static $tableColumn;
+    protected $tableColumn;
 
     protected string $modelName;
 
@@ -52,17 +52,17 @@ abstract class AdminService
 
     public function getTableColumns()
     {
-        if (!self::$tableColumn) {
+        if (!$this->tableColumn) {
             try {
                 // laravel11: sqlite 暂时无法获取字段, 等待 laravel 适配
-                self::$tableColumn = Schema::connection($this->getModel()->getConnectionName())
+                $this->tableColumn = Schema::connection($this->getModel()->getConnectionName())
                     ->getColumnListing($this->getModel()->getTable());
             } catch (\Throwable $e) {
-                self::$tableColumn = [];
+                $this->tableColumn = [];
             }
         }
 
-        return self::$tableColumn;
+        return $this->tableColumn;
     }
 
     public function hasColumn($column)
