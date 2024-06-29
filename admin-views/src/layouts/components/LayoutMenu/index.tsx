@@ -106,7 +106,7 @@ const LayoutMenu = (
     }
 
     return (
-        <Scrollbars autoHide className="custom-scrollbar">
+        <Scrollbars autoHide>
             <Menu
                 className="!border-e-0 flex-1"
                 mode={mode}

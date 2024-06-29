@@ -97,8 +97,8 @@ export const DoubleLayout = () => {
                     <LayoutLogo onlyLogo/>
                 </div>
 
-                <div className="w-full h-full pt-[65px]">
-                    <Scrollbars autoHide className="custom-scrollbar">
+                <Scrollbars autoHide className="custom-scrollbar">
+                    <div className="w-full h-full pt-[65px]">
                         {routes?.map(item => {
                             if (item?.meta?.hide) return null
                             const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
@@ -120,8 +120,8 @@ export const DoubleLayout = () => {
                                 </div>
                             )
                         })}
-                    </Scrollbars>
-                </div>
+                    </div>
+                </Scrollbars>
             </Sider>
             <Layout>
                 <Sider hidden={!childrenRoutes?.length}
@@ -129,7 +129,6 @@ export const DoubleLayout = () => {
                        collapsedWidth={65}
                        className="border-r relative"
                        theme="light"
-                       style={{marginLeft: '-1px'}}
                        collapsed={collapsed}>
                     {(!collapsed && !!childrenRoutes?.length) && (
                         <div className="w-full h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate absolute">
