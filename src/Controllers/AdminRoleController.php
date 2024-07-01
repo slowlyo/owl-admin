@@ -69,7 +69,7 @@ class AdminRoleController extends AdminController
                     ->closeOnEsc()
                     ->body([
                         amis()->Form()
-                            ->api(admin_url('system/admin_role_save_permissions'))
+                            ->api(admin_url('system/admin_roles/save_permissions'))
                             ->initApi($this->getEditGetDataPath())
                             ->mode('normal')
                             ->data(['id' => '${id}'])

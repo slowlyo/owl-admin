@@ -74,7 +74,7 @@ class Route
                 $router->resource('admin_roles', AdminRoleController::class);
                 $router->resource('admin_permissions', AdminPermissionController::class);
 
-                $router->post('admin_role_save_permissions', [AdminRoleController::class, 'savePermissions']);
+                $router->post('admin_roles/save_permissions', [AdminRoleController::class, 'savePermissions']);
                 $router->post('_admin_permissions_auto_generate', [AdminPermissionController::class, 'autoGenerate']);
             });
 
