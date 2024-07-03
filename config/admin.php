@@ -2,13 +2,13 @@
 
 return [
     // 应用名称
-    'name'           => 'Owl Admin',
+    'name'           => env('ADMIN_APP_NAME', 'Owl Admin'),
 
     // 应用 logo
-    'logo'           => '/admin-assets/logo.png',
+    'logo'           => env('ADMIN_LOGO', '/admin-assets/logo.png'),
 
     // 默认头像
-    'default_avatar' => '/admin-assets/default-avatar.png',
+    'default_avatar' => env('ADMIN_DEFAULT_AVATAR', '/admin-assets/default-avatar.png'),
 
     // 应用安装目录
     'directory'      => app_path('Admin'),
@@ -18,8 +18,8 @@ return [
 
     // 应用路由
     'route'          => [
-        'prefix'               => 'admin-api',
-        'domain'               => null,
+        'prefix'               => env('ADMIN_ROUTE_PREFIX', 'admin-api'),
+        'domain'               => env('ADMIN_DOMAIN'),
         'namespace'            => 'App\\Admin\\Controllers',
         'middleware'           => ['admin'],
         // 不包含额外路由, 配置后, 不会追加新增/详情/编辑页面路由
@@ -32,11 +32,11 @@ return [
         // 是否开启验证码
         'login_captcha'    => env('ADMIN_LOGIN_CAPTCHA', true),
         // 是否开启认证
-        'enable'           => true,
+        'enable'           => env('ADMIN_ENABLE_AUTH', true),
         // 是否开启鉴权
-        'permission'       => true,
+        'permission'       => env('ADMIN_ENABLE_PERMISSION', true),
         // token 有效期 (分钟), 为空则不会过期
-        'token_expiration' => null,
+        'token_expiration' => env('ADMIN_TOKEN_EXPIRATION'),
         'guard'            => 'admin',
         'guards'           => [
             'admin' => [
@@ -80,18 +80,18 @@ return [
 
     'layout' => [
         // 浏览器标题, 功能名称使用 %title% 代替
-        'title'              => '%title% | OwlAdmin',
+        'title'              => env('ADMIN_SITE_TITLE', '%title% | OwlAdmin'),
         'header'             => [
             // 是否显示 [刷新] 按钮
-            'refresh'      => true,
+            'refresh'       => env('ADMIN_HEADER_REFRESH', true),
             // 是否显示 [暗色模式] 按钮
-            'dark'         => true,
+            'dark'          => env('ADMIN_HEADER_DARK', true),
             // 是否显示 [全屏] 按钮
-            'full_screen'  => true,
+            'full_screen'   => env('ADMIN_HEADER_FULL_SCREEN', true),
             // 是否显示 [多语言] 按钮
-            'locale_toggle' => true,
+            'locale_toggle' => env('ADMIN_HEADER_LOCALE_TOGGLE', true),
             // 是否显示 [主题配置] 按钮
-            'theme_config' => true,
+            'theme_config'  => env('ADMIN_HEADER_THEME_CONFIG', true),
         ],
         // 多语言选项
         'locale_options'     => [
