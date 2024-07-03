@@ -29,7 +29,6 @@ class AdminMenuController extends AdminController
             ])
             ->loadDataOnce()
             ->syncLocation(false)
-            ->footerToolbar([])
             ->headerToolbar([$this->createButton(true, 'lg'), ...$this->baseHeaderToolBar()])
             ->filterTogglable(false)
             ->footerToolbar(['statistics'])

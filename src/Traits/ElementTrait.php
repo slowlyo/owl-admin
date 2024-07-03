@@ -235,6 +235,7 @@ trait ElementTrait
     {
         $crud = amis()->CRUDTable()
             ->perPage(20)
+            ->alwaysShowPagination()
             ->affixHeader(false)
             ->filterTogglable()
             ->filterDefaultVisible(false)

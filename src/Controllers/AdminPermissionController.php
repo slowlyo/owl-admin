@@ -33,7 +33,7 @@ class AdminPermissionController extends AdminController
             ->perPage(999)
             ->loadDataOnce()
             ->filterTogglable(false)
-            ->footerToolbar([])
+            ->footerToolbar(['statistics'])
             ->headerToolbar([
                 $this->createButton(true, 'lg'),
                 'bulkActions',
