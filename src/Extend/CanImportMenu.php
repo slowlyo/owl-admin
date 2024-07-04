@@ -59,7 +59,7 @@ trait CanImportMenu
 
             $menuModel::create([
                 'parent_id' => $this->getParentMenuId($menu['parent'] ?? 0),
-                'custom_order'     => $lastOrder + 1,
+                'custom_order'     => (int)($menu['custom_order'] ?? $lastOrder + 1),
                 'title'     => $menu['title'],
                 'icon'      => (string)($menu['icon'] ?? ''),
                 'url'       => (string)($menu['url'] ?? ''),
