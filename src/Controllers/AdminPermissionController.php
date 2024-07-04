@@ -151,6 +151,10 @@ class AdminPermissionController extends AdminController
         $slugCache   = [];
         $permissions = [];
         foreach ($menus as $menu) {
+            if (!isset($menu['url_type'], $menu['title'], $menu['id'], $menu['custom_order'], $menu['parent_id'], $menu['created_at'], $menu['updated_at'])) {
+                throw new \Exception("菜单数据丢失 {$menu} ");
+                continue;
+            }
             $_httpPath =
                 $menu['url_type'] == Admin::adminMenuModel()::TYPE_ROUTE ? $this->getHttpPath($menu['url']) : '';
 
@@ -200,12 +204,17 @@ class AdminPermissionController extends AdminController
 
             $_id = $item['id'];
             while ($item['parent_id'] != 0) {
+                $parentItem = Admin::adminMenuModel()::query()->find($item['parent_id']);
+                if (!$parentItem) {
+                    throw new \Exception("没有发现父级菜单，ID： {$item['parent_id']} ");
+                    break;
+                }
                 $query->clone()->insert([
                     'permission_id' => $_id,
                     'menu_id'       => $item['parent_id'],
                 ]);
 
-                $item = Admin::adminMenuModel()::query()->find($item['parent_id']);
+                $item =$parentItem;
             }
         }
 
