@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DialogAction
  *
  * @author  slowlyo
- * @version 6.5.0
+ * @version 6.6.0
  */
 class DialogAction extends BaseRenderer
 {

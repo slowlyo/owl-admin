@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * NavItem
  *
  * @author  slowlyo
- * @version 6.5.0
+ * @version 6.6.0
  */
 class NavItem extends BaseRenderer
 {

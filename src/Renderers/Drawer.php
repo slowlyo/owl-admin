@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Drawer 抽出式弹框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/drawer
  *
  * @author  slowlyo
- * @version 6.5.0
+ * @version 6.6.0
  */
 class Drawer extends BaseRenderer
 {

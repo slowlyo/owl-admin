@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Markdown 渲染
  *
  * @author  slowlyo
- * @version 6.5.0
+ * @version 6.6.0
  */
 class Markdown extends BaseRenderer
 {

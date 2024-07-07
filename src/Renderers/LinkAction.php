@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * LinkAction
  *
  * @author  slowlyo
- * @version 6.5.0
+ * @version 6.6.0
  */
 class LinkAction extends BaseRenderer
 {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Hidden 隐藏域。功能性组件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/hidden
  *
  * @author  slowlyo
- * @version 6.5.0
+ * @version 6.6.0
  */
 class HiddenControl extends BaseRenderer
 {

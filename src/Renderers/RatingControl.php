@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Rating 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/rating
  *
  * @author  slowlyo
- * @version 6.5.0
+ * @version 6.6.0
  */
 class RatingControl extends BaseRenderer
 {
