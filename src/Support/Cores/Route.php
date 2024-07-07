@@ -85,6 +85,7 @@ class Route
                         $router->post('preview', [CodeGeneratorController::class, 'preview']);
                         $router->post('generate', [CodeGeneratorController::class, 'generate']);
                         $router->post('clear', [CodeGeneratorController::class, 'clear']);
+                        $router->post('clone', [CodeGeneratorController::class, 'clone']);
                         $router->post('gen_record_options', [CodeGeneratorController::class, 'genRecordOptions']);
                         $router->post('form_data', [CodeGeneratorController::class, 'formData']);
                         $router->post('get_record', [CodeGeneratorController::class, 'getRecord']);

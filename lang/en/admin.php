@@ -62,12 +62,14 @@ return [
     'unauthorized'          => 'Unauthorized',
     'user_disabled'         => 'The user has been disabled',
     'preview'               => 'Preview',
+    'more'                  => 'More',
 
     'code_generators' => [
         'remark1'                     => 'For more parameters, please refer to',
         'remark2'                     => 'Database Migration',
         'remark3'                     => 'Multiple parameters are separated by English commas',
         'table_name'                  => 'Table Name',
+        'new_table_name'              => 'New Table Name',
         'model_name'                  => 'Model',
         'controller_name'             => 'Controller',
         'service_name'                => 'Service',
@@ -80,6 +82,7 @@ return [
         'create_controller'           => 'Create Controller',
         'create_service'              => 'Create Service',
         'app_title'                   => 'App Title',
+        'new_app_title'               => 'New App Title',
         'column_name'                 => 'Column Name',
         'type'                        => 'Type',
         'extra_params'                => 'Extra Params',
@@ -161,6 +164,7 @@ return [
         'drawer'                      => 'Drawer',
         'dialog_size'                 => 'Dialog Size',
         'drawer_size'                 => 'Drawer Size',
+        'clone_record'                => 'Clone Record',
     ],
 
     'admin_users' => 'Admin Users',

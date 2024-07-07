@@ -62,12 +62,14 @@ return [
     'unauthorized'          => '无权访问',
     'user_disabled'         => '用户已被禁用',
     'preview'               => '预览',
+    'more'                  => '更多',
 
     'code_generators' => [
         'remark1'                     => '额外参数请参考',
         'remark2'                     => '数据库迁移',
         'remark3'                     => '多个参数使用英文逗号分割',
         'table_name'                  => '表名',
+        'new_table_name'              => '新表名',
         'model_name'                  => '模型',
         'controller_name'             => '控制器',
         'service_name'                => 'Service',
@@ -80,6 +82,7 @@ return [
         'create_controller'           => '创建控制器',
         'create_service'              => '创建Service',
         'app_title'                   => '功能名称',
+        'new_app_title'               => '新功能名称',
         'column_name'                 => '字段名',
         'type'                        => '类型',
         'extra_params'                => '额外参数',
@@ -161,6 +164,7 @@ return [
         'drawer'                      => '抽屉',
         'dialog_size'                 => '弹窗大小',
         'drawer_size'                 => '抽屉大小',
+        'clone_record'                => '克隆记录',
     ],
 
     'admin_users' => '管理员',

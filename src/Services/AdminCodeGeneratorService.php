@@ -161,4 +161,27 @@ class AdminCodeGeneratorService extends AdminService
             ->values()
             ->toArray();
     }
+
+    /**
+     * 克隆记录
+     *
+     * @param $data
+     *
+     * @return void
+     */
+    public function clone($data)
+    {
+        $tableNameExists = $this->query()->where('table_name', $data['table_name'])->exists();
+
+        admin_abort_if($tableNameExists, admin_trans('admin.code_generators.exists_table'));
+
+        $original = $this->query()->find($data['id']);
+
+        $new = $original->replicate();
+
+        $new->table_name = $data['table_name'];
+        $new->title      = $data['title'];
+
+        $new->save();
+    }
 }
