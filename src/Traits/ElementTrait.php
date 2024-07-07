@@ -120,7 +120,7 @@ trait ElementTrait
             }
         }
 
-        return $button->label($title)->icon('fa-regular fa-pen-to-square')->level('link');
+        return $button->label($title)->level('link');
     }
 
     /**
@@ -149,7 +149,7 @@ trait ElementTrait
             }
         }
 
-        return $button->label($title)->icon('fa-regular fa-eye')->level('link');
+        return $button->label($title)->level('link');
     }
 
     /**
@@ -163,7 +163,6 @@ trait ElementTrait
     {
         return amis()->DialogAction()
             ->label($title ?: admin_trans('admin.delete'))
-            ->icon('fa-regular fa-trash-can')
             ->level('link')
             ->dialog(
                 amis()->Dialog()

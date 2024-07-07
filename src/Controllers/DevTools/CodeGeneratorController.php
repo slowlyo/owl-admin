@@ -104,14 +104,13 @@ class CodeGeneratorController extends AdminController
                     $this->previewCodeAction(),
                     amis()->DrawerAction()
                         ->label(admin_trans('admin.edit'))
-                        ->icon('fa-regular fa-pen-to-square')
                         ->level('link')
                         ->drawer($form(true)),
                     $this->rowDeleteButton(),
                     amis()->DropdownButton()->label(admin_trans('admin.more'))->level('link')->buttons([
-                        $this->cloneAction()->iconClassName('mr-2'),
-                        $this->copyRecordAction()->iconClassName('mr-2'),
-                        $this->clearCodeAction()->iconClassName('mr-2'),
+                        $this->cloneAction(),
+                        $this->copyRecordAction(),
+                        $this->clearCodeAction(),
                     ]),
                 ]),
             ]);
@@ -985,7 +984,6 @@ class CodeGeneratorController extends AdminController
 
         return amis()->DialogAction()
             ->label(admin_trans('admin.code_generators.preview'))
-            ->icon('fa fa-eye')
             ->level('link')
             ->dialog(
                 amis()->Dialog()->size('lg')->title(admin_trans('admin.code_generators.preview_code'))->body(
@@ -1010,7 +1008,6 @@ class CodeGeneratorController extends AdminController
     {
         return amis()->DialogAction()
             ->label(admin_trans('admin.code_generators.clone_record'))
-            ->icon('fa fa-clone')
             ->level('link')
             ->dialog(
                 amis()->Dialog()->title(admin_trans('admin.code_generators.clone_record'))->body([
@@ -1033,7 +1030,6 @@ class CodeGeneratorController extends AdminController
     {
         return amis()->DialogAction()
             ->label(admin_trans('admin.code_generators.copy_record'))
-            ->icon('fa fa-copy')
             ->level('link')
             ->dialog(
                 amis()->Dialog()->title(false)->body(
@@ -1064,7 +1060,6 @@ class CodeGeneratorController extends AdminController
     {
         return amis()->DialogAction()
             ->level('link')
-            ->icon('fa fa-code')
             ->label(admin_trans('admin.code_generators.generate_code'))
             ->iconClassName('pr-4')
             ->dialog(
@@ -1105,7 +1100,6 @@ class CodeGeneratorController extends AdminController
     {
         return amis()->DialogAction()
             ->level('link')
-            ->icon('fa fa-brush')
             ->label(admin_trans('admin.code_generators.clear_code'))
             ->dialog(
                 amis()->Dialog()->title(admin_trans('admin.code_generators.select_clear_record'))->body([

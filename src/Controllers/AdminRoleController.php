@@ -59,7 +59,6 @@ class AdminRoleController extends AdminController
     {
         return amis()->DrawerAction()
             ->label(admin_trans('admin.admin_role.set_permissions'))
-            ->icon('fa-solid fa-gear')
             ->level('link')
             ->drawer(
                 amis()->Drawer()
