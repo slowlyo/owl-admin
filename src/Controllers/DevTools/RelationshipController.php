@@ -81,7 +81,7 @@ class RelationshipController extends AdminController
 
     public function previewButton()
     {
-        return amis()->DrawerAction()->label(admin_trans('admin.preview'))->level('link')->icon('fa fa-eye')->drawer(
+        return amis()->DrawerAction()->label(admin_trans('admin.preview'))->level('link')->drawer(
             amis()->Drawer()
                 ->position('top')
                 ->resizable()

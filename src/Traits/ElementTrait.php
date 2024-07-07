@@ -164,6 +164,7 @@ trait ElementTrait
         return amis()->DialogAction()
             ->label($title ?: admin_trans('admin.delete'))
             ->level('link')
+            ->className('text-danger')
             ->dialog(
                 amis()->Dialog()
                     ->title()
