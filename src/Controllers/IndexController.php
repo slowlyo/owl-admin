@@ -6,6 +6,7 @@ use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Slowlyo\OwlAdmin\Models\Extension;
+use Illuminate\Support\Facades\Storage;
 use Slowlyo\OwlAdmin\Services\AdminPageService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -84,7 +85,19 @@ class IndexController extends AdminController
      */
     public function downloadExport(Request $request)
     {
-        return response()->download(storage_path('app/' . $request->input('path')))->deleteFileAfterSend();
+        $path = $request->input('path');
+
+        try {
+            Storage::exists($path);
+        } catch (\Throwable $e) {
+            abort(404);
+        }
+
+        $path = storage_path('app/' . $path);
+
+        if (!file_exists($path)) abort(404);
+
+        return response()->download($path)->deleteFileAfterSend();
     }
 
     /**
