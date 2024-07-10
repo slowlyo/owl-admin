@@ -88,6 +88,10 @@ const useSetup = (store) => {
 
     // 初始化
     const init = async () => {
+        clearMsgSign()
+        registerFunctions()
+        registerCustomComponents()
+
         await initSettings.runAsync()
 
         if (Token().value) {
@@ -98,10 +102,6 @@ const useSetup = (store) => {
         } else if (!inLoginPage()) {
             goToLoginPage()
         }
-
-        clearMsgSign()
-        registerFunctions()
-        registerCustomComponents()
 
         appLoaded()
     }
