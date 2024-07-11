@@ -45,9 +45,11 @@ const DefaultLogin = () => {
                 window.$owl.afterLoginSuccess(_data, data.token)
             } else {
                 setLoading(false)
-                getCaptcha.run()
                 setError(res.data.msg)
-                formRef.current.setFieldsValue({captcha: ''})
+                if(settings.login_captcha){
+                    getCaptcha.run()
+                    formRef.current.setFieldsValue({captcha: ''})
+                }
             }
         },
     })
