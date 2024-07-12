@@ -14,19 +14,19 @@
 
 <p align="center">
     <a href="https://www.php.net/">
-        <img src="https://img.shields.io/badge/PHP-8.0%2B-%23268af1" alt="Pear Admin Layui Version">
+        <img src="https://img.shields.io/badge/PHP-8.0%2B-%23268af1" alt="">
     </a>
 &nbsp;
     <a href="https://laravel.com/">
-        <img src="https://img.shields.io/badge/Laravel-9.0%2B-%23268af1" alt="Jquery Version">
+        <img src="https://img.shields.io/badge/Laravel-9.0%2B-%23268af1" alt="">
     </a>
 &nbsp;
       <a href="https://aisuda.bce.baidu.com/amis/zh-CN/docs/index">
-        <img src="https://img.shields.io/badge/Amis-3.0%2B-%23268af1" alt="Layui Version">
+        <img src="https://img.shields.io/badge/Amis-3.0%2B-%23268af1" alt="">
     </a>
 &nbsp;
       <a href="https://packagist.org/packages/slowlyo/owl-admin">
-        <img src="https://img.shields.io/badge/license-MIT-%23268af1" alt="Layui Version">
+        <img src="https://img.shields.io/badge/license-MIT-%23268af1" alt="">
     </a>
 </p>
 
