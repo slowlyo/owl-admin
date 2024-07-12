@@ -1,17 +1,17 @@
-#name: Sync To Gitee
-#on:
-#  workflow_dispatch: { }
-#  push:
-#    branches:
-#      - master
-#jobs:
-#  sync:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Sync Mirror
-#        uses: wearerequired/git-mirror-action@master
-#        env:
-#          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-#        with:
-#          source-repo: "git@github.com:Slowlyo/owl-admin.git"
-#          destination-repo: "git@gitee.com:Slowlyo/owl-admin.git"
+name: Sync To Gitee
+on:
+  workflow_dispatch: { }
+  push:
+    branches:
+      - master
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Mirror
+        uses: wearerequired/git-mirror-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        with:
+          source-repo: "git@github.com:Slowlyo/owl-admin.git"
+          destination-repo: "git@gitee.com:Slowlyo/owl-admin.git"
