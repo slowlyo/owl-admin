@@ -1,0 +1,16 @@
+name: Build Release Doc
+on:
+  workflow_dispatch: { }
+  push:
+    branches:
+      - master
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.workflow_token }}
+          repository: owl-admin/docs
+          event-type: build-releases-doc
