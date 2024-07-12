@@ -1,9 +1,7 @@
 name: Build Release Doc
 on:
   workflow_dispatch: { }
-  push:
-    branches:
-      - master
+  release:
 jobs:
   sync:
     runs-on: ubuntu-latest
