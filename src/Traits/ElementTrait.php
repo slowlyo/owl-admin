@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Traits;
 
 use Slowlyo\OwlAdmin\Admin;
+use Slowlyo\OwlAdmin\Support\Cores\AdminPipeline;
 
 trait ElementTrait
 {
@@ -13,7 +14,10 @@ trait ElementTrait
      */
     protected function basePage()
     {
-        return amis()->Page()->className('m:overflow-auto');
+        return AdminPipeline::handle(
+            AdminPipeline::PIPE_BASE_PAGE,
+            amis()->Page()->className('m:overflow-auto')
+        );
     }
 
     /**
@@ -26,11 +30,13 @@ trait ElementTrait
         $path   = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
         $script = sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
 
-        return amis()->OtherAction()
+        $action = amis()->OtherAction()
             ->label(admin_trans('admin.back'))
             ->icon('fa-solid fa-chevron-left')
             ->level('primary')
             ->onClick('window.history.back();' . $script);
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_BACK_ACTION, $action);
     }
 
     /**
@@ -38,7 +44,7 @@ trait ElementTrait
      */
     protected function bulkDeleteButton()
     {
-        return amis()->DialogAction()
+        $action = amis()->DialogAction()
             ->label(admin_trans('admin.delete'))
             ->icon('fa-solid fa-trash-can')
             ->dialog(
@@ -55,6 +61,8 @@ trait ElementTrait
                         ]),
                     ])
             );
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_BULK_DELETE_ACTION, $action);
     }
 
     /**
@@ -69,23 +77,25 @@ trait ElementTrait
     protected function createButton(bool|string $dialog = false, string $dialogSize = 'md', string $title = '')
     {
         $title  = $title ?: admin_trans('admin.create');
-        $button = amis()->LinkAction()->link($this->getCreatePath());
+        $action = amis()->LinkAction()->link($this->getCreatePath());
 
         if ($dialog) {
             $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath())->onEvent([]);
 
             if ($dialog === 'drawer') {
-                $button = amis()->DrawerAction()->drawer(
+                $action = amis()->DrawerAction()->drawer(
                     amis()->Drawer()->title($title)->body($form)->size($dialogSize)
                 );
             } else {
-                $button = amis()->DialogAction()->dialog(
+                $action = amis()->DialogAction()->dialog(
                     amis()->Dialog()->title($title)->body($form)->size($dialogSize)
                 );
             }
         }
 
-        return $button->label($title)->icon('fa fa-add')->level('primary');
+        $action->label($title)->icon('fa fa-add')->level('primary');
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_CREATE_ACTION, $action);
     }
 
     /**
@@ -100,7 +110,7 @@ trait ElementTrait
     protected function rowEditButton(bool|string $dialog = false, string $dialogSize = 'md', string $title = '')
     {
         $title  = $title ?: admin_trans('admin.edit');
-        $button = amis()->LinkAction()->link($this->getEditPath());
+        $action = amis()->LinkAction()->link($this->getEditPath());
 
         if ($dialog) {
             $form = $this->form(true)
@@ -110,17 +120,19 @@ trait ElementTrait
                 ->onEvent([]);
 
             if ($dialog === 'drawer') {
-                $button = amis()->DrawerAction()->drawer(
+                $action = amis()->DrawerAction()->drawer(
                     amis()->Drawer()->title($title)->body($form)->size($dialogSize)
                 );
             } else {
-                $button = amis()->DialogAction()->dialog(
+                $action = amis()->DialogAction()->dialog(
                     amis()->Dialog()->title($title)->body($form)->size($dialogSize)
                 );
             }
         }
 
-        return $button->label($title)->level('link');
+        $action->label($title)->level('link');
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_EDIT_ACTION, $action);
     }
 
     /**
@@ -135,21 +147,23 @@ trait ElementTrait
     protected function rowShowButton(bool|string $dialog = false, string $dialogSize = 'md', string $title = '')
     {
         $title  = $title ?: admin_trans('admin.show');
-        $button = amis()->LinkAction()->link($this->getShowPath());
+        $action = amis()->LinkAction()->link($this->getShowPath());
 
         if ($dialog) {
             if ($dialog === 'drawer') {
-                $button = amis()->DrawerAction()->drawer(
+                $action = amis()->DrawerAction()->drawer(
                     amis()->Drawer()->title($title)->body($this->detail('$id'))->size($dialogSize)
                 );
             } else {
-                $button = amis()->DialogAction()->dialog(
+                $action = amis()->DialogAction()->dialog(
                     amis()->Dialog()->title($title)->body($this->detail('$id'))->size($dialogSize)
                 );
             }
         }
 
-        return $button->label($title)->level('link');
+        $action->label($title)->level('link');
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_SHOW_ACTION, $action);
     }
 
     /**
@@ -161,7 +175,7 @@ trait ElementTrait
      */
     protected function rowDeleteButton(string $title = '')
     {
-        return amis()->DialogAction()
+        $action = amis()->DialogAction()
             ->label($title ?: admin_trans('admin.delete'))
             ->level('link')
             ->className('text-danger')
@@ -179,6 +193,8 @@ trait ElementTrait
                         ]),
                     ])
             );
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_DELETE_ACTION, $action);
     }
 
     /**
@@ -195,11 +211,13 @@ trait ElementTrait
             return amis()->Operation()->label(admin_trans('admin.actions'))->buttons($dialog);
         }
 
-        return amis()->Operation()->label(admin_trans('admin.actions'))->buttons([
+        $actions = amis()->Operation()->label(admin_trans('admin.actions'))->buttons([
             $this->rowShowButton($dialog, $dialogSize),
             $this->rowEditButton($dialog, $dialogSize),
             $this->rowDeleteButton(),
         ]);
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_ROW_ACTIONS, $actions);
     }
 
     /**
@@ -209,13 +227,15 @@ trait ElementTrait
      */
     protected function baseFilter()
     {
-        return amis()->Form()
+        $schema = amis()->Form()
             ->panelClassName('base-filter')
             ->title('')
             ->actions([
                 amis()->Button()->label(admin_trans('admin.reset'))->actionType('clear-and-submit'),
                 amis('submit')->label(admin_trans('admin.search'))->level('primary'),
             ]);
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_FILTER, $schema);
     }
 
     /**
@@ -254,16 +274,23 @@ trait ElementTrait
             $crud->set('primaryField', $this->service->primaryKey());
         }
 
-        return $crud;
+        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_CRUD, $crud);
     }
 
+    /**
+     * 基础顶部工具栏
+     *
+     * @return array
+     */
     protected function baseHeaderToolBar()
     {
-        return [
+        $schema = [
             'bulkActions',
             amis('reload')->align('right'),
             amis('filter-toggler')->align('right'),
         ];
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_HEADER_TOOLBAR, $schema);
     }
 
     /**
@@ -293,7 +320,7 @@ trait ElementTrait
             ]);
         }
 
-        return $form;
+        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_FORM, $form);
     }
 
     /**
@@ -301,12 +328,14 @@ trait ElementTrait
      */
     protected function baseDetail()
     {
-        return amis()->Form()
+        $schema = amis()->Form()
             ->panelClassName('px-48 m:px-0')
             ->title(' ')
             ->mode('horizontal')
             ->actions([])
             ->initApi($this->getShowGetDataPath());
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_DETAIL, $schema);
     }
 
     /**
@@ -318,7 +347,10 @@ trait ElementTrait
      */
     protected function baseList($crud)
     {
-        return amis()->Page()->className('m:overflow-auto pb-48')->body($crud);
+        return AdminPipeline::handle(
+            AdminPipeline::PIPE_BASE_LIST,
+            amis()->Page()->className('m:overflow-auto pb-48')->body($crud)
+        );
     }
 
     /**
@@ -362,7 +394,7 @@ trait ElementTrait
             );
         }
 
-        return amis()->Service()
+        $action = amis()->Service()
             ->id('export-action')
             ->set('align', 'right')
             ->set('data', ['showExportLoading' => false])
@@ -376,5 +408,7 @@ trait ElementTrait
                         ->align('right')
                 )
             );
+
+        return AdminPipeline::handle(AdminPipeline::PIPE_EXPORT_ACTION, $action);
     }
 }

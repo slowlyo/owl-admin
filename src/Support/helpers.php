@@ -311,3 +311,10 @@ if (!function_exists('admin_trans')) {
         return trans($key, $replace, $locale);
     }
 }
+
+if (!function_exists('admin_pipeline')) {
+    function admin_pipeline($passable)
+    {
+        return \Slowlyo\OwlAdmin\Support\Pipeline::handle($passable);
+    }
+}

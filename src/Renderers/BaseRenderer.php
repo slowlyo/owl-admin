@@ -78,6 +78,6 @@ class BaseRenderer implements \JsonSerializable
             }
         }
 
-        return $this->amisSchema;
+        return \Slowlyo\OwlAdmin\Support\Cores\AdminPipeline::handle(static::class, $this->amisSchema);
     }
 }

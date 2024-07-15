@@ -245,4 +245,9 @@ class Admin
 
         return $has;
     }
+
+    public static function version()
+    {
+        return Composer::getVersion('slowlyo/owl-admin');
+    }
 }
