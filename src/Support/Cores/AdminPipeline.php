@@ -57,6 +57,17 @@ class AdminPipeline
     }
 
     /**
+     * @param          $key
+     * @param callable $callback
+     *
+     * @return mixed
+     */
+    public static function tap($key, callable $callback)
+    {
+        return self::handle($key, null, $callback);
+    }
+
+    /**
      * @param array|mixed $pipes
      *
      * @return void
@@ -64,5 +75,14 @@ class AdminPipeline
     public static function through($key, $pipes)
     {
         Admin::context()->set($key, $pipes);
+    }
+
+    public static function parseKey($suffix = '', $getChild = false)
+    {
+        $callUser = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2)[1];
+
+        $callUser = $getChild ? get_class($callUser['object']) : $callUser['class'];
+
+        return $callUser . ($suffix ? ':' . $suffix : '');
     }
 }
