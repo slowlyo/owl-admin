@@ -21,4 +21,9 @@ class AdminException extends \Exception
     {
         return Admin::response()->doNotDisplayToast($this->doNotDisplayToast)->fail($this->getMessage(), $this->data);
     }
+
+    public function report()
+    {
+        // not report
+    }
 }
