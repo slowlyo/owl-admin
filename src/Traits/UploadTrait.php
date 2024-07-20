@@ -120,16 +120,13 @@ trait UploadTrait
         $fileName = request('filename');
         $partList = request('partList');
         $uploadId = request('uploadId');
-        $type     = request('t');
+        $type     = request('t', 'uploads');
 
         $ext      = pathinfo($fileName, PATHINFO_EXTENSION);
         $path     = $type . '/' . $uploadId . '.' . $ext;
         $fullPath = storage_path('app/public/' . $path);
 
-        $dir = dirname($fullPath);
-        if (!is_dir($dir)) {
-            app('filesystem')->makeDirectory($dir);
-        }
+        make_dir(dirname($fullPath));
 
         for ($i = 0; $i < count($partList); $i++) {
             $partNumber = $partList[$i]['partNumber'];
@@ -148,10 +145,8 @@ trait UploadTrait
 
         clearstatcache();
 
-        $value = admin_resource_full_path($path);
-
         app('files')->deleteDirectory(storage_path('app/public/chunk/' . $uploadId));
 
-        return $this->response()->success(['value' => $value], '上传成功');
+        return $this->response()->success(['value' => $path], '上传成功');
     }
 }
