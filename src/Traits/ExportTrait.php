@@ -29,6 +29,8 @@ trait ExportTrait
         try {
             fastexcel($query->get())->export(storage_path('app/' . $path), fn($row) => $this->exportMap($row));
         } catch (\Throwable $e) {
+            report($e);
+
             admin_abort(admin_trans('admin.action_failed'));
         }
 
