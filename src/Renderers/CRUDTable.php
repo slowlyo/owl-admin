@@ -352,6 +352,14 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
+     * 约束批量操作
+     */
+    public function itemCheckableOn($value = '')
+    {
+        return $this->set('itemCheckableOn', $value);
+    }
+
+    /**
      * 分页的时候是否保留用户选择。
      */
     public function keepItemSelectionOnPageChange($value = true)

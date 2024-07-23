@@ -16,6 +16,14 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
+     * 确认弹窗标题
+     */
+    public function confirmTitle($value = '')
+    {
+        return $this->set('confirmTitle', $value);
+    }
+
+    /**
      *
      */
     public function disabled($value = true)

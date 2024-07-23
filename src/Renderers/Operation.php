@@ -56,6 +56,14 @@ class Operation extends BaseRenderer
     }
 
     /**
+     * 固定列
+     */
+    public function fixed($value = '')
+    {
+        return $this->set('fixed', $value);
+    }
+
+    /**
      * 是否隐藏
      */
     public function hidden($value = true)

@@ -216,6 +216,14 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
+     * 约束批量操作
+     */
+    public function itemCheckableOn($value = '')
+    {
+        return $this->set('itemCheckableOn', $value);
+    }
+
+    /**
      * 翻页时是否保留用户已选的数据
      */
     public function keepItemSelectionOnPageChange($value = true)

@@ -89,6 +89,14 @@ class CopyAction extends BaseRenderer
     }
 
     /**
+     * 确认弹窗标题
+     */
+    public function confirmTitle($value = '')
+    {
+        return $this->set('confirmTitle', $value);
+    }
+
+    /**
      * 设置复制的内容
      */
     public function content($value = '')

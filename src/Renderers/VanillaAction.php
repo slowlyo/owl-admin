@@ -88,6 +88,14 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
+     * 确认弹窗标题
+     */
+    public function confirmTitle($value = '')
+    {
+        return $this->set('confirmTitle', $value);
+    }
+
+    /**
      * 点击后的禁止倒计时（秒）
      */
     public function countDown($value = '')

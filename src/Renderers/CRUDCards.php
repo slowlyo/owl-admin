@@ -321,7 +321,7 @@ class CRUDCards extends BaseRenderer
     }
 
     /**
-     * 配置某项是否可以点选 (表达式，语法 `data.xxx > 5`。)
+     * 约束批量操作
      */
     public function itemCheckableOn($value = '')
     {

@@ -72,6 +72,14 @@ class Action extends BaseRenderer
     }
 
     /**
+     * 确认弹窗标题
+     */
+    public function confirmTitle($value = '')
+    {
+        return $this->set('confirmTitle', $value);
+    }
+
+    /**
      * 被禁用后鼠标停留时弹出该段文字，也可以配置对象类型：字段为title和content。可用 '$[xxx]' 取值。
      */
     public function disabledTip($value = '')
