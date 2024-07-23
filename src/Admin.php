@@ -225,7 +225,9 @@ class Admin
             $view = file_get_contents(base_path('vendor/slowlyo/owl-admin/admin-views/dist/index.html'));
         }
 
-        $script = '<script>window.$adminApiPrefix = "/' . $apiPrefix . '"</script>';
+        $logoPath = self::config('admin.logo');
+
+        $script = '<script>document.querySelector(\'link[rel*="icon"]\').href="' . $logoPath . '";window.$adminApiPrefix = "/' . $apiPrefix . '"</script>';
 
         return preg_replace('/<script>window.*?<\/script>/is', $script, $view);
     }
