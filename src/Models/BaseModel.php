@@ -12,7 +12,9 @@ class BaseModel extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->setConnection(Admin::config('admin.database.connection'));
+        if(!isset($this->connection)){
+            $this->setConnection(Admin::config('admin.database.connection'));
+        }
 
         parent::__construct($attributes);
     }
