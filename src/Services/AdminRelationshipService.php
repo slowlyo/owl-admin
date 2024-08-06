@@ -83,7 +83,7 @@ class AdminRelationshipService extends AdminService
             ->keys()
             ->filter(fn($item) => str_contains($item, 'Models\\'))
             ->filter(fn($item) => @class_exists($item))
-            ->filter(fn($item) => (new \ReflectionClass($item))->isSubclassOf(Model::class))
+            ->filter(fn($item) => (new \ReflectionClass($item))->isSubclassOf(Model::class) && !(new \ReflectionClass($item))->isAbstract())
             ->merge($modelDirClass)
             ->unique()
             ->filter(fn($item) => in_array(app($item)->getTable(), $tables))
