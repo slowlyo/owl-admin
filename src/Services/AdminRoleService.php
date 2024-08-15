@@ -79,8 +79,9 @@ class AdminRoleService extends AdminService
             ->where('slug', $data['slug'])
             ->exists(), admin_trans('admin.admin_role.slug_already_exists'));
 
-        if ($data['slug'] === 'administrator') {
-            $id ? admin_abort(admin_trans('admin.admin_role.cannot_modify')) : admin_abort(admin_trans('admin.admin_role.cannot_add'));
+        $role = $this->query()->find($id);
+        if ($role->slug === 'administrator' && $data['slug'] !== 'administrator') {
+            admin_abort(admin_trans('admin.admin_role.cannot_modify'));
         }
     }
 

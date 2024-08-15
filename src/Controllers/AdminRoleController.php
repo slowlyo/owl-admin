@@ -39,7 +39,7 @@ class AdminRoleController extends AdminController
                     ->sortable(true),
                 $this->rowActions([
                     $this->setPermission(),
-                    $this->rowEditButton(true)->hiddenOn('${slug == "administrator"}'),
+                    $this->rowEditButton(true),
                     $this->rowDeleteButton()->hiddenOn('${slug == "administrator"}'),
                 ]),
             ]);
@@ -108,6 +108,7 @@ class AdminRoleController extends AdminController
                 ->label(admin_trans('admin.admin_role.slug'))
                 ->name('slug')
                 ->description(admin_trans('admin.admin_role.slug_description'))
+                ->disabledOn('${slug === "administrator"}')
                 ->required(),
         ]);
     }
