@@ -39,7 +39,7 @@ class AdminRoleController extends AdminController
                     ->sortable(true),
                 $this->rowActions([
                     $this->setPermission(),
-                    $this->rowEditButton(true),
+                    $this->rowEditButton(true)->hiddenOn('${slug == "administrator"}'),
                     $this->rowDeleteButton()->hiddenOn('${slug == "administrator"}'),
                 ]),
             ]);
