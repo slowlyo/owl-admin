@@ -91,7 +91,7 @@ trait UploadTrait
 
     public function chunkUploadStart()
     {
-        $uploadId = Str::uuid();
+        $uploadId = (string) Str::uuid();
 
         cache()->put($uploadId, [], 600);
 
