@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 数字输入框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-number
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class NumberControl extends BaseRenderer
 {
@@ -349,6 +349,14 @@ class NumberControl extends BaseRenderer
     public function saveImmediately($value = true)
     {
         return $this->set('saveImmediately', $value);
+    }
+
+    /**
+     * 用来开启百分号的展示形式
+     */
+    public function showAsPercent($value = true)
+    {
+        return $this->set('showAsPercent', $value);
     }
 
     /**

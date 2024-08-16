@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 二维码展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/qrcode
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class QRCode extends BaseRenderer
 {
@@ -109,6 +109,14 @@ class QRCode extends BaseRenderer
     public function level($value = '')
     {
         return $this->set('level', $value);
+    }
+
+    /**
+     * 渲染模式 可选值: canvas | svg
+     */
+    public function mode($value = '')
+    {
+        return $this->set('mode', $value);
     }
 
     /**

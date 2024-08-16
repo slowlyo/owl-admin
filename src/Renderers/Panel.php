@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Panel渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/panel
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class Panel extends BaseRenderer
 {
@@ -32,6 +32,14 @@ class Panel extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function actionsControlClassName($value = '')
+    {
+        return $this->set('actionsControlClassName', $value);
+    }
+
+    /**
      * 固定底部, 想要把按钮固定在底部的时候配置。
      */
     public function affixFooter($value = '')
@@ -53,6 +61,14 @@ class Panel extends BaseRenderer
     public function bodyClassName($value = '')
     {
         return $this->set('bodyClassName', $value);
+    }
+
+    /**
+     *
+     */
+    public function bodyControlClassName($value = '')
+    {
+        return $this->set('bodyControlClassName', $value);
     }
 
     /**
@@ -125,6 +141,14 @@ class Panel extends BaseRenderer
     public function headerClassName($value = '')
     {
         return $this->set('headerClassName', $value);
+    }
+
+    /**
+     * 外观配置的classname
+     */
+    public function headerControlClassName($value = '')
+    {
+        return $this->set('headerControlClassName', $value);
     }
 
     /**

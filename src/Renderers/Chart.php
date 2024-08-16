@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Chart 图表渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/chart
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class Chart extends BaseRenderer
 {

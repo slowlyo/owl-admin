@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * GridColumn
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class GridColumn extends BaseRenderer
 {
@@ -38,6 +38,14 @@ class GridColumn extends BaseRenderer
     public function horizontal($value = '')
     {
         return $this->set('horizontal', $value);
+    }
+
+    /**
+     * 组件唯一 id
+     */
+    public function id($value = '')
+    {
+        return $this->set('id', $value);
     }
 
     /**
@@ -81,11 +89,27 @@ class GridColumn extends BaseRenderer
     }
 
     /**
+     *
+     */
+    public function themeCss($value = '')
+    {
+        return $this->set('themeCss', $value);
+    }
+
+    /**
      * 垂直对齐方式 可选值: top | middle | bottom | between
      */
     public function valign($value = '')
     {
         return $this->set('valign', $value);
+    }
+
+    /**
+     *
+     */
+    public function wrapperCustomStyle($value = '')
+    {
+        return $this->set('wrapperCustomStyle', $value);
     }
 
     /**

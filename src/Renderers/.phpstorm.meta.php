@@ -120,6 +120,7 @@ namespace PHPSTORM_META {
 		'office-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
+		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -341,6 +342,7 @@ namespace PHPSTORM_META {
 		'office-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
+		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -562,6 +564,7 @@ namespace PHPSTORM_META {
 		'office-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
+		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -783,6 +786,7 @@ namespace PHPSTORM_META {
 		'office-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
+		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -1004,6 +1008,7 @@ namespace PHPSTORM_META {
 		'office-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
+		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -1360,6 +1365,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Progress::mode(), 0, 'line','circle','dashboard');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Property::mode(), 0, 'table','simple');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::level(), 0, 'L','M','Q','H');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::mode(), 0, 'canvas','svg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::type(), 0, 'qrcode','qr-code');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::labelAlign(), 0, 'right','left','top','inherit');
@@ -1434,6 +1440,8 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::align(), 0, 'left','right','center','justify');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::breakpoint(), 0, '*','xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::fixed(), 0, 'left','right','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::headerAlign(), 0, 'left','right','center','justify');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::vAlign(), 0, 'top','middle','bottom');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::size(), 0, 'xs','sm','md','lg','full');

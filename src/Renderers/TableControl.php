@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableControl
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class TableControl extends BaseRenderer
 {
@@ -213,6 +213,14 @@ class TableControl extends BaseRenderer
     public function copyBtnLabel($value = '')
     {
         return $this->set('copyBtnLabel', $value);
+    }
+
+    /**
+     * 复制的时候用来配置复制映射的数据。默认值是 {&:$$}，相当与复制整个行数据 通常有时候需要用来标记是复制过来的，也可能需要删掉一下主键字段。
+     */
+    public function copyData($value = '')
+    {
+        return $this->set('copyData', $value);
     }
 
     /**

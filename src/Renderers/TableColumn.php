@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 表格列，不指定类型时默认为文本类型。
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class TableColumn extends BaseRenderer
 {
@@ -78,6 +78,14 @@ class TableColumn extends BaseRenderer
     public function fixed($value = '')
     {
         return $this->set('fixed', $value);
+    }
+
+    /**
+     * 标题左右对齐方式 可选值: left | right | center | justify
+     */
+    public function headerAlign($value = '')
+    {
+        return $this->set('headerAlign', $value);
     }
 
     /**
@@ -190,6 +198,14 @@ class TableColumn extends BaseRenderer
     public function unique($value = true)
     {
         return $this->set('unique', $value);
+    }
+
+    /**
+     * 列垂直对齐方式 可选值: top | middle | bottom
+     */
+    public function vAlign($value = '')
+    {
+        return $this->set('vAlign', $value);
     }
 
     /**

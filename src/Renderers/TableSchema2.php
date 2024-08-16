@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableSchema2
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class TableSchema2 extends BaseRenderer
 {

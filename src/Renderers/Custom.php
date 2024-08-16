@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Custom 自定义组件
  *
  * @author  slowlyo
- * @version 6.6.0
+ * @version 6.7.0
  */
 class Custom extends BaseRenderer
 {
