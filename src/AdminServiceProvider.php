@@ -7,7 +7,7 @@ use Slowlyo\OwlAdmin\Extend\Manager;
 use Illuminate\Support\ServiceProvider;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Slowlyo\OwlAdmin\Support\{Context, Cores\Menu, Cores\Asset, Cores\Module};
+use Slowlyo\OwlAdmin\Support\{Cores\Menu, Cores\Asset, Cores\Module, Cores\Context};
 
 class AdminServiceProvider extends ServiceProvider
 {

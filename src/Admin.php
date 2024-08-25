@@ -15,15 +15,14 @@ use Psr\Container\ContainerExceptionInterface;
 use Slowlyo\OwlAdmin\Models\PersonalAccessToken;
 use Slowlyo\OwlAdmin\Services\AdminSettingService;
 use Slowlyo\OwlAdmin\Models\{AdminMenu, AdminRole, AdminUser, AdminPermission};
-use Slowlyo\OwlAdmin\Support\{Context,
-    Composer,
+use Slowlyo\OwlAdmin\Support\{Composer,
     Cores\Api,
     Cores\Route,
     Cores\Module,
+    Cores\Context,
     Cores\Permission,
     Cores\JsonResponse,
-    Cores\Relationships
-};
+    Cores\Relationships};
 
 class Admin
 {
