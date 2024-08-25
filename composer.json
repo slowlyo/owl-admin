@@ -23,8 +23,8 @@
         "amis"
     ],
     "require": {
-        "php": ">=8.0",
-        "illuminate/support": ">=9",
+        "php": ">=8.2",
+        "illuminate/support": ">=11",
         "slowlyo/laravel-support": "*",
         "ext-zip": "*",
         "ext-gd": "*"
