@@ -68,7 +68,7 @@ const LayoutContent = () => {
 
 
     return (
-        <div className="h-full flex flex-col bg-[var(--owl-body-bg)]" id="xxxa">
+        <div className="h-full flex flex-col bg-[var(--owl-body-bg)]" id="owl-container">
             {(getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full) && <LayoutTabs/>}
             <div className="flex-1">
                 <Scrollbars autoHide

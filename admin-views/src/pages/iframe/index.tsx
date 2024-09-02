@@ -8,7 +8,7 @@ function IframePage({currentRoute}) {
     const calculateHeight = () => {
         // @ts-ignore
         const topHeight = document.querySelector('.ant-layout-content.overflow-hidden')?.offsetTop || 65
-        return `${window.innerHeight - topHeight - 75}px`
+        return `${window.innerHeight - topHeight}px`
     }
 
     const updateIframeSrc = () => {

@@ -11,7 +11,7 @@ class HomeController extends AdminController
     public function index(): JsonResponse|JsonResource
     {
         $page = $this->basePage()->css($this->css())->body([
-            amis()->Grid()->columns([
+            amis()->Grid()->className('mb-1')->columns([
                 $this->frameworkInfo()->md(5),
                 amis()->Flex()->items([
                     $this->pieChart(),
@@ -36,6 +36,8 @@ class HomeController extends AdminController
             amis()->Markdown()->options(['html' => true, 'breaks' => true])->value(<<<MD
 ### __The beginning of everything__
 
+<br>
+
 ```php
 <?php
 
@@ -48,7 +50,7 @@ MD
 
     public function clock()
     {
-        return amis()->Card()->className('h-full bg-blingbling')->header(['title' => 'Clock'])->body([
+        return amis()->Card()->className('h-full bg-blingbling mb-4')->header(['title' => 'Clock'])->body([
             amis()->Custom()
                 ->name('clock')
                 ->html('<div id="clock" class="text-4xl"></div><div id="clock-date" class="mt-5"></div>')
