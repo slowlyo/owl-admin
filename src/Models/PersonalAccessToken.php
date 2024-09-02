@@ -16,23 +16,27 @@ class PersonalAccessToken extends SanctumPersonalAccessToken
 
     public static function findToken($token)
     {
-        $expiration = config('admin.auth.token_expiration');
-
         if (!str_contains($token, '|')) {
-            return static::where('token', hash('sha256', $token))
-                ->when($expiration, fn($q) => $q->where('created_at', '>=', now()->subMinutes($expiration)))
-                ->first();
+            return static::where('token', hash('sha256', $token))->withInExpiration()->first();
         }
 
         [$id, $token] = explode('|', $token, 2);
 
-        $instance = static::when($expiration, fn($q) => $q->where('created_at', '>=', now()->subMinutes($expiration)))
-            ->find($id);
+        $instance = static::withInExpiration()->find($id);
 
         if ($instance) {
             return hash_equals($instance->token, hash('sha256', $token)) ? $instance : null;
         }
 
         return null;
+    }
+
+    public function scopeWithInExpiration($query)
+    {
+        $expiration = config('admin.auth.token_expiration');
+
+        $query->when($expiration, fn($q) => $q->where('created_at', '>=', now()->subMinutes($expiration)));
+
+        return $query;
     }
 }

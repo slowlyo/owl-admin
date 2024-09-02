@@ -43,6 +43,7 @@ class AdminUser extends User implements AuthenticatableContract
     protected static function boot(): void
     {
         parent::boot();
+
         static::deleting(function (AdminUser $model) {
             $model->roles()->detach();
         });
@@ -53,16 +54,11 @@ class AdminUser extends User implements AuthenticatableContract
         return $this->roles()->with('permissions')->get()->pluck('permissions')->flatten();
     }
 
-
     public function can($abilities, $arguments = []): bool
     {
-        if (empty($abilities)) {
-            return true;
-        }
+        if (empty($abilities)) return true;
 
-        if ($this->isAdministrator()) {
-            return true;
-        }
+        if ($this->isAdministrator()) return true;
 
         return $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($abilities);
     }
@@ -84,13 +80,10 @@ class AdminUser extends User implements AuthenticatableContract
 
     public function visible(array $roles = []): bool
     {
+        if ($this->isAdministrator()) return true;
 
-        if ($this->isAdministrator()) {
-            return true;
-        }
-        if (empty($roles)) {
-            return false;
-        }
+        if (empty($roles)) return false;
+
         $roles = array_column($roles, 'slug');
 
         return $this->inRoles($roles);

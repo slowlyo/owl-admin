@@ -76,7 +76,7 @@ class Admin
     }
 
     /**
-     * @return \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|null
+     * @return AdminUser|\Illuminate\Contracts\Auth\Authenticatable|null
      */
     public static function user()
     {
