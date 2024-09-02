@@ -47,7 +47,7 @@ const LocaleButton = () => {
                       defaultSelectedKeys: [currentLocale],
                   }}>
             <div>
-                <IconButton icon="lucide:languages" onClick={(e) => e.preventDefault()}/>
+                <IconButton icon="ant-design:translation-outlined" onClick={(e) => e.preventDefault()}/>
             </div>
         </Dropdown>
     )

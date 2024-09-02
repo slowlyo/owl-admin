@@ -60,14 +60,11 @@ function AmisPage() {
     useMount(() => initPage.run(pathname, currentRoute?.page_sign))
 
     return (
-        <>
-            <Spin spinning={initPage.loading}
-                  className="w-full"
-                  style={{minHeight: initPage.loading ? '500px' : ''}}>
-                <AmisRender schema={schema}/>
-            </Spin>
-            <div className="h-5"></div>
-        </>
+        <Spin spinning={initPage.loading}
+              className="w-full"
+              style={{minHeight: initPage.loading ? '500px' : ''}}>
+            <AmisRender schema={schema}/>
+        </Spin>
     )
 }
 

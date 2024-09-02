@@ -46,11 +46,6 @@ html, body {
     vertical-align: -0.225rem !important;
 }
 
-.owl-container {
-    height: 100%;
-    padding: 1.25rem;
-}
-
 .owl-container:has(.owl-iframe) {
     padding: 0;
 }

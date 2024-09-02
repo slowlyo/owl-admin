@@ -75,35 +75,33 @@ const LayoutContent = () => {
                             className="clear-children-mb custom-scrollbar"
                             ref={scrollbarRef}
                             onScroll={() => setScroll(scrollbarRef.current.getValues().scrollTop)}>
-                    <div className="owl-container">
-                        <QueueAnim className="relative"
-                                   type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
-                                   duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
-                            <div key={pathname} id={pathname} className="absolute w-full iframe">
-                                <Switch location={location}>
-                                    {flattenRoutes.map(({name, path, component}, index) => {
-                                        return <Route key={index} path={path.replace(/\?.*$/, '')} render={() => (
-                                            // @ts-ignore
-                                            <KeepAlive name={name}
-                                                       cacheKey={path}
-                                                       id={`keep-alive-${name}-${path}`} // 确保ID唯一
-                                                       when={currentRoute?.keep_alive == 1 || (getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1)}>
-                                                {React.createElement(component, {currentRoute})}
-                                            </KeepAlive>
-                                        )}/>
-                                    })}
-                                    <Route exact path="/">
-                                        <Redirect to={`/${defaultRoute}`}/>
-                                    </Route>
-                                    {flattenRoutes.length && (
-                                        <Route path="*" component={lazyLoad(() => import('@/pages/404'))}/>
-                                    )}
-                                </Switch>
-                            </div>
-                        </QueueAnim>
+                    <QueueAnim className="relative"
+                               type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
+                               duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
+                        <div key={pathname} id={pathname} className="absolute w-full iframe p-5">
+                            <Switch location={location}>
+                                {flattenRoutes.map(({name, path, component}, index) => {
+                                    return <Route key={index} path={path.replace(/\?.*$/, '')} render={() => (
+                                        // @ts-ignore
+                                        <KeepAlive name={name}
+                                                   cacheKey={path}
+                                                   id={`keep-alive-${name}-${path}`} // 确保ID唯一
+                                                   when={currentRoute?.keep_alive == 1 || (getSetting('system_theme_setting.keepAlive') && getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1)}>
+                                            {React.createElement(component, {currentRoute})}
+                                        </KeepAlive>
+                                    )}/>
+                                })}
+                                <Route exact path="/">
+                                    <Redirect to={`/${defaultRoute}`}/>
+                                </Route>
+                                {flattenRoutes.length && (
+                                    <Route path="*" component={lazyLoad(() => import('@/pages/404'))}/>
+                                )}
+                            </Switch>
+                        </div>
+                    </QueueAnim>
 
-                        {scroll > 400 && <FloatButton.BackTop visibilityHeight={0} onClick={() => backTop()}/>}
-                    </div>
+                    {scroll > 400 && <FloatButton.BackTop style={{bottom: '5rem'}} visibilityHeight={0} onClick={() => backTop()}/>}
                 </Scrollbars>
             </div>
             {!currentRoute?.is_full && <LayoutFooter/>}

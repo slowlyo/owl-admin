@@ -15,7 +15,7 @@ const DarkThemeButton = () => {
     }
 
     return (
-        <IconButton icon={getSetting('system_theme_setting.darkTheme') ? 'material-symbols:light-mode-outline' : 'material-symbols:dark-mode-outline'}
+        <IconButton icon={getSetting('system_theme_setting.darkTheme') ? 'ant-design:sun-outlined' : 'ant-design:moon-outlined'}
                     onClick={() => toggleDarkTheme()}/>
     )
 }
