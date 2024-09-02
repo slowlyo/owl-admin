@@ -63,6 +63,7 @@ return [
     'user_disabled'         => 'The user has been disabled',
     'preview'               => 'Preview',
     'more'                  => 'More',
+    'per_page_suffix'       => 'items/page',
 
     'code_generators' => [
         'remark1'                     => 'For more parameters, please refer to',

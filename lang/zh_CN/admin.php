@@ -63,6 +63,7 @@ return [
     'user_disabled'         => '用户已被禁用',
     'preview'               => '预览',
     'more'                  => '更多',
+    'per_page_suffix'       => '条/页',
 
     'code_generators' => [
         'remark1'                     => '额外参数请参考',

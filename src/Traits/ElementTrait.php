@@ -253,7 +253,10 @@ trait ElementTrait
      */
     protected function baseCRUD()
     {
+        $crudId = str_replace('/', '.', request()->path()) . '.crud';
+
         $crud = amis()->CRUDTable()
+            ->id($crudId)
             ->perPage(20)
             ->alwaysShowPagination()
             ->affixHeader(false)
@@ -263,8 +266,30 @@ trait ElementTrait
             ->quickSaveApi($this->getQuickEditPath())
             ->quickSaveItemApi($this->getQuickEditItemPath())
             ->bulkActions([$this->bulkDeleteButton()])
-            ->perPageAvailable([10, 20, 30, 50, 100, 200])
-            ->footerToolbar(['switch-per-page', 'statistics', 'pagination'])
+            ->footerToolbar([
+                'statistics',
+                // 重写实现 CRUD 自带的页码切换组件, 解决下拉被遮挡的问题
+                amis()->Form()->wrapWithPanel(false)->body([
+                    amis()->SelectControl('perPage')
+                        ->options(array_map(
+                            fn($i) => ['label' => $i . ' ' . admin_trans('admin.per_page_suffix'), 'value' => $i],
+                            [10, 20, 30, 50, 100, 200]
+                        ))
+                        ->set('overlayPlacement', 'top')
+                        ->onEvent([
+                            'change' => [
+                                'actions' => [
+                                    [
+                                        'actionType'  => 'reload',
+                                        'componentId' => $crudId,
+                                        'data'        => ['perPage' => '${event.data.value}'],
+                                    ],
+                                ],
+                            ],
+                        ]),
+                ])->target('window'),
+                'pagination',
+            ])
             ->headerToolbar([
                 $this->createButton(),
                 ...$this->baseHeaderToolBar(),
@@ -349,7 +374,7 @@ trait ElementTrait
     {
         return AdminPipeline::handle(
             AdminPipeline::PIPE_BASE_LIST,
-            amis()->Page()->className('m:overflow-auto pb-48')->body($crud)
+            amis()->Page()->className('m:overflow-auto')->body($crud)
         );
     }
 
