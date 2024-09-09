@@ -21,9 +21,9 @@ class AdminApi extends BaseModel
     public function templateTitle(): Attribute
     {
         return Attribute::get(function () {
-            if (!(new \ReflectionClass($this->template))->isSubclassOf(AdminBaseApi::class)) {
-                return '';
-            }
+            if (!class_exists($this->template)) return '';
+
+            if (!(new \ReflectionClass($this->template))->isSubclassOf(AdminBaseApi::class)) return '';
 
             $api = app($this->template);
 
@@ -34,9 +34,9 @@ class AdminApi extends BaseModel
     public function method(): Attribute
     {
         return Attribute::get(function () {
-            if (!(new \ReflectionClass($this->template))->isSubclassOf(AdminBaseApi::class)) {
-                return 'any';
-            }
+            if (!class_exists($this->template)) return '';
+
+            if (!(new \ReflectionClass($this->template))->isSubclassOf(AdminBaseApi::class)) return 'any';
 
             $method = app($this->template)->getMethod();
 

@@ -84,6 +84,8 @@ class AdminRelationship extends BaseModel
 
     public function buildArgs()
     {
+        if(!class_exists($this->model)) return [];
+
         $reflection = new \ReflectionClass($this->model);
         $params     = $reflection->getMethod($this->method)->getParameters();
 
