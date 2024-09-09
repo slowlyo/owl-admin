@@ -3,19 +3,16 @@
 namespace {{Namespace}};
 
 use Illuminate\Http\Request;
-use Slowlyo\OwlAdmin\Renderers\Tab;
-use Slowlyo\OwlAdmin\Renderers\Tabs;
-use Slowlyo\OwlAdmin\Renderers\Alert;
-use Slowlyo\OwlAdmin\Renderers\InputKV;
-use Slowlyo\OwlAdmin\Renderers\TextControl;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
 
 class SettingController extends AdminController
 {
     public function index()
     {
+        if ($this->actionOfGetData()) return $this->response()->success(settings()->all());
+
         $page = $this->basePage()->body([
-            Alert::make()->showIcon(true)->body("此处内容仅供演示, 设置项无实际意义，实际开发中请根据实际情况进行修改。"),
+            amis()->Alert()->showIcon()->body("此处内容仅供演示, 设置项无实际意义，实际开发中请根据实际情况进行修改。"),
             $this->form(),
         ]);
 
@@ -27,16 +24,16 @@ class SettingController extends AdminController
         return $this->baseForm(false)
             ->redirect('')
             ->api($this->getStorePath())
-            ->data(settings()->all())
+            ->initApi('/system/settings?_action=getData')
             ->body(
-                Tabs::make()->tabs([
-                    Tab::make()->title('基本设置')->body([
-                        TextControl::make()->label('网站名称')->name('site_name'),
-                        InputKV::make()->label('附加配置')->name('addition_config'),
+                amis()->Tabs()->tabs([
+                    amis()->Tab()->title('基本设置')->body([
+                        amis()->TextControl()->label('网站名称')->name('site_name'),
+                        amis()->InputKV()->label('附加配置')->name('addition_config'),
                     ]),
-                    Tab::make()->title('上传设置')->body([
-                        TextControl::make()->label('上传域名')->name('upload_domain'),
-                        TextControl::make()->label('上传路径')->name('upload_path'),
+                    amis()->Tab()->title('上传设置')->body([
+                        amis()->TextControl()->label('上传域名')->name('upload_domain'),
+                        amis()->TextControl()->label('上传路径')->name('upload_path'),
                     ]),
                 ])
             );
