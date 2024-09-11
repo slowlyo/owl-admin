@@ -38,8 +38,8 @@ class AdminPermissionController extends AdminController
                 $this->createButton(true, 'lg'),
                 'bulkActions',
                 $autoBtn,
-                amis('reload')->align('right'),
-                amis('filter-toggler')->align('right'),
+                amis('reload')->set('align', 'right'),
+                amis('filter-toggler')->set('align', 'right'),
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
@@ -199,7 +199,7 @@ class AdminPermissionController extends AdminController
             ]);
 
             $_id = $item['id'];
-            while (isset($item['parent_id'])?$item['parent_id']:0 != 0) {
+            while (data_get($item, 'parent_id', 0) != 0) {
                 $query->clone()->insert([
                     'permission_id' => $_id,
                     'menu_id'       => $item['parent_id'],

@@ -36,9 +36,9 @@ class AdminUserController extends AdminController
                     amis()->Tag()->label('${name}')->className('my-1')
                 ),
                 amis()->TableColumn('enabled', admin_trans('admin.extensions.card.status'))->quickEdit(
-                    amis()->SwitchControl()->mode('inline')->disabledOn('${id == 1}')->saveImmediately(true)
+                    amis()->SwitchControl()->mode('inline')->disabledOn('${id == 1}')->saveImmediately()
                 ),
-                amis()->TableColumn('created_at', admin_trans('admin.created_at'))->type('datetime')->sortable(true),
+                amis()->TableColumn('created_at', admin_trans('admin.created_at'))->type('datetime')->sortable(),
                 $this->rowActions([
                     $this->rowEditButton(true),
                     $this->rowDeleteButton()->hiddenOn('${id == 1}'),

@@ -12,14 +12,14 @@ class HomeController extends AdminController
     {
         $page = $this->basePage()->css($this->css())->body([
             amis()->Grid()->className('mb-1')->columns([
-                $this->frameworkInfo()->md(5),
+                $this->frameworkInfo()->set('md', 5),
                 amis()->Flex()->items([
                     $this->pieChart(),
                     $this->cube(),
                 ]),
             ]),
             amis()->Grid()->columns([
-                $this->lineChart()->md(8),
+                $this->lineChart()->set('md', 8),
                 amis()->Flex()->className('h-full')->items([
                     $this->clock(),
                     $this->codeView(),
@@ -50,6 +50,7 @@ MD
 
     public function clock()
     {
+        /** @noinspection all */
         return amis()->Card()->className('h-full bg-blingbling mb-4')->header(['title' => 'Clock'])->body([
             amis()->Custom()
                 ->name('clock')
@@ -77,7 +78,7 @@ JS
                 ->level('link')
                 ->className('text-lg font-semibold')
                 ->label($label)
-                ->blank(true)
+                ->set('blank', true)
                 ->actionType('url')
                 ->link($link);
         };
@@ -96,7 +97,7 @@ JS
                             $link('GitHub', 'https://github.com/slowlyo/owl-admin'),
                             $link('Official website', 'https://owladmin.com'),
                             $link('Documentation', 'https://doc.owladmin.com'),
-                            $link('Demo', 'http://demo.owladmin.com'),
+                            $link('Demo', 'https://demo.owladmin.com'),
                         ]),
                     ]),
             ])
@@ -144,7 +145,7 @@ JS
         $randArr = function () {
             $_arr = [];
             for ($i = 0; $i < 7; $i++) {
-                $_arr[] = random_int(10, 200);
+                $_arr[] = rand(50, 200);
             }
             return $_arr;
         };
@@ -244,6 +245,7 @@ HTML
 
     private function css(): array
     {
+        /** @noinspection all */
         return [
             '.clear-card-mb'                 => [
                 'margin-bottom' => '0 !important',

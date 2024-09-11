@@ -31,12 +31,12 @@ class AdminRoleController extends AdminController
                     ->label(admin_trans('admin.created_at'))
                     ->name('created_at')
                     ->type('datetime')
-                    ->sortable(true),
+                    ->sortable(),
                 amis()->TableColumn()
                     ->label(admin_trans('admin.updated_at'))
                     ->name('updated_at')
                     ->type('datetime')
-                    ->sortable(true),
+                    ->sortable(),
                 $this->rowActions([
                     $this->setPermission()->hiddenOn('${slug == "administrator"}'),
                     $this->rowEditButton(true),

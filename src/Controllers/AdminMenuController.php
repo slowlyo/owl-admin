@@ -49,13 +49,13 @@ class AdminMenuController extends AdminController
                     ]),
                 amis()->TableColumn('url', admin_trans('admin.admin_menu.url')),
                 amis()->TableColumn('custom_order', admin_trans('admin.admin_menu.order'))->quickEdit(
-                    amis()->NumberControl()->min(0)->saveImmediately(true)
+                    amis()->NumberControl()->min(0)->saveImmediately()
                 ),
                 amis()->TableColumn('visible', admin_trans('admin.admin_menu.visible'))->quickEdit(
-                    amis()->SwitchControl()->mode('inline')->saveImmediately(true)
+                    amis()->SwitchControl()->mode('inline')->saveImmediately()
                 ),
                 amis()->TableColumn('is_home', admin_trans('admin.admin_menu.is_home'))->quickEdit(
-                    amis()->SwitchControl()->mode('inline')->saveImmediately(true)
+                    amis()->SwitchControl()->mode('inline')->saveImmediately()
                 ),
                 $this->rowActions([
                     $this->rowEditButton(true, 'lg'),

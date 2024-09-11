@@ -21,7 +21,8 @@ class AuthController extends AdminController
     {
         if (Admin::config('admin.auth.login_captcha')) {
             if (!$request->has('captcha')) {
-                return $this->response()->fail(admin_trans('admin.required', ['attribute' => admin_trans('admin.captcha')]));
+                return $this->response()
+                    ->fail(admin_trans('admin.required', ['attribute' => admin_trans('admin.captcha')]));
             }
 
             if (strtolower(cache()->pull($request->sys_captcha)) != strtolower($request->captcha)) {
@@ -51,7 +52,8 @@ class AuthController extends AdminController
 
                 $module = Admin::currentModule(true);
                 $prefix = $module ? $module . '.' : '';
-                $token  = $user->createToken($prefix . 'admin')->plainTextToken;
+                /** @var \Slowlyo\OwlAdmin\Models\AdminUser $user */
+                $token = $user->createToken($prefix . 'admin')->plainTextToken;
 
                 return $this->response()->success(compact('token'), admin_trans('admin.login_successful'));
             }
@@ -64,6 +66,7 @@ class AuthController extends AdminController
 
     public function loginPage()
     {
+        /** @noinspection all */
         $form = amis()->Form()
             ->panelClassName('border-none')
             ->id('login-form')
@@ -79,7 +82,9 @@ class AuthController extends AdminController
                     ->placeholder(admin_trans('admin.password'))
                     ->required(),
                 amis()->InputGroupControl('captcha_group')->body([
-                    amis()->TextControl('captcha', admin_trans('admin.captcha'))->placeholder(admin_trans('admin.captcha'))->required(),
+                    amis()->TextControl('captcha', admin_trans('admin.captcha'))
+                        ->placeholder(admin_trans('admin.captcha'))
+                        ->required(),
                     amis()->HiddenControl()->name('sys_captcha'),
                     amis()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
                         amis()->Image()
@@ -203,6 +208,7 @@ JS,
 
     public function logout(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
+        /** @noinspection all */
         $this->guard()->user()->currentAccessToken()->delete();
 
         return $this->response()->successMessage();
@@ -259,7 +265,11 @@ JS,
                     ->name('avatar')
                     ->receiver($this->uploadImagePath()),
                 amis()->TextControl()->label(admin_trans('admin.admin_user.name'))->name('name')->required(),
-                amis()->TextControl()->type('input-password')->label(admin_trans('admin.old_password'))->name('old_password'),
+                amis()
+                    ->TextControl()
+                    ->type('input-password')
+                    ->label(admin_trans('admin.old_password'))
+                    ->name('old_password'),
                 amis()->TextControl()->type('input-password')->label(admin_trans('admin.password'))->name('password'),
                 amis()->TextControl()
                     ->type('input-password')
