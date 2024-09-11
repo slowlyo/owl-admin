@@ -26,7 +26,7 @@ class AdminUserController extends AdminController
                     ->size('md')
                     ->placeholder(admin_trans('admin.admin_user.search_username'))
             ))
-            ->itemCheckableOn('${!administrator}')
+            ->itemCheckableOn('${id != 1}')
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
                 amis()->TableColumn('avatar', admin_trans('admin.admin_user.avatar'))->type('avatar')->src('${avatar}'),
@@ -36,12 +36,12 @@ class AdminUserController extends AdminController
                     amis()->Tag()->label('${name}')->className('my-1')
                 ),
                 amis()->TableColumn('enabled', admin_trans('admin.extensions.card.status'))->quickEdit(
-                    amis()->SwitchControl()->mode('inline')->disabledOn('${administrator}')->saveImmediately(true)
+                    amis()->SwitchControl()->mode('inline')->disabledOn('${id == 1}')->saveImmediately(true)
                 ),
                 amis()->TableColumn('created_at', admin_trans('admin.created_at'))->type('datetime')->sortable(true),
                 $this->rowActions([
                     $this->rowEditButton(true),
-                    $this->rowDeleteButton()->hiddenOn('${administrator}'),
+                    $this->rowDeleteButton()->hiddenOn('${id == 1}'),
                 ]),
             ]);
 
@@ -63,6 +63,7 @@ class AdminUserController extends AdminController
                 ->valueField('id')
                 ->joinValues(false)
                 ->extractValue()
+                ->disabledOn('${id == 1}')
                 ->options(AdminRoleService::make()->query()->get(['id', 'name'])),
             amis()->SwitchControl('enabled', admin_trans('admin.extensions.card.status'))
                 ->onText(admin_trans('admin.extensions.enable'))
