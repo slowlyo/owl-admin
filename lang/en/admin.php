@@ -22,6 +22,7 @@ return [
     'edit'             => 'Edit',
     'show'             => 'Show',
     'delete'           => 'Delete',
+    'batch_delete'     => 'Batch Delete',
     'copy'             => 'Copy',
     'confirm_delete'   => 'Confirm Delete Selected Items?',
     'back'             => 'Back',

@@ -60,9 +60,14 @@ class ControllerGenerator extends BaseGenerator
             $content .= $filter;
         }
 
+        // 批量操作
+        if (!in_array('batch_delete', $this->model->page_info['row_actions'])) {
+            $content .= "\t\t\t->bulkActions([])" . PHP_EOL;
+        }
+
         // 顶部工具栏
         $dialog = $this->model->page_info['dialog_form'];
-        if ($dialog != 'page') {
+        if ($dialog != 'page' && in_array('create', $this->model->page_info['row_actions'])) {
             $content .= "\t\t\t->headerToolbar([" . PHP_EOL;
             $content .= "\t\t\t\t\$this->createButton('{$dialog}'{$this->getDialogSize()})," . PHP_EOL;
             $content .= "\t\t\t\t...\$this->baseHeaderToolBar()" . PHP_EOL;
@@ -100,7 +105,10 @@ class ControllerGenerator extends BaseGenerator
         }
 
         // 操作按钮
-        $content .= "\t\t\t\t" . $this->makeRowButton($this->model->page_info) . PHP_EOL;
+        $rowActions = $this->makeRowButton($this->model->page_info);
+        if (filled($rowActions)) {
+            $content .= "\t\t\t\t" . $rowActions . PHP_EOL;
+        }
         $content .= "\t\t\t]);" . PHP_EOL . PHP_EOL;
         $content .= "\t\treturn \$this->baseList(\$crud);" . PHP_EOL;
         $content .= "\t}" . PHP_EOL;
@@ -204,9 +212,10 @@ class ControllerGenerator extends BaseGenerator
 
     private function makeRowButton($pageInfo)
     {
-        $_actions   = data_get($pageInfo, 'row_actions');
-        $dialog     = $pageInfo['dialog_form'] ? "'{$pageInfo['dialog_form']}'" : '';
-        $dialogSize = $this->getDialogSize();
+        $hasRowAction = false;
+        $_actions     = data_get($pageInfo, 'row_actions');
+        $dialog       = $pageInfo['dialog_form'] ? "'{$pageInfo['dialog_form']}'" : '';
+        $dialogSize   = $this->getDialogSize();
 
         if (in_array('show', $_actions) && in_array('edit', $_actions) && in_array('delete', $_actions)) {
             return "\$this->rowActions({$dialog}{$dialogSize})";
@@ -215,15 +224,20 @@ class ControllerGenerator extends BaseGenerator
         $str = "\$this->rowActions([\n\t\t\t\t";
 
         if (in_array('show', $_actions)) {
-            $str .= "\t\$this->rowShowButton({$dialog}{$dialogSize}),\n\t\t\t\t";
+            $hasRowAction = true;
+            $str          .= "\t\$this->rowShowButton({$dialog}{$dialogSize}),\n\t\t\t\t";
         }
         if (in_array('edit', $_actions)) {
-            $str .= "\t\$this->rowEditButton({$dialog}{$dialogSize}),\n\t\t\t\t";
+            $hasRowAction = true;
+            $str          .= "\t\$this->rowEditButton({$dialog}{$dialogSize}),\n\t\t\t\t";
         }
         if (in_array('delete', $_actions)) {
-            $str .= "\t\$this->rowDeleteButton({$dialog}{$dialogSize}),\n\t\t\t\t";
+            $hasRowAction = true;
+            $str          .= "\t\$this->rowDeleteButton({$dialog}{$dialogSize}),\n\t\t\t\t";
         }
         $str .= "])";
+
+        if (!$hasRowAction) return '';
 
         return $str;
     }

@@ -22,6 +22,7 @@ return [
     'edit'             => '编辑',
     'show'             => '查看',
     'delete'           => '删除',
+    'batch_delete'     => '批量删除',
     'copy'             => '复制',
     'confirm_delete'   => '确认删除选中项？',
     'back'             => '返回',
