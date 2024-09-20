@@ -152,11 +152,23 @@ trait ElementTrait
         if ($dialog) {
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
-                    amis()->Drawer()->title($title)->body($this->detail('$id'))->size($dialogSize)
+                    amis()->Drawer()
+                        ->title($title)
+                        ->body($this->detail('$id'))
+                        ->size($dialogSize)
+                        ->actions([])
+                        ->closeOnEsc()
+                        ->closeOnOutside()
                 );
             } else {
                 $action = amis()->DialogAction()->dialog(
-                    amis()->Dialog()->title($title)->body($this->detail('$id'))->size($dialogSize)
+                    amis()->Dialog()
+                        ->title($title)
+                        ->body($this->detail('$id'))
+                        ->size($dialogSize)
+                        ->actions([])
+                        ->closeOnEsc()
+                        ->closeOnOutside()
                 );
             }
         }

@@ -6,6 +6,7 @@ use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
@@ -929,8 +930,7 @@ class CodeGeneratorController extends AdminController
                                         ->required(),
                                     amis()
                                         ->TextControl('input_label', admin_trans('admin.code_generators.filter_input_label'))
-                                        ->visibleOn('${mode == "input"}')
-                                        ->required(),
+                                        ->visibleOn('${mode == "input"}'),
                                     $this->componentSelect('filter', admin_trans('admin.code_generators.filter_component'))
                                         ->visibleOn('${mode == "input"}')
                                         ->value([

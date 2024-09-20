@@ -13,4 +13,9 @@ class AdminSetting extends BaseModel
     protected $casts = [
         'values' => 'json',
     ];
+
+    protected function asJson($value)
+    {
+        return json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
 }

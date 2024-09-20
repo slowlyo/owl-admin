@@ -27,7 +27,18 @@ class FilterGenerator extends BaseGenerator
 
     public function renderComponent()
     {
-        $filters = collect(data_get($this->model->columns, '*.list_filter.*', []))
+        $columns = $this->model->columns;
+        foreach ($columns as $key => $value) {
+            if (!data_get($value, 'list_filter')) continue;
+
+            foreach ($value['list_filter'] as $index => $item) {
+                if (!data_get($item, 'input_label')) {
+                    data_set($columns, "$key.list_filter.$index.input_label", $value['comment'] ?: $value['name']);
+                }
+            }
+        }
+
+        $filters = collect(data_get($columns, '*.list_filter.*', []))
             ->where('mode', 'input')
             ->values()
             ->toArray();

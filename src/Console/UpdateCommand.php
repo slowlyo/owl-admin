@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Console;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 class UpdateCommand extends Command
 {
@@ -258,5 +259,12 @@ class UpdateCommand extends Command
                 $table->integer('custom_order')->default(0);
             });
         }
+    }
+
+    public function version400()
+    {
+        $this->output->title('Update to version v3.7.3');
+
+        Database::make()->fillCodeGeneratorFields();
     }
 }
