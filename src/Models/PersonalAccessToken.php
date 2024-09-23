@@ -35,7 +35,7 @@ class PersonalAccessToken extends SanctumPersonalAccessToken
     {
         $expiration = config('admin.auth.token_expiration');
 
-        $query->when($expiration, fn($q) => $q->where('created_at', '>=', now()->subMinutes($expiration)));
+        $query->when($expiration, fn($q) => $q->where('last_used_at', '>=', now()->subMinutes($expiration)));
 
         return $query;
     }
