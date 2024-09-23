@@ -1291,7 +1291,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputCityControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputCityControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputCityControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::format(), 0, 'hex','rgb','rgba','hsl');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::size(), 0, 'xs','sm','md','lg','full');

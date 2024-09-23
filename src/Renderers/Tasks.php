@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tasks 渲染器，格式说明 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/tasks
  *
  * @author  slowlyo
- * @version 6.7.0
+ * @version 6.8.0
  */
 class Tasks extends BaseRenderer
 {

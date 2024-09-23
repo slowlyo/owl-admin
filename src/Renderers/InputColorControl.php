@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Color 颜色选择框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/color
  *
  * @author  slowlyo
- * @version 6.7.0
+ * @version 6.8.0
  */
 class InputColorControl extends BaseRenderer
 {
@@ -120,7 +120,7 @@ class InputColorControl extends BaseRenderer
     }
 
     /**
-     * 颜色格式 可选值: hex | rgb | rgba | hsl
+     * 颜色格式 可选值: hex | hexa | rgb | rgba | hsl
      */
     public function format($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * amis Page 渲染器。详情请见：https://aisuda.bce.baidu.com/amis/zh-CN/components/page
  *
  * @author  slowlyo
- * @version 6.7.0
+ * @version 6.8.0
  */
 class Root extends BaseRenderer
 {

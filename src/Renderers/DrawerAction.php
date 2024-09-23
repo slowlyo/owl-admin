@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DrawerAction
  *
  * @author  slowlyo
- * @version 6.7.0
+ * @version 6.8.0
  */
 class DrawerAction extends BaseRenderer
 {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * InputKVS 键值对象
  *
  * @author  slowlyo
- * @version 6.7.0
+ * @version 6.8.0
  */
 class InputKVS extends BaseRenderer
 {
