@@ -26,7 +26,6 @@
         "php": ">=8.2",
         "illuminate/support": ">=11",
         "slowlyo/laravel-support": "*",
-        "tymon/jwt-auth": "^2.1",
         "ext-zip": "*",
         "ext-gd": "*"
     },
