@@ -18,7 +18,8 @@ class ApiController extends AdminController
 
     public function list()
     {
-        $crud = $this->baseCRUD()
+        $crud = $this
+            ->baseCRUD()
             ->filterTogglable(false)
             ->headerToolbar([
                 $this->createButton(true, 'lg'),
@@ -37,10 +38,34 @@ class ApiController extends AdminController
                 $this->rowActions([
                     $this->rowEditButton(true, 'lg'),
                     $this->rowDeleteButton(),
+                    $this->previewAction(),
                 ]),
             ]);
 
         return $this->baseList($crud);
+    }
+
+    public function previewAction()
+    {
+        return amis()
+            ->DialogAction()
+            ->label(admin_trans('admin.preview'))
+            ->size('md')
+            ->level('link')
+            ->visibleOn('${method == "get" && enabled}')
+            ->dialog(
+                amis()
+                    ->Dialog()
+                    ->title(admin_trans('admin.preview'))
+                    ->actions([])
+                    ->closeOnOutside()
+                    ->closeOnEsc()
+                    ->body([
+                        amis()->Service()->api('/${path}')->body([
+                            amis()->Json()->source('${&}')->levelExpand(3),
+                        ]),
+                    ])
+            );
     }
 
     public function appTemplateBtn()
@@ -53,7 +78,8 @@ class ApiController extends AdminController
             ->dialog(
                 amis()->Dialog()->title(admin_trans('admin.apis.add_template'))->body([
                     amis()->Form()->mode('normal')->api('/dev_tools/api/add_template')->body([
-                        amis()->TextareaControl('template')
+                        amis()
+                            ->TextareaControl('template')
                             ->required()
                             ->minRows(10)
                             ->description(admin_trans('admin.apis.add_template_tips'))
@@ -86,7 +112,7 @@ class ApiController extends AdminController
         try {
             $dir = dirname($file);
 
-            if(!is_dir($dir)){
+            if (!is_dir($dir)) {
                 app('files')->makeDirectory($dir, 0755, true);
             }
 
@@ -104,11 +130,13 @@ class ApiController extends AdminController
             amis()->TextControl('title', admin_trans('admin.apis.title'))->required(),
             amis()->TextControl('path', admin_trans('admin.apis.path'))->required(),
             amis()->SwitchControl('enabled', admin_trans('admin.apis.enabled'))->value(1),
-            amis()->SelectControl('template', admin_trans('admin.apis.template'))
+            amis()
+                ->SelectControl('template', admin_trans('admin.apis.template'))
                 ->required()
                 ->searchable()
                 ->source('/dev_tools/api/templates'),
-            amis()->ComboControl('args', admin_trans('admin.apis.args'))
+            amis()
+                ->ComboControl('args', admin_trans('admin.apis.args'))
                 ->visibleOn('${template}')
                 ->multiLine()
                 ->strictMode(false)

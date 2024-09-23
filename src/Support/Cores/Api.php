@@ -3,7 +3,15 @@
 namespace Slowlyo\OwlAdmin\Support\Cores;
 
 use Slowlyo\OwlAdmin\Admin;
-use Slowlyo\OwlAdmin\Support\Apis\{DataListApi, DataCreateApi, DataDetailApi, DataDeleteApi, DataUpdateApi};
+use Slowlyo\OwlAdmin\Support\Apis\{DataListApi,
+    DataCreateApi,
+    DataDetailApi,
+    DataDeleteApi,
+    DataUpdateApi,
+    GetSettingsApi,
+    OptionsApi,
+    SaveSettingsApi
+};
 
 class Api
 {
@@ -15,11 +23,12 @@ class Api
             DataDetailApi::class,
             DataDeleteApi::class,
             DataUpdateApi::class,
+            OptionsApi::class,
+            GetSettingsApi::class,
+            SaveSettingsApi::class,
         ]);
 
-        if (!is_dir(self::path())) {
-            return;
-        }
+        if (!is_dir(self::path())) return;
 
         collect(scandir(app_path('/ApiTemplates')))
             ->filter(fn($file) => !in_array($file, ['.', '..']) && str_ends_with($file, '.php'))
