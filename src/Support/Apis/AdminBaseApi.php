@@ -40,6 +40,13 @@ abstract class AdminBaseApi implements AdminApiInterface
         return self::$apiRecord;
     }
 
+    public function setApiRecord($apiRecord)
+    {
+        self::$apiRecord = $apiRecord;
+
+        return $this;
+    }
+
     /**
      * 获取接口参数, 可以通过传入 xxx.xxx 的方式获取指定参数
      *
