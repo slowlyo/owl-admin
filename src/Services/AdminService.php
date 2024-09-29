@@ -256,6 +256,18 @@ abstract class AdminService
     }
 
     /**
+     * 格式化列表数据
+     *
+     * @param array $rows 一次分页的数据
+     *
+     * @return array
+     */
+    public function formatRows(array $rows)
+    {
+        return $rows;
+    }
+
+    /**
      * 列表 获取数据
      *
      * @return array
@@ -265,7 +277,7 @@ abstract class AdminService
         $query = $this->listQuery();
 
         $list  = $query->paginate(request()->input('perPage', 20));
-        $items = $list->items();
+        $items = $this->formatRows($list->items());
         $total = $list->total();
 
         return compact('items', 'total');
