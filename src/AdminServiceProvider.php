@@ -101,7 +101,9 @@ class AdminServiceProvider extends ServiceProvider
 
     protected function registerConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
+        $this->mergeConfigFrom(base_path('config/admin.php'), 'admin');
+        
+        base_path('config/admin.php')
 
         if ($moduleConfig = app(Module::class)->allConfigPath()) {
             foreach ($moduleConfig as $key => $path) {
