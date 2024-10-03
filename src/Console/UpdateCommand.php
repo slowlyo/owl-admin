@@ -263,7 +263,7 @@ class UpdateCommand extends Command
 
     public function version400()
     {
-        $this->output->title('Update to version v3.7.3');
+        $this->output->title('Update to version v4.0.0');
 
         Database::make()->fillCodeGeneratorFields();
     }
