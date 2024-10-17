@@ -31,9 +31,11 @@ const LayoutLogo = ({onlyLogo = false}) => {
 
     return (
         <div className={'h-[65px] flex justify-center items-center' + width}>
-            <div className="w-[35px]" title={getSetting('app_name')}>
-                <Image width={35} preview={false} src={getSetting('logo')}/>
-            </div>
+            {getSetting('logo') &&
+                <div className="w-[35px]" title={getSetting('app_name')}>
+                    <Image width={35} preview={false} src={getSetting('logo')}/>
+                </div>
+            }
             {onlyLogo ||
                 <div className={'text-xl font-medium ml-2 truncate ' + textColor()}>{getSetting('app_name')}</div>}
         </div>

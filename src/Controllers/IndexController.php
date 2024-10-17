@@ -41,7 +41,7 @@ class IndexController extends AdminController
             'app_name' => Admin::config('admin.name'),
             'locale'   => $locale,
             'layout'   => Admin::config('admin.layout'),
-            'logo'     => url(Admin::config('admin.logo')),
+            'logo'     => Admin::config('admin.logo') ? url(Admin::config('admin.logo')) : '',
 
             'login_captcha'          => Admin::config('admin.auth.login_captcha'),
             'locale_options'         => map2options($localeOptions),

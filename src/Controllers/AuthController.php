@@ -162,7 +162,7 @@ JS,
         $card = amis()->Card()->className('w-96 m:w-full')->body([
             amis()->Service()->api('/_settings')->body([
                 amis()->Flex()->justify('space-between')->className('px-2.5 pb-2.5')->items([
-                    amis()->Image()->src('${logo}')->width(40)->height(40),
+                    amis()->Image()->src('${logo}')->width(40)->height(40)->visibleOn('${logo}'),
                     amis()->Tpl()
                         ->className('font-medium')
                         ->tpl('<div style="font-size: 24px">${app_name}</div>'),

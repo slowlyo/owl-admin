@@ -81,7 +81,7 @@ const DefaultLogin = () => {
             <Card className="p-15px shadow-sm">
                 <div className="w-[320px] p-2">
                     <div className="flex justify-between">
-                        <Image src={getSetting('logo')} width={42} preview={false}/>
+                        {getSetting('logo') && <Image src={getSetting('logo')} width={42} preview={false}/>}
                         <div className="text-2xl font-normal">
                             {getSetting('app_name')}
                         </div>
