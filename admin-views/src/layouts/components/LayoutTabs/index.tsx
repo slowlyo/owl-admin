@@ -132,6 +132,15 @@ const LayoutTabs = () => {
     // 菜单点击事件
     const menuClick = (action, item) => {
         switch (action) {
+            // 刷新
+            case 'refresh':
+                // iframe
+                if (getCurrentRoute()?.url_type == 3) {
+                    location.reload()
+                } else {
+                    window.$owl.refreshAmisPage()
+                }
+                break
             // 关闭选项卡
             case 'close':
                 closeTab(item)

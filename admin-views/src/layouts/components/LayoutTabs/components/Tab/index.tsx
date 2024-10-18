@@ -4,6 +4,7 @@ import {useHistory} from 'react-router'
 import {useLang} from '@/hooks/useLang'
 import {Dropdown} from 'antd'
 import useSetting from '@/hooks/useSetting'
+import useRoute from '@/routes'
 
 // Tab 项
 const Tab = ({item, close, menuClick, closeable = true}) => {
@@ -11,6 +12,7 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
     const history = useHistory()
     const pathname = history.location.pathname
     const {settings} = useSetting()
+    const {getCurrentRoute} = useRoute()
 
     if (!item) return null
 
@@ -23,11 +25,22 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
         {label: t('tabMenu.closeAll'), key: 'closeAll', icon: <Icon icon="fluent:subtract-20-filled"/>}
     ]
 
+    const currentRoute = getCurrentRoute()
+
     // 获取菜单
     const getMenu = () => {
         if (!closeable) {
             items.shift()
         }
+
+        if (currentRoute?.path == item.path) {
+            items.unshift({
+                label: t('tabMenu.refresh'),
+                key: 'refresh',
+                icon: <Icon icon="ant-design:reload-outlined"/>
+            })
+        }
+
         return {items, onClick: menuClick}
     }
 
