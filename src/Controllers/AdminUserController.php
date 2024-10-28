@@ -5,7 +5,6 @@ namespace Slowlyo\OwlAdmin\Controllers;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Services\AdminUserService;
-use Slowlyo\OwlAdmin\Services\AdminRoleService;
 
 /**
  * @property AdminUserService $service
@@ -64,7 +63,7 @@ class AdminUserController extends AdminController
                 ->joinValues(false)
                 ->extractValue()
                 ->disabledOn('${id == 1}')
-                ->options(AdminRoleService::make()->query()->get(['id', 'name'])),
+                ->options($this->service->roleOptions()),
             amis()->SwitchControl('enabled', admin_trans('admin.extensions.card.status'))
                 ->onText(admin_trans('admin.extensions.enable'))
                 ->offText(admin_trans('admin.extensions.disable'))

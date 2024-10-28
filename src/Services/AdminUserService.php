@@ -155,4 +155,16 @@ class AdminUserService extends AdminService
 
         return parent::delete($ids);
     }
+
+    public function roleOptions()
+    {
+        $query = AdminRoleService::make()->query();
+
+        // 只有超管才能分配超管
+        if(!admin_user()->isAdministrator()){
+            $query->where('slug', '!=', 'administrator');
+        }
+
+        return $query->get(['id', 'name']);
+    }
 }
