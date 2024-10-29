@@ -24,7 +24,7 @@ trait ExportTrait
 
         // listQuery() 为列表查询条件，与获取列表数据一致
         $query = $this->service->listQuery()
-            ->when($ids, fn($query) => $query->whereIn($this->service->primaryKey(), explode(',', $ids)));
+            ->when($ids, fn($query) => $query->whereIn($this->service->getModel()->getTable() . '.' . $this->service->primaryKey(), explode(',', $ids)));
 
         try {
             fastexcel($query->get())->export(storage_path('app/' . $path), fn($row) => $this->exportMap($row));
