@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -229,7 +230,7 @@ abstract class AdminService
         collect(array_keys(request()->query()))
             ->intersect($this->getTableColumns())
             ->map(function ($field) use ($query) {
-                $query->when(request($field), function ($query) use ($field) {
+                $query->when(filled(request($field)), function ($query) use ($field) {
                     $query->where($field, 'like', '%' . request($field) . '%');
                 });
             });
@@ -293,22 +294,31 @@ abstract class AdminService
      */
     public function update($primaryKey, $data)
     {
-        $this->saving($data, $primaryKey);
+        DB::beginTransaction();
+        try {
+            $this->saving($data, $primaryKey);
 
-        $model = $this->query()->whereKey($primaryKey)->first();
+            $model = $this->query()->whereKey($primaryKey)->first();
 
-        foreach ($data as $k => $v) {
-            if (!$this->hasColumn($k)) {
-                continue;
+            foreach ($data as $k => $v) {
+                if (!$this->hasColumn($k)) {
+                    continue;
+                }
+
+                $model->setAttribute($k, $v);
             }
 
-            $model->setAttribute($k, $v);
-        }
+            $result = $model->save();
 
-        $result = $model->save();
+            if ($result) {
+                $this->saved($model, true);
+            }
 
-        if ($result) {
-            $this->saved($model, true);
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            admin_abort($e->getMessage());
         }
 
         return $result;
@@ -323,22 +333,31 @@ abstract class AdminService
      */
     public function store($data)
     {
-        $this->saving($data);
+        DB::beginTransaction();
+        try {
+            $this->saving($data);
 
-        $model = $this->getModel();
+            $model = $this->getModel();
 
-        foreach ($data as $k => $v) {
-            if (!$this->hasColumn($k)) {
-                continue;
+            foreach ($data as $k => $v) {
+                if (!$this->hasColumn($k)) {
+                    continue;
+                }
+
+                $model->setAttribute($k, $v);
             }
 
-            $model->setAttribute($k, $v);
-        }
+            $result = $model->save();
 
-        $result = $model->save();
+            if ($result) {
+                $this->saved($model);
+            }
 
-        if ($result) {
-            $this->saved($model);
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            admin_abort($e->getMessage());
         }
 
         return $result;
@@ -353,10 +372,19 @@ abstract class AdminService
      */
     public function delete(string $ids)
     {
-        $result = $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
+        DB::beginTransaction();
+        try {
+            $result = $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
 
-        if ($result) {
-            $this->deleted($ids);
+            if ($result) {
+                $this->deleted($ids);
+            }
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            admin_abort($e->getMessage());
         }
 
         return $result;
@@ -373,8 +401,17 @@ abstract class AdminService
     {
         $rowsDiff = data_get($data, 'rowsDiff', []);
 
-        foreach ($rowsDiff as $item) {
-            $this->update(Arr::pull($item, $this->primaryKey()), $item);
+        DB::beginTransaction();
+        try {
+            foreach ($rowsDiff as $item) {
+                $this->update(Arr::pull($item, $this->primaryKey()), $item);
+            }
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            admin_abort($e->getMessage());
         }
 
         return true;
