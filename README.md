@@ -83,7 +83,7 @@
 composer create-project laravel/laravel example-app
 ```
 
-##### 2. 配置数据库信息
+##### 2. 配置数据库信息并安装 `api` 模块
 
 ```dotenv
 # .env
@@ -95,7 +95,11 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-> 如果你使用的是 laravel 11 , 还需要执行: `php artisan install:api`
+安装`api` 模块
+
+```shell
+php artisan install:api
+```
 
 ##### 3. 获取 `Owl Admin`
 
