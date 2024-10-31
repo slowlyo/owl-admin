@@ -3,8 +3,6 @@
 namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Admin;
-use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 use Slowlyo\OwlAdmin\Services\AdminPageService;
@@ -18,7 +16,7 @@ class AdminMenuController extends AdminController
 
     protected string $serviceName = AdminMenuService::class;
 
-    public function list(): Page
+    public function list()
     {
         $crud = $this->baseCRUD()
             ->perPage(999)
@@ -66,7 +64,7 @@ class AdminMenuController extends AdminController
         return $this->baseList($crud);
     }
 
-    public function form(): Form
+    public function form()
     {
         return $this->baseForm()->body([
             amis()->GroupControl()->body([
@@ -156,7 +154,7 @@ class AdminMenuController extends AdminController
         ]);
     }
 
-    public function detail(): Form
+    public function detail()
     {
         return $this->baseDetail()->body([]);
     }

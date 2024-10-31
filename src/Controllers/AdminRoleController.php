@@ -14,7 +14,7 @@ class AdminRoleController extends AdminController
 {
     protected string $serviceName = AdminRoleService::class;
 
-    public function list(): Page
+    public function list()
     {
         $crud = $this->baseCRUD()
             ->headerToolbar([
@@ -100,7 +100,7 @@ class AdminRoleController extends AdminController
         return $this->autoResponse($result, admin_trans('admin.save'));
     }
 
-    public function form(): Form
+    public function form()
     {
         return $this->baseForm()->body([
             amis()->TextControl()->label(admin_trans('admin.admin_role.name'))->name('name')->required(),
@@ -112,7 +112,7 @@ class AdminRoleController extends AdminController
         ]);
     }
 
-    public function detail(): Form
+    public function detail()
     {
         return $this->baseDetail()->body([]);
     }

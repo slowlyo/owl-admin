@@ -13,7 +13,7 @@ class AdminUserController extends AdminController
 {
     protected string $serviceName = AdminUserService::class;
 
-    public function list(): Page
+    public function list()
     {
         $crud = $this->baseCRUD()
             ->headerToolbar([
@@ -47,7 +47,7 @@ class AdminUserController extends AdminController
         return $this->baseList($crud);
     }
 
-    public function form(): Form
+    public function form()
     {
         return $this->baseForm()->body([
             amis()->ImageControl('avatar', admin_trans('admin.admin_user.avatar'))->receiver($this->uploadImagePath()),
@@ -72,7 +72,7 @@ class AdminUserController extends AdminController
         ]);
     }
 
-    public function detail(): Form
+    public function detail()
     {
         return $this->baseDetail()->body([]);
     }

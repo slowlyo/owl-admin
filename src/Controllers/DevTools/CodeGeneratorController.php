@@ -31,7 +31,7 @@ class CodeGeneratorController extends AdminController
         }
 
         return $this->response()->success(
-            amis()->Page()->css($this->css())->body($this->list())
+            $this->basePage()->css($this->css())->body($this->list())
         );
     }
 
