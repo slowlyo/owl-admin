@@ -30,7 +30,8 @@ trait ElementTrait
         $path   = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
         $script = sprintf('window.$owl.hasOwnProperty(\'closeTabByPath\') && window.$owl.closeTabByPath(\'%s\')', $path);
 
-        $action = amis()->OtherAction()
+        $action = amis()
+            ->OtherAction()
             ->label(admin_trans('admin.back'))
             ->icon('fa-solid fa-chevron-left')
             ->level('primary')
@@ -44,11 +45,13 @@ trait ElementTrait
      */
     protected function bulkDeleteButton()
     {
-        $action = amis()->DialogAction()
+        $action = amis()
+            ->DialogAction()
             ->label(admin_trans('admin.delete'))
             ->icon('fa-solid fa-trash-can')
             ->dialog(
-                amis()->Dialog()
+                amis()
+                    ->Dialog()
                     ->title(admin_trans('admin.delete'))
                     ->className('py-2')
                     ->actions([
@@ -113,7 +116,8 @@ trait ElementTrait
         $action = amis()->LinkAction()->link($this->getEditPath());
 
         if ($dialog) {
-            $form = $this->form(true)
+            $form = $this
+                ->form(true)
                 ->api($this->getUpdatePath())
                 ->initApi($this->getEditGetDataPath())
                 ->redirect('')
@@ -152,7 +156,8 @@ trait ElementTrait
         if ($dialog) {
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
-                    amis()->Drawer()
+                    amis()
+                        ->Drawer()
                         ->title($title)
                         ->body($this->detail('$id'))
                         ->size($dialogSize)
@@ -162,7 +167,8 @@ trait ElementTrait
                 );
             } else {
                 $action = amis()->DialogAction()->dialog(
-                    amis()->Dialog()
+                    amis()
+                        ->Dialog()
                         ->title($title)
                         ->body($this->detail('$id'))
                         ->size($dialogSize)
@@ -187,12 +193,14 @@ trait ElementTrait
      */
     protected function rowDeleteButton(string $title = '')
     {
-        $action = amis()->DialogAction()
+        $action = amis()
+            ->DialogAction()
             ->label($title ?: admin_trans('admin.delete'))
             ->level('link')
             ->className('text-danger')
             ->dialog(
-                amis()->Dialog()
+                amis()
+                    ->Dialog()
                     ->title()
                     ->className('py-2')
                     ->actions([
@@ -239,7 +247,8 @@ trait ElementTrait
      */
     protected function baseFilter()
     {
-        $schema = amis()->Form()
+        $schema = amis()
+            ->Form()
             ->panelClassName('base-filter')
             ->title('')
             ->actions([
@@ -267,7 +276,8 @@ trait ElementTrait
     {
         $crudId = str_replace('/', '.', request()->path()) . '.crud';
 
-        $crud = amis()->CRUDTable()
+        $crud = amis()
+            ->CRUDTable()
             ->id($crudId)
             ->perPage(20)
             ->alwaysShowPagination()
@@ -282,7 +292,8 @@ trait ElementTrait
                 'statistics',
                 // 重写实现 CRUD 自带的页码切换组件, 解决下拉被遮挡的问题
                 amis()->Form()->wrapWithPanel(false)->body([
-                    amis()->SelectControl('perPage')
+                    amis()
+                        ->SelectControl('perPage')
                         ->options(array_map(
                             fn($i) => ['label' => $i . ' ' . admin_trans('admin.per_page_suffix'), 'value' => $i],
                             [10, 20, 30, 50, 100, 200]
@@ -365,7 +376,8 @@ trait ElementTrait
      */
     protected function baseDetail()
     {
-        $schema = amis()->Form()
+        $schema = amis()
+            ->Form()
             ->panelClassName('px-48 m:px-0')
             ->title(' ')
             ->mode('horizontal')
@@ -384,10 +396,7 @@ trait ElementTrait
      */
     protected function baseList($crud)
     {
-        return AdminPipeline::handle(
-            AdminPipeline::PIPE_BASE_LIST,
-            amis()->Page()->className('m:overflow-auto')->body($crud)
-        );
+        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_LIST, $this->basePage()->body($crud));
     }
 
     /**
@@ -431,13 +440,15 @@ trait ElementTrait
             );
         }
 
-        $action = amis()->Service()
+        $action = amis()
+            ->Service()
             ->id('export-action')
             ->set('align', 'right')
             ->set('data', ['showExportLoading' => false])
             ->body(
                 amis()->Spinner()->set('showOn', '${showExportLoading}')->overlay()->body(
-                    amis()->DropdownButton()
+                    amis()
+                        ->DropdownButton()
                         ->label(admin_trans('admin.export.title'))
                         ->set('icon', 'fa-solid fa-download')
                         ->buttons($buttons)

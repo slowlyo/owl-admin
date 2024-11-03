@@ -6,8 +6,6 @@ use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Tag;
-use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
@@ -18,7 +16,7 @@ class AdminPermissionController extends AdminController
 {
     protected string $serviceName = AdminPermissionService::class;
 
-    public function list(): Page
+    public function list()
     {
         $autoBtn = '';
         if (Admin::config('admin.show_auto_generate_permission_button')) {
@@ -65,7 +63,7 @@ class AdminPermissionController extends AdminController
         return $this->baseList($crud);
     }
 
-    public function form(): Form
+    public function form()
     {
         return $this->baseForm()->body([
             amis()->TextControl('name', admin_trans('admin.admin_permission.name'))->required(),
@@ -101,7 +99,7 @@ class AdminPermissionController extends AdminController
         ]);
     }
 
-    public function detail(): Form
+    public function detail()
     {
         return $this->baseDetail()->body([]);
     }
