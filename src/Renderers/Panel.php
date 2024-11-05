@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Panel渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/panel
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.9.0
  */
 class Panel extends BaseRenderer
 {
@@ -77,6 +77,14 @@ class Panel extends BaseRenderer
     public function className($value = '')
     {
         return $this->set('className', $value);
+    }
+
+    /**
+     * \ 可折叠。先简单实现一下
+     */
+    public function collapsible($value = true)
+    {
+        return $this->set('collapsible', $value);
     }
 
     /**

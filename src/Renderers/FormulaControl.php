@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 公式功能控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/formula
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.9.0
  */
 class FormulaControl extends BaseRenderer
 {
