@@ -426,7 +426,7 @@ trait ElementTrait
         $buttons = [
             // 导出全部
             amis()->VanillaAction()->label(admin_trans('admin.export.all'))->onEvent(
-                $event("let data=event.data;let params=Object.keys(data).filter(key=>key!=='page' && key!=='__super').reduce((obj,key)=>{obj[key]=data[key];return obj;},{});let url=new URL('{$exportPath}',window.location.origin);Object.keys(params).forEach(key=>url.searchParams.append(key,params[key]));{$doAction}")
+                $event("let data=event.data;let params=Object.keys(data).filter(key=>key!=='page' && key!=='__super').reduce((obj,key)=>{obj[key]=data[key];return obj;},{});let url=new URL('{$exportPath}',window.location.origin);Object.keys(params).forEach(key=>url.searchParams.append(key,(typeof params[key] == 'string' ? params[key] : JSON.stringify(params[key]))));{$doAction}")
             ),
             // 导出本页
             amis()->VanillaAction()->label(admin_trans('admin.export.page'))->onEvent(
