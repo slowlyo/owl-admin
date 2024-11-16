@@ -55,6 +55,7 @@ const useTheme = (store = null) => {
     // 设置主题色
     const setThemeColor = (color, dark = false) => {
         if (!color) return
+        if (typeof color !== 'string') return
 
         const list = generate(color, {theme: dark ? 'dark' : 'default'})
 

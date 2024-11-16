@@ -122,7 +122,9 @@ const SettingPanel = () => {
                 <Form.Item colon={false} label={t('theme_setting.theme_color')}>
                     <ColorPicker showText
                                  disabledAlpha
-                                 onChange={(_, hex) => handleChange('themeColor', hex)}
+                                 disabledFormat
+                                 onChange={(_, v) => handleChange('themeColor', v)}
+                                 value={settings.system_theme_setting.themeColor}
                                  presets={[{
                                      label: t('theme_setting.preinstall'),
                                      colors: ['#1677FF', '#F5222D', '#FA8C16', '#52C41A', '#13A8A8', '#2F54EB', '#722ED1', '#EB2F96'],
