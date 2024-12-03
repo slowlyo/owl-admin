@@ -94,14 +94,18 @@ class Generator
 
                 try{
                     $datebaseSchemaBuilder = Schema::connection($connectName);
-                    $tables = array_column($datebaseSchemaBuilder->getTables(), 'name');
+                    $tables_with_prefix = array_column($datebaseSchemaBuilder->getTables(), 'name');
+                    $tables = collect($tables_with_prefix)->map(function ($v) use ($value) {
+                        $v = str_replace(Arr::get($value, 'prefix'), '', $v);
+                        return $v;
+                    });
                 }catch(\Throwable $e){ // 连不上的跳过
                     continue;
                 }
 
                 // 键(database名称)长度超过28个字符 amis 会获取字段信息失败(sqlite)，截取一下
                 $databaseKey = strlen($value['database']) > 28 ? substr_replace($value['database'],'***', 10, -15) : $value['database'];
-                
+
                 $data[$databaseKey] = collect($tables)->flip()->map(function ($_, $table) use ($datebaseSchemaBuilder) {
                     $columns = collect($datebaseSchemaBuilder->getColumns($table))
                         ->whereNotIn('name', ['created_at', 'updated_at', 'deleted_at'])
@@ -110,7 +114,7 @@ class Generator
                             $v['nullable'] = $v['nullable'] == 'YES';
                             return $v;
                         });
-                    
+
                     return $columns;
                 });
             }
