@@ -92,27 +92,33 @@ class Generator
             foreach ($databases as $connectName => $value) {
                 if ($db && $db != $value['database']) continue;
 
-                try{
-                    $datebaseSchemaBuilder = Schema::connection($connectName);
-                    $tables = array_column($datebaseSchemaBuilder->getTables(), 'name');
-                }catch(\Throwable $e){ // 连不上的跳过
+                try {
+                    $databaseSchemaBuilder = Schema::connection($connectName);
+
+                    $tables = collect($databaseSchemaBuilder->getTables())
+                        ->pluck('name')
+                        ->map(fn($name) => Str::replaceStart(data_get($value, 'prefix', ''), '', $name))
+                        ->toArray();
+                } catch (\Throwable $e) { // 连不上的跳过
                     continue;
                 }
 
                 // 键(database名称)长度超过28个字符 amis 会获取字段信息失败(sqlite)，截取一下
-                $databaseKey = strlen($value['database']) > 28 ? substr_replace($value['database'],'***', 10, -15) : $value['database'];
-                
-                $data[$databaseKey] = collect($tables)->flip()->map(function ($_, $table) use ($datebaseSchemaBuilder) {
-                    $columns = collect($datebaseSchemaBuilder->getColumns($table))
-                        ->whereNotIn('name', ['created_at', 'updated_at', 'deleted_at'])
-                        ->map(function ($v) {
-                            $v['type'] = Arr::get(Generator::$dataTypeMap, $v['type'], 'string');
-                            $v['nullable'] = $v['nullable'] == 'YES';
-                            return $v;
-                        });
-                    
-                    return $columns;
-                });
+                $databaseKey = strlen($value['database']) > 28 ? substr_replace($value['database'], '***', 10, -15) : $value['database'];
+
+                $data[$databaseKey] = collect($tables)
+                    ->flip()
+                    ->map(function ($_, $table) use ($databaseSchemaBuilder, $connectName) {
+                        return collect($databaseSchemaBuilder->getColumns($table))
+                            ->whereNotIn('name', ['id', 'created_at', 'updated_at', 'deleted_at'])
+                            ->values()
+                            ->map(function ($v) {
+                                $v['type']     = Arr::get(Generator::$dataTypeMap, $v['type'], 'string');
+                                $v['nullable'] = $v['nullable'] == 'YES';
+                                $v['comment']  = filled($v['comment']) ? $v['comment'] : Str::studly($v['name']);
+                                return $v;
+                            });
+                    });
             }
         } catch (\Throwable $e) {
         }
