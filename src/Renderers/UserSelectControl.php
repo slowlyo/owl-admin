@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UserSelect 移动端人员选择。
  *
  * @author  slowlyo
- * @version 6.9.0
+ * @version 6.10.0
  */
 class UserSelectControl extends BaseRenderer
 {

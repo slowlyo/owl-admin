@@ -69,9 +69,9 @@ class AdminPermissionController extends AdminController
             amis()->TextControl('name', admin_trans('admin.admin_permission.name'))->required(),
             amis()->TextControl('slug', admin_trans('admin.admin_permission.slug'))->required(),
             amis()->TreeSelectControl('parent_id', admin_trans('admin.parent'))
+                ->id('parent_select')
                 ->labelField('name')
                 ->valueField('id')
-                ->value(0)
                 ->options($this->service->getTree()),
             amis()->CheckboxesControl('http_method', admin_trans('admin.admin_permission.http_method'))
                 ->options($this->getHttpMethods())
@@ -96,6 +96,18 @@ class AdminPermissionController extends AdminController
                 ->autoCheckChildren(false)
                 ->joinValues(false)
                 ->extractValue(),
+        ])->onEvent([
+            'inited'     => [
+                'actions' => [
+                    [
+                        'actionType'  => 'setValue',
+                        'componentId' => 'parent_select',
+                        'args'        => [
+                            'value' => '${responseData.parent_id || ""}',
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 

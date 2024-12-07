@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Service 服务类控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/service
  *
  * @author  slowlyo
- * @version 6.9.0
+ * @version 6.10.0
  */
 class Service extends BaseRenderer
 {

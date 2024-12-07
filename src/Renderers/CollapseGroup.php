@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CollapseGroup 折叠渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/collapse
  *
  * @author  slowlyo
- * @version 6.9.0
+ * @version 6.10.0
  */
 class CollapseGroup extends BaseRenderer
 {

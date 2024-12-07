@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * IconChecked
  *
  * @author  slowlyo
- * @version 6.9.0
+ * @version 6.10.0
  */
 class IconChecked extends BaseRenderer
 {
