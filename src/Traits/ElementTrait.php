@@ -295,8 +295,9 @@ trait ElementTrait
                         ->SelectControl('perPage')
                         ->options(array_map(
                             fn($i) => ['label' => $i . ' ' . admin_trans('admin.per_page_suffix'), 'value' => $i],
-                            [10, 20, 30, 50, 100, 200]
+                            [20, 30, 50, 100, 200]
                         ))
+                        ->selectFirst()
                         ->set('overlayPlacement', 'top')
                         ->onEvent([
                             'change' => [
