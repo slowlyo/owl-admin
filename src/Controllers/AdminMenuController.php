@@ -59,6 +59,16 @@ class AdminMenuController extends AdminController
                     $this->rowEditButton(true, 'lg'),
                     $this->rowDeleteButton(),
                 ]),
+            ])
+            ->onEvent([
+                'quickSaveItemSucc' => [
+                    'actions' => [
+                        [
+                            'actionType' => 'custom',
+                            'script'     => 'window.$owl.refreshRoutes()',
+                        ],
+                    ],
+                ],
             ]);
 
         return $this->baseList($crud);
@@ -73,10 +83,10 @@ class AdminMenuController extends AdminController
             ]),
             amis()->GroupControl()->body([
                 amis()->TreeSelectControl('parent_id', admin_trans('admin.admin_menu.parent_id'))
+                    ->id('parent_select')
                     ->labelField('title')
                     ->valueField('id')
                     ->showIcon(false)
-                    ->value(0)
                     ->source('/system/admin_menus?_action=getData'),
                 amis()->NumberControl('custom_order', admin_trans('admin.admin_menu.order'))
                     ->required()
@@ -145,10 +155,23 @@ class AdminMenuController extends AdminController
                 ->description(admin_trans('admin.admin_menu.is_full_description'))
                 ->value(0),
         ])->onEvent([
+            'inited'     => [
+                'actions' => [
+                    [
+                        'actionType'  => 'setValue',
+                        'componentId' => 'parent_select',
+                        'args'        => [
+                            'value' => '${responseData.parent_id || ""}',
+                        ],
+                    ],
+                ],
+            ],
             'submitSucc' => [
                 'actions' => [
-                    'actionType' => 'custom',
-                    'script'     => 'window.location.reload()',
+                    [
+                        'actionType' => 'custom',
+                        'script'     => 'window.$owl.refreshRoutes()',
+                    ],
                 ],
             ],
         ]);

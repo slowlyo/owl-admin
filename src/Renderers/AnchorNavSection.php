@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * AnchorNavSection 锚点区域渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/anchor-nav
  *
  * @author  slowlyo
- * @version 6.9.0
+ * @version 6.10.0
  */
 class AnchorNavSection extends BaseRenderer
 {

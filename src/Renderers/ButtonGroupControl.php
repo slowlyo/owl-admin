@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 按钮组控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/button-group
  *
  * @author  slowlyo
- * @version 6.9.0
+ * @version 6.10.0
  */
 class ButtonGroupControl extends BaseRenderer
 {

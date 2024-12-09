@@ -83,7 +83,7 @@ trait ElementTrait
         $action = amis()->LinkAction()->link($this->getCreatePath());
 
         if ($dialog) {
-            $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath())->onEvent([]);
+            $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath());
 
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
@@ -120,8 +120,7 @@ trait ElementTrait
                 ->form(true)
                 ->api($this->getUpdatePath())
                 ->initApi($this->getEditGetDataPath())
-                ->redirect('')
-                ->onEvent([]);
+                ->redirect('');
 
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
@@ -296,8 +295,9 @@ trait ElementTrait
                         ->SelectControl('perPage')
                         ->options(array_map(
                             fn($i) => ['label' => $i . ' ' . admin_trans('admin.per_page_suffix'), 'value' => $i],
-                            [10, 20, 30, 50, 100, 200]
+                            [20, 30, 50, 100, 200]
                         ))
+                        ->selectFirst()
                         ->set('overlayPlacement', 'top')
                         ->onEvent([
                             'change' => [
