@@ -348,7 +348,7 @@ trait ElementTrait
      *
      * @return \Slowlyo\OwlAdmin\Renderers\Form
      */
-    protected function baseForm(bool $back = true)
+    protected function baseForm(bool $back = false)
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 

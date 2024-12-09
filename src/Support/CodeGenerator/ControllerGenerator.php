@@ -122,7 +122,8 @@ class ControllerGenerator extends BaseGenerator
         if ($this->model->page_info['dialog_form'] == 'drawer') {
             $content .= "\t\treturn \$this->baseForm()->mode('normal')->body([" . PHP_EOL;
         } else {
-            $content .= "\t\treturn \$this->baseForm()->body([" . PHP_EOL;
+            $back    = $this->model->page_info['dialog_form'] == 'page' ? 'true' : '';
+            $content .= "\t\treturn \$this->baseForm({$back})->body([" . PHP_EOL;
         }
 
         foreach ($this->model->columns as $column) {
