@@ -208,8 +208,11 @@ JS,
 
     public function logout(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
-        /** @noinspection all */
-        $this->guard()->user()->currentAccessToken()->delete();
+        try {
+            /** @noinspection all */
+            $this->guard()->user()->currentAccessToken()->delete();
+        } catch (\Throwable $e) {
+        }
 
         return $this->response()->successMessage();
     }
