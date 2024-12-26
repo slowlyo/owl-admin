@@ -65,7 +65,7 @@ class AdminUser extends User implements AuthenticatableContract
 
     public function isAdministrator(): bool
     {
-        return $this->isRole('administrator');
+        return $this->isRole(AdminRole::SuperAdministrator);
     }
 
     public function isRole(string $role): bool

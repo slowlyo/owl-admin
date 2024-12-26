@@ -2,8 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
-use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Form;
+use Slowlyo\OwlAdmin\Models\AdminRole;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
@@ -16,31 +15,34 @@ class AdminRoleController extends AdminController
 
     public function list()
     {
-        $crud = $this->baseCRUD()
+        $crud = $this
+            ->baseCRUD()
             ->headerToolbar([
                 $this->createButton(true),
                 ...$this->baseHeaderToolBar(),
             ])
             ->filterTogglable(false)
-            ->itemCheckableOn('${slug !== "administrator"}')
+            ->itemCheckableOn('${slug !== "' . AdminRole::SuperAdministrator . '"}')
             ->columns([
                 amis()->TableColumn()->label('ID')->name('id')->sortable(),
                 amis()->TableColumn()->label(admin_trans('admin.admin_role.name'))->name('name'),
                 amis()->TableColumn()->label(admin_trans('admin.admin_role.slug'))->name('slug')->type('tag'),
-                amis()->TableColumn()
+                amis()
+                    ->TableColumn()
                     ->label(admin_trans('admin.created_at'))
                     ->name('created_at')
                     ->type('datetime')
                     ->sortable(),
-                amis()->TableColumn()
+                amis()
+                    ->TableColumn()
                     ->label(admin_trans('admin.updated_at'))
                     ->name('updated_at')
                     ->type('datetime')
                     ->sortable(),
                 $this->rowActions([
-                    $this->setPermission()->hiddenOn('${slug == "administrator"}'),
+                    $this->setPermission()->hiddenOn('${slug == "' . AdminRole::SuperAdministrator . '"}'),
                     $this->rowEditButton(true),
-                    $this->rowDeleteButton()->hiddenOn('${slug == "administrator"}'),
+                    $this->rowDeleteButton()->hiddenOn('${slug == "' . AdminRole::SuperAdministrator . '"}'),
                 ]),
             ]);
 
@@ -57,23 +59,27 @@ class AdminRoleController extends AdminController
 
     protected function setPermission()
     {
-        return amis()->DrawerAction()
+        return amis()
+            ->DrawerAction()
             ->label(admin_trans('admin.admin_role.set_permissions'))
             ->level('link')
             ->drawer(
-                amis()->Drawer()
+                amis()
+                    ->Drawer()
                     ->title(admin_trans('admin.admin_role.set_permissions'))
                     ->resizable()
                     ->closeOnOutside()
                     ->closeOnEsc()
                     ->body([
-                        amis()->Form()
+                        amis()
+                            ->Form()
                             ->api(admin_url('system/admin_roles/save_permissions'))
                             ->initApi($this->getEditGetDataPath())
                             ->mode('normal')
                             ->data(['id' => '${id}'])
                             ->body([
-                                amis()->TreeControl()
+                                amis()
+                                    ->TreeControl()
                                     ->name('permissions')
                                     ->label()
                                     ->multiple()
@@ -104,7 +110,8 @@ class AdminRoleController extends AdminController
     {
         return $this->baseForm()->body([
             amis()->TextControl()->label(admin_trans('admin.admin_role.name'))->name('name')->required(),
-            amis()->TextControl()
+            amis()
+                ->TextControl()
                 ->label(admin_trans('admin.admin_role.slug'))
                 ->name('slug')
                 ->description(admin_trans('admin.admin_role.slug_description'))

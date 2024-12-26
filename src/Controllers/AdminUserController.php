@@ -63,7 +63,7 @@ class AdminUserController extends AdminController
                 ->valueField('id')
                 ->joinValues(false)
                 ->extractValue()
-                ->disabledOn('${id == 1}')
+                ->hiddenOn('${id == 1}')
                 ->options($this->service->roleOptions()),
             amis()->SwitchControl('enabled', admin_trans('admin.extensions.card.status'))
                 ->onText(admin_trans('admin.extensions.enable'))

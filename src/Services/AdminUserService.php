@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Models\AdminUser;
+use Slowlyo\OwlAdmin\Models\AdminRole;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -59,7 +60,8 @@ class AdminUserService extends AdminService
 
     public function checkUsernameUnique($username, $id = 0)
     {
-        $exists = $this->query()
+        $exists = $this
+            ->query()
             ->where('username', $username)
             ->when($id, fn($query) => $query->where('id', '<>', $id))
             ->exists();
@@ -100,7 +102,8 @@ class AdminUserService extends AdminService
     {
         $keyword = request()->keyword;
 
-        $query = $this->query()
+        $query = $this
+            ->query()
             ->with('roles')
             ->select(['id', 'name', 'username', 'avatar', 'enabled', 'created_at'])
             ->when($keyword, function ($query) use ($keyword) {
@@ -146,9 +149,10 @@ class AdminUserService extends AdminService
 
     public function delete(string $ids)
     {
-        $exists = $this->query()
+        $exists = $this
+            ->query()
             ->whereIn($this->primaryKey(), explode(',', $ids))
-            ->whereHas('roles', fn($q) => $q->where('slug', 'administrator'))
+            ->whereHas('roles', fn($q) => $q->where('slug', AdminRole::SuperAdministrator))
             ->exists();
 
         admin_abort_if($exists, admin_trans('admin.admin_user.cannot_delete'));
@@ -160,10 +164,8 @@ class AdminUserService extends AdminService
     {
         $query = AdminRoleService::make()->query();
 
-        // 只有超管才能分配超管
-        if(!admin_user()->isAdministrator()){
-            $query->where('slug', '!=', 'administrator');
-        }
+        // 不可分配超管
+        $query->where('slug', '!=', AdminRole::SuperAdministrator);
 
         return $query->get(['id', 'name']);
     }
