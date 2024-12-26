@@ -78,6 +78,13 @@ class AdminRoleService extends AdminService
         amis_abort_if($query->clone()
             ->where('slug', $data['slug'])
             ->exists(), admin_trans('admin.admin_role.slug_already_exists'));
+        
+        if ($id) {
+            $model = $this->query()->find($id);
+            if ($model->slug === 'administrator' && $data['slug'] !== 'administrator') {
+                amis_abort(admin_trans('admin.admin_role.administrator_not_allow_modify'));
+            }
+        }
     }
 
     public function savePermissions($primaryKey, $permissions)

@@ -193,6 +193,7 @@ return [
         'set_permissions'     => 'Set Permissions',
         'cannot_delete'       => 'The super administrator cannot be deleted',
         'used'                => 'You cannot delete a role that is in use',
+        'administrator_not_allow_modify' => 'Prohibit modification administrator',
     ],
 
     'admin_permissions' => 'Permissions',

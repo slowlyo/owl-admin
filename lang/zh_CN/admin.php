@@ -193,6 +193,7 @@ return [
         'set_permissions'     => '设置权限',
         'cannot_delete'       => '不可删除超级管理员',
         'used'                => '不可删除正在使用的角色',
+        'administrator_not_allow_modify' => '禁止修改超级管理员',
     ],
 
     'admin_permissions' => '权限',
