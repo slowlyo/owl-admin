@@ -21,7 +21,8 @@ class AuthController extends AdminController
     {
         if (Admin::config('admin.auth.login_captcha')) {
             if (!$request->has('captcha')) {
-                return $this->response()
+                return $this
+                    ->response()
                     ->fail(admin_trans('admin.required', ['attribute' => admin_trans('admin.captcha')]));
             }
 
@@ -67,7 +68,8 @@ class AuthController extends AdminController
     public function loginPage()
     {
         /** @noinspection all */
-        $form = amis()->Form()
+        $form = amis()
+            ->Form()
             ->panelClassName('border-none')
             ->id('login-form')
             ->title()
@@ -82,12 +84,14 @@ class AuthController extends AdminController
                     ->placeholder(admin_trans('admin.password'))
                     ->required(),
                 amis()->InputGroupControl('captcha_group')->body([
-                    amis()->TextControl('captcha', admin_trans('admin.captcha'))
+                    amis()
+                        ->TextControl('captcha', admin_trans('admin.captcha'))
                         ->placeholder(admin_trans('admin.captcha'))
                         ->required(),
                     amis()->HiddenControl()->name('sys_captcha'),
                     amis()->Service()->id('captcha-service')->api('get:' . admin_url('/captcha'))->body(
-                        amis()->Image()
+                        amis()
+                            ->Image()
                             ->src('${captcha_img}')
                             ->height('1.917rem')
                             ->className('p-0 captcha-box')
@@ -101,7 +105,8 @@ class AuthController extends AdminController
                 amis()->CheckboxControl()->name('remember_me')->option(admin_trans('admin.remember_me'))->value(true),
 
                 // 登录按钮
-                amis()->VanillaAction()
+                amis()
+                    ->VanillaAction()
                     ->actionType('submit')
                     ->label(admin_trans('admin.login'))
                     ->level('primary')
@@ -159,11 +164,18 @@ JS,
                 ],
             ]);
 
-        $card = amis()->Card()->className('w-96 m:w-full')->body([
+        $card = amis()->Panel()->className('w-96 m:w-full pt-3')->id('login-panel')->set('animations', [
+            'enter' => [
+                'delay'    => 0,
+                'duration' => 0.5,
+                'type'     => 'zoomIn',
+            ],
+        ])->body([
             amis()->Service()->api('/_settings')->body([
                 amis()->Flex()->justify('space-between')->className('px-2.5 pb-2.5')->items([
                     amis()->Image()->src('${logo}')->width(40)->height(40)->visibleOn('${logo}'),
-                    amis()->Tpl()
+                    amis()
+                        ->Tpl()
                         ->className('font-medium')
                         ->tpl('<div style="font-size: 24px">${app_name}</div>'),
                 ]),
@@ -185,7 +197,16 @@ JS,
                 'background' => 'var(--owl-body-bg)',
             ],
         ])->body(
-            amis()->Wrapper()->className("h-screen w-full flex items-center justify-center")->body($card)
+            amis()->Wrapper()->className("h-screen w-full flex items-center justify-center")->style([
+                'position'           => 'static',
+                'display'            => 'flex',
+                'fontFamily'         => '',
+                'backgroundSize'     => 'cover',
+                'backgroundImage'    => 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr',
+                'backgroundPosition' => '50% 50%',
+                'flexWrap'           => 'nowrap',
+                'fontSize'           => 12,
+            ])->body($card)
         );
     }
 
@@ -230,7 +251,8 @@ JS,
 
         $userInfo = Admin::user()->only(['name', 'avatar']);
 
-        $menus = amis()->DropdownButton()
+        $menus = amis()
+            ->DropdownButton()
             ->hideCaret()
             ->trigger('hover')
             ->label($userInfo['name'])
@@ -239,12 +261,14 @@ JS,
             ->menuClassName('min-w-0')
             ->set('icon', $userInfo['avatar'])
             ->buttons([
-                amis()->VanillaAction()
+                amis()
+                    ->VanillaAction()
                     ->iconClassName('pr-2')
                     ->icon('fa fa-user-gear')
                     ->label(admin_trans('admin.user_setting'))
                     ->onClick('window.location.hash = "#/user_setting"'),
-                amis()->VanillaAction()
+                amis()
+                    ->VanillaAction()
                     ->iconClassName('pr-2')
                     ->label(admin_trans('admin.logout'))
                     ->icon('fa-solid fa-right-from-bracket')
@@ -256,14 +280,16 @@ JS,
 
     public function userSetting(): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
     {
-        $form = amis()->Form()
+        $form = amis()
+            ->Form()
             ->title()
             ->panelClassName('px-48 m:px-0')
             ->mode('horizontal')
             ->initApi('/current-user')
             ->api('put:' . admin_url('/user_setting'))
             ->body([
-                amis()->ImageControl()
+                amis()
+                    ->ImageControl()
                     ->label(admin_trans('admin.admin_user.avatar'))
                     ->name('avatar')
                     ->receiver($this->uploadImagePath()),
@@ -274,7 +300,8 @@ JS,
                     ->label(admin_trans('admin.old_password'))
                     ->name('old_password'),
                 amis()->TextControl()->type('input-password')->label(admin_trans('admin.password'))->name('password'),
-                amis()->TextControl()
+                amis()
+                    ->TextControl()
                     ->type('input-password')
                     ->label(admin_trans('admin.confirm_password'))
                     ->name('confirm_password'),
