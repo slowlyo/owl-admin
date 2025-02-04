@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Support\Cores;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Slowlyo\OwlAdmin\Models\AdminRole;
 use Illuminate\Database\Schema\Blueprint;
 
 class Database
@@ -235,7 +236,7 @@ class Database
         $adminRole->truncate();
         $adminRole->insert($data([
             'name' => 'Administrator',
-            'slug' => 'administrator',
+            'slug' => AdminRole::SuperAdministrator,
         ]));
 
         // 用户 - 角色绑定

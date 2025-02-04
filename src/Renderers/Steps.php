@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Steps
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.10.0
  */
 class Steps extends BaseRenderer
 {

@@ -41,6 +41,7 @@ class Generator
         'text'               => 'text',
         'mediumtext'         => 'mediumText',
         'longtext'           => 'longText',
+        'integer'            => 'integer',
     ];
 
     public function needCreateOptions()
@@ -80,7 +81,7 @@ class Generator
     public function getDatabaseColumns($db = null, $tb = null)
     {
         $databases = Arr::where(config('database.connections', []), function ($value) {
-            $supports = ['mysql'];
+            $supports = ['mysql', 'sqlite'];
 
             return in_array(strtolower(Arr::get($value, 'driver')), $supports);
         });
@@ -91,54 +92,33 @@ class Generator
             foreach ($databases as $connectName => $value) {
                 if ($db && $db != $value['database']) continue;
 
-                $sql = sprintf('SELECT * FROM information_schema.columns WHERE table_schema = "%s"',
-                    $value['database']);
+                try {
+                    $databaseSchemaBuilder = Schema::connection($connectName);
 
-                if ($tb) {
-                    $p = Arr::get($value, 'prefix');
-
-                    $sql .= " AND TABLE_NAME = '{$p}{$tb}'";
+                    $tables = collect($databaseSchemaBuilder->getTables())
+                        ->pluck('name')
+                        ->map(fn($name) => Str::replaceStart(data_get($value, 'prefix', ''), '', $name))
+                        ->toArray();
+                } catch (\Throwable $e) { // 连不上的跳过
+                    continue;
                 }
 
-                $sql .= ' ORDER BY `ORDINAL_POSITION` ASC';
+                // 键(database名称)长度超过28个字符 amis 会获取字段信息失败(sqlite)，截取一下
+                $databaseKey = strlen($value['database']) > 28 ? substr_replace($value['database'], '***', 10, -15) : $value['database'];
 
-                $tmp = DB::connection($connectName)->select($sql);
-
-                $collection = collect($tmp)->map(function ($v) use ($value) {
-                    if (!$p = Arr::get($value, 'prefix')) {
-                        return (array)$v;
-                    }
-                    $v = (array)$v;
-
-                    $v['TABLE_NAME'] = Str::replaceFirst($p, '', $v['TABLE_NAME']);
-
-                    return $v;
-                });
-
-                $data[$value['database']] = $collection->groupBy('TABLE_NAME')->map(function ($v) {
-                    return collect($v)
-                        ->keyBy('COLUMN_NAME')
-                        ->where('COLUMN_KEY', '<>', 'PRI')
-                        ->whereNotIn('COLUMN_NAME', ['created_at', 'updated_at', 'deleted_at'])
-                        ->map(function ($v) {
-                            $v['COLUMN_TYPE'] = strtolower($v['COLUMN_TYPE']);
-                            $v['DATA_TYPE']   = strtolower($v['DATA_TYPE']);
-
-                            if (Str::contains($v['COLUMN_TYPE'], 'unsigned')) {
-                                $v['DATA_TYPE'] .= '@unsigned';
-                            }
-
-
-                            return [
-                                'name'     => $v['COLUMN_NAME'],
-                                'type'     => Arr::get(Generator::$dataTypeMap, $v['DATA_TYPE'], 'string'),
-                                'default'  => $v['COLUMN_DEFAULT'],
-                                'nullable' => $v['IS_NULLABLE'] == 'YES',
-                                'comment'  => $v['COLUMN_COMMENT'],
-                            ];
-                        })
-                        ->values();
-                });
+                $data[$databaseKey] = collect($tables)
+                    ->flip()
+                    ->map(function ($_, $table) use ($databaseSchemaBuilder, $connectName) {
+                        return collect($databaseSchemaBuilder->getColumns($table))
+                            ->whereNotIn('name', ['id', 'created_at', 'updated_at', 'deleted_at'])
+                            ->values()
+                            ->map(function ($v) {
+                                $v['type']     = Arr::get(Generator::$dataTypeMap, $v['type'], 'string');
+                                $v['nullable'] = $v['nullable'] == 'YES';
+                                $v['comment']  = filled($v['comment']) ? $v['comment'] : Str::studly($v['name']);
+                                return $v;
+                            });
+                    });
             }
         } catch (\Throwable $e) {
         }

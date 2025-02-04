@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Table
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.10.0
  */
 class CRUD2Table extends BaseRenderer
 {

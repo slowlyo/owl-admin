@@ -83,7 +83,7 @@ trait ElementTrait
         $action = amis()->LinkAction()->link($this->getCreatePath());
 
         if ($dialog) {
-            $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath())->onEvent([]);
+            $form = $this->form(false)->canAccessSuperData(false)->api($this->getStorePath());
 
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
@@ -120,8 +120,7 @@ trait ElementTrait
                 ->form(true)
                 ->api($this->getUpdatePath())
                 ->initApi($this->getEditGetDataPath())
-                ->redirect('')
-                ->onEvent([]);
+                ->redirect('');
 
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
@@ -296,8 +295,9 @@ trait ElementTrait
                         ->SelectControl('perPage')
                         ->options(array_map(
                             fn($i) => ['label' => $i . ' ' . admin_trans('admin.per_page_suffix'), 'value' => $i],
-                            [10, 20, 30, 50, 100, 200]
+                            [20, 30, 50, 100, 200]
                         ))
+                        ->selectFirst()
                         ->set('overlayPlacement', 'top')
                         ->onEvent([
                             'change' => [
@@ -348,7 +348,7 @@ trait ElementTrait
      *
      * @return \Slowlyo\OwlAdmin\Renderers\Form
      */
-    protected function baseForm(bool $back = true)
+    protected function baseForm(bool $back = false)
     {
         $path = str_replace(Admin::config('admin.route.prefix'), '', request()->path());
 
@@ -426,7 +426,7 @@ trait ElementTrait
         $buttons = [
             // 导出全部
             amis()->VanillaAction()->label(admin_trans('admin.export.all'))->onEvent(
-                $event("let data=event.data;let params=Object.keys(data).filter(key=>key!=='page' && key!=='__super').reduce((obj,key)=>{obj[key]=data[key];return obj;},{});let url=new URL('{$exportPath}',window.location.origin);Object.keys(params).forEach(key=>url.searchParams.append(key,params[key]));{$doAction}")
+                $event("let data=event.data;let params=Object.keys(data).filter(key=>key!=='page' && key!=='__super').reduce((obj,key)=>{obj[key]=data[key];return obj;},{});let url=new URL('{$exportPath}',window.location.origin);Object.keys(params).forEach(key=>url.searchParams.append(key,(typeof params[key] == 'string' ? params[key] : JSON.stringify(params[key]))));{$doAction}")
             ),
             // 导出本页
             amis()->VanillaAction()->label(admin_trans('admin.export.page'))->onEvent(

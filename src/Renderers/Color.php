@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Color 显示渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/color
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.10.0
  */
 class Color extends BaseRenderer
 {

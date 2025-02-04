@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Timeline
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.10.0
  */
 class Timeline extends BaseRenderer
 {

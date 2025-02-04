@@ -51,7 +51,7 @@ class AdminMenuService extends AdminService
     {
         $columns = $this->getTableColumns();
 
-        $parent_id = Arr::get($data, 'parent_id');
+        $parent_id = Arr::get($data, 'parent_id') ?: 0;
         if ($parent_id != 0) {
             amis_abort_if($this->parentIsChild($primaryKey, $parent_id), admin_trans('admin.admin_menu.parent_id_not_allow'));
         }

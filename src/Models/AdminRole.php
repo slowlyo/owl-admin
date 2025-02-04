@@ -8,6 +8,8 @@ class AdminRole extends BaseModel
 {
     use HasTimestamps;
 
+    const SuperAdministrator = 'administrator';
+
     public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(AdminPermission::class, 'admin_role_permissions', 'role_id', 'permission_id')

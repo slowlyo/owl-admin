@@ -20,6 +20,13 @@ class AdminRoleService extends AdminService
         $this->modelName = Admin::adminRoleModel();
     }
 
+    public function searchable($query)
+    {
+        $query->where('slug', '<>', AdminRole::SuperAdministrator);
+
+        parent::searchable($query);
+    }
+
     public function getEditData($id)
     {
         $permission = parent::getEditData($id);
@@ -94,7 +101,7 @@ class AdminRoleService extends AdminService
         $_ids   = explode(',', $ids);
         $exists = $this->query()
             ->whereIn($this->primaryKey(), $_ids)
-            ->where('slug', 'administrator')
+            ->where('slug', AdminRole::SuperAdministrator)
             ->exists();
 
         admin_abort_if($exists, admin_trans('admin.admin_role.cannot_delete'));

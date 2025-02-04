@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * NavOverflow
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.10.0
  */
 class NavOverflow extends BaseRenderer
 {

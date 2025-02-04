@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 季度选择控件
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.10.0
  */
 class QuarterControl extends BaseRenderer
 {

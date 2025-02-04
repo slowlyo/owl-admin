@@ -31,6 +31,9 @@ class Permission
         'upload_rich',
         'captcha',
         '_download_export',
+        'upload_chunk_start',
+        'upload_chunk',
+        'upload_chunk_finish',
     ];
 
     /**

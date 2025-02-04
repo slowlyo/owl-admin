@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Date日期选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/date
  *
  * @author  slowlyo
- * @version 6.8.0
+ * @version 6.10.0
  */
 class DateControl extends BaseRenderer
 {
