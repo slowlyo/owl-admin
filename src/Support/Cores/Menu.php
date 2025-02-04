@@ -171,7 +171,10 @@ class Menu
         }
 
         if (Admin::config('admin.show_development_tools')) {
-            $extraMenus = array_merge($extraMenus, $this->devToolMenus());
+            $user = Admin::user();
+            if ($user->isAdministrator() || Admin::config('admin.auth.permission') === false) {
+                $extraMenus = array_merge($extraMenus, $this->devToolMenus());
+            }
         }
 
         return $extraMenus;
