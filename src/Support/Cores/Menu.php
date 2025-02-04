@@ -127,6 +127,11 @@ class Menu
         return $this;
     }
 
+    public function getMenus()
+    {
+        return  $this->menus;
+    }
+
     public function formatItem($item)
     {
         return array_merge([
