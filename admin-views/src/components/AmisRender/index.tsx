@@ -60,6 +60,8 @@ const AmisRender = ({schema, className = ''}) => {
         isCurrentUrl: (url: string) => history.location.pathname + history.location.search === url,
     }
 
+    if (!schema) return null
+
     return (
         <div className={className}>
             <AlertComponent key="alert" locale={localeValue}/>
