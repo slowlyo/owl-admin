@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUDCards
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class CRUDCards extends BaseRenderer
 {
@@ -394,7 +394,7 @@ class CRUDCards extends BaseRenderer
     }
 
     /**
-     * 自定义搜索匹配函数，当开启loadDataOnce时，会基于该函数计算的匹配结果进行过滤，主要用于处理列字段类型较为复杂或者字段值格式和后端返回不一致的场景
+     * 自定义搜索匹配函数，当开启loadDataOnce时，会基于该函数计算的匹配结果进行过滤，主要用于处理列字段类型较为复杂或者字段值格式和后端返回不一致的场景参数说明 * `items` 当前表格数据  * `itemsRaw` 当前表格数据（未处理）  * `options` 配置  * `options.query` 查询条件  * `options.columns` 列配置  * `options.matchSorter` 系统默认的排序方法
      */
     public function matchFunc($value = '')
     {
@@ -415,6 +415,14 @@ class CRUDCards extends BaseRenderer
     public function mode($value = 'cards')
     {
         return $this->set('mode', $value);
+    }
+
+    /**
+     * 控制是否多选，默认为 false
+     */
+    public function multiple($value = true)
+    {
+        return $this->set('multiple', $value);
     }
 
     /**
@@ -536,6 +544,14 @@ class CRUDCards extends BaseRenderer
     public function saveOrderApi($value = '')
     {
         return $this->set('saveOrderApi', $value);
+    }
+
+    /**
+     * 是否开启行选择功能, 默认为 false 开启后将支持行选择功能,需要结合事件动作使用
+     */
+    public function selectable($value = true)
+    {
+        return $this->set('selectable', $value);
     }
 
     /**
@@ -689,6 +705,22 @@ class CRUDCards extends BaseRenderer
     public function title($value = '')
     {
         return $this->set('title', $value);
+    }
+
+    /**
+     *
+     */
+    public function toolbar($value = '')
+    {
+        return $this->set('toolbar', $value);
+    }
+
+    /**
+     * 工具栏是否为 inline 模式
+     */
+    public function toolbarInline($value = true)
+    {
+        return $this->set('toolbarInline', $value);
     }
 
     /**

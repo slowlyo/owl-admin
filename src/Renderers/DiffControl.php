@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Diff 编辑器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/diff
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class DiffControl extends BaseRenderer
 {

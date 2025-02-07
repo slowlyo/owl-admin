@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * LinkAction
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class LinkAction extends BaseRenderer
 {
@@ -126,6 +126,14 @@ class LinkAction extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否在动作结束前禁用按钮
+     */
+    public function disabledOnAction($value = true)
+    {
+        return $this->set('disabledOnAction', $value);
     }
 
     /**
@@ -366,6 +374,14 @@ class LinkAction extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     *
+     */
+    public function tabIndex($value = '')
+    {
+        return $this->set('tabIndex', $value);
     }
 
     /**

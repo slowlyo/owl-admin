@@ -175,6 +175,7 @@ class RendererMap
         'search-box'              => SearchBox::class,
         'select'                  => SelectControl::class,
         'service'                 => Service::class,
+        'shape'                   => Component::class,
         'sol-editor'              => EditorControl::class,
         'sparkline'               => SparkLine::class,
         'spinner'                 => Spinner::class,

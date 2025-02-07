@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tag
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class Tag extends BaseRenderer
 {

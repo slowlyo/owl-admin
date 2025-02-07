@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Table 表格渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/table
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class Table extends BaseRenderer
 {
@@ -253,6 +253,14 @@ class Table extends BaseRenderer
     public function showHeader($value = true)
     {
         return $this->set('showHeader', $value);
+    }
+
+    /**
+     * 是否显示序号
+     */
+    public function showIndex($value = true)
+    {
+        return $this->set('showIndex', $value);
     }
 
     /**

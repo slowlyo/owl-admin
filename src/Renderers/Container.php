@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Container 容器渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/container
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class Container extends BaseRenderer
 {

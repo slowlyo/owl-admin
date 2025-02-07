@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * List 复选框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/list
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class ListControl extends BaseRenderer
 {

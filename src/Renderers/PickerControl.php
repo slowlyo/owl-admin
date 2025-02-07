@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Picker 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/picker
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class PickerControl extends BaseRenderer
 {
@@ -309,6 +309,14 @@ class PickerControl extends BaseRenderer
     public function inputClassName($value = '')
     {
         return $this->set('inputClassName', $value);
+    }
+
+    /**
+     * 选中项可删除，默认为true
+     */
+    public function itemClearable($value = true)
+    {
+        return $this->set('itemClearable', $value);
     }
 
     /**

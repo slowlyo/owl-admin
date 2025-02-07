@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Month 月份选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/Month
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class MonthControl extends BaseRenderer
 {
@@ -205,6 +205,14 @@ class MonthControl extends BaseRenderer
     public function inputClassName($value = '')
     {
         return $this->set('inputClassName', $value);
+    }
+
+    /**
+     *
+     */
+    public function inputForbid($value = true)
+    {
+        return $this->set('inputForbid', $value);
     }
 
     /**

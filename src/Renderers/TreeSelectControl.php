@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Tree 下拉选择框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tree
  *
  * @author  slowlyo
- * @version 6.10.0
+ * @version 6.11.0
  */
 class TreeSelectControl extends BaseRenderer
 {
@@ -37,6 +37,14 @@ class TreeSelectControl extends BaseRenderer
     public function addDialog($value = '')
     {
         return $this->set('addDialog', $value);
+    }
+
+    /**
+     * 子节点取消时自动取消父节点的值，默认为false
+     */
+    public function autoCancelParent($value = true)
+    {
+        return $this->set('autoCancelParent', $value);
     }
 
     /**
@@ -352,6 +360,14 @@ class TreeSelectControl extends BaseRenderer
     }
 
     /**
+     * 自定义节点操作栏区域 (自定义节点操作栏区域)
+     */
+    public function itemActions($value = '')
+    {
+        return $this->set('itemActions', $value);
+    }
+
+    /**
      * 单选模式：当用户选中某个选项时，选项中的 value 将被作为该表单项的值提交，否则，整个选项对象都会作为该表单项的值提交。 多选模式：选中的多个选项的 `value` 会通过 `delimiter` 连接起来，否则直接将以数组的形式提交值。
      */
     public function joinValues($value = true)
@@ -445,6 +461,14 @@ class TreeSelectControl extends BaseRenderer
     public function name($value = '')
     {
         return $this->set('name', $value);
+    }
+
+    /**
+     * 节点行为配置，默认为选中
+     */
+    public function nodeBehavior($value = '')
+    {
+        return $this->set('nodeBehavior', $value);
     }
 
     /**
