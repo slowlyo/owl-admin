@@ -134,11 +134,14 @@ class AdminMenuService extends AdminService
 
         $sql = 'update ' . $this->getModel()->getTable() . ' set `custom_order` = case id ';
 
+        $params = [];
         foreach ($list as $k => $v) {
-            $sql .= " when {$k} then {$v} ";
+            $params[] = $k;
+            $params[] = $v;
+            $sql .= " when ? then ? ";
         }
 
-        return DB::update($sql . ' else `custom_order` end');
+        return DB::update($sql . ' else `custom_order` end', $params);
     }
 
     public function refreshOrder($list)
