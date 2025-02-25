@@ -56,12 +56,12 @@ return [
     ],
 
     'upload' => [
-        'disk'      => 'public',
+        'disk'      => env('ADMIN_UPLOAD_DISK', 'public'),
         // 文件上传目录
         'directory' => [
-            'image' => 'images',
-            'file'  => 'files',
-            'rich'  => 'rich',
+            'image' => env('ADMIN_UPLOAD_IMAGE_DIRECTORY', 'images'),
+            'file'  => env('ADMIN_UPLOAD_FILE_DIRECTORY', 'files'),
+            'rich'  => env('ADMIN_UPLOAD_RICH_DIRECTORY', 'rich'),
         ],
     ],
 
