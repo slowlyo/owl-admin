@@ -471,5 +471,14 @@ class EditorControl extends BaseRenderer
         return $this->set('width', $value);
     }
 
+    /**
+     * monaco 编辑器的其它配置，比如是否显示行号等，请参考这里 https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IEditorOptions.html
+     * 不过无法设置 readOnly，只读模式需要使用 disabled: true
+     */
+    public function options($value = '')
+    {
+        return $this->set('options', $value);
+    }
+
 
 }
