@@ -71,7 +71,7 @@ return [
     'show_development_tools'               => env('ADMIN_SHOW_DEVELOPMENT_TOOLS', true),
 
     // 是否显示 [权限] 功能中的自动生成按钮
-    'show_auto_generate_permission_button' => env('ADMIN_SHOW_AUTO_GENERATE_PERMISSION_BUTTON', true),
+    'show_auto_generate_permission_button' => env('ADMIN_SHOW_AUTO_GENERATE_PERMISSION_BUTTON', false),
 
     // 扩展
     'extension'                            => [
