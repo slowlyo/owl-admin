@@ -4,19 +4,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Button Toolar 渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/button-toolbar
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class ButtonToolbar extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button-toolbar');
+
+
     }
 
     /**
-     *
+     * 
      */
     public function buttons($value = '')
     {
@@ -136,7 +138,7 @@ class ButtonToolbar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -152,7 +154,7 @@ class ButtonToolbar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -160,7 +162,7 @@ class ButtonToolbar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

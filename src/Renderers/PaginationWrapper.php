@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 分页容器功能性渲染器。详情请见：https://aisuda.bce.baidu.com/amis/zh-CN/components/pagination-wrapper
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class PaginationWrapper extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'pagination-wrapper');
+
+
     }
 
     /**
@@ -184,7 +186,7 @@ class PaginationWrapper extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -200,7 +202,7 @@ class PaginationWrapper extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -208,7 +210,7 @@ class PaginationWrapper extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

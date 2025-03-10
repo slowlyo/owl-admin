@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 数字输入框 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-number
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class NumberControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-number');
+
+
     }
 
     /**
@@ -56,7 +58,7 @@ class NumberControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -160,7 +162,7 @@ class NumberControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -336,7 +338,7 @@ class NumberControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -424,7 +426,7 @@ class NumberControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -464,7 +466,7 @@ class NumberControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -520,7 +522,7 @@ class NumberControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

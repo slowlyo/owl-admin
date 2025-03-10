@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SubForm 子表单 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/subform
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class SubFormControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-sub-form');
+
+
     }
 
     /**
@@ -72,7 +74,7 @@ class SubFormControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -192,7 +194,7 @@ class SubFormControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -376,7 +378,7 @@ class SubFormControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -392,7 +394,7 @@ class SubFormControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function scaffold($value = '')
     {
@@ -464,7 +466,7 @@ class SubFormControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -488,7 +490,7 @@ class SubFormControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -536,7 +538,7 @@ class SubFormControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

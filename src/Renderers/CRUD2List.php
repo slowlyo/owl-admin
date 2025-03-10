@@ -4,16 +4,18 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUD2List
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class CRUD2List extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('mode', 'list');
-        $this->set('type', 'crud2');
+$this->set('type', 'crud2');
+
+
     }
 
     /**
@@ -265,7 +267,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -338,7 +340,7 @@ class CRUD2List extends BaseRenderer
 
     /**
      * 无数据提示 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function placeholder($value = '')
     {
@@ -482,7 +484,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -522,7 +524,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -530,7 +532,7 @@ class CRUD2List extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -539,7 +541,7 @@ class CRUD2List extends BaseRenderer
 
     /**
      * 标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function title($value = '')
     {

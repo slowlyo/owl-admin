@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * InputArray 数组输入框。 combo 的别名。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/array
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class ArrayControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-array');
+
+
     }
 
     /**
@@ -104,7 +106,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -232,7 +234,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -448,7 +450,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -528,7 +530,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -585,7 +587,7 @@ class ArrayControl extends BaseRenderer
 
     /**
      * 选项卡标题的生成模板。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function tabsLabelTpl($value = '')
     {
@@ -609,7 +611,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -633,7 +635,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function updatePristineAfterStoreDataReInit($value = true)
     {
@@ -673,7 +675,7 @@ class ArrayControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

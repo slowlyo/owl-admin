@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * SchemaApi
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class SchemaApi extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 

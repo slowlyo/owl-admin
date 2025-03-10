@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Time 时间选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/time
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class TimeControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-time');
+
+
     }
 
     /**
@@ -56,7 +58,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -184,7 +186,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -205,14 +207,6 @@ class TimeControl extends BaseRenderer
     public function inputClassName($value = '')
     {
         return $this->set('inputClassName', $value);
-    }
-
-    /**
-     *
-     */
-    public function inputForbid($value = true)
-    {
-        return $this->set('inputForbid', $value);
     }
 
     /**
@@ -328,7 +322,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -408,7 +402,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -432,7 +426,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -504,7 +498,7 @@ class TimeControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

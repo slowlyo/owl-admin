@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 提示渲染器，默认会显示个小图标，鼠标放上来的时候显示配置的内容。
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Remark extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'remark');
+
+
     }
 
     /**
@@ -25,7 +27,7 @@ class Remark extends BaseRenderer
 
     /**
      * 提示内容 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function content($value = '')
     {
@@ -89,7 +91,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function label($value = '')
     {
@@ -177,7 +179,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -193,7 +195,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -201,7 +203,7 @@ class Remark extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

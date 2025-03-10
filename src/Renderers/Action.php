@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Action 行为按钮 https://aisuda.bce.baidu.com/amis/zh-CN/components/action
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Action extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'action');
+
+
     }
 
     /**
@@ -40,7 +42,7 @@ class Action extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function api($value = '')
     {
@@ -120,7 +122,7 @@ class Action extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function link($value = '')
     {

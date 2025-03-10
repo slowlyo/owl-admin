@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Timeline
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Timeline extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'timeline');
+
+
     }
 
     /**
@@ -192,7 +194,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -208,7 +210,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -216,7 +218,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

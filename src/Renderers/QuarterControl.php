@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 季度选择控件
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class QuarterControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-quarter');
+
+
     }
 
     /**
@@ -56,7 +58,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -184,7 +186,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -205,14 +207,6 @@ class QuarterControl extends BaseRenderer
     public function inputClassName($value = '')
     {
         return $this->set('inputClassName', $value);
-    }
-
-    /**
-     *
-     */
-    public function inputForbid($value = true)
-    {
-        return $this->set('inputForbid', $value);
     }
 
     /**
@@ -328,7 +322,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -408,7 +402,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -432,7 +426,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -488,7 +482,7 @@ class QuarterControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

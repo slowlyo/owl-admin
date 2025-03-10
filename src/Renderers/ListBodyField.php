@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 不指定类型默认就是文本
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class ListBodyField extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 

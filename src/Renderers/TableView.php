@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Table View 表格展现
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class TableView extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'table-view');
+
+
     }
 
     /**

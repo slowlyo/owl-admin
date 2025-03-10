@@ -4,16 +4,18 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DrawerAction
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class DrawerAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-        $this->set('actionType', 'drawer');
+$this->set('actionType', 'drawer');
+
+
     }
 
     /**
@@ -142,14 +144,6 @@ class DrawerAction extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
-    }
-
-    /**
-     * 是否在动作结束前禁用按钮
-     */
-    public function disabledOnAction($value = true)
-    {
-        return $this->set('disabledOnAction', $value);
     }
 
     /**
@@ -289,7 +283,7 @@ class DrawerAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function primary($value = true)
     {
@@ -297,7 +291,7 @@ class DrawerAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function redirect($value = '')
     {
@@ -401,7 +395,7 @@ class DrawerAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -417,14 +411,6 @@ class DrawerAction extends BaseRenderer
     }
 
     /**
-     *
-     */
-    public function tabIndex($value = '')
-    {
-        return $this->set('tabIndex', $value);
-    }
-
-    /**
      * 可以指定让谁来触发这个动作。
      */
     public function target($value = '')
@@ -433,7 +419,7 @@ class DrawerAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -441,7 +427,7 @@ class DrawerAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -449,7 +435,7 @@ class DrawerAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltip($value = '')
     {

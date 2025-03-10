@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DateRange 展示渲染器。
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class DateRange extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'date-range');
+
+
     }
 
     /**
@@ -160,7 +162,7 @@ class DateRange extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -176,7 +178,7 @@ class DateRange extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -184,7 +186,7 @@ class DateRange extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

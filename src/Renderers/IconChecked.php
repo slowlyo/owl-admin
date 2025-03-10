@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * IconChecked
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class IconChecked extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
     /**
-     *
+     * 
      */
     public function id($value = '')
     {
@@ -25,7 +25,7 @@ class IconChecked extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -33,7 +33,7 @@ class IconChecked extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function svg($value = '')
     {

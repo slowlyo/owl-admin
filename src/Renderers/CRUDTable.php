@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUDTable
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class CRUDTable extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'crud');
+
+
     }
 
     /**
@@ -216,7 +218,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function filterDefaultVisible($value = true)
     {
@@ -224,7 +226,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function filterTogglable($value = true)
     {
@@ -369,7 +371,7 @@ class CRUDTable extends BaseRenderer
 
     /**
      * 当配置 keepItemSelectionOnPageChange 时有用，用来配置已勾选项的文案。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function labelTpl($value = '')
     {
@@ -393,7 +395,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -401,7 +403,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 自定义搜索匹配函数，当开启loadDataOnce时，会基于该函数计算的匹配结果进行过滤，主要用于处理列字段类型较为复杂或者字段值格式和后端返回不一致的场景参数说明 * `items` 当前表格数据  * `itemsRaw` 当前表格数据（未处理）  * `options` 配置  * `options.query` 查询条件  * `options.columns` 列配置  * `options.matchSorter` 系统默认的排序方法
+     * 自定义搜索匹配函数，当开启loadDataOnce时，会基于该函数计算的匹配结果进行过滤，主要用于处理列字段类型较为复杂或者字段值格式和后端返回不一致的场景
      */
     public function matchFunc($value = '')
     {
@@ -422,14 +424,6 @@ class CRUDTable extends BaseRenderer
     public function mode($value = 'table')
     {
         return $this->set('mode', $value);
-    }
-
-    /**
-     * 控制是否多选，默认为 false
-     */
-    public function multiple($value = true)
-    {
-        return $this->set('multiple', $value);
     }
 
     /**
@@ -577,14 +571,6 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 是否开启行选择功能, 默认为 false 开启后将支持行选择功能,需要结合事件动作使用
-     */
-    public function selectable($value = true)
-    {
-        return $this->set('selectable', $value);
-    }
-
-    /**
      * 是否显示底部
      */
     public function showFooter($value = true)
@@ -598,14 +584,6 @@ class CRUDTable extends BaseRenderer
     public function showHeader($value = true)
     {
         return $this->set('showHeader', $value);
-    }
-
-    /**
-     * 是否显示序号
-     */
-    public function showIndex($value = true)
-    {
-        return $this->set('showIndex', $value);
     }
 
     /**
@@ -673,7 +651,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -689,7 +667,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function stopAutoRefreshWhenModalIsOpen($value = true)
     {
@@ -737,7 +715,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -745,7 +723,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -761,27 +739,11 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     *
-     */
-    public function toolbar($value = '')
-    {
-        return $this->set('toolbar', $value);
-    }
-
-    /**
      * 工具栏 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function toolbarClassName($value = '')
     {
         return $this->set('toolbarClassName', $value);
-    }
-
-    /**
-     * 工具栏是否为 inline 模式
-     */
-    public function toolbarInline($value = true)
-    {
-        return $this->set('toolbarInline', $value);
     }
 
     /**

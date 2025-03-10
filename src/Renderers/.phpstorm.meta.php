@@ -121,7 +121,6 @@ namespace PHPSTORM_META {
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
 		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
-		'shape' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -344,7 +343,6 @@ namespace PHPSTORM_META {
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
 		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
-		'shape' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -567,7 +565,6 @@ namespace PHPSTORM_META {
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
 		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
-		'shape' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -790,7 +787,6 @@ namespace PHPSTORM_META {
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
 		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
-		'shape' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -1013,7 +1009,6 @@ namespace PHPSTORM_META {
 		'pdf-viewer' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'input-signature' => \Slowlyo\OwlAdmin\Renderers\InputSignature::class,
 		'input-verification-code' => \Slowlyo\OwlAdmin\Renderers\Component::class,
-		'shape' => \Slowlyo\OwlAdmin\Renderers\Component::class,
 		'editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'bat-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
 		'c-editor' => \Slowlyo\OwlAdmin\Renderers\EditorControl::class,
@@ -1157,7 +1152,6 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDTable::tableLayout(), 0, 'fixed','auto');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::animation(), 0, 'fade','slide');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::controlsTheme(), 0, 'light','dark');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::thumbMode(), 0, 'contain','cover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ChainedSelectControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ChainedSelectControl::mode(), 0, 'normal','inline','horizontal');
@@ -1340,7 +1334,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::mode(), 0, 'panel','float','inline');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::mode(), 0, 'float','inline');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::stacked(), 0, '1','');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::themeColor(), 0, 'light','dark');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::borderMode(), 0, 'full','half','none');
@@ -1357,7 +1351,6 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::tooltipPlacement(), 0, 'top','right','bottom','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::type(), 0, 'button','submit','reset');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Page::asidePosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Pagination::mode(), 0, 'simple','normal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PaginationWrapper::position(), 0, 'top','bottom','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Panel::subFormMode(), 0, 'normal','inline','horizontal');
@@ -1411,7 +1404,6 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::vendor(), 0, 'froala','tinymce');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Root::asidePosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaApi::dataType(), 0, 'json','form-data','form');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaApi::method(), 0, 'get','post','put','delete','patch','jsonp','js');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaPopOver::mode(), 0, 'dialog','drawer','popOver');

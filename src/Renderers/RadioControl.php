@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Radio 单选框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/radios
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class RadioControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'radio');
+
+
     }
 
     /**
@@ -48,7 +50,7 @@ class RadioControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -152,7 +154,7 @@ class RadioControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -256,7 +258,7 @@ class RadioControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function partial($value = true)
     {
@@ -304,7 +306,7 @@ class RadioControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -376,7 +378,7 @@ class RadioControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -400,7 +402,7 @@ class RadioControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -456,7 +458,7 @@ class RadioControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

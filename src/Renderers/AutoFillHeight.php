@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * AutoFillHeight
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class AutoFillHeight extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
     /**
-     *
+     * 
      */
     public function height($value = '')
     {
@@ -25,7 +25,7 @@ class AutoFillHeight extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function maxHeight($value = '')
     {

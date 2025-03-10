@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 按钮组控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/button-group
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class ButtonGroupControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button-group-select');
+
+
     }
 
     /**
@@ -48,7 +50,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function btnActiveClassName($value = '')
     {
@@ -168,7 +170,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -304,7 +306,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -488,7 +490,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -576,7 +578,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -600,7 +602,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -608,7 +610,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -624,7 +626,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'button-group-select')
     {
@@ -664,7 +666,7 @@ class ButtonGroupControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

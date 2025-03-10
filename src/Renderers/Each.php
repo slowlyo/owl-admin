@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Each 循环功能渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/each
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Each extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'each');
+
+
     }
 
     /**
@@ -88,7 +90,7 @@ class Each extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function items($value = '')
     {
@@ -112,7 +114,7 @@ class Each extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function placeholder($value = '')
     {
@@ -176,7 +178,7 @@ class Each extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -192,7 +194,7 @@ class Each extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -200,7 +202,7 @@ class Each extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

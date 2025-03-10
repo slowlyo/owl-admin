@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Custom 自定义组件
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Custom extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'custom');
+
+
     }
 
     /**

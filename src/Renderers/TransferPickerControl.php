@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TransferPicker 穿梭器的弹框形态 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/transfer-picker
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class TransferPickerControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'transfer-picker');
+
+
     }
 
     /**
@@ -152,7 +154,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -288,7 +290,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -408,7 +410,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -584,7 +586,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -752,7 +754,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -784,7 +786,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -792,7 +794,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'transfer-picker')
     {
@@ -832,7 +834,7 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

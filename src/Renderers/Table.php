@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Table 表格渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/table
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Table extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'table');
+
+
     }
 
     /**
@@ -256,14 +258,6 @@ class Table extends BaseRenderer
     }
 
     /**
-     * 是否显示序号
-     */
-    public function showIndex($value = true)
-    {
-        return $this->set('showIndex', $value);
-    }
-
-    /**
      * 数据源：绑定当前环境变量 (数据源：绑定当前环境变量)
      */
     public function source($value = '')
@@ -320,7 +314,7 @@ class Table extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -352,7 +346,7 @@ class Table extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -360,7 +354,7 @@ class Table extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

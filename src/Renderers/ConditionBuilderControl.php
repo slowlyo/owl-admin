@@ -4,19 +4,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 条件组合控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/condition-builder
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class ConditionBuilderControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'condition-builder');
+
+
     }
 
     /**
-     *
+     * 
      */
     public function addBtnVisibleOn($value = '')
     {
@@ -72,7 +74,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -216,7 +218,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -352,7 +354,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -440,7 +442,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -464,7 +466,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -512,7 +514,7 @@ class ConditionBuilderControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

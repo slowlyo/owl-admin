@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Column
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Column extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
@@ -177,7 +177,7 @@ class Column extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function width($value = '')
     {

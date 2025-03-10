@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Divider 分割线渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/divider
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Divider extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'divider');
+
+
     }
 
     /**
@@ -24,7 +26,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function color($value = '')
     {
@@ -104,7 +106,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function rotate($value = '')
     {
@@ -160,7 +162,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -176,7 +178,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -184,7 +186,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -192,7 +194,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function title($value = '')
     {
@@ -200,7 +202,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function titleClassName($value = '')
     {
@@ -216,7 +218,7 @@ class Divider extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'divider')
     {

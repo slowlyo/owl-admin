@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * WizardStep
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class WizardStep extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
@@ -105,7 +105,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function data($value = '')
     {
@@ -169,7 +169,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function fieldSet($value = '')
     {
@@ -297,7 +297,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function label($value = '')
     {
@@ -337,7 +337,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -409,7 +409,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function redirect($value = '')
     {
@@ -417,7 +417,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function reload($value = '')
     {
@@ -497,7 +497,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -553,7 +553,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tabs($value = '')
     {
@@ -569,7 +569,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -577,7 +577,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -601,7 +601,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function value($value = '')
     {

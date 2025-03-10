@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * UserSelect 移动端人员选择。
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class UserSelectControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'users-select');
+
+
     }
 
     /**
@@ -128,7 +130,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -264,7 +266,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -448,7 +450,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -536,7 +538,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -560,7 +562,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -608,7 +610,7 @@ class UserSelectControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

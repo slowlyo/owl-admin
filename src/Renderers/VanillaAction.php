@@ -4,19 +4,21 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * VanillaAction
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class VanillaAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
+
+
     }
 
     /**
-     *
+     * 
      */
     public function actionType($value = '')
     {
@@ -128,14 +130,6 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     * 是否在动作结束前禁用按钮
-     */
-    public function disabledOnAction($value = true)
-    {
-        return $this->set('disabledOnAction', $value);
-    }
-
-    /**
      * 禁用时的文案提示。
      */
     public function disabledTip($value = '')
@@ -144,7 +138,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function downloadFileName($value = '')
     {
@@ -264,7 +258,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function primary($value = true)
     {
@@ -360,7 +354,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -376,14 +370,6 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     *
-     */
-    public function tabIndex($value = '')
-    {
-        return $this->set('tabIndex', $value);
-    }
-
-    /**
      * 可以指定让谁来触发这个动作。
      */
     public function target($value = '')
@@ -392,7 +378,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -400,7 +386,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -408,7 +394,7 @@ class VanillaAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltip($value = '')
     {

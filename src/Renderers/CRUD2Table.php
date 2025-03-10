@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * CRUD2Table
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class CRUD2Table extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'crud2');
+
+
     }
 
     /**
@@ -280,7 +282,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function loadingConfig($value = '')
     {
@@ -528,7 +530,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -584,7 +586,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -592,7 +594,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

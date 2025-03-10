@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Plain 纯文本渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/plain
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Plain extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'plain');
+
+
     }
 
     /**
@@ -144,7 +146,7 @@ class Plain extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -160,7 +162,7 @@ class Plain extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -168,7 +170,7 @@ class Plain extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -177,7 +179,7 @@ class Plain extends BaseRenderer
 
     /**
      * 支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function text($value = '')
     {
@@ -186,7 +188,7 @@ class Plain extends BaseRenderer
 
     /**
      * 支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function tpl($value = '')
     {

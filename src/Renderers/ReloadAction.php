@@ -4,16 +4,18 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ReloadAction
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class ReloadAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-        $this->set('actionType', 'reload');
+$this->set('actionType', 'reload');
+
+
     }
 
     /**
@@ -126,14 +128,6 @@ class ReloadAction extends BaseRenderer
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
-    }
-
-    /**
-     * 是否在动作结束前禁用按钮
-     */
-    public function disabledOnAction($value = true)
-    {
-        return $this->set('disabledOnAction', $value);
     }
 
     /**
@@ -257,7 +251,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function primary($value = true)
     {
@@ -353,7 +347,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -369,14 +363,6 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
-     */
-    public function tabIndex($value = '')
-    {
-        return $this->set('tabIndex', $value);
-    }
-
-    /**
      * 指定目标组件。 (配置刷新动作，这个动作通常在完成渲染器本省的固定动作后出发。一般用来配置目标组件的 name 属性。多个目标可以用逗号隔开。当目标是 windows 时表示刷新整个页面。刷新目标的同时还支持传递参数如： `foo?a=${a}&b=${b},boo?c=${c}`)
      */
     public function target($value = '')
@@ -385,7 +371,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -393,7 +379,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -401,7 +387,7 @@ class ReloadAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltip($value = '')
     {

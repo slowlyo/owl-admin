@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Portlet
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Portlet extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'portlet');
+
+
     }
 
     /**
@@ -33,7 +35,7 @@ class Portlet extends BaseRenderer
 
     /**
      * 标题右侧的描述 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-     * 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function description($value = '')
     {
@@ -193,7 +195,7 @@ class Portlet extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -209,7 +211,7 @@ class Portlet extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tabs($value = '')
     {
@@ -233,7 +235,7 @@ class Portlet extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -241,7 +243,7 @@ class Portlet extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Dialog 弹框渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Dialog extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'dialog');
+
+
     }
 
     /**
@@ -120,7 +122,7 @@ class Dialog extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function footer($value = '')
     {
@@ -128,7 +130,7 @@ class Dialog extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function header($value = '')
     {
@@ -288,7 +290,7 @@ class Dialog extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -304,7 +306,7 @@ class Dialog extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -312,7 +314,7 @@ class Dialog extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -328,7 +330,7 @@ class Dialog extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'dialog')
     {

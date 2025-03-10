@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Editor 代码编辑器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/editor
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class EditorControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'editor');
+
+
     }
 
     /**
@@ -48,7 +50,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -152,7 +154,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -248,6 +250,14 @@ class EditorControl extends BaseRenderer
     }
 
     /**
+     * monaco 编辑器的其它配置，比如是否显示行号等，不过无法设置 readOnly，只读模式需要使用 disabled: true
+     */
+    public function options($value = '')
+    {
+        return $this->set('options', $value);
+    }
+
+    /**
      * 占位符
      */
     public function placeholder($value = '')
@@ -288,7 +298,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -360,7 +370,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -384,7 +394,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -432,7 +442,7 @@ class EditorControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {
@@ -469,15 +479,6 @@ class EditorControl extends BaseRenderer
     public function width($value = '')
     {
         return $this->set('width', $value);
-    }
-
-    /**
-     * monaco 编辑器的其它配置，比如是否显示行号等，请参考这里 https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IEditorOptions.html
-     * 不过无法设置 readOnly，只读模式需要使用 disabled: true
-     */
-    public function options($value = '')
-    {
-        return $this->set('options', $value);
     }
 
 

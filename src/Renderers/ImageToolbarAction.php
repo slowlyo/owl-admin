@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * ImageToolbarAction
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class ImageToolbarAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('key', 'ROTATE_RIGHT');
+
+
     }
 
     /**
@@ -24,7 +26,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function disabled($value = true)
     {
@@ -32,7 +34,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function icon($value = '')
     {
@@ -40,7 +42,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function iconClassName($value = '')
     {
@@ -56,7 +58,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function label($value = '')
     {

@@ -4,20 +4,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * NavItem
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class NavItem extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 
     /**
-     *
+     * 
      */
     public function active($value = true)
     {
@@ -25,7 +25,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function children($value = '')
     {
@@ -33,7 +33,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function className($value = '')
     {
@@ -41,7 +41,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function defer($value = true)
     {
@@ -49,7 +49,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function deferApi($value = '')
     {
@@ -57,7 +57,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function disabled($value = true)
     {
@@ -73,7 +73,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function disabledTip($value = '')
     {
@@ -121,7 +121,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function key($value = '')
     {
@@ -137,7 +137,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function mode($value = '')
     {
@@ -201,7 +201,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -217,7 +217,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function target($value = '')
     {
@@ -225,7 +225,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -233,7 +233,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -241,7 +241,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function to($value = '')
     {
@@ -249,7 +249,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function unfolded($value = true)
     {

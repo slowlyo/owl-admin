@@ -4,16 +4,18 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Avatar
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Avatar extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'avatar');
-        $this->set('crossOrigin', 'anonymous');
+$this->set('crossOrigin', 'anonymous');
+
+
     }
 
     /**
@@ -41,7 +43,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 图片CORS属性 可选值: anonymous | use-credentials |
+     * 图片CORS属性 可选值: anonymous | use-credentials | 
      */
     public function crossOrigin($value = '')
     {
@@ -225,7 +227,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -241,7 +243,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -249,7 +251,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -265,7 +267,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'avatar')
     {

@@ -4,15 +4,15 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * 表格列，不指定类型时默认为文本类型。
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class TableColumn extends BaseRenderer
 {
     public function __construct()
     {
-
+        
 
     }
 

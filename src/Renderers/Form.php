@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Form 表单渲染器。说明：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/index
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Form extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'form');
+
+
     }
 
     /**
@@ -104,7 +106,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function data($value = '')
     {
@@ -160,7 +162,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function fieldSet($value = '')
     {
@@ -296,7 +298,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function name($value = '')
     {
@@ -368,7 +370,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function redirect($value = '')
     {
@@ -376,7 +378,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function reload($value = '')
     {
@@ -456,7 +458,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -504,7 +506,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tabs($value = '')
     {
@@ -520,7 +522,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -528,7 +530,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

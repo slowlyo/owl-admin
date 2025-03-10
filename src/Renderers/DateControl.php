@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Date日期选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/date
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class DateControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-date');
+
+
     }
 
     /**
@@ -64,7 +66,7 @@ class DateControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function desc($value = '')
     {
@@ -192,7 +194,7 @@ class DateControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function initAutoFill($value = '')
     {
@@ -213,14 +215,6 @@ class DateControl extends BaseRenderer
     public function inputClassName($value = '')
     {
         return $this->set('inputClassName', $value);
-    }
-
-    /**
-     *
-     */
-    public function inputForbid($value = true)
-    {
-        return $this->set('inputForbid', $value);
     }
 
     /**
@@ -360,7 +354,7 @@ class DateControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function row($value = '')
     {
@@ -440,7 +434,7 @@ class DateControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -464,7 +458,7 @@ class DateControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -520,7 +514,7 @@ class DateControl extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function validations($value = '')
     {

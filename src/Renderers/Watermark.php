@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Watermark
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Watermark extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'custom-watermark');
+
+
     }
 
     /**

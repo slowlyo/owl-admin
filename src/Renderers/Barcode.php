@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Barcode 条形码 https://aisuda.bce.baidu.com/amis/zh-CN/components/barcode
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Barcode extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'barcode');
+
+
     }
 
     /**

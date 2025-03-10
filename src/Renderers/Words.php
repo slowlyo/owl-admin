@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Words
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Words extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'words');
+
+
     }
 
     /**
@@ -120,14 +122,6 @@ class Words extends BaseRenderer
     }
 
     /**
-     * 标签模板
-     */
-    public function labelTpl($value = '')
-    {
-        return $this->set('labelTpl', $value);
-    }
-
-    /**
      * 展示限制, 为0时也无限制
      */
     public function limit($value = '')
@@ -192,7 +186,7 @@ class Words extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -208,7 +202,7 @@ class Words extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -216,7 +210,7 @@ class Words extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -224,7 +218,7 @@ class Words extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function type($value = 'words')
     {

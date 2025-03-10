@@ -4,16 +4,18 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * DialogAction
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class DialogAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-        $this->set('actionType', 'dialog');
+$this->set('actionType', 'dialog');
+
+
     }
 
     /**
@@ -145,14 +147,6 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     * 是否在动作结束前禁用按钮
-     */
-    public function disabledOnAction($value = true)
-    {
-        return $this->set('disabledOnAction', $value);
-    }
-
-    /**
      * 禁用时的文案提示。
      */
     public function disabledTip($value = '')
@@ -281,7 +275,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function primary($value = true)
     {
@@ -289,7 +283,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function redirect($value = '')
     {
@@ -393,7 +387,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -409,14 +403,6 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
-     */
-    public function tabIndex($value = '')
-    {
-        return $this->set('tabIndex', $value);
-    }
-
-    /**
      * 可以指定让谁来触发这个动作。
      */
     public function target($value = '')
@@ -425,7 +411,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -433,7 +419,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
@@ -441,7 +427,7 @@ class DialogAction extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function tooltip($value = '')
     {

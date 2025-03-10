@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * TableSchema2
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class TableSchema2 extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'table2');
+
+
     }
 
     /**
@@ -360,7 +362,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -392,7 +394,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -400,7 +402,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {

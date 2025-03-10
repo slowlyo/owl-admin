@@ -4,15 +4,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
  * Calendar
- *
- * @author  slowlyo
- * @version 6.11.0
+ * 
+ * @author slowlyo
+ * @version 6.10.0
  */
 class Calendar extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'calendar');
+
+
     }
 
     /**
@@ -160,7 +162,7 @@ class Calendar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function staticSchema($value = '')
     {
@@ -176,7 +178,7 @@ class Calendar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testIdBuilder($value = '')
     {
@@ -184,7 +186,7 @@ class Calendar extends BaseRenderer
     }
 
     /**
-     *
+     * 
      */
     public function testid($value = '')
     {
