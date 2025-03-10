@@ -6,7 +6,6 @@ use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use Slowlyo\OwlAdmin\Support\Cores\Database;
 use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
@@ -63,11 +62,16 @@ class CodeGeneratorController extends AdminController
 
         return $this
             ->baseCRUD()
-            ->filter(
-                $this->baseFilter()->body([
-                    amis()->TextControl('keyword', admin_trans('admin.keyword'))->size('md'),
-                ])
-            )
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('title', admin_trans('admin.code_generators.app_title'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.code_generators.app_title')),
+                amis()->TextControl('table_name', admin_trans('admin.code_generators.table_name'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.code_generators.table_name')),
+            ]))
             ->headerToolbar([
                 amis()
                     ->DrawerAction()
@@ -921,9 +925,9 @@ class CodeGeneratorController extends AdminController
                                         ->TextControl('additional', admin_trans('admin.code_generators.extra_params'))
                                         ->labelRemark(
                                             admin_trans('admin.code_generators.remark1') .
-                                            "<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>" .
-                                            admin_trans('admin.code_generators.remark2') .
-                                            "</a>, " . admin_trans('admin.code_generators.remark3')
+                                                "<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>" .
+                                                admin_trans('admin.code_generators.remark2') .
+                                                "</a>, " . admin_trans('admin.code_generators.remark3')
                                         ),
                                     amis()
                                         ->SelectControl('column_index', admin_trans('admin.code_generators.index'))
@@ -931,7 +935,8 @@ class CodeGeneratorController extends AdminController
                                             collect(['index', 'unique'])->map(fn($value) => [
                                                 'label' => $value,
                                                 'value' => $value,
-                                            ]))
+                                            ])
+                                        )
                                         ->clearable(),
                                 ]),
 

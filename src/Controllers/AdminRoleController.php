@@ -2,7 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
-use Slowlyo\OwlAdmin\Models\AdminRole;
 use Slowlyo\OwlAdmin\Services\AdminRoleService;
 use Slowlyo\OwlAdmin\Services\AdminPermissionService;
 
@@ -21,8 +20,21 @@ class AdminRoleController extends AdminController
                 $this->createButton(true),
                 ...$this->baseHeaderToolBar(),
             ])
-            ->filterTogglable(false)
-            ->itemCheckableOn('${slug !== "' . AdminRole::SuperAdministrator . '"}')
+            ->filterTogglable(true)
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('name', admin_trans('admin.admin_role.name'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_role.name')),
+                amis()->TextControl('slug', admin_trans('admin.admin_role.slug'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_role.slug')),
+                amis()->DateRangeControl('created_at', admin_trans('admin.created_at'))
+                    ->clearable()
+                    ->format('YYYY-MM-DD')
+                    ->placeholder(admin_trans('admin.created_at')),
+            ]))
             ->columns([
                 amis()->TableColumn()->label('ID')->name('id')->sortable(),
                 amis()->TableColumn()->label(admin_trans('admin.admin_role.name'))->name('name'),
@@ -40,9 +52,9 @@ class AdminRoleController extends AdminController
                     ->type('datetime')
                     ->sortable(),
                 $this->rowActions([
-                    $this->setPermission()->hiddenOn('${slug == "' . AdminRole::SuperAdministrator . '"}'),
+                    $this->setPermission(),
                     $this->rowEditButton(true),
-                    $this->rowDeleteButton()->hiddenOn('${slug == "' . AdminRole::SuperAdministrator . '"}'),
+                    $this->rowDeleteButton(),
                 ]),
             ]);
 

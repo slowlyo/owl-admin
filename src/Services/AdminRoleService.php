@@ -22,9 +22,23 @@ class AdminRoleService extends AdminService
 
     public function searchable($query)
     {
+        $name = request('name');
+        $slug = request('slug');
+        $createdAt = request('created_at');
+        if ($createdAt) {
+            $createdAt = safe_explode(',', $createdAt);
+        }
+
         $query->where('slug', '<>', AdminRole::SuperAdministrator);
 
-        parent::searchable($query);
+        $query->when($name, fn($query) => $query->where('name', 'like', '%' . $name . '%'));
+        $query->when($slug, fn($query) => $query->where('slug', 'like', '%' . $slug . '%'));
+        $query->when($createdAt, function ($query) use ($createdAt) {
+            $query->whereBetween('created_at', [
+                $createdAt[0] . ' 00:00:00',
+                $createdAt[1] . ' 23:59:59'
+            ]);
+        });
     }
 
     public function getEditData($id)

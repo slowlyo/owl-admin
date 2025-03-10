@@ -23,14 +23,22 @@ class AdminMenuService extends AdminService
 
     public function getTree()
     {
-        $list = $this->query()->orderBy('custom_order')->get()->toArray();
+        $title = request('title');
+        $url = request('url');
+
+        $list = $this->query()
+            ->when($title, fn($query) => $query->where('title', 'like', '%' . $title . '%'))
+            ->when($url, fn($query) => $query->where('url', 'like', '%' . $url . '%'))
+            ->orderBy('custom_order')
+            ->get()
+            ->toArray();
 
         return array2tree($list);
     }
 
     public function parentIsChild($id, $parent_id)
     {
-        if($id == $parent_id){
+        if ($id == $parent_id) {
             return true;
         }
 

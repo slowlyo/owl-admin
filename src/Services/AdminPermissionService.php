@@ -22,7 +22,15 @@ class AdminPermissionService extends AdminService
 
     public function getTree()
     {
-        $list = $this->query()->orderBy('custom_order')->get()->toArray();
+        $name = request('name');
+        $slug = request('slug');
+
+        $list = $this->query()
+            ->when($name, fn($query) => $query->where('name', 'like', '%' . $name . '%'))
+            ->when($slug, fn($query) => $query->where('slug', 'like', '%' . $slug . '%'))
+            ->orderBy('custom_order')
+            ->get()
+            ->toArray();
 
         return array2tree($list);
     }

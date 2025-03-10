@@ -28,7 +28,17 @@ class AdminMenuController extends AdminController
             ->loadDataOnce()
             ->syncLocation(false)
             ->headerToolbar([$this->createButton(true, 'lg'), ...$this->baseHeaderToolBar()])
-            ->filterTogglable(false)
+            ->filterTogglable(true)
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('title', admin_trans('admin.admin_menu.title'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_menu.title')),
+                amis()->TextControl('url', admin_trans('admin.admin_menu.url'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_menu.url')),
+            ]))
             ->footerToolbar(['statistics'])
             ->bulkActions([$this->bulkDeleteButton()->reload('window')])
             ->columns([

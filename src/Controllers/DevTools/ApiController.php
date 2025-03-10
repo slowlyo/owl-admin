@@ -20,7 +20,16 @@ class ApiController extends AdminController
     {
         $crud = $this
             ->baseCRUD()
-            ->filterTogglable(false)
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('title', admin_trans('admin.apis.title'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.apis.title')),
+                amis()->TextControl('path', admin_trans('admin.apis.path'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.apis.path')),
+            ]))
             ->headerToolbar([
                 $this->createButton(true, 'lg'),
                 ...$this->baseHeaderToolBar(),
@@ -28,8 +37,8 @@ class ApiController extends AdminController
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('title', admin_trans('admin.apis.title'))->searchable(),
-                amis()->TableColumn('path', admin_trans('admin.apis.path'))->searchable(),
+                amis()->TableColumn('title', admin_trans('admin.apis.title')),
+                amis()->TableColumn('path', admin_trans('admin.apis.path')),
                 amis()->TableColumn('template_title', admin_trans('admin.apis.template')),
                 amis()->TableColumn('enabled', admin_trans('admin.apis.enabled'))->quickEdit(
                     amis()->SwitchControl()->mode('inline')->saveImmediately(true)

@@ -2,8 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Controllers;
 
-use Slowlyo\OwlAdmin\Renderers\Page;
-use Slowlyo\OwlAdmin\Renderers\Form;
 use Slowlyo\OwlAdmin\Services\AdminUserService;
 
 /**
@@ -20,11 +18,34 @@ class AdminUserController extends AdminController
                 $this->createButton(true),
                 ...$this->baseHeaderToolBar(),
             ])
-            ->filter($this->baseFilter()->body(
-                amis()->TextControl('keyword', admin_trans('admin.keyword'))
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('username', admin_trans('admin.username'))
                     ->size('md')
-                    ->placeholder(admin_trans('admin.admin_user.search_username'))
-            ))
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_user.search_username')),
+                amis()->TextControl('name', admin_trans('admin.admin_user.name'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_user.search_name')),
+                amis()->SelectControl('roles', admin_trans('admin.admin_user.roles'))
+                    ->size('md')
+                    ->clearable()
+                    ->searchable()
+                    ->multiple()
+                    ->labelField('name')
+                    ->valueField('id')
+                    ->options($this->service->roleOptions()),
+                amis()->SelectControl('enabled', admin_trans('admin.extensions.card.status'))
+                    ->size('md')
+                    ->clearable()
+                    ->options([
+                        ['label' => admin_trans('admin.extensions.enable'), 'value' => 1],
+                        ['label' => admin_trans('admin.extensions.disable'), 'value' => 0],
+                    ]),
+                amis()->DateRangeControl('created_at', admin_trans('admin.created_at'))
+                    ->format('YYYY-MM-DD')
+                    ->clearable(true)
+            ]))
             ->itemCheckableOn('${id != 1}')
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),

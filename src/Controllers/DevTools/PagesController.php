@@ -12,15 +12,24 @@ class PagesController extends AdminController
     public function list()
     {
         $crud = $this->baseCRUD()
-            ->filterTogglable(false)
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('title', admin_trans('admin.pages.title'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.pages.title')),
+                amis()->TextControl('sign', admin_trans('admin.pages.sign'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.pages.sign')),
+            ]))
             ->headerToolbar([
                 $this->createButton(true),
                 ...$this->baseHeaderToolBar(),
             ])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('title', admin_trans('admin.pages.title'))->searchable(),
-                amis()->TableColumn('sign', admin_trans('admin.pages.sign'))->searchable(),
+                amis()->TableColumn('title', admin_trans('admin.pages.title')),
+                amis()->TableColumn('sign', admin_trans('admin.pages.sign')),
                 amis()->TableColumn('updated_at', admin_trans('admin.created_at'))->type('datetime')->sortable(true),
                 $this->rowActions([
                     $this->rowEditButton(true),

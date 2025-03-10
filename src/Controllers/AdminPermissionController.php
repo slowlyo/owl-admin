@@ -30,7 +30,17 @@ class AdminPermissionController extends AdminController
         $crud = $this->baseCRUD()
             ->perPage(999)
             ->loadDataOnce()
-            ->filterTogglable(false)
+            ->filterTogglable(true)
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('name', admin_trans('admin.admin_permission.name'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_permission.name')),
+                amis()->TextControl('slug', admin_trans('admin.admin_permission.slug'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.admin_permission.slug')),
+            ]))
             ->footerToolbar(['statistics'])
             ->headerToolbar([
                 $this->createButton(true, 'lg'),
