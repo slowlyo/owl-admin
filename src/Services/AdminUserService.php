@@ -145,6 +145,13 @@ class AdminUserService extends AdminService
             ->with('roles')
             ->select(['id', 'name', 'username', 'avatar', 'enabled', 'created_at']);
 
+        // 非超级管理员只能看到自己拥有的角色
+        if (!Admin::user()->isAdministrator()) {
+            $query->whereHas('roles', function ($query) {
+                $query->whereIn('id', Admin::user()->roles()->pluck('id'));
+            });
+        }
+
         // 用户名搜索
         if ($username = request()->username) {
             $query->where('username', 'like', "%{$username}%");
