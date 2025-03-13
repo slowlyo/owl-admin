@@ -16,6 +16,11 @@ class AdminMenuController extends AdminController
 
     protected string $serviceName = AdminMenuService::class;
 
+    /**
+     * 刷新路由事件
+     */
+    private array $refreshRouteEvent = ['actions' => [ ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'] ]];
+
     public function list()
     {
         $crud = $this->baseCRUD()
@@ -27,7 +32,7 @@ class AdminMenuController extends AdminController
             ])
             ->loadDataOnce()
             ->syncLocation(false)
-            ->headerToolbar([$this->createButton(true, 'lg'), ...$this->baseHeaderToolBar()])
+            ->headerToolbar([$this->createButton('drawer'), ...$this->baseHeaderToolBar()])
             ->filterTogglable(true)
             ->filter($this->baseFilter()->body([
                 amis()->TextControl('title', admin_trans('admin.admin_menu.title'))
@@ -40,7 +45,7 @@ class AdminMenuController extends AdminController
                     ->placeholder(admin_trans('admin.admin_menu.url')),
             ]))
             ->footerToolbar(['statistics'])
-            ->bulkActions([$this->bulkDeleteButton()->reload('window')])
+            ->bulkActions([$this->bulkDeleteButton()->dialog($this->deleteDialog())])
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
                 amis()->TableColumn('title', admin_trans('admin.admin_menu.title')),
@@ -60,25 +65,19 @@ class AdminMenuController extends AdminController
                     amis()->NumberControl()->min(0)->saveImmediately()
                 ),
                 amis()->TableColumn('visible', admin_trans('admin.admin_menu.visible'))->quickEdit(
-                    amis()->SwitchControl()->mode('inline')->saveImmediately()
+                    amis()->CheckboxControl()->mode('inline')->saveImmediately()
                 ),
                 amis()->TableColumn('is_home', admin_trans('admin.admin_menu.is_home'))->quickEdit(
-                    amis()->SwitchControl()->mode('inline')->saveImmediately()
+                    amis()->CheckboxControl()->mode('inline')->saveImmediately()
                 ),
                 $this->rowActions([
-                    $this->rowEditButton(true, 'lg'),
-                    $this->rowDeleteButton(),
+                    $this->rowEditButton('drawer'),
+                    $this->rowDeleteButton()->dialog($this->deleteDialog()),
                 ]),
             ])
             ->onEvent([
-                'quickSaveItemSucc' => [
-                    'actions' => [
-                        [
-                            'actionType' => 'custom',
-                            'script'     => 'window.$owl.refreshRoutes()',
-                        ],
-                    ],
-                ],
+                'quickSaveItemSucc' => $this->refreshRouteEvent,
+                'saveOrderSucc' => $this->refreshRouteEvent,
             ]);
 
         return $this->baseList($crud);
@@ -86,24 +85,26 @@ class AdminMenuController extends AdminController
 
     public function form()
     {
-        return $this->baseForm()->body([
+        return $this->baseForm()->mode('normal')->body([
+            amis()->TextControl('title', admin_trans('admin.admin_menu.title'))->required(),
+            $this->iconifyPicker('icon', admin_trans('admin.admin_menu.icon')),
+            amis()->TreeSelectControl('parent_id', admin_trans('admin.admin_menu.parent_id'))
+                ->id('parent_select')
+                ->labelField('title')
+                ->valueField('id')
+                ->showIcon(false)
+                ->source('/system/admin_menus?_action=getData'),
             amis()->GroupControl()->body([
-                amis()->TextControl('title', admin_trans('admin.admin_menu.title'))->required(),
-                $this->iconifyPicker('icon', admin_trans('admin.admin_menu.icon')),
-            ]),
-            amis()->GroupControl()->body([
-                amis()->TreeSelectControl('parent_id', admin_trans('admin.admin_menu.parent_id'))
-                    ->id('parent_select')
-                    ->labelField('title')
-                    ->valueField('id')
-                    ->showIcon(false)
-                    ->source('/system/admin_menus?_action=getData'),
                 amis()->NumberControl('custom_order', admin_trans('admin.admin_menu.order'))
                     ->required()
                     ->displayMode('enhance')
                     ->description(admin_trans('admin.order_asc'))
                     ->min(0)
                     ->value(0),
+                amis()->SwitchControl('visible', admin_trans('admin.admin_menu.visible'))
+                    ->onText(admin_trans('admin.yes'))
+                    ->offText(admin_trans('admin.no'))
+                    ->value(1),
             ]),
             amis()->ListControl('url_type', admin_trans('admin.admin_menu.type'))
                 ->options(Admin::adminMenuModel()::getType())
@@ -121,11 +122,6 @@ class AdminMenuController extends AdminController
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => admin_trans('admin.need_start_with_slash')])
                 ->placeholder('eg: /admin_menus')->hiddenOn('url_type == ' . Admin::adminMenuModel()::TYPE_LINK),
-
-            amis()->TextControl('component', admin_trans('admin.admin_menu.component'))
-                ->description(admin_trans('admin.admin_menu.component_desc'))
-                ->value('amis')->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_ROUTE),
-
             amis()->SelectControl('component', admin_trans('admin.admin_menu.page'))
                 ->required()
                 ->options(AdminPageService::make()->options())
@@ -133,7 +129,6 @@ class AdminMenuController extends AdminController
                 ->selectFirst()
                 ->searchable()
                 ->visibleOn('url_type == ' . Admin::adminMenuModel()::TYPE_PAGE),
-
             amis()->GroupControl()->body([
                 amis()->TextControl('iframe_url', 'IframeUrl')
                     ->required()
@@ -144,26 +139,26 @@ class AdminMenuController extends AdminController
                     ->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_IFRAME),
             ]),
 
-            amis()->SwitchControl('keep_alive', admin_trans('admin.admin_menu.keep_alive'))
-                ->onText(admin_trans('admin.yes'))
-                ->offText(admin_trans('admin.no'))
-                ->description(admin_trans('admin.admin_menu.iframe_description'))
-                ->value(0),
-
-            amis()->SwitchControl('visible', admin_trans('admin.admin_menu.visible'))
-                ->onText(admin_trans('admin.admin_menu.show'))
-                ->offText(admin_trans('admin.admin_menu.hide'))
-                ->value(1),
-            amis()->SwitchControl('is_home', admin_trans('admin.admin_menu.is_home'))
-                ->onText(admin_trans('admin.yes'))
-                ->offText(admin_trans('admin.no'))
-                ->description(admin_trans('admin.admin_menu.is_home_description'))
-                ->value(0),
-            amis()->SwitchControl('is_full', admin_trans('admin.admin_menu.is_full'))
-                ->onText(admin_trans('admin.yes'))
-                ->offText(admin_trans('admin.no'))
-                ->description(admin_trans('admin.admin_menu.is_full_description'))
-                ->value(0),
+            amis()->FieldSetControl()->title(admin_trans('admin.more'))->collapsable()->collapsed()->body([
+                amis()->TextControl('component', admin_trans('admin.admin_menu.component'))
+                    ->description(admin_trans('admin.admin_menu.component_desc'))
+                    ->value('amis')->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_ROUTE),
+                amis()->SwitchControl('keep_alive', admin_trans('admin.admin_menu.keep_alive'))
+                    ->onText(admin_trans('admin.yes'))
+                    ->offText(admin_trans('admin.no'))
+                    ->description(admin_trans('admin.admin_menu.iframe_description'))
+                    ->value(0),
+                amis()->SwitchControl('is_home', admin_trans('admin.admin_menu.is_home'))
+                    ->onText(admin_trans('admin.yes'))
+                    ->offText(admin_trans('admin.no'))
+                    ->description(admin_trans('admin.admin_menu.is_home_description'))
+                    ->value(0),
+                amis()->SwitchControl('is_full', admin_trans('admin.admin_menu.is_full'))
+                    ->onText(admin_trans('admin.yes'))
+                    ->offText(admin_trans('admin.no'))
+                    ->description(admin_trans('admin.admin_menu.is_full_description'))
+                    ->value(0),
+            ])
         ])->onEvent([
             'inited'     => [
                 'actions' => [
@@ -176,14 +171,7 @@ class AdminMenuController extends AdminController
                     ],
                 ],
             ],
-            'submitSucc' => [
-                'actions' => [
-                    [
-                        'actionType' => 'custom',
-                        'script'     => 'window.$owl.refreshRoutes()',
-                    ],
-                ],
-            ],
+            'submitSucc' => $this->refreshRouteEvent,
         ]);
     }
 
@@ -200,5 +188,21 @@ class AdminMenuController extends AdminController
     public function saveOrder()
     {
         return $this->autoResponse($this->service->reorder(request()->input('ids')));
+    }
+
+    private function deleteDialog()
+    {
+        return amis()->Dialog()
+            ->title()
+            ->className('py-2')
+            ->actions([
+                amis()->Action()->actionType('cancel')->label(admin_trans('admin.cancel')),
+                amis()->Action()->actionType('submit')->label(admin_trans('admin.delete'))->level('danger'),
+            ])
+            ->body([
+                amis()->Form()->wrapWithPanel(false)->api($this->getDeletePath())->body([
+                    amis()->Tpl()->className('py-2')->tpl(admin_trans('admin.confirm_delete')),
+                ])->onEvent([ 'submitSucc' => $this->refreshRouteEvent ]),
+            ]);
     }
 }

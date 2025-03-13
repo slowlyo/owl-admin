@@ -17,7 +17,7 @@ class AdminRoleController extends AdminController
         $crud = $this
             ->baseCRUD()
             ->headerToolbar([
-                $this->createButton(true),
+                $this->createButton('drawer'),
                 ...$this->baseHeaderToolBar(),
             ])
             ->filterTogglable(true)
@@ -53,7 +53,7 @@ class AdminRoleController extends AdminController
                     ->sortable(),
                 $this->rowActions([
                     $this->setPermission(),
-                    $this->rowEditButton(true),
+                    $this->rowEditButton('drawer'),
                     $this->rowDeleteButton(),
                 ]),
             ]);
@@ -120,7 +120,7 @@ class AdminRoleController extends AdminController
 
     public function form()
     {
-        return $this->baseForm()->body([
+        return $this->baseForm()->mode('normal')->body([
             amis()->TextControl()->label(admin_trans('admin.admin_role.name'))->name('name')->required(),
             amis()
                 ->TextControl()

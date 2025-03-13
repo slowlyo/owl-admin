@@ -15,7 +15,7 @@ class AdminUserController extends AdminController
     {
         $crud = $this->baseCRUD()
             ->headerToolbar([
-                $this->createButton(true),
+                $this->createButton('drawer'),
                 ...$this->baseHeaderToolBar(),
             ])
             ->filter($this->baseFilter()->body([
@@ -56,11 +56,16 @@ class AdminUserController extends AdminController
                     amis()->Tag()->label('${name}')->className('my-1')
                 ),
                 amis()->TableColumn('enabled', admin_trans('admin.extensions.card.status'))->quickEdit(
-                    amis()->SwitchControl()->mode('inline')->disabledOn('${id == 1}')->saveImmediately()
+                    amis()->SwitchControl()
+                        ->mode('inline')
+                        ->disabledOn('${id == 1}')
+                        ->saveImmediately()
+                        ->onText(admin_trans('admin.extensions.enable'))
+                        ->offText(admin_trans('admin.extensions.disable'))
                 ),
                 amis()->TableColumn('created_at', admin_trans('admin.created_at'))->type('datetime')->sortable(),
                 $this->rowActions([
-                    $this->rowEditButton(true)
+                    $this->rowEditButton('drawer')
                         ->hiddenOn('${administrator && ' . (admin_user()->isAdministrator() ? 'false' : 'true') . '}'),
                     $this->rowDeleteButton()->hiddenOn('${id == 1}'),
                 ]),
@@ -71,7 +76,7 @@ class AdminUserController extends AdminController
 
     public function form()
     {
-        return $this->baseForm()->body([
+        return $this->baseForm()->mode('normal')->body([
             amis()->ImageControl('avatar', admin_trans('admin.admin_user.avatar'))->receiver($this->uploadImagePath()),
             amis()->TextControl('username', admin_trans('admin.username'))->required(),
             amis()->TextControl('name', admin_trans('admin.admin_user.name'))->required(),

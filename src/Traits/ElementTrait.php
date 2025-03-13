@@ -87,7 +87,7 @@ trait ElementTrait
 
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
-                    amis()->Drawer()->title($title)->body($form)->size($dialogSize)
+                    amis()->Drawer()->closeOnEsc()->closeOnOutside()->title($title)->body($form)->size($dialogSize)
                 );
             } else {
                 $action = amis()->DialogAction()->dialog(
@@ -124,7 +124,7 @@ trait ElementTrait
 
             if ($dialog === 'drawer') {
                 $action = amis()->DrawerAction()->drawer(
-                    amis()->Drawer()->title($title)->body($form)->size($dialogSize)
+                    amis()->Drawer()->closeOnEsc()->closeOnOutside()->title($title)->body($form)->size($dialogSize)
                 );
             } else {
                 $action = amis()->DialogAction()->dialog(
