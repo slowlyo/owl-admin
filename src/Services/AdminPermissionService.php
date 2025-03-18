@@ -112,7 +112,7 @@ class AdminPermissionService extends AdminService
     protected function saveData($data, array $columns, AdminPermission $model)
     {
         $menus = Arr::pull($data, 'menus');
-        $data['parent_id'] = data_get($menus, 'parent_id', 0);
+        $data['parent_id'] = data_get($data, 'parent_id', 0);
 
         foreach ($data as $k => $v) {
             if (!in_array($k, $columns)) {
