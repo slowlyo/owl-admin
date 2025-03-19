@@ -14,8 +14,8 @@ class AdminSetting extends BaseModel
         'values' => 'json',
     ];
 
-    protected function asJson($value)
+    protected function asJson($value, $flags = 0)
     {
-        return json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return json_encode($value, $flags == 0 ? JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES : $flags);
     }
 }
