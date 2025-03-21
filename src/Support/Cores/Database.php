@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Models\AdminRole;
 use Illuminate\Database\Schema\Blueprint;
+use Slowlyo\OwlAdmin\Admin;
 
 class Database
 {
@@ -345,15 +346,18 @@ class Database
 
     public static function getTables()
     {
-        try {
-            return collect(json_decode(json_encode(Schema::getAllTables()), true))
-                ->map(fn($i) => config('database.default') == 'sqlite' ? $i['name'] : array_shift($i))
-                ->toArray();
-        } catch (\Throwable $e) {
-        }
+        $connection = Admin::config('admin.database.connection');
+        $db = DB::connection($connection);
+        $list = match($connection){
+            // sqlite
+            'sqlite' => $db->getPdo()->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(),
+            // pgsql
+            'pgsql' => $db->getPdo()->query("SELECT tablename FROM pg_tables WHERE schemaname='public';")->fetchAll(),
+            // mysql
+            default => $db->getPdo()->query('SHOW TABLES')->fetchAll(),
+        };
 
-        // laravel 11+
-        return array_column(Schema::getTables(), 'name');
+        return array_map(fn($i)=>array_shift($i), $list);
     }
 
     /**

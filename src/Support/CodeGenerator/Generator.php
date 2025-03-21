@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Traits\MakeTrait;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
+use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
@@ -228,7 +229,7 @@ class Generator
 
             // 创建数据库表
             if ($needs->contains('need_create_table')) {
-                if (Schema::hasTable($record->table_name)) {
+                if (Admin::hasTable($record->table_name)) {
                     abort(HttpResponse::HTTP_BAD_REQUEST, "Table [{$record->table_name}] already exists!");
                 }
 

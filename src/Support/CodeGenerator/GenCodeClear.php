@@ -76,7 +76,7 @@ class GenCodeClear
             'model'      => $checkFile($modelPath),
             'service'    => $checkFile($servicePath),
             'migration'  => $checkFile($migrationPath),
-            'table'      => Schema::hasTable($tableName) ? $tableName : '',
+            'table'      => Admin::hasTable($tableName) ? $tableName : '',
         ];
 
         if ($menuRecord) {
