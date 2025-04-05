@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Location 选点组件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/location
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class LocationControl extends BaseRenderer
 {
@@ -135,6 +135,14 @@ class LocationControl extends BaseRenderer
     public function hiddenOn($value = '')
     {
         return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 是否隐藏地图控制组件，默认为false
+     */
+    public function hideViewControl($value = true)
+    {
+        return $this->set('hideViewControl', $value);
     }
 
     /**

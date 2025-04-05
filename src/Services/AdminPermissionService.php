@@ -78,7 +78,7 @@ class AdminPermissionService extends AdminService
 
         $parent_id = Arr::get($data, 'parent_id');
         if ($parent_id != 0) {
-            amis_abort_if($this->parentIsChild($primaryKey, $parent_id), admin_trans('admin.admin_permission.parent_id_not_allow'));
+            admin_abort_if($this->parentIsChild($primaryKey, $parent_id), admin_trans('admin.admin_permission.parent_id_not_allow'));
         }
 
         $model = $this->query()->whereKey($primaryKey)->first();
@@ -90,10 +90,10 @@ class AdminPermissionService extends AdminService
     {
         $query = $this->query()->when($id, fn($query) => $query->where('id', '<>', $id));
 
-        amis_abort_if($query->clone()->where('name', $data['name'])
+        admin_abort_if($query->clone()->where('name', $data['name'])
             ->exists(), admin_trans('admin.admin_permission.name_already_exists'));
 
-        amis_abort_if($query->clone()->where('slug', $data['slug'])
+        admin_abort_if($query->clone()->where('slug', $data['slug'])
             ->exists(), admin_trans('admin.admin_permission.slug_already_exists'));
     }
 

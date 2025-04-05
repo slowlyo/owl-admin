@@ -110,6 +110,7 @@ export const goToLoginPage = () => {
 }
 
 export const msgHandler = (msg, handle) => {
+    console.log(msg);
     if(!msg?.length){
         return
     }
@@ -127,9 +128,8 @@ export const msgHandler = (msg, handle) => {
     }, 5000)
 
     try {
-        handle().then(() => {
-            localStorage.removeItem(msgKey)
-        })
+        handle()
+        localStorage.removeItem(msgKey)
     } catch (e) {
         localStorage.removeItem(msgKey)
     }

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Datetime日期时间选择控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/datetime
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class DateTimeControl extends BaseRenderer
 {
@@ -207,6 +207,14 @@ class DateTimeControl extends BaseRenderer
     public function inputClassName($value = '')
     {
         return $this->set('inputClassName', $value);
+    }
+
+    /**
+     * 
+     */
+    public function inputForbid($value = true)
+    {
+        return $this->set('inputForbid', $value);
     }
 
     /**

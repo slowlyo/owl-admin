@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios'
 import {message, notification} from 'antd'
 import {attachmentAdpator} from 'amis'
+import {toast} from 'amis-ui'
 import {goToLoginPage, inLoginPage, msgHandler, Token} from '@/utils/common'
 import {getCacheKey} from '@/utils/common'
 
@@ -43,13 +44,13 @@ export default class CustomAxiosInstance {
                     // 请求成功
                     if (backend.status === 0) {
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            msgHandler(backend.msg, () => message.success(backend.msg))
+                            toast.success(backend.msg)
                         }
 
                         return backend
                     } else {
                         if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            msgHandler(backend.msg, () => message.error(backend.msg))
+                            toast.error(backend.msg)
                         }
                     }
 

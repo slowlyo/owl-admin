@@ -54,7 +54,7 @@ class Extension
      */
     public function createDir($name, $namespace)
     {
-        amis_abort_if(!preg_match('/^[\w\-_]+\/[\w\-_]+$/', $name), admin_trans('admin.extensions.name_invalid'));
+        admin_abort_if(!preg_match('/^[\w\-_]+\/[\w\-_]+$/', $name), admin_trans('admin.extensions.name_invalid'));
 
         $this->dirs[] = 'public/extensions/' . $name;
 
@@ -72,7 +72,7 @@ class Extension
 
         $this->basePath = rtrim($this->extensionDir, '/') . '/' . ltrim($this->package, '/');
 
-        amis_abort_if(is_dir($this->basePath), admin_trans('admin.extensions.exists') . $this->package);
+        admin_abort_if(is_dir($this->basePath), admin_trans('admin.extensions.exists') . $this->package);
 
         $this->makeDir($this->dirs);
         $this->makeFiles();

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Table View 表格展现
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class TableView extends BaseRenderer
 {

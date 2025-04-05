@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Traits\UploadTrait;
  * Image 图片上传控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/image
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class ImageControl extends BaseRenderer
 {
@@ -342,6 +342,22 @@ class ImageControl extends BaseRenderer
     }
 
     /**
+     * 校验文件大小失败时显示的文字信息
+     */
+    public function invalidSizeMessage($value = '')
+    {
+        return $this->set('invalidSizeMessage', $value);
+    }
+
+    /**
+     * 校验格式失败时显示的文字信息
+     */
+    public function invalidTypeMessage($value = '')
+    {
+        return $this->set('invalidTypeMessage', $value);
+    }
+
+    /**
      * 单选模式：当用户选中某个选项时，选项中的 value 将被作为该表单项的值提交，否则，整个选项对象都会作为该表单项的值提交。 多选模式：选中的多个选项的 `value` 会通过 `delimiter` 连接起来，否则直接将以数组的形式提交值。
      */
     public function joinValues($value = true)
@@ -531,6 +547,14 @@ class ImageControl extends BaseRenderer
     public function showCompressOptions($value = true)
     {
         return $this->set('showCompressOptions', $value);
+    }
+
+    /**
+     * 格式校验失败是否显示弹窗
+     */
+    public function showErrorModal($value = true)
+    {
+        return $this->set('showErrorModal', $value);
     }
 
     /**

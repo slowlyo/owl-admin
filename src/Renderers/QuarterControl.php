@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 季度选择控件
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class QuarterControl extends BaseRenderer
 {
@@ -207,6 +207,14 @@ class QuarterControl extends BaseRenderer
     public function inputClassName($value = '')
     {
         return $this->set('inputClassName', $value);
+    }
+
+    /**
+     * 
+     */
+    public function inputForbid($value = true)
+    {
+        return $this->set('inputForbid', $value);
     }
 
     /**

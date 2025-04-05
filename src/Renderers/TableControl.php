@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableControl
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class TableControl extends BaseRenderer
 {
@@ -511,6 +511,14 @@ class TableControl extends BaseRenderer
     public function labelWidth($value = '')
     {
         return $this->set('labelWidth', $value);
+    }
+
+    /**
+     * 自定义搜索匹配函数，当存在列的 searchable 为 true 时，会基于该函数计算的匹配结果进行过滤，主要用于处理列字段类型较为复杂或者字段值格式和后端返回不一致的场景参数说明 * `items` 当前表格数据  * `itemsRaw` 当前表格数据（未处理）  * `options` 配置  * `options.query` 查询条件  * `options.columns` 列配置  * `options.matchSorter` 系统默认的排序方法
+     */
+    public function matchFunc($value = '')
+    {
+        return $this->set('matchFunc', $value);
     }
 
     /**

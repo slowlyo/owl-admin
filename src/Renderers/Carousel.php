@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Carousel 轮播图渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class Carousel extends BaseRenderer
 {
@@ -63,6 +63,14 @@ class Carousel extends BaseRenderer
     public function controlsTheme($value = '')
     {
         return $this->set('controlsTheme', $value);
+    }
+
+    /**
+     * 轮播图方向，默认为水平方向 可选值: horizontal | vertical
+     */
+    public function direction($value = '')
+    {
+        return $this->set('direction', $value);
     }
 
     /**
@@ -151,6 +159,22 @@ class Carousel extends BaseRenderer
     public function itemSchema($value = '')
     {
         return $this->set('itemSchema', $value);
+    }
+
+    /**
+     * 是否循环播放, 默认为 true。
+     */
+    public function loop($value = true)
+    {
+        return $this->set('loop', $value);
+    }
+
+    /**
+     * 是否支持鼠标事件 默认为 true。
+     */
+    public function mouseEvent($value = true)
+    {
+        return $this->set('mouseEvent', $value);
     }
 
     /**

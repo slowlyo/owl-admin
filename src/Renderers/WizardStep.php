@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * WizardStep
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class WizardStep extends BaseRenderer
 {

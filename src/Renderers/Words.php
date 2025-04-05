@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Words
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class Words extends BaseRenderer
 {
@@ -119,6 +119,14 @@ class Words extends BaseRenderer
     public function inTag($value = '')
     {
         return $this->set('inTag', $value);
+    }
+
+    /**
+     * 标签模板
+     */
+    public function labelTpl($value = '')
+    {
+        return $this->set('labelTpl', $value);
     }
 
     /**

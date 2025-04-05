@@ -232,14 +232,14 @@ if (!function_exists('admin_abort')) {
      * @return mixed
      * @throws null
      */
-    function admin_abort($message = '', $data = [], $doNotDisplayToast = 0)
+    function admin_abort($message = '', $data = [], $doNotDisplayToast = 1)
     {
         throw new \Slowlyo\OwlAdmin\Exceptions\AdminException($message, $data, $doNotDisplayToast);
     }
 
     function amis_abort($message = '', $data = [])
     {
-        admin_abort($message, $data, 1);
+        admin_abort($message, $data, 0);
     }
 
     /**
@@ -252,7 +252,7 @@ if (!function_exists('admin_abort')) {
      *
      * @return void
      */
-    function admin_abort_if($flag, $message = '', $data = [], $doNotDisplayToast = 0)
+    function admin_abort_if($flag, $message = '', $data = [], $doNotDisplayToast = 1)
     {
         if ($flag) {
             admin_abort($message, $data, $doNotDisplayToast);
@@ -261,7 +261,7 @@ if (!function_exists('admin_abort')) {
 
     function amis_abort_if($flag, $message = '', $data = [])
     {
-        admin_abort_if($flag, $message, $data, 1);
+        admin_abort_if($flag, $message, $data, 0);
     }
 }
 

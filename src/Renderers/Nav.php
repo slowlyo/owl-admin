@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Nav 导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/nav
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class Nav extends BaseRenderer
 {
@@ -186,7 +186,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 垂直模式 非折叠状态下 控制菜单打开方式 可选值: float | inline
+     * 垂直模式 非折叠状态下 控制菜单打开方式 可选值: panel | float | inline
      */
     public function mode($value = '')
     {

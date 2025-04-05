@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * EmailAction
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class EmailAction extends BaseRenderer
 {
@@ -144,6 +144,14 @@ $this->set('actionType', 'email');
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否在动作结束前禁用按钮
+     */
+    public function disabledOnAction($value = true)
+    {
+        return $this->set('disabledOnAction', $value);
     }
 
     /**
@@ -384,6 +392,14 @@ $this->set('actionType', 'email');
     public function subject($value = '')
     {
         return $this->set('subject', $value);
+    }
+
+    /**
+     * 
+     */
+    public function tabIndex($value = '')
+    {
+        return $this->set('tabIndex', $value);
     }
 
     /**

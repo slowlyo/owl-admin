@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * DrawerAction
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class DrawerAction extends BaseRenderer
 {
@@ -144,6 +144,14 @@ $this->set('actionType', 'drawer');
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否在动作结束前禁用按钮
+     */
+    public function disabledOnAction($value = true)
+    {
+        return $this->set('disabledOnAction', $value);
     }
 
     /**
@@ -408,6 +416,14 @@ $this->set('actionType', 'drawer');
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     * 
+     */
+    public function tabIndex($value = '')
+    {
+        return $this->set('tabIndex', $value);
     }
 
     /**

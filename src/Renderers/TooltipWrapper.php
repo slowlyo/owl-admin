@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TooltipWrapper
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class TooltipWrapper extends BaseRenderer
 {
@@ -255,6 +255,14 @@ class TooltipWrapper extends BaseRenderer
     public function tooltip($value = '')
     {
         return $this->set('tooltip', $value);
+    }
+
+    /**
+     * 箭头CSS类名
+     */
+    public function tooltipArrowClassName($value = '')
+    {
+        return $this->set('tooltipArrowClassName', $value);
     }
 
     /**

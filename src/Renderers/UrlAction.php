@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * UrlAction
  * 
  * @author slowlyo
- * @version 6.10.0
+ * @version 6.12.0
  */
 class UrlAction extends BaseRenderer
 {
@@ -136,6 +136,14 @@ $this->set('actionType', 'url');
     public function disabledOn($value = '')
     {
         return $this->set('disabledOn', $value);
+    }
+
+    /**
+     * 是否在动作结束前禁用按钮
+     */
+    public function disabledOnAction($value = true)
+    {
+        return $this->set('disabledOnAction', $value);
     }
 
     /**
@@ -376,6 +384,14 @@ $this->set('actionType', 'url');
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     * 
+     */
+    public function tabIndex($value = '')
+    {
+        return $this->set('tabIndex', $value);
     }
 
     /**
