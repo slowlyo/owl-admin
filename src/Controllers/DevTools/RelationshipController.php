@@ -2,7 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
-use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Support\Cores\Database;
 use Slowlyo\OwlAdmin\Models\AdminRelationship;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
@@ -270,7 +269,7 @@ class RelationshipController extends AdminController
 
         $table = $table ?: app($model)->getTable();
 
-        $columns = Schema::getColumnListing($table);
+        $columns = Database::getTableColumns($table);
 
         return $this->response()->success($columns);
     }

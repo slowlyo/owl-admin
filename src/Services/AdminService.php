@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Slowlyo\OwlAdmin\Traits\ErrorTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Slowlyo\OwlAdmin\Renderers\TableColumn;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 abstract class AdminService
 {
@@ -54,13 +54,7 @@ abstract class AdminService
     public function getTableColumns()
     {
         if (!$this->tableColumn) {
-            try {
-                // laravel11: sqlite 暂时无法获取字段, 等待 laravel 适配
-                $this->tableColumn = Schema::connection($this->getModel()->getConnectionName())
-                    ->getColumnListing($this->getModel()->getTable());
-            } catch (\Throwable $e) {
-                $this->tableColumn = [];
-            }
+            $this->tableColumn = Database::getTableColumns($this->getModel()->getTable());
         }
 
         return $this->tableColumn;

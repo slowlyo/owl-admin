@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Schema;
 use Slowlyo\OwlAdmin\Traits\ErrorTrait;
 
 class Extension

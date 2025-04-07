@@ -360,6 +360,30 @@ class Database
         return array_map(fn($i)=>array_shift($i), $list);
     }
 
+    public static function getTableColumns($table)
+    {
+        $connection = Admin::config('admin.database.connection');
+        $db = DB::connection($connection);
+        
+        $columns = match($connection) {
+            // sqlite
+            'sqlite' => $db->getPdo()->query("PRAGMA table_info('{$table}')")->fetchAll(),
+            // pgsql
+            'pgsql' => $db->getPdo()->query("SELECT column_name, data_type, character_maximum_length, column_default, is_nullable FROM information_schema.columns WHERE table_name = '{$table}'")->fetchAll(),
+            // mysql
+            default => $db->getPdo()->query("SHOW COLUMNS FROM `{$table}`")->fetchAll(),
+        };
+        
+        // 提取字段名
+        $columnNames = match($connection) {
+            'sqlite' => array_map(fn($column) => $column['name'], $columns),
+            'pgsql' => array_map(fn($column) => $column['column_name'], $columns),
+            default => array_map(fn($column) => $column['Field'], $columns),
+        };
+        
+        return $columnNames;
+    }
+
     /**
      * 填充代码生成器常用字段
      *

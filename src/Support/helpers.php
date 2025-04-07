@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-
 if (!function_exists('admin_url')) {
     function admin_url($path = null, $needPrefix = false)
     {
@@ -21,7 +19,7 @@ if (!function_exists('table_columns')) {
      */
     function table_columns($tableName)
     {
-        return Schema::getColumnListing($tableName);
+        return \Slowlyo\OwlAdmin\Support\Cores\Database::getTableColumns($tableName);
     }
 }
 
