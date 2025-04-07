@@ -6,7 +6,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Traits\MakeTrait;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
@@ -79,11 +78,17 @@ class Generator
             ->toArray();
     }
 
-    public function getDatabaseColumns($db = null, $tb = null)
+    /**
+     * 获取数据库表字段信息 (使用DB和PDO实现，优化查询效率)
+     *
+     * @param string|null $db 数据库名
+     * @return \Illuminate\Support\Collection
+     */
+    public function getDatabaseColumns($db = null)
     {
+        // 获取所有支持的数据库连接
         $databases = Arr::where(config('database.connections', []), function ($value) {
-            $supports = ['mysql', 'sqlite'];
-
+            $supports = ['mysql', 'sqlite', 'pgsql'];
             return in_array(strtolower(Arr::get($value, 'driver')), $supports);
         });
 
@@ -91,37 +96,204 @@ class Generator
 
         try {
             foreach ($databases as $connectName => $value) {
+                // 如果指定了数据库名且不匹配当前连接，则跳过
                 if ($db && $db != $value['database']) continue;
 
                 try {
-                    $databaseSchemaBuilder = Schema::connection($connectName);
+                    // 获取数据库连接
+                    $connection = DB::connection($connectName);
+                    $pdo = $connection->getPdo();
+                    $database = $value['database'];
+                    $prefix = $value['prefix'] ?? '';
+                    
+                    // 键(database名称)长度超过28个字符 amis 会获取字段信息失败(sqlite)，截取一下
+                    $databaseKey = strlen($database) > 28 ? substr_replace($database, '***', 10, -15) : $database;
+                    $data[$databaseKey] = [];
+                    
+                    // 根据数据库类型选择不同的查询方式
+                    switch(strtolower($value['driver'])) {
+                        case 'mysql':
+                            // MySQL: 使用information_schema一次性获取所有表的所有字段
+                            $sql = "SELECT 
+                                    TABLE_NAME, 
+                                    COLUMN_NAME, 
+                                    DATA_TYPE, 
+                                    COLUMN_TYPE,
+                                    COLLATION_NAME, 
+                                    IS_NULLABLE, 
+                                    COLUMN_DEFAULT, 
+                                    EXTRA, 
+                                    COLUMN_COMMENT
+                                FROM information_schema.columns 
+                                WHERE TABLE_SCHEMA = '{$database}'";
 
-                    $tables = collect($databaseSchemaBuilder->getTables())
-                        ->pluck('name')
-                        ->map(fn($name) => Str::replaceStart(data_get($value, 'prefix', ''), '', $name))
-                        ->toArray();
-                } catch (\Throwable $e) { // 连不上的跳过
+                            $allColumns = $pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+                            
+                            // 按表名分组
+                            $columnsByTable = [];
+                            foreach ($allColumns as $column) {
+                                $tableName = $column['TABLE_NAME'];
+                                
+                                // 移除表前缀
+                                $tableNameWithoutPrefix = Str::replaceFirst($prefix, '', $tableName);
+                                
+                                if (!isset($columnsByTable[$tableNameWithoutPrefix])) {
+                                    $columnsByTable[$tableNameWithoutPrefix] = [];
+                                }
+                                
+                                // 跳过id、时间戳等字段
+                                if (in_array($column['COLUMN_NAME'], ['id', 'created_at', 'updated_at', 'deleted_at'])) {
+                                    continue;
+                                }
+                                
+                                // 从COLUMN_TYPE中提取类型名称
+                                preg_match('/^([a-z]+)(\(.*\))?/', $column['COLUMN_TYPE'], $matches);
+                                $typeName = $matches[1] ?? $column['DATA_TYPE'];
+                                
+                                // 获取对应的PHP类型
+                                $type = Arr::get(self::$dataTypeMap, $typeName, 'string');
+                                
+                                $columnsByTable[$tableNameWithoutPrefix][] = [
+                                    'name' => $column['COLUMN_NAME'],
+                                    'type_name' => $typeName,
+                                    'type' => $type,
+                                    'collation' => $column['COLLATION_NAME'],
+                                    'nullable' => $column['IS_NULLABLE'] === 'YES',
+                                    'default' => $column['COLUMN_DEFAULT'],
+                                    'auto_increment' => strpos($column['EXTRA'], 'auto_increment') !== false,
+                                    'comment' => $column['COLUMN_COMMENT'] ?: Str::studly($column['COLUMN_NAME']),
+                                    'generation' => null,
+                                ];
+                            }
+                            
+                            $data[$databaseKey] = $columnsByTable;
+                            break;
+                            
+                        case 'sqlite':
+                            // SQLite: 先获取所有表，然后批量查询每个表的结构
+                            $tables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(\PDO::FETCH_COLUMN);
+                            
+                            // 移除表前缀
+                            $tables = array_map(function($tableName) use ($prefix) {
+                                return Str::replaceFirst($prefix, '', $tableName);
+                            }, $tables);
+                            
+                            foreach ($tables as $table) {
+                                $stmt = $pdo->prepare("PRAGMA table_info(`{$table}`)");
+                                $stmt->execute();
+                                $columns = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                                
+                                $fields = [];
+                                foreach ($columns as $column) {
+                                    // 跳过id、时间戳等字段
+                                    if (in_array($column['name'], ['id', 'created_at', 'updated_at', 'deleted_at'])) {
+                                        continue;
+                                    }
+                                    
+                                    // SQLite类型映射
+                                    $typeName = strtolower($column['type']);
+                                    $type = match(true) {
+                                        str_contains($typeName, 'int') => 'integer',
+                                        str_contains($typeName, 'char') || str_contains($typeName, 'text') => 'string',
+                                        str_contains($typeName, 'real') || str_contains($typeName, 'floa') || str_contains($typeName, 'doub') => 'float',
+                                        str_contains($typeName, 'blob') => 'binary',
+                                        default => 'string',
+                                    };
+                                    
+                                    $fields[] = [
+                                        'name' => $column['name'],
+                                        'type_name' => $typeName,
+                                        'type' => $type,
+                                        'collation' => null,
+                                        'nullable' => !$column['notnull'],
+                                        'default' => $column['dflt_value'],
+                                        'auto_increment' => false, // SQLite使用ROWID自增，不在字段属性中显示
+                                        'comment' => Str::studly($column['name']),
+                                        'generation' => null,
+                                    ];
+                                }
+                                
+                                if (!empty($fields)) {
+                                    $data[$databaseKey][$table] = $fields;
+                                }
+                            }
+                            break;
+                            
+                        case 'pgsql':
+                            // PostgreSQL: 一次性获取所有表的所有字段
+                            $sql = "
+                                SELECT 
+                                    t.tablename AS table_name,
+                                    a.attname AS column_name,
+                                    format_type(a.atttypid, a.atttypmod) AS data_type,
+                                    a.attnotnull AS not_null,
+                                    pg_get_expr(d.adbin, d.adrelid) AS default_value,
+                                    col_description(a.attrelid, a.attnum) AS comment
+                                FROM pg_catalog.pg_attribute a
+                                JOIN pg_catalog.pg_class c ON a.attrelid = c.oid
+                                JOIN pg_catalog.pg_namespace n ON c.relnamespace = n.oid
+                                JOIN pg_catalog.pg_tables t ON c.relname = t.tablename AND n.nspname = t.schemaname
+                                LEFT JOIN pg_catalog.pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+                                WHERE a.attnum > 0
+                                AND NOT a.attisdropped
+                                AND n.nspname = 'public'
+                            ";
+                            
+                            $allColumns = $pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+                            
+                            // 按表名分组
+                            $columnsByTable = [];
+                            foreach ($allColumns as $column) {
+                                $tableName = $column['table_name'];
+                                
+                                // 移除表前缀
+                                $tableNameWithoutPrefix = Str::replaceFirst($prefix, '', $tableName);
+                                
+                                if (!isset($columnsByTable[$tableNameWithoutPrefix])) {
+                                    $columnsByTable[$tableNameWithoutPrefix] = [];
+                                }
+                                
+                                // 跳过id、时间戳等字段
+                                if (in_array($column['column_name'], ['id', 'created_at', 'updated_at', 'deleted_at'])) {
+                                    continue;
+                                }
+                                
+                                // PostgreSQL类型映射
+                                $typeName = $column['data_type'];
+                                $type = match(true) {
+                                    str_contains($typeName, 'int') => 'integer',
+                                    str_contains($typeName, 'char') || str_contains($typeName, 'text') => 'string',
+                                    str_contains($typeName, 'float') || str_contains($typeName, 'double') || str_contains($typeName, 'numeric') => 'float',
+                                    str_contains($typeName, 'bool') => 'boolean',
+                                    str_contains($typeName, 'timestamp') || str_contains($typeName, 'date') => 'date',
+                                    str_contains($typeName, 'json') => 'json',
+                                    str_contains($typeName, 'bytea') => 'binary',
+                                    default => 'string',
+                                };
+                                
+                                $columnsByTable[$tableNameWithoutPrefix][] = [
+                                    'name' => $column['column_name'],
+                                    'type_name' => $typeName,
+                                    'type' => $type,
+                                    'collation' => null,
+                                    'nullable' => !$column['not_null'],
+                                    'default' => $column['default_value'],
+                                    'auto_increment' => strpos($column['default_value'] ?? '', 'nextval') !== false,
+                                    'comment' => $column['comment'] ?: Str::studly($column['column_name']),
+                                    'generation' => null,
+                                ];
+                            }
+                            
+                            $data[$databaseKey] = $columnsByTable;
+                            break;
+                    }
+                } catch (\Throwable $e) {
+                    // 连不上的跳过
                     continue;
                 }
-
-                // 键(database名称)长度超过28个字符 amis 会获取字段信息失败(sqlite)，截取一下
-                $databaseKey = strlen($value['database']) > 28 ? substr_replace($value['database'], '***', 10, -15) : $value['database'];
-
-                $data[$databaseKey] = collect($tables)
-                    ->flip()
-                    ->map(function ($_, $table) use ($databaseSchemaBuilder, $connectName) {
-                        return collect($databaseSchemaBuilder->getColumns($table))
-                            ->whereNotIn('name', ['id', 'created_at', 'updated_at', 'deleted_at'])
-                            ->values()
-                            ->map(function ($v) {
-                                $v['type']     = Arr::get(Generator::$dataTypeMap, $v['type'], 'string');
-                                $v['nullable'] = $v['nullable'] == 'YES';
-                                $v['comment']  = filled($v['comment']) ? $v['comment'] : Str::studly($v['name']);
-                                return $v;
-                            });
-                    });
             }
         } catch (\Throwable $e) {
+            // 出错时返回空集合
         }
 
         return collect($data);

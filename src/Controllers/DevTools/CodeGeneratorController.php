@@ -570,7 +570,7 @@ class CodeGeneratorController extends AdminController
         $existsTables = $databaseColumns->map(function ($item, $index) {
             return [
                 'label'    => $index,
-                'children' => $item->keys()->map(function ($item) use ($index) {
+                'children' => collect($item)->keys()->map(function ($item) use ($index) {
                     return ['value' => $item . '-' . $index, 'label' => $item];
                 }),
             ];
