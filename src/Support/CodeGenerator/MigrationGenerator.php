@@ -7,6 +7,7 @@ use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Illuminate\Database\Migrations\MigrationCreator as BaseMigrationCreator;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 class MigrationGenerator extends BaseMigrationCreator
 {

@@ -1170,14 +1170,15 @@ class CodeGeneratorController extends AdminController
             ->level('link')
             ->label(admin_trans('admin.code_generators.clear_code'))
             ->dialog(
-                amis()->Dialog()->title(admin_trans('admin.code_generators.select_clear_record'))->body([
+                amis()->Dialog()->size('md')->title(admin_trans('admin.code_generators.select_clear_record'))->body([
                     amis()->Form()->api('post:/dev_tools/code_generator/clear?id=${id}')->mode('normal')->body([
                         amis()
                             ->CheckboxesControl('selected')
                             ->checkAll()
                             ->inline(false)
                             ->required()
-                            ->menuTpl('<div><div class="font-bold">${label}</div><div class="break-words break-all text-sm text-gray-400">${content}</div></div>')
+                            ->itemClassName('py-4 relative')
+                            ->menuTpl('<div class="absolute pt-4 top-0 left-6 h-full w-full"><div class="font-bold">${label}</div><div class="break-words break-all text-sm text-gray-400">${content}</div></div>')
                             ->source('post:/dev_tools/code_generator/gen_record_options?id=${id}'),
                     ])->onEvent([
                         'submitSucc' => [

@@ -233,18 +233,7 @@ class Admin
 
     public static function hasTable($table)
     {
-        $key = 'admin_has_table_' . $table;
-        if (cache()->has($key)) {
-            return true;
-        }
-
-        $has = in_array($table, Database::getTables());
-
-        if ($has) {
-            cache()->forever($key, true);
-        }
-
-        return $has;
+        return in_array($table, Database::getTables());
     }
 
     public static function version()

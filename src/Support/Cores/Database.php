@@ -346,26 +346,41 @@ class Database
 
     public static function getTables()
     {
-        $connection = Admin::config('admin.database.connection');
-        $db = DB::connection($connection);
-        $list = match($connection){
-            // sqlite
-            'sqlite' => $db->getPdo()->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(),
-            // pgsql
-            'pgsql' => $db->getPdo()->query("SELECT tablename FROM pg_tables WHERE schemaname='public';")->fetchAll(),
-            // mysql
-            default => $db->getPdo()->query('SHOW TABLES')->fetchAll(),
-        };
+        return Admin::context()->remember('admin_all_tables', function () {
+            $connection = Admin::config('admin.database.connection');
+            $db = DB::connection($connection);
+            $list = match ($connection) {
+                // sqlite
+                'sqlite' => $db->getPdo()->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(),
+                // pgsql
+                'pgsql' => $db->getPdo()->query("SELECT tablename FROM pg_tables WHERE schemaname='public';")->fetchAll(),
+                // mysql
+                default => $db->getPdo()->query('SHOW TABLES')->fetchAll(),
+            };
 
-        return array_map(fn($i)=>array_shift($i), $list);
+            return array_map(fn($i) => self::getTableName(array_shift($i), true), $list);
+        });
+    }
+
+    public static function getTableName($table = '', $removePrefix = false)
+    {
+        $connection = Admin::config('admin.database.connection');
+        $prefix = config("database.connections.{$connection}.prefix");
+
+        if ($removePrefix) {
+            return \Illuminate\Support\Str::replaceFirst($prefix, '', $table);
+        }
+
+        return $prefix . $table;
     }
 
     public static function getTableColumns($table)
     {
+        $table = self::getTableName($table);
         $connection = Admin::config('admin.database.connection');
         $db = DB::connection($connection);
-        
-        $columns = match($connection) {
+
+        $columns = match ($connection) {
             // sqlite
             'sqlite' => $db->getPdo()->query("PRAGMA table_info('{$table}')")->fetchAll(),
             // pgsql
@@ -373,14 +388,14 @@ class Database
             // mysql
             default => $db->getPdo()->query("SHOW COLUMNS FROM `{$table}`")->fetchAll(),
         };
-        
+
         // 提取字段名
-        $columnNames = match($connection) {
+        $columnNames = match ($connection) {
             'sqlite' => array_map(fn($column) => $column['name'], $columns),
             'pgsql' => array_map(fn($column) => $column['column_name'], $columns),
             default => array_map(fn($column) => $column['Field'], $columns),
         };
-        
+
         return $columnNames;
     }
 
@@ -401,6 +416,6 @@ class Database
             'list_component_property'   => '[{"key":"TableColumn","value":[{"name":"searchable","value":"1"}],"label":"文本(带搜索)"},{"key":"TableColumn","value":[{"name":"type","value":"image"},{"name":"enlargeAble","value":"1"}],"label":"单图"},{"key":"TableColumn","value":[{"name":"quickEdit","value":"{\"type\":\"switch\",\"mode\":\"inline\",\"saveImmediately\":true}"}],"label":"开关"}]',
         ];
 
-        settings()->setMany(array_map(fn($i)=>json_decode($i, true), $data));
+        settings()->setMany(array_map(fn($i) => json_decode($i, true), $data));
     }
 }
