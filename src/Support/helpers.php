@@ -159,6 +159,10 @@ if (!function_exists('file_upload_handle_multi')) {
 
         return \Illuminate\Database\Eloquent\Casts\Attribute::make(
             get: function ($value) use ($storage) {
+                if(empty($value)) {
+                    return null;
+                }
+                
                 return array_map(fn($item) => $item ? admin_resource_full_path($item) : '', explode(',', $value));
             },
             set: function ($value) use ($storage) {
