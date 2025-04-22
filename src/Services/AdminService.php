@@ -54,7 +54,10 @@ abstract class AdminService
     public function getTableColumns()
     {
         if (!$this->tableColumn) {
-            $this->tableColumn = Database::getTableColumns($this->getModel()->getTable());
+            $this->tableColumn = Database::getTableColumns(
+                $this->getModel()->getTable(), 
+                $this->getModel()->getConnectionName()
+            );
         }
 
         return $this->tableColumn;

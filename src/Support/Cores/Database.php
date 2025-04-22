@@ -362,9 +362,11 @@ class Database
         });
     }
 
-    public static function getTableName($table = '', $removePrefix = false)
+    public static function getTableName($table = '', $removePrefix = false, $connection = '')
     {
-        $connection = Admin::config('admin.database.connection');
+        if (blank($connection)) {
+            $connection = Admin::config('admin.database.connection');
+        }
         $prefix = config("database.connections.{$connection}.prefix");
 
         if ($removePrefix) {
@@ -374,10 +376,14 @@ class Database
         return $prefix . $table;
     }
 
-    public static function getTableColumns($table)
+    public static function getTableColumns($table, $connection = '')
     {
-        $table = self::getTableName($table);
-        $connection = Admin::config('admin.database.connection');
+        if (blank($connection)) {
+            $connection = Admin::config('admin.database.connection');
+        }
+
+        $table = self::getTableName($table, false, $connection);
+
         $db = DB::connection($connection);
 
         $columns = match ($connection) {
