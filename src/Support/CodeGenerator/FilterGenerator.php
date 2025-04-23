@@ -98,7 +98,7 @@ class FilterGenerator extends BaseGenerator
                 $value = "'{$value}'";
             }
         } else {
-            $value = "\$this->request->input('{$filter['input_name']}')";
+            $value = "filled(\$this->request->input('{$filter['input_name']}'))";
         }
         $name     = $column['name'];
         $arrValue = "safe_explode(',', $value)";
