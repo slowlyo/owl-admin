@@ -275,6 +275,22 @@ $this->set('type', 'crud');
     }
 
     /**
+     * 索引条偏移量
+     */
+    public function indexBarOffset($value = '')
+    {
+        return $this->set('indexBarOffset', $value);
+    }
+
+    /**
+     * 索引依据字段
+     */
+    public function indexField($value = '')
+    {
+        return $this->set('indexField', $value);
+    }
+
+    /**
      * 初始是否拉取
      */
     public function initFetch($value = true)
@@ -377,6 +393,14 @@ $this->set('type', 'crud');
     public function loadDataOnceFetchOnFilter($value = true)
     {
         return $this->set('loadDataOnceFetchOnFilter', $value);
+    }
+
+    /**
+     * 加载更多配置
+     */
+    public function loadMoreProps($value = '')
+    {
+        return $this->set('loadMoreProps', $value);
     }
 
     /**
@@ -565,6 +589,14 @@ $this->set('type', 'crud');
     }
 
     /**
+     * 是否显示右侧字母索引条
+     */
+    public function showIndexBar($value = true)
+    {
+        return $this->set('showIndexBar', $value);
+    }
+
+    /**
      * 静默拉取
      */
     public function silentPolling($value = true)
@@ -723,6 +755,14 @@ $this->set('type', 'crud');
     public function toolbarInline($value = true)
     {
         return $this->set('toolbarInline', $value);
+    }
+
+    /**
+     * 设置总条数的字段名。
+     */
+    public function totalField($value = '')
+    {
+        return $this->set('totalField', $value);
     }
 
     /**

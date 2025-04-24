@@ -79,6 +79,11 @@ class Amis
         return Barcode::make();
     }
 
+    public function Base()
+    {
+        return Base::make();
+    }
+
     public function BaseApi()
     {
         return BaseApi::make();
@@ -1227,6 +1232,11 @@ class Amis
     public function Service()
     {
         return Service::make();
+    }
+
+    public function Slider()
+    {
+        return Slider::make();
     }
 
     public function SparkLine()

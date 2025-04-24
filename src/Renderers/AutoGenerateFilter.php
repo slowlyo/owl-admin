@@ -33,6 +33,22 @@ class AutoGenerateFilter extends BaseRenderer
     }
 
     /**
+     * 是否启用多选框
+     */
+    public function enableBulkActions($value = true)
+    {
+        return $this->set('enableBulkActions', $value);
+    }
+
+    /**
+     * 启用批量操作的表达式 (表达式，语法 `data.xxx > 5`。)
+     */
+    public function enableBulkActionsOn($value = '')
+    {
+        return $this->set('enableBulkActionsOn', $value);
+    }
+
+    /**
      * 是否显示设置查询字段
      */
     public function showBtnToolbar($value = true)

@@ -3,42 +3,34 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * Carousel 轮播图渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
+ * Slider
  * 
  * @author slowlyo
  * @version 6.12.0
  */
-class Carousel extends BaseRenderer
+class Slider extends BaseRenderer
 {
     public function __construct()
     {
-        $this->set('type', 'carousel');
+        $this->set('type', 'slider');
 
 
     }
 
     /**
-     * 是否一直显示箭头
+     * 
      */
-    public function alwaysShowArrow($value = true)
+    public function body($value = '')
     {
-        return $this->set('alwaysShowArrow', $value);
+        return $this->set('body', $value);
     }
 
     /**
-     * 动画类型 可选值: fade | slide | marquee
+     * 
      */
-    public function animation($value = '')
+    public function bodyWidth($value = '')
     {
-        return $this->set('animation', $value);
-    }
-
-    /**
-     * 是否自动播放
-     */
-    public function auto($value = true)
-    {
-        return $this->set('auto', $value);
+        return $this->set('bodyWidth', $value);
     }
 
     /**
@@ -47,30 +39,6 @@ class Carousel extends BaseRenderer
     public function className($value = '')
     {
         return $this->set('className', $value);
-    }
-
-    /**
-     * 配置控件内容
-     */
-    public function controls($value = '')
-    {
-        return $this->set('controls', $value);
-    }
-
-    /**
-     *  可选值: light | dark
-     */
-    public function controlsTheme($value = '')
-    {
-        return $this->set('controlsTheme', $value);
-    }
-
-    /**
-     * 轮播图方向，默认为水平方向 可选值: horizontal | vertical
-     */
-    public function direction($value = '')
-    {
-        return $this->set('direction', $value);
     }
 
     /**
@@ -90,27 +58,11 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 动画时长
-     */
-    public function duration($value = '')
-    {
-        return $this->set('duration', $value);
-    }
-
-    /**
      * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
         return $this->set('editorSetting', $value);
-    }
-
-    /**
-     * 设置高度
-     */
-    public function height($value = '')
-    {
-        return $this->set('height', $value);
     }
 
     /**
@@ -130,14 +82,6 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 自定义箭头图标
-     */
-    public function icons($value = '')
-    {
-        return $this->set('icons', $value);
-    }
-
-    /**
      * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
@@ -146,51 +90,11 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 轮播间隔时间
+     * 
      */
-    public function interval($value = '')
+    public function left($value = '')
     {
-        return $this->set('interval', $value);
-    }
-
-    /**
-     * 配置单条呈现模板 (配置单条呈现模板)
-     */
-    public function itemSchema($value = '')
-    {
-        return $this->set('itemSchema', $value);
-    }
-
-    /**
-     * 是否循环播放, 默认为 true。
-     */
-    public function loop($value = true)
-    {
-        return $this->set('loop', $value);
-    }
-
-    /**
-     * 是否支持鼠标事件 默认为 true。
-     */
-    public function mouseEvent($value = true)
-    {
-        return $this->set('mouseEvent', $value);
-    }
-
-    /**
-     * 多图模式配置项
-     */
-    public function multiple($value = '')
-    {
-        return $this->set('multiple', $value);
-    }
-
-    /**
-     * 组件名字，这个名字可以用来定位，用于组件通信
-     */
-    public function name($value = '')
-    {
-        return $this->set('name', $value);
+        return $this->set('left', $value);
     }
 
     /**
@@ -202,19 +106,11 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 配置固定值
+     * 
      */
-    public function options($value = '')
+    public function right($value = '')
     {
-        return $this->set('options', $value);
-    }
-
-    /**
-     * 占位
-     */
-    public function placeholder($value = '')
-    {
-        return $this->set('placeholder', $value);
+        return $this->set('right', $value);
     }
 
     /**
@@ -298,17 +194,9 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 预览图模式 可选值: contain | cover
+     * 
      */
-    public function thumbMode($value = '')
-    {
-        return $this->set('thumbMode', $value);
-    }
-
-    /**
-     * 指定为轮播图类型
-     */
-    public function type($value = 'carousel')
+    public function type($value = 'slider')
     {
         return $this->set('type', $value);
     }
@@ -335,14 +223,6 @@ class Carousel extends BaseRenderer
     public function visibleOn($value = '')
     {
         return $this->set('visibleOn', $value);
-    }
-
-    /**
-     * 设置宽度
-     */
-    public function width($value = '')
-    {
-        return $this->set('width', $value);
     }
 
 

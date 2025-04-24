@@ -66,6 +66,14 @@ class PickerControl extends BaseRenderer
     }
 
     /**
+     * source从数据域取值时，数据域值变化后是否自动清空
+     */
+    public function clearValueOnSourceChange($value = true)
+    {
+        return $this->set('clearValueOnSourceChange', $value);
+    }
+
+    /**
      * 是否可清除。
      */
     public function clearable($value = true)
@@ -395,6 +403,14 @@ class PickerControl extends BaseRenderer
     }
 
     /**
+     * 弹窗的尺寸，可选值为 'sm'、'md'、'lg'、'xl' 可选值: xs | sm | md | lg | xl | full
+     */
+    public function modalSize($value = '')
+    {
+        return $this->set('modalSize', $value);
+    }
+
+    /**
      * 弹窗的标题，默认为情选择
      */
     public function modalTitle($value = '')
@@ -541,9 +557,9 @@ class PickerControl extends BaseRenderer
     /**
      * 表单项大小 可选值: xs | sm | md | lg | full
      */
-    public function modalSize($value = '')
+    public function size($value = '')
     {
-        return $this->set('modalSize', $value);
+        return $this->set('size', $value);
     }
 
     /**

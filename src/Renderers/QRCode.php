@@ -66,6 +66,38 @@ class QRCode extends BaseRenderer
     }
 
     /**
+     * 码眼边框颜色
+     */
+    public function eyeBorderColor($value = '')
+    {
+        return $this->set('eyeBorderColor', $value);
+    }
+
+    /**
+     * 码眼边框大小 可选值: default | sm | xs
+     */
+    public function eyeBorderSize($value = '')
+    {
+        return $this->set('eyeBorderSize', $value);
+    }
+
+    /**
+     * 码眼内部颜色
+     */
+    public function eyeInnerColor($value = '')
+    {
+        return $this->set('eyeInnerColor', $value);
+    }
+
+    /**
+     * 码眼类型 可选值: default | circle | rounded
+     */
+    public function eyeType($value = '')
+    {
+        return $this->set('eyeType', $value);
+    }
+
+    /**
      * 前景色
      */
     public function foregroundColor($value = '')
@@ -143,6 +175,30 @@ class QRCode extends BaseRenderer
     public function placeholder($value = '')
     {
         return $this->set('placeholder', $value);
+    }
+
+    /**
+     * 码点大小 可选值: default | sm | xs
+     */
+    public function pointSize($value = '')
+    {
+        return $this->set('pointSize', $value);
+    }
+
+    /**
+     * 码点大小随机
+     */
+    public function pointSizeRandom($value = true)
+    {
+        return $this->set('pointSizeRandom', $value);
+    }
+
+    /**
+     * 码点类型 可选值: default | circle
+     */
+    public function pointType($value = '')
+    {
+        return $this->set('pointType', $value);
     }
 
     /**

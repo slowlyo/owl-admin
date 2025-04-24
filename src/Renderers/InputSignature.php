@@ -498,6 +498,14 @@ class InputSignature extends BaseRenderer
     }
 
     /**
+     * 上传签名图片api, 仅在内嵌模式下生效 (上传签名图片api, 仅在内嵌模式下生效)
+     */
+    public function uploadApi($value = '')
+    {
+        return $this->set('uploadApi', $value);
+    }
+
+    /**
      * 可以组件级别用来关闭移动端样式
      */
     public function useMobileUI($value = true)

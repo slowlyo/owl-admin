@@ -18,6 +18,14 @@ class Timeline extends BaseRenderer
     }
 
     /**
+     * 卡片展示配置，如果传入则将items数据传入cardSchema中循环渲染，itemTitleSchema、titleClassName、detailClassName将不生效。配置后 timeline item中的数据都将可以在cardSchema中通过数据方式引用。如果子节点也配置了cardSchema，则子节点的cardSchema优先级高于timeline的cardSchema (Card 卡片渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card)
+     */
+    public function cardSchema($value = '')
+    {
+        return $this->set('cardSchema', $value);
+    }
+
+    /**
      * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
@@ -114,7 +122,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 文字相对于时间轴展示方向 可选值: left | right | alternate
+     * 文字相对于时间轴展示方向 可选值: left | right | top | bottom | alternate
      */
     public function mode($value = '')
     {

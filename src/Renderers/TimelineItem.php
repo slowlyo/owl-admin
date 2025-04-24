@@ -17,6 +17,14 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
+     * 卡片展示配置，如果传入则以卡片形式展示，传入对象转为卡片展示，传入的time、title、detail及相关属性将被忽略，只有连线配置和节点圆圈配置生效 (Card 卡片渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card)
+     */
+    public function cardSchema($value = '')
+    {
+        return $this->set('cardSchema', $value);
+    }
+
+    /**
      * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
@@ -81,6 +89,14 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
+     *  可选值: sm | md | lg | xl
+     */
+    public function dotSize($value = '')
+    {
+        return $this->set('dotSize', $value);
+    }
+
+    /**
      * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
@@ -105,6 +121,14 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
+     * 
+     */
+    public function hideDot($value = true)
+    {
+        return $this->set('hideDot', $value);
+    }
+
+    /**
      * 图标
      */
     public function icon($value = '')
@@ -126,6 +150,14 @@ class TimelineItem extends BaseRenderer
     public function id($value = '')
     {
         return $this->set('id', $value);
+    }
+
+    /**
+     * 
+     */
+    public function lineColor($value = '')
+    {
+        return $this->set('lineColor', $value);
     }
 
     /**

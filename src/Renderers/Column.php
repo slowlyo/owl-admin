@@ -89,6 +89,14 @@ class Column extends BaseRenderer
     }
 
     /**
+     * 标题内容居左、居中、居右 可选值: left | center | right
+     */
+    public function headerAlign($value = '')
+    {
+        return $this->set('headerAlign', $value);
+    }
+
+    /**
      * 指定列唯一标识
      */
     public function name($value = '')
@@ -174,6 +182,14 @@ class Column extends BaseRenderer
     public function type($value = '')
     {
         return $this->set('type', $value);
+    }
+
+    /**
+     * 列垂直对齐方式 可选值: top | middle | bottom
+     */
+    public function vAlign($value = '')
+    {
+        return $this->set('vAlign', $value);
     }
 
     /**

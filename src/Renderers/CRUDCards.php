@@ -380,6 +380,14 @@ $this->set('type', 'crud');
     }
 
     /**
+     * 加载更多配置
+     */
+    public function loadMoreProps($value = '')
+    {
+        return $this->set('loadMoreProps', $value);
+    }
+
+    /**
      * 
      */
     public function loadingConfig($value = '')
@@ -723,6 +731,14 @@ $this->set('type', 'crud');
     public function toolbarInline($value = true)
     {
         return $this->set('toolbarInline', $value);
+    }
+
+    /**
+     * 设置总条数的字段名。
+     */
+    public function totalField($value = '')
+    {
+        return $this->set('totalField', $value);
     }
 
     /**

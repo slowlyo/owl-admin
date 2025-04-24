@@ -203,6 +203,22 @@ $this->set('type', 'crud2');
     }
 
     /**
+     * 索引条偏移量
+     */
+    public function indexBarOffset($value = '')
+    {
+        return $this->set('indexBarOffset', $value);
+    }
+
+    /**
+     * 索引依据字段
+     */
+    public function indexField($value = '')
+    {
+        return $this->set('indexField', $value);
+    }
+
+    /**
      * 设置自动刷新时间
      */
     public function interval($value = '')
@@ -356,6 +372,14 @@ $this->set('type', 'crud2');
     }
 
     /**
+     * 下拉刷新配置
+     */
+    public function pullRefresh($value = '')
+    {
+        return $this->set('pullRefresh', $value);
+    }
+
+    /**
      * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
      */
     public function quickSaveApi($value = '')
@@ -401,6 +425,14 @@ $this->set('type', 'crud2');
     public function showHeader($value = true)
     {
         return $this->set('showHeader', $value);
+    }
+
+    /**
+     * 是否显示右侧字母索引条
+     */
+    public function showIndexBar($value = true)
+    {
+        return $this->set('showIndexBar', $value);
     }
 
     /**

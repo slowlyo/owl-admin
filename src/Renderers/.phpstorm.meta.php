@@ -224,6 +224,7 @@ namespace PHPSTORM_META {
 		'native-number' => \Slowlyo\OwlAdmin\Renderers\TextControl::class,
 		'code' => \Slowlyo\OwlAdmin\Renderers\Code::class,
 		'tooltip-wrapper' => \Slowlyo\OwlAdmin\Renderers\TooltipWrapper::class,
+		'slider' => \Slowlyo\OwlAdmin\Renderers\Slider::class,
 	]));
 	override(\Slowlyo\OwlAdmin\Renderers\TableColumn::type(0), map([
 		'form' => \Slowlyo\OwlAdmin\Renderers\Form::class,
@@ -447,6 +448,7 @@ namespace PHPSTORM_META {
 		'native-number' => \Slowlyo\OwlAdmin\Renderers\TextControl::class,
 		'code' => \Slowlyo\OwlAdmin\Renderers\Code::class,
 		'tooltip-wrapper' => \Slowlyo\OwlAdmin\Renderers\TooltipWrapper::class,
+		'slider' => \Slowlyo\OwlAdmin\Renderers\Slider::class,
 	]));
 	override(\Slowlyo\OwlAdmin\Renderers\StaticExactControl::type(0), map([
 		'form' => \Slowlyo\OwlAdmin\Renderers\Form::class,
@@ -670,6 +672,7 @@ namespace PHPSTORM_META {
 		'native-number' => \Slowlyo\OwlAdmin\Renderers\TextControl::class,
 		'code' => \Slowlyo\OwlAdmin\Renderers\Code::class,
 		'tooltip-wrapper' => \Slowlyo\OwlAdmin\Renderers\TooltipWrapper::class,
+		'slider' => \Slowlyo\OwlAdmin\Renderers\Slider::class,
 	]));
 	override(\Slowlyo\OwlAdmin\Renderers\Column::type(0), map([
 		'form' => \Slowlyo\OwlAdmin\Renderers\Form::class,
@@ -893,6 +896,7 @@ namespace PHPSTORM_META {
 		'native-number' => \Slowlyo\OwlAdmin\Renderers\TextControl::class,
 		'code' => \Slowlyo\OwlAdmin\Renderers\Code::class,
 		'tooltip-wrapper' => \Slowlyo\OwlAdmin\Renderers\TooltipWrapper::class,
+		'slider' => \Slowlyo\OwlAdmin\Renderers\Slider::class,
 	]));
 	override(\Slowlyo\OwlAdmin\Renderers\Expandable::type(0), map([
 		'form' => \Slowlyo\OwlAdmin\Renderers\Form::class,
@@ -1116,6 +1120,7 @@ namespace PHPSTORM_META {
 		'native-number' => \Slowlyo\OwlAdmin\Renderers\TextControl::class,
 		'code' => \Slowlyo\OwlAdmin\Renderers\Code::class,
 		'tooltip-wrapper' => \Slowlyo\OwlAdmin\Renderers\TooltipWrapper::class,
+		'slider' => \Slowlyo\OwlAdmin\Renderers\Slider::class,
 	]));
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::actionType(), 0, 'ajax','link','url','drawer','dialog','confirm','cancel','prev','next','copy','close');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::size(), 0, 'xs','sm','md','lg');
@@ -1135,6 +1140,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Avatar::shape(), 0, 'circle','square','rounded');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Badge::mode(), 0, 'text','dot','ribbon');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Badge::position(), 0, 'top-right','top-left','bottom-right','bottom-left');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Base::type(), 0, 'form','alert','app','audio','avatar','button-group','breadcrumb','card','card2','cards','carousel','chart','calendar','collapse','collapse-group','color','crud','crud2','custom','date','static-date','datetime','static-datetime','time','static-time','month','static-month','date-range','dialog','spinner','divider','dropdown-button','drawer','each','flex','flex-item','grid-2d','icon','iframe','image','static-image','images','static-images','json-schema','json-schema-editor','json','static-json','link','list','log','static-list','map','mapping','markdown','nav','number','page','pagination','pagination-wrapper','property','operation','plain','text','progress','qrcode','qr-code','barcode','remark','search-box','sparkline','status','table','static-table','table2','html','tpl','tasks','vbox','video','wizard','wrapper','web-component','anchor-nav','steps','timeline','control','input-array','button','submit','reset','button-group-select','button-toolbar','chained-select','chart-radios','checkbox','checkboxes','input-city','input-color','combo','condition-builder','container','switch-container','input-date','input-datetime','input-time','input-quarter','input-year','input-month','input-date-range','input-time-range','input-datetime-range','input-excel','input-formula','diff-editor','office-viewer','pdf-viewer','input-signature','input-verification-code','shape','editor','bat-editor','c-editor','coffeescript-editor','cpp-editor','csharp-editor','css-editor','dockerfile-editor','fsharp-editor','go-editor','handlebars-editor','html-editor','ini-editor','java-editor','javascript-editor','json-editor','less-editor','lua-editor','markdown-editor','msdax-editor','objective-c-editor','php-editor','plaintext-editor','postiats-editor','powershell-editor','pug-editor','python-editor','r-editor','razor-editor','ruby-editor','sb-editor','scss-editor','sol-editor','sql-editor','swift-editor','typescript-editor','vb-editor','xml-editor','yaml-editor','fieldset','fieldSet','input-file','formula','grid','group','hbox','hidden','icon-picker','icon-select','input-image','input-group','list-select','location-picker','matrix-checkboxes','input-month-range','input-quarter-range','nested-select','input-number','panel','picker','radio','radios','input-range','input-rating','input-repeat','input-rich-text','select','service','static','input-sub-form','switch','input-table','tabs','tabs-transfer','input-tag','input-text','input-password','input-email','input-url','uuid','multi-select','textarea','transfer','transfer-picker','tabs-transfer-picker','input-tree','tree-select','table-view','portlet','grid-nav','users-select','tag','tags','words','password','multiline-text','amis','native-date','native-time','native-number','code','tooltip-wrapper','slider');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseApi::dataType(), 0, 'json','form-data','form');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseApi::method(), 0, 'get','post','put','delete','patch','jsonp','js');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Button::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
@@ -1155,7 +1161,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDList::size(), 0, 'sm','base');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDTable::orderDir(), 0, 'asc','desc');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDTable::tableLayout(), 0, 'fixed','auto');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::animation(), 0, 'fade','slide');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::animation(), 0, 'fade','slide','marquee');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::controlsTheme(), 0, 'light','dark');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::thumbMode(), 0, 'contain','cover');
@@ -1173,6 +1179,8 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Collapse::headerPosition(), 0, 'top','bottom');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Collapse::size(), 0, 'xs','sm','md','lg','base');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CollapseGroup::expandIconPosition(), 0, 'left','right');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Column::headerAlign(), 0, 'left','center','right');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Column::vAlign(), 0, 'top','middle','bottom');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::size(), 0, 'xs','sm','md','lg','full');
@@ -1281,6 +1289,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconPickerControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconPickerControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconPickerControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::hoverMode(), 0, 'hover-slide','pull-top','scale-center','scale-top','text-style-1','text-style-2','text-style-3','text-style-4','text-style-5','text-style-6','text-style-7');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::imageMode(), 0, 'thumb','original');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::thumbMode(), 0, 'w-full','h-full','contain','cover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::thumbRatio(), 0, '1:1','4:3','16:9');
@@ -1291,6 +1300,10 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageControl::thumbMode(), 0, 'w-full','h-full','contain','cover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageControl::thumbRatio(), 0, '1:1','4:3','16:9');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageToolbarAction::key(), 0, 'ROTATE_RIGHT','ROTATE_LEFT','ZOOM_IN','ZOOM_OUT','SCALE_ORIGIN');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::displayMode(), 0, 'thumb','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::fullThumbMode(), 0, 'cover','contain');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::hoverMode(), 0, 'hover-slide','pull-top','scale-center','scale-top','text-style-1','text-style-2','text-style-3','text-style-4','text-style-5','text-style-6','text-style-7');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::sortType(), 0, 'sm-ss-sss-m','sss-ss-ms-m','sms-ss-sms-m','sm-ss-sss-ss','ms-ss-sss-ss','sss-ss-sm-ss','mss-ss-ssm-ss','sss-ss-mm-ss','even-${number}-${number}');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::thumbMode(), 0, 'w-full','h-full','contain','cover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::thumbRatio(), 0, '1:1','4:3','16:9');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::type(), 0, 'images','static-images');
@@ -1343,6 +1356,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::mode(), 0, 'panel','float','inline');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::stacked(), 0, '1','');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::themeColor(), 0, 'light','dark');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NavOverflow::mode(), 0, 'popup','swipe');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::mode(), 0, 'normal','inline','horizontal');
@@ -1363,6 +1377,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Panel::subFormMode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::modalMode(), 0, 'dialog','drawer');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::modalSize(), 0, 'xs','sm','md','lg','xl','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Plain::type(), 0, 'plain','text');
@@ -1371,8 +1386,12 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Progress::gapPosition(), 0, 'top','bottom','left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Progress::mode(), 0, 'line','circle','dashboard');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Property::mode(), 0, 'table','simple');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::eyeBorderSize(), 0, 'default','sm','xs');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::eyeType(), 0, 'default','circle','rounded');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::level(), 0, 'L','M','Q','H');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::mode(), 0, 'canvas','svg');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::pointSize(), 0, 'default','sm','xs');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::pointType(), 0, 'default','circle');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::type(), 0, 'qrcode','qr-code');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::labelAlign(), 0, 'right','left','top','inherit');
@@ -1490,7 +1509,8 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Timeline::direction(), 0, 'horizontal','vertical');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Timeline::mode(), 0, 'left','right','alternate');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Timeline::mode(), 0, 'left','right','top','bottom','alternate');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimelineItem::dotSize(), 0, 'sm','md','lg','xl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Toast::position(), 0, 'top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center 可选值: top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::size(), 0, 'xs','sm','md','lg');

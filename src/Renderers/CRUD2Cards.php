@@ -364,6 +364,14 @@ $this->set('type', 'crud2');
     }
 
     /**
+     * 下拉刷新配置
+     */
+    public function pullRefresh($value = '')
+    {
+        return $this->set('pullRefresh', $value);
+    }
+
+    /**
      * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
      */
     public function quickSaveApi($value = '')

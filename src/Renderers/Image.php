@@ -99,6 +99,14 @@ class Image extends BaseRenderer
     }
 
     /**
+     * 描述文字样式
+     */
+    public function fontStyle($value = '')
+    {
+        return $this->set('fontStyle', $value);
+    }
+
+    /**
      * 高度
      */
     public function height($value = '')
@@ -120,6 +128,14 @@ class Image extends BaseRenderer
     public function hiddenOn($value = '')
     {
         return $this->set('hiddenOn', $value);
+    }
+
+    /**
+     * 鼠标悬浮时的展示状态（对应AIpage的文字6，9，10不存在） 可选值: hover-slide | pull-top | scale-center | scale-top | text-style-1 | text-style-2 | text-style-3 | text-style-4 | text-style-5 | text-style-6 | text-style-7
+     */
+    public function hoverMode($value = '')
+    {
+        return $this->set('hoverMode', $value);
     }
 
     /**
@@ -189,6 +205,14 @@ class Image extends BaseRenderer
     }
 
     /**
+     * 蒙层颜色
+     */
+    public function maskColor($value = '')
+    {
+        return $this->set('maskColor', $value);
+    }
+
+    /**
      * 关联字段名，也可以直接配置 src
      */
     public function name($value = '')
@@ -218,6 +242,14 @@ class Image extends BaseRenderer
     public function showToolbar($value = true)
     {
         return $this->set('showToolbar', $value);
+    }
+
+    /**
+     * 图集组件传入的排序方式
+     */
+    public function sortType($value = '')
+    {
+        return $this->set('sortType', $value);
     }
 
     /**

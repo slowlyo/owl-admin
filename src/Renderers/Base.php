@@ -3,42 +3,18 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * Carousel 轮播图渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
+ * Base
  * 
  * @author slowlyo
  * @version 6.12.0
  */
-class Carousel extends BaseRenderer
+class Base extends BaseRenderer
 {
     public function __construct()
     {
-        $this->set('type', 'carousel');
+        $this->set('type', 'form');
 
 
-    }
-
-    /**
-     * 是否一直显示箭头
-     */
-    public function alwaysShowArrow($value = true)
-    {
-        return $this->set('alwaysShowArrow', $value);
-    }
-
-    /**
-     * 动画类型 可选值: fade | slide | marquee
-     */
-    public function animation($value = '')
-    {
-        return $this->set('animation', $value);
-    }
-
-    /**
-     * 是否自动播放
-     */
-    public function auto($value = true)
-    {
-        return $this->set('auto', $value);
     }
 
     /**
@@ -47,30 +23,6 @@ class Carousel extends BaseRenderer
     public function className($value = '')
     {
         return $this->set('className', $value);
-    }
-
-    /**
-     * 配置控件内容
-     */
-    public function controls($value = '')
-    {
-        return $this->set('controls', $value);
-    }
-
-    /**
-     *  可选值: light | dark
-     */
-    public function controlsTheme($value = '')
-    {
-        return $this->set('controlsTheme', $value);
-    }
-
-    /**
-     * 轮播图方向，默认为水平方向 可选值: horizontal | vertical
-     */
-    public function direction($value = '')
-    {
-        return $this->set('direction', $value);
     }
 
     /**
@@ -90,27 +42,11 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 动画时长
-     */
-    public function duration($value = '')
-    {
-        return $this->set('duration', $value);
-    }
-
-    /**
      * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
         return $this->set('editorSetting', $value);
-    }
-
-    /**
-     * 设置高度
-     */
-    public function height($value = '')
-    {
-        return $this->set('height', $value);
     }
 
     /**
@@ -130,14 +66,6 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 自定义箭头图标
-     */
-    public function icons($value = '')
-    {
-        return $this->set('icons', $value);
-    }
-
-    /**
      * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
@@ -146,75 +74,11 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 轮播间隔时间
-     */
-    public function interval($value = '')
-    {
-        return $this->set('interval', $value);
-    }
-
-    /**
-     * 配置单条呈现模板 (配置单条呈现模板)
-     */
-    public function itemSchema($value = '')
-    {
-        return $this->set('itemSchema', $value);
-    }
-
-    /**
-     * 是否循环播放, 默认为 true。
-     */
-    public function loop($value = true)
-    {
-        return $this->set('loop', $value);
-    }
-
-    /**
-     * 是否支持鼠标事件 默认为 true。
-     */
-    public function mouseEvent($value = true)
-    {
-        return $this->set('mouseEvent', $value);
-    }
-
-    /**
-     * 多图模式配置项
-     */
-    public function multiple($value = '')
-    {
-        return $this->set('multiple', $value);
-    }
-
-    /**
-     * 组件名字，这个名字可以用来定位，用于组件通信
-     */
-    public function name($value = '')
-    {
-        return $this->set('name', $value);
-    }
-
-    /**
      * 事件动作配置
      */
     public function onEvent($value = '')
     {
         return $this->set('onEvent', $value);
-    }
-
-    /**
-     * 配置固定值
-     */
-    public function options($value = '')
-    {
-        return $this->set('options', $value);
-    }
-
-    /**
-     * 占位
-     */
-    public function placeholder($value = '')
-    {
-        return $this->set('placeholder', $value);
     }
 
     /**
@@ -298,17 +162,9 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 预览图模式 可选值: contain | cover
+     *  可选值: form | alert | app | audio | avatar | button-group | breadcrumb | card | card2 | cards | carousel | chart | calendar | collapse | collapse-group | color | crud | crud2 | custom | date | static-date | datetime | static-datetime | time | static-time | month | static-month | date-range | dialog | spinner | divider | dropdown-button | drawer | each | flex | flex-item | grid-2d | icon | iframe | image | static-image | images | static-images | json-schema | json-schema-editor | json | static-json | link | list | log | static-list | map | mapping | markdown | nav | number | page | pagination | pagination-wrapper | property | operation | plain | text | progress | qrcode | qr-code | barcode | remark | search-box | sparkline | status | table | static-table | table2 | html | tpl | tasks | vbox | video | wizard | wrapper | web-component | anchor-nav | steps | timeline | control | input-array | button | submit | reset | button-group-select | button-toolbar | chained-select | chart-radios | checkbox | checkboxes | input-city | input-color | combo | condition-builder | container | switch-container | input-date | input-datetime | input-time | input-quarter | input-year | input-month | input-date-range | input-time-range | input-datetime-range | input-excel | input-formula | diff-editor | office-viewer | pdf-viewer | input-signature | input-verification-code | shape | editor | bat-editor | c-editor | coffeescript-editor | cpp-editor | csharp-editor | css-editor | dockerfile-editor | fsharp-editor | go-editor | handlebars-editor | html-editor | ini-editor | java-editor | javascript-editor | json-editor | less-editor | lua-editor | markdown-editor | msdax-editor | objective-c-editor | php-editor | plaintext-editor | postiats-editor | powershell-editor | pug-editor | python-editor | r-editor | razor-editor | ruby-editor | sb-editor | scss-editor | sol-editor | sql-editor | swift-editor | typescript-editor | vb-editor | xml-editor | yaml-editor | fieldset | fieldSet | input-file | formula | grid | group | hbox | hidden | icon-picker | icon-select | input-image | input-group | list-select | location-picker | matrix-checkboxes | input-month-range | input-quarter-range | nested-select | input-number | panel | picker | radio | radios | input-range | input-rating | input-repeat | input-rich-text | select | service | static | input-sub-form | switch | input-table | tabs | tabs-transfer | input-tag | input-text | input-password | input-email | input-url | uuid | multi-select | textarea | transfer | transfer-picker | tabs-transfer-picker | input-tree | tree-select | table-view | portlet | grid-nav | users-select | tag | tags | words | password | multiline-text | amis | native-date | native-time | native-number | code | tooltip-wrapper | slider
      */
-    public function thumbMode($value = '')
-    {
-        return $this->set('thumbMode', $value);
-    }
-
-    /**
-     * 指定为轮播图类型
-     */
-    public function type($value = 'carousel')
+    public function type($value = '')
     {
         return $this->set('type', $value);
     }
@@ -335,14 +191,6 @@ class Carousel extends BaseRenderer
     public function visibleOn($value = '')
     {
         return $this->set('visibleOn', $value);
-    }
-
-    /**
-     * 设置宽度
-     */
-    public function width($value = '')
-    {
-        return $this->set('width', $value);
     }
 
 

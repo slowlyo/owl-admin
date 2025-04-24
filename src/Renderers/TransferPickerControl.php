@@ -82,6 +82,14 @@ class TransferPickerControl extends BaseRenderer
     }
 
     /**
+     * source从数据域取值时，数据域值变化后是否自动清空
+     */
+    public function clearValueOnSourceChange($value = true)
+    {
+        return $this->set('clearValueOnSourceChange', $value);
+    }
+
+    /**
      * 是否可清除。
      */
     public function clearable($value = true)
