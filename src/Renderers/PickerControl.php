@@ -541,9 +541,9 @@ class PickerControl extends BaseRenderer
     /**
      * 表单项大小 可选值: xs | sm | md | lg | full
      */
-    public function size($value = '')
+    public function modalSize($value = '')
     {
-        return $this->set('size', $value);
+        return $this->set('modalSize', $value);
     }
 
     /**
