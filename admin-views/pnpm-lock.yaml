@@ -50,6 +50,9 @@ importers:
       axios:
         specifier: ^0.24.0
         version: 0.24.0
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
