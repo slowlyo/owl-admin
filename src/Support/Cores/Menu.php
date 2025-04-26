@@ -36,8 +36,7 @@ class Menu
                 ->flatten()
                 ->pluck('menus')
                 ->flatten()
-                ->unique('id')
-                ->sortBy('custom_order');
+                ->unique('id');
     }
 
     public function list2Menu($list, $parentId = 0, $parentName = ''): array
