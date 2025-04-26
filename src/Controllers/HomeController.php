@@ -48,7 +48,6 @@ MD
             ),
         ])->id('code-view-panel')->set('animations', [
             'enter' => [
-                'delay'    => 0.65,
                 'duration' => 0.5,
                 'type'     => 'fadeInRight',
             ],
@@ -81,7 +80,6 @@ JS
 
         return amis()->Wrapper()->size('none')->className('h-full mb-3')->id('clock-panel')->set('animations', [
             'enter' => [
-                'delay'    => 0.5,
                 'duration' => 0.5,
                 'type'     => 'fadeInRight',
             ],
@@ -120,7 +118,6 @@ JS
             ])
         )->id('framework-info')->set('animations', [
             'enter' => [
-                'delay'    => 0,
                 'duration' => 0.5,
                 'type'     => 'zoomIn',
             ],
@@ -162,7 +159,6 @@ JS
             ])
         ])->id('pie-chart-panel')->set('animations', [
             'enter' => [
-                'delay'    => 0.1,
                 'duration' => 0.5,
                 'type'     => 'zoomIn',
             ],
@@ -216,7 +212,6 @@ JS
 
         return amis()->Panel()->className('clear-card-mb')->body($chart)->id('line-chart-panel')->set('animations', [
             'enter' => [
-                'delay'    => 0.3,
                 'duration' => 0.5,
                 'type'     => 'zoomIn',
             ],
@@ -278,7 +273,6 @@ HTML
             )
         )->id('cube-panel')->set('animations', [
             'enter' => [
-                'delay'    => 0.2,
                 'duration' => 0.5,
                 'type'     => 'zoomIn',
             ],
@@ -297,7 +291,7 @@ HTML
             ],
             '.bg-blingbling'                 => [
                 'color'             => '#fff',
-                'background'        => 'linear-gradient(to bottom right, #2C3E50, #FD746C, #FF8235, #ffff1c, #92FE9D, #00C9FF, #a044ff, #e73827)',
+                'background'        => 'linear-gradient(to bottom right, #00C9FF, #FD746C, #FF8235, #ffff1c, #92FE9D, #2C3E50, #a044ff, #e73827)',
                 'background-repeat' => 'no-repeat',
                 'background-size'   => '1000% 1000%',
                 'animation'         => 'gradient 60s ease infinite',
