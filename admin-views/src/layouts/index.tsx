@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import useRoute from '@/routes'
-import {useHistory} from 'react-router'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import LayoutContent from '@/layouts/components/LayoutContent'
 import SmLayout from '@/layouts/SmLayout'
@@ -10,15 +9,12 @@ import TopMixLayout from '@/layouts/TopMixLayout'
 import {DoubleLayout} from '@/layouts/DoubleLayout'
 import SettingPanel from '@/layouts/components/SettingPanel'
 import useSetting from '@/hooks/useSetting'
-import {appLoaded, goToLoginPage, Token} from '@/utils/common'
+import {goToLoginPage, Token} from '@/utils/common'
 
 // 应用整体布局
 const Layout = () => {
     const {getCurrentRoute} = useRoute()
-    const history = useHistory()
-    const pathname = history.location.pathname
     const isSmallScreen = useSmallScreen()
-    const [isSm, setIsSm] = useState<boolean>(isSmallScreen)
     const {getSetting} = useSetting()
 
     const currentRoute = getCurrentRoute()
@@ -38,22 +34,6 @@ const Layout = () => {
                 return <></>
         }
     }
-
-    // 监听屏幕大小
-    useEffect(() => {
-        if (isSm !== isSmallScreen) {
-            // 解决刷新后页面不显示的问题
-            window.$owl.appLoader()
-            setIsSm(isSmallScreen)
-            history.push('/')
-            setTimeout(() => {
-                history.push(pathname)
-                setTimeout(() => {
-                    appLoaded()
-                }, 600)
-            }, 300)
-        }
-    }, [isSmallScreen])
 
     // 判断是否登录
     if (!Token().value) {
