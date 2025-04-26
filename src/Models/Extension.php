@@ -29,4 +29,17 @@ class Extension extends BaseModel
     {
         return cache()->rememberForever(self::CACHE_KEY, fn() => self::all()->keyBy('name'));
     }
+
+    public static function getEnabledNames()
+    {
+        $list = self::keyByNameList();
+
+        $enabled = [];
+        foreach ($list as $item) {
+            if ($item->is_enabled) {
+                $enabled[] = $item->name;
+            }
+        }
+        return $enabled;
+    }
 }

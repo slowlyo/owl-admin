@@ -31,7 +31,7 @@ class IndexController extends AdminController
 
         $locale = settings()->getByModule('admin_locale', config('app.locale'));
 
-        if ($locale == 'null') {
+        if (in_array($locale, ['null', 'undefined'])) {
             $locale = 'zh_CN';
         }
 
@@ -47,7 +47,7 @@ class IndexController extends AdminController
             'locale_options'         => map2options($localeOptions),
             'show_development_tools' => Admin::config('admin.show_development_tools'),
             'system_theme_setting'   => settings()->getByModule('system_theme_setting'),
-            'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
+            'enabled_extensions'     => Extension::getEnabledNames(),
         ]);
     }
 
