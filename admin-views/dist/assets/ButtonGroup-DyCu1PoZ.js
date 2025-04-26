@@ -1,0 +1,1 @@
+import{t as e,D as n,E as o,a1 as u}from"./index-CEmnTf-r.js";var p=function(r){e(t,r);function t(){return r!==null&&r.apply(this,arguments)||this}return t=n([o({type:"button-group"})],t),t}(u);export{p as ButtonGroupRenderer,u as default};
