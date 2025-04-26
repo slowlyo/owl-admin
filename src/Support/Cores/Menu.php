@@ -23,73 +23,98 @@ class Menu
 
     public function userMenus()
     {
-        if (!Admin::config('admin.auth.enable')) {
-            return collect([]);
+        $user = Admin::user();
+
+        if ($user->isAdministrator() || !Admin::config('admin.auth.permission') || !Admin::config('admin.auth.enable')) {
+            return AdminMenuService::make()->query()->orderBy('custom_order')->get();
         }
 
-        $user = Admin::user();
-        if ($user->isAdministrator() || Admin::config('admin.auth.permission') === false) {
-            $list = AdminMenuService::make()->query()->orderBy('custom_order')->get();
-        } else {
-            $user->load('roles.permissions.menus');
-            $list = $user->roles
+        $user->load('roles.permissions.menus');
+
+        return $user->roles
                 ->pluck('permissions')
                 ->flatten()
                 ->pluck('menus')
                 ->flatten()
                 ->unique('id')
                 ->sortBy('custom_order');
-        }
-
-        return $list;
     }
 
     public function list2Menu($list, $parentId = 0, $parentName = ''): array
     {
+        // 预处理：按parent_id分组
+        $groupedList = [];
+        foreach ($list as $item) {
+            $groupedList[$item['parent_id']][] = $item;
+        }
+        
+        return $this->buildMenuTree($groupedList, $parentId, $parentName);
+    }
+
+    /**
+     * 递归构建菜单树
+     *
+     * @param array $groupedList 按parent_id分组的菜单列表
+     * @param int $parentId 父菜单ID
+     * @param string $parentName 父菜单名称
+     * @return array
+     */
+    private function buildMenuTree(array $groupedList, $parentId = 0, $parentName = ''): array
+    {
         $data = [];
-        foreach ($list as $key => $item) {
-            if ($item['parent_id'] == $parentId) {
-                $_component = match ($item['url_type']) {
-                    Admin::adminMenuModel()::TYPE_IFRAME => 'iframe',
-                    Admin::adminMenuModel()::TYPE_PAGE => 'amis',
-                    default => data_get($item, 'component') ?? 'amis'
-                };
+        
+        // 如果没有当前parentId的子项，直接返回空数组
+        if (!isset($groupedList[$parentId])) {
+            return $data;
+        }
 
-
-                $idStr = "[{$item['id']}]";
-                $_temp = [
-                    'name'       => $parentName ? $parentName . '-' . $idStr : $idStr,
-                    'path'       => $item['url'],
-                    'component'  => $_component,
-                    'is_home'    => $item['is_home'],
-                    'iframe_url' => $item['iframe_url'] ?? '',
-                    'url_type'   => $item['url_type'] ?? Admin::adminMenuModel()::TYPE_ROUTE,
-                    'keep_alive' => $item['keep_alive'] ?? 0,
-                    'is_full'    => $item['is_full'] ?? 0,
-                    'is_link'    => $item['url_type'] == Admin::adminMenuModel()::TYPE_LINK,
-                    'page_sign'  => $item['url_type'] == Admin::adminMenuModel()::TYPE_PAGE ? data_get($item, 'component') : '',
-                    'meta'       => [
-                        'title'        => $item['title'],
-                        'icon'         => $item['icon'] ?? '-',
-                        'hide'         => $item['visible'] == 0,
-                        'custom_order' => $item['custom_order'],
-                    ],
-                ];
-
-                $children = $this->list2Menu($list, (int)$item['id'], $_temp['name']);
-
-                if (!empty($children)) {
-                    $_temp['component'] = 'amis';
-                    $_temp['children']  = $children;
-                }
-
-                $data[] = $_temp;
-                if (!in_array($_temp['path'], Admin::config('admin.route.without_extra_routes')) && $item['url_type'] != Admin::adminMenuModel()::TYPE_PAGE) {
-                    array_push($data, ...$this->generateRoute($_temp));
-                }
-                unset($list[$key]);
+        $menuModel = Admin::adminMenuModel();
+        
+        foreach ($groupedList[$parentId] as $item) {
+            // 确定组件类型
+            $_component = match ($item['url_type']) {
+                $menuModel::TYPE_IFRAME => 'iframe',
+                $menuModel::TYPE_PAGE => 'amis',
+                default => data_get($item, 'component') ?? 'amis'
+            };
+            
+            $idStr = "[{$item['id']}]";
+            $_temp = [
+                'name'       => $parentName ? $parentName . '-' . $idStr : $idStr,
+                'path'       => $item['url'],
+                'component'  => $_component,
+                'is_home'    => $item['is_home'],
+                'iframe_url' => $item['iframe_url'] ?? '',
+                'url_type'   => $item['url_type'] ?? $menuModel::TYPE_ROUTE,
+                'keep_alive' => $item['keep_alive'] ?? 0,
+                'is_full'    => $item['is_full'] ?? 0,
+                'is_link'    => $item['url_type'] == $menuModel::TYPE_LINK,
+                'page_sign'  => $item['url_type'] == $menuModel::TYPE_PAGE ? data_get($item, 'component') : '',
+                'meta'       => [
+                    'title'        => $item['title'],
+                    'icon'         => $item['icon'] ?? '-',
+                    'hide'         => $item['visible'] == 0,
+                    'custom_order' => $item['custom_order'],
+                ],
+            ];
+            
+            // 递归构建子菜单
+            $children = $this->buildMenuTree($groupedList, (int)$item['id'], $_temp['name']);
+            
+            if (!empty($children)) {
+                $_temp['component'] = 'amis';
+                $_temp['children'] = $children;
+            }
+            
+            $data[] = $_temp;
+            
+            // 生成额外路由
+            if (!in_array($_temp['path'], Admin::config('admin.route.without_extra_routes')) && 
+                $item['url_type'] != $menuModel::TYPE_PAGE) {
+                array_push($data, ...$this->generateRoute($_temp));
             }
         }
+        
         return $data;
     }
 
