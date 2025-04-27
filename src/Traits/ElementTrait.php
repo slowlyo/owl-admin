@@ -396,14 +396,7 @@ trait ElementTrait
      */
     protected function baseList($crud)
     {
-        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_LIST, $this->basePage()->body([
-            [],
-            $crud,
-            // 添加几个空元素, 规避 https://github.com/baidu/amis/issues/10983 这个问题
-            [],
-            [],
-            [],
-        ]));
+        return AdminPipeline::handle(AdminPipeline::PIPE_BASE_LIST, $this->basePage()->body($crud));
     }
 
     /**
