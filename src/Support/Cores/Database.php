@@ -344,6 +344,18 @@ class Database
         $this->fillCodeGeneratorFields();
     }
 
+    public static function isConnected()
+    {
+        try {
+            $connection = Admin::config('admin.database.connection');
+            DB::connection($connection)->getPdo();
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     public static function getTables()
     {
         return Admin::context()->remember('admin_all_tables', function () {

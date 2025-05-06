@@ -233,6 +233,10 @@ class Admin
 
     public static function hasTable($table)
     {
+        if (!Database::isConnected()) {
+            return false;
+        }
+
         return in_array($table, Database::getTables());
     }
 
