@@ -2,7 +2,6 @@
 
 namespace Slowlyo\OwlAdmin\Support\Cores;
 
-use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Services\AdminRelationshipService;
 
 class Relationships
