@@ -9,10 +9,6 @@ class Relationships
 {
     public static function boot()
     {
-        if (!Admin::hasTable('admin_relationships')) {
-            return;
-        }
-
         $relationships = AdminRelationshipService::make()->getAll();
 
         if (blank($relationships)) {
