@@ -114,6 +114,9 @@ return [
 
     'database' => [
         'connection' => env('ADMIN_DB_CONNECTION') ?? env('DB_CONNECTION', 'mysql'),
+
+        // 参与代码生成的链接, 如果为空会获取默认链接
+        'generator'  => []
     ],
 
     'models' => [
