@@ -32,7 +32,11 @@ class AdminRelationshipService extends AdminService
     public function getAll()
     {
         return cache()->rememberForever($this->cacheKey, function () {
-            return self::query()->get();
+            try {
+                return self::query()->get();
+            } catch (\Throwable $e) {
+                return [];
+            }
         });
     }
 
