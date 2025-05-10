@@ -193,6 +193,7 @@ class ControllerGenerator extends BaseGenerator
     public function getColumnComponent($type, $column)
     {
         $label = Arr::get($column, 'comment') ?? Str::studly($column['name']);
+        $label = Str::replace("'", "\\'", $label);
 
         $component = data_get($column, $type);
         if ($componentType = data_get($component, $type . '_type')) {
@@ -234,7 +235,7 @@ class ControllerGenerator extends BaseGenerator
         }
         if (in_array('delete', $_actions)) {
             $hasRowAction = true;
-            $str          .= "\t\$this->rowDeleteButton({$dialog}{$dialogSize}),\n\t\t\t\t";
+            $str          .= "\t\$this->rowDeleteButton(),\n\t\t\t\t";
         }
         $str .= "])";
 
