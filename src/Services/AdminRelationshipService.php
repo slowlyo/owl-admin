@@ -31,7 +31,7 @@ class AdminRelationshipService extends AdminService
 
     public function getAll()
     {
-        return cache()->rememberForever($this->cacheKey, function () {
+        return cache()->driver('file')->rememberForever($this->cacheKey, function () {
             try {
                 return self::query()->get();
             } catch (\Throwable $e) {
