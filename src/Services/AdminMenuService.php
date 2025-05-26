@@ -33,7 +33,7 @@ class AdminMenuService extends AdminService
             ->get()
             ->toArray();
 
-        return array2tree($list);
+        return array2tree($list, collect($list)->min('parent_id') ?? 0);
     }
 
     public function parentIsChild($id, $parent_id)
