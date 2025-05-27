@@ -361,7 +361,7 @@ class Database
         return Admin::context()->remember('admin_all_tables', function () {
             $connection = Admin::config('admin.database.connection');
             $db = DB::connection($connection);
-            $list = match ($connection) {
+            $list = match (self::getDbDriver($connection)) {
                 // sqlite
                 'sqlite' => $db->getPdo()->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(),
                 // pgsql
@@ -397,7 +397,7 @@ class Database
         $table = self::getTableName($table, false, $connection);
 
         $db = DB::connection($connection);
-        $driver = config('database.connections.'. $connection . '.driver');
+        $driver = self::getDbDriver($connection);
         $columns = match ($driver) {
             // sqlite
             'sqlite' => $db->getPdo()->query("PRAGMA table_info('{$table}')")->fetchAll(),
@@ -415,6 +415,15 @@ class Database
         };
 
         return $columnNames;
+    }
+
+    public static function getDbDriver($connection = '')
+    {
+        if (blank($connection)) {
+            $connection = Admin::config('admin.database.connection');
+        }
+
+        return config('database.connections.'. $connection . '.driver');
     }
 
     /**
