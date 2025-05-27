@@ -398,7 +398,7 @@ class Database
 
         $db = DB::connection($connection);
 
-        $columns = match ($connection) {
+        $columns = match (config('database.connections.'. $connection . '.driver')) {
             // sqlite
             'sqlite' => $db->getPdo()->query("PRAGMA table_info('{$table}')")->fetchAll(),
             // pgsql
