@@ -397,8 +397,8 @@ class Database
         $table = self::getTableName($table, false, $connection);
 
         $db = DB::connection($connection);
-
-        $columns = match ($connection) {
+        $driver = config('database.connections.'. $connection . '.driver');
+        $columns = match ($driver) {
             // sqlite
             'sqlite' => $db->getPdo()->query("PRAGMA table_info('{$table}')")->fetchAll(),
             // pgsql
@@ -408,7 +408,7 @@ class Database
         };
 
         // 提取字段名
-        $columnNames = match ($connection) {
+        $columnNames = match ($driver) {
             'sqlite' => array_map(fn($column) => $column['name'], $columns),
             'pgsql' => array_map(fn($column) => $column['column_name'], $columns),
             default => array_map(fn($column) => $column['Field'], $columns),
