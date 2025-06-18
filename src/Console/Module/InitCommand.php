@@ -130,7 +130,12 @@ class InitCommand extends Command
     {
         $path = $this->getPath('/' . $this->module . 'ServiceProvider.php');
 
-        $this->laravel['files']->put($path, str_replace('{{module}}', $this->module, $this->getStub('ServiceProvider')));
+        $content = str_replace(
+            '{{Namespace}}', 
+            Admin::module()->namespace . "\\{$this->module}", 
+            $this->getStub('ServiceProvider')
+        );
+        $this->laravel['files']->put($path, $content);
 
         $this->line('<info>ServiceProvider file was created:</info> ' . str_replace(base_path(), '', $path));
     }
