@@ -2,27 +2,40 @@
 
 namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 
-use Slowlyo\OwlAdmin\Admin;
-use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use Slowlyo\OwlAdmin\Services\AdminMenuService;
 use Slowlyo\OwlAdmin\Traits\IconifyPickerTrait;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\Generator;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\GenCodeClear;
-use Slowlyo\OwlAdmin\Support\CodeGenerator\FilterGenerator;
+use Slowlyo\OwlAdmin\Controllers\DevTools\Traits\CodeGeneratorFormTrait;
+use Slowlyo\OwlAdmin\Controllers\DevTools\Traits\CodeGeneratorActionsTrait;
+use Slowlyo\OwlAdmin\Controllers\DevTools\Traits\CodeGeneratorComponentTrait;
+use Slowlyo\OwlAdmin\Controllers\DevTools\Traits\CodeGeneratorConfigTrait;
 
 /**
+ * 代码生成器控制器
+ * 
+ * 负责代码生成器的主要功能，包括：
+ * - CRUD 基础操作
+ * - 代码生成、预览、清除
+ * - 组件和字段配置管理
+ * - 复杂表单界面构建
+ * 
  * @property AdminCodeGeneratorService $service
  */
 class CodeGeneratorController extends AdminController
 {
     use IconifyPickerTrait;
+    use CodeGeneratorFormTrait;
+    use CodeGeneratorActionsTrait;
+    use CodeGeneratorComponentTrait;
+    use CodeGeneratorConfigTrait;
 
     protected string $serviceName = AdminCodeGeneratorService::class;
 
+    /**
+     * 主页面入口
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
     public function index()
     {
         if ($this->actionOfGetData()) {
@@ -34,1221 +47,174 @@ class CodeGeneratorController extends AdminController
         );
     }
 
+    /**
+     * 构建列表页面
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\CRUDTable
+     */
     public function list()
     {
-        $form = function ($isEdit = false) {
-            $body = $this->form($isEdit);
-
-            if ($isEdit) {
-                $body = $body->initApi($this->getEditGetDataPath())->api($this->getUpdatePath());
-            } else {
-                $body = $body->api($this->getStorePath());
-            }
-
-            return amis()
-                ->Drawer()
-                ->size('xl')
-                ->title($isEdit ? admin_trans('admin.edit') : admin_trans('admin.create'))
-                ->actions([
-                    amis()->VanillaAction()->actionType('cancel')->label(admin_trans('admin.cancel')),
-                    amis()
-                        ->VanillaAction()
-                        ->type('submit')
-                        ->label(admin_trans('admin.save'))
-                        ->level('primary'),
-                ])
-                ->body($body);
-        };
-
         return $this
             ->baseCRUD()
-            ->filter($this->baseFilter()->body([
-                amis()->TextControl('title', admin_trans('admin.code_generators.app_title'))
-                    ->size('md')
-                    ->clearable()
-                    ->placeholder(admin_trans('admin.code_generators.app_title')),
-                amis()->TextControl('table_name', admin_trans('admin.code_generators.table_name'))
-                    ->size('md')
-                    ->clearable()
-                    ->placeholder(admin_trans('admin.code_generators.table_name')),
-            ]))
-            ->headerToolbar([
-                amis()
-                    ->DrawerAction()
-                    ->label(admin_trans('admin.create'))
-                    ->icon('fa fa-add')
-                    ->level('primary')
-                    ->drawer($form()),
-                amis()
-                    ->DialogAction()
-                    ->label(admin_trans('admin.code_generators.import_record'))
-                    ->icon('fa fa-upload')
-                    ->level('success')
-                    ->dialog(
-                        amis()->Dialog()->title(false)->body(
-                            amis()->Form()->mode('normal')->body([
-                                amis()
-                                    ->TextareaControl('data')
-                                    ->required()
-                                    ->minRows(10)
-                                    ->description(admin_trans('admin.code_generators.import_record_desc'))
-                                    ->placeholder(admin_trans('admin.code_generators.import_record_placeholder')),
-                            ])->api([
-                                'url'    => '/dev_tools/code_generator',
-                                'method' => 'post',
-                                'data'   => '${DECODEJSON(data)}',
-                            ])
-                        )
-                    ),
-                ...$this->baseHeaderToolBar(),
-            ])
-            ->columns([
-                amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('title', admin_trans('admin.code_generators.app_title')),
-                amis()->TableColumn('table_name', admin_trans('admin.code_generators.table_name')),
-                amis()->TableColumn('menu_info.route', admin_trans('admin.code_generators.route')),
-                amis()->TableColumn('updated_at', admin_trans('admin.updated_at'))->sortable(),
-                $this->rowActions([
-                    $this->generateCodeAction(),
-                    $this->previewCodeAction(),
-                    amis()
-                        ->DrawerAction()
-                        ->label(admin_trans('admin.edit'))
-                        ->level('link')
-                        ->drawer($form(true)),
-                    $this->rowDeleteButton(),
-                    amis()->DropdownButton()->label(admin_trans('admin.more'))->level('link')->buttons([
-                        $this->cloneAction(),
-                        $this->copyRecordAction(),
-                        $this->clearCodeAction(),
-                    ]),
-                ]),
-            ]);
+            ->filter($this->buildListFilter())
+            ->headerToolbar($this->buildHeaderToolbar())
+            ->columns($this->buildTableColumns());
     }
 
-    public function form($isEdit = false)
+    /**
+     * 构建列表筛选器
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\Form
+     */
+    protected function buildListFilter()
     {
-        // 下划线的表名处理成驼峰文件名
-        $nameHandler = 'JOIN(ARRAYMAP(SPLIT(IF(ENDSWITH(table_name, "s"), LEFT(table_name, LEN(table_name) - 1), table_name), "_"), item=>CAPITALIZE(item)))';
-        // 填充路径
-        $fillPathAction = [
-            'actionType'  => 'setValue',
-            'componentId' => 'code_generator_form',
-            'args'        => [
-                'value' => [
-                    'model_name'      => '${model_path}${' . $nameHandler . '}',
-                    'controller_name' => '${controller_path}${' . $nameHandler . '}Controller',
-                    'service_name'    => '${service_path}${' . $nameHandler . '}Service',
-                ],
-            ],
-        ];
+        return $this->baseFilter()->body([
+            amis()->TextControl('title', admin_trans('admin.code_generators.app_title'))
+                ->size('md')
+                ->clearable()
+                ->placeholder(admin_trans('admin.code_generators.app_title')),
+            amis()->TextControl('table_name', admin_trans('admin.code_generators.table_name'))
+                ->size('md')
+                ->clearable()
+                ->placeholder(admin_trans('admin.code_generators.table_name')),
+        ]);
+    }
 
+    /**
+     * 构建头部工具栏
+     *
+     * @return array
+     */
+    protected function buildHeaderToolbar()
+    {
+        return [
+            $this->buildCreateDrawerAction(),
+            $this->buildImportDialogAction(),
+            ...$this->baseHeaderToolBar(),
+        ];
+    }
+
+    /**
+     * 构建创建抽屉动作
+     *
+     * @return \Slowlyo\OwlAdmin\Renderers\DrawerAction
+     */
+    protected function buildCreateDrawerAction()
+    {
         return amis()
-            ->Form()
-            ->promptPageLeave()
-            ->id('code_generator_form')
-            ->wrapWithPanel(false)
-            ->labelWidth(150)
-            ->title(' ')
-            ->mode('horizontal')
-            ->resetAfterSubmit()
-            ->initApi('post:/dev_tools/code_generator/form_data')
-            ->tabs([
-                // 基本信息
-                amis()->Tab()->title(admin_trans('admin.code_generators.base_info'))->body(
-                    amis()->Card()->body(
-                        amis()->GroupControl()->body([
-                            amis()->GroupControl()->direction('vertical')->body([
-                                amis()->GroupControl()->body([
-                                    amis()
-                                        ->TextControl('title', admin_trans('admin.code_generators.app_title'))
-                                        ->required()
-                                        ->onEvent([
-                                            'change' => [
-                                                'actions' => [
-                                                    [
-                                                        'actionType'  => 'setValue',
-                                                        'componentId' => 'gen_menu_title',
-                                                        'args'        => ['value' => '${value}'],
-                                                    ],
-                                                ],
-                                            ],
-                                        ]),
-                                ]),
-                                amis()->GroupControl()->body([
-                                    amis()
-                                        ->TextControl('table_name', admin_trans('admin.code_generators.table_name'))
-                                        ->value()
-                                        ->required()
-                                        ->onEvent([
-                                            'change' => [
-                                                'actions' => [
-                                                    [
-                                                        'actionType'  => 'setValue',
-                                                        'componentId' => 'gen_menu_route',
-                                                        'args'        => ['value' => '/${value}'],
-                                                    ],
-                                                    $fillPathAction,
-                                                ],
-                                            ],
-                                        ]),
-                                    amis()
-                                        ->SelectControl('exists_table', admin_trans('admin.code_generators.exists_table'))
-                                        ->searchable()
-                                        ->clearable()
-                                        ->selectMode('group')
-                                        ->source('${exists_tables}')
-                                        ->onEvent([
-                                            'change' => [
-                                                'actions' => [
-                                                    // 更新 table_name 的值
-                                                    [
-                                                        'actionType'  => 'setValue',
-                                                        'componentId' => 'code_generator_form',
-                                                        'args'        => [
-                                                            'value' => [
-                                                                'table_name'  => '${SPLIT(event.data.value, "-")[0]}',
-                                                                'primary_key' => '${table_primary_keys[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
-                                                                'columns'     => '${table_info[SPLIT(event.data.value, "-")[1]][SPLIT(event.data.value, "-")[0]]}',
-                                                            ],
-                                                        ],
-                                                    ],
-                                                    [
-                                                        'actionType'  => 'setValue',
-                                                        'componentId' => 'gen_menu_route',
-                                                        'args'        => ['value' => '/${SPLIT(event.data.value, "-")[0]}'],
-                                                    ],
-                                                    $fillPathAction,
-                                                ],
-                                            ],
-                                        ]),
-                                ]),
-                                amis()
-                                    ->CheckboxesControl('needs', admin_trans('admin.code_generators.options'))
-                                    ->joinValues(false)
-                                    ->extractValue()
-                                    ->checkAll()
-                                    ->defaultCheckAll()
-                                    ->options(Generator::make()->needCreateOptions()),
-                                amis()
-                                    ->TextControl('primary_key', admin_trans('admin.code_generators.primary_key'))
-                                    ->value('id')
-                                    ->description(admin_trans('admin.code_generators.primary_key_description'))
-                                    ->required(),
-                                amis()
-                                    ->SelectControl('save_path', admin_trans('admin.code_generators.save_path_select'))
-                                    ->clearable()
-                                    ->searchable()
-                                    ->description(admin_trans('admin.code_generators.save_path_select_tips'))
-                                    ->selectMode('group')
-                                    ->source('${save_path_options}')
-                                    ->onEvent([
-                                        'change' => [
-                                            'actions' => [
-                                                // 更新 table_name 的值
-                                                [
-                                                    'actionType'  => 'setValue',
-                                                    'componentId' => 'code_generator_form',
-                                                    'args'        => [
-                                                        'value' => [
-                                                            'controller_path' => '${event.data.value.controller_path}',
-                                                            'service_path'    => '${event.data.value.service_path}',
-                                                            'model_path'      => '${event.data.value.model_path}',
-                                                        ],
-                                                    ],
-                                                ],
-                                                $fillPathAction,
-                                            ],
-                                        ],
-                                    ]),
-                                amis()->TextControl('model_name', admin_trans('admin.code_generators.model_name')),
-                                amis()->TextControl('controller_name', admin_trans('admin.code_generators.controller_name')),
-                                amis()->TextControl('service_name', admin_trans('admin.code_generators.service_name')),
-                                amis()->SwitchControl('need_timestamps', 'CreatedAt & UpdatedAt')->value(1),
-                                amis()
-                                    ->SwitchControl('list_display_created_at', admin_trans('admin.code_generators.list_display', ['content' => 'CreatedAt']))
-                                    ->visibleOn('${need_timestamps}')
-                                    ->value($isEdit ? '${page_info.list_display_created_at}' : '${need_timestamps}'),
-                                amis()
-                                    ->SwitchControl('list_display_updated_at', admin_trans('admin.code_generators.list_display', ['content' => 'UpdatedAt']))
-                                    ->visibleOn('${need_timestamps}')
-                                    ->value($isEdit ? '${page_info.list_display_updated_at}' : '${need_timestamps}'),
-                                amis()->SwitchControl('soft_delete', admin_trans('admin.soft_delete'))->value(1),
-                            ]),
-                        ]),
-                    )
-                ),
-                // 字段信息
-                amis()->Tab()->title(admin_trans('admin.code_generators.column_info'))->body([
-                    $this->cachedColumns(),
-                    $this->columnForm(),
-                ]),
-                // 路由配置
-                amis()->Tab()->title(admin_trans('admin.code_generators.route_config'))->body(
-                    amis()->ComboControl('menu_info', false)->multiLine()->subFormMode('horizontal')->items([
-                        amis()->SwitchControl('enabled', admin_trans('admin.code_generators.gen_route_menu'))->value(1),
-                        amis()
-                            ->TextControl('route', admin_trans('admin.code_generators.route'))
-                            ->id('gen_menu_route')
-                            ->required(),
-                        amis()
-                            ->TextControl('title', admin_trans('admin.code_generators.menu_name'))
-                            ->id('gen_menu_title')
-                            ->required(),
-                        amis()
-                            ->TreeSelectControl('parent_id', admin_trans('admin.code_generators.parent_menu'))
-                            ->labelField('title')
-                            ->valueField('id')
-                            ->value(0)
-                            ->source('${menu_tree}'),
-                        $this
-                            ->iconifyPicker('icon', admin_trans('admin.code_generators.menu_icon'))
-                            ->value('ph:circle'),
-                    ])
-                ),
-                // 页面配置
-                amis()->Tab()->title(admin_trans('admin.code_generators.page_config'))->body(
-                    amis()->ComboControl('page_info', false)->multiLine()->subFormMode('horizontal')->items([
-                        amis()
-                            ->RadiosControl('dialog_form', admin_trans('admin.code_generators.dialog_form'))
-                            ->options([
-                                ['label' => admin_trans('admin.code_generators.dialog'), 'value' => 'dialog'],
-                                ['label' => admin_trans('admin.code_generators.drawer'), 'value' => 'drawer'],
-                                ['label' => admin_trans('admin.code_generators.page'), 'value' => 'page'],
-                            ])
-                            ->selectFirst(),
-                        amis()
-                            ->SelectControl('dialog_size', admin_trans('admin.code_generators.dialog_size'))
-                            ->options(['xs', 'sm', 'md', 'lg', 'xl', 'full'])
-                            ->value('md')
-                            ->visibleOn('${dialog_form == "dialog"}'),
-                        amis()
-                            ->SelectControl('dialog_size', admin_trans('admin.code_generators.drawer_size'))
-                            ->options(['xs', 'sm', 'md', 'lg', 'full'])
-                            ->value('md')
-                            ->visibleOn('${dialog_form == "drawer"}'),
-                        amis()->CheckboxesControl('row_actions', admin_trans('admin.actions'))->options([
-                            'create'       => admin_trans('admin.create'),
-                            'show'         => admin_trans('admin.show'),
-                            'edit'         => admin_trans('admin.edit'),
-                            'delete'       => admin_trans('admin.delete'),
-                            'batch_delete' => admin_trans('admin.batch_delete'),
-                        ])->checkAll()->defaultCheckAll()->joinValues(false)->extractValue(),
-                    ])
-                ),
-            ]);
+            ->DrawerAction()
+            ->label(admin_trans('admin.create'))
+            ->icon('fa fa-add')
+            ->level('primary')
+            ->drawer($this->buildFormDrawer(false));
     }
 
     /**
-     * 生成代码
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function generate(Request $request)
-    {
-        $result = Generator::make()->generate($request->id, safe_explode(',', $request->needs));
-
-        return $this->response()->doNotDisplayToast()->success(compact('result'));
-    }
-
-    /**
-     * 预览代码
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function preview(Request $request)
-    {
-        $data = Generator::make()->preview($request->id);
-
-        return $this->response()->doNotDisplayToast()->success($data);
-    }
-
-    /**
-     * 获取组件属性
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     * @throws \ReflectionException
-     */
-    public function getPropertyOptions(Request $request)
-    {
-        if (blank($request->c)) {
-            return $this->response()->success([]);
-        }
-
-        $className = '\\Slowlyo\\OwlAdmin\\Renderers\\' . $request->c;
-
-        $renderer = new \ReflectionClass($className);
-
-        $exclude = ['__construct', '__call', 'set', 'jsonSerialize', 'toJson', 'toArray', 'name', 'label',];
-
-        $options = collect($renderer->getMethods(\ReflectionMethod::IS_PUBLIC))
-            ->map(function ($item) {
-                $_doc = $item->getDocComment();
-                $_doc = $_doc ? trim(str_replace(['/**', '*/', '*'], '', $_doc)) : false;
-
-                return ['name' => $item->name, 'comment' => $_doc];
-            })
-            ->filter(fn($item) => !in_array($item['name'], $exclude))
-            ->map(fn($item) => [
-                'label' => $item['name'],
-                'value' => $item['name'],
-            ])
-            ->values()
-            ->toArray();
-
-        return $this->response()->success(['component_property_options' => $options]);
-    }
-
-    /**
-     * 保存组件配置
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function saveComponentProperty(Request $request)
-    {
-        admin_abort_if(!data_get($request->value, 'key'), admin_trans('admin.required', ['attribute' => admin_trans('admin.admin_menu.component')]));
-
-        $list = [];
-
-        if ($original = settings()->get($request->key)) {
-            foreach ($original as $item) {
-                $list[$item['key'] . '|' . $item['label']] = $item;
-            }
-        }
-
-        $list[$request->value['key'] . '|' . $request->value['label']] = $request->value;
-
-        $res = settings()->set($request->key, array_values($list));
-
-        return $this->autoResponse($res, admin_trans('admin.save'));
-    }
-
-    /**
-     * 获取组件配置
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function getComponentProperty(Request $request)
-    {
-        $component_property_list = collect(settings()->get($request->key))->values();
-
-        return $this->response()->success(compact('component_property_list'));
-    }
-
-    /**
-     * 删除组件配置
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function delComponentProperty(Request $request)
-    {
-        $list = settings()->get($request->name);
-
-        if (blank($list)) {
-            return $this->autoResponse(false);
-        }
-
-        foreach ($list as $key => $item) {
-            if ($item['label'] == $request->label && $item['key'] == $request->key) {
-                unset($list[$key]);
-            }
-        }
-
-        settings()->set($request->name, array_values($list));
-
-        return $this->autoResponse(true);
-    }
-
-    /**
-     * 保存字段配置
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function saveColumnProperty(Request $request)
-    {
-        $value = collect($request->input('value'))->firstWhere('name', $request->column);
-        $list  = settings()->get('admin_common_field', []);
-
-        $list[$request->name] = Arr::except($value, ['component_property_options']);;
-
-        $res = settings()->set('admin_common_field', $list);
-
-        return $this->autoResponse($res, admin_trans('admin.save'));
-    }
-
-    /**
-     * 获取字段配置
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function getColumnProperty(Request $request)
-    {
-        $common_field_list = collect(settings()->get('admin_common_field'))->map(fn($v, $k) => [
-            'name'        => $k,
-            'column_name' => $v['name'],
-            'value'       => $v,
-        ])->values();
-
-        return $this->response()->success(compact('common_field_list'));
-    }
-
-    /**
-     * 删除字段配置
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function delColumnProperty(Request $request)
-    {
-        $list = settings()->get('admin_common_field');
-
-        if (blank($list)) {
-            return $this->autoResponse(false);
-        }
-
-        foreach ($list as $key => $item) {
-            if ($key == $request->name) {
-                unset($list[$key]);
-            }
-        }
-
-        settings()->set('admin_common_field', $list);
-
-        return $this->autoResponse(true);
-    }
-
-    /**
-     * 获取记录
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function getRecord()
-    {
-        $record = $this->service->getDetail(request()->id)->makeHidden(['id', 'created_at', 'updated_at'])->toArray();
-
-        return $this->response()->success(compact('record'));
-    }
-
-    public function formData($directReturn = false)
-    {
-        $databaseColumns = Generator::make()->getDatabaseColumns();
-
-        $defaultPath = $this->service->getDefaultPath();
-
-        $savePaths = [$defaultPath];
-        foreach (Admin::extension()->all() as $extension) {
-            $property    = $extension->composerProperty;
-            $namespace   = str_replace('\\', "/", array_key_first($property->get('autoload.psr-4')));
-            $alias       = $extension->getAlias();
-            $savePaths[] = [
-                'label' => admin_trans("admin.code_generators.save_path_label_prefix") . (empty($alias) ? $extension->getName() : $alias),
-                'value' => [
-                    'controller_path' => $namespace . 'Http/Controllers/',
-                    'service_path'    => $namespace . 'Services/',
-                    'model_path'      => $namespace . 'Models/',
-                ],
-            ];
-        }
-
-        $existsTables = $databaseColumns->map(function ($item, $index) {
-            return [
-                'label'    => $index,
-                'children' => collect($item)->keys()->map(function ($item) use ($index) {
-                    return ['value' => $item . '-' . $index, 'label' => $item];
-                }),
-            ];
-        })->values();
-
-        $data = [
-            'table_info'         => $databaseColumns,
-            'table_primary_keys' => Generator::make()->getDatabasePrimaryKeys(),
-            'default_path'       => $defaultPath,
-            'model_path'         => $defaultPath['value']['model_path'],
-            'service_path'       => $defaultPath['value']['service_path'],
-            'controller_path'    => $defaultPath['value']['controller_path'],
-            'exists_tables'      => $existsTables,
-            'menu_tree'          => AdminMenuService::make()->getTree(),
-            'save_path_options'  => $savePaths,
-            'component_options'  => $this->service->getComponentOptions(),
-        ];
-
-        if ($directReturn) {
-            return $data;
-        }
-
-        return $this->response()->success($data);
-    }
-
-    public function cachedColumns()
-    {
-        return amis()->Flex()->justify('end')->className('pb-3')->items([
-            amis()
-                ->DrawerAction()
-                ->className('mr-3')
-                ->label(admin_trans('admin.code_generators.common_field_add'))
-                ->level('primary')
-                ->drawer(
-                    amis()
-                        ->Drawer()
-                        ->title(admin_trans('admin.code_generators.load_config'))
-                        ->bodyClassName('p-0')
-                        ->actions([])
-                        ->id('load_config_dialog')
-                        ->closeOnOutside()
-                        ->body([
-                            amis()
-                                ->Service()
-                                ->name('common_field_service')
-                                ->api('post:/dev_tools/code_generator/common_field/list')
-                                ->body(
-                                    amis()
-                                        ->CRUDTable()
-                                        ->className('border-none')
-                                        ->loadDataOnce()
-                                        ->source('${common_field_list}')
-                                        ->headerToolbar([
-                                            amis()
-                                                ->DialogAction()
-                                                ->label(admin_trans('admin.code_generators.common_field_add_column'))
-                                                ->level('primary')
-                                                ->dialog(
-                                                    amis()
-                                                        ->Dialog()
-                                                        ->title(admin_trans('admin.code_generators.common_field_add_column'))
-                                                        ->body(
-                                                            amis()
-                                                                ->Form()
-                                                                ->reload('common_field_service')
-                                                                ->api('post:/dev_tools/code_generator/common_field')
-                                                                ->body([
-                                                                    amis()
-                                                                        ->TextControl('name', admin_trans('admin.code_generators.config_name'))
-                                                                        ->description(admin_trans('admin.code_generators.same_name_tips'))
-                                                                        ->required(),
-                                                                    amis()
-                                                                        ->SelectControl('column', admin_trans('admin.code_generators.field_config'))
-                                                                        ->valueField('name')
-                                                                        ->labelField('name')
-                                                                        ->source('${columns}')
-                                                                        ->menuTpl('<div>${name} (${comment})</div>')
-                                                                        ->required(),
-                                                                    amis()->HiddenControl('value')->value('${columns}'),
-                                                                ])
-                                                        )
-                                                ),
-                                        ])
-                                        ->columns([
-                                            amis()
-                                                ->TableColumn('name', admin_trans('admin.code_generators.config_name'))
-                                                ->searchable(),
-                                            amis()
-                                                ->TableColumn('column_name', admin_trans('admin.code_generators.field_name'))
-                                                ->searchable(),
-                                            amis()->Operation()->label(admin_trans('admin.actions'))->buttons([
-                                                // 填充
-                                                amis()
-                                                    ->VanillaAction()
-                                                    ->label(admin_trans('admin.code_generators.fill'))
-                                                    ->level('primary')
-                                                    ->onEvent([
-                                                        'click' => [
-                                                            'actions' => [
-                                                                [
-                                                                    'actionType'  => 'setValue',
-                                                                    'componentId' => 'code_generator_form',
-                                                                    'args'        => [
-                                                                        'value' => [
-                                                                            'columns' => '${CONCAT(columns, [value])}',
-                                                                        ],
-                                                                    ],
-                                                                ],
-                                                                [
-                                                                    'actionType'  => 'closeDialog',
-                                                                    'componentId' => 'load_config_dialog',
-                                                                ],
-                                                            ],
-                                                        ],
-                                                    ]),
-
-                                                // 删除
-                                                amis()
-                                                    ->AjaxAction()
-                                                    ->label(admin_trans('admin.delete'))
-                                                    ->level('danger')
-                                                    ->confirmText(admin_trans('admin.confirm_delete'))
-                                                    ->reload('common_field_service')
-                                                    ->api('post:/dev_tools/code_generator/common_field/del?name=${name}'),
-                                            ])->set('width', 150),
-                                        ])
-                                ),
-                        ])
-                ),
-        ]);
-    }
-
-    public function componentSelect($key, $label = '')
-    {
-        $comboName = $key . '_property';
-        $comboId   = $comboName . '_id';
-
-        return amis()->ComboControl($key, $label)->items([
-            amis()
-                ->Service()
-                ->initFetchOn('${!!' . $key . '_type}')
-                ->api('post:/dev_tools/code_generator/get_property_options?c=${' . $key . '_type}&t=' . $key)
-                ->body([
-                    amis('group')->body([
-                        amis()
-                            ->SelectControl($key . '_type', admin_trans('admin.admin_menu.type'))
-                            ->searchable()
-                            ->id($key)
-                            ->clearable()
-                            ->size('lg')
-                            ->source('${component_options}')
-                            ->set('columnRatio', 8)
-                            ->onEvent([
-                                'change' => [
-                                    'actions' => [
-                                        [
-                                            'actionType'  => 'clear',
-                                            'componentId' => $comboId,
-                                            'expression'  => '${!!' . $comboName . '}',
-                                        ],
-                                    ],
-                                ],
-                            ])->description(admin_trans('admin.code_generators.name_label_desc')),
-                        amis('group')->body([
-                            amis()
-                                ->DrawerAction()
-                                ->label(admin_trans('admin.code_generators.load_config'))
-                                ->level('primary')
-                                ->set('columnRatio', 4)
-                                ->drawer(
-                                    amis()
-                                        ->Drawer()
-                                        ->title(admin_trans('admin.code_generators.load_config'))
-                                        ->bodyClassName('p-0')
-                                        ->actions([])
-                                        ->id('load_config_dialog')
-                                        ->closeOnOutside()
-                                        ->body(
-                                            amis()
-                                                ->Service()
-                                                ->name('component_property_list_service')
-                                                ->api('post:/dev_tools/code_generator/component_property/list?key=' . $comboName . '&c=${' . $key . '_type}')
-                                                ->body(
-                                                    amis()
-                                                        ->CRUDTable()
-                                                        ->className('border-none')
-                                                        ->loadDataOnce()
-                                                        ->source('${component_property_list}')
-                                                        ->columns([
-                                                            amis()
-                                                                ->TableColumn('label', admin_trans('admin.admin_role.name'))
-                                                                ->searchable(),
-
-                                                            amis()
-                                                                ->Operation()
-                                                                ->label(admin_trans('admin.actions'))
-                                                                ->buttons([
-                                                                    // 填充
-                                                                    amis()
-                                                                        ->VanillaAction()
-                                                                        ->label(admin_trans('admin.code_generators.fill'))
-                                                                        ->level('primary')
-                                                                        ->onEvent([
-                                                                            'click' => [
-                                                                                'actions' => [
-                                                                                    [
-                                                                                        'actionType'  => 'setValue',
-                                                                                        'componentId' => $comboId,
-                                                                                        'args'        => ['value' => '${value}'],
-                                                                                    ],
-                                                                                    [
-                                                                                        'actionType'  => 'setValue',
-                                                                                        'componentId' => $key,
-                                                                                        'args'        => ['value' => '${key}'],
-                                                                                    ],
-                                                                                    [
-                                                                                        'actionType'  => 'closeDialog',
-                                                                                        'componentId' => 'load_config_dialog',
-                                                                                    ],
-                                                                                ],
-                                                                            ],
-                                                                        ]),
-
-                                                                    // 删除
-                                                                    amis()
-                                                                        ->AjaxAction()
-                                                                        ->label(admin_trans('admin.delete'))
-                                                                        ->level('danger')
-                                                                        ->confirmText(admin_trans('admin.confirm_delete'))
-                                                                        ->reload('component_property_list_service')
-                                                                        ->api('post:/dev_tools/code_generator/component_property/del?name=' . $comboName),
-                                                                ])
-                                                                ->set('width', 150),
-                                                        ])
-                                                )
-                                        )
-                                ),
-                            amis()
-                                ->DialogAction()
-                                ->label(admin_trans('admin.code_generators.save_current_config'))
-                                ->level('success')
-                                ->set('columnRatio', 8)
-                                ->dialog(
-                                    amis()
-                                        ->Dialog()
-                                        ->title(admin_trans('admin.code_generators.save_current_config'))
-                                        ->body(
-                                            amis()
-                                                ->Form()
-                                                ->mode('normal')
-                                                ->api('post:/dev_tools/code_generator/component_property')
-                                                ->body([
-                                                    amis()->HiddenControl('key')->value($comboName),
-                                                    amis()->ComboControl('value')->items([
-                                                        amis()
-                                                            ->TextControl('label')
-                                                            ->inline(false)
-                                                            ->required()
-                                                            ->placeholder(admin_trans('admin.code_generators.input_config_name'))
-                                                            ->description(admin_trans('admin.code_generators.same_name_tips')),
-                                                        amis()->HiddenControl('key')->value('${' . $key . '_type}'),
-                                                        amis()->HiddenControl('value')->value('${' . $comboName . '}'),
-                                                    ]),
-                                                ])
-                                        )
-                                ),
-                        ])->set('columnRatio', 4),
-                    ]),
-
-                    amis()
-                        ->ComboControl($comboName, admin_trans('admin.code_generators.property'))
-                        ->id($comboId)
-                        ->multiple()
-                        ->strictMode(false)
-                        ->items([
-                            amis()
-                                ->TextControl('name', admin_trans('admin.code_generators.property_name'))
-                                ->required()
-                                ->set('unique', true)
-                                ->size('md')
-                                ->clearable()
-                                ->source('${component_property_options}'),
-                            amis()->TextControl('value', admin_trans('admin.code_generators.value'))->size('md'),
-                        ]),
-                ]),
-        ]);
-    }
-
-    /**
-     * 字段表单
-     *
-     * @return \Slowlyo\OwlAdmin\Renderers\Card
-     */
-    public function columnForm()
-    {
-        // 设置组件的 Tab
-        $componentSchema = function ($title, $tips, $key) {
-            return amis()->Tab()->title($title)->body([
-                amis()->Alert()->level('info')->showIcon()->body($tips),
-                amis()->Divider(),
-                $this->componentSelect($key)->mode('normal'),
-            ]);
-        };
-
-        return amis()->Card()->body([
-            amis()
-                ->Alert()
-                ->body(admin_trans('admin.code_generators.column_warning') . " <a href='https://github.com/Slowlyo/owl-admin/issues/5' target='_blank'>" . admin_trans('admin.show') . "</a> ")
-                ->level('warning')
-                ->showCloseButton()
-                ->showIcon(),
-            amis()
-                ->SubFormControl('columns', false)
-                ->multiple()
-                ->btnLabel('${"<div class=\'column-name\'>"+ name + "</div><div class=\'text-success\'>" + type +"</div><div class=\'item-comment\'>"+ comment +"</div>"}')
-                ->minLength(1)
-                ->draggable()
-                ->addable()
-                ->removable()
-                ->itemClassName('custom-subform-item')
-                ->addButtonText(admin_trans('admin.code_generators.add_column'))
-                ->form(
-                    amis()
-                        ->FormControl()
-                        ->set('title', admin_trans('admin.code_generators.add_column'))
-                        ->size('lg')
-                        ->id('column_form')
-                        ->tabs([
-                            // 基本信息
-                            amis()->Tab()->title(admin_trans('admin.code_generators.base_info'))->body([
-                                amis()->GroupControl()->body([
-                                    amis()
-                                        ->TextControl('name', admin_trans('admin.code_generators.column_name'))
-                                        ->required(),
-                                    amis()
-                                        ->SelectControl('type', admin_trans('admin.code_generators.type'))
-                                        ->options(Generator::make()->availableFieldTypes())
-                                        ->searchable()
-                                        ->value('string')
-                                        ->required(),
-                                ]),
-
-                                amis()->GroupControl()->body([
-                                    amis()
-                                        ->TextControl('comment', admin_trans('admin.code_generators.comment'))
-                                        ->value(),
-                                    amis()->TextControl('default', admin_trans('admin.code_generators.default_value')),
-                                ]),
-
-                                amis()->GroupControl()->body([
-                                    amis()
-                                        ->TextControl('additional', admin_trans('admin.code_generators.extra_params'))
-                                        ->labelRemark(
-                                            admin_trans('admin.code_generators.remark1') .
-                                                "<a href='https://learnku.com/docs/laravel/9.x/migrations/12248#b419dd' target='_blank'>" .
-                                                admin_trans('admin.code_generators.remark2') .
-                                                "</a>, " . admin_trans('admin.code_generators.remark3')
-                                        ),
-                                    amis()
-                                        ->SelectControl('column_index', admin_trans('admin.code_generators.index'))
-                                        ->options(
-                                            collect(['index', 'unique'])->map(fn($value) => [
-                                                'label' => $value,
-                                                'value' => $value,
-                                            ])
-                                        )
-                                        ->clearable(),
-                                ]),
-
-                                amis()
-                                    ->SwitchControl('nullable', admin_trans('admin.code_generators.nullable'))
-                                    ->width(60),
-                                amis()
-                                    ->CheckboxesControl('action_scope', admin_trans('admin.code_generators.scope'))
-                                    ->options([
-                                        ['label' => admin_trans('admin.list'), 'value' => 'list'],
-                                        ['label' => admin_trans('admin.detail'), 'value' => 'detail'],
-                                        ['label' => admin_trans('admin.create'), 'value' => 'create'],
-                                        ['label' => admin_trans('admin.edit'), 'value' => 'edit'],
-                                    ])
-                                    ->joinValues(false)
-                                    ->extractValue()
-                                    ->checkAll()
-                                    ->defaultCheckAll(),
-                            ]),
-                            // 列表组件
-                            $componentSchema(
-                                admin_trans('admin.code_generators.list_component'),
-                                admin_trans('admin.code_generators.list_component_desc'),
-                                'list_component'
-                            ),
-                            // 列表筛选
-                            amis()->Tab()->title(admin_trans('admin.code_generators.list_filter'))->body([
-                                amis()->ComboControl('list_filter')->items([
-                                    amis()
-                                        ->SelectControl('type', admin_trans('admin.code_generators.filter_type'))
-                                        ->options(map2options(FilterGenerator::$filterMap))
-                                        ->required(),
-                                    amis()
-                                        ->RadiosControl('mode', admin_trans('admin.code_generators.filter_mode'))
-                                        ->selectFirst()
-                                        ->options([
-                                            'fixed' => admin_trans('admin.code_generators.filter_mode_fixed'),
-                                            'input' => admin_trans('admin.code_generators.filter_mode_input'),
-                                        ]),
-                                    amis()
-                                        ->TextControl('value', admin_trans('admin.code_generators.filter_mode_fixed_value'))
-                                        ->visibleOn('${mode == "fixed"}'),
-                                    amis()
-                                        ->TextControl('input_name', admin_trans('admin.code_generators.filter_input_name'))
-                                        ->visibleOn('${mode == "input"}')
-                                        ->required(),
-                                    amis()
-                                        ->TextControl('input_label', admin_trans('admin.code_generators.filter_input_label'))
-                                        ->visibleOn('${mode == "input"}'),
-                                    $this
-                                        ->componentSelect('filter', admin_trans('admin.code_generators.filter_component'))
-                                        ->visibleOn('${mode == "input"}')
-                                        ->value([
-                                            'filter_type'     => 'TextControl',
-                                            'filter_property' => [
-                                                ['name' => 'size', 'value' => 'md'],
-                                                ['name' => 'clearable', 'value' => 1],
-                                            ],
-                                        ]),
-                                ])->multiple()->multiLine()->mode('normal'),
-                            ]),
-                            // 表单组件
-                            $componentSchema(
-                                admin_trans('admin.code_generators.form_component'),
-                                admin_trans('admin.code_generators.form_component_desc'),
-                                'form_component'
-                            ),
-                            // 详情组件
-                            $componentSchema(
-                                admin_trans('admin.code_generators.detail_component'),
-                                admin_trans('admin.code_generators.detail_component_desc'),
-                                'detail_component'
-                            ),
-                            // 模型配置
-                            amis()->Tab()->title(admin_trans('admin.code_generators.model_config'))->body([
-                                amis()
-                                    ->SwitchControl('file_column', admin_trans('admin.code_generators.file_column'))
-                                    ->value(0)
-                                    ->description(admin_trans('admin.code_generators.file_column_desc')),
-                                amis()
-                                    ->SwitchControl('file_column_multi', admin_trans('admin.code_generators.file_column_multi'))
-                                    ->value(0)
-                                    ->visibleOn('${file_column}'),
-                            ]),
-                        ])
-                ),
-        ]);
-    }
-
-    /**
-     * 预览代码 按钮
+     * 构建导入对话框动作
      *
      * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
      */
-    public function previewCodeAction()
+    protected function buildImportDialogAction()
     {
-        $editorTab = function ($column) {
-            return amis()->Tab()->title(Str::title($column))->body(
-                amis()->EditorControl($column)->language('php')->disabled()->size('xxl')
-            );
-        };
-
         return amis()
             ->DialogAction()
-            ->label(admin_trans('admin.code_generators.preview'))
-            ->level('link')
+            ->label(admin_trans('admin.code_generators.import_record'))
+            ->icon('fa fa-upload')
+            ->level('success')
             ->dialog(
-                amis()->Dialog()->size('lg')->title(admin_trans('admin.code_generators.preview_code'))->body(
-                    amis()->Service()->api('post:/dev_tools/code_generator/preview?id=${id}')->body(
-                        amis()->Tabs()->tabs([
-                            $editorTab('controller'),
-                            $editorTab('service'),
-                            $editorTab('model'),
-                            $editorTab('migration'),
-                        ])
-                    )
+                amis()->Dialog()->title(false)->body(
+                    amis()->Form()->mode('normal')->body([
+                        amis()
+                            ->TextareaControl('data')
+                            ->required()
+                            ->minRows(10)
+                            ->description(admin_trans('admin.code_generators.import_record_desc'))
+                            ->placeholder(admin_trans('admin.code_generators.import_record_placeholder')),
+                    ])->api([
+                        'url'    => '/dev_tools/code_generator',
+                        'method' => 'post',
+                        'data'   => '${DECODEJSON(data)}',
+                    ])
                 )
             );
     }
 
     /**
-     * 克隆记录 按钮
+     * 构建表格列
      *
-     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
+     * @return array
      */
-    public function cloneAction()
+    protected function buildTableColumns()
     {
-        return amis()
-            ->DialogAction()
-            ->label(admin_trans('admin.code_generators.clone_record'))
-            ->level('link')
-            ->dialog(
-                amis()->Dialog()->title(admin_trans('admin.code_generators.clone_record'))->body([
-                    amis()->Form()->wrapWithPanel(false)->api('post:/dev_tools/code_generator/clone')->body([
-                        amis()->HiddenControl('id'),
-                        amis()
-                            ->TextControl('table_name', admin_trans('admin.code_generators.new_table_name'))
-                            ->required(),
-                        amis()->TextControl('title', admin_trans('admin.code_generators.new_app_title'))->required(),
-                    ]),
-                ])
-            );
+        return [
+            amis()->TableColumn('id', 'ID')->sortable(),
+            amis()->TableColumn('title', admin_trans('admin.code_generators.app_title')),
+            amis()->TableColumn('table_name', admin_trans('admin.code_generators.table_name')),
+            amis()->TableColumn('menu_info.route', admin_trans('admin.code_generators.route')),
+            amis()->TableColumn('updated_at', admin_trans('admin.updated_at'))->sortable(),
+            $this->buildRowActions(),
+        ];
     }
 
     /**
-     * 复制记录 按钮
+     * 构建行动作
      *
-     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
+     * @return \Slowlyo\OwlAdmin\Renderers\Operation
      */
-    public function copyRecordAction()
+    protected function buildRowActions()
     {
-        return amis()
-            ->DialogAction()
-            ->label(admin_trans('admin.code_generators.copy_record'))
-            ->level('link')
-            ->dialog(
-                amis()->Dialog()->title(false)->body(
-                    amis()
-                        ->Form()
-                        ->initApi('post:/dev_tools/code_generator/get_record?id=${id}')
-                        ->mode('normal')
-                        ->body(
-                            amis()
-                                ->TextareaControl('record')
-                                ->disabled()
-                                ->description(admin_trans('admin.code_generators.copy_record_description'))
-                        ),
-                )->actions([
-                    amis()->VanillaAction()->actionType('cancel')->label(admin_trans('admin.cancel')),
-                    amis()
-                        ->CopyAction()
-                        ->label(admin_trans('admin.copy'))
-                        ->level('success')
-                        ->content('${ENCODEJSON(record)}'),
-                ])
-            );
+        return $this->rowActions([
+            $this->generateCodeAction(),
+            $this->previewCodeAction(),
+            amis()
+                ->DrawerAction()
+                ->label(admin_trans('admin.edit'))
+                ->level('link')
+                ->drawer($this->buildFormDrawer(true)),
+            $this->rowDeleteButton(),
+            amis()->DropdownButton()->label(admin_trans('admin.more'))->level('link')->buttons([
+                $this->cloneAction(),
+                $this->copyRecordAction(),
+                $this->clearCodeAction(),
+            ]),
+        ]);
     }
 
     /**
-     * 生成代码 按钮
+     * 构建表单抽屉
      *
-     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
+     * @param bool $isEdit 是否为编辑模式
+     * @return \Slowlyo\OwlAdmin\Renderers\Drawer
      */
-    public function generateCodeAction()
+    protected function buildFormDrawer($isEdit = false)
     {
-        return amis()
-            ->DialogAction()
-            ->level('link')
-            ->label(admin_trans('admin.code_generators.generate_code'))
-            ->iconClassName('pr-4')
-            ->dialog(
-                amis()->Dialog()->title(admin_trans('admin.code_generators.select_generate_record'))->body([
-                    amis()->Form()->api('post:/dev_tools/code_generator/generate?id=${id}')->mode('normal')->body([
-                        amis()
-                            ->CheckboxesControl('needs')
-                            ->checkAll()
-                            ->inline(false)
-                            ->required()
-                            ->options(Generator::make()->needCreateOptions()),
-                    ])->feedback(
-                        amis()
-                            ->Dialog()->title(' ')->bodyClassName('overflow-auto')
-                            ->size('lg')
-                            ->body(amis()->Tpl()->tpl('${result | raw}'))
-                            ->onEvent([
-                                'confirm' => [
-                                    'actions' => [
-                                        ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'],
-                                    ],
-                                ],
-                                'cancel'  => [
-                                    'actions' => [
-                                        ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'],
-                                    ],
-                                ],
-                            ])
-                    ),
-                ])
-            );
-    }
+        $body = $this->form($isEdit);
 
-    /**
-     * 清除代码 按钮
-     *
-     * @return \Slowlyo\OwlAdmin\Renderers\DialogAction
-     */
-    public function clearCodeAction()
-    {
-        return amis()
-            ->DialogAction()
-            ->level('link')
-            ->label(admin_trans('admin.code_generators.clear_code'))
-            ->dialog(
-                amis()->Dialog()->size('md')->title(admin_trans('admin.code_generators.select_clear_record'))->body([
-                    amis()->Form()->api('post:/dev_tools/code_generator/clear?id=${id}')->mode('normal')->body([
-                        amis()
-                            ->CheckboxesControl('selected')
-                            ->checkAll()
-                            ->inline(false)
-                            ->required()
-                            ->itemClassName('py-4 relative')
-                            ->menuTpl('<div class="absolute pt-4 top-0 left-6 h-full w-full"><div class="font-bold">${label}</div><div class="break-words break-all text-sm text-gray-400">${content}</div></div>')
-                            ->source('post:/dev_tools/code_generator/gen_record_options?id=${id}'),
-                    ])->onEvent([
-                        'submitSucc' => [
-                            'actions' => [['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()']],
-                        ],
-                    ]),
-                ])
-            );
-    }
-
-    /**
-     * 清除代码
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function clear()
-    {
-        GenCodeClear::make()->handle(request()->all());
-
-        return $this->response()->successMessage(admin_trans('admin.action_success'));
-    }
-
-    /**
-     * 克隆记录
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function clone()
-    {
-        $this->service->clone(request()->all());
-
-        return $this->response()->successMessage(admin_trans('admin.action_success'));
-    }
-
-    /**
-     * 获取生成的内容
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function genRecordOptions()
-    {
-        $list = GenCodeClear::make()->getRecord(request('id'));
-
-        $options = collect($list)->except(['menu_id'])->map(fn($item, $index) => [
-            'label'   => Str::headline($index),
-            'value'   => $index,
-            'content' => is_array($item) ? implode("\n", $item) : $item,
-            'hidden'  => blank($item),
-        ])->values();
-
-        return $this->response()->success($options);
-    }
-
-    public function edit($id)
-    {
-        if ($this->actionOfGetData()) {
-            $data = $this->service->getEditData($id)->toArray();
-
-            $data = array_merge($data, $this->formData(true));
-
-            return $this->response()->success($data);
+        if ($isEdit) {
+            $body = $body->initApi($this->getEditGetDataPath())->api($this->getUpdatePath());
+        } else {
+            $body = $body->api($this->getStorePath());
         }
 
-        return parent::edit($id);
+        return amis()
+            ->Drawer()
+            ->size('xl')
+            ->title($isEdit ? admin_trans('admin.edit') : admin_trans('admin.create'))
+            ->actions([
+                amis()->VanillaAction()->actionType('cancel')->label(admin_trans('admin.cancel')),
+                amis()
+                    ->VanillaAction()
+                    ->type('submit')
+                    ->label(admin_trans('admin.save'))
+                    ->level('primary'),
+            ])
+            ->body($body);
     }
 
     /**
-     * 页面样式
+     * 页面样式配置
      *
-     * @return array[]
+     * @return array
      */
     private function css()
     {
