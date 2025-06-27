@@ -31,7 +31,7 @@ class AdminRelationshipService extends AdminService
 
     public function getAll()
     {
-        return cache()->driver('file')->rememberForever($this->cacheKey, function () {
+        return $this->cache()->rememberForever($this->cacheKey, function () {
             try {
                 return self::query()->get();
             } catch (\Throwable $e) {
@@ -55,14 +55,19 @@ class AdminRelationshipService extends AdminService
         admin_abort_if($methodExists, admin_trans('admin.relationships.rel_name_exists'));
     }
 
+    private function cache()
+    {
+        return cache()->driver('file');
+    }
+
     public function saved($model, $isEdit = false)
     {
-        cache()->forget($this->cacheKey);
+        $this->cache()->forget($this->cacheKey);
     }
 
     public function deleted($ids)
     {
-        cache()->forget($this->cacheKey);
+        $this->cache()->forget($this->cacheKey);
     }
 
     public function allModels()
