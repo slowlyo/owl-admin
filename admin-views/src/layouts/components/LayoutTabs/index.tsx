@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef, useCallback} from 'react'
 import useStorage from '@/utils/useStorage'
 import {getFlattenRoutes} from '@/routes/helpers'
 import useRoute, {IRoute} from '@/routes'
@@ -6,6 +6,62 @@ import {useHistory} from 'react-router'
 import {useAliveController} from 'react-activation'
 import Tab from './components/Tab'
 import {getCacheKey, registerGlobalFunction} from '@/utils/common'
+
+// 工具函数：检查元素是否在可视区域内
+const isElementInViewport = (element: Element, container: Element): boolean => {
+    const elementRect = element.getBoundingClientRect()
+    const containerRect = container.getBoundingClientRect()
+
+    return (
+        elementRect.left >= containerRect.left &&
+        elementRect.right <= containerRect.right &&
+        elementRect.top >= containerRect.top &&
+        elementRect.bottom <= containerRect.bottom
+    )
+}
+
+// 工具函数：防抖
+const debounce = (func: Function, wait: number) => {
+    let timeout: NodeJS.Timeout
+    return function executedFunction(...args: any[]) {
+        const later = () => {
+            clearTimeout(timeout)
+            func(...args)
+        }
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+    }
+}
+
+// 工具函数：等待元素出现
+const waitForElement = (selector: string, timeout = 3000): Promise<Element | null> => {
+    return new Promise((resolve) => {
+        const element = document.querySelector(selector)
+        if (element) {
+            resolve(element)
+            return
+        }
+
+        const observer = new MutationObserver(() => {
+            const element = document.querySelector(selector)
+            if (element) {
+                observer.disconnect()
+                resolve(element)
+            }
+        })
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        })
+
+        // 超时处理
+        setTimeout(() => {
+            observer.disconnect()
+            resolve(null)
+        }, timeout)
+    })
+}
 
 // Tab
 const LayoutTabs = () => {
@@ -20,6 +76,7 @@ const LayoutTabs = () => {
     const {drop} = useAliveController()
 
     const [tabs, setTabs] = React.useState<IRoute[]>([])
+    const locateTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
     // 更新 Tab
     const updateTabs = (_tabs) => {
@@ -56,22 +113,56 @@ const LayoutTabs = () => {
         return current ? formatTabValue(current, pathname) : null
     }
 
-    // 定位当前 Tab
-    const locateTheCurrentTab = () => {
-        setTimeout(() => {
-            const tab = document.querySelector('.current_selected_tab')
+    // 优化后的定位当前 Tab 函数
+    const locateTheCurrentTab = useCallback(async () => {
+        // 清除之前的定时器
+        if (locateTimeoutRef.current) {
+            clearTimeout(locateTimeoutRef.current)
+        }
 
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    tab?.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})
-                }, 200)
+        try {
+            // 等待当前选中的tab元素出现
+            const currentTab = await waitForElement('.current_selected_tab', 1000)
+            if (!currentTab) {
+                console.warn('未找到当前选中的tab元素')
+                return
             }
-        }, 100)
-    }
+
+            // 获取tabs容器
+            const tabsContainer = document.querySelector('.owl-tabs')
+            if (!tabsContainer) {
+                console.warn('未找到tabs容器')
+                return
+            }
+
+            // 检查元素是否已经在可视区域内
+            if (isElementInViewport(currentTab, tabsContainer)) {
+                return // 已经可见，无需滚动
+            }
+
+            // 使用requestAnimationFrame确保DOM更新完成
+            requestAnimationFrame(() => {
+                currentTab.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                })
+            })
+        } catch (error) {
+            console.error('定位tab时发生错误:', error)
+        }
+    }, [])
+
+    // 防抖版本的定位函数
+    const debouncedLocateTab = useCallback(
+        debounce(locateTheCurrentTab, 100),
+        [locateTheCurrentTab]
+    )
 
     // 切换 Tab
     const changeTab = () => {
-        locateTheCurrentTab()
+        // 使用防抖版本的定位函数
+        debouncedLocateTab()
 
         // 如果当前路由不在缓存中，则添加
         const _currentTab = currentTab()
@@ -181,6 +272,15 @@ const LayoutTabs = () => {
 
     useEffect(() => changeTab(), [routes, pathname])
     useEffect(() => initTab(), [routes])
+
+    // 清理定时器
+    useEffect(() => {
+        return () => {
+            if (locateTimeoutRef.current) {
+                clearTimeout(locateTimeoutRef.current)
+            }
+        }
+    }, [])
 
     const tabClass = 'owl-tabs w-full h-[40px] flex px-[20px] overflow-x-auto overflow-y-hidden items-center border-b bg-[var(--owl-main-bg)] scroll-smooth'
 

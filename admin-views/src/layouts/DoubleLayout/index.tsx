@@ -101,8 +101,8 @@ export const DoubleLayout = () => {
                     <div className="w-full h-full pt-[65px]">
                         {routes?.map(item => {
                             if (item?.meta?.hide) return null
-                            const baseStyle = 'text-white flex flex-col items-center justify-center h-[65px] cursor-pointer'
-                            const selectStyle = selectedKeys.includes(item.path) ? ' bg-[var(--colors-brand-5)] hover:bg-[var(--colors-brand-5)]' : ' hover:bg-gray-100/20'
+                            const baseStyle = 'group text-white flex flex-col items-center justify-center h-[65px] cursor-pointer transition-all duration-200 ease-in-out'
+                            const selectStyle = selectedKeys.includes(item.path) ? ' bg-[var(--colors-brand-5)] hover:bg-[var(--colors-brand-5)]' : ' hover:bg-gray-100/20 hover:text-gray-100'
 
                             return (
                                 <div key={item.name}
@@ -110,11 +110,11 @@ export const DoubleLayout = () => {
                                      onClick={() => clickItem(item)}
                                      title={item?.meta?.title}>
                                     {(item?.meta?.icon && item?.meta?.icon != '-') && (
-                                        <div className="p-1">
+                                        <div className="p-1 transition-transform duration-200 ease-in-out group-hover:scale-110">
                                             <Icon icon={item?.meta?.icon} fontSize={18}/>
                                         </div>
                                     )}
-                                    <div className="text-[12px] whitespace-nowrap">
+                                    <div className="text-[12px] whitespace-nowrap transition-all duration-200 ease-in-out">
                                         {item?.meta?.title}
                                     </div>
                                 </div>
@@ -124,27 +124,30 @@ export const DoubleLayout = () => {
                 </Scrollbars>
             </Sider>
             <Layout>
-                <Sider hidden={!childrenRoutes?.length}
-                       width={220}
-                       collapsedWidth={65}
-                       className="border-r relative"
+                <Sider width={childrenRoutes?.length ? 220 : 0}
+                       collapsedWidth={childrenRoutes?.length ? 65 : 0}
+                       className={`relative transition-all duration-300 ease-in-out overflow-hidden ${childrenRoutes?.length ? 'border-r' : ''}`}
                        theme="light"
-                       collapsed={collapsed}>
+                       collapsed={collapsed && !!childrenRoutes?.length}>
                     {(!collapsed && !!childrenRoutes?.length) && (
-                        <div className="w-full h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate absolute">
+                        <div className="w-full h-[65px] border-b flex justify-center items-center text-xl font-semibold truncate absolute transition-opacity duration-300 ease-in-out">
                             {getSetting('app_name')}
                         </div>
                     )}
 
-                    <div className="w-full h-full pt-[65px]">
-                        <LayoutMenu collapsed={collapsed} routeProps={childrenRoutes}/>
+                    <div className={`w-full h-full pt-[65px] transition-opacity duration-300 ease-in-out ${childrenRoutes?.length ? 'opacity-100' : 'opacity-0'}`}>
+                        {childrenRoutes?.length > 0 && (
+                            <LayoutMenu collapsed={collapsed} routeProps={childrenRoutes}/>
+                        )}
                     </div>
                 </Sider>
 
                 <Content className="overflow-hidden relative">
                     <Header className="h-[65px] w-full leading-none flex justify-between items-center border-b p-0 absolute">
                         <div className="flex h-full items-center">
-                            {!!childrenRoutes?.length && <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>}
+                            <div className={`transition-all duration-300 ease-in-out ${childrenRoutes?.length ? 'opacity-100 w-auto' : 'opacity-0 w-0'} overflow-hidden`}>
+                                {!!childrenRoutes?.length && <CollapseTrigger collapsed={collapsed} toggle={setCollapsed}/>}
+                            </div>
                             <LayoutBreadcrumb/>
                         </div>
                         <LayoutTopBar/>

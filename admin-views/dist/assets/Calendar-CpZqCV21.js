@@ -1,1 +1,0 @@
-import{t as n,z as t,D as d,E as o}from"./index-CEmnTf-r.js";import{DateControlRenderer as a}from"./InputDate-BRQWnCdy.js";var i=function(r){n(e,r);function e(){return r!==null&&r.apply(this,arguments)||this}return e.defaultProps=t(t({},a.defaultProps),{embed:!0}),e=d([o({type:"calendar"})],e),e}(a);export{i as CalendarRenderer};

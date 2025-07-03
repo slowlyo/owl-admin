@@ -70,7 +70,7 @@ const LayoutMenu = (
             menus.push({
                 key: route.path.split('?')[0],
                 label: route.meta.title,
-                icon: <div className="!ml-[-2px]"><Icon icon={route.meta.icon}/></div>,
+                icon: <div className="!ml-[-2px]"><Icon icon={route.meta.icon} fontSize={18}/></div>,
                 children: route.children ? getMenus(route.children) : null,
             })
         }
