@@ -2,6 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Renderers;
 
+use Slowlyo\OwlAdmin\Traits\UploadTrait;
+
 /**
  * RichText 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/input-rich-text
  * 
@@ -10,11 +12,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  */
 class RichTextControl extends BaseRenderer
 {
+    use UploadTrait;
+
     public function __construct()
     {
         $this->set('type', 'input-rich-text');
 
-
+        $this->receiver($this->uploadRichPath())->options(['min_height' => 400, 'convert_urls' => false]);
     }
 
     /**
