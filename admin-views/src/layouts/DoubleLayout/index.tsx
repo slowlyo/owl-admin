@@ -135,7 +135,7 @@ export const DoubleLayout = () => {
                         </div>
                     )}
 
-                    <div className={`w-full h-full pt-[65px] transition-opacity duration-300 ease-in-out ${childrenRoutes?.length ? 'opacity-100' : 'opacity-0'}`}>
+                    <div className={`w-full h-full ${!collapsed ? 'pt-[65px]' : ''} transition-opacity duration-300 ease-in-out ${childrenRoutes?.length ? 'opacity-100' : 'opacity-0'}`}>
                         {childrenRoutes?.length > 0 && (
                             <LayoutMenu collapsed={collapsed} routeProps={childrenRoutes}/>
                         )}
