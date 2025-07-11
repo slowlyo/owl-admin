@@ -44,7 +44,7 @@ class AdminPipeline
      *
      * @return mixed
      */
-    public static function handle($key, $passable, callable $callback = null)
+    public static function handle($key, $passable, ?callable $callback = null)
     {
         $do    = fn($i) => $callback ? $callback($i) : $i;
         $pipes = Admin::context()->get($key, []);

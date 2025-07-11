@@ -277,7 +277,7 @@ class Manager
      *
      * @return array
      */
-    public function getExtensionDirectories(string $dirPath = null)
+    public function getExtensionDirectories(?string $dirPath = null)
     {
         $extensions = [];
 

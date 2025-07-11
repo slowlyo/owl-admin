@@ -201,7 +201,7 @@ class Extension
      * @param array|string $from
      * @param string|null  $to
      */
-    protected function copy(array|string $from, string $to = null)
+    protected function copy(array|string $from, ?string $to = null)
     {
         if (is_array($from) && is_null($to)) {
             foreach ($from as $key => $value) {
