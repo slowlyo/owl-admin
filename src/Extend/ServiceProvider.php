@@ -314,7 +314,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      *
      * @return mixed
      */
-    public function config(string $key = null, $default = null)
+    public function config(?string $key = null, $default = null)
     {
         $config = Admin::setting()->get($this->getConfigKey());
 
