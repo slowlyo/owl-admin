@@ -87,9 +87,9 @@ class Generator
     public function getDatabaseColumns($db = null)
     {
         // 获取所有支持的数据库连接
-        $databases = Arr::where(config('database.connections', []), function ($value) {
+        $databases = Arr::where(config('database.connections', []), function ($value, $connectName) {
             $supports = Admin::config('admin.database.generator') ?: [config("database.default")];
-            return in_array(strtolower(Arr::get($value, 'driver')), $supports);
+            return in_array($connectName, $supports);
         });
 
         $data = [];
@@ -301,10 +301,9 @@ class Generator
 
     public function getDatabasePrimaryKeys($db = null, $tb = null)
     {
-        $databases = Arr::where(config('database.connections', []), function ($value) {
+        $databases = Arr::where(config('database.connections', []), function ($value, $connectName) {
             $supports = Admin::config('admin.database.generator') ?: [config("database.default")];
-
-            return in_array(strtolower(Arr::get($value, 'driver')), $supports);
+            return in_array($connectName, $supports);
         });
 
         $data = [];
