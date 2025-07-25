@@ -114,21 +114,21 @@ class AdminMenuController extends AdminController
                 ->validateOnChange()
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => admin_trans('admin.need_start_with_slash')])
-                ->placeholder('eg: /admin_menus')->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_LINK),
+                ->placeholder('eg: /admin_menus')->hiddenOn('${url_type != ' . Admin::adminMenuModel()::TYPE_LINK . '}'),
 
             amis()->TextControl('url', admin_trans('admin.admin_menu.route'))
                 ->required()
                 ->validateOnChange()
                 ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                 ->validationErrors(['matchRegexp' => admin_trans('admin.need_start_with_slash')])
-                ->placeholder('eg: /admin_menus')->hiddenOn('url_type == ' . Admin::adminMenuModel()::TYPE_LINK),
+                ->placeholder('eg: /admin_menus')->hiddenOn('${url_type == ' . Admin::adminMenuModel()::TYPE_LINK . '}'),
             amis()->SelectControl('component', admin_trans('admin.admin_menu.page'))
                 ->required()
                 ->options(AdminPageService::make()->options())
                 ->menuTpl('${label} <span class="text-gray-300 pl-2">${value}</span>')
                 ->selectFirst()
                 ->searchable()
-                ->visibleOn('url_type == ' . Admin::adminMenuModel()::TYPE_PAGE),
+                ->visibleOn('${url_type == ' . Admin::adminMenuModel()::TYPE_PAGE . '}'),
             amis()->GroupControl()->body([
                 amis()->TextControl('iframe_url', 'IframeUrl')
                     ->required()
@@ -136,13 +136,13 @@ class AdminMenuController extends AdminController
                     ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                     ->validationErrors(['matchRegexp' => admin_trans('admin.need_start_with_slash')])
                     ->placeholder('eg: https://www.qq.com')
-                    ->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_IFRAME),
+                    ->hiddenOn('${url_type != ' . Admin::adminMenuModel()::TYPE_IFRAME . '}'),
             ]),
 
             amis()->FieldSetControl()->title(admin_trans('admin.more'))->collapsable()->collapsed()->body([
                 amis()->TextControl('component', admin_trans('admin.admin_menu.component'))
                     ->description(admin_trans('admin.admin_menu.component_desc'))
-                    ->value('amis')->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_ROUTE),
+                    ->value('amis')->hiddenOn('${url_type != ' . Admin::adminMenuModel()::TYPE_ROUTE . '}'),
                 amis()->SwitchControl('keep_alive', admin_trans('admin.admin_menu.keep_alive'))
                     ->onText(admin_trans('admin.yes'))
                     ->offText(admin_trans('admin.no'))
