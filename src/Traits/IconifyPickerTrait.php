@@ -43,7 +43,7 @@ trait IconifyPickerTrait
             )
             ->set('itemClassName', 'col-xs-4 col-sm-4 col-md-6 col-lg-8 col-xl-12')
             ->card(
-                amis()->Card()->body([
+                amis()->Card()->className('mr-2')->body([
                     amis()->SvgIcon()->icon('${icon}')->className('text-2xl'),
                 ])
             );
