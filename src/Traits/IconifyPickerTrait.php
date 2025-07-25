@@ -17,7 +17,6 @@ trait IconifyPickerTrait
         $schema = amis()->CRUDCards()
             ->perPage(40)
             ->loadDataOnce()
-            ->set('columnsCount', 8)
             ->footerToolbar(['statistics', 'pagination'])
             ->api('/_iconify_search')
             ->filter(
@@ -42,6 +41,7 @@ trait IconifyPickerTrait
                     ]),
                 ])
             )
+            ->set('itemClassName', 'col-xs-4 col-sm-4 col-md-6 col-lg-8 col-xl-12')
             ->card(
                 amis()->Card()->body([
                     amis()->SvgIcon()->icon('${icon}')->className('text-2xl'),
@@ -51,7 +51,8 @@ trait IconifyPickerTrait
         return amis()->PickerControl($name, $label)
             ->pickerSchema($schema)
             ->source('/_iconify_search')
-            ->size('lg')
+            ->modalMode('drawer')
+            ->modalSize('xl')
             ->labelField('icon')
             ->valueField('icon');
     }
