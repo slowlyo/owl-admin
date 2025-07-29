@@ -14,11 +14,10 @@ trait IconifyPickerTrait
      */
     public function iconifyPicker(string $name = '', string $label = '')
     {
-        $schema = amis()->CRUDCards()
-            ->perPage(40)
+        $schema = amis()->CRUDTable()
+            ->perPage(10)
             ->loadDataOnce()
-            ->set('columnsCount', 8)
-            ->footerToolbar(['statistics', 'pagination'])
+            ->footerToolbar(['pagination', 'statistics'])
             ->api('/_iconify_search')
             ->filter(
                 amis()->Form()->wrapWithPanel(false)->body([
@@ -42,16 +41,17 @@ trait IconifyPickerTrait
                     ]),
                 ])
             )
-            ->card(
-                amis()->Card()->body([
+            ->columns([
+                amis()->Flex()->justify('flex-start')->alignItems('center')->items([
                     amis()->SvgIcon()->icon('${icon}')->className('text-2xl'),
+                    amis()->Tpl()->className('ml-3')->tpl('${icon}')
                 ])
-            );
+            ]);
 
         return amis()->PickerControl($name, $label)
             ->pickerSchema($schema)
+            ->modalSize('md')
             ->source('/_iconify_search')
-            ->size('lg')
             ->labelField('icon')
             ->valueField('icon');
     }
