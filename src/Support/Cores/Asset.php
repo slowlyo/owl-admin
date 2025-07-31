@@ -57,7 +57,7 @@ class Asset
             return $this->appendNav;
         }
 
-        $this->appendNav = $appendNav;
+		$this->appendNav = $this->appendNav ? array_merge($this->appendNav, $appendNav) : $appendNav;
 
         return $this;
     }
@@ -68,7 +68,7 @@ class Asset
             return $this->prependNav;
         }
 
-        $this->prependNav = $prependNav;
+		$this->prependNav = $this->prependNav ? array_merge($this->prependNav, $prependNav) : $prependNav;
 
         return $this;
     }
