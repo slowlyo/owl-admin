@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TooltipWrapper
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class TooltipWrapper extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 内容区域 (内容区域)
+     * 
      */
     public function body($value = '')
     {
@@ -26,7 +26,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 内容区CSS类名
+     * 
      */
     public function className($value = '')
     {
@@ -34,7 +34,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示内容，兼容 tooltip，但建议通过 content 来实现提示内容
+     * 
      */
     public function content($value = '')
     {
@@ -42,15 +42,15 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 是否禁用提示
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -58,7 +58,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -66,7 +66,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 是否可以移入浮层中, 默认true
+     * 
      */
     public function enterable($value = true)
     {
@@ -74,15 +74,15 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -90,7 +90,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -98,15 +98,15 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 内容区是否内联显示，默认为false
+     * 
      */
-    public function inline($value = true)
+    public function inline($value = '')
     {
         return $this->set('inline', $value);
     }
 
     /**
-     * 浮层延迟显示时间, 单位 ms
+     * 
      */
     public function mouseEnterDelay($value = '')
     {
@@ -114,7 +114,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 浮层延迟隐藏时间, 单位 ms
+     * 
      */
     public function mouseLeaveDelay($value = '')
     {
@@ -122,7 +122,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 浮层位置相对偏移量
+     * 
      */
     public function offset($value = '')
     {
@@ -130,7 +130,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -138,7 +138,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示浮层出现位置，默认为top 可选值: top | right | bottom | left
+     * 
      */
     public function placement($value = '')
     {
@@ -146,31 +146,31 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 是否点击非内容区域关闭提示，默认为true
+     * 
      */
-    public function rootClose($value = true)
+    public function rootClose($value = '')
     {
         return $this->set('rootClose', $value);
     }
 
     /**
-     * 是否展示浮层指向箭头
+     * 
      */
-    public function showArrow($value = true)
+    public function showArrow($value = '')
     {
         return $this->set('showArrow', $value);
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -178,7 +178,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -186,7 +186,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -194,7 +194,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -202,7 +202,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -218,19 +218,11 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 内容区自定义样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -242,7 +234,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示标题
+     * 
      */
     public function title($value = '')
     {
@@ -258,7 +250,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 箭头CSS类名
+     * 
      */
     public function tooltipArrowClassName($value = '')
     {
@@ -266,7 +258,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示浮层CSS类名
+     * 
      */
     public function tooltipClassName($value = '')
     {
@@ -274,7 +266,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 自定义提示浮层样式
+     * 
      */
     public function tooltipStyle($value = '')
     {
@@ -282,7 +274,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 主题样式， 默认为light 可选值: light | dark
+     * 
      */
     public function tooltipTheme($value = '')
     {
@@ -290,7 +282,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 浮层触发方式，默认为hover
+     * 
      */
     public function trigger($value = '')
     {
@@ -298,7 +290,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示容器
+     * 
      */
     public function type($value = 'tooltip-wrapper')
     {
@@ -306,23 +298,23 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {
@@ -330,7 +322,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 内容区包裹标签
+     * 
      */
     public function wrapperComponent($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Nav 导航渲染器 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/nav
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Nav extends BaseRenderer
 {
@@ -18,15 +18,15 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 手风琴展开 仅垂直inline模式支持
+     * 
      */
-    public function accordion($value = true)
+    public function accordion($value = '')
     {
         return $this->set('accordion', $value);
     }
 
     /**
-     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
+     * 
      */
     public function badge($value = '')
     {
@@ -34,7 +34,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function className($value = '')
     {
@@ -42,15 +42,15 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 控制菜单缩起
+     * 
      */
-    public function collapsed($value = true)
+    public function collapsed($value = '')
     {
         return $this->set('collapsed', $value);
     }
 
     /**
-     * 默认展开层级 小于等于该层数的节点默认全部打开
+     * 
      */
     public function defaultOpenLevel($value = '')
     {
@@ -58,7 +58,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 懒加载 api，如果不配置复用 source 接口。 (懒加载 api，如果不配置复用 source 接口。)
+     * 
      */
     public function deferApi($value = '')
     {
@@ -66,15 +66,15 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 是否禁用
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -82,15 +82,15 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 仅允许同层级拖拽
+     * 
      */
-    public function dragOnSameLevel($value = true)
+    public function dragOnSameLevel($value = '')
     {
         return $this->set('dragOnSameLevel', $value);
     }
 
     /**
-     * 可拖拽
+     * 
      */
     public function draggable($value = true)
     {
@@ -98,7 +98,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -106,7 +106,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 自定义展开图标
+     * 
      */
     public function expandIcon($value = '')
     {
@@ -114,7 +114,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 自定义展开图标位置 默认在前面 before after
+     * 
      */
     public function expandPosition($value = '')
     {
@@ -122,15 +122,15 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -138,7 +138,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -154,7 +154,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 更多操作菜单列表 (更多操作菜单列表)
+     * 
      */
     public function itemActions($value = '')
     {
@@ -162,7 +162,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
+     * 
      */
     public function itemBadge($value = '')
     {
@@ -170,7 +170,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 最多展示多少层级
+     * 
      */
     public function level($value = '')
     {
@@ -178,7 +178,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 链接地址集合
+     * 
      */
     public function links($value = '')
     {
@@ -186,7 +186,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 垂直模式 非折叠状态下 控制菜单打开方式 可选值: panel | float | inline
+     * 
      */
     public function mode($value = '')
     {
@@ -194,7 +194,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -202,7 +202,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 横向导航时自动收纳配置 (横向导航时自动收纳配置)
+     * 
      */
     public function overflow($value = '')
     {
@@ -210,7 +210,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 子菜单项展开浮层样式
+     * 
      */
     public function popupClassName($value = '')
     {
@@ -218,7 +218,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 保存排序的 api (保存排序的 api)
+     * 
      */
     public function saveOrderApi($value = '')
     {
@@ -226,7 +226,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 搜索框相关配置
+     * 
      */
     public function searchConfig($value = '')
     {
@@ -234,7 +234,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 是否开启搜索
+     * 
      */
     public function searchable($value = true)
     {
@@ -242,7 +242,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 控制仅展示指定key菜单下的子菜单项
+     * 
      */
     public function showKey($value = '')
     {
@@ -250,7 +250,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 可以通过 API 拉取。 (可以通过 API 拉取。)
+     * 
      */
     public function source($value = '')
     {
@@ -258,23 +258,23 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * true 为垂直排列，false 为水平排列类似如 tabs。 可选值: 1 | 
+     * 
      */
-    public function stacked($value = true)
+    public function stacked($value = '')
     {
         return $this->set('stacked', $value);
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -282,7 +282,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -290,7 +290,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -298,7 +298,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -306,7 +306,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -322,19 +322,11 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -346,7 +338,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 主题配色 默认light 可选值: light | dark
+     * 
      */
     public function themeColor($value = '')
     {
@@ -354,7 +346,7 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 指定为 Nav 导航渲染器
+     * 
      */
     public function type($value = 'nav')
     {
@@ -362,23 +354,23 @@ class Nav extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {

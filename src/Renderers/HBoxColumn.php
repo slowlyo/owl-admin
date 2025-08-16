@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * HBoxColumn
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class HBoxColumn extends BaseRenderer
 {
@@ -81,7 +81,7 @@ class HBoxColumn extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Audio 音频渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/audio
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Audio extends BaseRenderer
 {
@@ -18,15 +18,15 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 是否自动播放
+     * 
      */
-    public function autoPlay($value = true)
+    public function autoPlay($value = '')
     {
         return $this->set('autoPlay', $value);
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function className($value = '')
     {
@@ -34,7 +34,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 可以配置控制器
+     * 
      */
     public function controls($value = '')
     {
@@ -42,15 +42,15 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 是否禁用
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -58,7 +58,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -66,15 +66,15 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -82,7 +82,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -90,23 +90,23 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 是否是内联模式
+     * 
      */
-    public function inline($value = true)
+    public function inline($value = '')
     {
         return $this->set('inline', $value);
     }
 
     /**
-     * 是否循环播放
+     * 
      */
-    public function loop($value = true)
+    public function loop($value = '')
     {
         return $this->set('loop', $value);
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -114,7 +114,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 配置可选播放倍速
+     * 
      */
     public function rates($value = '')
     {
@@ -122,7 +122,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * "视频播放地址, 支持 $ 取变量。 ("视频播放地址, 支持 $ 取变量。)
+     * 
      */
     public function src($value = '')
     {
@@ -130,15 +130,15 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -146,7 +146,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -154,7 +154,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -162,7 +162,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -170,7 +170,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -186,19 +186,11 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -210,7 +202,7 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 指定为音频播放器
+     * 
      */
     public function type($value = 'audio')
     {
@@ -218,23 +210,23 @@ class Audio extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {

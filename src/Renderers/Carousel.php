@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Carousel 轮播图渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/carousel
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Carousel extends BaseRenderer
 {
@@ -18,15 +18,15 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 是否一直显示箭头
+     * 
      */
-    public function alwaysShowArrow($value = true)
+    public function alwaysShowArrow($value = '')
     {
         return $this->set('alwaysShowArrow', $value);
     }
 
     /**
-     * 动画类型 可选值: fade | slide | marquee
+     * 
      */
     public function animation($value = '')
     {
@@ -34,15 +34,15 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 是否自动播放
+     * 
      */
-    public function auto($value = true)
+    public function auto($value = '')
     {
         return $this->set('auto', $value);
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function className($value = '')
     {
@@ -50,7 +50,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 配置控件内容
+     * 
      */
     public function controls($value = '')
     {
@@ -58,7 +58,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     *  可选值: light | dark
+     * 
      */
     public function controlsTheme($value = '')
     {
@@ -66,7 +66,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 轮播图方向，默认为水平方向 可选值: horizontal | vertical
+     * 
      */
     public function direction($value = '')
     {
@@ -74,15 +74,15 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 是否禁用
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -90,7 +90,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 动画时长
+     * 
      */
     public function duration($value = '')
     {
@@ -98,7 +98,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -106,7 +106,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 设置高度
+     * 
      */
     public function height($value = '')
     {
@@ -114,15 +114,15 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -130,7 +130,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 自定义箭头图标
+     * 
      */
     public function icons($value = '')
     {
@@ -138,7 +138,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -146,7 +146,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 轮播间隔时间
+     * 
      */
     public function interval($value = '')
     {
@@ -154,7 +154,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 配置单条呈现模板 (配置单条呈现模板)
+     * 
      */
     public function itemSchema($value = '')
     {
@@ -162,23 +162,23 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 是否循环播放, 默认为 true。
+     * 
      */
-    public function loop($value = true)
+    public function loop($value = '')
     {
         return $this->set('loop', $value);
     }
 
     /**
-     * 是否支持鼠标事件 默认为 true。
+     * 
      */
-    public function mouseEvent($value = true)
+    public function mouseEvent($value = '')
     {
         return $this->set('mouseEvent', $value);
     }
 
     /**
-     * 多图模式配置项
+     * 
      */
     public function multiple($value = '')
     {
@@ -186,7 +186,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 组件名字，这个名字可以用来定位，用于组件通信
+     * 
      */
     public function name($value = '')
     {
@@ -194,7 +194,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -202,7 +202,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 配置固定值
+     * 
      */
     public function options($value = '')
     {
@@ -210,7 +210,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 占位
+     * 
      */
     public function placeholder($value = '')
     {
@@ -218,15 +218,15 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -234,7 +234,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -242,7 +242,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -250,7 +250,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -258,7 +258,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -274,19 +274,11 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -298,7 +290,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 预览图模式 可选值: contain | cover
+     * 
      */
     public function thumbMode($value = '')
     {
@@ -306,7 +298,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 指定为轮播图类型
+     * 
      */
     public function type($value = 'carousel')
     {
@@ -314,23 +306,23 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {
@@ -338,7 +330,7 @@ class Carousel extends BaseRenderer
     }
 
     /**
-     * 设置宽度
+     * 
      */
     public function width($value = '')
     {

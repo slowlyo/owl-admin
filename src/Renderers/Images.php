@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图片集展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/images
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Images extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 外层 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function className($value = '')
     {
@@ -26,7 +26,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 当前展示图片索引
+     * 
      */
     public function currentIndex($value = '')
     {
@@ -34,7 +34,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 默认图片地址 (默认图片地址)
+     * 
      */
     public function defaultImage($value = '')
     {
@@ -42,7 +42,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 配置值的连接符
+     * 
      */
     public function delimiter($value = '')
     {
@@ -50,15 +50,15 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否禁用
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -66,7 +66,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 展示模式，支持缩略图模式（thumb）和大图模式（full） 可选值: thumb | full
+     * 
      */
     public function displayMode($value = '')
     {
@@ -74,7 +74,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -82,23 +82,23 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否启动放大功能。
+     * 
      */
-    public function enlargeAble($value = true)
+    public function enlargeAble($value = '')
     {
         return $this->set('enlargeAble', $value);
     }
 
     /**
-     * 放大时是否显示图片集
+     * 
      */
-    public function enlargetWithImages($value = true)
+    public function enlargetWithImages($value = '')
     {
         return $this->set('enlargetWithImages', $value);
     }
 
     /**
-     * 描述文字样式
+     * 
      */
     public function fontStyle($value = '')
     {
@@ -106,7 +106,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 大图模式下的缩放模式 可选值: cover | contain
+     * 
      */
     public function fullThumbMode($value = '')
     {
@@ -114,7 +114,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 高度（有sortType时生效）
+     * 
      */
     public function height($value = '')
     {
@@ -122,15 +122,15 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -138,7 +138,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 鼠标悬浮时的展示状态（对应AIpage的文字6，9，10不存在） 可选值: hover-slide | pull-top | scale-center | scale-top | text-style-1 | text-style-2 | text-style-3 | text-style-4 | text-style-5 | text-style-6 | text-style-7
+     * 
      */
     public function hoverMode($value = '')
     {
@@ -146,7 +146,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -154,7 +154,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 放大详情图 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function imageGallaryClassName($value = '')
     {
@@ -162,7 +162,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 列表 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function listClassName($value = '')
     {
@@ -170,7 +170,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 蒙层颜色
+     * 
      */
     public function maskColor($value = '')
     {
@@ -178,7 +178,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 关联字段名，也可以直接配置 src
+     * 
      */
     public function name($value = '')
     {
@@ -186,7 +186,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -202,7 +202,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 大图地址，不设置用 src 属性，如果不是请配置，如：${imageOriginUrl}
+     * 
      */
     public function originalSrc($value = '')
     {
@@ -210,7 +210,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 列表为空时显示
+     * 
      */
     public function placeholder($value = '')
     {
@@ -218,23 +218,23 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否显示尺寸。
+     * 
      */
-    public function showDimensions($value = true)
+    public function showDimensions($value = '')
     {
         return $this->set('showDimensions', $value);
     }
 
     /**
-     * 是否展示图片工具栏
+     * 
      */
-    public function showToolbar($value = true)
+    public function showToolbar($value = '')
     {
         return $this->set('showToolbar', $value);
     }
 
     /**
-     * 排列方式 类命名方式按照上右下左四个边命名，l=2m，m=2s，最小单位为s 每条边的顺序都是从上到下，从左到右。 可选值: sm-ss-sss-m | sss-ss-ms-m | sms-ss-sms-m | sm-ss-sss-ss | ms-ss-sss-ss | sss-ss-sm-ss | mss-ss-ssm-ss | sss-ss-mm-ss | even-${number}-${number}
+     * 
      */
     public function sortType($value = '')
     {
@@ -250,7 +250,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 图片地址，默认读取数据中的 image 属性，如果不是请配置 ,如  ${imageUrl}
+     * 
      */
     public function src($value = '')
     {
@@ -258,15 +258,15 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -274,7 +274,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -282,7 +282,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -290,7 +290,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -298,7 +298,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -314,19 +314,11 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -338,7 +330,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 预览图模式 可选值: w-full | h-full | contain | cover
+     * 
      */
     public function thumbMode($value = '')
     {
@@ -346,7 +338,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 预览图比率 可选值: 1:1 | 4:3 | 16:9
+     * 
      */
     public function thumbRatio($value = '')
     {
@@ -354,7 +346,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 工具栏配置
+     * 
      */
     public function toolbarActions($value = '')
     {
@@ -362,7 +354,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 指定为图片集渲染器 可选值: images | static-images
+     *  可选值: images | static-images
      */
     public function type($value = '')
     {
@@ -370,9 +362,9 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
@@ -386,15 +378,15 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {
@@ -402,7 +394,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 宽度（有sortType时生效）
+     * 
      */
     public function width($value = '')
     {

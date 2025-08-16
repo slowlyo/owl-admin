@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Timeline
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Timeline extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 卡片展示配置，如果传入则将items数据传入cardSchema中循环渲染，itemTitleSchema、titleClassName、detailClassName将不生效。配置后 timeline item中的数据都将可以在cardSchema中通过数据方式引用。如果子节点也配置了cardSchema，则子节点的cardSchema优先级高于timeline的cardSchema (Card 卡片渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card)
+     * 
      */
     public function cardSchema($value = '')
     {
@@ -26,7 +26,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function className($value = '')
     {
@@ -34,7 +34,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 节点详情的CSS类名
+     * 
      */
     public function detailClassName($value = '')
     {
@@ -42,7 +42,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 展示方向 可选值: horizontal | vertical
+     * 
      */
     public function direction($value = '')
     {
@@ -50,15 +50,15 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 是否禁用
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -66,7 +66,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -74,15 +74,15 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -90,7 +90,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 图标的CSS类名
+     * 
      */
     public function iconClassName($value = '')
     {
@@ -98,7 +98,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -106,7 +106,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 节点title自定一展示模板 (节点title自定一展示模板)
+     * 
      */
     public function itemTitleSchema($value = '')
     {
@@ -114,7 +114,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 节点数据
+     * 
      */
     public function items($value = '')
     {
@@ -122,7 +122,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 文字相对于时间轴展示方向 可选值: left | right | top | bottom | alternate
+     * 
      */
     public function mode($value = '')
     {
@@ -130,7 +130,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -138,15 +138,15 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 节点倒序
+     * 
      */
-    public function reverse($value = true)
+    public function reverse($value = '')
     {
         return $this->set('reverse', $value);
     }
 
     /**
-     * API 或 数据映射
+     * 
      */
     public function source($value = '')
     {
@@ -154,15 +154,15 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -170,7 +170,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -178,7 +178,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -186,7 +186,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -194,7 +194,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -210,19 +210,11 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -234,7 +226,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 节点时间的CSS类名
+     * 
      */
     public function timeClassName($value = '')
     {
@@ -242,7 +234,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 节点标题的CSS类名
+     * 
      */
     public function titleClassName($value = '')
     {
@@ -250,7 +242,7 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 指定为 Timeline 时间轴渲染器
+     * 
      */
     public function type($value = 'timeline')
     {
@@ -258,23 +250,23 @@ class Timeline extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {

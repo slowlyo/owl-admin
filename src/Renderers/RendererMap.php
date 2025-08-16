@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
 class RendererMap
 {
     public static array $map = [
+		'action' => Component::class,
 		'alert' => Alert::class,
 		'amis' => Component::class,
 		'anchor-nav' => AnchorNav::class,
@@ -49,7 +50,7 @@ class RendererMap
 		'datetime' => Date::class,
 		'dialog' => Dialog::class,
 		'diff-editor' => DiffControl::class,
-		'divider' => Divider::class,
+		'divider' => Component::class,
 		'dockerfile-editor' => EditorControl::class,
 		'drawer' => Drawer::class,
 		'dropdown-button' => DropdownButton::class,
@@ -113,6 +114,7 @@ class RendererMap
 		'input-url' => TextControl::class,
 		'input-verification-code' => Component::class,
 		'input-year' => YearControl::class,
+		'input-year-range' => Component::class,
 		'java-editor' => EditorControl::class,
 		'javascript-editor' => EditorControl::class,
 		'json' => Json::class,

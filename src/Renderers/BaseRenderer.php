@@ -39,7 +39,7 @@ class BaseRenderer implements \JsonSerializable
         return $this;
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize()
     {
         return $this->filteredResults();
     }

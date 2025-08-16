@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * JSON 数据展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/json
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Json extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function className($value = '')
     {
@@ -26,15 +26,15 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否禁用
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -42,15 +42,15 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否显示数据类型
+     * 
      */
-    public function displayDataTypes($value = true)
+    public function displayDataTypes($value = '')
     {
         return $this->set('displayDataTypes', $value);
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -58,7 +58,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 设置字符串的最大展示长度，超出长度阈值的字符串将被截断，点击value可切换字符串展示方式，默认为false
+     * 
      */
     public function ellipsisThreshold($value = '')
     {
@@ -66,23 +66,23 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否可复制
+     * 
      */
-    public function enableClipboard($value = true)
+    public function enableClipboard($value = '')
     {
         return $this->set('enableClipboard', $value);
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -90,7 +90,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 图标风格 可选值: square | circle | triangle
+     * 
      */
     public function iconStyle($value = '')
     {
@@ -98,7 +98,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -106,7 +106,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 默认展开的级别
+     * 
      */
     public function levelExpand($value = '')
     {
@@ -114,7 +114,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否可修改
+     * 
      */
     public function mutable($value = true)
     {
@@ -122,7 +122,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -130,23 +130,23 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否显示键的引号
+     * 
      */
-    public function quotesOnKeys($value = true)
+    public function quotesOnKeys($value = '')
     {
         return $this->set('quotesOnKeys', $value);
     }
 
     /**
-     * 是否为键排序
+     * 
      */
-    public function sortKeys($value = true)
+    public function sortKeys($value = '')
     {
         return $this->set('sortKeys', $value);
     }
 
     /**
-     * 支持从数据链取值
+     * 
      */
     public function source($value = '')
     {
@@ -154,15 +154,15 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -170,7 +170,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -178,7 +178,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -186,7 +186,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -194,7 +194,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -210,19 +210,11 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -234,7 +226,7 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 指定为Json展示类型 可选值: json | static-json
+     *  可选值: json | static-json
      */
     public function type($value = '')
     {
@@ -242,15 +234,15 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 要展示的 JSON 数据
+     * 
      */
     public function value($value = '')
     {
@@ -258,15 +250,15 @@ class Json extends BaseRenderer
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {

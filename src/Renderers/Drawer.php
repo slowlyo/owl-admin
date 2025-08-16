@@ -3,10 +3,10 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * Drawer 抽出式弹框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/drawer
+ * Drawer
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Drawer extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 默认不用填写，自动会创建确认和取消按钮。
+     * 
      */
     public function actions($value = '')
     {
@@ -26,7 +26,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 内容区域 (内容区域)
+     * 
      */
     public function body($value = '')
     {
@@ -34,7 +34,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 配置 Body 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function bodyClassName($value = '')
     {
@@ -42,7 +42,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 配置 外层 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function className($value = '')
     {
@@ -50,31 +50,31 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否支持按 ESC 关闭 Dialog
+     * 
      */
-    public function closeOnEsc($value = true)
+    public function closeOnEsc($value = '')
     {
         return $this->set('closeOnEsc', $value);
     }
 
     /**
-     * 点击外部的时候是否关闭弹框。
+     * 
      */
-    public function closeOnOutside($value = true)
+    public function closeOnOutside($value = '')
     {
         return $this->set('closeOnOutside', $value);
     }
 
     /**
-     * 影响自动生成的按钮，如果自己配置了按钮这个配置无效。
+     * 
      */
-    public function confirm($value = true)
+    public function confirm($value = '')
     {
         return $this->set('confirm', $value);
     }
 
     /**
-     * 数据映射
+     * 
      */
     public function data($value = '')
     {
@@ -82,15 +82,15 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否禁用
+     * 
      */
-    public function disabled($value = true)
+    public function disabled($value = '')
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function disabledOn($value = '')
     {
@@ -98,7 +98,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 编辑器配置，运行时可以忽略
+     * 
      */
     public function editorSetting($value = '')
     {
@@ -106,7 +106,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 底部 (底部)
+     * 
      */
     public function footer($value = '')
     {
@@ -114,7 +114,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 配置 头部 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function footerClassName($value = '')
     {
@@ -122,7 +122,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 头部 (头部)
+     * 
      */
     public function header($value = '')
     {
@@ -130,7 +130,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 配置 头部 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function headerClassName($value = '')
     {
@@ -138,7 +138,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 抽屉的高度 （当position为top | bottom时生效）
+     * 
      */
     public function height($value = '')
     {
@@ -146,15 +146,15 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否隐藏
+     * 
      */
-    public function hidden($value = true)
+    public function hidden($value = '')
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function hiddenOn($value = '')
     {
@@ -162,7 +162,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 组件唯一 id，主要用于日志采集
+     * 
      */
     public function id($value = '')
     {
@@ -170,7 +170,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 弹窗参数说明，值格式为 JSONSchema。
+     * 
      */
     public function inputParams($value = '')
     {
@@ -178,7 +178,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 组件名字，这个名字可以用来定位，用于组件通信
+     * 
      */
     public function name($value = '')
     {
@@ -186,7 +186,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 事件动作配置
+     * 
      */
     public function onEvent($value = '')
     {
@@ -194,15 +194,15 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否显示蒙层
+     * 
      */
-    public function overlay($value = true)
+    public function overlay($value = '')
     {
         return $this->set('overlay', $value);
     }
 
     /**
-     * 从什么位置弹出 可选值: left | right | top | bottom
+     * 
      */
     public function position($value = '')
     {
@@ -210,7 +210,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否可以拖动弹窗大小
+     * 
      */
     public function resizable($value = true)
     {
@@ -218,23 +218,23 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否展示关闭按钮 当值为false时，默认开启closeOnOutside
+     * 
      */
-    public function showCloseButton($value = true)
+    public function showCloseButton($value = '')
     {
         return $this->set('showCloseButton', $value);
     }
 
     /**
-     * 是否显示错误信息
+     * 
      */
-    public function showErrorMsg($value = true)
+    public function showErrorMsg($value = '')
     {
         return $this->set('showErrorMsg', $value);
     }
 
     /**
-     * Dialog 大小 可选值: xs | sm | md | lg | full
+     * 
      */
     public function size($value = '')
     {
@@ -242,15 +242,15 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
+     * 
      */
-    public function static($value = true)
+    public function static($value = '')
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticClassName($value = '')
     {
@@ -258,7 +258,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticInputClassName($value = '')
     {
@@ -266,7 +266,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 
      */
     public function staticLabelClassName($value = '')
     {
@@ -274,7 +274,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function staticOn($value = '')
     {
@@ -282,7 +282,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 静态展示空值占位
+     * 
      */
     public function staticPlaceholder($value = '')
     {
@@ -298,19 +298,11 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -322,7 +314,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 请通过配置 title 设置标题 (请通过配置 title 设置标题)
+     * 
      */
     public function title($value = '')
     {
@@ -338,23 +330,23 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 可以组件级别用来关闭移动端样式
+     * 
      */
-    public function useMobileUI($value = true)
+    public function useMobileUI($value = '')
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 是否显示
+     * 
      */
-    public function visible($value = true)
+    public function visible($value = '')
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 
      */
     public function visibleOn($value = '')
     {
@@ -362,7 +354,7 @@ class Drawer extends BaseRenderer
     }
 
     /**
-     * 抽屉的宽度 （当position为left | right时生效）
+     * 
      */
     public function width($value = '')
     {
