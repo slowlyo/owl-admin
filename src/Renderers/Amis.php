@@ -89,104 +89,9 @@ class Amis
         return BaseApi::make();
     }
 
-    public function BaseButtonGroup()
-    {
-        return BaseButtonGroup::make();
-    }
-
-    public function BaseCards()
-    {
-        return BaseCards::make();
-    }
-
-    public function BaseCollapse()
-    {
-        return BaseCollapse::make();
-    }
-
-    public function BaseComboControl($name = '', $label = '')
-    {
-        $instance = BaseComboControl::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
-    }
-
-    public function BaseDateRangeControl($name = '', $label = '')
-    {
-        $instance = BaseDateRangeControl::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
-    }
-
-    public function BaseForm()
-    {
-        return BaseForm::make();
-    }
-
-    public function BaseInputFormulaControl($name = '', $label = '')
-    {
-        $instance = BaseInputFormulaControl::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
-    }
-
-    public function BaseList()
-    {
-        return BaseList::make();
-    }
-
-    public function BaseRemark()
-    {
-        return BaseRemark::make();
-    }
-
     public function BaseRenderer()
     {
         return BaseRenderer::make();
-    }
-
-    public function BaseTable()
-    {
-        return BaseTable::make();
-    }
-
-    public function BaseTransferControl($name = '', $label = '')
-    {
-        $instance = BaseTransferControl::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
     }
 
     public function Breadcrumb()
@@ -219,19 +124,9 @@ class Amis
         return $instance;
     }
 
-    public function ButtonToolbar($name = '', $label = '')
+    public function ButtonToolbar()
     {
-        $instance = ButtonToolbar::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
+        return ButtonToolbar::make();
     }
 
     public function CRUD2Cards()
@@ -262,11 +157,6 @@ class Amis
     public function CRUDTable()
     {
         return CRUDTable::make();
-    }
-
-    public function CRUDToolbar()
-    {
-        return CRUDToolbar::make();
     }
 
     public function Calendar()
@@ -514,6 +404,11 @@ class Amis
         return $instance;
     }
 
+    public function Divider()
+    {
+        return Divider::make();
+    }
+
     public function Drawer()
     {
         return Drawer::make();
@@ -604,39 +499,9 @@ class Amis
         return Form::make();
     }
 
-    public function FormBaseControl($name = '', $label = '')
-    {
-        $instance = FormBaseControl::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
-    }
-
     public function FormControl($name = '', $label = '')
     {
         $instance = FormControl::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
-    }
-
-    public function FormOptions($name = '', $label = '')
-    {
-        $instance = FormOptions::make();
 
         if($name !== ''){
             $instance->name($name);
@@ -824,21 +689,6 @@ class Amis
         return $instance;
     }
 
-    public function InputDateBaseControl($name = '', $label = '')
-    {
-        $instance = InputDateBaseControl::make();
-
-        if($name !== ''){
-            $instance->name($name);
-        }
-
-        if($label !== ''){
-            $instance->label($label);
-        }
-
-        return $instance;
-    }
-
     public function InputDatetimeRange()
     {
         return InputDatetimeRange::make();
@@ -887,11 +737,6 @@ class Amis
         }
 
         return $instance;
-    }
-
-    public function InputTextAddOn()
-    {
-        return InputTextAddOn::make();
     }
 
     public function InputTimeRange()
@@ -1329,6 +1174,11 @@ class Amis
         return $instance;
     }
 
+    public function Root()
+    {
+        return Root::make();
+    }
+
     public function RowSelection()
     {
         return RowSelection::make();
@@ -1757,6 +1607,11 @@ class Amis
     public function VBox()
     {
         return VBox::make();
+    }
+
+    public function VanillaAction()
+    {
+        return VanillaAction::make();
     }
 
     public function Video()

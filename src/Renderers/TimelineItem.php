@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TimelineItem
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class TimelineItem extends BaseRenderer
 {
@@ -17,7 +17,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 卡片展示配置，如果传入则以卡片形式展示，传入对象转为卡片展示，传入的time、title、detail及相关属性将被忽略，只有连线配置和节点圆圈配置生效 (Card 卡片渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card)
      */
     public function cardSchema($value = '')
     {
@@ -25,7 +25,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -33,7 +33,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 时间点圆圈颜色
      */
     public function color($value = '')
     {
@@ -41,7 +41,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 详细内容
      */
     public function detail($value = '')
     {
@@ -49,7 +49,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 节点详情的CSS类名（优先级高于统一配置的detailClassName）
      */
     public function detailClassName($value = '')
     {
@@ -57,7 +57,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * detail折叠时文案
      */
     public function detailCollapsedText($value = '')
     {
@@ -65,7 +65,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * detail展开时文案
      */
     public function detailExpandedText($value = '')
     {
@@ -73,15 +73,15 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
-    public function disabled($value = '')
+    public function disabled($value = true)
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -89,7 +89,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     *  可选值: sm | md | lg | xl
      */
     public function dotSize($value = '')
     {
@@ -97,7 +97,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
@@ -105,15 +105,15 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否隐藏
      */
-    public function hidden($value = '')
+    public function hidden($value = true)
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -123,13 +123,13 @@ class TimelineItem extends BaseRenderer
     /**
      * 
      */
-    public function hideDot($value = '')
+    public function hideDot($value = true)
     {
         return $this->set('hideDot', $value);
     }
 
     /**
-     * 
+     * 图标
      */
     public function icon($value = '')
     {
@@ -137,7 +137,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 图标的CSS类名
      */
     public function iconClassName($value = '')
     {
@@ -145,7 +145,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
     {
@@ -161,7 +161,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 事件动作配置
      */
     public function onEvent($value = '')
     {
@@ -169,15 +169,15 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示
      */
-    public function static($value = '')
+    public function static($value = true)
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -185,7 +185,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -193,7 +193,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -201,7 +201,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -209,7 +209,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示空值占位
      */
     public function staticPlaceholder($value = '')
     {
@@ -225,7 +225,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件样式
      */
     public function style($value = '')
     {
@@ -235,13 +235,29 @@ class TimelineItem extends BaseRenderer
     /**
      * 
      */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testid($value = '')
+    {
+        return $this->set('testid', $value);
+    }
+
+    /**
+     * 时间点
+     */
     public function time($value = '')
     {
         return $this->set('time', $value);
     }
 
     /**
-     * 
+     * 节点时间的CSS类名（优先级高于统一配置的timeClassName）
      */
     public function timeClassName($value = '')
     {
@@ -249,7 +265,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 时间节点标题 (时间节点标题)
      */
     public function title($value = '')
     {
@@ -257,7 +273,7 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 节点标题的CSS类名（优先级高于统一配置的titleClassName）
      */
     public function titleClassName($value = '')
     {
@@ -265,23 +281,23 @@ class TimelineItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以组件级别用来关闭移动端样式
      */
-    public function useMobileUI($value = '')
+    public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 
+     * 是否显示
      */
-    public function visible($value = '')
+    public function visible($value = true)
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * FeedbackDialog
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class FeedbackDialog extends BaseRenderer
 {
@@ -17,7 +17,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 默认不用填写，自动会创建确认和取消按钮。
      */
     public function actions($value = '')
     {
@@ -25,15 +25,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function allowFullscreen($value = '')
-    {
-        return $this->set('allowFullscreen', $value);
-    }
-
-    /**
-     * 
+     * 内容区域 (内容区域)
      */
     public function body($value = '')
     {
@@ -41,7 +33,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置 Body 容器 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function bodyClassName($value = '')
     {
@@ -49,7 +41,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -57,31 +49,31 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否支持按 ESC 关闭 Dialog
      */
-    public function closeOnEsc($value = '')
+    public function closeOnEsc($value = true)
     {
         return $this->set('closeOnEsc', $value);
     }
 
     /**
-     * 
+     * 是否支持点其它区域关闭 Dialog
      */
-    public function closeOnOutside($value = '')
+    public function closeOnOutside($value = true)
     {
         return $this->set('closeOnOutside', $value);
     }
 
     /**
-     * 
+     * 影响自动生成的按钮，如果自己配置了按钮这个配置无效。
      */
-    public function confirm($value = '')
+    public function confirm($value = true)
     {
         return $this->set('confirm', $value);
     }
 
     /**
-     * 
+     * 数据映射
      */
     public function data($value = '')
     {
@@ -89,7 +81,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 弹框类型 confirm 确认弹框
      */
     public function dialogType($value = 'confirm')
     {
@@ -97,15 +89,15 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
-    public function disabled($value = '')
+    public function disabled($value = true)
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -113,7 +105,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 可拖拽
      */
     public function draggable($value = true)
     {
@@ -121,7 +113,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
@@ -145,7 +137,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     }
      */
     public function headerClassName($value = '')
     {
@@ -153,7 +145,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * Dialog 高度
      */
     public function height($value = '')
     {
@@ -161,15 +153,15 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否隐藏
      */
-    public function hidden($value = '')
+    public function hidden($value = true)
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -177,7 +169,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
     {
@@ -185,7 +177,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 弹窗参数说明，值格式为 JSONSchema。
      */
     public function inputParams($value = '')
     {
@@ -193,7 +185,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件名字，这个名字可以用来定位，用于组件通信
      */
     public function name($value = '')
     {
@@ -201,7 +193,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 事件动作配置
      */
     public function onEvent($value = '')
     {
@@ -209,39 +201,39 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否显示蒙层
      */
-    public function overlay($value = '')
+    public function overlay($value = true)
     {
         return $this->set('overlay', $value);
     }
 
     /**
-     * 
+     * 是否显示关闭按钮
      */
-    public function showCloseButton($value = '')
+    public function showCloseButton($value = true)
     {
         return $this->set('showCloseButton', $value);
     }
 
     /**
-     * 
+     * 是否显示错误信息
      */
-    public function showErrorMsg($value = '')
+    public function showErrorMsg($value = true)
     {
         return $this->set('showErrorMsg', $value);
     }
 
     /**
-     * 
+     * 是否显示 spinner
      */
-    public function showLoading($value = '')
+    public function showLoading($value = true)
     {
         return $this->set('showLoading', $value);
     }
 
     /**
-     * 
+     * Dialog 大小 可选值: xs | sm | md | lg | xl | full
      */
     public function size($value = '')
     {
@@ -249,31 +241,31 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * feedback 弹框取消是否中断后续操作
      */
-    public function skipRestOnCancel($value = '')
+    public function skipRestOnCancel($value = true)
     {
         return $this->set('skipRestOnCancel', $value);
     }
 
     /**
-     * 
+     * feedback 弹框确认是否中断后续操作
      */
-    public function skipRestOnConfirm($value = '')
+    public function skipRestOnConfirm($value = true)
     {
         return $this->set('skipRestOnConfirm', $value);
     }
 
     /**
-     * 
+     * 是否静态展示
      */
-    public function static($value = '')
+    public function static($value = true)
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -281,7 +273,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -289,7 +281,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -297,7 +289,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -305,7 +297,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示空值占位
      */
     public function staticPlaceholder($value = '')
     {
@@ -321,11 +313,19 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件样式
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -337,7 +337,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 请通过配置 title 设置标题 (请通过配置 title 设置标题)
      */
     public function title($value = '')
     {
@@ -345,31 +345,23 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以组件级别用来关闭移动端样式
      */
-    public function type($value = 'dialog')
-    {
-        return $this->set('type', $value);
-    }
-
-    /**
-     * 
-     */
-    public function useMobileUI($value = '')
+    public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 
+     * 是否显示
      */
-    public function visible($value = '')
+    public function visible($value = true)
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 
+     * 可以用来配置 feedback 的出现条件
      */
     public function visibleOn($value = '')
     {
@@ -377,7 +369,7 @@ class FeedbackDialog extends BaseRenderer
     }
 
     /**
-     * 
+     * Dialog 宽度
      */
     public function width($value = '')
     {

@@ -6,19 +6,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CopyAction
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class CopyAction extends BaseRenderer
 {
     public function __construct()
     {
-        $this->set('actionType', 'copy');
+        $this->set('type', 'button');
+$this->set('actionType', 'copy');
 
 
     }
 
     /**
-     * 
+     * 指定为复制内容行为
      */
     public function actionType($value = 'copy')
     {
@@ -26,7 +27,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 激活状态时的类名
      */
     public function activeClassName($value = '')
     {
@@ -34,7 +35,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 激活状态时的样式
      */
     public function activeLevel($value = '')
     {
@@ -42,7 +43,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function badge($value = '')
     {
@@ -50,15 +51,15 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否为块状展示，默认为内联。
      */
-    public function block($value = '')
+    public function block($value = true)
     {
         return $this->set('block', $value);
     }
 
     /**
-     * 
+     * 子内容 (子内容)
      */
     public function body($value = '')
     {
@@ -66,7 +67,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -74,7 +75,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 如果按钮在弹框中，可以配置这个动作完成后是否关闭弹窗，或者指定关闭目标弹框。
      */
     public function close($value = '')
     {
@@ -82,7 +83,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 提示文字，配置了操作前会要求用户确认。
      */
     public function confirmText($value = '')
     {
@@ -106,7 +107,8 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 复制啥内容由此配置，支持模板语法。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function copy($value = '')
     {
@@ -114,7 +116,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 点击后的禁止倒计时（秒）
      */
     public function countDown($value = '')
     {
@@ -122,7 +124,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 倒计时文字自定义
      */
     public function countDownTpl($value = '')
     {
@@ -130,15 +132,15 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
-    public function disabled($value = '')
+    public function disabled($value = true)
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -146,15 +148,15 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否在动作结束前禁用按钮
      */
-    public function disabledOnAction($value = '')
+    public function disabledOnAction($value = true)
     {
         return $this->set('disabledOnAction', $value);
     }
 
     /**
-     * 
+     * 禁用时的文案提示。
      */
     public function disabledTip($value = '')
     {
@@ -162,7 +164,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
@@ -170,15 +172,15 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否隐藏
      */
-    public function hidden($value = '')
+    public function hidden($value = true)
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -186,7 +188,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 键盘快捷键
      */
     public function hotKey($value = '')
     {
@@ -194,15 +196,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function href($value = '')
-    {
-        return $this->set('href', $value);
-    }
-
-    /**
-     * 
+     * 按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function icon($value = '')
     {
@@ -210,7 +204,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * icon 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function iconClassName($value = '')
     {
@@ -218,7 +212,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 主要用于用户行为跟踪里区分是哪个按钮
      */
     public function id($value = '')
     {
@@ -226,7 +220,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 按钮文字
      */
     public function label($value = '')
     {
@@ -234,7 +228,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 按钮样式 可选值: info | success | warning | danger | link | primary | dark | light | secondary
      */
     public function level($value = '')
     {
@@ -242,7 +236,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * loading 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function loadingClassName($value = '')
     {
@@ -250,7 +244,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否显示loading效果
      */
     public function loadingOn($value = '')
     {
@@ -258,15 +252,15 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否将弹框中数据 merge 到父级作用域。
      */
-    public function mergeData($value = '')
+    public function mergeData($value = true)
     {
         return $this->set('mergeData', $value);
     }
 
     /**
-     * 
+     * 自定义事件处理函数
      */
     public function onClick($value = '')
     {
@@ -274,7 +268,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 事件动作配置
      */
     public function onEvent($value = '')
     {
@@ -284,21 +278,21 @@ class CopyAction extends BaseRenderer
     /**
      * 
      */
-    public function primary($value = '')
+    public function primary($value = true)
     {
         return $this->set('primary', $value);
     }
 
     /**
-     * 
+     * 当按钮时批量操作按钮时，默认必须有勾选元素才能可点击，如果此属性配置成 false，则没有点选成员也能点击。
      */
-    public function requireSelected($value = '')
+    public function requireSelected($value = true)
     {
         return $this->set('requireSelected', $value);
     }
 
     /**
-     * 
+     * 如果按钮在form中，配置此属性会要求用户把指定的字段通过验证后才会触发行为。
      */
     public function required($value = '')
     {
@@ -306,7 +300,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 右侧按钮图标， iconfont 的类名 (iconfont 里面的类名。)
      */
     public function rightIcon($value = '')
     {
@@ -314,7 +308,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 右侧 icon 上的 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function rightIconClassName($value = '')
     {
@@ -322,7 +316,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 按钮大小 可选值: xs | sm | md | lg
      */
     public function size($value = '')
     {
@@ -330,15 +324,15 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示
      */
-    public function static($value = '')
+    public function static($value = true)
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -346,7 +340,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -354,7 +348,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -362,7 +356,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -370,7 +364,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示空值占位
      */
     public function staticPlaceholder($value = '')
     {
@@ -386,7 +380,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件样式
      */
     public function style($value = '')
     {
@@ -402,11 +396,19 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以指定让谁来触发这个动作。
      */
     public function target($value = '')
     {
         return $this->set('target', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -426,7 +428,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     *  可选值: top | right | bottom | left
      */
     public function tooltipPlacement($value = '')
     {
@@ -434,7 +436,7 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     *  可选值: action | button | submit | reset
+     * 指定按钮类型，支持 button、submit或者reset三种类型。 可选值: button | submit | reset
      */
     public function type($value = '')
     {
@@ -442,23 +444,23 @@ class CopyAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以组件级别用来关闭移动端样式
      */
-    public function useMobileUI($value = '')
+    public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 
+     * 是否显示
      */
-    public function visible($value = '')
+    public function visible($value = true)
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

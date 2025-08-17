@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * NavOverflow
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class NavOverflow extends BaseRenderer
 {
@@ -97,7 +97,7 @@ class NavOverflow extends BaseRenderer
     }
 
     /**
-     * 自定义样式
+     * 自定义样式 (自定义样式)
      */
     public function style($value = '')
     {

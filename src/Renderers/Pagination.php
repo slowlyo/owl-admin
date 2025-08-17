@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Pagination
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class Pagination extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 当前页数
      */
     public function activePage($value = '')
     {
@@ -26,7 +26,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -34,15 +34,15 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
-    public function disabled($value = '')
+    public function disabled($value = true)
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -50,7 +50,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
@@ -60,21 +60,21 @@ class Pagination extends BaseRenderer
     /**
      * 
      */
-    public function hasNext($value = '')
+    public function hasNext($value = true)
     {
         return $this->set('hasNext', $value);
     }
 
     /**
-     * 
+     * 是否隐藏
      */
-    public function hidden($value = '')
+    public function hidden($value = true)
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -82,7 +82,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
     {
@@ -90,7 +90,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 通过控制layout属性的顺序，调整分页结构 total,perPage,pager,go
      */
     public function layout($value = '')
     {
@@ -98,7 +98,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 最多显示多少个分页按钮。
      */
     public function maxButtons($value = '')
     {
@@ -106,7 +106,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 模式，默认normal，如果只想简单显示可以配置成 `simple`。 (模式，默认normal，如果只想简单显示可以配置成 `simple`。) 可选值: simple | normal
      */
     public function mode($value = '')
     {
@@ -114,7 +114,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 事件动作配置
      */
     public function onEvent($value = '')
     {
@@ -122,7 +122,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 每页显示条数
      */
     public function perPage($value = '')
     {
@@ -130,7 +130,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 指定每页可以显示多少条
      */
     public function perPageAvailable($value = true)
     {
@@ -138,7 +138,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 弹层挂载节点
      */
     public function popOverContainerSelector($value = '')
     {
@@ -146,31 +146,31 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否显示快速跳转输入框
      */
-    public function showPageInput($value = '')
+    public function showPageInput($value = true)
     {
         return $this->set('showPageInput', $value);
     }
 
     /**
-     * 
+     * 是否展示分页切换，也同时受layout控制
      */
-    public function showPerPage($value = '')
+    public function showPerPage($value = true)
     {
         return $this->set('showPerPage', $value);
     }
 
     /**
-     * 
+     * 是否静态展示
      */
-    public function static($value = '')
+    public function static($value = true)
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -178,7 +178,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -186,7 +186,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -194,7 +194,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -202,7 +202,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示空值占位
      */
     public function staticPlaceholder($value = '')
     {
@@ -218,11 +218,19 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件样式
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -234,7 +242,7 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 总条数
      */
     public function total($value = '')
     {
@@ -250,23 +258,23 @@ class Pagination extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以组件级别用来关闭移动端样式
      */
-    public function useMobileUI($value = '')
+    public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 
+     * 是否显示
      */
-    public function visible($value = '')
+    public function visible($value = true)
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

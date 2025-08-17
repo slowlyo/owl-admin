@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TableSchema2
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class TableSchema2 extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 操作列配置
      */
     public function actions($value = '')
     {
@@ -26,7 +26,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 表格自动计算高度
      */
     public function autoFillHeight($value = '')
     {
@@ -34,23 +34,23 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否展示边框
      */
-    public function bordered($value = '')
+    public function bordered($value = true)
     {
         return $this->set('bordered', $value);
     }
 
     /**
-     * 
+     * 表格是否可以获取父级数据域值，默认为false
      */
-    public function canAccessSuperData($value = '')
+    public function canAccessSuperData($value = true)
     {
         return $this->set('canAccessSuperData', $value);
     }
 
     /**
-     * 
+     * 数据源嵌套自定义字段名
      */
     public function childrenColumnName($value = '')
     {
@@ -58,7 +58,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -66,7 +66,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 表格列配置
      */
     public function columns($value = '')
     {
@@ -74,7 +74,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 表格可自定义列
      */
     public function columnsTogglable($value = true)
     {
@@ -82,15 +82,15 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
-    public function disabled($value = '')
+    public function disabled($value = true)
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -98,7 +98,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
@@ -106,7 +106,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 表格行可展开配置 (表格行可展开配置)
      */
     public function expandable($value = true)
     {
@@ -114,7 +114,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 指定表尾
      */
     public function footer($value = '')
     {
@@ -122,15 +122,15 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否隐藏
      */
-    public function hidden($value = '')
+    public function hidden($value = true)
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -138,7 +138,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
     {
@@ -146,7 +146,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 行角标内容 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function itemBadge($value = '')
     {
@@ -154,15 +154,15 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 翻页是否保存数据
      */
-    public function keepItemSelectionOnPageChange($value = '')
+    public function keepItemSelectionOnPageChange($value = true)
     {
         return $this->set('keepItemSelectionOnPageChange', $value);
     }
 
     /**
-     * 
+     * 多选、嵌套展开记录的ID字段名 默认id
      */
     public function keyField($value = '')
     {
@@ -170,7 +170,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 当一次性渲染太多列上有用，默认为 100，可以用来提升表格渲染性能
      */
     public function lazyRenderAfter($value = '')
     {
@@ -178,7 +178,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否固定内容行高度
      */
     public function lineHeight($value = '')
     {
@@ -186,7 +186,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 加载中
      */
     public function loading($value = '')
     {
@@ -194,7 +194,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 批量操作最大限制数
      */
     public function maxKeepItemSelectionLength($value = '')
     {
@@ -202,7 +202,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 接口报错信息配置 (消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。)
      */
     public function messages($value = '')
     {
@@ -210,15 +210,15 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否可多选 作用同rowSelection.type 兼容原CRUD属性 不设置认为是多选 仅设置selectable才起作用
      */
-    public function multiple($value = '')
+    public function multiple($value = true)
     {
         return $this->set('multiple', $value);
     }
 
     /**
-     * 
+     * 事件动作配置
      */
     public function onEvent($value = '')
     {
@@ -226,7 +226,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 指定挂载dom
      */
     public function popOverContainer($value = '')
     {
@@ -234,7 +234,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 设置ID字段名 作用同keyFiled 兼容原CURD属性
      */
     public function primaryField($value = '')
     {
@@ -242,7 +242,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
      */
     public function quickSaveApi($value = '')
     {
@@ -250,7 +250,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 快速编辑配置成及时保存时使用的 API (快速编辑配置成及时保存时使用的 API)
      */
     public function quickSaveItemApi($value = '')
     {
@@ -258,7 +258,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 重新加载的组件名称
      */
     public function reload($value = '')
     {
@@ -266,7 +266,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 自定义行样式
      */
     public function rowClassNameExpr($value = '')
     {
@@ -274,7 +274,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 表格可选择配置
      */
     public function rowSelection($value = '')
     {
@@ -282,7 +282,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否可选择 作用同rowSelection 兼容原CRUD属性 默认多选
      */
     public function selectable($value = true)
     {
@@ -290,23 +290,23 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否展示行角标
      */
-    public function showBadge($value = '')
+    public function showBadge($value = true)
     {
         return $this->set('showBadge', $value);
     }
 
     /**
-     * 
+     * 是否展示表头
      */
-    public function showHeader($value = '')
+    public function showHeader($value = true)
     {
         return $this->set('showHeader', $value);
     }
 
     /**
-     * 
+     * 表格数据源 (表格数据源)
      */
     public function source($value = '')
     {
@@ -314,15 +314,15 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示
      */
-    public function static($value = '')
+    public function static($value = true)
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -330,7 +330,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -338,7 +338,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -346,7 +346,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -354,7 +354,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示空值占位
      */
     public function staticPlaceholder($value = '')
     {
@@ -370,15 +370,15 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 粘性头部
      */
-    public function sticky($value = '')
+    public function sticky($value = true)
     {
         return $this->set('sticky', $value);
     }
 
     /**
-     * 
+     * 组件样式
      */
     public function style($value = '')
     {
@@ -386,11 +386,19 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     *  可选值: fixed | auto
      */
     public function tableLayout($value = '')
     {
         return $this->set('tableLayout', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -402,7 +410,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 表格标题
      */
     public function title($value = '')
     {
@@ -410,7 +418,7 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 指定为表格类型
      */
     public function type($value = 'table2')
     {
@@ -418,23 +426,23 @@ class TableSchema2 extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以组件级别用来关闭移动端样式
      */
-    public function useMobileUI($value = '')
+    public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 
+     * 是否显示
      */
-    public function visible($value = '')
+    public function visible($value = true)
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

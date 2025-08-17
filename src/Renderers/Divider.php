@@ -3,30 +3,22 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * TooltipWrapper
+ * Divider 分割线渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/divider
  * 
  * @author slowlyo
  * @version 6.12.0
  */
-class TooltipWrapper extends BaseRenderer
+class Divider extends BaseRenderer
 {
     public function __construct()
     {
-        $this->set('type', 'tooltip-wrapper');
+        $this->set('type', 'divider');
 
 
     }
 
     /**
-     * 内容区域 (内容区域)
-     */
-    public function body($value = '')
-    {
-        return $this->set('body', $value);
-    }
-
-    /**
-     * 内容区CSS类名
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -34,15 +26,23 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示内容，兼容 tooltip，但建议通过 content 来实现提示内容
+     * 
      */
-    public function content($value = '')
+    public function color($value = '')
     {
-        return $this->set('content', $value);
+        return $this->set('color', $value);
     }
 
     /**
-     * 是否禁用提示
+     *  可选值: horizontal | vertical
+     */
+    public function direction($value = '')
+    {
+        return $this->set('direction', $value);
+    }
+
+    /**
+     * 是否禁用
      */
     public function disabled($value = true)
     {
@@ -63,14 +63,6 @@ class TooltipWrapper extends BaseRenderer
     public function editorSetting($value = '')
     {
         return $this->set('editorSetting', $value);
-    }
-
-    /**
-     * 是否可以移入浮层中, 默认true
-     */
-    public function enterable($value = true)
-    {
-        return $this->set('enterable', $value);
     }
 
     /**
@@ -98,35 +90,11 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 内容区是否内联显示，默认为false
+     *  可选值: dashed | solid
      */
-    public function inline($value = true)
+    public function lineStyle($value = '')
     {
-        return $this->set('inline', $value);
-    }
-
-    /**
-     * 浮层延迟显示时间, 单位 ms
-     */
-    public function mouseEnterDelay($value = '')
-    {
-        return $this->set('mouseEnterDelay', $value);
-    }
-
-    /**
-     * 浮层延迟隐藏时间, 单位 ms
-     */
-    public function mouseLeaveDelay($value = '')
-    {
-        return $this->set('mouseLeaveDelay', $value);
-    }
-
-    /**
-     * 浮层位置相对偏移量
-     */
-    public function offset($value = '')
-    {
-        return $this->set('offset', $value);
+        return $this->set('lineStyle', $value);
     }
 
     /**
@@ -138,27 +106,11 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示浮层出现位置，默认为top 可选值: top | right | bottom | left
+     * 
      */
-    public function placement($value = '')
+    public function rotate($value = '')
     {
-        return $this->set('placement', $value);
-    }
-
-    /**
-     * 是否点击非内容区域关闭提示，默认为true
-     */
-    public function rootClose($value = true)
-    {
-        return $this->set('rootClose', $value);
-    }
-
-    /**
-     * 是否展示浮层指向箭头
-     */
-    public function showArrow($value = true)
-    {
-        return $this->set('showArrow', $value);
+        return $this->set('rotate', $value);
     }
 
     /**
@@ -218,7 +170,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 内容区自定义样式
+     * 组件样式
      */
     public function style($value = '')
     {
@@ -242,7 +194,7 @@ class TooltipWrapper extends BaseRenderer
     }
 
     /**
-     * 文字提示标题
+     * 
      */
     public function title($value = '')
     {
@@ -252,55 +204,23 @@ class TooltipWrapper extends BaseRenderer
     /**
      * 
      */
-    public function tooltip($value = '')
+    public function titleClassName($value = '')
     {
-        return $this->set('tooltip', $value);
+        return $this->set('titleClassName', $value);
     }
 
     /**
-     * 箭头CSS类名
+     *  可选值: left | center | right
      */
-    public function tooltipArrowClassName($value = '')
+    public function titlePosition($value = '')
     {
-        return $this->set('tooltipArrowClassName', $value);
+        return $this->set('titlePosition', $value);
     }
 
     /**
-     * 文字提示浮层CSS类名
+     * 
      */
-    public function tooltipClassName($value = '')
-    {
-        return $this->set('tooltipClassName', $value);
-    }
-
-    /**
-     * 自定义提示浮层样式
-     */
-    public function tooltipStyle($value = '')
-    {
-        return $this->set('tooltipStyle', $value);
-    }
-
-    /**
-     * 主题样式， 默认为light 可选值: light | dark
-     */
-    public function tooltipTheme($value = '')
-    {
-        return $this->set('tooltipTheme', $value);
-    }
-
-    /**
-     * 浮层触发方式，默认为hover
-     */
-    public function trigger($value = '')
-    {
-        return $this->set('trigger', $value);
-    }
-
-    /**
-     * 文字提示容器
-     */
-    public function type($value = 'tooltip-wrapper')
+    public function type($value = 'divider')
     {
         return $this->set('type', $value);
     }
@@ -327,14 +247,6 @@ class TooltipWrapper extends BaseRenderer
     public function visibleOn($value = '')
     {
         return $this->set('visibleOn', $value);
-    }
-
-    /**
-     * 内容区包裹标签
-     */
-    public function wrapperComponent($value = '')
-    {
-        return $this->set('wrapperComponent', $value);
     }
 
 

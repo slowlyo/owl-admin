@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * TabsTransfer 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tabs-transfer
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class TabsTransferControl extends BaseRenderer
 {
@@ -18,7 +18,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 添加时调用的接口
      */
     public function addApi($value = '')
     {
@@ -26,7 +26,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 新增时的表单项。
      */
     public function addControls($value = '')
     {
@@ -34,7 +34,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 控制新增弹框设置项 (控制新增弹框设置项)
      */
     public function addDialog($value = '')
     {
@@ -42,15 +42,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * ui级联关系，true代表级联选中，false代表不级联，默认为true
      */
-    public function autoCheckChildren($value = '')
+    public function autoCheckChildren($value = true)
     {
         return $this->set('autoCheckChildren', $value);
     }
 
     /**
-     * 
+     * 自动填充，当选项被选择的时候，将选项中的其他值同步设置到表单内。
      */
     public function autoFill($value = '')
     {
@@ -58,15 +58,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function checkAll($value = '')
-    {
-        return $this->set('checkAll', $value);
-    }
-
-    /**
-     * 
+     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -74,23 +66,23 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 表单项隐藏时，是否在当前 Form 中删除掉该表单项值。注意同名的未隐藏的表单项值也会删掉
      */
-    public function clearValueOnHidden($value = '')
+    public function clearValueOnHidden($value = true)
     {
         return $this->set('clearValueOnHidden', $value);
     }
 
     /**
-     * 
+     * source从数据域取值时，数据域值变化后是否自动清空
      */
-    public function clearValueOnSourceChange($value = '')
+    public function clearValueOnSourceChange($value = true)
     {
         return $this->set('clearValueOnSourceChange', $value);
     }
 
     /**
-     * 
+     * 是否可清除。
      */
     public function clearable($value = true)
     {
@@ -98,7 +90,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 当 selectMode 为 table 时定义表格列信息。
      */
     public function columns($value = '')
     {
@@ -106,7 +98,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否可以新增
      */
     public function creatable($value = true)
     {
@@ -114,7 +106,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 新增文字
      */
     public function createBtnLabel($value = '')
     {
@@ -122,7 +114,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 延时加载的 API，当选项中有 defer: true 的选项时，点开会通过此接口扩充。
      */
     public function deferApi($value = '')
     {
@@ -130,7 +122,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 懒加载字段
      */
     public function deferField($value = '')
     {
@@ -138,7 +130,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 选项删除 API
      */
     public function deleteApi($value = '')
     {
@@ -146,7 +138,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 选项删除提示文字。
      */
     public function deleteConfirmText($value = '')
     {
@@ -154,7 +146,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 分割符
      */
     public function delimiter($value = '')
     {
@@ -170,7 +162,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 描述内容，支持 Html 片段。
      */
     public function description($value = '')
     {
@@ -178,7 +170,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置描述上的 className (配置描述上的 className)
      */
     public function descriptionClassName($value = '')
     {
@@ -186,15 +178,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
-    public function disabled($value = '')
+    public function disabled($value = true)
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -202,7 +194,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑时调用的 API
      */
     public function editApi($value = '')
     {
@@ -210,7 +202,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 选项修改的表单项
      */
     public function editControls($value = '')
     {
@@ -218,7 +210,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 控制编辑弹框设置项 (控制编辑弹框设置项)
      */
     public function editDialog($value = '')
     {
@@ -226,7 +218,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否可以编辑
      */
     public function editable($value = true)
     {
@@ -234,7 +226,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
@@ -242,7 +234,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 额外的字段名，当为范围组件时可以用来将另外一个值打平出来
      */
     public function extraName($value = '')
     {
@@ -250,23 +242,23 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 开启后将选中的选项 value 的值封装为数组，作为当前表单项的值。
      */
-    public function extractValue($value = '')
+    public function extractValue($value = true)
     {
         return $this->set('extractValue', $value);
     }
 
     /**
-     * 
+     * 是否隐藏
      */
-    public function hidden($value = '')
+    public function hidden($value = true)
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -274,7 +266,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 输入提示，聚焦的时候显示
      */
     public function hint($value = '')
     {
@@ -282,7 +274,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 当配置为水平布局的时候，用来配置具体的左右分配。 (当配置为水平布局的时候，用来配置具体的左右分配。)
      */
     public function horizontal($value = '')
     {
@@ -290,7 +282,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
     {
@@ -306,15 +298,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置 source 接口初始拉不拉取。
      */
-    public function initFetch($value = '')
+    public function initFetch($value = true)
     {
         return $this->set('initFetch', $value);
     }
 
     /**
-     * 
+     * 用表达式来配置 source 接口初始要不要拉取
      */
     public function initFetchOn($value = '')
     {
@@ -322,23 +314,23 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否默认都展开
      */
-    public function initiallyOpen($value = '')
+    public function initiallyOpen($value = true)
     {
         return $this->set('initiallyOpen', $value);
     }
 
     /**
-     * 
+     * 表单 control 是否为 inline 模式。
      */
-    public function inline($value = '')
+    public function inline($value = true)
     {
         return $this->set('inline', $value);
     }
 
     /**
-     * 
+     * 配置 input className (配置 input className)
      */
     public function inputClassName($value = '')
     {
@@ -346,7 +338,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 单个选项的高度，主要用于虚拟渲染
      */
     public function itemHeight($value = '')
     {
@@ -354,15 +346,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 单选模式：当用户选中某个选项时，选项中的 value 将被作为该表单项的值提交，否则，整个选项对象都会作为该表单项的值提交。 多选模式：选中的多个选项的 `value` 会通过 `delimiter` 连接起来，否则直接将以数组的形式提交值。
      */
-    public function joinValues($value = '')
+    public function joinValues($value = true)
     {
         return $this->set('joinValues', $value);
     }
 
     /**
-     * 
+     * 描述标题
      */
     public function label($value = '')
     {
@@ -370,7 +362,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -378,7 +370,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置 label className
      */
     public function labelClassName($value = '')
     {
@@ -386,15 +378,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function labelOverflow($value = '')
-    {
-        return $this->set('labelOverflow', $value);
-    }
-
-    /**
-     * 
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起 (显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起)
      */
     public function labelRemark($value = '')
     {
@@ -402,7 +386,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * label自定义宽度，默认单位为px
      */
     public function labelWidth($value = '')
     {
@@ -410,7 +394,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 当 selectMode 为 associated 时用来定义左侧的选择模式 可选值: tree | list
      */
     public function leftMode($value = '')
     {
@@ -418,7 +402,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 当 selectMode 为 associated 时用来定义左侧的选项
      */
     public function leftOptions($value = '')
     {
@@ -434,7 +418,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 用来丰富选项展示 (用来丰富选项展示)
      */
     public function menuTpl($value = '')
     {
@@ -442,7 +426,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置当前表单项展示模式 可选值: normal | inline | horizontal
      */
     public function mode($value = '')
     {
@@ -450,15 +434,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否为多选模式
      */
-    public function multiple($value = '')
+    public function multiple($value = true)
     {
         return $this->set('multiple', $value);
     }
 
     /**
-     * 
+     * 字段名，表单提交时的 key，支持多层级，用.连接，如： a.b.c
      */
     public function name($value = '')
     {
@@ -466,7 +450,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 事件动作配置
      */
     public function onEvent($value = '')
     {
@@ -474,15 +458,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 树形模式下，仅选中子节点
      */
-    public function onlyChildren($value = '')
+    public function onlyChildren($value = true)
     {
         return $this->set('onlyChildren', $value);
     }
 
     /**
-     * 
+     * 选项集合
      */
     public function options($value = '')
     {
@@ -490,7 +474,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 分页配置，selectMode为默认和table才会生效
      */
     public function pagination($value = '')
     {
@@ -498,7 +482,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 占位符
      */
     public function placeholder($value = '')
     {
@@ -506,15 +490,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否只读
      */
-    public function readOnly($value = '')
+    public function readOnly($value = true)
     {
         return $this->set('readOnly', $value);
     }
 
     /**
-     * 
+     * 只读条件
      */
     public function readOnlyOn($value = '')
     {
@@ -522,7 +506,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容 (显示一个小图标, 鼠标放上去的时候显示提示内容)
      */
     public function remark($value = '')
     {
@@ -530,7 +514,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否可删除
      */
     public function removable($value = true)
     {
@@ -538,15 +522,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否为必填
      */
-    public function required($value = '')
+    public function required($value = true)
     {
         return $this->set('required', $value);
     }
 
     /**
-     * 
+     * 点清除按钮时，将表单项设置成当前配置的值。
      */
     public function resetValue($value = '')
     {
@@ -554,15 +538,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 结果面板是否追踪显示
      */
-    public function resultListModeFollowSelect($value = '')
+    public function resultListModeFollowSelect($value = true)
     {
         return $this->set('resultListModeFollowSelect', $value);
     }
 
     /**
-     * 
+     * 右侧列表搜索框提示
      */
     public function resultSearchPlaceholder($value = '')
     {
@@ -570,7 +554,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 结果（右则）列表的检索功能，当设置为true时，可以通过输入检索模糊匹配检索内容
      */
     public function resultSearchable($value = true)
     {
@@ -578,7 +562,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 右侧结果的标题文字
      */
     public function resultTitle($value = '')
     {
@@ -586,7 +570,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 当 selectMode 为 associated 时用来定义右侧的选择模式 可选值: table | list | tree | chained
      */
     public function rightMode($value = '')
     {
@@ -610,7 +594,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 搜索 API (搜索 API)
      */
     public function searchApi($value = '')
     {
@@ -618,7 +602,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 左侧列表搜索框提示
      */
     public function searchPlaceholder($value = '')
     {
@@ -626,7 +610,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 当 searchResultMode 为 table 时定义表格列信息。
      */
     public function searchResultColumns($value = '')
     {
@@ -634,7 +618,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 搜索结果展示模式 可选值: table | list | tree | chained
      */
     public function searchResultMode($value = '')
     {
@@ -642,7 +626,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 可搜索？
      */
     public function searchable($value = true)
     {
@@ -650,15 +634,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 默认选择选项第一个值。
      */
-    public function selectFirst($value = '')
+    public function selectFirst($value = true)
     {
         return $this->set('selectFirst', $value);
     }
 
     /**
-     * 
+     * 勾选展示模式 可选值: table | list | tree | chained | associated
      */
     public function selectMode($value = '')
     {
@@ -666,7 +650,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 左侧的标题文字
      */
     public function selectTitle($value = '')
     {
@@ -674,23 +658,23 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否显示剪头
      */
-    public function showArrow($value = '')
+    public function showArrow($value = true)
     {
         return $this->set('showArrow', $value);
     }
 
     /**
-     * 
+     * 当在value值未匹配到当前options中的选项时，是否value值对应文本飘红显示
      */
-    public function showInvalidMatch($value = '')
+    public function showInvalidMatch($value = true)
     {
         return $this->set('showInvalidMatch', $value);
     }
 
     /**
-     * 
+     * 表单项大小 可选值: xs | sm | md | lg | full
      */
     public function size($value = '')
     {
@@ -698,7 +682,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 可排序？
      */
     public function sortable($value = true)
     {
@@ -706,7 +690,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 可用来通过 API 拉取 options。
      */
     public function source($value = '')
     {
@@ -714,15 +698,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示
      */
-    public function static($value = '')
+    public function static($value = true)
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -730,7 +714,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -738,7 +722,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -746,7 +730,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -754,7 +738,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示空值占位
      */
     public function staticPlaceholder($value = '')
     {
@@ -770,15 +754,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 统计数字
      */
-    public function statistics($value = '')
+    public function statistics($value = true)
     {
         return $this->set('statistics', $value);
     }
 
     /**
-     * 
+     * 组件样式
      */
     public function style($value = '')
     {
@@ -786,11 +770,19 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 当修改完的时候是否提交表单。
      */
-    public function submitOnChange($value = '')
+    public function submitOnChange($value = true)
     {
         return $this->set('submitOnChange', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -802,15 +794,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以组件级别用来关闭移动端样式
      */
-    public function useMobileUI($value = '')
+    public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 
+     * 远端校验表单项接口
      */
     public function validateApi($value = '')
     {
@@ -818,15 +810,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 不设置时，当表单提交过后表单项每次修改都会触发重新验证， 如果设置了，则由此配置项来决定要不要每次修改都触发验证。
      */
-    public function validateOnChange($value = '')
+    public function validateOnChange($value = true)
     {
         return $this->set('validateOnChange', $value);
     }
 
     /**
-     * 
+     * 验证失败的提示信息
      */
     public function validationErrors($value = '')
     {
@@ -842,7 +834,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 默认值，切记只能是静态值，不支持取变量，跟数据关联是通过设置 name 属性来实现的。
      */
     public function value($value = '')
     {
@@ -850,7 +842,7 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 用来丰富值的展示 (用来丰富值的展示)
      */
     public function valueTpl($value = '')
     {
@@ -858,15 +850,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 多选模式，值太多时是否避免折行
      */
-    public function valuesNoWrap($value = '')
+    public function valuesNoWrap($value = true)
     {
         return $this->set('valuesNoWrap', $value);
     }
 
     /**
-     * 
+     * 在选项数量达到多少时开启虚拟渲染
      */
     public function virtualThreshold($value = '')
     {
@@ -874,15 +866,15 @@ class TabsTransferControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否显示
      */
-    public function visible($value = '')
+    public function visible($value = true)
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

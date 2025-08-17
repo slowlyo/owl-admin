@@ -6,19 +6,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Avatar
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class Avatar extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'avatar');
+$this->set('crossOrigin', 'anonymous');
 
 
     }
 
     /**
-     * 
+     * 图片无法显示时的替换文字地址
      */
     public function alt($value = '')
     {
@@ -26,7 +27,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function badge($value = '')
     {
@@ -34,7 +35,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function className($value = '')
     {
@@ -42,7 +43,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 图片CORS属性 可选值: anonymous | use-credentials | 
      */
     public function crossOrigin($value = '')
     {
@@ -50,7 +51,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 默认头像
      */
     public function defaultAvatar($value = '')
     {
@@ -58,15 +59,15 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
-    public function disabled($value = '')
+    public function disabled($value = true)
     {
         return $this->set('disabled', $value);
     }
 
     /**
-     * 
+     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function disabledOn($value = '')
     {
@@ -74,7 +75,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 图片是否允许拖动
      */
     public function draggable($value = true)
     {
@@ -82,7 +83,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
     {
@@ -90,7 +91,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 图片相对于容器的缩放方式 可选值: fill | contain | cover | none | scale-down
      */
     public function fit($value = '')
     {
@@ -98,7 +99,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 字符类型距离左右两侧边界单位像素
      */
     public function gap($value = '')
     {
@@ -106,15 +107,15 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否隐藏
      */
-    public function hidden($value = '')
+    public function hidden($value = true)
     {
         return $this->set('hidden', $value);
     }
 
     /**
-     * 
+     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function hiddenOn($value = '')
     {
@@ -122,7 +123,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 图标
      */
     public function icon($value = '')
     {
@@ -130,7 +131,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 组件唯一 id，主要用于日志采集
      */
     public function id($value = '')
     {
@@ -138,7 +139,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 图片加载失败的是否默认处理，字符串函数
      */
     public function onError($value = '')
     {
@@ -146,7 +147,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 事件动作配置
      */
     public function onEvent($value = '')
     {
@@ -154,7 +155,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 形状 可选值: circle | square | rounded
      */
     public function shape($value = '')
     {
@@ -162,7 +163,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 大小
      */
     public function size($value = '')
     {
@@ -170,7 +171,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 图片地址
      */
     public function src($value = '')
     {
@@ -178,15 +179,15 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示
      */
-    public function static($value = '')
+    public function static($value = true)
     {
         return $this->set('static', $value);
     }
 
     /**
-     * 
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -194,7 +195,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticInputClassName($value = '')
     {
@@ -202,7 +203,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticLabelClassName($value = '')
     {
@@ -210,7 +211,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function staticOn($value = '')
     {
@@ -218,7 +219,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 静态展示空值占位
      */
     public function staticPlaceholder($value = '')
     {
@@ -234,11 +235,19 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 自定义样式
      */
     public function style($value = '')
     {
         return $this->set('style', $value);
+    }
+
+    /**
+     * 
+     */
+    public function testIdBuilder($value = '')
+    {
+        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -250,7 +259,7 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 文本
      */
     public function text($value = '')
     {
@@ -266,23 +275,23 @@ class Avatar extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以组件级别用来关闭移动端样式
      */
-    public function useMobileUI($value = '')
+    public function useMobileUI($value = true)
     {
         return $this->set('useMobileUI', $value);
     }
 
     /**
-     * 
+     * 是否显示
      */
-    public function visible($value = '')
+    public function visible($value = true)
     {
         return $this->set('visible', $value);
     }
 
     /**
-     * 
+     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
      */
     public function visibleOn($value = '')
     {

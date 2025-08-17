@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SchemaApi
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class SchemaApi extends BaseRenderer
 {
@@ -129,7 +129,7 @@ class SchemaApi extends BaseRenderer
     }
 
     /**
-     * 设置发送条件 (表达式，语法 `${xxx > 5}`。)
+     * 设置发送条件 (表达式，语法 `data.xxx > 5`。)
      */
     public function sendOn($value = '')
     {

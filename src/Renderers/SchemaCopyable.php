@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SchemaCopyable
  * 
  * @author slowlyo
- * @version 6.13.0
+ * @version 6.12.0
  */
 class SchemaCopyable extends BaseRenderer
 {

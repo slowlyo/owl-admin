@@ -3,25 +3,24 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * LinkAction
+ * VanillaAction
  * 
  * @author slowlyo
  * @version 6.12.0
  */
-class LinkAction extends BaseRenderer
+class VanillaAction extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'button');
-$this->set('actionType', 'link');
 
 
     }
 
     /**
-     * 指定为打开链接行为，跟 url 不同的时这个行为为单页模式。
+     * 
      */
-    public function actionType($value = 'link')
+    public function actionType($value = '')
     {
         return $this->set('actionType', $value);
     }
@@ -147,6 +146,14 @@ $this->set('actionType', 'link');
     }
 
     /**
+     * 
+     */
+    public function downloadFileName($value = '')
+    {
+        return $this->set('downloadFileName', $value);
+    }
+
+    /**
      * 编辑器配置，运行时可以忽略
      */
     public function editorSetting($value = '')
@@ -216,14 +223,6 @@ $this->set('actionType', 'link');
     public function level($value = '')
     {
         return $this->set('level', $value);
-    }
-
-    /**
-     * 跳转到哪？支持配置相对路径。
-     */
-    public function link($value = '')
-    {
-        return $this->set('link', $value);
     }
 
     /**
