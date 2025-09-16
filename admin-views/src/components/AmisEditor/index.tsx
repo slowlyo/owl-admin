@@ -7,6 +7,7 @@ import 'amis-editor-core/lib/style.css'
 import './style/index.less'
 import useSetting from '@/hooks/useSetting'
 import { toast } from 'amis-ui'
+import { toAxiosLike, wrapAxiosLikeIfAmbiguous } from '@/utils/amisAdaptor'
 
 function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void, preview: boolean, defaultSchema?: any}) {
     if (!defaultSchema) {
@@ -32,7 +33,10 @@ function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void
 
     const env = {
         enableAMISDebug: getSetting('show_development_tools'),
-        fetcher: ({url, method, data}) => amisRequest(url, method, data),
+        fetcher: async ({url, method, data}) => {
+            const res = await amisRequest(url, method, data)
+            return wrapAxiosLikeIfAmbiguous(toAxiosLike(res))
+        },
         updateLocation: (location, replace) => {
             replace || history.push(location)
         },

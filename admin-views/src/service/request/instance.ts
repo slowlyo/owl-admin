@@ -40,27 +40,29 @@ export default class CustomAxiosInstance {
             async response => {
                 const {status} = response
                 if (status === 200 || status < 300 || status === 304) {
-                    const backend = response.data
-                    // 请求成功
-                    if (backend.status === 0) {
-                        if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            toast.success(backend.msg)
-                        }
+                    // 先处理附件下载/Blob 的场景
+                    const adapted = await attachmentAdpator(response, () => '')
 
-                        return backend
-                    } else {
-                        if (backend?.msg && backend?.doNotDisplayToast == 0) {
-                            toast.error(backend.msg)
-                        }
-                    }
+                    // 统一拿到数据体
+                    const backend = adapted?.data
 
                     // token失效
                     if (backend?.code == 401 && !inLoginPage()) {
                         Token().clear()
-
                         goToLoginPage()
                     }
-                    return await attachmentAdpator(response, () => '')
+
+                    // 当后端返回 AMis 风格包装（包含 status）时，按 msg 显示提示
+                    if (typeof backend?.status === 'number') {
+                        if (backend?.msg && backend?.doNotDisplayToast == 0) {
+                            backend.status === 0 ? toast.success(backend.msg) : toast.error(backend.msg)
+                        }
+                        // status 为 0 返回后端 JSON，否则返回 axios 响应，保持与原逻辑一致
+                        return backend.status === 0 ? backend : adapted
+                    }
+
+                    // 非 AMis 风格包装，返回 axios 响应（res.data 即为真实数据）
+                    return adapted
                 }
 
                 return response

@@ -1,7 +1,7 @@
 import "./global.css";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import rootReducer from "./store";
@@ -13,9 +13,14 @@ import { ConfigProvider, theme } from "antd";
 import useSetup from "@/hooks/useSetup";
 import useTheme from "@/hooks/useTheme";
 import { AlertComponent, ToastComponent } from "amis-ui";
+import { addApiResponseAdaptor } from 'amis-core'
+import { wrapPayloadIfAmbiguous } from '@/utils/amisAdaptor'
 
 // 创建 store
 const store = createStore(rootReducer);
+
+// 全局修正 AMis 响应适配，避免业务字段 status/no 触发 fetchFailed
+addApiResponseAdaptor((payload: any) => wrapPayloadIfAmbiguous(payload))
 
 const Admin = () => {
     // 获取 antd 的国际化配置

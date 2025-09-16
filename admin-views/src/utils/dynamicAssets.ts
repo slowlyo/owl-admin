@@ -1,4 +1,5 @@
-export function dynamicAssetsHandler({js = [], css = [], styles = [], scripts = []}) {
+export function dynamicAssetsHandler(input?: { js?: string | string[]; css?: string | string[]; styles?: string | string[]; scripts?: string | string[] }) {
+    const { js, css, styles, scripts } = input || {}
     const appendToHead = (element: any) => document.getElementsByTagName('head')[0].appendChild(element)
 
     const loadJS = (src: string) => {
@@ -28,8 +29,10 @@ export function dynamicAssetsHandler({js = [], css = [], styles = [], scripts = 
         appendToHead(style)
     }
 
-    js?.forEach(js => loadJS(js))
-    css?.forEach(css => loadCSS(css))
-    scripts?.forEach(val => loadScripts(val))
-    styles?.forEach(val => loadStyles(val))
+    const toArray = (val?: string | string[]) => Array.isArray(val) ? val : (val ? [val] : [])
+
+    toArray(js).forEach(src => loadJS(src))
+    toArray(css).forEach(href => loadCSS(href))
+    toArray(scripts).forEach(code => loadScripts(code))
+    toArray(styles).forEach(cssText => loadStyles(cssText))
 }
