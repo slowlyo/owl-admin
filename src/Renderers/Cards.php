@@ -3,18 +3,16 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * Cards 卡片集合渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card
+ * Cards
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Cards extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'cards');
-
-
     }
 
     /**
@@ -66,7 +64,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -82,7 +80,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 底部区域 (底部区域)
+     * 底部区域
      */
     public function footer($value = '')
     {
@@ -90,7 +88,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 底部 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 底部 CSS 类名
      */
     public function footerClassName($value = '')
     {
@@ -98,7 +96,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 顶部区域 (顶部区域)
+     * 顶部区域
      */
     public function header($value = '')
     {
@@ -106,7 +104,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 头部 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 头部 CSS 类名
      */
     public function headerClassName($value = '')
     {
@@ -122,7 +120,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -146,7 +144,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 配置某项是否可以点选 (表达式，语法 `data.xxx > 5`。)
+     * 配置某项是否可以点选
      */
     public function itemCheckableOn($value = '')
     {
@@ -154,7 +152,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 卡片 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 卡片 CSS 类名
      */
     public function itemClassName($value = '')
     {
@@ -162,7 +160,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 配置某项是否可拖拽排序，前提是要开启拖拽功能 (表达式，语法 `data.xxx > 5`。)
+     * 配置某项是否可拖拽排序，前提是要开启拖拽功能
      */
     public function itemDraggableOn($value = '')
     {
@@ -194,8 +192,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 无数据提示 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 无数据提示
      */
     public function placeholder($value = '')
     {
@@ -219,19 +216,11 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 数据源: 绑定当前环境变量 (数据源: 绑定当前环境变量)
+     * 数据源: 绑定当前环境变量
      */
     public function source($value = '')
     {
         return $this->set('source', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -259,7 +248,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -293,22 +282,13 @@ class Cards extends BaseRenderer
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
     }
 
     /**
-     * 标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 标题
      */
     public function title($value = '')
     {
@@ -316,7 +296,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 指定为 cards 类型
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'cards')
     {
@@ -348,7 +328,7 @@ class Cards extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

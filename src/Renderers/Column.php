@@ -6,18 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Column
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Column extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
-     * 内容居左、居中、居右
+     * 内容居左、居中、居右 可选值: left | right
      */
     public function align($value = '')
     {
@@ -81,7 +76,7 @@ class Column extends BaseRenderer
     }
 
     /**
-     * 是否固定在左侧/右侧
+     * 是否固定在左侧/右侧 可选值: left | right | none
      */
     public function fixed($value = '')
     {
@@ -193,7 +188,7 @@ class Column extends BaseRenderer
     }
 
     /**
-     * 
+     * Dialog 宽度
      */
     public function width($value = '')
     {

@@ -6,19 +6,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * MonthRange 月范围控件 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/month-range
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class MonthRangeControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-month-range');
-
-
     }
 
     /**
-     * 是否启用游标动画，默认开启
+     * 是否启用游标动画，默认开启 可选值: fade | slide | marquee
      */
     public function animation($value = true)
     {
@@ -66,7 +64,8 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 描述 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function desc($value = '')
     {
@@ -98,7 +97,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -146,7 +145,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 默认 `X` 即时间戳格式，用来提交的时间格式。更多格式类型请参考 moment.
+     * 默认 `X` 即时间戳格式，用来提交的时间格式。更多格式类型请参考 moment. 可选值: hex | hexa | rgb | rgba | hsl
      */
     public function format($value = '')
     {
@@ -162,7 +161,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -194,9 +193,9 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 初始化时是否把其他字段同步到表单内部。
      */
-    public function initAutoFill($value = '')
+    public function initAutoFill($value = true)
     {
         return $this->set('initAutoFill', $value);
     }
@@ -234,7 +233,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 描述标题
+     * 描述标题, 当值为 false 时不展示
      */
     public function label($value = '')
     {
@@ -258,7 +257,15 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起 (显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起)
+     * label展示形式 可选值: default | ellipsis
+     */
+    public function labelOverflow($value = '')
+    {
+        return $this->set('labelOverflow', $value);
+    }
+
+    /**
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起
      */
     public function labelRemark($value = '')
     {
@@ -370,7 +377,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容 (显示一个小图标, 鼠标放上去的时候显示提示内容)
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容
      */
     public function remark($value = '')
     {
@@ -426,14 +433,6 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
-    }
-
-    /**
      * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
@@ -458,7 +457,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -498,14 +497,6 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
      * 日期数据处理函数，用来处理选择日期之后的的值(value: moment.Moment, config: {type: 'start' | 'end'; originValue: moment.Moment, timeFormat: string}, props: any, data: any, moment: moment) => moment.Moment;
      */
     public function transform($value = '')
@@ -514,7 +505,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'input-month-range')
     {
@@ -586,7 +577,7 @@ class MonthRangeControl extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

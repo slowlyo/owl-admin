@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图片集展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/images
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Images extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'images');
-
-
     }
 
     /**
@@ -58,7 +56,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -130,7 +128,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -194,7 +192,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置固定值
      */
     public function options($value = '')
     {
@@ -242,7 +240,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 
+     * 数据源: 绑定当前环境变量 (数据源: 绑定当前环境变量)
      */
     public function source($value = '')
     {
@@ -255,14 +253,6 @@ class Images extends BaseRenderer
     public function src($value = '')
     {
         return $this->set('src', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -290,7 +280,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -319,14 +309,6 @@ class Images extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -362,7 +344,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 指定为图片集渲染器 可选值: images | static-images
+     * 指定为图片集渲染器
      */
     public function type($value = '')
     {
@@ -378,7 +360,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 
+     * 默认值，切记只能是静态值，不支持取变量，跟数据关联是通过设置 name 属性来实现的。
      */
     public function value($value = '')
     {
@@ -394,7 +376,7 @@ class Images extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * InputKV 键值对
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class InputKV extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'input-kv');
-
-
     }
 
     /**
@@ -106,7 +104,7 @@ class InputKV extends BaseRenderer
     }
 
     /**
-     * 表单项标签对齐方式，默认右对齐，仅在 mode为horizontal 时生效
+     * 表单项标签对齐方式，默认右对齐，仅在 mode为horizontal 时生效 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {

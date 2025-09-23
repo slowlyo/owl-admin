@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Card 卡片渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/card
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Card extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'card');
-
-
     }
 
     /**
@@ -50,7 +48,7 @@ class Card extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -82,7 +80,7 @@ class Card extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -122,20 +120,11 @@ class Card extends BaseRenderer
     }
 
     /**
-     * 次要说明 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 次要说明
      */
     public function secondary($value = '')
     {
         return $this->set('secondary', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -163,7 +152,7 @@ class Card extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -197,14 +186,6 @@ class Card extends BaseRenderer
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
@@ -219,7 +200,7 @@ class Card extends BaseRenderer
     }
 
     /**
-     * 指定为 card 类型
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'card')
     {
@@ -251,7 +232,7 @@ class Card extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

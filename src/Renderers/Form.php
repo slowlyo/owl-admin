@@ -3,18 +3,16 @@
 namespace Slowlyo\OwlAdmin\Renderers;
 
 /**
- * Form 表单渲染器。说明：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/index
+ * Form
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Form extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'form');
-
-
     }
 
     /**
@@ -58,7 +56,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 表单项集合 (表单项集合)
+     * 表单项集合
      */
     public function body($value = '')
     {
@@ -74,7 +72,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 容器 css 类名
      */
     public function className($value = '')
     {
@@ -106,7 +104,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 
+     * 页面级别的初始数据 (初始数据，设置得值可用于组件内部模板使用。)
      */
     public function data($value = '')
     {
@@ -138,7 +136,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式
      */
     public function disabledOn($value = '')
     {
@@ -186,7 +184,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式
      */
     public function hiddenOn($value = '')
     {
@@ -194,7 +192,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。 (如果是水平排版，这个属性可以细化水平排版的左右宽度占比。)
+     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。
      */
     public function horizontal($value = '')
     {
@@ -266,7 +264,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 表单label的对齐方式 (表单label的对齐方式) 可选值: right | left | top | inherit
+     * 表单label的对齐方式 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -298,7 +296,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 
+     * 字段名，表单提交时的 key，支持多层级，用.连接，如： a.b.c
      */
     public function name($value = '')
     {
@@ -314,7 +312,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 配置容器 panel className (配置容器 panel className)
+     * 配置容器 panel className
      */
     public function panelClassName($value = '')
     {
@@ -370,7 +368,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 
+     * 保存完后，可以指定跳转地址，支持相对路径和组内绝对路径，同时可以通过 $xxx 使用变量
      */
     public function redirect($value = '')
     {
@@ -378,7 +376,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置刷新动作，这个动作通常在完成渲染器本省的固定动作后出发。一般用来配置目标组件的 name 属性。多个目标可以用逗号隔开。当目标是 windows 时表示刷新整个页面。刷新目标的同时还支持传递参数如： `foo?a=${a}&b=${b},boo?c=${c}`
      */
     public function reload($value = '')
     {
@@ -410,15 +408,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 展示态时的className
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
-    }
-
-    /**
-     * css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     }
+     * 静态展示表单项类名
      */
     public function staticClassName($value = '')
     {
@@ -426,7 +416,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Value类名
      */
     public function staticInputClassName($value = '')
     {
@@ -434,7 +424,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Label类名
      */
     public function staticLabelClassName($value = '')
     {
@@ -442,7 +432,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 表达式，语法 `data.xxx > 5`。
+     * 是否静态展示表达式
      */
     public function staticOn($value = '')
     {
@@ -506,7 +496,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 
+     * 选项卡成员。当配置了 source 时，选项卡成员，将会根据目标数据进行重复。
      */
     public function tabs($value = '')
     {
@@ -522,22 +512,6 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testid($value = '')
-    {
-        return $this->set('testid', $value);
-    }
-
-    /**
      * 表单标题
      */
     public function title($value = '')
@@ -546,7 +520,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 指定为表单渲染器。
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'form')
     {
@@ -570,7 +544,7 @@ class Form extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式
      */
     public function visibleOn($value = '')
     {

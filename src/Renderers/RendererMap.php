@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
 class RendererMap
 {
     public static array $map = [
+		'action' => Action::class,
 		'alert' => Alert::class,
 		'amis' => Component::class,
 		'anchor-nav' => AnchorNav::class,
@@ -113,6 +114,7 @@ class RendererMap
 		'input-url' => TextControl::class,
 		'input-verification-code' => Component::class,
 		'input-year' => YearControl::class,
+		'input-year-range' => InputYearRange::class,
 		'java-editor' => EditorControl::class,
 		'javascript-editor' => EditorControl::class,
 		'json' => Json::class,
@@ -206,7 +208,7 @@ class RendererMap
 		'tag' => Tag::class,
 		'tags' => Component::class,
 		'tasks' => Tasks::class,
-		'text' => Component::class,
+		'text' => Plain::class,
 		'textarea' => TextareaControl::class,
 		'time' => Date::class,
 		'timeline' => Timeline::class,

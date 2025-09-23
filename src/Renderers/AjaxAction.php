@@ -6,20 +6,20 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * AjaxAction
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class AjaxAction extends BaseRenderer
 {
     public function __construct()
     {
-        $this->set('type', 'button');
+        $this->set('type', 'action');
 $this->set('actionType', 'ajax');
 
-
+        $this->set('type', 'action');
     }
 
     /**
-     * 指定为发送 ajax 的行为。
+     * 指定为发送 ajax 的行为。 可选值: prev | next | cancel | close | submit | confirm | add | reset | reset-and-submit
      */
     public function actionType($value = 'ajax')
     {
@@ -51,7 +51,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
+     * 角标
      */
     public function badge($value = '')
     {
@@ -67,7 +67,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 子内容 (子内容)
+     * 子内容
      */
     public function body($value = '')
     {
@@ -131,7 +131,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -163,7 +163,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     * Form 也可以配置 feedback。
      */
     public function feedback($value = '')
     {
@@ -179,7 +179,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -195,7 +195,15 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 按钮图标， iconfont 的类名 (iconfont 里面的类名。)
+     * 点击后打开的链接地址
+     */
+    public function href($value = '')
+    {
+        return $this->set('href', $value);
+    }
+
+    /**
+     * 按钮图标， iconfont 的类名
      */
     public function icon($value = '')
     {
@@ -203,7 +211,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * icon 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * icon 上的css 类名
      */
     public function iconClassName($value = '')
     {
@@ -251,7 +259,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * loading 上的css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * loading 上的css 类名
      */
     public function loadingClassName($value = '')
     {
@@ -299,7 +307,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 
+     * 保存完后，可以指定跳转地址，支持相对路径和组内绝对路径，同时可以通过 $xxx 使用变量
      */
     public function redirect($value = '')
     {
@@ -331,7 +339,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 右侧按钮图标， iconfont 的类名 (iconfont 里面的类名。)
+     * 右侧按钮图标， iconfont 的类名
      */
     public function rightIcon($value = '')
     {
@@ -339,7 +347,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 右侧 icon 上的 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 右侧 icon 上的 css 类名
      */
     public function rightIconClassName($value = '')
     {
@@ -352,14 +360,6 @@ $this->set('actionType', 'ajax');
     public function size($value = '')
     {
         return $this->set('size', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -387,7 +387,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -437,21 +437,13 @@ $this->set('actionType', 'ajax');
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
     }
 
     /**
-     * 
+     * 提示文字内容
      */
     public function tooltip($value = '')
     {
@@ -467,7 +459,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 指定按钮类型，支持 button、submit或者reset三种类型。 可选值: button | submit | reset
+     * 指定按钮类型，支持 button、submit或者reset三种类型。
      */
     public function type($value = '')
     {
@@ -491,7 +483,7 @@ $this->set('actionType', 'ajax');
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

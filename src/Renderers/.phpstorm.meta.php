@@ -65,7 +65,7 @@ namespace PHPSTORM_META {
 		'property' => \Slowlyo\OwlAdmin\Renderers\Property::class,
 		'operation' => \Slowlyo\OwlAdmin\Renderers\Operation::class,
 		'plain' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
-		'text' => \Slowlyo\OwlAdmin\Renderers\Component::class,
+		'text' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
 		'progress' => \Slowlyo\OwlAdmin\Renderers\Progress::class,
 		'qrcode' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
 		'qr-code' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
@@ -90,6 +90,7 @@ namespace PHPSTORM_META {
 		'timeline' => \Slowlyo\OwlAdmin\Renderers\Timeline::class,
 		'control' => \Slowlyo\OwlAdmin\Renderers\FormControl::class,
 		'input-array' => \Slowlyo\OwlAdmin\Renderers\ArrayControl::class,
+		'action' => \Slowlyo\OwlAdmin\Renderers\Action::class,
 		'button' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'submit' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'reset' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
@@ -110,6 +111,7 @@ namespace PHPSTORM_META {
 		'input-time' => \Slowlyo\OwlAdmin\Renderers\TimeControl::class,
 		'input-quarter' => \Slowlyo\OwlAdmin\Renderers\QuarterControl::class,
 		'input-year' => \Slowlyo\OwlAdmin\Renderers\YearControl::class,
+		'input-year-range' => \Slowlyo\OwlAdmin\Renderers\InputYearRange::class,
 		'input-month' => \Slowlyo\OwlAdmin\Renderers\MonthControl::class,
 		'input-date-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
 		'input-time-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
@@ -289,7 +291,7 @@ namespace PHPSTORM_META {
 		'property' => \Slowlyo\OwlAdmin\Renderers\Property::class,
 		'operation' => \Slowlyo\OwlAdmin\Renderers\Operation::class,
 		'plain' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
-		'text' => \Slowlyo\OwlAdmin\Renderers\Component::class,
+		'text' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
 		'progress' => \Slowlyo\OwlAdmin\Renderers\Progress::class,
 		'qrcode' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
 		'qr-code' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
@@ -314,6 +316,7 @@ namespace PHPSTORM_META {
 		'timeline' => \Slowlyo\OwlAdmin\Renderers\Timeline::class,
 		'control' => \Slowlyo\OwlAdmin\Renderers\FormControl::class,
 		'input-array' => \Slowlyo\OwlAdmin\Renderers\ArrayControl::class,
+		'action' => \Slowlyo\OwlAdmin\Renderers\Action::class,
 		'button' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'submit' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'reset' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
@@ -334,6 +337,7 @@ namespace PHPSTORM_META {
 		'input-time' => \Slowlyo\OwlAdmin\Renderers\TimeControl::class,
 		'input-quarter' => \Slowlyo\OwlAdmin\Renderers\QuarterControl::class,
 		'input-year' => \Slowlyo\OwlAdmin\Renderers\YearControl::class,
+		'input-year-range' => \Slowlyo\OwlAdmin\Renderers\InputYearRange::class,
 		'input-month' => \Slowlyo\OwlAdmin\Renderers\MonthControl::class,
 		'input-date-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
 		'input-time-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
@@ -513,7 +517,7 @@ namespace PHPSTORM_META {
 		'property' => \Slowlyo\OwlAdmin\Renderers\Property::class,
 		'operation' => \Slowlyo\OwlAdmin\Renderers\Operation::class,
 		'plain' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
-		'text' => \Slowlyo\OwlAdmin\Renderers\Component::class,
+		'text' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
 		'progress' => \Slowlyo\OwlAdmin\Renderers\Progress::class,
 		'qrcode' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
 		'qr-code' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
@@ -538,6 +542,7 @@ namespace PHPSTORM_META {
 		'timeline' => \Slowlyo\OwlAdmin\Renderers\Timeline::class,
 		'control' => \Slowlyo\OwlAdmin\Renderers\FormControl::class,
 		'input-array' => \Slowlyo\OwlAdmin\Renderers\ArrayControl::class,
+		'action' => \Slowlyo\OwlAdmin\Renderers\Action::class,
 		'button' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'submit' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'reset' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
@@ -558,6 +563,7 @@ namespace PHPSTORM_META {
 		'input-time' => \Slowlyo\OwlAdmin\Renderers\TimeControl::class,
 		'input-quarter' => \Slowlyo\OwlAdmin\Renderers\QuarterControl::class,
 		'input-year' => \Slowlyo\OwlAdmin\Renderers\YearControl::class,
+		'input-year-range' => \Slowlyo\OwlAdmin\Renderers\InputYearRange::class,
 		'input-month' => \Slowlyo\OwlAdmin\Renderers\MonthControl::class,
 		'input-date-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
 		'input-time-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
@@ -737,7 +743,7 @@ namespace PHPSTORM_META {
 		'property' => \Slowlyo\OwlAdmin\Renderers\Property::class,
 		'operation' => \Slowlyo\OwlAdmin\Renderers\Operation::class,
 		'plain' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
-		'text' => \Slowlyo\OwlAdmin\Renderers\Component::class,
+		'text' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
 		'progress' => \Slowlyo\OwlAdmin\Renderers\Progress::class,
 		'qrcode' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
 		'qr-code' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
@@ -762,6 +768,7 @@ namespace PHPSTORM_META {
 		'timeline' => \Slowlyo\OwlAdmin\Renderers\Timeline::class,
 		'control' => \Slowlyo\OwlAdmin\Renderers\FormControl::class,
 		'input-array' => \Slowlyo\OwlAdmin\Renderers\ArrayControl::class,
+		'action' => \Slowlyo\OwlAdmin\Renderers\Action::class,
 		'button' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'submit' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'reset' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
@@ -782,6 +789,7 @@ namespace PHPSTORM_META {
 		'input-time' => \Slowlyo\OwlAdmin\Renderers\TimeControl::class,
 		'input-quarter' => \Slowlyo\OwlAdmin\Renderers\QuarterControl::class,
 		'input-year' => \Slowlyo\OwlAdmin\Renderers\YearControl::class,
+		'input-year-range' => \Slowlyo\OwlAdmin\Renderers\InputYearRange::class,
 		'input-month' => \Slowlyo\OwlAdmin\Renderers\MonthControl::class,
 		'input-date-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
 		'input-time-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
@@ -961,7 +969,7 @@ namespace PHPSTORM_META {
 		'property' => \Slowlyo\OwlAdmin\Renderers\Property::class,
 		'operation' => \Slowlyo\OwlAdmin\Renderers\Operation::class,
 		'plain' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
-		'text' => \Slowlyo\OwlAdmin\Renderers\Component::class,
+		'text' => \Slowlyo\OwlAdmin\Renderers\Plain::class,
 		'progress' => \Slowlyo\OwlAdmin\Renderers\Progress::class,
 		'qrcode' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
 		'qr-code' => \Slowlyo\OwlAdmin\Renderers\QRCode::class,
@@ -986,6 +994,7 @@ namespace PHPSTORM_META {
 		'timeline' => \Slowlyo\OwlAdmin\Renderers\Timeline::class,
 		'control' => \Slowlyo\OwlAdmin\Renderers\FormControl::class,
 		'input-array' => \Slowlyo\OwlAdmin\Renderers\ArrayControl::class,
+		'action' => \Slowlyo\OwlAdmin\Renderers\Action::class,
 		'button' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'submit' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
 		'reset' => \Slowlyo\OwlAdmin\Renderers\VanillaAction::class,
@@ -1006,6 +1015,7 @@ namespace PHPSTORM_META {
 		'input-time' => \Slowlyo\OwlAdmin\Renderers\TimeControl::class,
 		'input-quarter' => \Slowlyo\OwlAdmin\Renderers\QuarterControl::class,
 		'input-year' => \Slowlyo\OwlAdmin\Renderers\YearControl::class,
+		'input-year-range' => \Slowlyo\OwlAdmin\Renderers\InputYearRange::class,
 		'input-month' => \Slowlyo\OwlAdmin\Renderers\MonthControl::class,
 		'input-date-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
 		'input-time-range' => \Slowlyo\OwlAdmin\Renderers\DateRangeControl::class,
@@ -1123,98 +1133,174 @@ namespace PHPSTORM_META {
 		'slider' => \Slowlyo\OwlAdmin\Renderers\Slider::class,
 	]));
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::actionType(), 0, 'ajax','link','url','drawer','dialog','confirm','cancel','prev','next','copy','close');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::size(), 0, 'xs','sm','md','lg');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Action::tooltipPlacement(), 0, 'top','right','bottom','left');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AjaxAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Alert::level(), 0, 'info','warning','success','danger');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\AnchorNav::direction(), 0, 'vertical','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ArrayControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ArrayControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ArrayControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ArrayControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ArrayControl::subFormMode(), 0, 'normal','horizontal','inline');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ArrayControl::tabsMode(), 0, '','line','card','radio','vertical','chrome','simple','strong','tiled','sidebar');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ArrayControl::tabsStyle(), 0, '','line','card','radio');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Avatar::crossOrigin(), 0, 'anonymous','use-credentials','');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Avatar::fit(), 0, 'fill','contain','cover','none','scale-down');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Avatar::gap(), 0, 'xs','sm','base','none','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Avatar::shape(), 0, 'circle','square','rounded');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Avatar::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Badge::animation(), 0, 'fade','slide','marquee');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Badge::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Badge::mode(), 0, 'text','dot','ribbon');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Badge::position(), 0, 'top-right','top-left','bottom-right','bottom-left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Base::type(), 0, 'form','alert','app','audio','avatar','button-group','breadcrumb','card','card2','cards','carousel','chart','calendar','collapse','collapse-group','color','crud','crud2','custom','date','static-date','datetime','static-datetime','time','static-time','month','static-month','date-range','dialog','spinner','divider','dropdown-button','drawer','each','flex','flex-item','grid-2d','icon','iframe','image','static-image','images','static-images','json-schema','json-schema-editor','json','static-json','link','list','log','static-list','map','mapping','markdown','nav','number','page','pagination','pagination-wrapper','property','operation','plain','text','progress','qrcode','qr-code','barcode','remark','search-box','sparkline','status','table','static-table','table2','html','tpl','tasks','vbox','video','wizard','wrapper','web-component','anchor-nav','steps','timeline','control','input-array','button','submit','reset','button-group-select','button-toolbar','chained-select','chart-radios','checkbox','checkboxes','input-city','input-color','combo','condition-builder','container','switch-container','input-date','input-datetime','input-time','input-quarter','input-year','input-month','input-date-range','input-time-range','input-datetime-range','input-excel','input-formula','diff-editor','office-viewer','pdf-viewer','input-signature','input-verification-code','shape','editor','bat-editor','c-editor','coffeescript-editor','cpp-editor','csharp-editor','css-editor','dockerfile-editor','fsharp-editor','go-editor','handlebars-editor','html-editor','ini-editor','java-editor','javascript-editor','json-editor','less-editor','lua-editor','markdown-editor','msdax-editor','objective-c-editor','php-editor','plaintext-editor','postiats-editor','powershell-editor','pug-editor','python-editor','r-editor','razor-editor','ruby-editor','sb-editor','scss-editor','sol-editor','sql-editor','swift-editor','typescript-editor','vb-editor','xml-editor','yaml-editor','fieldset','fieldSet','input-file','formula','grid','group','hbox','hidden','icon-picker','icon-select','input-image','input-group','list-select','location-picker','matrix-checkboxes','input-month-range','input-quarter-range','nested-select','input-number','panel','picker','radio','radios','input-range','input-rating','input-repeat','input-rich-text','select','service','static','input-sub-form','switch','input-table','tabs','tabs-transfer','input-tag','input-text','input-password','input-email','input-url','uuid','multi-select','textarea','transfer','transfer-picker','tabs-transfer-picker','input-tree','tree-select','table-view','portlet','grid-nav','users-select','tag','tags','words','password','multiline-text','amis','native-date','native-time','native-number','code','tooltip-wrapper','slider');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Badge::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseApi::dataType(), 0, 'json','form-data','form');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseApi::method(), 0, 'get','post','put','delete','patch','jsonp','js');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseButtonGroup::size(), 0, 'xs','sm','md','lg');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseCollapse::headerPosition(), 0, 'top','bottom');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseCollapse::key(), 0, 'ROTATE_RIGHT','ROTATE_LEFT','ZOOM_IN','ZOOM_OUT','SCALE_ORIGIN');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseCollapse::size(), 0, 'xs','sm','md','lg','base');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseComboControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseComboControl::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseComboControl::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseComboControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseComboControl::subFormMode(), 0, 'normal','horizontal','inline');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseComboControl::tabsMode(), 0, '','line','card','radio','vertical','chrome','simple','strong','tiled','sidebar');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseComboControl::tabsStyle(), 0, '','line','card','radio');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseDateRangeControl::animation(), 0, 'fade','slide','marquee');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseDateRangeControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseDateRangeControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseDateRangeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseDateRangeControl::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseDateRangeControl::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseDateRangeControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseForm::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseForm::mode(), 0, 'normal','inline','horizontal','flex');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::btnSize(), 0, 'xs','sm','md','lg');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::inputMode(), 0, 'button','input-button','input-group');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::level(), 0, 'info','success','warning','danger','link','primary','dark','light');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseInputFormulaControl::variableMode(), 0, 'tabs','tree');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseList::size(), 0, 'sm','base');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseRemark::placement(), 0, 'top','right','bottom','left');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseRemark::shape(), 0, 'circle','square');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseRemark::trigger(), 0, 'click','hover');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTable::tableLayout(), 0, 'fixed','auto');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::leftMode(), 0, 'tree','list');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::rightMode(), 0, 'table','list','tree','chained');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::searchResultMode(), 0, 'table','list','tree','chained');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::selectMode(), 0, 'table','list','tree','chained','associated');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\BaseTransferControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Button::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Button::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Button::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Button::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonGroup::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonGroupControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonGroupControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonGroupControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonGroupControl::size(), 0, 'xs','sm','md','lg');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2Cards::loadType(), 0, 'more','pagination');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2List::loadType(), 0, 'more','pagination');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2List::size(), 0, 'sm','base');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2Table::loadType(), 0, 'more','pagination');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonToolbar::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonToolbar::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ButtonToolbar::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2Cards::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2List::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2List::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2Table::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUD2Table::tableLayout(), 0, 'fixed','auto');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDCards::mode(), 0, 'table','grid','cards','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDCards::orderDir(), 0, 'asc','desc');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDList::mode(), 0, 'table','grid','cards','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDList::orderDir(), 0, 'asc','desc');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDList::size(), 0, 'sm','base');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDTable::mode(), 0, 'table','grid','cards','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDTable::orderDir(), 0, 'asc','desc');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDTable::tableLayout(), 0, 'fixed','auto');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CRUDToolbar::align(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::animation(), 0, 'fade','slide','marquee');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::controlsTheme(), 0, 'light','dark');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Carousel::thumbMode(), 0, 'contain','cover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ChainedSelectControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ChainedSelectControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ChainedSelectControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ChainedSelectControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxControl::optionType(), 0, 'default','button');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxesControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxesControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxesControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CheckboxesControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Code::language(), 0, 'bat','c','coffeescript','cpp','csharp','css','dockerfile','fsharp','go','handlebars','html','ini','java','javascript','json','less','lua','markdown','msdax','objective-c','php','plaintext','postiats','powershell','pug','python','r','razor','ruby','sb','scss','shell','sol','sql','swift','typescript','vb','xml','yaml');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Collapse::headerPosition(), 0, 'top','bottom');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Collapse::key(), 0, 'ROTATE_RIGHT','ROTATE_LEFT','ZOOM_IN','ZOOM_OUT','SCALE_ORIGIN');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Collapse::size(), 0, 'xs','sm','md','lg','base');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CollapseGroup::expandIconPosition(), 0, 'left','right');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Column::align(), 0, 'left','right');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Column::fixed(), 0, 'left','right','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Column::headerAlign(), 0, 'left','center','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Column::vAlign(), 0, 'top','middle','bottom');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboCondition::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::subFormMode(), 0, 'normal','horizontal','inline');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::tabsMode(), 0, '','line','card','radio','vertical','chrome','simple','strong','tiled','sidebar');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ComboControl::tabsStyle(), 0, '','line','card','radio');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ConditionBuilderControl::builderMode(), 0, 'simple','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ConditionBuilderControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ConditionBuilderControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ConditionBuilderControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ConditionBuilderControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ConditionGroupValue::conjunction(), 0, 'and','or');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CopyAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CopyAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CopyAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CopyAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\CopyAction::type(), 0, 'button','submit','reset');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Date::type(), 0, 'date','datetime','time','static-date','static-datetime','static-time');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Date::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRange::format(), 0, 'hex','hexa','rgb','rgba','hsl');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::animation(), 0, 'fade','slide','marquee');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateRangeControl::type(), 0, 'input-date-range','input-datetime-range','input-time-range');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateTimeControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateTimeControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateTimeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateTimeControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateTimeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DateTimeControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Dialog::size(), 0, 'xs','sm','md','lg','xl','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DialogAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DialogAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DialogAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DialogAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DialogAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DiffControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DiffControl::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DiffControl::language(), 0, 'bat','c','coffeescript','cpp','csharp','css','dockerfile','fsharp','go','handlebars','html','ini','java','javascript','json','less','lua','markdown','msdax','objective-c','php','plaintext','postiats','powershell','pug','python','r','razor','ruby','sb','scss','shell','sol','sql','swift','typescript','vb','xml','yaml');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DiffControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DiffControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Divider::direction(), 0, 'horizontal','vertical');
@@ -1222,32 +1308,35 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Divider::titlePosition(), 0, 'left','center','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Drawer::position(), 0, 'left','right','top','bottom');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Drawer::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DrawerAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DrawerAction::align(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DrawerAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DrawerAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DrawerAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DrawerAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DropdownButton::align(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DropdownButton::level(), 0, 'info','success','danger','warning','primary','link');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DropdownButton::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\DropdownButton::trigger(), 0, 'click','hover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EditorControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EditorControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EditorControl::language(), 0, 'bat','c','coffeescript','cpp','csharp','css','dockerfile','fsharp','go','handlebars','html','ini','java','javascript','json','less','lua','markdown','msdax','objective-c','php','plaintext','postiats','powershell','pug','python','r','razor','ruby','sb','scss','shell','sol','sql','swift','typescript','vb','xml','yaml');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EditorControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EditorControl::size(), 0, 'sm','md','lg','xl','xxl');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EditorControl::type(), 0, 'editor','bat-editor','c-editor','coffeescript-editor','cpp-editor','csharp-editor','css-editor','dockerfile-editor','fsharp-editor','go-editor','handlebars-editor','html-editor','ini-editor','java-editor','javascript-editor','json-editor','less-editor','lua-editor','markdown-editor','msdax-editor','objective-c-editor','php-editor','plaintext-editor','postiats-editor','powershell-editor','pug-editor','python-editor','r-editor','razor-editor','ruby-editor','sb-editor','scss-editor','sol-editor','sql-editor','swift-editor','typescript-editor','vb-editor','xml-editor','yaml-editor');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EmailAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EmailAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EmailAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EmailAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\EmailAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FeedbackDialog::size(), 0, 'xs','sm','md','lg','xl','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::headerPosition(), 0, 'top','bottom');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::key(), 0, 'ROTATE_RIGHT','ROTATE_LEFT','ZOOM_IN','ZOOM_OUT','SCALE_ORIGIN');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::size(), 0, 'xs','sm','md','lg','base');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::subFormMode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::titlePosition(), 0, 'top','bottom');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FieldSetControl::type(), 0, 'fieldset','fieldSet');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FileControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FileControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FileControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FileControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Flex::alignContent(), 0, 'normal','flex-start','flex-end','center','space-between','space-around','space-evenly','stretch');
@@ -1256,21 +1345,32 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Flex::justify(), 0, 'start','flex-start','center','end','flex-end','space-around','space-between','space-evenly');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Form::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Form::mode(), 0, 'normal','inline','horizontal','flex');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormBaseControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormBaseControl::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormBaseControl::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormBaseControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormOptions::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormOptions::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormOptions::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormOptions::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormulaControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormulaControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormulaControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\FormulaControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Grid::align(), 0, 'left','right','between','center');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Grid::gap(), 0, 'xs','sm','base','none','md','lg');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Grid::valign(), 0, 'top','middle','bottom','between');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Grid::align(), 0, 'left','right','center','auto');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Grid::valign(), 0, 'top','bottom','middle','auto');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Grid2D::gap(), 0, 'xs','sm','base','none','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GridColumn::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GridColumn::valign(), 0, 'top','middle','bottom','between');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GridNav::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::gap(), 0, 'xs','sm','normal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\GroupControl::subFormMode(), 0, 'normal','inline','horizontal');
@@ -1281,20 +1381,23 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\HBoxColumn::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\HBoxColumn::valign(), 0, 'top','middle','bottom','between');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\HiddenControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\HiddenControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\HiddenControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\HiddenControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Html::type(), 0, 'tpl','html');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IFrame::referrerpolicy(), 0, 'no-referrer','no-referrer-when-downgrade','origin','origin-when-cross-origin','same-origin','strict-origin','strict-origin-when-cross-origin','unsafe-url');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Icon::vendor(), 0, 'iconfont','fa','');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconItem::position(), 0, 'top-right','top-left','bottom-right','bottom-left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconPickerControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconPickerControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconPickerControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\IconPickerControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::hoverMode(), 0, 'hover-slide','pull-top','scale-center','scale-top','text-style-1','text-style-2','text-style-3','text-style-4','text-style-5','text-style-6','text-style-7');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::imageMode(), 0, 'thumb','original');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::sortType(), 0, 'sm-ss-sss-m','sss-ss-ms-m','sms-ss-sms-m','sm-ss-sss-ss','ms-ss-sss-ss','sss-ss-sm-ss','mss-ss-ssm-ss','sss-ss-mm-ss','even-${number}-${number}');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::thumbMode(), 0, 'w-full','h-full','contain','cover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::thumbRatio(), 0, '1:1','4:3','16:9');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Image::type(), 0, 'image','static-image');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ImageControl::thumbMode(), 0, 'w-full','h-full','contain','cover');
@@ -1306,81 +1409,113 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::sortType(), 0, 'sm-ss-sss-m','sss-ss-ms-m','sms-ss-sms-m','sm-ss-sss-ss','ms-ss-sss-ss','sss-ss-sm-ss','mss-ss-ssm-ss','sss-ss-mm-ss','even-${number}-${number}');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::thumbMode(), 0, 'w-full','h-full','contain','cover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::thumbRatio(), 0, '1:1','4:3','16:9');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Images::type(), 0, 'images','static-images');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputCityControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputCityControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputCityControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputCityControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputColorControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDateBaseControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDateBaseControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDateBaseControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDateBaseControl::labelOverflow(), 0, 'default','ellipsis');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDateBaseControl::mode(), 0, 'normal','inline','horizontal');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDateBaseControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDatetimeRange::format(), 0, 'hex','hexa','rgb','rgba','hsl');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputDatetimeRange::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputExcel::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputGroupControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputGroupControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputGroupControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputGroupControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputKV::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputKVS::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputSignature::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputSignature::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputSignature::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputSignature::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputTextAddOn::position(), 0, 'left','right');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputTimeRange::format(), 0, 'hex','hexa','rgb','rgba','hsl');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputTimeRange::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputYearRange::format(), 0, 'hex','hexa','rgb','rgba','hsl');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\InputYearRange::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\JSONSchemaEditorControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\JSONSchemaEditorControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\JSONSchemaEditorControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\JSONSchemaEditorControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Json::iconStyle(), 0, 'square','circle','triangle');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Json::type(), 0, 'json','static-json');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LinkAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LinkAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LinkAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LinkAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LinkAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListItem::actionsPosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListRenderer::size(), 0, 'sm','base');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListRenderer::type(), 0, 'list','static-list');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListenerAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ListenerAction::dataMergeMode(), 0, 'merge','override');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\LocationControl::vendor(), 0, 'baidu','gaode','tenxun');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Log::operation(), 0, 'stop','clear','showLineNumber','filter');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Mapping::type(), 0, 'map','mapping');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MatrixControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MatrixControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MatrixControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MatrixControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::animation(), 0, 'fade','slide','marquee');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\MonthRangeControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::mode(), 0, 'panel','float','inline');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::stacked(), 0, '1','');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Nav::themeColor(), 0, 'light','dark');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NavItem::key(), 0, 'ROTATE_RIGHT','ROTATE_LEFT','ZOOM_IN','ZOOM_OUT','SCALE_ORIGIN');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NavItem::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NavOverflow::mode(), 0, 'popup','swipe');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NestedSelectControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NumberControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NumberControl::displayMode(), 0, 'base','enhance');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NumberControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NumberControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NumberControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\NumberControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Operation::fixed(), 0, 'left','right','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Options::labelAlign(), 0, 'right','left','top','inherit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\OtherAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Page::asidePosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Pagination::mode(), 0, 'simple','normal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PaginationWrapper::position(), 0, 'top','bottom','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Panel::subFormMode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::modalMode(), 0, 'dialog','drawer');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::modalSize(), 0, 'xs','sm','md','lg','xl','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PickerControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Plain::type(), 0, 'plain','text');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Portlet::tabsMode(), 0, '','line','card','radio','vertical','tiled');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\PortletTab::iconPosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Progress::gapPosition(), 0, 'top','bottom','left','right');
@@ -1392,84 +1527,101 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::mode(), 0, 'canvas','svg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::pointSize(), 0, 'default','sm','xs');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::pointType(), 0, 'default','circle');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QRCode::type(), 0, 'qrcode','qr-code');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterRangeControl::animation(), 0, 'fade','slide','marquee');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterRangeControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterRangeControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterRangeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterRangeControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterRangeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\QuarterRangeControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadioControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadioControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadioControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadioControl::optionType(), 0, 'default','button');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadioControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadiosControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadiosControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadiosControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RadiosControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RangeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RangeControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RangeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RangeControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RangeControl::tooltipPlacement(), 0, 'auto','top','right','bottom','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RatingControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RatingControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RatingControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RatingControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RatingControl::textPosition(), 0, 'left','right');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ReloadAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ReloadAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ReloadAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ReloadAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ReloadAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Remark::placement(), 0, 'top','right','bottom','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Remark::shape(), 0, 'circle','square');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Remark::trigger(), 0, 'click','hover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RepeatControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RepeatControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RepeatControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RepeatControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RichTextControl::vendor(), 0, 'froala','tinymce');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Root::asidePosition(), 0, 'left','right');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\RowSelectionOptions::key(), 0, 'ROTATE_RIGHT','ROTATE_LEFT','ZOOM_IN','ZOOM_OUT','SCALE_ORIGIN');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaApi::dataType(), 0, 'json','form-data','form');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaApi::method(), 0, 'get','post','put','delete','patch','jsonp','js');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaPopOver::mode(), 0, 'dialog','drawer','popOver');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaPopOver::position(), 0, 'center','left-top','left-top-left-top','left-top-left-center','left-top-left-bottom','left-top-center-top','left-top-center-center','left-top-center-bottom','left-top-right-top','left-top-right-center','left-top-right-bottom','right-top','right-top-left-top','right-top-left-center','right-top-left-bottom','right-top-center-top','right-top-center-center','right-top-center-bottom','right-top-right-top','right-top-right-center','right-top-right-bottom','left-bottom','left-bottom-left-top','left-bottom-left-center','left-bottom-left-bottom','left-bottom-center-top','left-bottom-center-center','left-bottom-center-bottom','left-bottom-right-top','left-bottom-right-center','left-bottom-right-bottom','right-bottom','right-bottom-left-top','right-bottom-left-center','right-bottom-left-bottom','right-bottom-center-top','right-bottom-center-center','right-bottom-center-bottom','right-bottom-right-top','right-bottom-right-center','right-bottom-right-bottom','fixed-center','fixed-left-top','fixed-right-top','fixed-left-bottom','fixed-right-bottom');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaPopOver::size(), 0, 'sm','md','lg','xl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaPopOver::trigger(), 0, 'click','hover');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SchemaQuickEdit::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::leftMode(), 0, 'tree','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::rightMode(), 0, 'table','list','tree','chained');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::searchResultMode(), 0, 'table','list','tree','chained');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::selectMode(), 0, 'table','group','tree','chained','associated');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SelectControl::type(), 0, 'select','multi-select');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Spinner::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Spinner::size(), 0, 'sm','lg','');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Spinner::tipPlacement(), 0, 'top','right','bottom','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\StaticExactControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\StaticExactControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\StaticExactControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\StaticExactControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\StaticExactControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Steps::iconPosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Steps::labelPlacement(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Steps::mode(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SubFormControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SubFormControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SubFormControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SubFormControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SwitchControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SwitchControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SwitchControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\SwitchControl::size(), 0, 'sm','md');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Tab::iconPosition(), 0, 'left','right');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Tab::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Table::tableLayout(), 0, 'fixed','auto');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Table::type(), 0, 'table','static-table');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::align(), 0, 'left','right','center','justify');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::breakpoint(), 0, '*','xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::fixed(), 0, 'left','right','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::headerAlign(), 0, 'left','right','center','justify');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableColumn::vAlign(), 0, 'top','middle','bottom');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TableControl::tableLayout(), 0, 'fixed','auto');
@@ -1478,6 +1630,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Tabs::subFormMode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Tabs::tabsMode(), 0, '','line','card','radio','vertical','chrome','simple','strong','tiled','sidebar');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferControl::leftMode(), 0, 'tree','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferControl::rightMode(), 0, 'table','list','tree','chained');
@@ -1485,6 +1638,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferControl::selectMode(), 0, 'table','list','tree','chained','associated');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferPickerControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferPickerControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferPickerControl::leftMode(), 0, 'tree','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferPickerControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferPickerControl::rightMode(), 0, 'table','list','tree','chained');
@@ -1493,33 +1647,39 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TabsTransferPickerControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Tag::displayMode(), 0, 'normal','rounded','status');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TagControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TagControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TagControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TagControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextControl::size(), 0, 'xs','sm','md','lg','full');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextControl::type(), 0, 'input-text','input-email','input-url','input-password','native-date','native-time','native-number');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextareaControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextareaControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextareaControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextareaControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TextareaControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimeControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Timeline::direction(), 0, 'horizontal','vertical');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Timeline::mode(), 0, 'left','right','top','bottom','alternate');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TimelineItem::dotSize(), 0, 'sm','md','lg','xl');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Toast::position(), 0, 'top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center 可选值: top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Toast::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Toast::position(), 0, 'top-right','top-center','top-left','bottom-center','bottom-left','bottom-right','center');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\ToastAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TooltipWrapper::placement(), 0, 'top','right','bottom','left');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TooltipWrapper::tooltipTheme(), 0, 'light','dark');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Tpl::type(), 0, 'tpl','html');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TooltipWrapper::trigger(), 0, 'click','hover');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferControl::leftMode(), 0, 'tree','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferControl::rightMode(), 0, 'table','list','tree','chained');
@@ -1528,6 +1688,7 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::borderMode(), 0, 'full','half','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::leftMode(), 0, 'tree','list');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::pickerSize(), 0, 'xs','sm','md','lg','xl','full');
@@ -1536,32 +1697,40 @@ namespace PHPSTORM_META {
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::selectMode(), 0, 'table','list','tree','chained','associated');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TransferPickerControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeSelectControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeSelectControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeSelectControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\TreeSelectControl::size(), 0, 'xs','sm','md','lg','full');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UUIDControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UUIDControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UUIDControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UUIDControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UrlAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UrlAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UrlAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UrlAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UrlAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UserSelectControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UserSelectControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UserSelectControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\UserSelectControl::size(), 0, 'xs','sm','md','lg','full');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\VanillaAction::actionType(), 0, 'prev','next','cancel','close','submit','confirm','add','reset','reset-and-submit');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\VanillaAction::level(), 0, 'info','success','warning','danger','link','primary','dark','light','secondary');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\VanillaAction::size(), 0, 'xs','sm','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\VanillaAction::tooltipPlacement(), 0, 'top','right','bottom','left');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\VanillaAction::type(), 0, 'button','submit','reset');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Video::aspectRatio(), 0, 'auto','4:3','16:9');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\WangEditor::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Watermark::gap(), 0, 'xs','sm','base','none','md','lg');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Wizard::mode(), 0, 'vertical','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\WizardStep::labelAlign(), 0, 'right','left','top','inherit');
-	expectedArguments(\Slowlyo\OwlAdmin\Renderers\WizardStep::mode(), 0, 'normal','inline','horizontal','flex');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\WizardStep::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\Wrapper::size(), 0, 'xs','sm','md','lg','none');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\YearControl::borderMode(), 0, 'full','half','none');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\YearControl::format(), 0, 'hex','hexa','rgb','rgba','hsl');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\YearControl::labelAlign(), 0, 'right','left','top','inherit');
+	expectedArguments(\Slowlyo\OwlAdmin\Renderers\YearControl::labelOverflow(), 0, 'default','ellipsis');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\YearControl::mode(), 0, 'normal','inline','horizontal');
 	expectedArguments(\Slowlyo\OwlAdmin\Renderers\YearControl::size(), 0, 'xs','sm','md','lg','full');
 }

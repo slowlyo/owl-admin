@@ -6,20 +6,19 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ListenerAction
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class ListenerAction extends BaseRenderer
 {
     public function __construct()
     {
-        
-
+        $this->set('type', 'action');
     }
 
     /**
-     * 
+     * 指定为发送 ajax 的行为。 可选值: prev | next | cancel | close | submit | confirm | add | reset | reset-and-submit
      */
-    public function actionType($value = '')
+    public function actionType($value = 'ajax')
     {
         return $this->set('actionType', $value);
     }
@@ -57,7 +56,7 @@ class ListenerAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 页面级别的初始数据 (初始数据，设置得值可用于组件内部模板使用。)
      */
     public function data($value = '')
     {
@@ -73,7 +72,7 @@ class ListenerAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 描述内容，支持 Html 片段。
      */
     public function description($value = '')
     {

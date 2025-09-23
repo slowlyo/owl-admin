@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Markdown 渲染
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Markdown extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'markdown');
-
-
     }
 
     /**

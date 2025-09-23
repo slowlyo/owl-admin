@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Action 行为按钮 https://aisuda.bce.baidu.com/amis/zh-CN/components/action
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Action extends BaseRenderer
 {
@@ -14,7 +14,7 @@ class Action extends BaseRenderer
     {
         $this->set('type', 'action');
 
-
+        $this->set('type', 'action');
     }
 
     /**
@@ -42,7 +42,7 @@ class Action extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置 ajax 发送地址 (配置 ajax 发送地址)
      */
     public function api($value = '')
     {
@@ -114,7 +114,7 @@ class Action extends BaseRenderer
     }
 
     /**
-     * 按钮样式，支持：link /primary/secondary/info/success/warning/danger/light/dark/default。
+     * 按钮样式，支持：link /primary/secondary/info/success/warning/danger/light/dark/default。 可选值: info | success | warning | danger | link | primary | dark | light | secondary
      */
     public function level($value = '')
     {
@@ -178,7 +178,7 @@ class Action extends BaseRenderer
     }
 
     /**
-     * 如果配置了tooltip或者disabledTip，指定提示信息位置，可配置top、bottom、left、right。
+     * 如果配置了tooltip或者disabledTip，指定提示信息位置，可配置top、bottom、left、right。 可选值: top | right | bottom | left
      */
     public function tooltipPlacement($value = '')
     {

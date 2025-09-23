@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ImageToolbarAction
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class ImageToolbarAction extends BaseRenderer
 {
@@ -14,7 +14,7 @@ class ImageToolbarAction extends BaseRenderer
     {
         $this->set('key', 'ROTATE_RIGHT');
 
-
+        $this->set('type', 'action');
     }
 
     /**
@@ -26,7 +26,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
     public function disabled($value = true)
     {
@@ -34,7 +34,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     * 
+     * iconfont 里面的类名。
      */
     public function icon($value = '')
     {
@@ -42,7 +42,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 图标CSS类名
      */
     public function iconClassName($value = '')
     {
@@ -58,7 +58,7 @@ class ImageToolbarAction extends BaseRenderer
     }
 
     /**
-     * 
+     * 描述标题, 当值为 false 时不展示
      */
     public function label($value = '')
     {

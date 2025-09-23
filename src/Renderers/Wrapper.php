@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Wrapper 容器渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/wrapper
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Wrapper extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'wrapper');
-
-
     }
 
     /**
@@ -42,7 +40,7 @@ class Wrapper extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -66,7 +64,7 @@ class Wrapper extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -90,19 +88,11 @@ class Wrapper extends BaseRenderer
     }
 
     /**
-     *  可选值: xs | sm | md | lg | none
+     * 表单项大小 可选值: xs | sm | md | lg | none
      */
     public function size($value = '')
     {
         return $this->set('size', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -130,7 +120,7 @@ class Wrapper extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -159,14 +149,6 @@ class Wrapper extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -202,7 +184,7 @@ class Wrapper extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

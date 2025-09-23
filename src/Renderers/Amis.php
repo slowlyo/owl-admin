@@ -89,9 +89,104 @@ class Amis
         return BaseApi::make();
     }
 
+    public function BaseButtonGroup()
+    {
+        return BaseButtonGroup::make();
+    }
+
+    public function BaseCards()
+    {
+        return BaseCards::make();
+    }
+
+    public function BaseCollapse()
+    {
+        return BaseCollapse::make();
+    }
+
+    public function BaseComboControl($name = '', $label = '')
+    {
+        $instance = BaseComboControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
+    public function BaseDateRangeControl($name = '', $label = '')
+    {
+        $instance = BaseDateRangeControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
+    public function BaseForm()
+    {
+        return BaseForm::make();
+    }
+
+    public function BaseInputFormulaControl($name = '', $label = '')
+    {
+        $instance = BaseInputFormulaControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
+    public function BaseList()
+    {
+        return BaseList::make();
+    }
+
+    public function BaseRemark()
+    {
+        return BaseRemark::make();
+    }
+
     public function BaseRenderer()
     {
         return BaseRenderer::make();
+    }
+
+    public function BaseTable()
+    {
+        return BaseTable::make();
+    }
+
+    public function BaseTransferControl($name = '', $label = '')
+    {
+        $instance = BaseTransferControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
     }
 
     public function Breadcrumb()
@@ -124,9 +219,24 @@ class Amis
         return $instance;
     }
 
-    public function ButtonToolbar()
+    public function ButtonToolbar($name = '', $label = '')
     {
-        return ButtonToolbar::make();
+        $instance = ButtonToolbar::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
+    public function CRUD2()
+    {
+        return CRUD2::make();
     }
 
     public function CRUD2Cards()
@@ -157,6 +267,11 @@ class Amis
     public function CRUDTable()
     {
         return CRUDTable::make();
+    }
+
+    public function CRUDToolbar()
+    {
+        return CRUDToolbar::make();
     }
 
     public function Calendar()
@@ -499,9 +614,39 @@ class Amis
         return Form::make();
     }
 
+    public function FormBaseControl($name = '', $label = '')
+    {
+        $instance = FormBaseControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
     public function FormControl($name = '', $label = '')
     {
         $instance = FormControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
+    public function FormOptions($name = '', $label = '')
+    {
+        $instance = FormOptions::make();
 
         if($name !== ''){
             $instance->name($name);
@@ -689,6 +834,21 @@ class Amis
         return $instance;
     }
 
+    public function InputDateBaseControl($name = '', $label = '')
+    {
+        $instance = InputDateBaseControl::make();
+
+        if($name !== ''){
+            $instance->name($name);
+        }
+
+        if($label !== ''){
+            $instance->label($label);
+        }
+
+        return $instance;
+    }
+
     public function InputDatetimeRange()
     {
         return InputDatetimeRange::make();
@@ -737,6 +897,11 @@ class Amis
         }
 
         return $instance;
+    }
+
+    public function InputTextAddOn()
+    {
+        return InputTextAddOn::make();
     }
 
     public function InputTimeRange()
@@ -1174,11 +1339,6 @@ class Amis
         return $instance;
     }
 
-    public function Root()
-    {
-        return Root::make();
-    }
-
     public function RowSelection()
     {
         return RowSelection::make();
@@ -1187,6 +1347,11 @@ class Amis
     public function RowSelectionOptions()
     {
         return RowSelectionOptions::make();
+    }
+
+    public function Schema()
+    {
+        return Schema::make();
     }
 
     public function SchemaApi()
@@ -1207,6 +1372,11 @@ class Amis
     public function SchemaPopOver()
     {
         return SchemaPopOver::make();
+    }
+
+    public function SchemaQuickEdit()
+    {
+        return SchemaQuickEdit::make();
     }
 
     public function SearchBox()

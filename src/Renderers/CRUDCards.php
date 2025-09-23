@@ -6,16 +6,14 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUDCards
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class CRUDCards extends BaseRenderer
 {
     public function __construct()
     {
-        $this->set('mode', 'cards');
-$this->set('type', 'crud');
-
-
+        $this->set('type', 'crud');
+$this->set('mode', 'cards');
     }
 
     /**
@@ -43,7 +41,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 初始化数据 API (初始化数据 API)
+     * 初始化数据 API
      */
     public function api($value = '')
     {
@@ -107,7 +105,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 可以默认给定初始参数如： {"perPage": 24} (可以默认给定初始参数如： {"perPage": 24})
+     * 可以默认给定初始参数如： {"perPage": 24}
      */
     public function defaultParams($value = '')
     {
@@ -115,7 +113,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。 (懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。)
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
      */
     public function deferApi($value = '')
     {
@@ -131,7 +129,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -147,7 +145,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 是否可通过拖拽排序，通过表达式来配置 (表达式，语法 `data.xxx > 5`。)
+     * 是否可通过拖拽排序，通过表达式来配置
      */
     public function draggableOn($value = '')
     {
@@ -195,7 +193,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 底部区域 (底部区域)
+     * 底部区域
      */
     public function footer($value = '')
     {
@@ -203,7 +201,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 底部 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 底部 CSS 类名
      */
     public function footerClassName($value = '')
     {
@@ -219,7 +217,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 顶部区域 (顶部区域)
+     * 顶部区域
      */
     public function header($value = '')
     {
@@ -227,7 +225,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 头部 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 头部 CSS 类名
      */
     public function headerClassName($value = '')
     {
@@ -251,7 +249,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -291,7 +289,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 初始是否拉取，用表达式来配置。 (表达式，语法 `data.xxx > 5`。)
+     * 初始是否拉取，用表达式来配置。
      */
     public function initFetchOn($value = '')
     {
@@ -299,7 +297,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 配置内部 DOM 的 className (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 配置内部 DOM 的 className
      */
     public function innerClassName($value = '')
     {
@@ -331,7 +329,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 卡片 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 卡片 CSS 类名
      */
     public function itemClassName($value = '')
     {
@@ -339,7 +337,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 配置某项是否可拖拽排序，前提是要开启拖拽功能 (表达式，语法 `data.xxx > 5`。)
+     * 配置某项是否可拖拽排序，前提是要开启拖拽功能
      */
     public function itemDraggableOn($value = '')
     {
@@ -355,8 +353,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 当配置 keepItemSelectionOnPageChange 时有用，用来配置已勾选项的文案。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 当配置 keepItemSelectionOnPageChange 时有用，用来配置已勾选项的文案。
      */
     public function labelTpl($value = '')
     {
@@ -412,6 +409,14 @@ $this->set('type', 'crud');
     }
 
     /**
+     * 当开启 keepItemSelectionOnPageChange 时，最大保留已勾选项的数量。
+     */
+    public function maxKeepItemSelectionLength($value = '')
+    {
+        return $this->set('maxKeepItemSelectionLength', $value);
+    }
+
+    /**
      * 消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。
      */
     public function messages($value = '')
@@ -420,7 +425,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 指定内容区的展示模式。
+     * 指定内容区的展示模式。 可选值: table | grid | cards | list
      */
     public function mode($value = 'cards')
     {
@@ -436,7 +441,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 组件名字，这个名字可以用来定位，用于组件通信
+     * 字段名，表单提交时的 key，支持多层级，用.连接，如： a.b.c
      */
     public function name($value = '')
     {
@@ -524,8 +529,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 无数据提示 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 无数据提示
      */
     public function placeholder($value = '')
     {
@@ -533,7 +537,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
+     * 快速编辑后用来批量保存的 API
      */
     public function quickSaveApi($value = '')
     {
@@ -541,7 +545,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 快速编辑配置成及时保存时使用的 API (快速编辑配置成及时保存时使用的 API)
+     * 快速编辑配置成及时保存时使用的 API
      */
     public function quickSaveItemApi($value = '')
     {
@@ -549,7 +553,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 保存排序的 api (保存排序的 api)
+     * 保存排序的 api
      */
     public function saveOrderApi($value = '')
     {
@@ -589,19 +593,11 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 也可以直接从环境变量中读取，但是不太推荐。 (也可以直接从环境变量中读取，但是不太推荐。)
+     * 数据源: 绑定当前环境变量
      */
     public function source($value = '')
     {
         return $this->set('source', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -629,7 +625,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -653,7 +649,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 表达式，语法 `data.xxx > 5`。
+     * 配置停止轮询的条件。 (表达式，语法 `${xxx > 5}`。)
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -695,22 +691,13 @@ $this->set('type', 'crud');
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
     }
 
     /**
-     * 标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 标题
      */
     public function title($value = '')
     {
@@ -718,7 +705,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 
+     * 工具栏按钮
      */
     public function toolbar($value = '')
     {
@@ -742,7 +729,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 指定为 CRUD 渲染器。
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'crud')
     {
@@ -774,7 +761,7 @@ $this->set('type', 'crud');
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

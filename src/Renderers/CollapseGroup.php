@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CollapseGroup 折叠渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/collapse
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class CollapseGroup extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'collapse-group');
-
-
     }
 
     /**
@@ -58,7 +56,7 @@ class CollapseGroup extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -106,7 +104,7 @@ class CollapseGroup extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -127,14 +125,6 @@ class CollapseGroup extends BaseRenderer
     public function onEvent($value = '')
     {
         return $this->set('onEvent', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -162,7 +152,7 @@ class CollapseGroup extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -191,14 +181,6 @@ class CollapseGroup extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -234,7 +216,7 @@ class CollapseGroup extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

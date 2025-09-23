@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Watermark
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Watermark extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'custom-watermark');
-
-
     }
 
     /**
@@ -50,7 +48,7 @@ class Watermark extends BaseRenderer
     }
 
     /**
-     * 水印之间的间距, 默认: [100, 100]
+     * 水印之间的间距, 默认: [100, 100] 可选值: xs | sm | base | none | md | lg
      */
     public function gap($value = '')
     {

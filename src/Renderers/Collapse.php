@@ -6,19 +6,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Collapse 折叠渲染器，格式说明。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/collapse
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Collapse extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'collapse');
-
-
     }
 
     /**
-     * 内容区域 (内容区域)
+     * 子内容
      */
     public function body($value = '')
     {
@@ -50,8 +48,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 收起的标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 收起的标题
      */
     public function collapseHeader($value = '')
     {
@@ -75,7 +72,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -99,7 +96,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 自定义切换图标 (自定义切换图标)
+     * 自定义切换图标
      */
     public function expandIcon($value = '')
     {
@@ -139,7 +136,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -155,7 +152,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 标识
+     * 标识 可选值: ROTATE_RIGHT | ROTATE_LEFT | ZOOM_IN | ZOOM_OUT | SCALE_ORIGIN
      */
     public function key($value = '')
     {
@@ -195,14 +192,6 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
-    }
-
-    /**
      * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
@@ -227,7 +216,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -261,21 +250,13 @@ class Collapse extends BaseRenderer
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
     }
 
     /**
-     * 指定为折叠器类型
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'collapse')
     {
@@ -307,7 +288,7 @@ class Collapse extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

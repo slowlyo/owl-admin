@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Select 下拉选择框。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/select
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class SelectControl extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'select');
-
-
     }
 
     /**
@@ -44,7 +42,7 @@ class SelectControl extends BaseRenderer
     /**
      * 是否自动选中子节点
      */
-    public function autoCheckChildren($value = '')
+    public function autoCheckChildren($value = true)
     {
         return $this->set('autoCheckChildren', $value);
     }
@@ -114,7 +112,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 是否可清除。
+     * 是否可清除
      */
     public function clearable($value = true)
     {
@@ -154,7 +152,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 延时加载的 API，当选项中有 defer: true 的选项时，点开会通过此接口扩充。
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
      */
     public function deferApi($value = '')
     {
@@ -170,7 +168,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 选项删除 API
+     * 删除时调用的api
      */
     public function deleteApi($value = '')
     {
@@ -178,7 +176,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 选项删除提示文字。
+     * 确认删除时的提示
      */
     public function deleteConfirmText($value = '')
     {
@@ -186,7 +184,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 分割符
+     * 配置值的连接符
      */
     public function delimiter($value = '')
     {
@@ -194,7 +192,8 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 描述 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function desc($value = '')
     {
@@ -226,7 +225,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -258,7 +257,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 是否可以编辑
+     * 是否可编辑标签名
      */
     public function editable($value = true)
     {
@@ -298,7 +297,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -330,15 +329,15 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 
+     * 初始化时是否把其他字段同步到表单内部。
      */
-    public function initAutoFill($value = '')
+    public function initAutoFill($value = true)
     {
         return $this->set('initAutoFill', $value);
     }
 
     /**
-     * 配置 source 接口初始拉不拉取。
+     * 是否默认就拉取？
      */
     public function initFetch($value = true)
     {
@@ -346,7 +345,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 用表达式来配置 source 接口初始要不要拉取
+     * 是否默认就拉取表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function initFetchOn($value = '')
     {
@@ -378,7 +377,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 单选模式：当用户选中某个选项时，选项中的 value 将被作为该表单项的值提交，否则，整个选项对象都会作为该表单项的值提交。 多选模式：选中的多个选项的 `value` 会通过 `delimiter` 连接起来，否则直接将以数组的形式提交值。
+     * 当扁平化开启的时候，是否用分隔符的形式发送给后端，否则采用array的方式
      */
     public function joinValues($value = true)
     {
@@ -386,7 +385,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 描述标题
+     * 描述标题, 当值为 false 时不展示
      */
     public function label($value = '')
     {
@@ -418,7 +417,15 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起 (显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起)
+     * label展示形式 可选值: default | ellipsis
+     */
+    public function labelOverflow($value = '')
+    {
+        return $this->set('labelOverflow', $value);
+    }
+
+    /**
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容, 这个小图标跟 label 在一起
      */
     public function labelRemark($value = '')
     {
@@ -482,9 +489,9 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 是否为多选模式
+     * 多图模式配置项
      */
-    public function multiple($value = true)
+    public function multiple($value = '')
     {
         return $this->set('multiple', $value);
     }
@@ -514,7 +521,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 选项集合
+     * 配置固定值
      */
     public function options($value = '')
     {
@@ -562,7 +569,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 显示一个小图标, 鼠标放上去的时候显示提示内容 (显示一个小图标, 鼠标放上去的时候显示提示内容)
+     * 显示一个小图标, 鼠标放上去的时候显示提示内容
      */
     public function remark($value = '')
     {
@@ -682,19 +689,11 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 可用来通过 API 拉取 options。
+     * 数据源: 绑定当前环境变量 (数据源: 绑定当前环境变量)
      */
     public function source($value = '')
     {
         return $this->set('source', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -722,7 +721,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -770,7 +769,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 表单项类型 可选值: select | multi-select
+     * 指定为 Select 渲染器。 https://aisuda.bce.baidu.com/amis/zh-CN/components/form/select
      */
     public function type($value = '')
     {
@@ -858,7 +857,7 @@ class SelectControl extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

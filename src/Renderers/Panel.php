@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Panel渲染器。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/panel
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Panel extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'panel');
-
-
     }
 
     /**
@@ -44,7 +42,7 @@ class Panel extends BaseRenderer
     /**
      * 固定底部, 想要把按钮固定在底部的时候配置。
      */
-    public function affixFooter($value = '')
+    public function affixFooter($value = true)
     {
         return $this->set('affixFooter', $value);
     }
@@ -98,7 +96,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -170,7 +168,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -191,14 +189,6 @@ class Panel extends BaseRenderer
     public function onEvent($value = '')
     {
         return $this->set('onEvent', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -226,7 +216,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -276,14 +266,6 @@ class Panel extends BaseRenderer
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
@@ -323,7 +305,7 @@ class Panel extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

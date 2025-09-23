@@ -6,19 +6,17 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * CRUD2Table
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class CRUD2Table extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'crud2');
-
-
     }
 
     /**
-     * 操作列配置
+     * 默认不用填写，自动会创建确认和取消按钮。
      */
     public function actions($value = '')
     {
@@ -26,7 +24,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 初始化数据 API (初始化数据 API)
+     * 配置 ajax 发送地址 (配置 ajax 发送地址)
      */
     public function api($value = '')
     {
@@ -36,7 +34,7 @@ class CRUD2Table extends BaseRenderer
     /**
      * 内容区域占满屏幕剩余空间
      */
-    public function autoFillHeight($value = true)
+    public function autoFillHeight($value = '')
     {
         return $this->set('autoFillHeight', $value);
     }
@@ -82,7 +80,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 表格列配置
+     * 表格的列信息
      */
     public function columns($value = '')
     {
@@ -90,7 +88,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 表格可自定义列
+     * 展示列显示开关，自动即：列数量大于或等于5个时自动开启
      */
     public function columnsTogglable($value = true)
     {
@@ -106,7 +104,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -130,7 +128,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 指定表尾
+     * 底部 (底部)
      */
     public function footer($value = '')
     {
@@ -138,7 +136,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 底部区域 (底部区域)
+     * 底部工具栏
      */
     public function footerToolbar($value = '')
     {
@@ -146,7 +144,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 底部区域CSS类名
+     * 
      */
     public function footerToolbarClassName($value = '')
     {
@@ -154,7 +152,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 顶部区域 (顶部区域)
+     * 顶部工具栏
      */
     public function headerToolbar($value = '')
     {
@@ -162,7 +160,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 顶部区域CSS类名
+     * 
      */
     public function headerToolbarClassName($value = '')
     {
@@ -178,7 +176,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -202,7 +200,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 设置自动刷新时间
+     * 配置轮询间隔，配置后 initApi 将轮询加载。
      */
     public function interval($value = '')
     {
@@ -210,7 +208,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 行角标内容 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
+     * 行角标 (Badge 角标。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/badge)
      */
     public function itemBadge($value = '')
     {
@@ -226,7 +224,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 翻页时是否保留用户已选的数据
+     * 分页的时候是否保留用户选择。
      */
     public function keepItemSelectionOnPageChange($value = true)
     {
@@ -266,7 +264,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 数据展示模式 无限加载 or 分页 可选值: more | pagination
+     * 
      */
     public function loadType($value = '')
     {
@@ -274,9 +272,9 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 加载中
+     * 是否处于加载状态
      */
-    public function loading($value = '')
+    public function loading($value = true)
     {
         return $this->set('loading', $value);
     }
@@ -290,7 +288,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 批量操作最大限制数
+     * 当开启 keepItemSelectionOnPageChange 时，最大保留已勾选项的数量。
      */
     public function maxKeepItemSelectionLength($value = '')
     {
@@ -298,7 +296,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 接口报错信息配置 (消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。)
+     * 消息文案配置，记住这个优先级是最低的，如果你的接口返回了 msg，接口返回的优先。
      */
     public function messages($value = '')
     {
@@ -306,7 +304,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 指定内容区的展示模式。
+     * 配置当前表单项展示模式 可选值: normal | inline | horizontal
      */
     public function mode($value = 'table2')
     {
@@ -314,15 +312,15 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否可以多选数据，仅当selectable为 true 时生效
+     * 多图模式配置项
      */
-    public function multiple($value = true)
+    public function multiple($value = '')
     {
         return $this->set('multiple', $value);
     }
 
     /**
-     * 组件名字，这个名字可以用来定位，用于组件通信
+     * 字段名，表单提交时的 key，支持多层级，用.连接，如： a.b.c
      */
     public function name($value = '')
     {
@@ -354,7 +352,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 无限加载时，根据此项设置其每页加载数量，可以不限制
+     * 每页个数，默认为 10，如果不是请设置。
      */
     public function perPage($value = '')
     {
@@ -378,7 +376,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 行标识符，默认为id
+     * 设置ID字段名 作用同keyFiled 兼容原CURD属性
      */
     public function primaryField($value = '')
     {
@@ -394,7 +392,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 快速编辑后用来批量保存的 API (快速编辑后用来批量保存的 API)
+     * 快速编辑后用来批量保存的 API
      */
     public function quickSaveApi($value = '')
     {
@@ -402,7 +400,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 快速编辑配置成及时保存时使用的 API (快速编辑配置成及时保存时使用的 API)
+     * 快速编辑配置成及时保存时使用的 API
      */
     public function quickSaveItemApi($value = '')
     {
@@ -410,7 +408,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 重新加载的组件名称
+     * 配置刷新动作，这个动作通常在完成渲染器本省的固定动作后出发。一般用来配置目标组件的 name 属性。多个目标可以用逗号隔开。当目标是 windows 时表示刷新整个页面。刷新目标的同时还支持传递参数如： `foo?a=${a}&b=${b},boo?c=${c}`
      */
     public function reload($value = '')
     {
@@ -418,7 +416,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 自定义行样式
+     * 行样式表表达式
      */
     public function rowClassNameExpr($value = '')
     {
@@ -434,7 +432,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 保存排序的 api (保存排序的 api)
+     * 保存排序的 api
      */
     public function saveOrderApi($value = '')
     {
@@ -442,7 +440,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否可以选择数据，外部事件动作
+     * 是否开启行选择功能, 默认为 false 开启后将支持行选择功能,需要结合事件动作使用
      */
     public function selectable($value = true)
     {
@@ -458,7 +456,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否展示表头
+     * 是否显示头部
      */
     public function showHeader($value = true)
     {
@@ -466,15 +464,15 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否展示已选数据区域，仅当selectable为 true 时生效
+     * 
      */
-    public function showSelection($value = true)
+    public function showSelection($value = '')
     {
         return $this->set('showSelection', $value);
     }
 
     /**
-     * 静默拉取
+     * 是否要静默加载，也就是说不显示进度
      */
     public function silentPolling($value = true)
     {
@@ -482,19 +480,11 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 也可以直接从环境变量中读取，但是不太推荐。 (也可以直接从环境变量中读取，但是不太推荐。)
+     * 数据源: 绑定当前环境变量 (数据源: 绑定当前环境变量)
      */
     public function source($value = '')
     {
         return $this->set('source', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -522,7 +512,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -554,7 +544,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 表达式，语法 `data.xxx > 5`。
+     * 配置停止轮询的条件。 (表达式，语法 `${xxx > 5}`。)
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -586,19 +576,11 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     *  可选值: fixed | auto
+     * table layout 可选值: fixed | auto
      */
     public function tableLayout($value = '')
     {
         return $this->set('tableLayout', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -610,7 +592,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 表格标题
+     * 页面标题
      */
     public function title($value = '')
     {
@@ -618,7 +600,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 指定为 CRUD2 渲染器。
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'crud2')
     {
@@ -642,7 +624,7 @@ class CRUD2Table extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

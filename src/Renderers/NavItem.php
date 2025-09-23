@@ -6,18 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * NavItem
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class NavItem extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
-     * 
+     * 被激活（定位）的楼层
      */
     public function active($value = true)
     {
@@ -25,7 +20,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 表头分组
      */
     public function children($value = '')
     {
@@ -33,7 +28,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 容器 css 类名
      */
     public function className($value = '')
     {
@@ -41,7 +36,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 标记后数据延时加载
      */
     public function defer($value = true)
     {
@@ -49,7 +44,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 懒加载 API，当行数据中用 defer: true 标记了，则其孩子节点将会用这个 API 来拉取数据。
      */
     public function deferApi($value = '')
     {
@@ -57,7 +52,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 是否禁用
      */
     public function disabled($value = true)
     {
@@ -65,7 +60,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式
      */
     public function disabledOn($value = '')
     {
@@ -73,7 +68,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 禁用时的文案提示。
      */
     public function disabledTip($value = '')
     {
@@ -97,7 +92,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式
      */
     public function hiddenOn($value = '')
     {
@@ -121,7 +116,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     *  可选值: ROTATE_RIGHT | ROTATE_LEFT | ZOOM_IN | ZOOM_OUT | SCALE_ORIGIN
      */
     public function key($value = '')
     {
@@ -137,7 +132,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置当前表单项展示模式 可选值: normal | inline | horizontal
      */
     public function mode($value = '')
     {
@@ -153,15 +148,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
-    }
-
-    /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项类名
      */
     public function staticClassName($value = '')
     {
@@ -169,7 +156,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Value类名
      */
     public function staticInputClassName($value = '')
     {
@@ -177,7 +164,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Label类名
      */
     public function staticLabelClassName($value = '')
     {
@@ -185,7 +172,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式
      */
     public function staticOn($value = '')
     {
@@ -217,7 +204,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 可以指定让谁来触发这个动作。
      */
     public function target($value = '')
     {
@@ -225,23 +212,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testid($value = '')
-    {
-        return $this->set('testid', $value);
-    }
-
-    /**
-     * 
+     * 收件人邮箱
      */
     public function to($value = '')
     {
@@ -273,7 +244,7 @@ class NavItem extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式
      */
     public function visibleOn($value = '')
     {

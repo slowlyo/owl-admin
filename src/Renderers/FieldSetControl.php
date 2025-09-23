@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * FieldSet 表单项集合 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/fieldset
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class FieldSetControl extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class FieldSetControl extends BaseRenderer
     {
         $this->set('type', 'fieldset');
 $this->set('titlePosition', 'top');
-
-
     }
 
     /**
@@ -43,7 +41,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 容器 css 类名
      */
     public function className($value = '')
     {
@@ -67,8 +65,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 收起的标题 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
-更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
+     * 收起的标题
      */
     public function collapseHeader($value = '')
     {
@@ -93,7 +90,8 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 
+     * 描述 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
+更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
     public function desc($value = '')
     {
@@ -109,7 +107,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 配置描述上的 className (配置描述上的 className)
+     * 配置描述上的 className
      */
     public function descriptionClassName($value = '')
     {
@@ -125,7 +123,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式
      */
     public function disabledOn($value = '')
     {
@@ -149,7 +147,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 自定义切换图标 (自定义切换图标)
+     * 自定义切换图标
      */
     public function expandIcon($value = '')
     {
@@ -197,7 +195,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式
      */
     public function hiddenOn($value = '')
     {
@@ -213,7 +211,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 当配置为水平布局的时候，用来配置具体的左右分配。 (当配置为水平布局的时候，用来配置具体的左右分配。)
+     * 当配置为水平布局的时候，用来配置具体的左右分配。
      */
     public function horizontal($value = '')
     {
@@ -229,9 +227,9 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 
+     * 初始化时是否把其他字段同步到表单内部。
      */
-    public function initAutoFill($value = '')
+    public function initAutoFill($value = true)
     {
         return $this->set('initAutoFill', $value);
     }
@@ -245,7 +243,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 配置 input className (配置 input className)
+     * 配置 input className
      */
     public function inputClassName($value = '')
     {
@@ -253,7 +251,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 标识
+     * 标识 可选值: ROTATE_RIGHT | ROTATE_LEFT | ZOOM_IN | ZOOM_OUT | SCALE_ORIGIN
      */
     public function key($value = '')
     {
@@ -261,7 +259,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 描述标题
+     * 描述标题, 当值为 false 时不展示
      */
     public function label($value = '')
     {
@@ -269,7 +267,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 描述标题 (描述标题) 可选值: right | left | top | inherit
+     * 描述标题 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -282,6 +280,14 @@ $this->set('titlePosition', 'top');
     public function labelClassName($value = '')
     {
         return $this->set('labelClassName', $value);
+    }
+
+    /**
+     * label展示形式 可选值: default | ellipsis
+     */
+    public function labelOverflow($value = '')
+    {
+        return $this->set('labelOverflow', $value);
     }
 
     /**
@@ -405,15 +411,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
-    }
-
-    /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项类名
      */
     public function staticClassName($value = '')
     {
@@ -421,7 +419,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Value类名
      */
     public function staticInputClassName($value = '')
     {
@@ -429,7 +427,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Label类名
      */
     public function staticLabelClassName($value = '')
     {
@@ -437,7 +435,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式
      */
     public function staticOn($value = '')
     {
@@ -495,14 +493,6 @@ $this->set('titlePosition', 'top');
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
@@ -526,7 +516,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 指定为表单项集合 可选值: fieldset | fieldSet
+     * 指定为表单项集合
      */
     public function type($value = '')
     {
@@ -598,7 +588,7 @@ $this->set('titlePosition', 'top');
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式
      */
     public function visibleOn($value = '')
     {

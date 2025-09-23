@@ -6,18 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * AutoFillHeight
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class AutoFillHeight extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
-     * 
+     * Dialog 高度
      */
     public function height($value = '')
     {

@@ -6,15 +6,10 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * IconItem
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class IconItem extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
      * iconfont 里面的类名。
@@ -25,7 +20,7 @@ class IconItem extends BaseRenderer
     }
 
     /**
-     * 
+     * 角标位置 可选值: top-right | top-left | bottom-right | bottom-left
      */
     public function position($value = '')
     {

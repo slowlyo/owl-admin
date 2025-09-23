@@ -6,15 +6,10 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * SchemaCopyable
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class SchemaCopyable extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
      * 配置复制时的内容模板。 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`

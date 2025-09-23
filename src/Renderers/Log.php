@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Log 实时日志
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Log extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'log');
-
-
     }
 
     /**

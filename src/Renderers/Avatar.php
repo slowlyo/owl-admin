@@ -6,7 +6,7 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * Avatar
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Avatar extends BaseRenderer
 {
@@ -14,8 +14,6 @@ class Avatar extends BaseRenderer
     {
         $this->set('type', 'avatar');
 $this->set('crossOrigin', 'anonymous');
-
-
     }
 
     /**
@@ -67,7 +65,7 @@ $this->set('crossOrigin', 'anonymous');
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -99,7 +97,7 @@ $this->set('crossOrigin', 'anonymous');
     }
 
     /**
-     * 字符类型距离左右两侧边界单位像素
+     * 字符类型距离左右两侧边界单位像素 可选值: xs | sm | base | none | md | lg
      */
     public function gap($value = '')
     {
@@ -115,7 +113,7 @@ $this->set('crossOrigin', 'anonymous');
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -163,7 +161,7 @@ $this->set('crossOrigin', 'anonymous');
     }
 
     /**
-     * 大小
+     * 大小 可选值: xs | sm | md | lg | full
      */
     public function size($value = '')
     {
@@ -176,14 +174,6 @@ $this->set('crossOrigin', 'anonymous');
     public function src($value = '')
     {
         return $this->set('src', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -211,7 +201,7 @@ $this->set('crossOrigin', 'anonymous');
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -245,14 +235,6 @@ $this->set('crossOrigin', 'anonymous');
     /**
      * 
      */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
     public function testid($value = '')
     {
         return $this->set('testid', $value);
@@ -267,7 +249,7 @@ $this->set('crossOrigin', 'anonymous');
     }
 
     /**
-     * 
+     * 指定为模板渲染器。文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template
      */
     public function type($value = 'avatar')
     {
@@ -291,7 +273,7 @@ $this->set('crossOrigin', 'anonymous');
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

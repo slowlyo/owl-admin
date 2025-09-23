@@ -6,15 +6,10 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * WizardStep
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class WizardStep extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
      * 按钮集合，会固定在底部显示。
@@ -25,7 +20,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 是否固定底下的按钮在底部。
+     * 是否固底
      */
     public function affixFooter($value = true)
     {
@@ -33,7 +28,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * Form 用来保存数据的 api。详情：https://aisuda.bce.baidu.com/amis/zh-CN/components/form/index#%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4
+     * 当前步骤用来保存数据的 api。 (当前步骤用来保存数据的 api。)
      */
     public function api($value = '')
     {
@@ -41,7 +36,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 设置此属性后，表单提交发送保存接口后，还会继续轮询请求该接口，直到返回 finished 属性为 true 才 结束。
+     * 设置此属性后，表单提交发送保存接口后，还会继续轮询请求该接口，直到返回 finished 属性为 true 才 结束。 (设置此属性后，表单提交发送保存接口后，还会继续轮询请求该接口，直到返回 finished 属性为 true 才 结束。)
      */
     public function asyncApi($value = '')
     {
@@ -57,7 +52,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 表单项集合 (表单项集合)
+     * 表单项集合
      */
     public function body($value = '')
     {
@@ -105,7 +100,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
+     * 页面级别的初始数据 (初始数据，设置得值可用于组件内部模板使用。)
      */
     public function data($value = '')
     {
@@ -145,7 +140,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -193,7 +188,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -201,7 +196,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 如果是水平排版，这个属性可以细化水平排版的左右宽度占比。 (如果是水平排版，这个属性可以细化水平排版的左右宽度占比。)
+     * 当配置为水平布局的时候，用来配置具体的左右分配。 (当配置为水平布局的时候，用来配置具体的左右分配。)
      */
     public function horizontal($value = '')
     {
@@ -225,7 +220,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 用来初始化表单数据
+     * 当前步骤用来获取初始数据的 api (当前步骤用来获取初始数据的 api)
      */
     public function initApi($value = '')
     {
@@ -249,7 +244,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 是否初始加载
+     * 是否默认就拉取？
      */
     public function initFetch($value = true)
     {
@@ -257,7 +252,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 建议改成 api 的 sendOn 属性。
+     * 是否默认就拉取表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function initFetchOn($value = '')
     {
@@ -273,7 +268,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 设置后将轮询调用 initApi
+     * 配置轮询间隔，配置后 initApi 将轮询加载。
      */
     public function interval($value = '')
     {
@@ -289,7 +284,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 通过 JS 表达式来配置当前步骤可否被直接跳转到。 (表达式，语法 `data.xxx > 5`。)
+     * 通过 JS 表达式来配置当前步骤可否被直接跳转到。 (表达式，语法 `${xxx > 5}`。)
      */
     public function jumpableOn($value = '')
     {
@@ -297,7 +292,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
+     * 描述标题, 当值为 false 时不展示
      */
     public function label($value = '')
     {
@@ -305,7 +300,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 表单label的对齐方式 (表单label的对齐方式) 可选值: right | left | top | inherit
+     * 描述标题 (描述标题) 可选值: right | left | top | inherit
      */
     public function labelAlign($value = '')
     {
@@ -329,7 +324,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 配置表单项默认的展示方式。 可选值: normal | inline | horizontal | flex
+     * 配置当前表单项展示模式 可选值: normal | inline | horizontal
      */
     public function mode($value = '')
     {
@@ -337,7 +332,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
+     * 字段名，表单提交时的 key，支持多层级，用.连接，如： a.b.c
      */
     public function name($value = '')
     {
@@ -353,7 +348,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 配置容器 panel className (配置容器 panel className)
+     * 配置容器 panel className
      */
     public function panelClassName($value = '')
     {
@@ -385,7 +380,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 设置主键 id, 当设置后，检测表单是否完成时（asyncApi），只会携带此数据。
+     * 设置ID字段名 作用同keyFiled 兼容原CURD属性
      */
     public function primaryField($value = '')
     {
@@ -409,7 +404,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
+     * 保存完后，可以指定跳转地址，支持相对路径和组内绝对路径，同时可以通过 $xxx 使用变量
      */
     public function redirect($value = '')
     {
@@ -417,7 +412,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
+     * 配置刷新动作，这个动作通常在完成渲染器本省的固定动作后出发。一般用来配置目标组件的 name 属性。多个目标可以用逗号隔开。当目标是 windows 时表示刷新整个页面。刷新目标的同时还支持传递参数如： `foo?a=${a}&b=${b},boo?c=${c}`
      */
     public function reload($value = '')
     {
@@ -441,7 +436,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 是否静默拉取
+     * 是否要静默加载，也就是说不显示进度
      */
     public function silentPolling($value = true)
     {
@@ -449,15 +444,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 展示态时的className
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
-    }
-
-    /**
-     * css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     }
+     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function staticClassName($value = '')
     {
@@ -481,7 +468,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 表达式，语法 `data.xxx > 5`。
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -505,7 +492,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 配置停止轮询的条件
+     * 配置停止轮询的条件。 (表达式，语法 `${xxx > 5}`。)
      */
     public function stopAutoRefreshWhen($value = '')
     {
@@ -529,7 +516,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 修改的时候是否直接提交表单。
+     * 当修改完的时候是否提交表单。
      */
     public function submitOnChange($value = true)
     {
@@ -553,7 +540,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
+     * 选项卡成员。当配置了 source 时，选项卡成员，将会根据目标数据进行重复。
      */
     public function tabs($value = '')
     {
@@ -569,23 +556,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testid($value = '')
-    {
-        return $this->set('testid', $value);
-    }
-
-    /**
-     * 表单标题
+     * 标题
      */
     public function title($value = '')
     {
@@ -601,7 +572,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 
+     * 默认值，切记只能是静态值，不支持取变量，跟数据关联是通过设置 name 属性来实现的。
      */
     public function value($value = '')
     {
@@ -617,7 +588,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {
@@ -625,7 +596,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 是否用 panel 包裹起来
+     * 是否用panel包裹
      */
     public function wrapWithPanel($value = true)
     {

@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * ChartRadios 图表单选框
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class ChartRadios extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'chart-radios');
-
-
     }
 
     /**

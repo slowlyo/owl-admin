@@ -6,15 +6,10 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * RowSelection
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class RowSelection extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
      * 已选择的key值表达式

@@ -6,15 +6,10 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * NavOverflow
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class NavOverflow extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
      * 是否开启响应式收纳
@@ -97,7 +92,7 @@ class NavOverflow extends BaseRenderer
     }
 
     /**
-     * 自定义样式 (自定义样式)
+     * 自定义样式
      */
     public function style($value = '')
     {

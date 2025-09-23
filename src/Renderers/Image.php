@@ -6,15 +6,13 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * 图片展示控件。 文档：https://aisuda.bce.baidu.com/amis/zh-CN/components/image
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class Image extends BaseRenderer
 {
     public function __construct()
     {
         $this->set('type', 'image');
-
-
     }
 
     /**
@@ -67,7 +65,7 @@ class Image extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function disabledOn($value = '')
     {
@@ -123,7 +121,7 @@ class Image extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function hiddenOn($value = '')
     {
@@ -245,7 +243,7 @@ class Image extends BaseRenderer
     }
 
     /**
-     * 图集组件传入的排序方式
+     * 图集组件传入的排序方式 可选值: sm-ss-sss-m | sss-ss-ms-m | sms-ss-sms-m | sm-ss-sss-ss | ms-ss-sss-ss | sss-ss-sm-ss | mss-ss-ssm-ss | sss-ss-mm-ss | even-${number}-${number}
      */
     public function sortType($value = '')
     {
@@ -258,14 +256,6 @@ class Image extends BaseRenderer
     public function src($value = '')
     {
         return $this->set('src', $value);
-    }
-
-    /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
     }
 
     /**
@@ -293,7 +283,7 @@ class Image extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function staticOn($value = '')
     {
@@ -322,14 +312,6 @@ class Image extends BaseRenderer
     public function style($value = '')
     {
         return $this->set('style', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
     }
 
     /**
@@ -382,7 +364,7 @@ class Image extends BaseRenderer
     }
 
     /**
-     * 指定为图片展示类型 可选值: image | static-image
+     * 指定为图片展示类型
      */
     public function type($value = '')
     {
@@ -406,7 +388,7 @@ class Image extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否显示表达式 (表达式，语法 `${xxx > 5}`。)
      */
     public function visibleOn($value = '')
     {

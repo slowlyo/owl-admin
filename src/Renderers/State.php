@@ -6,15 +6,10 @@ namespace Slowlyo\OwlAdmin\Renderers;
  * State
  * 
  * @author slowlyo
- * @version 6.12.0
+ * @version 6.13.0
  */
 class State extends BaseRenderer
 {
-    public function __construct()
-    {
-        
-
-    }
 
     /**
      * 内容 (内容)
@@ -25,7 +20,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 容器 css 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 容器 css 类名
      */
     public function className($value = '')
     {
@@ -41,7 +36,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 是否禁用表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否禁用表达式
      */
     public function disabledOn($value = '')
     {
@@ -65,7 +60,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 是否隐藏表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否隐藏表达式
      */
     public function hiddenOn($value = '')
     {
@@ -89,15 +84,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
-     */
-    public function static($value = true)
-    {
-        return $this->set('static', $value);
-    }
-
-    /**
-     * 静态展示表单项类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项类名
      */
     public function staticClassName($value = '')
     {
@@ -105,7 +92,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Value类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Value类名
      */
     public function staticInputClassName($value = '')
     {
@@ -113,7 +100,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 静态展示表单项Label类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
+     * 静态展示表单项Label类名
      */
     public function staticLabelClassName($value = '')
     {
@@ -121,7 +108,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 是否静态展示表达式 (表达式，语法 `data.xxx > 5`。)
+     * 是否静态展示表达式
      */
     public function staticOn($value = '')
     {
@@ -153,22 +140,6 @@ class State extends BaseRenderer
     }
 
     /**
-     * 
-     */
-    public function testIdBuilder($value = '')
-    {
-        return $this->set('testIdBuilder', $value);
-    }
-
-    /**
-     * 
-     */
-    public function testid($value = '')
-    {
-        return $this->set('testid', $value);
-    }
-
-    /**
      * 状态标题
      */
     public function title($value = '')
@@ -193,7 +164,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 显示条件
+     * 是否显示表达式
      */
     public function visibleOn($value = '')
     {
