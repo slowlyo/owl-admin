@@ -291,7 +291,7 @@ $this->set('mode', 'cards');
     /**
      * 多图模式配置项
      */
-    public function multiple($value = '')
+    public function multiple($value = true)
     {
         return $this->set('multiple', $value);
     }
