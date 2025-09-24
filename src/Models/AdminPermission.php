@@ -34,8 +34,9 @@ class AdminPermission extends BaseModel
 
     public function shouldPassThrough(Request $request): bool
     {
-        if (empty($this->http_method) && empty($this->http_path)) {
-            return true;
+        if (empty($this->http_path)) {
+            // 未配置 http_path 时不放行，避免误授全局权限
+            return false;
         }
         $method  = $this->http_method;
         $matches = array_map(function ($path) use ($method) {

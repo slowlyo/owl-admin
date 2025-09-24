@@ -123,7 +123,19 @@ class AdminPermissionService extends AdminService
         }
 
         if ($model->save()) {
-            $model->menus()->sync(Arr::has($menus, '0.id') ? Arr::pluck($menus, 'id') : $menus);
+            // 规范化 $menus，避免非数组类型导致 Arr::has 抛出 TypeError
+            $normalizedMenus = [];
+
+            if (is_array($menus)) {
+                $normalizedMenus = Arr::has($menus, '0.id') ? Arr::pluck($menus, 'id') : $menus;
+            } elseif (is_numeric($menus)) {
+                // 兼容单个 ID
+                $normalizedMenus = [(int)$menus];
+            } elseif (empty($menus)) {
+                $normalizedMenus = [];
+            }
+
+            $model->menus()->sync($normalizedMenus);
 
             return true;
         }
