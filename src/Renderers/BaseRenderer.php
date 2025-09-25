@@ -4,11 +4,6 @@ namespace Slowlyo\OwlAdmin\Renderers;
 
 use Illuminate\Support\Traits\Macroable;
 
-/**
- * 动态方法声明（由 __call 支持）
- *
- * @method $this static($value = true)
- */
 class BaseRenderer implements \JsonSerializable
 {
     use Macroable {

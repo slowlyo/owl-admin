@@ -408,6 +408,14 @@ class Form extends BaseRenderer
     }
 
     /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
      * 静态展示表单项类名
      */
     public function staticClassName($value = '')

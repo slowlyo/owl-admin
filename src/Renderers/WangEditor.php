@@ -174,6 +174,14 @@ class WangEditor extends BaseRenderer
     }
 
     /**
+     * 是否静态展示
+     */
+    public function static($value = true)
+    {
+        return $this->set('static', $value);
+    }
+
+    /**
      * 工具栏按钮
      */
     public function toolbarKeys($value = '')
