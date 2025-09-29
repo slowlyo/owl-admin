@@ -23,6 +23,8 @@ abstract class AdminService
 
     protected Request $request;
 
+    protected ?Model $currentModel = null;
+
     public function __construct()
     {
         $this->request = request();
@@ -44,6 +46,16 @@ abstract class AdminService
     public function getModel()
     {
         return new $this->modelName;
+    }
+
+    /**
+     * 获取当前操作的数据实例（新增/修改后）
+     *
+     * @return Model|null
+     */
+    public function getCurrentModel(): ?Model
+    {
+        return $this->currentModel;
     }
 
     public function primaryKey()
@@ -308,6 +320,7 @@ abstract class AdminService
             $result = $model->save();
 
             if ($result) {
+                $this->currentModel = $model;
                 $this->saved($model, true);
             }
 
@@ -347,6 +360,7 @@ abstract class AdminService
             $result = $model->save();
 
             if ($result) {
+                $this->currentModel = $model;
                 $this->saved($model);
             }
 
