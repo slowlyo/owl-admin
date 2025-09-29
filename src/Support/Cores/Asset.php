@@ -72,4 +72,19 @@ class Asset
 
         return $this;
     }
+
+    /**
+     * 重置资源状态 (用于 Octane 等长驻进程下的请求隔离)
+     *
+     * @return void
+     */
+    public function flush(): void
+    {
+        $this->js = [];
+        $this->css = [];
+        $this->scripts = [];
+        $this->styles = [];
+        $this->appendNav = null;
+        $this->prependNav = null;
+    }
 }

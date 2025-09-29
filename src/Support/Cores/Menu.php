@@ -271,4 +271,14 @@ class Menu
             ],
         ];
     }
+
+    /**
+     * 重置动态菜单（用于 Octane 等长驻进程下请求隔离）
+     *
+     * @return void
+     */
+    public function flush(): void
+    {
+        $this->menus = [];
+    }
 }
