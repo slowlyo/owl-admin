@@ -58,6 +58,18 @@ abstract class AdminService
         return $this->currentModel;
     }
 
+    /**
+     * 设置当前操作的数据实例
+     *
+     * @param Model|null $model
+     * @return $this
+     */
+    public function setCurrentModel(?Model $model): static
+    {
+        $this->currentModel = $model;
+        return $this;
+    }
+
     public function primaryKey()
     {
         return $this->getModel()->getKeyName();
@@ -124,7 +136,10 @@ abstract class AdminService
 
         $this->addRelations($query, 'edit');
 
-        return $query->find($id)->makeHidden($hidden);
+        $data = $query->find($id);
+        
+        // 防止数据不存在时报错
+        return $data ? $data->makeHidden($hidden) : null;
     }
 
     /**
@@ -319,8 +334,10 @@ abstract class AdminService
 
             $result = $model->save();
 
+            // 无论数据是否变更,都赋值当前模型实例
+            $this->currentModel = $model;
+            
             if ($result) {
-                $this->currentModel = $model;
                 $this->saved($model, true);
             }
 
@@ -359,8 +376,10 @@ abstract class AdminService
 
             $result = $model->save();
 
+            // 无论是否保存成功,都赋值当前模型实例
+            $this->currentModel = $model;
+            
             if ($result) {
-                $this->currentModel = $model;
                 $this->saved($model);
             }
 
