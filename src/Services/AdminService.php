@@ -205,7 +205,8 @@ abstract class AdminService
             // 排除非表格字段
             if (!$column instanceof TableColumn) continue;
             // 拆分字段名
-            $field = $column->amisSchema['name'];
+            $field = $column->amisSchema['name'] ?? null;
+            if (!$field) continue;
             // 是否是多层级
             if (str_contains($field, '.')) {
                 // 去除字段名
