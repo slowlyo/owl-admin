@@ -207,6 +207,17 @@ class Database
      *
      * @return void
      */
+    private static function getConnection(): ?string
+    {
+        $connection = Admin::config('admin.database.connection');
+        
+        if (blank($connection)) {
+            $connection = config('admin.database.connection');
+        }
+        
+        return $connection;
+    }
+
     public function fillInitialData()
     {
         $data = function ($data) {
@@ -347,7 +358,7 @@ class Database
     public static function isConnected()
     {
         try {
-            $connection = Admin::config('admin.database.connection');
+            $connection = self::getConnection();
             DB::connection($connection)->getPdo();
 
             return true;
@@ -359,7 +370,7 @@ class Database
     public static function getTables()
     {
         return Admin::context()->remember('admin_all_tables', function () {
-            $connection = Admin::config('admin.database.connection');
+            $connection = self::getConnection();
             $db = DB::connection($connection);
             $list = match (self::getDbDriver($connection)) {
                 // sqlite
@@ -377,7 +388,7 @@ class Database
     public static function getTableName($table = '', $removePrefix = false, $connection = '')
     {
         if (blank($connection)) {
-            $connection = Admin::config('admin.database.connection');
+            $connection = self::getConnection();
         }
         $prefix = config("database.connections.{$connection}.prefix");
 
@@ -391,7 +402,7 @@ class Database
     public static function getTableColumns($table, $connection = '')
     {
         if (blank($connection)) {
-            $connection = Admin::config('admin.database.connection');
+            $connection = self::getConnection();
         }
 
         $table = self::getTableName($table, false, $connection);
@@ -420,7 +431,7 @@ class Database
     public static function getDbDriver($connection = '')
     {
         if (blank($connection)) {
-            $connection = Admin::config('admin.database.connection');
+            $connection = self::getConnection();
         }
 
         return config('database.connections.'. $connection . '.driver');
