@@ -49,7 +49,15 @@ const LayoutContent = () => {
 
     // 使用useMemo优化flattenRoutes的计算
     const flattenRoutes = useMemo(() => {
-        return getFlattenRoutes(routes) || []
+        const routes_arr = getFlattenRoutes(routes) || []
+        // 对路由进行排序：具体路径优先于动态路径（避免 /users/create 被 /users/:id 匹配）
+        return routes_arr.sort((a, b) => {
+            const aHasParam = a.path.includes(':')
+            const bHasParam = b.path.includes(':')
+            if (aHasParam && !bHasParam) return 1
+            if (!aHasParam && bHasParam) return -1
+            return 0
+        })
     }, [routes?.length]) // 只依赖routes的长度变化
 
     // 使用useCallback优化回到顶部的函数
@@ -110,6 +118,7 @@ const LayoutContent = () => {
                                     
                                     return (
                                         <Route key={`${path}-${index}`} 
+                                               exact
                                                path={path.replace(/\?.*$/, '')} 
                                                render={() => (
                                             <KeepAlive name={name}
