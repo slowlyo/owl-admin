@@ -12,6 +12,7 @@ import LayoutFooter from '@/layouts/components/LayoutFooter'
 import {Scrollbars} from 'react-custom-scrollbars'
 import {FloatButton} from 'antd'
 import useSmallScreen from '@/hooks/useSmallScreen'
+import {useThrottleFn} from 'ahooks'
 
 // 设置页面标题
 const setPageTitle = (currentRoute, getSetting) => {
@@ -58,7 +59,7 @@ const LayoutContent = () => {
             if (!aHasParam && bHasParam) return -1
             return 0
         })
-    }, [routes?.length]) // 只依赖routes的长度变化
+    }, [routes]) // 依赖routes变化
 
     // 使用useCallback优化回到顶部的函数
     const backTop = useCallback(() => {
@@ -76,16 +77,16 @@ const LayoutContent = () => {
     }, [scroll])
 
     // 使用useThrottle优化滚动事件处理
-    const handleScroll = useCallback(() => {
+    const {run: handleScroll} = useThrottleFn(() => {
         if (!scrollbarRef.current) return
         setScroll(scrollbarRef.current.getValues().scrollTop)
-    }, [])
+    }, {wait: 300})
 
     // 处理页面标题和modal
     useEffect(() => {
         setPageTitle(currentRoute, getSetting)
         clearModal(getSetting)
-    }, [pathname, routes?.length, currentRoute?.meta?.title])
+    }, [pathname, routes, currentRoute?.meta?.title])
 
     // 初始化滚动位置
     useEffect(() => {
@@ -111,15 +112,16 @@ const LayoutContent = () => {
                                duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
                         <div key={`${pathname}-${isSmallScreen}-${layoutMode}`} id={pathname} className="absolute w-full iframe p-5">
                             <Switch location={location}>
-                                {flattenRoutes.map(({name, path, component}, index) => {
-                                    const shouldKeepAlive = currentRoute?.keep_alive == 1 || 
-                                        (getSetting('system_theme_setting.keepAlive') && 
-                                         getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1)
-                                    
+                                {flattenRoutes.map((route, index) => {
+                                    const {name, path, component} = route
+                                    const shouldKeepAlive = route.keep_alive == 1 ||
+                                        (getSetting('system_theme_setting.keepAlive') &&
+                                            getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1)
+
                                     return (
-                                        <Route key={`${path}-${index}`} 
+                                        <Route key={`${path}-${index}`}
                                                exact
-                                               path={path.replace(/\?.*$/, '')} 
+                                               path={path.replace(/\?.*$/, '')}
                                                render={() => (
                                             <KeepAlive name={name}
                                                       cacheKey={`${path}-${isSmallScreen}-${layoutMode}`}
@@ -141,9 +143,9 @@ const LayoutContent = () => {
                     </QueueAnim>
 
                     {scroll > 400 && (
-                        <FloatButton.BackTop 
-                            style={{bottom: '5rem'}} 
-                            visibilityHeight={0} 
+                        <FloatButton.BackTop
+                            style={{bottom: '5rem'}}
+                            visibilityHeight={0}
                             onClick={backTop}
                         />
                     )}
