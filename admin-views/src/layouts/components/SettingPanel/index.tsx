@@ -21,6 +21,7 @@ import {getCacheKey} from '@/utils/common'
 import {useRequest} from 'ahooks'
 import {saveSettings} from '@/service/api'
 import {useCallback, useMemo, useState} from 'react'
+import SimpleBar from 'simplebar-react'
 
 // 定义系统主题设置接口
 interface SystemThemeSetting {
@@ -184,6 +185,7 @@ const SettingPanel = () => {
                 onClose={closeSetting}
                 closeIcon={false}
                 title={t('theme_setting.title')}
+                styles={{body: {padding: 0, overflow: 'hidden', height: '100%'}}}
                 footer={(
                     <Space>
                         <Badge dot
@@ -197,19 +199,21 @@ const SettingPanel = () => {
                                 disabled={save.loading}>{t('theme_setting.cancel_btn')}</Button>
                     </Space>
                 )}>
-            <Form labelAlign="left" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                {/* 主题色 */}
-                <SettingItem label={t('theme_setting.theme_color')}>
-                    <ColorPicker showText
-                                 disabledAlpha
-                                 disabledFormat
-                                 onChange={(_, v) => handleChange('themeColor', v)}
-                                 value={settings.system_theme_setting.themeColor}
-                                 presets={[{
-                                     label: t('theme_setting.preinstall'),
-                                     colors: ['#1677FF', '#F5222D', '#FA8C16', '#52C41A', '#13A8A8', '#2F54EB', '#722ED1', '#EB2F96'],
-                                 }]}/>
-                </SettingItem>
+            <SimpleBar className="clear-children-mb h-full" autoHide>
+                <div className="p-6">
+                    <Form labelAlign="left" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+                        {/* 主题色 */}
+                        <SettingItem label={t('theme_setting.theme_color')}>
+                            <ColorPicker showText
+                                         disabledAlpha
+                                         disabledFormat
+                                         onChange={(_, v) => handleChange('themeColor', v)}
+                                         value={settings.system_theme_setting.themeColor}
+                                         presets={[{
+                                             label: t('theme_setting.preinstall'),
+                                             colors: ['#1677FF', '#F5222D', '#FA8C16', '#52C41A', '#13A8A8', '#2F54EB', '#722ED1', '#EB2F96'],
+                                         }]}/>
+                        </SettingItem>
 
                 {/* 暗黑模式 */}
                 <SettingItem 
@@ -310,7 +314,9 @@ const SettingPanel = () => {
                     <Switch checked={settings.system_theme_setting.accordionMenu}
                             onChange={(value) => handleChange('accordionMenu', value)}/>
                 </SettingItem>
-            </Form>
+                    </Form>
+                </div>
+            </SimpleBar>
         </Drawer>
     );
 };
