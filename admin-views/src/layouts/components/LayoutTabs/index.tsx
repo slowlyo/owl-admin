@@ -77,6 +77,9 @@ const LayoutTabs = () => {
 
     const [tabs, setTabs] = React.useState<IRoute[]>([])
     const locateTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+    const [pillStyle, setPillStyle] = React.useState<{left: number; width: number; visible: boolean}>(
+        {left: 0, width: 0, visible: false}
+    )
 
     // 更新 Tab
     const updateTabs = (_tabs) => {
@@ -113,6 +116,24 @@ const LayoutTabs = () => {
         return current ? formatTabValue(current, pathname) : null
     }
 
+    const updatePill = useCallback(() => {
+        const currentTabEl = document.querySelector('.current_selected_tab') as HTMLElement | null
+        const tabsContainer = document.querySelector('.owl-tabs') as HTMLElement | null
+
+        if (!currentTabEl || !tabsContainer) {
+            setPillStyle((prev) => ({...prev, visible: false}))
+            return
+        }
+
+        const containerRect = tabsContainer.getBoundingClientRect()
+        const tabRect = currentTabEl.getBoundingClientRect()
+
+        const left = tabRect.left - containerRect.left + tabsContainer.scrollLeft
+        const width = tabRect.width
+
+        setPillStyle({left, width, visible: true})
+    }, [])
+
     // 优化后的定位当前 Tab 函数
     const locateTheCurrentTab = useCallback(async () => {
         // 清除之前的定时器
@@ -135,6 +156,8 @@ const LayoutTabs = () => {
                 return
             }
 
+            updatePill()
+
             // 检查元素是否已经在可视区域内
             if (isElementInViewport(currentTab, tabsContainer)) {
                 return // 已经可见，无需滚动
@@ -147,11 +170,13 @@ const LayoutTabs = () => {
                     block: 'nearest',
                     inline: 'center'
                 })
+
+                updatePill()
             })
         } catch (error) {
             console.error('定位tab时发生错误:', error)
         }
-    }, [])
+    }, [updatePill])
 
     // 防抖版本的定位函数
     const debouncedLocateTab = useCallback(
@@ -273,6 +298,22 @@ const LayoutTabs = () => {
     useEffect(() => changeTab(), [routes, pathname])
     useEffect(() => initTab(), [routes])
 
+    useEffect(() => {
+        const tabsContainer = document.querySelector('.owl-tabs') as HTMLElement | null
+        if (!tabsContainer) return
+
+        const handleUpdate = () => updatePill()
+        tabsContainer.addEventListener('scroll', handleUpdate, {passive: true})
+        window.addEventListener('resize', handleUpdate)
+
+        requestAnimationFrame(() => updatePill())
+
+        return () => {
+            tabsContainer.removeEventListener('scroll', handleUpdate)
+            window.removeEventListener('resize', handleUpdate)
+        }
+    }, [updatePill])
+
     // 清理定时器
     useEffect(() => {
         return () => {
@@ -282,10 +323,19 @@ const LayoutTabs = () => {
         }
     }, [])
 
-    const tabClass = 'owl-tabs w-full h-[40px] flex px-[20px] overflow-x-auto overflow-y-hidden items-center border-b bg-[var(--owl-main-bg)] scroll-smooth'
+    const tabClass = 'owl-tabs w-full h-[40px] flex px-[20px] overflow-x-auto overflow-y-hidden items-center border-b bg-[var(--owl-main-bg)] scroll-smooth relative'
 
     return (
         <div className={tabClass} onWheel={horizontalScroll}>
+            <div
+                className="pointer-events-none absolute top-[8px] left-0 h-[24px] bg-[var(--colors-brand-10)] rounded-[6px] shadow-sm transition-[transform,width,opacity] duration-300 ease-out"
+                style={{
+                    width: pillStyle.width,
+                    transform: `translateX(${pillStyle.left}px)`,
+                    opacity: pillStyle.visible ? 1 : 0
+                }}
+            />
+
             {tabs.map((item, index) => (
                 <Tab key={index}
                      item={item}

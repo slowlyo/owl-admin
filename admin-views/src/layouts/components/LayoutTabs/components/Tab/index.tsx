@@ -44,9 +44,9 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
         return {items, onClick: menuClick}
     }
 
-    const tabClass = 'h-[24px] flex cursor-pointer px-[12px] text-[12px] mr-[8px] rounded-[6px] items-center justify-center border nowrap'
+    const tabClass = 'relative z-[1] h-[24px] flex cursor-pointer px-[12px] text-[12px] mr-[8px] rounded-[6px] items-center justify-center border nowrap transition-all duration-300 ease-out'
     const hoverClass = ' hover:bg-[var(--colors-brand-10)] hover:text-[var(--colors-brand-6)] hover:border-[var(--colors-brand-6)]'
-    const tabSelectedClass = ' bg-[var(--colors-brand-10)] text-[var(--colors-brand-6)] border-[var(--colors-brand-6)]'
+    const tabSelectedClass = ' text-[var(--colors-brand-6)] border-[var(--colors-brand-6)]'
     const closeClass = ' ml-[10px] hover:transform hover:scale-110 transition-all'
 
     return (
