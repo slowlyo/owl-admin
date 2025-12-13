@@ -22,6 +22,7 @@ import {useRequest} from 'ahooks'
 import {saveSettings} from '@/service/api'
 import {useCallback, useMemo, useState} from 'react'
 import SimpleBar from 'simplebar-react'
+import {AnimatePresence, motion} from 'framer-motion'
 
 // 定义系统主题设置接口
 interface SystemThemeSetting {
@@ -62,12 +63,24 @@ interface SettingItemProps {
  * 用于根据条件渲染表单项，优化条件渲染逻辑
  */
 const SettingItem = ({ label, condition = true, children }: SettingItemProps) => {
-    if (!condition) return null;
-    
     return (
-        <Form.Item colon={false} label={label}>
-            {children}
-        </Form.Item>
+        <AnimatePresence initial={false}>
+            {condition && (
+                <motion.div
+                    key={label}
+                    layout="position"
+                    className="overflow-hidden"
+                    initial={{opacity: 0, y: 6, height: 0}}
+                    animate={{opacity: 1, y: 0, height: 'auto'}}
+                    exit={{opacity: 0, y: 6, height: 0}}
+                    transition={{duration: 0.2, ease: 'easeInOut'}}
+                >
+                    <Form.Item colon={false} label={label}>
+                        {children}
+                    </Form.Item>
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 };
 

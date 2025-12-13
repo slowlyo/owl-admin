@@ -116,12 +116,26 @@ const LayoutContent = () => {
     }, [getScrollElement, handleScroll])
 
     const shouldShowTabs = getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full
-    const shouldShowFooter = !currentRoute?.is_full
+    const shouldShowFooter = getSetting('system_theme_setting.footer') && !currentRoute?.is_full
 
     return (
         <div className="h-full flex flex-col bg-[var(--owl-body-bg)]" id="owl-container">
-            {shouldShowTabs && <LayoutTabs/>}
-            <div className="flex-1 min-h-0">
+            <motion.div layout="position" className="flex flex-col flex-1 min-h-0">
+            <AnimatePresence initial={false}>
+                {shouldShowTabs && (
+                    <motion.div
+                        key="layout-tabs"
+                        className="origin-top overflow-hidden"
+                        initial={{opacity: 0, height: 0}}
+                        animate={{opacity: 1, height: 'auto'}}
+                        exit={{opacity: 0, height: 0}}
+                        transition={{duration: 0.2, ease: 'easeInOut'}}
+                    >
+                        <LayoutTabs/>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            <motion.div layout="position" className="flex-1 min-h-0">
                 <SimpleBar
                     className="clear-children-mb h-full"
                     ref={scrollbarRef}
@@ -130,7 +144,7 @@ const LayoutContent = () => {
                     <div className="relative min-h-full">
                         <AnimatePresence initial={false}>
                             <motion.div
-                                key={`${pathname}-${isSmallScreen}-${layoutMode}`}
+                                key={`${pathname}-${isSmallScreen}`}
                                 id={pathname}
                                 className="absolute w-full iframe p-5"
                                 initial={getInVariants(getSetting('system_theme_setting.animateInType'))}
@@ -151,8 +165,8 @@ const LayoutContent = () => {
                                                    path={path.replace(/\?.*$/, '')}
                                                    render={() => (
                                                 <KeepAlive name={name}
-                                                          cacheKey={`${path}-${isSmallScreen}-${layoutMode}`}
-                                                          id={`keep-alive-${name}-${path}-${isSmallScreen}-${layoutMode}`}
+                                                          cacheKey={`${path}-${isSmallScreen}`}
+                                                          id={`keep-alive-${name}-${path}-${isSmallScreen}`}
                                                           when={shouldKeepAlive}>
                                                     {React.createElement(component, {currentRoute})}
                                                 </KeepAlive>
@@ -189,8 +203,22 @@ const LayoutContent = () => {
                         )}
                     </AnimatePresence>
                 </SimpleBar>
-            </div>
-            {shouldShowFooter && <LayoutFooter/>}
+            </motion.div>
+            </motion.div>
+            <AnimatePresence initial={false}>
+                {shouldShowFooter && (
+                    <motion.div
+                        key="layout-footer"
+                        className="origin-bottom overflow-hidden"
+                        initial={{opacity: 0, scaleY: 0.9}}
+                        animate={{opacity: 1, scaleY: 1}}
+                        exit={{opacity: 0, scaleY: 0.9}}
+                        transition={{duration: 0.15, ease: 'easeInOut'}}
+                    >
+                        <LayoutFooter/>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     )
 }

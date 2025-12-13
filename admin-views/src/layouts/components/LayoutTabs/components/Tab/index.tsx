@@ -5,6 +5,7 @@ import {useLang} from '@/hooks/useLang'
 import {Dropdown} from 'antd'
 import useSetting from '@/hooks/useSetting'
 import useRoute from '@/routes'
+import {AnimatePresence, motion} from 'framer-motion'
 
 // Tab 项
 const Tab = ({item, close, menuClick, closeable = true}) => {
@@ -55,7 +56,18 @@ const Tab = ({item, close, menuClick, closeable = true}) => {
                 <Dropdown menu={getMenu()} trigger={['contextMenu']}>
                     <div className={tabClass + hoverClass + ' ' + (pathname == item.path ? (tabSelectedClass + ' current_selected_tab') : '')}
                          onClick={() => history.push(item.path + (item?.search || ''))}>
-                        {settings.system_theme_setting.tabIcon && <Icon icon={item.icon} className="mr-[10px]"/>}
+                        <motion.span
+                            className="inline-flex items-center justify-center"
+                            style={{overflow: 'hidden'}}
+                            animate={
+                                settings.system_theme_setting.tabIcon
+                                    ? {opacity: 1, scale: 1, width: 18, marginRight: 10}
+                                    : {opacity: 0, scale: 0.85, width: 0, marginRight: 0}
+                            }
+                            transition={{duration: 0.15, ease: 'easeInOut'}}
+                        >
+                            <Icon icon={item.icon}/>
+                        </motion.span>
                         {item.title}
                         {closeable && (
                             <Icon icon="mdi:close" className={closeClass} onClick={(e) => {

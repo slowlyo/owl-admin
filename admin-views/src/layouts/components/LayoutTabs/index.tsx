@@ -6,6 +6,7 @@ import {useHistory} from 'react-router'
 import {useAliveController} from 'react-activation'
 import Tab from './components/Tab'
 import {getCacheKey, registerGlobalFunction} from '@/utils/common'
+import useSetting from '@/hooks/useSetting'
 
 // 工具函数：检查元素是否在可视区域内
 const isElementInViewport = (element: Element, container: Element): boolean => {
@@ -68,6 +69,7 @@ const LayoutTabs = () => {
     const history = useHistory()
     const pathname = history.location.pathname
     const {routes, defaultRoute, getCurrentRoute} = useRoute()
+    const {settings} = useSetting()
     const flattenRoutes = getFlattenRoutes(routes)
     const keyPrefix = localStorage.getItem(getCacheKey('user_name'))
     const [cacheTabs, setCacheTab] = useStorage(getCacheKey(keyPrefix + '_cached_tabs'), '')
@@ -133,6 +135,17 @@ const LayoutTabs = () => {
 
         setPillStyle({left, width, visible: true})
     }, [])
+
+    // tabIcon 显隐会改变 tab 宽度，需重算 pill 位置/宽度（并在动画结束后再补算一次）
+    useEffect(() => {
+        const t1 = requestAnimationFrame(() => updatePill())
+        const t2 = window.setTimeout(() => updatePill(), 200)
+
+        return () => {
+            cancelAnimationFrame(t1)
+            window.clearTimeout(t2)
+        }
+    }, [settings?.system_theme_setting?.tabIcon, updatePill])
 
     // 优化后的定位当前 Tab 函数
     const locateTheCurrentTab = useCallback(async () => {
