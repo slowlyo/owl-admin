@@ -1,5 +1,6 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 @import "@fortawesome/fontawesome-free/css/v4-shims.css";
+@import "simplebar-react/dist/simplebar.min.css";
 
 @tailwind base;
 @tailwind components;
@@ -48,10 +49,4 @@ html, body {
 
 .iframe:has(.owl-iframe) {
     padding: 0;
-}
-
-.custom-scrollbar > :first-child {
-    scrollbar-width: none;
-    margin-right: 0 !important;
-    margin-bottom: 0 !important;
 }

@@ -5,7 +5,7 @@ import qs from 'query-string'
 import useRoute from '@/routes'
 import {getFlattenRoutes} from '@/routes/helpers'
 import {Icon} from '@iconify/react'
-import {Scrollbars} from 'react-custom-scrollbars'
+import SimpleBar from 'simplebar-react'
 import useSetting from '@/hooks/useSetting'
 
 // 菜单
@@ -134,7 +134,7 @@ const LayoutMenu = (
     }
 
     return (
-        <Scrollbars autoHide className="custom-scrollbar">
+        <SimpleBar className="h-full" autoHide forceVisible="y">
             <Menu
                 className="!border-e-0 flex-1"
                 mode={mode}
@@ -145,7 +145,7 @@ const LayoutMenu = (
                 onClick={clickMenu}
                 items={getMenus(customRoutes)}
             />
-        </Scrollbars>
+        </SimpleBar>
     )
 }
 

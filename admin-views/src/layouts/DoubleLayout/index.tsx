@@ -10,7 +10,7 @@ import useRoute from '@/routes'
 import {Icon} from '@iconify/react'
 import {useHistory} from 'react-router'
 import useSetting from '@/hooks/useSetting'
-import {Scrollbars} from 'react-custom-scrollbars'
+import SimpleBar from 'simplebar-react'
 
 const {Header, Sider, Content} = Layout
 
@@ -97,7 +97,7 @@ export const DoubleLayout = () => {
                     <LayoutLogo onlyLogo/>
                 </div>
 
-                <Scrollbars autoHide className="custom-scrollbar">
+                <SimpleBar className="h-full" autoHide>
                     <div className="w-full h-full pt-[65px]">
                         {routes?.map(item => {
                             if (item?.meta?.hide) return null
@@ -121,7 +121,7 @@ export const DoubleLayout = () => {
                             )
                         })}
                     </div>
-                </Scrollbars>
+                </SimpleBar>
             </Sider>
             <Layout>
                 <Sider width={childrenRoutes?.length ? 220 : 0}

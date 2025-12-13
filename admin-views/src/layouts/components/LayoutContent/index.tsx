@@ -8,7 +8,7 @@ import {KeepAlive} from 'react-activation'
 import useSetting from '@/hooks/useSetting'
 import LayoutTabs from '@/layouts/components/LayoutTabs'
 import LayoutFooter from '@/layouts/components/LayoutFooter'
-import {Scrollbars} from 'react-custom-scrollbars'
+import SimpleBar from 'simplebar-react'
 import {FloatButton} from 'antd'
 import useSmallScreen from '@/hooks/useSmallScreen'
 import {useThrottleFn} from 'ahooks'
@@ -49,6 +49,14 @@ const LayoutContent = () => {
     const isSmallScreen = useSmallScreen()
     const layoutMode = getSetting('system_theme_setting.layoutMode')
 
+    const getScrollElement = useCallback(() => {
+        if (!scrollbarRef.current) return null
+        if (typeof scrollbarRef.current.getScrollElement === 'function') {
+            return scrollbarRef.current.getScrollElement()
+        }
+        return null
+    }, [])
+
     // 使用useMemo优化flattenRoutes的计算
     const flattenRoutes = useMemo(() => {
         const routes_arr = getFlattenRoutes(routes) || []
@@ -64,23 +72,26 @@ const LayoutContent = () => {
 
     // 使用useCallback优化回到顶部的函数
     const backTop = useCallback(() => {
-        if (!scrollbarRef.current) return
+        const scrollEl = getScrollElement()
+        if (!scrollEl) return
 
         const step = scroll / 20
         const back = (top) => {
-            if (!scrollbarRef.current) return
-            scrollbarRef.current.scrollTop(top)
+            const el = getScrollElement()
+            if (!el) return
+            el.scrollTop = top
 
             if (top <= 0) return
             setTimeout(() => back(top - step), 10)
         }
         back(scroll)
-    }, [scroll])
+    }, [getScrollElement, scroll])
 
     // 使用useThrottle优化滚动事件处理
     const {run: handleScroll} = useThrottleFn(() => {
-        if (!scrollbarRef.current) return
-        setScroll(scrollbarRef.current.getValues().scrollTop)
+        const scrollEl = getScrollElement()
+        if (!scrollEl) return
+        setScroll(scrollEl.scrollTop)
     }, {wait: 300})
 
     // 处理页面标题和modal
@@ -91,11 +102,18 @@ const LayoutContent = () => {
 
     // 初始化滚动位置
     useEffect(() => {
-        if (scrollbarRef.current) {
-            const values = scrollbarRef.current.getValues()
-            setScroll(values.scrollTop)
-        }
+        const scrollEl = getScrollElement()
+        if (!scrollEl) return
+        setScroll(scrollEl.scrollTop)
     }, [])
+
+    useEffect(() => {
+        const scrollEl = getScrollElement()
+        if (!scrollEl) return
+
+        scrollEl.addEventListener('scroll', handleScroll, {passive: true})
+        return () => scrollEl.removeEventListener('scroll', handleScroll)
+    }, [getScrollElement, handleScroll])
 
     const shouldShowTabs = getSetting('system_theme_setting.enableTab') && !currentRoute?.is_full
     const shouldShowFooter = !currentRoute?.is_full
@@ -103,11 +121,12 @@ const LayoutContent = () => {
     return (
         <div className="h-full flex flex-col bg-[var(--owl-body-bg)]" id="owl-container">
             {shouldShowTabs && <LayoutTabs/>}
-            <div className="flex-1">
-                <Scrollbars autoHide
-                            className="clear-children-mb custom-scrollbar"
-                            ref={scrollbarRef}
-                            onScroll={handleScroll}>
+            <div className="flex-1 min-h-0">
+                <SimpleBar
+                    className="clear-children-mb h-full"
+                    ref={scrollbarRef}
+                    autoHide
+                >
                     <div className="relative min-h-full">
                         <AnimatePresence initial={false}>
                             <motion.div
@@ -169,7 +188,7 @@ const LayoutContent = () => {
                             </motion.div>
                         )}
                     </AnimatePresence>
-                </Scrollbars>
+                </SimpleBar>
             </div>
             {shouldShowFooter && <LayoutFooter/>}
         </div>
