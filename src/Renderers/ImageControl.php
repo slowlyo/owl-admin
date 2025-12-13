@@ -193,7 +193,7 @@ class ImageControl extends BaseRenderer
     /**
      * 可拖拽排序的提示信息。
      */
-    public function draggableTip($value = '')
+    public function draggableTip($value = '可拖拽排序')
     {
         return $this->set('draggableTip', $value);
     }

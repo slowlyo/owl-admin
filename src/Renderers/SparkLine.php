@@ -58,7 +58,7 @@ class SparkLine extends BaseRenderer
     /**
      * 高度
      */
-    public function height($value = '')
+    public function height($value = 50)
     {
         return $this->set('height', $value);
     }
@@ -226,7 +226,7 @@ class SparkLine extends BaseRenderer
     /**
      * 宽度
      */
-    public function width($value = '')
+    public function width($value = 100)
     {
         return $this->set('width', $value);
     }

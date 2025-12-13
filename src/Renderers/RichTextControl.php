@@ -289,7 +289,7 @@ class RichTextControl extends BaseRenderer
     /**
      * 图片保存 API (图片保存 API)
      */
-    public function receiver($value = '')
+    public function receiver($value = '/api/upload/image')
     {
         return $this->set('receiver', $value);
     }
@@ -473,7 +473,7 @@ class RichTextControl extends BaseRenderer
     /**
      * 视频保存 API (视频保存 API)
      */
-    public function videoReceiver($value = '')
+    public function videoReceiver($value = '/api/upload/video')
     {
         return $this->set('videoReceiver', $value);
     }

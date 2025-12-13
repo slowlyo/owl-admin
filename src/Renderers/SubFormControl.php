@@ -50,7 +50,7 @@ class SubFormControl extends BaseRenderer
     /**
      * 按钮默认名称
      */
-    public function btnLabel($value = '')
+    public function btnLabel($value = '设置')
     {
         return $this->set('btnLabel', $value);
     }

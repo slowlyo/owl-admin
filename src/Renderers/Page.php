@@ -50,7 +50,7 @@ class Page extends BaseRenderer
     /**
      * 边栏位置 可选值: left | right
      */
-    public function asidePosition($value = '')
+    public function asidePosition($value = 'left')
     {
         return $this->set('asidePosition', $value);
     }

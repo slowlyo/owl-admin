@@ -74,7 +74,7 @@ class Each extends BaseRenderer
     /**
      * 用来控制通过什么字段读取序号，考虑到可能多层嵌套 如果名字一样会读取不到上层变量，所以这里可以指定一下
      */
-    public function indexKeyName($value = '')
+    public function indexKeyName($value = 'index')
     {
         return $this->set('indexKeyName', $value);
     }
@@ -82,7 +82,7 @@ class Each extends BaseRenderer
     /**
      * 用来控制通过什么字段读取成员数据，考虑到可能多层嵌套 如果名字一样会读取不到上层变量，所以这里可以指定一下
      */
-    public function itemKeyName($value = '')
+    public function itemKeyName($value = 'item')
     {
         return $this->set('itemKeyName', $value);
     }

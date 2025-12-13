@@ -22,7 +22,7 @@ class NavOverflow extends BaseRenderer
     /**
      * 导航项目宽度
      */
-    public function itemWidth($value = '')
+    public function itemWidth($value = 160)
     {
         return $this->set('itemWidth', $value);
     }
@@ -38,7 +38,7 @@ class NavOverflow extends BaseRenderer
     /**
      * 导航超出后响应式收纳方案。 可选值: popup | swipe
      */
-    public function mode($value = '')
+    public function mode($value = 'popup')
     {
         return $this->set('mode', $value);
     }
@@ -54,7 +54,7 @@ class NavOverflow extends BaseRenderer
     /**
      * 菜单触发按钮的图标 (iconfont 里面的类名。)
      */
-    public function overflowIndicator($value = '')
+    public function overflowIndicator($value = 'fa fa-ellipsis-h')
     {
         return $this->set('overflowIndicator', $value);
     }
@@ -102,7 +102,7 @@ class NavOverflow extends BaseRenderer
     /**
      * 包裹导航的外层标签名，可以使用其他标签渲染
      */
-    public function wrapperComponent($value = '')
+    public function wrapperComponent($value = 'ul')
     {
         return $this->set('wrapperComponent', $value);
     }

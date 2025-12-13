@@ -191,7 +191,7 @@ class BaseList extends BaseRenderer
      * 无数据提示 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
-    public function placeholder($value = '')
+    public function placeholder($value = '暂无数据')
     {
         return $this->set('placeholder', $value);
     }
@@ -231,7 +231,7 @@ class BaseList extends BaseRenderer
     /**
      * 数据源: 绑定当前环境变量 (数据源: 绑定当前环境变量)
      */
-    public function source($value = '')
+    public function source($value = '${items}')
     {
         return $this->set('source', $value);
     }

@@ -114,7 +114,7 @@ class SearchBox extends BaseRenderer
     /**
      * 关键字名字。
      */
-    public function name($value = '')
+    public function name($value = 'keywords')
     {
         return $this->set('name', $value);
     }

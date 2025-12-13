@@ -42,7 +42,7 @@ class Images extends BaseRenderer
     /**
      * 配置值的连接符
      */
-    public function delimiter($value = '')
+    public function delimiter($value = ',')
     {
         return $this->set('delimiter', $value);
     }

@@ -201,7 +201,7 @@ class Portlet extends BaseRenderer
     }
 
     /**
-     * 组件样式
+     * 自定义样式
      */
     public function style($value = '')
     {

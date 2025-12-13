@@ -110,7 +110,7 @@ class TableColumn extends BaseRenderer
     /**
      * 当一次性渲染太多列上有用，默认为 100，可以用来提升表格渲染性能
      */
-    public function lazyRenderAfter($value = '')
+    public function lazyRenderAfter($value = 100)
     {
         return $this->set('lazyRenderAfter', $value);
     }

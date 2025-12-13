@@ -74,7 +74,13 @@ class Status extends BaseRenderer
     /**
      * 文字映射关系
      */
-    public function labelMap($value = '')
+    public function labelMap($value = array (
+  'success' => '成功',
+  'pending' => '运行中',
+  'fail' => '失败',
+  'queue' => '排队中',
+  'schedule' => '调度中',
+))
     {
         return $this->set('labelMap', $value);
     }
@@ -82,7 +88,15 @@ class Status extends BaseRenderer
     /**
      * 状态图标映射关系
      */
-    public function map($value = '')
+    public function map($value = '{
+0: \'svg-fail\',
+1: \'svg-success\',
+success: \'svg-success\',
+pending: \'rolling\',
+fail: \'svg-fail\',
+queue: \'svg-warning\',
+schedule: \'svg-schedule\'
+}')
     {
         return $this->set('map', $value);
     }
@@ -98,7 +112,7 @@ class Status extends BaseRenderer
     /**
      * 占位符
      */
-    public function placeholder($value = '')
+    public function placeholder($value = '-')
     {
         return $this->set('placeholder', $value);
     }

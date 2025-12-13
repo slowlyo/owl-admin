@@ -26,7 +26,7 @@ class InputSignature extends BaseRenderer
     /**
      * 组件背景颜色
      */
-    public function bgColor($value = '')
+    public function bgColor($value = '#efefef')
     {
         return $this->set('bgColor', $value);
     }
@@ -42,7 +42,7 @@ class InputSignature extends BaseRenderer
     /**
      * 清空按钮图标
      */
-    public function clearBtnIcon($value = '')
+    public function clearBtnIcon($value = '清空')
     {
         return $this->set('clearBtnIcon', $value);
     }
@@ -50,7 +50,7 @@ class InputSignature extends BaseRenderer
     /**
      * 清空按钮名称
      */
-    public function clearBtnLabel($value = '')
+    public function clearBtnLabel($value = '清空')
     {
         return $this->set('clearBtnLabel', $value);
     }
@@ -66,7 +66,7 @@ class InputSignature extends BaseRenderer
     /**
      * 组件字段颜色
      */
-    public function color($value = '')
+    public function color($value = '#000')
     {
         return $this->set('color', $value);
     }
@@ -74,7 +74,7 @@ class InputSignature extends BaseRenderer
     /**
      * 确认按钮图标
      */
-    public function confirmBtnIcon($value = '')
+    public function confirmBtnIcon($value = '确认')
     {
         return $this->set('confirmBtnIcon', $value);
     }
@@ -82,7 +82,7 @@ class InputSignature extends BaseRenderer
     /**
      * 确认按钮名称
      */
-    public function confirmBtnLabel($value = '')
+    public function confirmBtnLabel($value = '确认')
     {
         return $this->set('confirmBtnLabel', $value);
     }
@@ -483,7 +483,7 @@ class InputSignature extends BaseRenderer
     /**
      * 清空按钮图标
      */
-    public function undoBtnIcon($value = '')
+    public function undoBtnIcon($value = '清空')
     {
         return $this->set('undoBtnIcon', $value);
     }
@@ -491,7 +491,7 @@ class InputSignature extends BaseRenderer
     /**
      * 撤销按钮名称
      */
-    public function undoBtnLabel($value = '')
+    public function undoBtnLabel($value = '撤销')
     {
         return $this->set('undoBtnLabel', $value);
     }

@@ -154,7 +154,7 @@ class Cards extends BaseRenderer
     /**
      * 卡片 CSS 类名
      */
-    public function itemClassName($value = '')
+    public function itemClassName($value = 'Grid-col--xs12 Grid-col--sm6 Grid-col--md4 Grid-col--lg3')
     {
         return $this->set('itemClassName', $value);
     }
@@ -194,7 +194,7 @@ class Cards extends BaseRenderer
     /**
      * 无数据提示
      */
-    public function placeholder($value = '')
+    public function placeholder($value = '暂无数据')
     {
         return $this->set('placeholder', $value);
     }
@@ -218,7 +218,7 @@ class Cards extends BaseRenderer
     /**
      * 数据源: 绑定当前环境变量
      */
-    public function source($value = '')
+    public function source($value = '${items}')
     {
         return $this->set('source', $value);
     }

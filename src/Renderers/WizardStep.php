@@ -12,7 +12,7 @@ class WizardStep extends BaseRenderer
 {
 
     /**
-     * 按钮集合，会固定在底部显示。
+     * 每一步可以单独配置按钮。如果不配置wizard会自动生成。
      */
     public function actions($value = '')
     {
@@ -564,7 +564,7 @@ class WizardStep extends BaseRenderer
     }
 
     /**
-     * 标题
+     * Step 标题
      */
     public function title($value = '')
     {

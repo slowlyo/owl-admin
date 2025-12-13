@@ -459,7 +459,7 @@ class TextControl extends BaseRenderer
     /**
      * 配置原生 input 的 autoComplete 属性
      */
-    public function nativeAutoComplete($value = '')
+    public function nativeAutoComplete($value = 'off')
     {
         return $this->set('nativeAutoComplete', $value);
     }

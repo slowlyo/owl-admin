@@ -146,7 +146,7 @@ class Nav extends BaseRenderer
     /**
      * 
      */
-    public function indentSize($value = '')
+    public function indentSize($value = 16)
     {
         return $this->set('indentSize', $value);
     }

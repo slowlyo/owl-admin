@@ -12,7 +12,7 @@ class SchemaPopOver extends BaseRenderer
 {
 
     /**
-     * 子内容
+     * 邮件正文
      */
     public function body($value = '')
     {

@@ -27,7 +27,7 @@ class FileControl extends BaseRenderer
     /**
      * 默认只支持纯文本，要支持其他类型，请配置此属性。建议直接填写文件后缀 如：.txt,.csv多个类型用逗号隔开。
      */
-    public function accept($value = '')
+    public function accept($value = 'text/plain')
     {
         return $this->set('accept', $value);
     }
@@ -75,7 +75,7 @@ class FileControl extends BaseRenderer
     /**
      * 上传文件按钮说明
      */
-    public function btnLabel($value = '')
+    public function btnLabel($value = '请选择文件')
     {
         return $this->set('btnLabel', $value);
     }
@@ -107,7 +107,7 @@ class FileControl extends BaseRenderer
     /**
      * 分块大小，默认为 5M.
      */
-    public function chunkSize($value = '')
+    public function chunkSize($value = 5242880)
     {
         return $this->set('chunkSize', $value);
     }
@@ -244,7 +244,7 @@ class FileControl extends BaseRenderer
     /**
      * 默认 `file`, 如果你不想自己存储，则可以忽略此属性。
      */
-    public function fileField($value = '')
+    public function fileField($value = 'file')
     {
         return $this->set('fileField', $value);
     }
@@ -252,7 +252,7 @@ class FileControl extends BaseRenderer
     /**
      * 默认 `/api/upload/finishChunkApi` 想自己存储时才需要关注。 (默认 `/api/upload/finishChunkApi` 想自己存储时才需要关注。)
      */
-    public function finishChunkApi($value = '')
+    public function finishChunkApi($value = '/api/upload/finishChunkApi')
     {
         return $this->set('finishChunkApi', $value);
     }
@@ -484,7 +484,7 @@ class FileControl extends BaseRenderer
     /**
      * 默认 `/api/upload/file` 如果想自己存储，请设置此选项。 (默认 `/api/upload/file` 如果想自己存储，请设置此选项。)
      */
-    public function receiver($value = '')
+    public function receiver($value = '/api/upload/file')
     {
         return $this->set('receiver', $value);
     }
@@ -540,7 +540,7 @@ class FileControl extends BaseRenderer
     /**
      * 默认 `/api/upload/startChunk` 想自己存储时才需要关注。
      */
-    public function startChunkApi($value = '')
+    public function startChunkApi($value = '/api/upload/startChunk')
     {
         return $this->set('startChunkApi', $value);
     }

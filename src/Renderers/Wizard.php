@@ -170,7 +170,7 @@ class Wizard extends BaseRenderer
     /**
      * 展示模式 可选值: vertical | horizontal
      */
-    public function mode($value = '')
+    public function mode($value = 'vertical')
     {
         return $this->set('mode', $value);
     }

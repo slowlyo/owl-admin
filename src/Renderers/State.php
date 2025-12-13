@@ -172,7 +172,7 @@ class State extends BaseRenderer
     }
 
     /**
-     * 是否显示表达式
+     * 显示条件
      */
     public function visibleOn($value = '')
     {

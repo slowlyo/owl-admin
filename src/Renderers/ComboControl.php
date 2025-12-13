@@ -26,7 +26,7 @@ class ComboControl extends BaseRenderer
     /**
      * 新增按钮文字
      */
-    public function addButtonText($value = '')
+    public function addButtonText($value = '新增')
     {
         return $this->set('addButtonText', $value);
     }
@@ -163,7 +163,7 @@ class ComboControl extends BaseRenderer
     /**
      * 可拖拽排序的提示信息。
      */
-    public function draggableTip($value = '')
+    public function draggableTip($value = '可拖拽排序')
     {
         return $this->set('draggableTip', $value);
     }
@@ -427,7 +427,7 @@ class ComboControl extends BaseRenderer
     /**
      * 没有成员时显示。
      */
-    public function placeholder($value = '')
+    public function placeholder($value = 'empty')
     {
         return $this->set('placeholder', $value);
     }
@@ -491,7 +491,8 @@ class ComboControl extends BaseRenderer
     /**
      * 单组表单项初始值。默认为 `{}`
      */
-    public function scaffold($value = '')
+    public function scaffold($value = array (
+))
     {
         return $this->set('scaffold', $value);
     }

@@ -34,7 +34,7 @@ class QRCode extends BaseRenderer
     /**
      * 二维码的宽高大小，默认 128
      */
-    public function codeSize($value = '')
+    public function codeSize($value = 128)
     {
         return $this->set('codeSize', $value);
     }
@@ -66,7 +66,7 @@ class QRCode extends BaseRenderer
     /**
      * 码眼边框颜色
      */
-    public function eyeBorderColor($value = '')
+    public function eyeBorderColor($value = '#000000')
     {
         return $this->set('eyeBorderColor', $value);
     }
@@ -74,7 +74,7 @@ class QRCode extends BaseRenderer
     /**
      * 码眼边框大小 可选值: default | sm | xs
      */
-    public function eyeBorderSize($value = '')
+    public function eyeBorderSize($value = 'default')
     {
         return $this->set('eyeBorderSize', $value);
     }
@@ -82,7 +82,7 @@ class QRCode extends BaseRenderer
     /**
      * 码眼内部颜色
      */
-    public function eyeInnerColor($value = '')
+    public function eyeInnerColor($value = '#000000')
     {
         return $this->set('eyeInnerColor', $value);
     }
@@ -178,7 +178,7 @@ class QRCode extends BaseRenderer
     /**
      * 码点大小 可选值: default | sm | xs
      */
-    public function pointSize($value = '')
+    public function pointSize($value = 'default')
     {
         return $this->set('pointSize', $value);
     }

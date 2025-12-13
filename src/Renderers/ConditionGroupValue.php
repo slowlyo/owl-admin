@@ -42,6 +42,14 @@ class ConditionGroupValue extends BaseRenderer
     /**
      * 
      */
+    public function setIf($value = '')
+    {
+        return $this->set('if', $value);
+    }
+
+    /**
+     * 
+     */
     public function not($value = true)
     {
         return $this->set('not', $value);

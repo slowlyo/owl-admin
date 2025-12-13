@@ -90,7 +90,7 @@ class Pagination extends BaseRenderer
     /**
      * 通过控制layout属性的顺序，调整分页结构 total,perPage,pager,go
      */
-    public function layout($value = '')
+    public function layout($value = 'pager')
     {
         return $this->set('layout', $value);
     }
@@ -98,7 +98,7 @@ class Pagination extends BaseRenderer
     /**
      * 最多显示多少个分页按钮。
      */
-    public function maxButtons($value = '')
+    public function maxButtons($value = 5)
     {
         return $this->set('maxButtons', $value);
     }
@@ -106,7 +106,7 @@ class Pagination extends BaseRenderer
     /**
      * 模式，默认normal，如果只想简单显示可以配置成 `simple`。 (模式，默认normal，如果只想简单显示可以配置成 `simple`。) 可选值: simple | normal
      */
-    public function mode($value = '')
+    public function mode($value = 'normal')
     {
         return $this->set('mode', $value);
     }
@@ -122,7 +122,7 @@ class Pagination extends BaseRenderer
     /**
      * 每页显示条数
      */
-    public function perPage($value = '')
+    public function perPage($value = 10)
     {
         return $this->set('perPage', $value);
     }
@@ -138,7 +138,7 @@ class Pagination extends BaseRenderer
     /**
      * 弹层挂载节点
      */
-    public function popOverContainerSelector($value = '')
+    public function popOverContainerSelector($value = false)
     {
         return $this->set('popOverContainerSelector', $value);
     }

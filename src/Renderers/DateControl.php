@@ -147,7 +147,7 @@ class DateControl extends BaseRenderer
     /**
      * 日期存储格式 可选值: hex | hexa | rgb | rgba | hsl
      */
-    public function format($value = '')
+    public function format($value = 'X')
     {
         return $this->set('format', $value);
     }
@@ -227,7 +227,7 @@ class DateControl extends BaseRenderer
     /**
      * 日期展示格式
      */
-    public function inputFormat($value = '')
+    public function inputFormat($value = 'YYYY-MM-DD')
     {
         return $this->set('inputFormat', $value);
     }

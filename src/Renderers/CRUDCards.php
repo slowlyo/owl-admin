@@ -51,7 +51,7 @@ $this->set('mode', 'cards');
     /**
      * 内容区域占满屏幕剩余空间
      */
-    public function autoFillHeight($value = '')
+    public function autoFillHeight($value = true)
     {
         return $this->set('autoFillHeight', $value);
     }
@@ -331,7 +331,7 @@ $this->set('mode', 'cards');
     /**
      * 卡片 CSS 类名
      */
-    public function itemClassName($value = '')
+    public function itemClassName($value = 'Grid-col--xs12 Grid-col--sm6 Grid-col--md4 Grid-col--lg3')
     {
         return $this->set('itemClassName', $value);
     }
@@ -483,7 +483,7 @@ $this->set('mode', 'cards');
     /**
      * 设置分页方向的字段名。单位简单分页时清楚时向前还是向后翻页。
      */
-    public function pageDirectionField($value = '')
+    public function pageDirectionField($value = 'pageDir')
     {
         return $this->set('pageDirectionField', $value);
     }
@@ -491,7 +491,7 @@ $this->set('mode', 'cards');
     /**
      * 设置分页页码字段名。
      */
-    public function pageField($value = '')
+    public function pageField($value = 'page')
     {
         return $this->set('pageField', $value);
     }
@@ -507,7 +507,7 @@ $this->set('mode', 'cards');
     /**
      * 每页个数，默认为 10，如果不是请设置。
      */
-    public function perPage($value = '')
+    public function perPage($value = 10)
     {
         return $this->set('perPage', $value);
     }
@@ -523,7 +523,7 @@ $this->set('mode', 'cards');
     /**
      * 设置分页一页显示的多少条数据的字段名。
      */
-    public function perPageField($value = '')
+    public function perPageField($value = 'perPage')
     {
         return $this->set('perPageField', $value);
     }
@@ -531,7 +531,7 @@ $this->set('mode', 'cards');
     /**
      * 无数据提示
      */
-    public function placeholder($value = '')
+    public function placeholder($value = '暂无数据')
     {
         return $this->set('placeholder', $value);
     }
@@ -593,9 +593,9 @@ $this->set('mode', 'cards');
     }
 
     /**
-     * 数据源: 绑定当前环境变量
+     * 也可以直接从环境变量中读取，但是不太推荐。
      */
-    public function source($value = '')
+    public function source($value = '${items}')
     {
         return $this->set('source', $value);
     }

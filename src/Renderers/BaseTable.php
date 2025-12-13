@@ -38,7 +38,7 @@ class BaseTable extends BaseRenderer
     /**
      * 表格自动计算高度
      */
-    public function autoFillHeight($value = '')
+    public function autoFillHeight($value = true)
     {
         return $this->set('autoFillHeight', $value);
     }

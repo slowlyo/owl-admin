@@ -555,7 +555,7 @@ class TagControl extends BaseRenderer
     /**
      * 开启批量添加后，输入多个标签的分隔符，支持传入多个符号，默认为"-"
      */
-    public function separator($value = '')
+    public function separator($value = '-')
     {
         return $this->set('separator', $value);
     }

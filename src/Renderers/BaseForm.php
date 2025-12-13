@@ -52,7 +52,7 @@ class BaseForm extends BaseRenderer
     }
 
     /**
-     * 表单项集合
+     * 表单项集合 (表单项集合)
      */
     public function body($value = '')
     {
@@ -342,7 +342,7 @@ class BaseForm extends BaseRenderer
     /**
      * 设置主键 id, 当设置后，检测表单是否完成时（asyncApi），只会携带此数据。
      */
-    public function primaryField($value = '')
+    public function primaryField($value = 'id')
     {
         return $this->set('primaryField', $value);
     }
@@ -404,7 +404,7 @@ class BaseForm extends BaseRenderer
     }
 
     /**
-     * 是否静态展示
+     * 展示态时的className
      */
     public function static($value = true)
     {

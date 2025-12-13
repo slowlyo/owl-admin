@@ -137,9 +137,9 @@ class MonthControl extends BaseRenderer
     }
 
     /**
-     * 日期存储格式 可选值: hex | hexa | rgb | rgba | hsl
+     * 月份存储格式 可选值: hex | hexa | rgb | rgba | hsl
      */
-    public function format($value = '')
+    public function format($value = 'X')
     {
         return $this->set('format', $value);
     }
@@ -217,9 +217,9 @@ class MonthControl extends BaseRenderer
     }
 
     /**
-     * 日期展示格式
+     * 月份展示格式
      */
-    public function inputFormat($value = '')
+    public function inputFormat($value = 'YYYY-MM')
     {
         return $this->set('inputFormat', $value);
     }
@@ -441,7 +441,7 @@ class MonthControl extends BaseRenderer
     }
 
     /**
-     * 指定为日期选择控件
+     * 指定为月份时间选择控件
      */
     public function type($value = 'input-month')
     {

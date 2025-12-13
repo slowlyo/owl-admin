@@ -56,9 +56,9 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 表格自动计算高度
+     * 内容区域占满屏幕剩余空间
      */
-    public function autoFillHeight($value = '')
+    public function autoFillHeight($value = true)
     {
         return $this->set('autoFillHeight', $value);
     }
@@ -482,7 +482,7 @@ class CRUDTable extends BaseRenderer
     /**
      * 设置分页方向的字段名。单位简单分页时清楚时向前还是向后翻页。
      */
-    public function pageDirectionField($value = '')
+    public function pageDirectionField($value = 'pageDir')
     {
         return $this->set('pageDirectionField', $value);
     }
@@ -490,7 +490,7 @@ class CRUDTable extends BaseRenderer
     /**
      * 设置分页页码字段名。
      */
-    public function pageField($value = '')
+    public function pageField($value = 'page')
     {
         return $this->set('pageField', $value);
     }
@@ -506,7 +506,7 @@ class CRUDTable extends BaseRenderer
     /**
      * 每页个数，默认为 10，如果不是请设置。
      */
-    public function perPage($value = '')
+    public function perPage($value = 10)
     {
         return $this->set('perPage', $value);
     }
@@ -522,7 +522,7 @@ class CRUDTable extends BaseRenderer
     /**
      * 设置分页一页显示的多少条数据的字段名。
      */
-    public function perPageField($value = '')
+    public function perPageField($value = 'perPage')
     {
         return $this->set('perPageField', $value);
     }
@@ -632,7 +632,7 @@ class CRUDTable extends BaseRenderer
     }
 
     /**
-     * 数据源：绑定当前环境变量
+     * 也可以直接从环境变量中读取，但是不太推荐。
      */
     public function source($value = '')
     {

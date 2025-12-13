@@ -150,7 +150,7 @@ class BaseCards extends BaseRenderer
     /**
      * 卡片 CSS 类名 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
-    public function itemClassName($value = '')
+    public function itemClassName($value = 'Grid-col--xs12 Grid-col--sm6 Grid-col--md4 Grid-col--lg3')
     {
         return $this->set('itemClassName', $value);
     }
@@ -191,7 +191,7 @@ class BaseCards extends BaseRenderer
      * 无数据提示 (支持两种语法，但是不能混着用。分别是：1. `${xxx}` 或者 `${xxx|upperCase}` 2. `<%= data.xxx %>`
 更多文档：https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/template)
      */
-    public function placeholder($value = '')
+    public function placeholder($value = '暂无数据')
     {
         return $this->set('placeholder', $value);
     }
@@ -215,7 +215,7 @@ class BaseCards extends BaseRenderer
     /**
      * 数据源: 绑定当前环境变量 (数据源: 绑定当前环境变量)
      */
-    public function source($value = '')
+    public function source($value = '${items}')
     {
         return $this->set('source', $value);
     }

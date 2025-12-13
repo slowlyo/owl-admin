@@ -82,7 +82,7 @@ class TableControl extends BaseRenderer
     /**
      * 表格自动计算高度
      */
-    public function autoFillHeight($value = '')
+    public function autoFillHeight($value = true)
     {
         return $this->set('autoFillHeight', $value);
     }
@@ -96,7 +96,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 表格是否可以获取父级数据域值，默认为false
+     * 是否可以访问父级数据，正常 combo 已经关联到数组成员，是不能访问父级数据的。
      */
     public function canAccessSuperData($value = true)
     {
@@ -865,7 +865,7 @@ class TableControl extends BaseRenderer
     }
 
     /**
-     * 工具栏 CSS 类名
+     * 底部工具栏CSS样式类 (css类名，配置字符串，或者对象。    className: "red"用对象配置时意味着你能跟表达式一起搭配使用，如：    className: {         "red": "data.progress > 80",         "blue": "data.progress > 60"     })
      */
     public function toolbarClassName($value = '')
     {

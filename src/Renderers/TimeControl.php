@@ -139,7 +139,7 @@ class TimeControl extends BaseRenderer
     /**
      * 日期存储格式 可选值: hex | hexa | rgb | rgba | hsl
      */
-    public function format($value = '')
+    public function format($value = 'X')
     {
         return $this->set('format', $value);
     }
@@ -219,7 +219,7 @@ class TimeControl extends BaseRenderer
     /**
      * 日期展示格式
      */
-    public function inputFormat($value = '')
+    public function inputFormat($value = 'YYYY-MM-DD HH:mm')
     {
         return $this->set('inputFormat', $value);
     }
@@ -451,13 +451,13 @@ class TimeControl extends BaseRenderer
     /**
      * 时间的格式。
      */
-    public function timeFormat($value = '')
+    public function timeFormat($value = 'HH:mm')
     {
         return $this->set('timeFormat', $value);
     }
 
     /**
-     * 指定为日期选择控件
+     * 指定为日期时间选择控件
      */
     public function type($value = 'input-time')
     {

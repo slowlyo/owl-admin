@@ -82,7 +82,7 @@ class PaginationWrapper extends BaseRenderer
     /**
      * 输入字段名
      */
-    public function inputName($value = '')
+    public function inputName($value = 'items')
     {
         return $this->set('inputName', $value);
     }
@@ -90,7 +90,7 @@ class PaginationWrapper extends BaseRenderer
     /**
      * 最多显示多少个分页按钮。
      */
-    public function maxButtons($value = '')
+    public function maxButtons($value = 5)
     {
         return $this->set('maxButtons', $value);
     }
@@ -106,7 +106,7 @@ class PaginationWrapper extends BaseRenderer
     /**
      * 输出字段名
      */
-    public function outputName($value = '')
+    public function outputName($value = 'items')
     {
         return $this->set('outputName', $value);
     }
@@ -114,7 +114,7 @@ class PaginationWrapper extends BaseRenderer
     /**
      * 每页显示多条数据。
      */
-    public function perPage($value = '')
+    public function perPage($value = 10)
     {
         return $this->set('perPage', $value);
     }
