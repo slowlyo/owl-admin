@@ -3,7 +3,6 @@ import {Redirect, Route, Switch} from 'react-router-dom'
 import useRoute from '@/routes'
 import lazyLoad from '@/utils/lazyload'
 import {useHistory, useLocation} from 'react-router'
-import QueueAnim from 'rc-queue-anim'
 import {getFlattenRoutes} from '@/routes/helpers'
 import {KeepAlive} from 'react-activation'
 import useSetting from '@/hooks/useSetting'
@@ -13,6 +12,8 @@ import {Scrollbars} from 'react-custom-scrollbars'
 import {FloatButton} from 'antd'
 import useSmallScreen from '@/hooks/useSmallScreen'
 import {useThrottleFn} from 'ahooks'
+import {AnimatePresence, motion} from 'framer-motion'
+import {getInVariants, getOutVariants, getAnimateVariants, getTransition} from '@/utils/animation'
 
 // 设置页面标题
 const setPageTitle = (currentRoute, getSetting) => {
@@ -107,48 +108,67 @@ const LayoutContent = () => {
                             className="clear-children-mb custom-scrollbar"
                             ref={scrollbarRef}
                             onScroll={handleScroll}>
-                    <QueueAnim className="relative"
-                               type={[getSetting('system_theme_setting.animateInType'), getSetting('system_theme_setting.animateOutType')]}
-                               duration={[getSetting('system_theme_setting.animateInDuration'), getSetting('system_theme_setting.animateInDuration')]}>
-                        <div key={`${pathname}-${isSmallScreen}-${layoutMode}`} id={pathname} className="absolute w-full iframe p-5">
-                            <Switch location={location}>
-                                {flattenRoutes.map((route, index) => {
-                                    const {name, path, component} = route
-                                    const shouldKeepAlive = route.keep_alive == 1 ||
-                                        (getSetting('system_theme_setting.keepAlive') &&
-                                            getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1)
+                    <div className="relative min-h-full">
+                        <AnimatePresence initial={false}>
+                            <motion.div
+                                key={`${pathname}-${isSmallScreen}-${layoutMode}`}
+                                id={pathname}
+                                className="absolute w-full iframe p-5"
+                                initial={getInVariants(getSetting('system_theme_setting.animateInType'))}
+                                animate={getAnimateVariants()}
+                                exit={getOutVariants(getSetting('system_theme_setting.animateOutType'))}
+                                transition={getTransition(getSetting('system_theme_setting.animateInDuration'))}
+                            >
+                                <Switch location={location}>
+                                    {flattenRoutes.map((route, index) => {
+                                        const {name, path, component} = route
+                                        const shouldKeepAlive = route.keep_alive == 1 ||
+                                            (getSetting('system_theme_setting.keepAlive') &&
+                                                getSetting('layout.keep_alive_exclude')?.indexOf(path) == -1)
 
-                                    return (
-                                        <Route key={`${path}-${index}`}
-                                               exact
-                                               path={path.replace(/\?.*$/, '')}
-                                               render={() => (
-                                            <KeepAlive name={name}
-                                                      cacheKey={`${path}-${isSmallScreen}-${layoutMode}`}
-                                                      id={`keep-alive-${name}-${path}-${isSmallScreen}-${layoutMode}`}
-                                                      when={shouldKeepAlive}>
-                                                {React.createElement(component, {currentRoute})}
-                                            </KeepAlive>
-                                        )}/>
-                                    )
-                                })}
-                                <Route exact path="/">
-                                    <Redirect to={`/${defaultRoute}`}/>
-                                </Route>
-                                {flattenRoutes.length > 0 && (
-                                    <Route path="*" component={lazyLoad(() => import('@/pages/404'))}/>
-                                )}
-                            </Switch>
-                        </div>
-                    </QueueAnim>
+                                        return (
+                                            <Route key={`${path}-${index}`}
+                                                   exact
+                                                   path={path.replace(/\?.*$/, '')}
+                                                   render={() => (
+                                                <KeepAlive name={name}
+                                                          cacheKey={`${path}-${isSmallScreen}-${layoutMode}`}
+                                                          id={`keep-alive-${name}-${path}-${isSmallScreen}-${layoutMode}`}
+                                                          when={shouldKeepAlive}>
+                                                    {React.createElement(component, {currentRoute})}
+                                                </KeepAlive>
+                                            )}/>
+                                        )
+                                    })}
+                                    <Route exact path="/">
+                                        <Redirect to={`/${defaultRoute}`}/>
+                                    </Route>
+                                    {flattenRoutes.length > 0 && (
+                                        <Route path="*" component={lazyLoad(() => import('@/pages/404'))}/>
+                                    )}
+                                </Switch>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
 
-                    {scroll > 400 && (
-                        <FloatButton.BackTop
-                            style={{bottom: '5rem'}}
-                            visibilityHeight={0}
-                            onClick={backTop}
-                        />
-                    )}
+                    <AnimatePresence>
+                        {scroll > 400 && (
+                            <motion.div
+                                key="back-top"
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.5 }}
+                                className="fixed right-6 z-50"
+                                style={{ bottom: '5rem' }}
+                            >
+                                <FloatButton.BackTop
+                                    style={{ position: 'static' }}
+                                    visibilityHeight={0}
+                                    onClick={backTop}
+                                />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </Scrollbars>
             </div>
             {shouldShowFooter && <LayoutFooter/>}
