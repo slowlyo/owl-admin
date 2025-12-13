@@ -1,5 +1,5 @@
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
-import React, {forwardRef, useEffect, useState} from 'react'
+import React, {forwardRef, useEffect, useImperativeHandle, useState} from 'react'
 import {i18nChangeLanguage, IDomEditor, IEditorConfig, IToolbarConfig} from '@wangeditor/editor'
 import {Editor, Toolbar} from '@wangeditor/editor-for-react'
 import useSetting from '@/hooks/useSetting'
@@ -14,9 +14,9 @@ interface IProps {
     static?: boolean,
     autoFocus?: boolean,
     maxLength?: number,
-    toolbarKeys?: object,
-    insertKeys?: object,
-    excludeKeys?: object,
+    toolbarKeys?: any[],
+    insertKeys?: any[],
+    excludeKeys?: any[],
     uploadImageServer?: string,
     uploadImageMaxSize?: number,
     uploadImageMaxNumber?: number,
@@ -34,7 +34,9 @@ const WangEditor = forwardRef((props: IProps, ref: any) => {
     const [editor, setEditor] = useState<IDomEditor | null>(null)
 
     // 编辑器内容
-    const [html, setHtml] = useState(props.value || '')
+    const [html, setHtml] = useState(() => props.value || '')
+
+    useImperativeHandle(ref, () => editor)
 
     // 工具栏配置
     const toolbarConfig: Partial<IToolbarConfig> = {}
@@ -76,7 +78,7 @@ const WangEditor = forwardRef((props: IProps, ref: any) => {
                     'Authorization': 'Bearer ' + Token().value
                 },
                 maxFileSize: props.uploadVideoMaxSize || (1024 * 1024 * 10),
-                maxNumberOfFiles: props.uploadVideoMaxNumber || 10,
+                maxNumberOfFiles: props.uploadVideoMaxNumber || 5,
             }
         }
     }
@@ -93,10 +95,16 @@ const WangEditor = forwardRef((props: IProps, ref: any) => {
     useEffect(() => {
         if (editor == null) return
         initEditor()
-        setHtml(props.value || '')
-    }, [props])
+    }, [editor, props.disabled, props.static])
 
-    useEffect(() => i18nChangeLanguage(settings.locale ? locale : 'zh-CN'), [settings])
+    useEffect(() => {
+        const next = props.value || ''
+        if (next !== html) {
+            setHtml(next)
+        }
+    }, [props.value])
+
+    useEffect(() => i18nChangeLanguage(settings.locale ? locale : 'zh-CN'), [settings.locale])
 
     // 及时销毁 editor ，重要！
     useEffect(() => {
@@ -122,8 +130,9 @@ const WangEditor = forwardRef((props: IProps, ref: any) => {
                 value={html}
                 onCreated={setEditor}
                 onChange={editor => {
-                    setHtml(editor.getHtml())
-                    props.onChange(editor.getHtml())
+                    const next = editor.getHtml()
+                    setHtml(next)
+                    props.onChange?.(next)
                 }}
                 mode="default"
                 style={{
