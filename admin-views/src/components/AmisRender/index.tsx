@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback, useMemo} from 'react'
 import './style/index.less'
 import {render as renderAmis, RenderOptions} from 'amis'
 import {toast} from 'amis-ui'
@@ -17,33 +17,54 @@ const AmisRender = ({schema, className = ''}) => {
         'en': 'en-US'
     }
 
-    const localeValue = localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN'
+    const localeValue = useMemo(
+        () => localeMap[getSetting('locale') || 'zh_CN'] || 'zh-CN',
+        [getSetting]
+    )
 
-    const props = {locale: localeValue, location: history.location}
+    const props = useMemo(() => ({locale: localeValue, location: history.location}), [localeValue, history.location])
 
-    const options: RenderOptions = {
-        enableAMISDebug: getSetting('show_development_tools'),
-        fetcher: async ({url, method, data}) => {
-            const res = await amisRequest(url, method, data)
-            return wrapAxiosLikeIfAmbiguous(toAxiosLike(res))
-        },
-        updateLocation: (location, replace) => {
+    const fetcher = useCallback(async ({url, method, data}) => {
+        const res = await amisRequest(url, method, data)
+        return wrapAxiosLikeIfAmbiguous(toAxiosLike(res))
+    }, [])
+
+    const updateLocation = useCallback(
+        (location, replace) => {
             replace || history.push(location)
         },
-        jumpTo: (location: string) => {
+        [history]
+    )
+
+    const jumpTo = useCallback(
+        (location: string) => {
             if (location.startsWith('http') || location.startsWith('https')) {
                 window.open(location)
             } else {
                 history.push(location.startsWith('/') ? location : `/${location}`)
             }
         },
-        copy: async (content) => {
-            await clipboard(content)
+        [history]
+    )
 
-            toast.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
-        },
-        isCurrentUrl: (url: string) => history.location.pathname + history.location.search === url,
-    }
+    const copy = useCallback(async (content) => {
+        await clipboard(content)
+        toast.success(localeValue === 'zh-CN' ? '复制成功' : 'Copy success')
+    }, [localeValue])
+
+    const isCurrentUrl = useCallback(
+        (url: string) => history.location.pathname + history.location.search === url,
+        [history.location.pathname, history.location.search]
+    )
+
+    const options: RenderOptions = useMemo(() => ({
+        enableAMISDebug: getSetting('show_development_tools'),
+        fetcher,
+        updateLocation,
+        jumpTo,
+        copy,
+        isCurrentUrl,
+    }), [getSetting, fetcher, updateLocation, jumpTo, copy, isCurrentUrl])
 
     if (!schema) return null
 

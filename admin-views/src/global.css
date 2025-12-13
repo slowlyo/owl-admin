@@ -47,6 +47,27 @@ html, body {
     vertical-align: -0.225rem !important;
 }
 
+ .ant-menu .ant-menu-item,
+ .ant-menu .ant-menu-submenu-title {
+     border-radius: 0.5rem;
+     transition: background-color 160ms ease, box-shadow 160ms ease;
+ }
+
+ .ant-menu .ant-menu-item-icon,
+ .ant-menu .ant-menu-item-icon > * {
+     display: inline-flex;
+     transform-origin: center;
+     transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+     will-change: transform;
+ }
+
+ .ant-menu .ant-menu-item:hover .ant-menu-item-icon,
+ .ant-menu .ant-menu-item:hover .ant-menu-item-icon > *,
+ .ant-menu .ant-menu-submenu-title:hover .ant-menu-item-icon,
+ .ant-menu .ant-menu-submenu-title:hover .ant-menu-item-icon > * {
+     transform: scale(1.12);
+ }
+
 .iframe:has(.owl-iframe) {
     padding: 0;
 }

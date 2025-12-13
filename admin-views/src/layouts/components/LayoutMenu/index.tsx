@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {Menu} from 'antd'
 import qs from 'query-string'
@@ -27,6 +27,8 @@ const LayoutMenu = (
     const pathname = history.location.pathname
     const currentComponent = qs.parseUrl(pathname).url.slice(1)
 
+    const lastClickIdRef = useRef(0)
+
     const {routes, defaultRoute, getCurrentRoute} = useRoute()
     const defaultSelectedKeys = [currentComponent || defaultRoute]
     const paths = (currentComponent || defaultRoute)?.split('/')
@@ -53,30 +55,33 @@ const LayoutMenu = (
         setSelectedKeys([current.path.split('?')[0], getListPath(current.path), ..._parents])
 
         if (mode == 'inline') {
-            setOpenKeys([...openKeys, ..._parents])
+            setOpenKeys((prev) => Array.from(new Set([...(prev || []), ..._parents])))
         }
     }
 
     useEffect(() => updateMenuStatus(), [pathname, customRoutes, collapsed])
 
-    // 获取菜单
-    const getMenus = (routes = []) => {
-        let menus = []
-        for (let route of routes) {
-            if (route.meta?.hide) {
-                continue
+    const menuItems = useMemo(() => {
+        const getMenus = (routes = []) => {
+            let menus = []
+            for (let route of routes) {
+                if (route.meta?.hide) {
+                    continue
+                }
+
+                menus.push({
+                    key: route.path.split('?')[0],
+                    label: route.meta.title,
+                    icon: <div className="!ml-[-2px]"><Icon icon={route.meta.icon} fontSize={18}/></div>,
+                    children: route.children ? getMenus(route.children) : null,
+                })
             }
 
-            menus.push({
-                key: route.path.split('?')[0],
-                label: route.meta.title,
-                icon: <div className="!ml-[-2px]"><Icon icon={route.meta.icon} fontSize={18}/></div>,
-                children: route.children ? getMenus(route.children) : null,
-            })
+            return menus
         }
 
-        return menus
-    }
+        return getMenus(customRoutes)
+    }, [customRoutes])
 
     // 菜单点击事件
     const clickMenu = (e) => {
@@ -87,7 +92,11 @@ const LayoutMenu = (
             return
         }
 
-        currentRoute.component.preload().then(() => history.push(currentRoute.path))
+        const clickId = ++lastClickIdRef.current
+        currentRoute.component.preload().then(() => {
+            if (clickId !== lastClickIdRef.current) return
+            history.push(currentRoute.path)
+        })
     }
 
     const pathMap = useMemo(() => {
@@ -143,7 +152,7 @@ const LayoutMenu = (
                 selectedKeys={selectedKeys}
                 onOpenChange={(keys: Array<any>) => openChange(keys)}
                 onClick={clickMenu}
-                items={getMenus(customRoutes)}
+                items={menuItems}
             />
         </SimpleBar>
     )

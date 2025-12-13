@@ -1,4 +1,4 @@
-import {useMemo} from 'react'
+import {useCallback, useMemo} from 'react'
 import {useRequest} from 'ahooks'
 import {fetchUserRoutes} from '@/service/api'
 import {useDispatch, useSelector} from 'react-redux'
@@ -53,6 +53,7 @@ const useRoute = () => {
     const {routes} = useSelector((state: GlobalState) => state)
     const dispatch = useDispatch()
     const history = useHistory()
+    const pathname = history.location.pathname
 
     // 获取路由数据
     const dynamicRoutes = useRequest(fetchUserRoutes, {
@@ -83,8 +84,13 @@ const useRoute = () => {
         return ''
     }, [routes])
 
+    const flattenRoutes = useMemo(() => getFlattenRoutes(routes), [routes])
+
     // 获取当前路由
-    const getCurrentRoute = () => getFlattenRoutes(routes).find((tab) => tab.path.split('?')[0] === history.location.pathname.replace(/\/\d+/g, '/:id'))
+    const getCurrentRoute = useCallback(
+        () => flattenRoutes.find((tab) => tab.path.split('?')[0] === pathname.replace(/\/\d+/g, '/:id')),
+        [flattenRoutes, pathname]
+    )
 
     return {routes, defaultRoute, getCurrentRoute}
 }

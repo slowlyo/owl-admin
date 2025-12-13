@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useCallback} from 'react'
+import React, {useEffect, useLayoutEffect, useMemo, useRef, useCallback} from 'react'
 import useStorage from '@/utils/useStorage'
 import {getFlattenRoutes} from '@/routes/helpers'
 import useRoute, {IRoute} from '@/routes'
@@ -68,13 +68,17 @@ const waitForElement = (selector: string, timeout = 3000): Promise<Element | nul
 const LayoutTabs = () => {
     const history = useHistory()
     const pathname = history.location.pathname
+    const locationKey = history.location.key
     const {routes, defaultRoute, getCurrentRoute} = useRoute()
     const {settings} = useSetting()
-    const flattenRoutes = getFlattenRoutes(routes)
     const keyPrefix = localStorage.getItem(getCacheKey('user_name'))
     const [cacheTabs, setCacheTab] = useStorage(getCacheKey(keyPrefix + '_cached_tabs'), '')
-    const cachedTabs = JSON.parse(cacheTabs || '[]')
-    const defaultTab = flattenRoutes.find((route) => route.path === '/' + defaultRoute)
+    const flattenRoutes = useMemo(() => getFlattenRoutes(routes), [routes])
+    const cachedTabs = useMemo(() => JSON.parse(cacheTabs || '[]'), [cacheTabs])
+    const defaultTab = useMemo(
+        () => flattenRoutes.find((route) => route.path === '/' + defaultRoute),
+        [flattenRoutes, defaultRoute]
+    )
     const {drop} = useAliveController()
 
     const [tabs, setTabs] = React.useState<IRoute[]>([])
@@ -127,24 +131,39 @@ const LayoutTabs = () => {
             return
         }
 
-        const containerRect = tabsContainer.getBoundingClientRect()
-        const tabRect = currentTabEl.getBoundingClientRect()
+        let left = 0
+        let el: HTMLElement | null = currentTabEl
+        while (el && el !== tabsContainer) {
+            left += el.offsetLeft
+            el = el.offsetParent as HTMLElement | null
+        }
 
-        const left = tabRect.left - containerRect.left + tabsContainer.scrollLeft
-        const width = tabRect.width
+        const width = currentTabEl.offsetWidth
 
         setPillStyle({left, width, visible: true})
     }, [])
 
-    // tabIcon 显隐会改变 tab 宽度，需重算 pill 位置/宽度（并在动画结束后再补算一次）
-    useEffect(() => {
-        const t1 = requestAnimationFrame(() => updatePill())
-        const t2 = window.setTimeout(() => updatePill(), 200)
+    const schedulePillUpdate = useCallback((delays: number[]) => {
+        const rafIds: number[] = []
+        const timeoutIds: number[] = []
+
+        delays.forEach((delay) => {
+            if (delay <= 0) {
+                rafIds.push(requestAnimationFrame(() => updatePill()))
+            } else {
+                timeoutIds.push(window.setTimeout(() => updatePill(), delay))
+            }
+        })
 
         return () => {
-            cancelAnimationFrame(t1)
-            window.clearTimeout(t2)
+            rafIds.forEach((id) => cancelAnimationFrame(id))
+            timeoutIds.forEach((id) => window.clearTimeout(id))
         }
+    }, [updatePill])
+
+    // tabIcon 显隐会改变 tab 宽度，需重算 pill 位置/宽度（并在动画结束后再补算一次）
+    useEffect(() => {
+        return schedulePillUpdate([0, 200])
     }, [settings?.system_theme_setting?.tabIcon, updatePill])
 
     // 优化后的定位当前 Tab 函数
@@ -173,7 +192,8 @@ const LayoutTabs = () => {
 
             // 检查元素是否已经在可视区域内
             if (isElementInViewport(currentTab, tabsContainer)) {
-                return // 已经可见，无需滚动
+                schedulePillUpdate([0, 80])
+                return
             }
 
             // 使用requestAnimationFrame确保DOM更新完成
@@ -232,7 +252,9 @@ const LayoutTabs = () => {
     }
 
     // 注册全局方法
-    registerGlobalFunction('closeTabByPath', closeTabByPath)
+    useEffect(() => {
+        registerGlobalFunction('closeTabByPath', closeTabByPath)
+    }, [closeTabByPath])
 
     // 关闭选项卡
     const closeTab = (item) => {
@@ -308,8 +330,12 @@ const LayoutTabs = () => {
     // 水平滚动
     const horizontalScroll = ({deltaY}) => document.querySelector('.owl-tabs').scrollLeft += deltaY
 
-    useEffect(() => changeTab(), [routes, pathname])
+    useEffect(() => changeTab(), [routes, pathname, locationKey])
     useEffect(() => initTab(), [routes])
+
+    useLayoutEffect(() => {
+        return schedulePillUpdate([0, 0, 120, 300])
+    }, [pathname, tabs, updatePill])
 
     useEffect(() => {
         const tabsContainer = document.querySelector('.owl-tabs') as HTMLElement | null
@@ -319,11 +345,43 @@ const LayoutTabs = () => {
         tabsContainer.addEventListener('scroll', handleUpdate, {passive: true})
         window.addEventListener('resize', handleUpdate)
 
-        requestAnimationFrame(() => updatePill())
+        const cleanup = schedulePillUpdate([0])
 
         return () => {
+            cleanup()
             tabsContainer.removeEventListener('scroll', handleUpdate)
             window.removeEventListener('resize', handleUpdate)
+        }
+    }, [schedulePillUpdate, updatePill])
+
+    useEffect(() => {
+        const tabsContainer = document.querySelector('.owl-tabs') as HTMLElement | null
+        if (!tabsContainer) return
+
+        const currentTabEl = document.querySelector('.current_selected_tab') as HTMLElement | null
+        if (!currentTabEl) return
+
+        if (typeof ResizeObserver === 'undefined') return
+
+        const ro = new ResizeObserver(() => updatePill())
+        ro.observe(tabsContainer)
+        ro.observe(currentTabEl)
+
+        return () => ro.disconnect()
+    }, [pathname, tabs, updatePill])
+
+    useEffect(() => {
+        const fonts = (document as any).fonts
+        if (!fonts?.ready) return
+
+        let cancelled = false
+        fonts.ready.then(() => {
+            if (cancelled) return
+            updatePill()
+        })
+
+        return () => {
+            cancelled = true
         }
     }, [updatePill])
 
@@ -350,7 +408,7 @@ const LayoutTabs = () => {
             />
 
             {tabs.map((item, index) => (
-                <Tab key={index}
+                <Tab key={item?.name || item?.path || index}
                      item={item}
                      close={closeTab}
                      menuClick={(action) => menuClick(action.key, item)}

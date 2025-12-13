@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useMemo} from 'react'
 import useRoute from '@/routes'
 import {Breadcrumb} from 'antd'
 import {useHistory} from 'react-router'
@@ -9,7 +9,6 @@ import {AnimatePresence, motion} from 'framer-motion'
 const LayoutBreadcrumb = () => {
     const {routes, getCurrentRoute} = useRoute()
     const {getSetting} = useSetting()
-    const [breadcrumb, setBreadcrumb] = useState<any[]>([])
     const history = useHistory()
 
     // 当前路由
@@ -67,11 +66,9 @@ const LayoutBreadcrumb = () => {
         return list
     }
 
-    // 监听路由变化
-    useEffect(() => {
-        if (currentRoute) {
-            setBreadcrumb(getBreadcrumb() as any || [])
-        }
+    const breadcrumb = useMemo(() => {
+        if (!currentRoute) return []
+        return (getBreadcrumb() as any) || []
     }, [currentRoute, routes])
 
     const enabled = getSetting('system_theme_setting.breadcrumb') !== false
