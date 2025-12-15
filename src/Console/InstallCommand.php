@@ -16,8 +16,27 @@ class InstallCommand extends Command
 
     public function handle()
     {
+        $this->installApi();
         $this->initDatabase();
         $this->initAdminDirectory();
+    }
+
+    /**
+     * 安装 Laravel API 模块 (Laravel 11+)
+     */
+    protected function installApi(): void
+    {
+        // 检测 api.php 路由文件是否已存在
+        if (file_exists(base_path('routes/api.php'))) {
+            return;
+        }
+
+        // 检测 install:api 命令是否存在 (Laravel 11+)
+        if (!$this->laravel['Illuminate\Contracts\Console\Kernel']->all()['install:api'] ?? false) {
+            return;
+        }
+
+        $this->call('install:api', ['--no-interaction' => true]);
     }
 
     public function initDatabase(): void
