@@ -83,7 +83,7 @@
 composer create-project laravel/laravel example-app
 ```
 
-##### 2. 配置数据库信息并安装 `api` 模块
+##### 2. 配置数据库信息并安装 API 模块
 
 ```dotenv
 # .env
@@ -95,7 +95,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-安装`api` 模块
+安装 API 模块 (Laravel 11+)
 
 ```shell
 php artisan install:api
