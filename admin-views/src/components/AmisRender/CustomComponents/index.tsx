@@ -5,12 +5,33 @@ import Watermark from './components/Watermark'
 import SchemaEditor from './components/SchemaEditor'
 
 export const registerCustomComponents = () => {
+    const globalKey = '__owl_amis_custom_components_registered__'
+    const globalAny = globalThis as any
+    if (globalAny[globalKey]) {
+        return
+    }
+
+    const safeRegister = (fn: () => void) => {
+        try {
+            fn()
+        } catch (err) {
+            const message = err instanceof Error ? err.message : String(err)
+            if (message.includes('has already exists')) {
+                return
+            }
+
+            throw err
+        }
+    }
+
+    globalAny[globalKey] = true
+
     // 图标 iconify
-    Renderer({type: 'custom-svg-icon', autoVar: true})(SvgIcon)
+    safeRegister(() => Renderer({type: 'custom-svg-icon', autoVar: true})(SvgIcon))
     // 富文本编辑器 wangEditor
-    FormItem({type: 'custom-wang-editor', autoVar: true})(WangEditor)
+    safeRegister(() => FormItem({type: 'custom-wang-editor', autoVar: true})(WangEditor))
     // 水印 Watermark
-    Renderer({type: 'custom-watermark', autoVar: true})(Watermark)
+    safeRegister(() => Renderer({type: 'custom-watermark', autoVar: true})(Watermark))
     // editor
-    FormItem({type: 'custom-amis-editor', autoVar: true})(SchemaEditor)
+    safeRegister(() => FormItem({type: 'custom-amis-editor', autoVar: true})(SchemaEditor))
 }
