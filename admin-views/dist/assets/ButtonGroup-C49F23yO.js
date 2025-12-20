@@ -1,0 +1,1 @@
+import{Mo as e,N as t,No as n,wr as r}from"./index-Z33w_AY6.js";var i=function(t){n(i,t);function i(){return t!==null&&t.apply(this,arguments)||this}return i=e([r({type:`button-group`})],i),i}(t);export{i as ButtonGroupRenderer,t as default};

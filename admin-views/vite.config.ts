@@ -25,6 +25,9 @@ export default defineConfig(configEnv => {
                     javascriptEnabled: true,
                 },
             },
+            lightningcss: {
+                errorRecovery: true,
+            },
         },
         server: {
             host: '0.0.0.0',
@@ -35,7 +38,7 @@ export default defineConfig(configEnv => {
         build: {
             sourcemap: false,
             reportCompressedSize: false,
-            rollupOptions: {
+            rolldownOptions: {
                 onwarn() {
                 },
             },
