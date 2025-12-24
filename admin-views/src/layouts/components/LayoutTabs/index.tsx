@@ -22,34 +22,83 @@ const isElementInViewport = (element: Element, container: Element): boolean => {
 }
 
 // 工具函数：防抖
-const debounce = (func: Function, wait: number) => {
-    let timeout: NodeJS.Timeout
-    return function executedFunction(...args: any[]) {
+type DebouncedFn<T extends (...args: any[]) => void> = ((...args: Parameters<T>) => void) & {
+    cancel: () => void
+}
+
+const debounce = <T extends (...args: any[]) => void>(func: T, wait: number): DebouncedFn<T> => {
+    let timeout: ReturnType<typeof setTimeout> | null = null
+
+    const executedFunction = ((...args: Parameters<T>) => {
         const later = () => {
-            clearTimeout(timeout)
+            if (timeout) {
+                clearTimeout(timeout)
+            }
+            timeout = null
             func(...args)
         }
-        clearTimeout(timeout)
+
+        if (timeout) {
+            clearTimeout(timeout)
+        }
         timeout = setTimeout(later, wait)
+    }) as DebouncedFn<T>
+
+    executedFunction.cancel = () => {
+        if (timeout) {
+            clearTimeout(timeout)
+        }
+        timeout = null
     }
+
+    return executedFunction
 }
 
 // 工具函数：等待元素出现
-const waitForElement = (selector: string, timeout = 3000): Promise<Element | null> => {
+const waitForElement = (selector: string, timeout = 3000, signal?: AbortSignal): Promise<Element | null> => {
     return new Promise((resolve) => {
+        if (signal?.aborted) {
+            resolve(null)
+            return
+        }
+
         const element = document.querySelector(selector)
         if (element) {
             resolve(element)
             return
         }
 
-        const observer = new MutationObserver(() => {
-            const element = document.querySelector(selector)
-            if (element) {
-                observer.disconnect()
-                resolve(element)
+        let settled = false
+        let timeoutId: ReturnType<typeof setTimeout> | null = null
+        let observer: MutationObserver | null = null
+
+        const cleanup = () => {
+            observer?.disconnect()
+            if (timeoutId) {
+                clearTimeout(timeoutId)
+            }
+            if (signal) {
+                signal.removeEventListener('abort', onAbort)
+            }
+        }
+
+        const finish = (value: Element | null) => {
+            if (settled) return
+            settled = true
+            cleanup()
+            resolve(value)
+        }
+
+        observer = new MutationObserver(() => {
+            const el = document.querySelector(selector)
+            if (el) {
+                finish(el)
             }
         })
+
+        const onAbort = () => {
+            finish(null)
+        }
 
         observer.observe(document.body, {
             childList: true,
@@ -57,10 +106,13 @@ const waitForElement = (selector: string, timeout = 3000): Promise<Element | nul
         })
 
         // 超时处理
-        setTimeout(() => {
-            observer.disconnect()
-            resolve(null)
+        timeoutId = setTimeout(() => {
+            finish(null)
         }, timeout)
+
+        if (signal) {
+            signal.addEventListener('abort', onAbort)
+        }
     })
 }
 
@@ -83,12 +135,16 @@ const LayoutTabs = () => {
 
     const [tabs, setTabs] = React.useState<IRoute[]>([])
     const locateTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+    const locateRafRef = useRef<number | null>(null)
+    const locateAbortRef = useRef<AbortController | null>(null)
+    const mountedRef = useRef(true)
     const [pillStyle, setPillStyle] = React.useState<{left: number; width: number; visible: boolean}>(
         {left: 0, width: 0, visible: false}
     )
 
     // 更新 Tab
     const updateTabs = (_tabs) => {
+        if (!mountedRef.current) return
         setTabs([formatTabValue(defaultTab, defaultTab?.path, true), ..._tabs])
     }
 
@@ -127,6 +183,7 @@ const LayoutTabs = () => {
         const tabsContainer = document.querySelector('.owl-tabs') as HTMLElement | null
 
         if (!currentTabEl || !tabsContainer) {
+            if (!mountedRef.current) return
             setPillStyle((prev) => ({...prev, visible: false}))
             return
         }
@@ -140,6 +197,7 @@ const LayoutTabs = () => {
 
         const width = currentTabEl.offsetWidth
 
+        if (!mountedRef.current) return
         setPillStyle({left, width, visible: true})
     }, [])
 
@@ -173,11 +231,20 @@ const LayoutTabs = () => {
             clearTimeout(locateTimeoutRef.current)
         }
 
+        if (locateAbortRef.current) {
+            locateAbortRef.current.abort()
+        }
+        locateAbortRef.current = new AbortController()
+
         try {
             // 等待当前选中的tab元素出现
-            const currentTab = await waitForElement('.current_selected_tab', 1000)
+            const currentTab = await waitForElement('.current_selected_tab', 1000, locateAbortRef.current.signal)
             if (!currentTab) {
                 console.warn('未找到当前选中的tab元素')
+                return
+            }
+
+            if (!mountedRef.current || locateAbortRef.current.signal.aborted) {
                 return
             }
 
@@ -197,7 +264,8 @@ const LayoutTabs = () => {
             }
 
             // 使用requestAnimationFrame确保DOM更新完成
-            requestAnimationFrame(() => {
+            locateRafRef.current = requestAnimationFrame(() => {
+                if (!mountedRef.current || locateAbortRef.current?.signal.aborted) return
                 currentTab.scrollIntoView({
                     behavior: 'smooth',
                     block: 'nearest',
@@ -212,16 +280,12 @@ const LayoutTabs = () => {
     }, [updatePill])
 
     // 防抖版本的定位函数
-    const debouncedLocateTab = useCallback(
-        debounce(locateTheCurrentTab, 100),
-        [locateTheCurrentTab]
-    )
+    const debouncedLocateTab = useMemo(() => debounce(locateTheCurrentTab, 100), [locateTheCurrentTab])
 
     // 切换 Tab
     const changeTab = () => {
         // 使用防抖版本的定位函数
         debouncedLocateTab()
-
         // 如果当前路由不在缓存中，则添加
         const _currentTab = currentTab()
 
@@ -388,6 +452,15 @@ const LayoutTabs = () => {
     // 清理定时器
     useEffect(() => {
         return () => {
+            mountedRef.current = false
+
+            debouncedLocateTab.cancel?.()
+            if (locateAbortRef.current) {
+                locateAbortRef.current.abort()
+            }
+            if (locateRafRef.current != null) {
+                cancelAnimationFrame(locateRafRef.current)
+            }
             if (locateTimeoutRef.current) {
                 clearTimeout(locateTimeoutRef.current)
             }

@@ -116,7 +116,7 @@ const TopMixLayout = () => {
                             selectedKeys={selectedTopKeys}
                             onClick={handleTopClick}
                             items={topMenuItems}
-                            className="border-none h-[65px] [&_.ant-menu-item]:flex [&_.ant-menu-item]:items-center"
+                            className="border-none h-[65px] [&_.ant-menu-item]:flex [&_.ant-menu-item]:items-center [&_.ant-menu-overflow-item-rest]:flex [&_.ant-menu-overflow-item-rest]:items-center"
                         />
                     </div>
                 </div>

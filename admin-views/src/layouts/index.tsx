@@ -53,7 +53,7 @@ const Layout = () => {
 
     return (
         <>
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence>
                 <motion.div
                     key={isSmallScreen ? 'sm' : layoutMode}
                     initial={{opacity: 0}}
