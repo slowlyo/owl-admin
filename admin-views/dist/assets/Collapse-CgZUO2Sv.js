@@ -1,0 +1,1 @@
+import{G as e,W as t}from"./index-C4Pf1uQ-.js";export{e as CollapseRenderer,t as default};
