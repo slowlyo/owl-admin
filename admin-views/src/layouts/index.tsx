@@ -53,13 +53,13 @@ const Layout = () => {
 
     return (
         <>
-            <AnimatePresence>
+            <AnimatePresence exitBeforeEnter initial={false}>
                 <motion.div
                     key={isSmallScreen ? 'sm' : layoutMode}
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     exit={{opacity: 0}}
-                    transition={{duration: 0.2}}
+                    transition={{duration: 0.15}}
                     className="h-full w-full"
                 >
                     {isSmallScreen ? <SmLayout/> : RenderLayout(layoutMode)}
