@@ -131,8 +131,8 @@ class InitCommand extends Command
         $path = $this->getPath('/' . $this->module . 'ServiceProvider.php');
 
         $content = str_replace(
-            '{{Namespace}}', 
-            Admin::module()->namespace . "\\{$this->module}", 
+            ['{{Namespace}}', '{{module}}'],
+            [Admin::module()->namespace . "\\{$this->module}", $this->module],
             $this->getStub('ServiceProvider')
         );
         $this->laravel['files']->put($path, $content);
