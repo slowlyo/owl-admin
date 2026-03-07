@@ -3,6 +3,9 @@
 namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use ReflectionClass;
+use ReflectionMethod;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Database\Eloquent\Builder;
 use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
@@ -13,6 +16,8 @@ use Slowlyo\OwlAdmin\Models\AdminCodeGenerator;
  */
 class AdminCodeGeneratorService extends AdminService
 {
+    protected const COMPONENT_CACHE_PREFIX = 'owl_admin:code_generator:component';
+
     protected string $modelName = AdminCodeGenerator::class;
 
     public function listQuery()
@@ -143,24 +148,172 @@ class AdminCodeGeneratorService extends AdminService
         ];
     }
 
+    /**
+     * 获取组件选项。
+     *
+     * @return array
+     */
     public function getComponentOptions()
     {
-        return collect(get_class_methods(amis()))
-            ->filter(fn($item) => $item != 'make')
-            ->map(function ($item) {
-                $renderer = new \ReflectionClass('\\Slowlyo\\OwlAdmin\\Renderers\\' . $item);
-                $_doc     = $renderer->getDocComment();
-                $_doc     = preg_replace("/[^\x{4e00}-\x{9fa5}]/u", "", $_doc);
-                $_doc     = $_doc ? trim(str_replace('文档', '', $_doc)) : '';
-                $label    = $_doc ? $item . ' - ' . $_doc : $item;
+        return Admin::context()->remember('admin_code_generator.component_options', function () {
+            return $this->getComponentNames()
+                ->map(function ($component) {
+                    $metadata = $this->getCachedComponentMetadata($component);
 
-                return [
-                    'label' => $label,
-                    'value' => $item,
-                ];
-            })
+                    return [
+                        'label' => $metadata['label'],
+                        'value' => $component,
+                    ];
+                })
+                ->values()
+                ->toArray();
+        });
+    }
+
+    /**
+     * 获取组件属性选项。
+     *
+     * @param string $component
+     * @return array
+     */
+    public function getComponentPropertyOptions(string $component): array
+    {
+        // 组件名为空时直接返回空数组，避免无意义缓存和反射。
+        if (blank($component)) {
+            return [];
+        }
+
+        return $this->getCachedComponentMetadata($component)['property_options'] ?? [];
+    }
+
+    /**
+     * 获取组件名称列表。
+     *
+     * @return Collection
+     */
+    protected function getComponentNames(): Collection
+    {
+        return Admin::context()->remember('admin_code_generator.component_names', function () {
+            return collect(get_class_methods(amis()))
+                ->filter(fn($item) => $item != 'make')
+                ->values();
+        });
+    }
+
+    /**
+     * 获取组件缓存后的元数据。
+     *
+     * @param string $component
+     * @return array
+     */
+    protected function getCachedComponentMetadata(string $component): array
+    {
+        $contextKey = "admin_code_generator.component_metadata.{$component}";
+
+        return Admin::context()->remember($contextKey, function () use ($component) {
+            $cacheKey = $this->getComponentMetadataCacheKey($component);
+
+            return cache()->rememberForever($cacheKey, fn() => $this->buildComponentMetadata($component));
+        });
+    }
+
+    /**
+     * 构建组件元数据。
+     *
+     * @param string $component
+     * @return array
+     */
+    protected function buildComponentMetadata(string $component): array
+    {
+        $renderer = new ReflectionClass($this->getRendererClassName($component));
+        $doc = $renderer->getDocComment();
+        $doc = preg_replace("/[^\x{4e00}-\x{9fa5}]/u", '', $doc ?: '');
+        $doc = $doc ? trim(str_replace('文档', '', $doc)) : '';
+
+        return [
+            'label' => $doc ? $component . ' - ' . $doc : $component,
+            'property_options' => $this->buildComponentPropertyOptions($renderer),
+        ];
+    }
+
+    /**
+     * 构建组件属性选项。
+     *
+     * @param ReflectionClass $renderer
+     * @return array
+     */
+    protected function buildComponentPropertyOptions(ReflectionClass $renderer): array
+    {
+        return collect($renderer->getMethods(ReflectionMethod::IS_PUBLIC))
+            ->map(fn($item) => $item->name)
+            ->filter(fn($item) => !in_array($item, $this->getComponentPropertyExcludeMethods(), true))
+            ->map(fn($item) => [
+                'label' => $item,
+                'value' => $item,
+            ])
             ->values()
             ->toArray();
+    }
+
+    /**
+     * 获取组件属性排除方法。
+     *
+     * @return array
+     */
+    protected function getComponentPropertyExcludeMethods(): array
+    {
+        return ['__construct', '__call', 'set', 'jsonSerialize', 'toJson', 'toArray', 'name', 'label'];
+    }
+
+    /**
+     * 获取组件类名。
+     *
+     * @param string $component
+     * @return string
+     */
+    protected function getRendererClassName(string $component): string
+    {
+        return 'Slowlyo\\OwlAdmin\\Renderers\\' . $component;
+    }
+
+    /**
+     * 获取组件元数据缓存键。
+     *
+     * @param string $component
+     * @return string
+     */
+    protected function getComponentMetadataCacheKey(string $component): string
+    {
+        return self::COMPONENT_CACHE_PREFIX . ':metadata:' . $component . ':' . $this->getRendererCacheVersion($component);
+    }
+
+    /**
+     * 获取组件缓存版本。
+     *
+     * @param string $component
+     * @return string
+     */
+    protected function getRendererCacheVersion(string $component): string
+    {
+        $path = $this->getRendererFilePath($component);
+
+        // 文件不存在时返回固定版本，避免缓存键失控增长。
+        if (!is_file($path)) {
+            return 'missing';
+        }
+
+        return md5($path . '|' . filemtime($path) . '|' . filesize($path));
+    }
+
+    /**
+     * 获取组件文件路径。
+     *
+     * @param string $component
+     * @return string
+     */
+    protected function getRendererFilePath(string $component): string
+    {
+        return dirname(__DIR__) . '/Renderers/' . $component . '.php';
     }
 
     /**

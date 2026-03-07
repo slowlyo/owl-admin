@@ -24,7 +24,6 @@ trait CodeGeneratorConfigTrait
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     * @throws \ReflectionException
      */
     public function getPropertyOptions(Request $request)
     {
@@ -32,26 +31,7 @@ trait CodeGeneratorConfigTrait
             return $this->response()->success([]);
         }
 
-        $className = '\\Slowlyo\\OwlAdmin\\Renderers\\' . $request->c;
-
-        $renderer = new \ReflectionClass($className);
-
-        $exclude = ['__construct', '__call', 'set', 'jsonSerialize', 'toJson', 'toArray', 'name', 'label',];
-
-        $options = collect($renderer->getMethods(\ReflectionMethod::IS_PUBLIC))
-            ->map(function ($item) {
-                $_doc = $item->getDocComment();
-                $_doc = $_doc ? trim(str_replace(['/**', '*/', '*'], '', $_doc)) : false;
-
-                return ['name' => $item->name, 'comment' => $_doc];
-            })
-            ->filter(fn($item) => !in_array($item['name'], $exclude))
-            ->map(fn($item) => [
-                'label' => $item['name'],
-                'value' => $item['name'],
-            ])
-            ->values()
-            ->toArray();
+        $options = $this->service->getComponentPropertyOptions($request->c);
 
         return $this->response()->success(['component_property_options' => $options]);
     }
