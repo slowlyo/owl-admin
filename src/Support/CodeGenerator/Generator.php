@@ -2,9 +2,13 @@
 
 namespace Slowlyo\OwlAdmin\Support\CodeGenerator;
 
+use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use PDO;
+use Throwable;
 use Slowlyo\OwlAdmin\Traits\MakeTrait;
 use Illuminate\Support\Facades\Artisan;
 use Slowlyo\OwlAdmin\Admin;
@@ -44,6 +48,11 @@ class Generator
         'integer'            => 'integer',
     ];
 
+    /**
+     * 获取代码生成可创建项。
+     *
+     * @return array
+     */
     public function needCreateOptions()
     {
         return [
@@ -70,6 +79,11 @@ class Generator
         ];
     }
 
+    /**
+     * 获取可选字段类型。
+     *
+     * @return array
+     */
     public function availableFieldTypes(): array
     {
         return collect(self::$dataTypeMap)
@@ -86,11 +100,8 @@ class Generator
      */
     public function getDatabaseColumns($db = null)
     {
-        // 获取所有支持的数据库连接
-        $databases = Arr::where(config('database.connections', []), function ($value, $connectName) {
-            $supports = Admin::config('admin.database.generator') ?: [config("database.default")];
-            return in_array($connectName, $supports);
-        });
+        // 统一复用生成器支持的连接配置，避免多处筛选逻辑漂移。
+        $databases = $this->getSupportedGeneratorConnections();
 
         $data = [];
 
@@ -106,12 +117,12 @@ class Generator
                     $database = $value['database'];
                     $prefix = $value['prefix'] ?? '';
                     
-                    // 键(database名称)长度超过28个字符 amis 会获取字段信息失败(sqlite)，截取一下
-                    $databaseKey = strlen($database) > 28 ? substr_replace($database, '***', 10, -15) : $database;
+                    // 统一数据库键名，避免长库名时字段和主键映射不一致。
+                    $databaseKey = $this->resolveDatabaseKey($value);
                     $data[$databaseKey] = [];
                     
                     // 根据数据库类型选择不同的查询方式
-                    switch(strtolower($value['driver'])) {
+                    switch (strtolower($value['driver'])) {
                         case 'mysql':
                             // MySQL: 使用information_schema一次性获取所有表的所有字段
                             $sql = "SELECT 
@@ -127,7 +138,7 @@ class Generator
                                 FROM information_schema.columns 
                                 WHERE TABLE_SCHEMA = '{$database}'";
 
-                            $allColumns = $pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+                            $allColumns = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                             
                             // 按表名分组
                             $columnsByTable = [];
@@ -135,7 +146,7 @@ class Generator
                                 $tableName = $column['TABLE_NAME'];
                                 
                                 // 移除表前缀
-                                $tableNameWithoutPrefix = Str::replaceFirst($prefix, '', $tableName);
+                                $tableNameWithoutPrefix = $this->normalizeTableName($tableName, $prefix);
                                 
                                 if (!isset($columnsByTable[$tableNameWithoutPrefix])) {
                                     $columnsByTable[$tableNameWithoutPrefix] = [];
@@ -171,17 +182,17 @@ class Generator
                             
                         case 'sqlite':
                             // SQLite: 先获取所有表，然后批量查询每个表的结构
-                            $tables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(\PDO::FETCH_COLUMN);
+                            $tables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(PDO::FETCH_COLUMN);
                             
                             // 移除表前缀
-                            $tables = array_map(function($tableName) use ($prefix) {
-                                return Str::replaceFirst($prefix, '', $tableName);
+                            $tables = array_map(function ($tableName) use ($prefix) {
+                                return $this->normalizeTableName($tableName, $prefix);
                             }, $tables);
                             
                             foreach ($tables as $table) {
                                 $stmt = $pdo->prepare("PRAGMA table_info(`{$table}`)");
                                 $stmt->execute();
-                                $columns = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                                $columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
                                 $fields = [];
                                 foreach ($columns as $column) {
@@ -239,7 +250,7 @@ class Generator
                                 AND n.nspname = 'public'
                             ";
                             
-                            $allColumns = $pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+                            $allColumns = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                             
                             // 按表名分组
                             $columnsByTable = [];
@@ -247,7 +258,7 @@ class Generator
                                 $tableName = $column['table_name'];
                                 
                                 // 移除表前缀
-                                $tableNameWithoutPrefix = Str::replaceFirst($prefix, '', $tableName);
+                                $tableNameWithoutPrefix = $this->normalizeTableName($tableName, $prefix);
                                 
                                 if (!isset($columnsByTable[$tableNameWithoutPrefix])) {
                                     $columnsByTable[$tableNameWithoutPrefix] = [];
@@ -287,64 +298,42 @@ class Generator
                             $data[$databaseKey] = $columnsByTable;
                             break;
                     }
-                } catch (\Throwable $e) {
+                } catch (Throwable $e) {
                     // 连不上的跳过
                     continue;
                 }
             }
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             // 出错时返回空集合
         }
 
         return collect($data);
     }
 
+    /**
+     * 获取数据库表主键信息。
+     *
+     * @param string|null $db 数据库名
+     * @param string|null $tb 表名
+     * @return Collection
+     */
     public function getDatabasePrimaryKeys($db = null, $tb = null)
     {
-        $databases = Arr::where(config('database.connections', []), function ($value, $connectName) {
-            $supports = Admin::config('admin.database.generator') ?: [config("database.default")];
-            return in_array($connectName, $supports);
-        });
+        $databases = $this->getSupportedGeneratorConnections();
 
         $data = [];
 
         try {
             foreach ($databases as $connectName => $value) {
-                if ($db && $db != $value['database']) continue;
-
-                $sql = sprintf('SELECT * FROM information_schema.columns WHERE table_schema = "%s"',
-                    $value['database']);
-
-                if ($tb) {
-                    $p = Arr::get($value, 'prefix');
-
-                    $sql .= " AND TABLE_NAME = '{$p}{$tb}'";
+                // 指定数据库时只返回目标连接，避免多余查询。
+                if ($db && $db != $value['database']) {
+                    continue;
                 }
 
-                $tmp = DB::connection($connectName)->select($sql);
-
-                $collection = collect($tmp)->map(function ($v) use ($value) {
-                    if (!$p = Arr::get($value, 'prefix')) {
-                        return (array)$v;
-                    }
-                    $v = (array)$v;
-
-                    $v['TABLE_NAME'] = Str::replaceFirst($p, '', $v['TABLE_NAME']);
-
-                    return $v;
-                });
-
-                $data[$value['database']] = $collection->groupBy('TABLE_NAME')->map(function ($v) {
-                    return collect($v)
-                        ->keyBy('COLUMN_NAME')
-                        ->where('COLUMN_KEY', 'PRI')
-                        ->whereNotIn('COLUMN_NAME', ['created_at', 'updated_at', 'deleted_at'])
-                        ->map(fn($v) => $v['COLUMN_NAME'])
-                        ->values()
-                        ->first();
-                });
+                $databaseKey = $this->resolveDatabaseKey($value);
+                $data[$databaseKey] = $this->queryPrimaryKeysByDriver($connectName, $value, $tb);
             }
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
         }
 
         return collect($data);
@@ -360,8 +349,13 @@ class Generator
      */
     public function generate($id, $needs = [])
     {
-        $record = AdminCodeGenerator::find($id);
-        $model  = AdminCodeGenerator::find($id);
+        $record = AdminCodeGenerator::query()->find($id);
+
+        // 生成依赖记录完整存在，缺失时直接返回 404，避免后续空对象报错。
+        if (!$record) {
+            abort(HttpResponse::HTTP_NOT_FOUND, 'Code generator record not found!');
+        }
+
         $needs  = collect(filled($needs) ? $needs : $record->needs);
 
         if ($needs->contains('need_create_table')) {
@@ -375,7 +369,7 @@ class Generator
         try {
             // Model
             if ($needs->contains('need_model')) {
-                $path = ModelGenerator::make($model)->generate();
+                $path = ModelGenerator::make($record)->generate();
 
                 $message .= $successMessage('Model', $path);
                 $paths[] = $path;
@@ -425,7 +419,7 @@ class Generator
 
                 $message .= $successMessage('Table', Artisan::output());
             }
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             app('files')->delete($paths);
 
             RouteGenerator::refresh();
@@ -436,6 +430,12 @@ class Generator
         return $message;
     }
 
+    /**
+     * 预览即将生成的代码内容。
+     *
+     * @param mixed $id
+     * @return array
+     */
     public function preview($id)
     {
         $record = AdminCodeGenerator::find($id);
@@ -449,10 +449,249 @@ class Generator
             $controller = ControllerGenerator::make($record)->preview();
             // Service
             $service = ServiceGenerator::make($record)->preview();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             admin_abort($e->getMessage());
         }
 
         return compact('model', 'migration', 'controller', 'service');
+    }
+
+    /**
+     * 获取代码生成支持的数据库连接。
+     *
+     * @return array
+     */
+    protected function getSupportedGeneratorConnections(): array
+    {
+        return Arr::where(config('database.connections', []), function ($value, $connectName) {
+            $supports = Admin::config('admin.database.generator') ?: [config('database.default')];
+
+            return in_array($connectName, $supports);
+        });
+    }
+
+    /**
+     * 统一数据库键名。
+     *
+     * @param array $connection
+     * @return string
+     */
+    protected function resolveDatabaseKey(array $connection): string
+    {
+        $database = $connection['database'] ?? '';
+
+        // 长库名会导致前端联动失败，这里统一截断规则。
+        if (strlen($database) > 28) {
+            return substr_replace($database, '***', 10, -15);
+        }
+
+        return $database;
+    }
+
+    /**
+     * 归一化表名，移除配置前缀。
+     *
+     * @param string $tableName
+     * @param string $prefix
+     * @return string
+     */
+    protected function normalizeTableName(string $tableName, string $prefix = ''): string
+    {
+        // 未配置前缀时直接返回原表名。
+        if (blank($prefix)) {
+            return $tableName;
+        }
+
+        return Str::replaceFirst($prefix, '', $tableName);
+    }
+
+    /**
+     * 按驱动查询数据库主键。
+     *
+     * @param string $connectName
+     * @param array $connection
+     * @param string|null $table
+     * @return Collection
+     */
+    protected function queryPrimaryKeysByDriver(string $connectName, array $connection, $table = null): Collection
+    {
+        $driver = strtolower($connection['driver'] ?? '');
+
+        return match ($driver) {
+            'mysql' => $this->queryMysqlPrimaryKeys($connectName, $connection, $table),
+            'sqlite' => $this->querySqlitePrimaryKeys($connectName, $connection, $table),
+            'pgsql' => $this->queryPgsqlPrimaryKeys($connectName, $connection, $table),
+            default => collect(),
+        };
+    }
+
+    /**
+     * 查询 MySQL 主键。
+     *
+     * @param string $connectName
+     * @param array $connection
+     * @param string|null $table
+     * @return Collection
+     */
+    protected function queryMysqlPrimaryKeys(string $connectName, array $connection, $table = null): Collection
+    {
+        $sql = 'SELECT TABLE_NAME AS table_name, COLUMN_NAME AS column_name, ORDINAL_POSITION AS ordinal_position '
+            . 'FROM information_schema.KEY_COLUMN_USAGE '
+            . 'WHERE TABLE_SCHEMA = ? AND CONSTRAINT_NAME = ?';
+        $bindings = [$connection['database'], 'PRIMARY'];
+
+        // 指定表时只查询目标表，减少 information_schema 扫描范围。
+        if ($table) {
+            $sql .= ' AND TABLE_NAME = ?';
+            $bindings[] = ($connection['prefix'] ?? '') . $table;
+        }
+
+        $sql .= ' ORDER BY TABLE_NAME, ORDINAL_POSITION';
+
+        return $this->formatPrimaryKeys(DB::connection($connectName)->select($sql, $bindings), $connection);
+    }
+
+    /**
+     * 查询 SQLite 主键。
+     *
+     * @param string $connectName
+     * @param array $connection
+     * @param string|null $table
+     * @return Collection
+     */
+    protected function querySqlitePrimaryKeys(string $connectName, array $connection, $table = null): Collection
+    {
+        $sql = "SELECT m.name AS table_name, p.name AS column_name, p.pk AS ordinal_position "
+            . "FROM sqlite_master AS m "
+            . "JOIN pragma_table_info(m.name) AS p "
+            . "WHERE m.type = 'table' AND m.name NOT LIKE 'sqlite_%' AND p.pk > 0";
+        $bindings = [];
+
+        // 指定表时收敛到单表，兼容复合主键顺序读取。
+        if ($table) {
+            $sql .= ' AND m.name = ?';
+            $bindings[] = ($connection['prefix'] ?? '') . $table;
+        }
+
+        $sql .= ' ORDER BY m.name, p.pk';
+
+        try {
+            return $this->formatPrimaryKeys(DB::connection($connectName)->select($sql, $bindings), $connection);
+        } catch (Throwable $e) {
+            // 老版本 SQLite 不支持表值 PRAGMA 时，降级为逐表读取。
+            return $this->querySqlitePrimaryKeysFallback($connectName, $connection, $table);
+        }
+    }
+
+    /**
+     * 查询 PostgreSQL 主键。
+     *
+     * @param string $connectName
+     * @param array $connection
+     * @param string|null $table
+     * @return Collection
+     */
+    protected function queryPgsqlPrimaryKeys(string $connectName, array $connection, $table = null): Collection
+    {
+        $sql = "SELECT cls.relname AS table_name, attr.attname AS column_name, pos.n AS ordinal_position "
+            . "FROM pg_constraint AS con "
+            . "JOIN pg_class AS cls ON cls.oid = con.conrelid "
+            . "JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace "
+            . "JOIN unnest(con.conkey) WITH ORDINALITY AS pos(attnum, n) ON TRUE "
+            . "JOIN pg_attribute AS attr ON attr.attrelid = cls.oid AND attr.attnum = pos.attnum "
+            . "WHERE con.contype = 'p' AND ns.nspname = 'public'";
+        $bindings = [];
+
+        // 指定表时只查当前表，避免全库扫描。
+        if ($table) {
+            $sql .= ' AND cls.relname = ?';
+            $bindings[] = ($connection['prefix'] ?? '') . $table;
+        }
+
+        $sql .= ' ORDER BY cls.relname, pos.n';
+
+        return $this->formatPrimaryKeys(DB::connection($connectName)->select($sql, $bindings), $connection);
+    }
+
+    /**
+     * 规范化主键查询结果。
+     *
+     * @param array $rows
+     * @param array $connection
+     * @return Collection
+     */
+    protected function formatPrimaryKeys(array $rows, array $connection): Collection
+    {
+        $prefix = $connection['prefix'] ?? '';
+
+        return collect($rows)
+            ->map(function ($row) use ($prefix) {
+                $item = (array) $row;
+
+                return [
+                    'table_name' => $this->normalizeTableName($item['table_name'], $prefix),
+                    'column_name' => $item['column_name'],
+                    'ordinal_position' => (int) $item['ordinal_position'],
+                ];
+            })
+            ->groupBy('table_name')
+            ->map(function (Collection $items) {
+                $primaryKeys = $items
+                    ->sortBy('ordinal_position')
+                    ->pluck('column_name')
+                    ->reject(fn($column) => in_array($column, ['created_at', 'updated_at', 'deleted_at']))
+                    ->values();
+
+                // 兼容现有文本字段，同时保留复合主键顺序。
+                return $primaryKeys->implode(',');
+            });
+    }
+
+    /**
+     * 兼容低版本 SQLite 的主键查询。
+     *
+     * @param string $connectName
+     * @param array $connection
+     * @param string|null $table
+     * @return Collection
+     */
+    protected function querySqlitePrimaryKeysFallback(string $connectName, array $connection, $table = null): Collection
+    {
+        $sql = "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%'";
+        $bindings = [];
+
+        // 指定表时只读取目标表，避免回退逻辑放大扫描范围。
+        if ($table) {
+            $sql .= ' AND name = ?';
+            $bindings[] = ($connection['prefix'] ?? '') . $table;
+        }
+
+        $tables = DB::connection($connectName)->select($sql, $bindings);
+        $rows = [];
+
+        foreach ($tables as $tableItem) {
+            $tableName = data_get((array) $tableItem, 'name');
+
+            // 表名由 sqlite_master 返回，仅做转义后拼入 PRAGMA。
+            $pragmaTableName = str_replace('"', '""', $tableName);
+            $columns = DB::connection($connectName)->select("PRAGMA table_info(\"{$pragmaTableName}\")");
+
+            foreach ($columns as $column) {
+                $column = (array) $column;
+
+                // 只有 pk 序号大于 0 的字段才属于主键，且要保留复合主键顺序。
+                if (($column['pk'] ?? 0) < 1) {
+                    continue;
+                }
+
+                $rows[] = [
+                    'table_name' => $tableName,
+                    'column_name' => $column['name'],
+                    'ordinal_position' => (int) $column['pk'],
+                ];
+            }
+        }
+
+        return $this->formatPrimaryKeys($rows, $connection);
     }
 }
