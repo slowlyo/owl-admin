@@ -350,11 +350,23 @@ class Generator
         return collect($data);
     }
 
+    /**
+     * 按所选内容生成代码并按需执行建表。
+     *
+     * @param mixed $id
+     * @param array $needs
+     *
+     * @return string
+     */
     public function generate($id, $needs = [])
     {
         $record = AdminCodeGenerator::find($id);
         $model  = AdminCodeGenerator::find($id);
         $needs  = collect(filled($needs) ? $needs : $record->needs);
+
+        if ($needs->contains('need_create_table')) {
+            $needs = $needs->push('need_database_migration')->unique()->values();
+        }
 
         $successMessage = fn($type, $path) => "<b class='text-success'>{$type} generated successfully!</b><br>{$path}<br><br>";
 
@@ -394,7 +406,7 @@ class Generator
                 $path = MigrationGenerator::make($record)->generate();
 
                 $message     .= $successMessage('Migration', $path);
-                $migratePath = str_replace(base_path(), '', $path);
+                $migratePath = $path;
                 $paths[]     = $path;
             }
 
@@ -404,11 +416,13 @@ class Generator
                     abort(HttpResponse::HTTP_BAD_REQUEST, "Table [{$record->table_name}] already exists!");
                 }
 
-                if ($migratePath) {
-                    Artisan::call('migrate', ['--path' => $migratePath]);
-                } else {
-                    Artisan::call('migrate');
+                // 建表必须绑定本次迁移文件，避免误触发全量迁移。
+                if (blank($migratePath)) {
+                    abort(HttpResponse::HTTP_BAD_REQUEST, "Migration file for [{$record->table_name}] is required before creating table!");
                 }
+
+                Artisan::call('migrate', ['--path' => $migratePath, '--realpath' => true]);
+
                 $message .= $successMessage('Table', Artisan::output());
             }
         } catch (\Throwable $e) {

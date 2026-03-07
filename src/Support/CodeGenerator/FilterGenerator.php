@@ -93,32 +93,43 @@ class FilterGenerator extends BaseGenerator
         return $content;
     }
 
+    /**
+     * 生成单个筛选项的查询代码。
+     *
+     * @param array $column
+     * @param array $filter
+     *
+     * @return string
+     */
     private function queryItem($column, $filter)
     {
         if ($filter['mode'] == 'fixed') {
-            $value = $filter['value'] ?? '';
-            if (filled($value) && !in_array($value, ['true', 'false']) && !is_numeric($value)) {
-                $value = "'{$value}'";
+            $hasInput = true;
+            $inputValue = $filter['value'] ?? '';
+            if (filled($inputValue) && !in_array($inputValue, ['true', 'false']) && !is_numeric($inputValue)) {
+                $inputValue = "'{$inputValue}'";
             }
         } else {
-            $value = "filled(\$this->request->input('{$filter['input_name']}'))";
+            // 输入模式要同时区分“是否有值”和“真实查询值”，避免查询到 0/1。
+            $inputValue = "\$this->request->input('{$filter['input_name']}')";
+            $hasInput = "filled({$inputValue})";
         }
         $name     = $column['name'];
-        $arrValue = "safe_explode(',', $value)";
+        $arrValue = "safe_explode(',', {$inputValue})";
 
         $querySchema = match ($filter['type']) {
-            'equal'           => "->where('{$name}', {$value})",
-            'not_equal'       => "->where('{$name}', '!=', {$value})",
-            'gt'              => "->where('{$name}', '>', {$value})",
-            'gte'             => "->where('{$name}', '>=', {$value})",
-            'lt'              => "->where('{$name}', '<', {$value})",
-            'lte'             => "->where('{$name}', '<=', {$value})",
-            'starts_with'     => "->where('{$name}', 'like', {$value} . '%')",
-            'contains'        => "->where('{$name}', 'like', '%' . {$value} . '%')",
-            'ends_with'       => "->where('{$name}', 'like', '%'. {$value})",
-            'not_contains'    => "->where('{$name}', 'not like', '%' . {$value} . '%')",
-            'not_starts_with' => "->where('{$name}', 'not like', {$value} . '%')",
-            'not_ends_with'   => "->where('{$name}', 'not like', '%' . {$value})",
+            'equal'           => "->where('{$name}', {$inputValue})",
+            'not_equal'       => "->where('{$name}', '!=', {$inputValue})",
+            'gt'              => "->where('{$name}', '>', {$inputValue})",
+            'gte'             => "->where('{$name}', '>=', {$inputValue})",
+            'lt'              => "->where('{$name}', '<', {$inputValue})",
+            'lte'             => "->where('{$name}', '<=', {$inputValue})",
+            'starts_with'     => "->where('{$name}', 'like', {$inputValue} . '%')",
+            'contains'        => "->where('{$name}', 'like', '%' . {$inputValue} . '%')",
+            'ends_with'       => "->where('{$name}', 'like', '%'. {$inputValue})",
+            'not_contains'    => "->where('{$name}', 'not like', '%' . {$inputValue} . '%')",
+            'not_starts_with' => "->where('{$name}', 'not like', {$inputValue} . '%')",
+            'not_ends_with'   => "->where('{$name}', 'not like', '%' . {$inputValue})",
             'in'              => "->whereIn('{$name}', {$arrValue})",
             'not_in'          => "->whereNotIn('{$name}', {$arrValue})",
             'between'         => "->whereBetween('{$name}', {$arrValue})",
@@ -129,7 +140,7 @@ class FilterGenerator extends BaseGenerator
 
         return match ($filter['mode']) {
             'fixed' => "\$query{$querySchema}",
-            'input' => "\$query->when({$value}, fn(\$q) => \$q{$querySchema})",
+            'input' => "\$query->when({$hasInput}, fn(\$q) => \$q{$querySchema})",
         };
     }
 }
