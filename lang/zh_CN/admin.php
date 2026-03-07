@@ -336,10 +336,12 @@ return [
         'overlay'               => '如果模板已存在, 是否覆盖',
     ],
     'api_templates' => [
+        'aggregate'   => '聚合统计',
         'data_list'   => '获取列表(分页)',
         'data_create' => '新增数据',
         'data_update' => '更新数据',
         'data_delete' => '删除数据',
         'data_detail' => '获取详情',
+        'data_toggle' => '切换字段值',
     ],
 ];

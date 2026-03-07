@@ -336,10 +336,12 @@ Backup important data before performing operations!!!<br>
         'overlay'               => 'Whether to overwrite the template if it already exists',
     ],
     'api_templates' => [
+        'aggregate'   => 'Aggregate',
         'data_list'   => 'Get List (Paginated)',
         'data_create' => 'Create',
         'data_update' => 'Update',
         'data_delete' => 'Delete',
         'data_detail' => 'Get Detail',
+        'data_toggle' => 'Toggle Field Value',
     ],
 ];
