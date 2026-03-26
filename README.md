@@ -14,11 +14,11 @@
 
 <p align="center">
     <a href="https://www.php.net/">
-        <img src="https://img.shields.io/badge/PHP-8.0%2B-%23268af1" alt="">
+        <img src="https://img.shields.io/badge/PHP-8.2%2B-%23268af1" alt="">
     </a>
 &nbsp;
     <a href="https://laravel.com/">
-        <img src="https://img.shields.io/badge/Laravel-9.0%2B-%23268af1" alt="">
+        <img src="https://img.shields.io/badge/Laravel-11.x%20--%2013.x-%23268af1" alt="">
     </a>
 &nbsp;
       <a href="https://aisuda.bce.baidu.com/amis/zh-CN/docs/index">
@@ -40,6 +40,8 @@
 ### 项目介绍
 
 基于 `Laravel` 、 `amis` 开发的后台框架, 快速且灵活~
+
+当前版本支持 `Laravel 11.x - 13.x`。
 
 - 基于 amis 以 json 的方式在后端构建页面，减少前端开发工作量，提升开发效率。
 - 在 amis 150多个组件都不满足的情况下, 可自行开发前端。
