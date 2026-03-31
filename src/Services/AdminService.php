@@ -190,10 +190,7 @@ abstract class AdminService
      */
     public function loadRelations($query)
     {
-        $controller = Route::getCurrentRoute()->getController();
-
-        // 当前列表结构
-        $schema = method_exists($controller, 'list') ? $controller->list() : '';
+        $schema = $this->resolveListSchema();
 
         if (!$schema instanceof Page) return;
 
@@ -225,6 +222,32 @@ abstract class AdminService
 
         // 加载关联关系
         $query->with(array_unique($relations));
+    }
+
+    /**
+     * 获取当前列表结构
+     *
+     * @return Page|null
+     */
+    protected function resolveListSchema(): ?Page
+    {
+        $route = Route::getCurrentRoute();
+
+        // 命令行或非控制器场景下，当前路由可能不存在
+        if (!$route) {
+            return null;
+        }
+
+        $controller = $route->getController();
+
+        // 路由未绑定控制器时，直接跳过自动关联推导
+        if (!$controller || !method_exists($controller, 'list')) {
+            return null;
+        }
+
+        $schema = $controller->list();
+
+        return $schema instanceof Page ? $schema : null;
     }
 
     /**
