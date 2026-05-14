@@ -4,7 +4,6 @@ namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Enumerable;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Route;
@@ -322,11 +321,11 @@ abstract class AdminService
      *
      * @param mixed $rows 一次列表查询的数据
      *
-     * @return array
+     * @return mixed
      */
     public function formatListRows($rows)
     {
-        return $this->formatRows($rows instanceof Enumerable ? $rows->all() : $rows);
+        return is_array($rows) ? $this->formatRows($rows) : $rows;
     }
 
     /**
