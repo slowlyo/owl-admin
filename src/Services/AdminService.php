@@ -307,11 +307,11 @@ abstract class AdminService
     /**
      * 格式化列表数据
      *
-     * @param array $rows 一次分页的数据
+     * @param mixed $rows 一次分页的数据
      *
      * @return array
      */
-    public function formatRows(array $rows)
+    public function formatRows($rows)
     {
         return $rows;
     }
