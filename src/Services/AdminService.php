@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Enumerable;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Renderers\Page;
 use Illuminate\Support\Facades\Route;
@@ -307,13 +308,25 @@ abstract class AdminService
     /**
      * 格式化列表数据
      *
-     * @param mixed $rows 一次分页的数据
+     * @param array $rows 一次分页的数据
      *
      * @return array
      */
-    public function formatRows($rows)
+    public function formatRows(array $rows)
     {
         return $rows;
+    }
+
+    /**
+     * 格式化任意来源的列表数据
+     *
+     * @param mixed $rows 一次列表查询的数据
+     *
+     * @return array
+     */
+    public function formatListRows($rows)
+    {
+        return $this->formatRows($rows instanceof Enumerable ? $rows->all() : $rows);
     }
 
     /**
@@ -326,7 +339,7 @@ abstract class AdminService
         $query = $this->listQuery();
 
         $list  = $query->paginate(request()->input('perPage', 20));
-        $items = $this->formatRows($list->items());
+        $items = $this->formatListRows($list->items());
         $total = $list->total();
 
         return compact('items', 'total');
