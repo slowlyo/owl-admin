@@ -130,11 +130,12 @@ class AdminMenuController extends AdminController
                 ->searchable()
                 ->visibleOn('url_type == ' . Admin::adminMenuModel()::TYPE_PAGE),
             amis()->GroupControl()->body([
-                amis()->TextControl('iframe_url', 'IframeUrl')
+                amis()->TextControl('iframe_url', admin_trans('admin.admin_menu.iframe_url'))
                     ->required()
                     ->validateOnChange()
                     ->validations(['matchRegexp' => '/^(http(s)?\:\/)?(\/)+/'])
                     ->validationErrors(['matchRegexp' => admin_trans('admin.need_start_with_slash')])
+                    ->description(admin_trans('admin.admin_menu.iframe_url_description'))
                     ->placeholder('eg: https://www.qq.com')
                     ->hiddenOn('url_type != ' . Admin::adminMenuModel()::TYPE_IFRAME),
             ]),

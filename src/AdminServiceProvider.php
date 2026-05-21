@@ -17,6 +17,7 @@ class AdminServiceProvider extends ServiceProvider
         Console\InstallCommand::class,
         Console\PublishCommand::class,
         Console\GenRouteCommand::class,
+        Console\MakePageCommand::class,
         Console\IdeHelperCommand::class,
         Console\CreateUserCommand::class,
         Console\ResetPasswordCommand::class,
@@ -26,6 +27,7 @@ class AdminServiceProvider extends ServiceProvider
 
     protected array $routeMiddleware = [
         'admin.autoSetLocale' => Middleware\AutoSetLocale::class,
+        'admin.iframeToken'   => Middleware\IframeToken::class,
         'admin.auth'          => Middleware\Authenticate::class,
         'admin.bootstrap'     => Middleware\Bootstrap::class,
         'admin.permission'    => Middleware\Permission::class,
@@ -36,6 +38,7 @@ class AdminServiceProvider extends ServiceProvider
     protected array $middlewareGroups = [
         'admin' => [
             'admin.autoSetLocale',
+            'admin.iframeToken',
             'admin.auth',
             'admin.bootstrap',
             'admin.permission',
@@ -92,6 +95,10 @@ class AdminServiceProvider extends ServiceProvider
 
         if (file_exists($routes = admin_path('routes.php'))) {
             $this->loadRoutesFrom($routes);
+        }
+
+        if (file_exists($pages = admin_path('pages.php'))) {
+            $this->loadRoutesFrom($pages);
         }
 
         if ($modulePath = Admin::module()->allRoutePath()) {

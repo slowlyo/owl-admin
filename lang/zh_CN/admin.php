@@ -227,6 +227,8 @@ return [
         'route'                  => '路由',
         'link'                   => '外链',
         'iframe'                 => 'Iframe',
+        'iframe_url'             => '页面地址',
+        'iframe_url_description' => '可填写后台 Blade 页面地址或外部完整地址',
         'page'                   => '页面',
         'class_name'             => '类名',
         'class_name_description' => '菜单的CSS类名, 一般用于自定义样式',

@@ -13,6 +13,11 @@ export default {
         title: '抱歉，您访问的页面不存在。',
         back_home: '返回首页',
     },
+    iframe: {
+        empty_url: 'Iframe 地址未配置',
+        load_failed: 'Iframe 页面加载失败',
+        reload: '重新加载',
+    },
     theme_setting: {
         title: '主题配置',
         preinstall: '预设',

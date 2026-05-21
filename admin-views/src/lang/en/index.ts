@@ -13,6 +13,11 @@ export default {
         title: 'Sorry, the page you visited does not exist.',
         back_home: 'Back Home',
     },
+    iframe: {
+        empty_url: 'Iframe URL is not configured',
+        load_failed: 'Iframe page failed to load',
+        reload: 'Reload',
+    },
     theme_setting: {
         title: 'Theme Setting',
         preinstall: 'Preinstall',

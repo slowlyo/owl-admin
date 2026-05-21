@@ -1,0 +1,19 @@
+<?php
+
+namespace {{Namespace}};
+
+use Illuminate\View\View;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
+
+class {{ClassName}} extends AdminController
+{
+    /**
+     * 渲染 iframe 自定义页面，页面权限和登录状态由后台路由中间件统一处理。
+     *
+     * @return View
+     */
+    public function index(): View
+    {
+        return view('{{ViewName}}');
+    }
+}

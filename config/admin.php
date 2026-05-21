@@ -28,6 +28,20 @@ return [
         ],
     ],
 
+    // iframe 自定义页面生成配置
+    'iframe_page'    => [
+        // 生成的控制器命名空间, 为空时复用后台控制器命名空间
+        'namespace'    => env('ADMIN_IFRAME_PAGE_NAMESPACE'),
+        // 生成的 Blade 视图目录
+        'view_path'    => resource_path('views/admin/pages'),
+        // 生成页面默认继承的 Blade layout
+        'layout'       => env('ADMIN_IFRAME_PAGE_LAYOUT', 'layouts.app'),
+        // 生成页面默认填充的 section
+        'section'      => env('ADMIN_IFRAME_PAGE_SECTION', 'content'),
+        // 页面路由前缀, 最终地址会在 admin.route.prefix 下拼接
+        'route_prefix' => env('ADMIN_IFRAME_PAGE_ROUTE_PREFIX', 'pages'),
+    ],
+
     'auth' => [
         // 是否开启验证码
         'login_captcha'    => env('ADMIN_LOGIN_CAPTCHA', true),

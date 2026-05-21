@@ -227,6 +227,8 @@ return [
         'route'                  => 'Route',
         'link'                   => 'Link',
         'iframe'                 => 'Iframe',
+        'iframe_url'             => 'Page Url',
+        'iframe_url_description' => 'A backend Blade page url or an external absolute url.',
         'page'                   => 'Page',
         'class_name'             => 'Class Name',
         'class_name_description' => 'The CSS class name of the menu, which is typically used to customize styles',
