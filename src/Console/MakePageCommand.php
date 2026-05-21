@@ -56,9 +56,9 @@ class MakePageCommand extends Command
             $this->createMenu();
         }
 
-        $this->info('Iframe page created successfully.');
-        $this->line('Menu path: ' . $this->menuPath);
-        $this->line('Iframe url: ' . $this->iframeUrl());
+        $this->info(admin_trans('admin.console.make_page_created'));
+        $this->line(admin_trans('admin.console.make_page_menu_path', ['path' => $this->menuPath]));
+        $this->line(admin_trans('admin.console.make_page_iframe_url', ['url' => $this->iframeUrl()]));
 
         return self::SUCCESS;
     }
@@ -90,7 +90,7 @@ class MakePageCommand extends Command
         $path = $this->controllerPath();
 
         if (!$this->option('force') && file_exists($path)) {
-            $this->warn("Controller already exists: {$path}");
+            $this->warn(admin_trans('admin.console.make_page_controller_exists', ['path' => $path]));
 
             return;
         }
@@ -104,7 +104,7 @@ class MakePageCommand extends Command
         );
 
         file_put_contents($path, $content);
-        $this->line('<info>Controller created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.make_page_controller_created') . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     /**
@@ -117,7 +117,7 @@ class MakePageCommand extends Command
         $path = $this->viewPath();
 
         if (!$this->option('force') && file_exists($path)) {
-            $this->warn("View already exists: {$path}");
+            $this->warn(admin_trans('admin.console.make_page_view_exists', ['path' => $path]));
 
             return;
         }
@@ -131,7 +131,7 @@ class MakePageCommand extends Command
         );
 
         file_put_contents($path, $content);
-        $this->line('<info>View created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.make_page_view_created') . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     /**
@@ -147,7 +147,7 @@ class MakePageCommand extends Command
         if (!file_exists($file)) {
             $this->makeDirectory(dirname($file));
             file_put_contents($file, str_replace('_content_', $route . PHP_EOL, $this->stub('pages-route')));
-            $this->line('<info>Page routes file created:</info> ' . str_replace(base_path(), '', $file));
+            $this->line('<info>' . admin_trans('admin.console.make_page_routes_file_created') . '</info> ' . str_replace(base_path(), '', $file));
 
             return;
         }
@@ -155,7 +155,7 @@ class MakePageCommand extends Command
         $content = file_get_contents($file);
 
         if (str_contains($content, $route)) {
-            $this->warn('Route already exists: ' . $this->routePath);
+            $this->warn(admin_trans('admin.console.make_page_route_exists', ['route' => $this->routePath]));
 
             return;
         }
@@ -164,14 +164,14 @@ class MakePageCommand extends Command
 
         if ($content === null) {
             // pages.php 结构不符合预期时不能盲写，避免破坏已有路由文件。
-            $this->error('Unable to append route, please check pages.php structure.');
+            $this->error(admin_trans('admin.console.make_page_route_append_failed'));
             $this->writeFailed = true;
 
             return;
         }
 
         file_put_contents($file, $content);
-        $this->line('<info>Route appended:</info> ' . $this->routePath);
+        $this->line('<info>' . admin_trans('admin.console.make_page_route_appended') . '</info> ' . $this->routePath);
     }
 
     /**
@@ -184,7 +184,7 @@ class MakePageCommand extends Command
         $exists = Admin::adminMenuModel()::query()->where('url', $this->menuPath)->exists();
 
         if ($exists) {
-            $this->warn('Menu already exists: ' . $this->menuPath);
+            $this->warn(admin_trans('admin.console.make_page_menu_exists', ['path' => $this->menuPath]));
 
             return;
         }
@@ -204,7 +204,7 @@ class MakePageCommand extends Command
             'is_full'      => 0,
         ]);
 
-        $this->line('<info>Menu created:</info> ' . $this->menuPath);
+        $this->line('<info>' . admin_trans('admin.console.make_page_menu_created') . '</info> ' . $this->menuPath);
     }
 
     /**

@@ -36,28 +36,28 @@ class CreateUserCommand extends Command
         $userModel = Admin::adminUserModel();
         $roleModel = Admin::adminRoleModel();
 
-        $username = $this->option('username') ?: $this->ask('Please enter a username to login');
+        $username = $this->option('username') ?: $this->ask(admin_trans('admin.console.create_user_username'));
 
         if ($userModel::query()->where('username', $username)->exists()) {
-            $this->error("User [{$username}] already exists.");
+            $this->error(admin_trans('admin.console.create_user_exists', ['username' => $username]));
 
             return self::FAILURE;
         }
 
-        $password = $this->option('password') ?: $this->secret('Please enter a password to login');
+        $password = $this->option('password') ?: $this->secret(admin_trans('admin.console.create_user_password'));
 
         if (blank($password)) {
-            $this->error('Password can not be empty.');
+            $this->error(admin_trans('admin.console.password_empty'));
 
             return self::FAILURE;
         }
 
-        $name = $this->option('name') ?: $this->ask('Please enter a name to display');
+        $name = $this->option('name') ?: $this->ask(admin_trans('admin.console.create_user_name'));
 
         $roles = $roleModel::query()->get();
 
         if ($roles->isEmpty()) {
-            $this->error('No roles available, please create roles first.');
+            $this->error(admin_trans('admin.console.create_user_no_roles'));
 
             return self::FAILURE;
         }
@@ -70,7 +70,7 @@ class CreateUserCommand extends Command
         });
 
         if ($roles->isEmpty()) {
-            $this->error('Selected roles not found.');
+            $this->error(admin_trans('admin.console.create_user_roles_missing'));
 
             return self::FAILURE;
         }
@@ -82,7 +82,7 @@ class CreateUserCommand extends Command
 
         $user->roles()->attach($roles);
 
-        $this->info("User [$name] created successfully.");
+        $this->info(admin_trans('admin.console.create_user_created', ['name' => $name]));
 
         return self::SUCCESS;
     }
@@ -97,6 +97,6 @@ class CreateUserCommand extends Command
             return collect(explode(',', $this->option('roles')))->map(fn($role) => trim($role))->filter()->all();
         }
 
-        return $this->choice('Please choose a role for the user', $roles->pluck('name')->toArray(), null, null, true);
+        return $this->choice(admin_trans('admin.console.create_user_choose_role'), $roles->pluck('name')->toArray(), null, null, true);
     }
 }

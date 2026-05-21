@@ -8,6 +8,7 @@ import './style/index.less'
 import useSetting from '@/hooks/useSetting'
 import { toast } from 'amis-ui'
 import { toAxiosLike, wrapAxiosLikeIfAmbiguous } from '@/utils/amisAdaptor'
+import {useLang} from '@/hooks/useLang'
 
 function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void, preview: boolean, defaultSchema?: any}) {
     if (!defaultSchema) {
@@ -15,6 +16,7 @@ function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void
     }
     const [schema, setSchema] = React.useState(defaultSchema as any)
     const {getSetting} = useSetting()
+    const {t} = useLang()
     const history = useHistory()
 
     const change = (val) => {
@@ -50,7 +52,7 @@ function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void
         copy: async (content) => {
             await clipboard(content)
 
-            toast.success(props.locale === 'zh-CN' ? '复制成功' : 'Copy success')
+            toast.success(t('common.copy_success'))
         },
         isCurrentUrl: (url: string) => history.location.pathname + history.location.search === url,
     }

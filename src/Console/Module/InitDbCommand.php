@@ -29,11 +29,11 @@ class InitDbCommand extends Command
         foreach ($modules as $module) {
             $this->module = $module;
 
-            $this->output->title('Init Module: ' . $module);
+            $this->output->title(admin_trans('admin.console.module_init_title', ['module' => $module]));
 
-            if (!$this->option('seed-only') && !$this->option('force') && !$this->confirm("This will rebuild module [{$module}] tables, continue?")) {
+            if (!$this->option('seed-only') && !$this->option('force') && !$this->confirm(admin_trans('admin.console.module_rebuild_confirm', ['module' => $module]))) {
                 // initSchema 会先 drop 再 create，必须让用户明确确认。
-                $this->warn("Skipped module [{$module}].");
+                $this->warn(admin_trans('admin.console.module_skipped', ['module' => $module]));
 
                 continue;
             }
@@ -63,14 +63,14 @@ class InitDbCommand extends Command
         $modules = $this->argument('module');
 
         if (blank($modules)) {
-            $this->error('Module name is required');
-            $this->info('Usage: php artisan admin-module:init ModuleName');
+            $this->error(admin_trans('admin.console.module_name_required'));
+            $this->info(admin_trans('admin.console.module_init_usage'));
             exit;
         }
 
         foreach ($modules as $module) {
             if (!Admin::module()->has($module)) {
-                $this->error("Module [{$module}] not exists");
+                $this->error(admin_trans('admin.console.module_not_exists', ['module' => $module]));
                 exit;
             }
         }

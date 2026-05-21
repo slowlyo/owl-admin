@@ -35,35 +35,35 @@ class ResetPasswordCommand extends Command
         $user = null;
 
         while (!$user) {
-            $username = $this->option('username') ?: $this->askWithCompletion('Please enter a username who needs to reset his password', $users->pluck('username')->toArray());
+            $username = $this->option('username') ?: $this->askWithCompletion(admin_trans('admin.console.reset_password_username'), $users->pluck('username')->toArray());
             $user = $users->first(fn($user) => $user->username == $username);
 
             if (!$user && $this->option('username')) {
                 // 非交互模式不能反复询问，用户名错误时直接失败。
-                $this->error('The user you entered is not exists');
+                $this->error(admin_trans('admin.console.user_not_exists'));
 
                 return self::FAILURE;
             }
 
             if (!$user) {
-                $this->error('The user you entered is not exists');
+                $this->error(admin_trans('admin.console.user_not_exists'));
             }
         }
 
         $password = $this->option('password');
 
         while (!$password) {
-            $password = $this->secret('Please enter a password');
+            $password = $this->secret(admin_trans('admin.console.reset_password_password'));
 
-            if ($password !== $this->secret('Please confirm the password')) {
+            if ($password !== $this->secret(admin_trans('admin.console.reset_password_confirm'))) {
                 // 交互模式要求二次确认，避免误输后直接覆盖密码。
-                $this->error('The passwords entered twice do not match, please re-enter');
+                $this->error(admin_trans('admin.console.password_not_match'));
                 $password = null;
             }
         }
 
         if (blank($password)) {
-            $this->error('Password can not be empty.');
+            $this->error(admin_trans('admin.console.password_empty'));
 
             return self::FAILURE;
         }
@@ -72,7 +72,7 @@ class ResetPasswordCommand extends Command
 
         $user->save();
 
-        $this->info('User password reset successfully.');
+        $this->info(admin_trans('admin.console.reset_password_success'));
 
         return self::SUCCESS;
     }

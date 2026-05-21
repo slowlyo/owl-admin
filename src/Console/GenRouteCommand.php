@@ -69,7 +69,7 @@ EOF;
 
         file_put_contents(base_path('routes/admin.php'), $content);
 
-        $this->info('Route file generated successfully.');
+        $this->info(admin_trans('admin.console.route_generated'));
 
         return self::SUCCESS;
     }
@@ -109,12 +109,12 @@ EOF;
                     require_once ControllerGenerator::guessClassFileName($_controller);
                 } catch (\Throwable $e) {
                     // 控制器文件不存在时继续处理其他记录，避免单条脏数据中断整次生成。
-                    $this->warn("Controller file missing for [{$item->title}]: {$item->controller_name}");
+                    $this->warn(admin_trans('admin.console.route_controller_file_missing', ['title' => $item->title, 'controller' => $item->controller_name]));
                 }
 
                 if (!@class_exists($_controller)) {
                     // 类加载失败时不能生成路由，否则运行期会直接 fatal。
-                    $this->warn("Controller class missing for [{$item->title}]: {$_controller}");
+                    $this->warn(admin_trans('admin.console.route_controller_class_missing', ['title' => $item->title, 'controller' => $_controller]));
                     $stats['skipped']++;
 
                     return;
@@ -155,13 +155,13 @@ EOF;
     protected function validApiTemplate(string $template, string $title): bool
     {
         if (!class_exists($template)) {
-            $this->warn("API template missing for [{$title}]: {$template}");
+            $this->warn(admin_trans('admin.console.route_api_template_missing', ['title' => $title, 'template' => $template]));
 
             return false;
         }
 
         if (!(new \ReflectionClass($template))->isSubclassOf(AdminBaseApi::class)) {
-            $this->warn("API template invalid for [{$title}]: {$template}");
+            $this->warn(admin_trans('admin.console.route_api_template_invalid', ['title' => $title, 'template' => $template]));
 
             return false;
         }

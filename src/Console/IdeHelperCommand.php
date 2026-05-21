@@ -21,7 +21,7 @@ class IdeHelperCommand extends Command
 
         $this->pushMeta('}', 0);
 
-        $this->info('Done.');
+        $this->info(admin_trans('admin.console.done'));
     }
 
     public function initMetaFile()

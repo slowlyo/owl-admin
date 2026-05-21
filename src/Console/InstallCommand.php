@@ -39,13 +39,13 @@ class InstallCommand extends Command
         $this->setDirectory();
 
         if (is_dir($this->directory)) {
-            $this->warn("{$this->directory} directory already exists !");
+            $this->warn(admin_trans('admin.console.directory_exists', ['directory' => $this->directory]));
 
             return;
         }
 
         $this->makeDir('/');
-        $this->line('<info>Admin directory was created:</info> ' . str_replace(base_path(), '', $this->directory));
+        $this->line('<info>' . admin_trans('admin.console.admin_directory_created') . '</info> ' . str_replace(base_path(), '', $this->directory));
 
         $this->makeDir('Controllers');
 
@@ -70,7 +70,7 @@ class InstallCommand extends Command
             $authController,
             str_replace('{{Namespace}}', $this->getNamespace('Controllers'), $contents)
         );
-        $this->line('<info>AuthController file was created:</info> ' . str_replace(base_path(), '', $authController));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'AuthController']) . '</info> ' . str_replace(base_path(), '', $authController));
     }
 
     protected function createBootstrapFile()
@@ -79,7 +79,7 @@ class InstallCommand extends Command
 
         $contents = $this->getStub('bootstrap');
         $this->laravel['files']->put($file, $contents);
-        $this->line('<info>Bootstrap file was created:</info> ' . str_replace(base_path(), '', $file));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'Bootstrap']) . '</info> ' . str_replace(base_path(), '', $file));
     }
 
     protected function createRoutesFile()
@@ -89,7 +89,7 @@ class InstallCommand extends Command
         $contents = $this->getStub('routes');
         $this->laravel['files']->put($file,
             str_replace('{{Namespace}}', $this->getNamespace('Controllers'), $contents));
-        $this->line('<info>Routes file was created:</info> ' . str_replace(base_path(), '', $file));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'Routes']) . '</info> ' . str_replace(base_path(), '', $file));
     }
 
     public function createHomeController(): void
@@ -100,7 +100,7 @@ class InstallCommand extends Command
             $homeController,
             str_replace('{{Namespace}}', config('admin.route.namespace'), $contents)
         );
-        $this->line('<info>HomeController file was created:</info> ' . str_replace(base_path(), '', $homeController));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'HomeController']) . '</info> ' . str_replace(base_path(), '', $homeController));
     }
 
     public function createSettingController()
@@ -111,7 +111,7 @@ class InstallCommand extends Command
             $settingController,
             str_replace('{{Namespace}}', config('admin.route.namespace'), $contents)
         );
-        $this->line('<info>SettingController file was created:</info> ' . str_replace(base_path(),
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'SettingController']) . '</info> ' . str_replace(base_path(),
                 '',
                 $settingController));
     }

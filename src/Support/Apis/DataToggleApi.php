@@ -34,13 +34,13 @@ class DataToggleApi extends AdminBaseApi
         $primaryValue = request($primaryKey);
         $service = $this->service();
 
-        admin_abort_if(blank($field), '请配置切换字段');
-        admin_abort_if(blank($primaryValue), '缺少主键参数');
-        admin_abort_if(!$service->hasColumn($field), '切换字段不存在');
+        admin_abort_if(blank($field), admin_trans('admin.api_templates.toggle_field_required'));
+        admin_abort_if(blank($primaryValue), admin_trans('admin.api_templates.primary_key_missing'));
+        admin_abort_if(!$service->hasColumn($field), admin_trans('admin.api_templates.toggle_field_missing'));
 
         $model = $service->query()->whereKey($primaryValue)->first();
 
-        admin_abort_if(!$model, '数据不存在');
+        admin_abort_if(!$model, admin_trans('admin.api_templates.data_missing'));
 
         $trueValue = $this->getArgs('true_value', 1);
         $falseValue = $this->getArgs('false_value', 0);
@@ -80,11 +80,11 @@ class DataToggleApi extends AdminBaseApi
                 ->source('/dev_tools/relation/model_options')
                 ->searchable(),
             amis()->TextControl('primary_key', admin_trans('admin.code_generators.primary_key'))->value('id'),
-            amis()->TextControl('field', '切换字段')
+            amis()->TextControl('field', admin_trans('admin.api_templates.toggle_field'))
                 ->required()
                 ->source('/dev_tools/relation/column_options?model=${model}'),
-            amis()->TextControl('true_value', '开启值')->value(1),
-            amis()->TextControl('false_value', '关闭值')->value(0),
+            amis()->TextControl('true_value', admin_trans('admin.api_templates.true_value'))->value(1),
+            amis()->TextControl('false_value', admin_trans('admin.api_templates.false_value'))->value(0),
         ];
     }
 

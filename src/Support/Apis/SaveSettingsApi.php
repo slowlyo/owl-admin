@@ -8,7 +8,7 @@ class SaveSettingsApi extends AdminBaseApi
 
     public function getTitle()
     {
-        return '保存设置项';
+        return admin_trans('admin.api_templates.save_settings');
     }
 
     public function handle()
@@ -19,18 +19,7 @@ class SaveSettingsApi extends AdminBaseApi
     public function argsSchema()
     {
         return [
-            amis()->Markdown()->value('### 使用说明
-
-- 接口请求方式为 `POST`
-- 请求参数为数组格式 (将该api作为表单的提交api即可正常使用)
-
-```JSON
-{
-    "site_name": "string",
-    "name": "string",
-    "age": 0
-}
-```'),
+            amis()->Markdown()->value(admin_trans('admin.api_templates.save_settings_description')),
         ];
     }
 }

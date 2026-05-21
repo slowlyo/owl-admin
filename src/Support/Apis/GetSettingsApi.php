@@ -10,7 +10,7 @@ class GetSettingsApi extends AdminBaseApi
 
     public function getTitle()
     {
-        return '获取设置项';
+        return admin_trans('admin.api_templates.get_settings');
     }
 
     public function handle()
@@ -32,13 +32,13 @@ class GetSettingsApi extends AdminBaseApi
         ])->toArray();
 
         return [
-            amis()->RadiosControl('mode', '获取模式')->options([
-                ['value' => 'all', 'label' => '所有'],
-                ['value' => 'part', 'label' => '部分'],
-                ['value' => 'one', 'label' => '单个'],
+            amis()->RadiosControl('mode', admin_trans('admin.api_templates.get_settings_mode'))->options([
+                ['value' => 'all', 'label' => admin_trans('admin.api_templates.get_settings_all')],
+                ['value' => 'part', 'label' => admin_trans('admin.api_templates.get_settings_part')],
+                ['value' => 'one', 'label' => admin_trans('admin.api_templates.get_settings_one')],
             ])->selectFirst(),
-            amis()->TextControl('key', '设置项')->required()->visibleOn('${mode == "one"}')->options($allKeys),
-            amis()->ArrayControl('keys', '设置项')->required()->visibleOn('${mode == "part"}')->items([
+            amis()->TextControl('key', admin_trans('admin.api_templates.setting_key'))->required()->visibleOn('${mode == "one"}')->options($allKeys),
+            amis()->ArrayControl('keys', admin_trans('admin.api_templates.setting_key'))->required()->visibleOn('${mode == "part"}')->items([
                 amis()->TextControl('value')->required()->options($allKeys),
             ]),
         ];

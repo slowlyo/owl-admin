@@ -61,19 +61,19 @@ class AggregateApi extends AdminBaseApi
                 ->menuTpl('${label} <span class="text-gray-300 pl-2">${table}</span>')
                 ->source('/dev_tools/relation/model_options')
                 ->searchable(),
-            amis()->RadiosControl('aggregate_type', '聚合方式')->options([
+            amis()->RadiosControl('aggregate_type', admin_trans('admin.api_templates.aggregate_type'))->options([
                 ['label' => 'count', 'value' => 'count'],
                 ['label' => 'sum', 'value' => 'sum'],
                 ['label' => 'avg', 'value' => 'avg'],
                 ['label' => 'min', 'value' => 'min'],
                 ['label' => 'max', 'value' => 'max'],
             ])->selectFirst(),
-            amis()->TextControl('aggregate_field', '聚合字段')
+            amis()->TextControl('aggregate_field', admin_trans('admin.api_templates.aggregate_field'))
                 ->visibleOn('${aggregate_type != "count"}')
                 ->source('/dev_tools/relation/column_options?model=${model}'),
-            amis()->TextControl('group_by', '分组字段')
+            amis()->TextControl('group_by', admin_trans('admin.api_templates.group_by'))
                 ->source('/dev_tools/relation/column_options?model=${model}'),
-            amis()->NumberControl('limit', '分组数量')->value(20)->min(1)->max(200),
+            amis()->NumberControl('limit', admin_trans('admin.api_templates.group_limit'))->value(20)->min(1)->max(200),
         ];
     }
 
@@ -147,7 +147,7 @@ class AggregateApi extends AdminBaseApi
 
         // 非白名单聚合方式时，直接中断请求。
         if (!in_array($aggregateType, ['count', 'sum', 'avg', 'min', 'max'])) {
-            admin_abort('聚合方式不支持');
+            admin_abort(admin_trans('admin.api_templates.aggregate_type_not_supported'));
         }
 
         return $aggregateType;
@@ -164,8 +164,8 @@ class AggregateApi extends AdminBaseApi
     {
         $field = $this->getArgs('aggregate_field');
 
-        admin_abort_if(blank($field), '请配置聚合字段');
-        admin_abort_if(!$service->hasColumn($field), '聚合字段不存在');
+        admin_abort_if(blank($field), admin_trans('admin.api_templates.aggregate_field_required'));
+        admin_abort_if(!$service->hasColumn($field), admin_trans('admin.api_templates.aggregate_field_missing'));
 
         return $field;
     }
@@ -186,7 +186,7 @@ class AggregateApi extends AdminBaseApi
             return null;
         }
 
-        admin_abort_if(!$service->hasColumn($groupBy), '分组字段不存在');
+        admin_abort_if(!$service->hasColumn($groupBy), admin_trans('admin.api_templates.group_by_missing'));
 
         return $groupBy;
     }

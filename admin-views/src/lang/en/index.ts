@@ -1,4 +1,7 @@
 export default {
+    common: {
+        copy_success: 'Copy success',
+    },
     login: {
         title: 'Login',
         username: 'Username',

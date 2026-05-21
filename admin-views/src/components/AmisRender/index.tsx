@@ -7,10 +7,12 @@ import {useHistory} from 'react-router'
 import clipboard from '@/utils/clipboard'
 import useSetting from '@/hooks/useSetting'
 import { toAxiosLike, wrapAxiosLikeIfAmbiguous } from '@/utils/amisAdaptor'
+import {useLang} from '@/hooks/useLang'
 
 const AmisRender = ({schema, className = ''}) => {
     const history = useHistory()
     const {getSetting} = useSetting()
+    const {t} = useLang()
 
     const localeMap = {
         'zh_CN': 'zh-CN',
@@ -49,8 +51,8 @@ const AmisRender = ({schema, className = ''}) => {
 
     const copy = useCallback(async (content) => {
         await clipboard(content)
-        toast.success(localeValue === 'zh-CN' ? '复制成功' : 'Copy success')
-    }, [localeValue])
+        toast.success(t('common.copy_success'))
+    }, [t])
 
     const isCurrentUrl = useCallback(
         (url: string) => history.location.pathname + history.location.search === url,

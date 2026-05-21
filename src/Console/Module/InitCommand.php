@@ -26,11 +26,11 @@ class InitCommand extends Command
         foreach ($modules as $module) {
             $this->module = $module;
 
-            $this->output->title('Init Module: ' . $module);
+            $this->output->title(admin_trans('admin.console.module_init_title', ['module' => $module]));
 
-            if (!$this->option('force') && !$this->confirm("This will create module [{$module}] tables and files, continue?")) {
+            if (!$this->option('force') && !$this->confirm(admin_trans('admin.console.module_init_confirm', ['module' => $module]))) {
                 // 模块初始化包含建表和写文件，用户取消时不能继续生成半成品。
-                $this->warn("Skipped module [{$module}].");
+                $this->warn(admin_trans('admin.console.module_skipped', ['module' => $module]));
 
                 continue;
             }
@@ -55,14 +55,14 @@ class InitCommand extends Command
         $modules = $this->argument('module');
 
         if (blank($modules)) {
-            $this->error('Module name is required');
-            $this->info('Usage: php artisan admin-module:init ModuleName');
+            $this->error(admin_trans('admin.console.module_name_required'));
+            $this->info(admin_trans('admin.console.module_init_usage'));
             exit;
         }
 
         foreach ($modules as $module) {
             if (Admin::module()->has($module)) {
-                $this->error("Module [{$module}] already exists");
+                $this->error(admin_trans('admin.console.module_exists', ['module' => $module]));
                 exit;
             }
         }
@@ -127,7 +127,7 @@ class InitCommand extends Command
             str_replace('{{Namespace}}', $this->getNamespace('Controllers'), $this->getStub('AuthController'))
         );
 
-        $this->line('<info>AuthController file was created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'AuthController']) . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     protected function createBootstrapFile()
@@ -136,7 +136,7 @@ class InitCommand extends Command
 
         $this->laravel['files']->put($path, $this->getStub('bootstrap'));
 
-        $this->line('<info>Bootstrap file was created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'Bootstrap']) . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     protected function createServiceProvider()
@@ -150,7 +150,7 @@ class InitCommand extends Command
         );
         $this->laravel['files']->put($path, $content);
 
-        $this->line('<info>ServiceProvider file was created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'ServiceProvider']) . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     protected function createRoutesFile()
@@ -163,7 +163,7 @@ class InitCommand extends Command
 
         $this->laravel['files']->put($path, $content);
 
-        $this->line('<info>Routes file was created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'Routes']) . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     public function createHomeController(): void
@@ -175,7 +175,7 @@ class InitCommand extends Command
             str_replace('{{Namespace}}', $this->getNamespace('Controllers'), $this->getStub('HomeController'))
         );
 
-        $this->line('<info>HomeController file was created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'HomeController']) . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     public function createSettingController()
@@ -187,7 +187,7 @@ class InitCommand extends Command
             str_replace('{{Namespace}}', $this->getNamespace('Controllers'), $this->getStub('SettingController'))
         );
 
-        $this->line('<info>SettingController file was created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'SettingController']) . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     protected function createConfig()
@@ -205,7 +205,7 @@ class InitCommand extends Command
 
         $this->laravel['files']->put($path, $content);
 
-        $this->line('<info>Config file was created:</info> ' . str_replace(base_path(), '', $path));
+        $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => 'Config']) . '</info> ' . str_replace(base_path(), '', $path));
     }
 
     protected function createModel()
@@ -218,7 +218,7 @@ class InitCommand extends Command
 
             $this->laravel['files']->put($file, $content);
 
-            $this->line('<info>' . $name . ' file was created:</info> ' . str_replace(base_path(), '', $file));
+            $this->line('<info>' . admin_trans('admin.console.file_created', ['name' => $name]) . '</info> ' . str_replace(base_path(), '', $file));
         };
 
         $run('AdminMenu');

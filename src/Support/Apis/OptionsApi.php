@@ -10,7 +10,7 @@ class OptionsApi extends AdminBaseApi
 
     public function getTitle()
     {
-        return '获取选项列表';
+        return admin_trans('admin.api_templates.options');
     }
 
     public function handle()
@@ -27,16 +27,16 @@ class OptionsApi extends AdminBaseApi
     {
         return [
             amis()
-                ->SelectControl('model', __('admin.relationships.model'))
+                ->SelectControl('model', admin_trans('admin.relationships.model'))
                 ->required()
                 ->menuTpl('${label} <span class="text-gray-300 pl-2">${table}</span>')
                 ->source('/dev_tools/relation/model_options')
                 ->searchable(),
             amis()
-                ->TextControl('value_field', 'Value 字段')
+                ->TextControl('value_field', admin_trans('admin.api_templates.value_field'))
                 ->source('/dev_tools/relation/column_options?model=${model}'),
             amis()
-                ->TextControl('label_field', 'Label 字段')
+                ->TextControl('label_field', admin_trans('admin.api_templates.label_field'))
                 ->source('/dev_tools/relation/column_options?model=${model}'),
         ];
     }

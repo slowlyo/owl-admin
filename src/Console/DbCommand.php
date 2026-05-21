@@ -49,7 +49,7 @@ class DbCommand extends Command
         $connection = $this->connectionName();
         $config = config("database.connections.{$connection}", []);
 
-        $this->table(['Item', 'Value'], [
+        $this->table([admin_trans('admin.console.table_item'), admin_trans('admin.console.table_value')], [
             ['connection', $connection],
             ['driver', $config['driver'] ?? ''],
             ['host', $config['host'] ?? ''],
@@ -73,7 +73,7 @@ class DbCommand extends Command
             ->map(fn($table) => [$table])
             ->all();
 
-        $this->table(['Table'], $tables);
+        $this->table([admin_trans('admin.console.table_table')], $tables);
 
         return self::SUCCESS;
     }
@@ -86,7 +86,7 @@ class DbCommand extends Command
         $table = $this->argument('target');
 
         if (blank($table)) {
-            $this->error('请输入表名');
+            $this->error(admin_trans('admin.console.db_table_required'));
 
             return self::FAILURE;
         }
@@ -100,7 +100,12 @@ class DbCommand extends Command
             ])
             ->all();
 
-        $this->table(['Column', 'Type', 'Nullable', 'Default'], $columns);
+        $this->table([
+            admin_trans('admin.console.table_column'),
+            admin_trans('admin.console.table_type'),
+            admin_trans('admin.console.table_nullable'),
+            admin_trans('admin.console.table_default'),
+        ], $columns);
 
         return self::SUCCESS;
     }
@@ -113,13 +118,13 @@ class DbCommand extends Command
         $sql = trim((string)$this->argument('target'));
 
         if (blank($sql)) {
-            $this->error('请输入只读 SQL');
+            $this->error(admin_trans('admin.console.db_query_required'));
 
             return self::FAILURE;
         }
 
         if (!$this->isReadOnlySql($sql)) {
-            $this->error('仅允许执行 select / show / describe / explain / pragma 只读 SQL');
+            $this->error(admin_trans('admin.console.db_readonly_only'));
 
             return self::FAILURE;
         }
@@ -128,7 +133,7 @@ class DbCommand extends Command
         $rows = array_map(fn($row) => (array)$row, $rows);
 
         if (blank($rows)) {
-            $this->info('查询结果为空');
+            $this->info(admin_trans('admin.console.db_empty_result'));
 
             return self::SUCCESS;
         }
@@ -171,8 +176,8 @@ class DbCommand extends Command
      */
     protected function failAction(string $action): int
     {
-        $this->error("未知操作: {$action}");
-        $this->line('可用操作: info, tables, columns, query');
+        $this->error(admin_trans('admin.console.unknown_action', ['action' => $action]));
+        $this->line(admin_trans('admin.console.available_actions', ['actions' => 'info, tables, columns, query']));
 
         return self::FAILURE;
     }

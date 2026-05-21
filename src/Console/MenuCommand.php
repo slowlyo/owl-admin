@@ -70,7 +70,15 @@ class MenuCommand extends Command
         $menus = $this->menuModel()::query()->orderBy('custom_order')->orderBy('id')->get()->toArray();
         $rows = $this->flattenMenus($this->buildTree($menus));
 
-        $this->table(['ID', 'Title', 'URL', 'Type', 'Visible', 'Home', 'Order'], $rows);
+        $this->table([
+            admin_trans('admin.console.table_id'),
+            admin_trans('admin.console.table_title'),
+            admin_trans('admin.console.table_url'),
+            admin_trans('admin.console.table_type'),
+            admin_trans('admin.console.table_visible'),
+            admin_trans('admin.console.table_home'),
+            admin_trans('admin.console.table_order'),
+        ], $rows);
 
         return self::SUCCESS;
     }
@@ -86,7 +94,10 @@ class MenuCommand extends Command
             return self::FAILURE;
         }
 
-        $this->table(['Field', 'Value'], collect($menu->toArray())->map(fn($value, $key) => [$key, $value])->all());
+        $this->table([
+            admin_trans('admin.console.table_field'),
+            admin_trans('admin.console.table_value'),
+        ], collect($menu->toArray())->map(fn($value, $key) => [$key, $value])->all());
 
         return self::SUCCESS;
     }
@@ -99,7 +110,7 @@ class MenuCommand extends Command
         $data = $this->payload(false);
         $this->service->store($data);
 
-        $this->info('菜单创建成功');
+        $this->info(admin_trans('admin.console.menu_created'));
 
         return self::SUCCESS;
     }
@@ -118,13 +129,13 @@ class MenuCommand extends Command
         $data = $this->payload(true);
 
         if (blank($data)) {
-            $this->warn('没有可更新的字段');
+            $this->warn(admin_trans('admin.console.menu_no_fields'));
 
             return self::SUCCESS;
         }
 
         $this->service->update($menu->getKey(), $data);
-        $this->info('菜单更新成功');
+        $this->info(admin_trans('admin.console.menu_updated'));
 
         return self::SUCCESS;
     }
@@ -143,13 +154,13 @@ class MenuCommand extends Command
         $childCount = $this->menuModel()::query()->where('parent_id', $menu->getKey())->count();
 
         if ($childCount > 0) {
-            $this->error("该菜单存在 {$childCount} 个子菜单，请先处理子菜单");
+            $this->error(admin_trans('admin.console.menu_has_children', ['count' => $childCount]));
 
             return self::FAILURE;
         }
 
-        if (!$this->option('force') && !$this->confirm("确认删除菜单 [{$menu->id}] {$menu->title} ?")) {
-            $this->warn('已取消删除');
+        if (!$this->option('force') && !$this->confirm(admin_trans('admin.console.menu_delete_confirm', ['id' => $menu->id, 'title' => $menu->title]))) {
+            $this->warn(admin_trans('admin.console.menu_delete_canceled'));
 
             return self::SUCCESS;
         }
@@ -164,7 +175,7 @@ class MenuCommand extends Command
             $menu->delete();
         });
 
-        $this->info('菜单删除成功');
+        $this->info(admin_trans('admin.console.menu_deleted'));
 
         return self::SUCCESS;
     }
@@ -185,7 +196,7 @@ class MenuCommand extends Command
         }
 
         file_put_contents($file, $json . PHP_EOL);
-        $this->info("菜单已导出: {$file}");
+        $this->info(admin_trans('admin.console.menu_exported', ['file' => $file]));
 
         return self::SUCCESS;
     }
@@ -198,7 +209,7 @@ class MenuCommand extends Command
         $file = $this->option('file');
 
         if (blank($file) || !is_file($file)) {
-            $this->error('请通过 --file 指定有效 JSON 文件');
+            $this->error(admin_trans('admin.console.menu_file_required'));
 
             return self::FAILURE;
         }
@@ -206,13 +217,13 @@ class MenuCommand extends Command
         $menus = json_decode(file_get_contents($file), true);
 
         if (!is_array($menus)) {
-            $this->error('JSON 文件格式不正确');
+            $this->error(admin_trans('admin.console.menu_json_invalid'));
 
             return self::FAILURE;
         }
 
-        if (!$this->option('force') && !$this->confirm('导入会按文件内容 upsert 菜单，是否继续?')) {
-            $this->warn('已取消导入');
+        if (!$this->option('force') && !$this->confirm(admin_trans('admin.console.menu_import_confirm'))) {
+            $this->warn(admin_trans('admin.console.menu_import_canceled'));
 
             return self::SUCCESS;
         }
@@ -223,7 +234,7 @@ class MenuCommand extends Command
             }
         });
 
-        $this->info('菜单导入成功');
+        $this->info(admin_trans('admin.console.menu_imported'));
 
         return self::SUCCESS;
     }
@@ -298,7 +309,7 @@ class MenuCommand extends Command
         $id = $this->argument('id');
 
         if (blank($id)) {
-            $this->error('请输入菜单 ID');
+            $this->error(admin_trans('admin.console.menu_id_required'));
 
             return null;
         }
@@ -306,7 +317,7 @@ class MenuCommand extends Command
         $menu = $this->menuModel()::query()->find($id);
 
         if (!$menu) {
-            $this->error("菜单不存在: {$id}");
+            $this->error(admin_trans('admin.console.menu_not_found', ['id' => $id]));
 
             return null;
         }
@@ -399,8 +410,8 @@ class MenuCommand extends Command
      */
     protected function failAction(string $action): int
     {
-        $this->error("未知操作: {$action}");
-        $this->line('可用操作: list, show, create, update, delete, export, import');
+        $this->error(admin_trans('admin.console.unknown_action', ['action' => $action]));
+        $this->line(admin_trans('admin.console.available_actions', ['actions' => 'list, show, create, update, delete, export, import']));
 
         return self::FAILURE;
     }

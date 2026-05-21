@@ -32,7 +32,7 @@ class DoctorCommand extends Command
             return self::FAILURE;
         }
 
-        $this->info('OwlAdmin 检查通过');
+        $this->info(admin_trans('admin.console.doctor_passed'));
 
         return self::SUCCESS;
     }
@@ -43,12 +43,12 @@ class DoctorCommand extends Command
     protected function checkAppKey(): void
     {
         if (blank(config('app.key'))) {
-            $this->failItem('APP_KEY 未配置');
+            $this->failItem(admin_trans('admin.console.doctor_app_key_missing'));
 
             return;
         }
 
-        $this->passItem('APP_KEY 已配置');
+        $this->passItem(admin_trans('admin.console.doctor_app_key_configured'));
     }
 
     /**
@@ -57,13 +57,13 @@ class DoctorCommand extends Command
     protected function checkDatabase(): void
     {
         if (!Database::isConnected()) {
-            $this->failItem('数据库连接失败');
+            $this->failItem(admin_trans('admin.console.doctor_database_failed'));
 
             return;
         }
 
         $this->dbConnected = true;
-        $this->passItem('数据库连接正常');
+        $this->passItem(admin_trans('admin.console.doctor_database_ok'));
     }
 
     /**
@@ -72,7 +72,7 @@ class DoctorCommand extends Command
     protected function checkAdminTables(): void
     {
         if (!$this->dbConnected) {
-            $this->failItem('数据库未连接，跳过数据表检查');
+            $this->failItem(admin_trans('admin.console.doctor_tables_skipped'));
 
             return;
         }
@@ -90,16 +90,16 @@ class DoctorCommand extends Command
         try {
             foreach ($tables as $table) {
                 if (!$schema->hasTable($table)) {
-                    $this->failItem("缺少数据表: {$table}");
+                    $this->failItem(admin_trans('admin.console.doctor_table_missing', ['table' => $table]));
 
                     continue;
                 }
 
-                $this->passItem("数据表存在: {$table}");
+                $this->passItem(admin_trans('admin.console.doctor_table_exists', ['table' => $table]));
             }
         } catch (Throwable $e) {
             // 数据库连接失败时表结构检查无法继续，保留错误摘要给部署脚本识别。
-            $this->failItem('数据表检查失败: ' . $e->getMessage());
+            $this->failItem(admin_trans('admin.console.doctor_table_check_failed', ['message' => $e->getMessage()]));
         }
     }
 
@@ -109,7 +109,7 @@ class DoctorCommand extends Command
     protected function checkMenus(): void
     {
         if (!$this->dbConnected) {
-            $this->failItem('数据库未连接，跳过菜单检查');
+            $this->failItem(admin_trans('admin.console.doctor_menus_skipped'));
 
             return;
         }
@@ -118,7 +118,7 @@ class DoctorCommand extends Command
 
         try {
             if (!Schema::connection((new $model)->getConnectionName())->hasTable((new $model)->getTable())) {
-                $this->failItem('菜单表不存在，跳过菜单检查');
+                $this->failItem(admin_trans('admin.console.doctor_menu_table_missing'));
 
                 return;
             }
@@ -132,17 +132,17 @@ class DoctorCommand extends Command
                 ->pluck('url');
 
             if ($duplicateUrls->isNotEmpty()) {
-                $this->failItem('存在重复菜单 URL: ' . $duplicateUrls->implode(', '));
+                $this->failItem(admin_trans('admin.console.doctor_menu_url_duplicate', ['urls' => $duplicateUrls->implode(', ')]));
             } else {
-                $this->passItem('菜单 URL 未重复');
+                $this->passItem(admin_trans('admin.console.doctor_menu_url_unique'));
             }
 
             $homeCount = $model::query()->where('is_home', 1)->count();
 
             if ($homeCount !== 1) {
-                $this->failItem("首页菜单数量异常: {$homeCount}");
+                $this->failItem(admin_trans('admin.console.doctor_home_count_invalid', ['count' => $homeCount]));
             } else {
-                $this->passItem('首页菜单数量正常');
+                $this->passItem(admin_trans('admin.console.doctor_home_count_ok'));
             }
 
             $ids = $model::query()->pluck('id')->all();
@@ -152,13 +152,13 @@ class DoctorCommand extends Command
                 ->pluck('id');
 
             if ($brokenParents->isNotEmpty()) {
-                $this->failItem('存在父级丢失的菜单: ' . $brokenParents->implode(', '));
+                $this->failItem(admin_trans('admin.console.doctor_menu_parent_missing', ['ids' => $brokenParents->implode(', ')]));
             } else {
-                $this->passItem('菜单父级关系正常');
+                $this->passItem(admin_trans('admin.console.doctor_menu_parent_ok'));
             }
         } catch (Throwable $e) {
             // 菜单检查依赖数据库和模型配置，失败时不影响其他 doctor 项继续输出。
-            $this->failItem('菜单检查失败: ' . $e->getMessage());
+            $this->failItem(admin_trans('admin.console.doctor_menu_check_failed', ['message' => $e->getMessage()]));
         }
     }
 
@@ -168,12 +168,12 @@ class DoctorCommand extends Command
     protected function checkPublishedAssets(): void
     {
         if (!is_dir(public_path('admin-assets'))) {
-            $this->failItem('前端资源未发布: public/admin-assets');
+            $this->failItem(admin_trans('admin.console.doctor_assets_missing'));
 
             return;
         }
 
-        $this->passItem('前端资源已发布');
+        $this->passItem(admin_trans('admin.console.doctor_assets_published'));
     }
 
     /**
@@ -181,7 +181,7 @@ class DoctorCommand extends Command
      */
     protected function passItem(string $message): void
     {
-        $this->info('[OK] ' . $message);
+        $this->info(admin_trans('admin.console.doctor_status_ok', ['message' => $message]));
     }
 
     /**
@@ -189,7 +189,7 @@ class DoctorCommand extends Command
      */
     protected function failItem(string $message): void
     {
-        $this->error('[FAIL] ' . $message);
+        $this->error(admin_trans('admin.console.doctor_status_fail', ['message' => $message]));
         $this->hasError = true;
     }
 }

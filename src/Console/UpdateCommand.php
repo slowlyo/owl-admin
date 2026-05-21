@@ -35,12 +35,12 @@ class UpdateCommand extends Command
         }
 
         if ($this->option('dry-run')) {
-            $this->line('Will run all version updates: ' . implode(', ', $this->versionMethods()));
+            $this->line(admin_trans('admin.console.update_will_run_all', ['methods' => implode(', ', $this->versionMethods())]));
 
             return self::SUCCESS;
         }
 
-        if ($this->updateAll = ($this->option('yes') || $this->confirm('Do you want to update all?'))) {
+        if ($this->updateAll = ($this->option('yes') || $this->confirm(admin_trans('admin.console.update_all_confirm')))) {
             $this->call('admin:publish', [
                 '--assets' => true,
                 '--lang'   => true,
@@ -48,15 +48,15 @@ class UpdateCommand extends Command
                 '--force'  => true,
             ]);
 
-            // execute all version update order by version number
+            // 批量升级必须按版本号顺序执行，避免迁移依赖倒置。
             collect($this->versionMethods())
                 ->each(function ($method) {
                     $this->$method();
                 });
 
-            $this->info('Update successfully.');
+            $this->info(admin_trans('admin.console.update_success'));
         } else {
-            $this->info('Update canceled.');
+            $this->info(admin_trans('admin.console.update_canceled'));
         }
 
         return self::SUCCESS;
@@ -74,9 +74,9 @@ class UpdateCommand extends Command
 
         if ($this->option('dry-run')) {
             if (method_exists($this, $func)) {
-                $this->line("Will run {$func}.");
+                $this->line(admin_trans('admin.console.update_will_run_one', ['method' => $func]));
             } else {
-                $this->error('Version not found.');
+                $this->error(admin_trans('admin.console.update_version_not_found'));
             }
 
             return self::SUCCESS;
@@ -85,9 +85,9 @@ class UpdateCommand extends Command
         if (method_exists($this, $func)) {
             $this->$func();
 
-            $this->info('Update successfully.');
+            $this->info(admin_trans('admin.console.update_success'));
         } else {
-            $this->error('Version not found.');
+            $this->error(admin_trans('admin.console.update_version_not_found'));
         }
 
         return self::SUCCESS;
@@ -103,7 +103,7 @@ class UpdateCommand extends Command
      */
     protected function listVersions(): void
     {
-        $this->table(['Version Method'], collect($this->versionMethods())->map(fn($method) => [$method])->all());
+        $this->table([admin_trans('admin.console.update_version_method')], collect($this->versionMethods())->map(fn($method) => [$method])->all());
     }
 
     /**
@@ -120,7 +120,7 @@ class UpdateCommand extends Command
 
     public function version257()
     {
-        $this->output->title('Update to version v2.5.7');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v2.5.7']));
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
@@ -152,7 +152,7 @@ class UpdateCommand extends Command
 
     public function version259()
     {
-        $this->output->title('Update to version v2.5.9');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v2.5.9']));
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
@@ -171,7 +171,7 @@ class UpdateCommand extends Command
 
     public function version276()
     {
-        $this->output->title('Update to version v2.7.6');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v2.7.6']));
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
@@ -196,7 +196,7 @@ class UpdateCommand extends Command
 
     public function version300()
     {
-        $this->output->title('Update to version v3.0.0');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v3.0.0']));
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
@@ -212,7 +212,7 @@ class UpdateCommand extends Command
 
     public function version323()
     {
-        $this->output->title('Update to version v3.2.3');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v3.2.3']));
 
         if (!$this->schema()->hasColumn('admin_users', 'enabled')) {
             $this->schema()->table('admin_users', function ($table) {
@@ -230,7 +230,7 @@ class UpdateCommand extends Command
 
     public function version341()
     {
-        $this->output->title('Update to version v3.4.1');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v3.4.1']));
         if (!$this->schema()->hasColumn('admin_menus', 'keep_alive')) {
             $this->schema()->table('admin_menus', function ($table) {
                 $table->tinyInteger('keep_alive')->nullable()->comment('页面缓存');
@@ -248,7 +248,7 @@ class UpdateCommand extends Command
 
     public function version350()
     {
-        $this->output->title('Update to version v3.5.0');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v3.5.0']));
 
         if (!$this->updateAll) {
             $this->call('admin:publish', [
@@ -297,7 +297,7 @@ class UpdateCommand extends Command
 
     public function version373()
     {
-        $this->output->title('Update to version v3.7.3');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v3.7.3']));
 
         if (!$this->schema()->hasColumn('admin_menus', 'custom_order')) {
             $this->schema()->table('admin_menus', function ($table) {
@@ -314,7 +314,7 @@ class UpdateCommand extends Command
 
     public function version400()
     {
-        $this->output->title('Update to version v4.0.0');
+        $this->output->title(admin_trans('admin.console.update_to_version', ['version' => 'v4.0.0']));
 
         Database::make()->fillCodeGeneratorFields();
     }

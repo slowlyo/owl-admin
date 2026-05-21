@@ -68,9 +68,9 @@ class PublishCommand extends Command
             return self::SUCCESS;
         }
 
-        if ($this->option('force') && in_array('admin-assets', $tags) && !$this->option('yes') && !$this->confirm('This will delete public/admin-assets before publishing, continue?')) {
+        if ($this->option('force') && in_array('admin-assets', $tags) && !$this->option('yes') && !$this->confirm(admin_trans('admin.console.publish_asset_cleanup_confirm'))) {
             // 静态资源目录会被整体删除后重发，取消时必须阻断后续发布。
-            $this->warn('Publish canceled.');
+            $this->warn(admin_trans('admin.console.publish_canceled'));
 
             return self::SUCCESS;
         }
@@ -135,9 +135,9 @@ class PublishCommand extends Command
         }
 
         if ($published) {
-            $this->info('Publishing complete.');
+            $this->info(admin_trans('admin.console.publish_complete'));
         } else {
-            $this->error('Unable to locate publishable resources.');
+            $this->error(admin_trans('admin.console.publish_resources_missing'));
         }
     }
 
@@ -154,7 +154,7 @@ class PublishCommand extends Command
             return $this->publishDirectory($from, $to);
         }
 
-        $this->error("Can't locate path: <{$from}>");
+        $this->error(admin_trans('admin.console.publish_path_missing', ['path' => $from]));
 
         return null;
     }
@@ -166,7 +166,7 @@ class PublishCommand extends Command
 
             $this->files->copy($from, $to);
 
-            $this->status($from, $to, 'File');
+            $this->status($from, $to, admin_trans('admin.console.publish_type_file'));
         }
     }
 
@@ -179,7 +179,7 @@ class PublishCommand extends Command
             'to' => new Flysystem(new $localClass($to)),
         ]));
 
-        $this->status($from, $to, 'Directory');
+        $this->status($from, $to, admin_trans('admin.console.publish_type_directory'));
     }
 
     protected function moveManagedFiles(MountManager $manager)
@@ -225,6 +225,6 @@ class PublishCommand extends Command
 
         $to = str_replace(base_path(), '', realpath($to));
 
-        $this->line('<info>Copied '.$type.'</info> <comment>['.$from.']</comment> <info>To</info> <comment>['.$to.']</comment>');
+        $this->line('<info>' . admin_trans('admin.console.publish_copied', ['type' => $type]) . '</info> <comment>['.$from.']</comment> <info>' . admin_trans('admin.console.publish_to') . '</info> <comment>['.$to.']</comment>');
     }
 }

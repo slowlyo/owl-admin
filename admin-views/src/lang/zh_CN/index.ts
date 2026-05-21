@@ -1,4 +1,7 @@
 export default {
+    common: {
+        copy_success: '复制成功',
+    },
     login: {
         title: '登录',
         username: '用户名',
