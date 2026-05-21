@@ -37,6 +37,11 @@ abstract class AdminController extends Controller
     public function __construct()
     {
         if (property_exists($this, 'serviceName')) {
+            if (!is_subclass_of($this->serviceName, AdminService::class)) {
+                // serviceName 是控制器和业务层的核心契约，配置错误时必须在初始化阶段暴露。
+                admin_abort(static::class . '::$serviceName must extend ' . AdminService::class);
+            }
+
             $this->service = $this->serviceName::make();
         }
 
@@ -64,7 +69,7 @@ abstract class AdminController extends Controller
     {
         $primaryKey = $this->service->primaryKey();
 
-        return $request->$primaryKey;
+        return $request->input($primaryKey);
     }
 
     /**

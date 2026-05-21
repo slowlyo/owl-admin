@@ -259,11 +259,16 @@ abstract class AdminService
      */
     public function sortable($query)
     {
-        if (request()->orderBy && request()->orderDir) {
-            $query->orderBy(request()->orderBy, request()->orderDir ?? 'asc');
-        } else {
-            $query->orderByDesc($this->sortColumn());
+        $orderBy  = request()->input('orderBy');
+        $orderDir = strtolower(request()->input('orderDir', 'asc'));
+
+        if ($orderBy && $this->hasColumn($orderBy)) {
+            // 只允许按真实表字段排序，方向也收敛到 asc/desc，避免非法参数进入 SQL。
+            $query->orderBy($orderBy, in_array($orderDir, ['asc', 'desc']) ? $orderDir : 'asc');
+            return;
         }
+
+        $query->orderByDesc($this->sortColumn());
     }
 
     /**
@@ -337,7 +342,8 @@ abstract class AdminService
     {
         $query = $this->listQuery();
 
-        $list  = $query->paginate(request()->input('perPage', 20));
+        $perPage = min(max((int) request()->input('perPage', 20), 1), 100);
+        $list    = $query->paginate($perPage);
         $items = $this->formatListRows($list->items());
         $total = $list->total();
 
@@ -356,26 +362,7 @@ abstract class AdminService
     {
         DB::beginTransaction();
         try {
-            $this->saving($data, $primaryKey);
-
-            $model = $this->query()->whereKey($primaryKey)->first();
-
-            foreach ($data as $k => $v) {
-                if (!$this->hasColumn($k)) {
-                    continue;
-                }
-
-                $model->setAttribute($k, $v);
-            }
-
-            $result = $model->save();
-
-            // 无论数据是否变更,都赋值当前模型实例
-            $this->currentModel = $model;
-            
-            if ($result) {
-                $this->saved($model, true);
-            }
+            $result = $this->saveUpdate($primaryKey, $data);
 
             DB::commit();
         } catch (\Throwable $e) {
@@ -398,32 +385,98 @@ abstract class AdminService
     {
         DB::beginTransaction();
         try {
-            $this->saving($data);
-
-            $model = $this->getModel();
-
-            foreach ($data as $k => $v) {
-                if (!$this->hasColumn($k)) {
-                    continue;
-                }
-
-                $model->setAttribute($k, $v);
-            }
-
-            $result = $model->save();
-
-            // 无论是否保存成功,都赋值当前模型实例
-            $this->currentModel = $model;
-            
-            if ($result) {
-                $this->saved($model);
-            }
+            $result = $this->saveStore($data);
 
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
 
             admin_abort($e->getMessage());
+        }
+
+        return $result;
+    }
+
+    /**
+     * 给模型填充允许写入的字段，统一新增和修改的数据过滤规则。
+     *
+     * @param Model $model
+     * @param array $data
+     *
+     * @return Model
+     */
+    protected function fillModelFromData(Model $model, array $data): Model
+    {
+        foreach ($data as $k => $v) {
+            if (!$this->hasColumn($k)) {
+                // 请求里可能包含 amis 动作参数或前端辅助字段，非表字段不能写入模型。
+                continue;
+            }
+
+            $model->setAttribute($k, $v);
+        }
+
+        return $model;
+    }
+
+    /**
+     * 执行新增保存本体，供普通新增和批量场景复用，事务由外层方法控制。
+     *
+     * @param array $data
+     *
+     * @return bool
+     */
+    protected function saveStore(array $data): bool
+    {
+        $this->saving($data);
+
+        $model = $this->fillModelFromData($this->getModel(), $data);
+        $result = $model->save();
+
+        // 保存后记录当前模型，方便 saved 钩子或外部流程读取本次操作对象。
+        $this->currentModel = $model;
+
+        if ($result) {
+            // 只有 Eloquent 确认保存成功后才触发后置钩子，避免失败数据进入扩展逻辑。
+            $this->saved($model);
+        }
+
+        return $result;
+    }
+
+    /**
+     * 执行修改保存本体，查不到数据时直接中断，避免空模型继续写入导致 fatal。
+     *
+     * @param $primaryKey
+     * @param array $data
+     *
+     * @return bool
+     */
+    protected function saveUpdate($primaryKey, array $data): bool
+    {
+        if (blank($primaryKey)) {
+            // 修改必须有主键，空主键不能继续进入查询条件。
+            admin_abort(admin_trans('admin.api_templates.primary_key_missing'));
+        }
+
+        $this->saving($data, $primaryKey);
+
+        $model = $this->query()->whereKey($primaryKey)->first();
+
+        if (!$model) {
+            // 主键无效时属于业务数据缺失，返回明确错误而不是触发空对象调用。
+            admin_abort(admin_trans('admin.api_templates.data_missing'));
+        }
+
+        $model = $this->fillModelFromData($model, $data);
+        $result = $model->save();
+
+        // 无论数据是否变更，都记录当前模型实例，保持原有扩展读取语义。
+        $this->currentModel = $model;
+
+        if ($result) {
+            // 只有 Eloquent 确认保存成功后才触发后置钩子，避免失败数据进入扩展逻辑。
+            $this->saved($model, true);
         }
 
         return $result;
@@ -438,12 +491,19 @@ abstract class AdminService
      */
     public function delete(string $ids)
     {
+        $ids = collect(explode(',', $ids))->filter(fn($id) => filled($id))->values()->all();
+
+        if (blank($ids)) {
+            // 删除请求没有有效主键时直接失败，避免执行空条件删除。
+            admin_abort(admin_trans('admin.api_templates.primary_key_missing'));
+        }
+
         DB::beginTransaction();
         try {
-            $result = $this->query()->whereIn($this->primaryKey(), explode(',', $ids))->delete();
+            $result = $this->query()->whereIn($this->primaryKey(), $ids)->delete();
 
             if ($result) {
-                $this->deleted($ids);
+                $this->deleted(implode(',', $ids));
             }
 
             DB::commit();
@@ -470,7 +530,14 @@ abstract class AdminService
         DB::beginTransaction();
         try {
             foreach ($rowsDiff as $item) {
-                $this->update(Arr::pull($item, $this->primaryKey()), $item);
+                $primaryKey = Arr::pull($item, $this->primaryKey());
+
+                if (blank($primaryKey)) {
+                    // 批量快速编辑要求每一行都带主键，否则无法定位具体记录。
+                    admin_abort(admin_trans('admin.api_templates.primary_key_missing'));
+                }
+
+                $this->saveUpdate($primaryKey, $item);
             }
 
             DB::commit();

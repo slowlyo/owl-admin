@@ -14,7 +14,7 @@ abstract class AdminBaseApi implements AdminApiInterface
 
     public string $method = 'any';
 
-    public static $apiRecord;
+    public static $apiRecord = [];
 
     /**
      * 获取接口名称
@@ -33,16 +33,26 @@ abstract class AdminBaseApi implements AdminApiInterface
 
     public function getApiRecord()
     {
-        if (!self::$apiRecord) {
-            self::$apiRecord = AdminApiService::make()->getApiByTemplate(static::class);
+        if (!is_array(self::$apiRecord)) {
+            // Bootstrap 会在每次请求开始时清空静态缓存，这里兼容旧的 null 重置方式。
+            self::$apiRecord = [];
         }
 
-        return self::$apiRecord;
+        if (!array_key_exists(static::class, self::$apiRecord)) {
+            self::$apiRecord[static::class] = AdminApiService::make()->getApiByTemplate(static::class);
+        }
+
+        return self::$apiRecord[static::class];
     }
 
     public function setApiRecord($apiRecord)
     {
-        self::$apiRecord = $apiRecord;
+        if (!is_array(self::$apiRecord)) {
+            // Bootstrap 清理后首次写入时恢复数组结构，避免动态 API 模板共享同一条记录。
+            self::$apiRecord = [];
+        }
+
+        self::$apiRecord[static::class] = $apiRecord;
 
         return $this;
     }
