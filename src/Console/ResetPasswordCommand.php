@@ -12,7 +12,9 @@ class ResetPasswordCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:reset-password';
+    protected $signature = 'admin:reset-password
+        {--username= : Username}
+        {--password= : New password}';
 
     /**
      * The console command description.
@@ -24,26 +26,46 @@ class ResetPasswordCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    /**
+     * 重置后台用户密码，支持非交互参数，便于容器或 CI 环境修复账号。
+     */
+    public function handle(): int
     {
         $users = Admin::adminUserModel()::query()->get();
+        $user = null;
 
-        askForUserName:
-        $username = $this->askWithCompletion('Please enter a username who needs to reset his password', $users->pluck('username')->toArray());
+        while (!$user) {
+            $username = $this->option('username') ?: $this->askWithCompletion('Please enter a username who needs to reset his password', $users->pluck('username')->toArray());
+            $user = $users->first(fn($user) => $user->username == $username);
 
-        $user = $users->first(fn($user) => $user->username == $username);
+            if (!$user && $this->option('username')) {
+                // 非交互模式不能反复询问，用户名错误时直接失败。
+                $this->error('The user you entered is not exists');
 
-        if (is_null($user)) {
-            $this->error('The user you entered is not exists');
-            goto askForUserName;
+                return self::FAILURE;
+            }
+
+            if (!$user) {
+                $this->error('The user you entered is not exists');
+            }
         }
 
-        enterPassword:
-        $password = $this->secret('Please enter a password');
+        $password = $this->option('password');
 
-        if ($password !== $this->secret('Please confirm the password')) {
-            $this->error('The passwords entered twice do not match, please re-enter');
-            goto enterPassword;
+        while (!$password) {
+            $password = $this->secret('Please enter a password');
+
+            if ($password !== $this->secret('Please confirm the password')) {
+                // 交互模式要求二次确认，避免误输后直接覆盖密码。
+                $this->error('The passwords entered twice do not match, please re-enter');
+                $password = null;
+            }
+        }
+
+        if (blank($password)) {
+            $this->error('Password can not be empty.');
+
+            return self::FAILURE;
         }
 
         $user->password = bcrypt($password);
@@ -51,5 +73,7 @@ class ResetPasswordCommand extends Command
         $user->save();
 
         $this->info('User password reset successfully.');
+
+        return self::SUCCESS;
     }
 }

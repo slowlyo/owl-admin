@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Services\AdminMenuService;
 
 class MakePageCommand extends Command
 {
@@ -33,6 +34,8 @@ class MakePageCommand extends Command
 
     private string $viewName;
 
+    private bool $writeFailed = false;
+
     /**
      * 生成 Blade iframe 页面骨架，并按需创建菜单。
      *
@@ -44,6 +47,10 @@ class MakePageCommand extends Command
         $this->createController();
         $this->createView();
         $this->appendPageRoute();
+
+        if ($this->writeFailed) {
+            return self::FAILURE;
+        }
 
         if ($this->option('menu')) {
             $this->createMenu();
@@ -154,6 +161,15 @@ class MakePageCommand extends Command
         }
 
         $content = preg_replace('/\n\}\);\s*$/', PHP_EOL . $route . PHP_EOL . '});' . PHP_EOL, $content);
+
+        if ($content === null) {
+            // pages.php 结构不符合预期时不能盲写，避免破坏已有路由文件。
+            $this->error('Unable to append route, please check pages.php structure.');
+            $this->writeFailed = true;
+
+            return;
+        }
+
         file_put_contents($file, $content);
         $this->line('<info>Route appended:</info> ' . $this->routePath);
     }
@@ -173,7 +189,7 @@ class MakePageCommand extends Command
             return;
         }
 
-        Admin::adminMenuModel()::query()->create([
+        AdminMenuService::make()->store([
             'parent_id'    => (int) $this->option('parent'),
             'custom_order' => 0,
             'title'        => $this->title,

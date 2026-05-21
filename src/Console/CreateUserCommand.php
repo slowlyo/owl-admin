@@ -2,9 +2,8 @@
 
 namespace Slowlyo\OwlAdmin\Console;
 
+use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Console\Command;
-use Slowlyo\OwlAdmin\Models\AdminUser;
-use Slowlyo\OwlAdmin\Models\AdminRole;
 
 class CreateUserCommand extends Command
 {
@@ -13,7 +12,11 @@ class CreateUserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:create-user';
+    protected $signature = 'admin:create-user
+        {--username= : Login username}
+        {--password= : Login password}
+        {--name= : Display name}
+        {--roles= : Role slugs or names, separated by comma}';
 
     /**
      * The console command description.
@@ -25,30 +28,75 @@ class CreateUserCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    /**
+     * 创建后台用户，支持交互和非交互两种方式，便于部署脚本初始化管理员。
+     */
+    public function handle(): int
     {
-        $username = $this->ask('Please enter a username to login');
+        $userModel = Admin::adminUserModel();
+        $roleModel = Admin::adminRoleModel();
 
-        $password = bcrypt($this->secret('Please enter a password to login'));
+        $username = $this->option('username') ?: $this->ask('Please enter a username to login');
 
-        $name = $this->ask('Please enter a name to display');
+        if ($userModel::query()->where('username', $username)->exists()) {
+            $this->error("User [{$username}] already exists.");
 
-        $roles = AdminRole::all();
+            return self::FAILURE;
+        }
+
+        $password = $this->option('password') ?: $this->secret('Please enter a password to login');
+
+        if (blank($password)) {
+            $this->error('Password can not be empty.');
+
+            return self::FAILURE;
+        }
+
+        $name = $this->option('name') ?: $this->ask('Please enter a name to display');
+
+        $roles = $roleModel::query()->get();
+
+        if ($roles->isEmpty()) {
+            $this->error('No roles available, please create roles first.');
+
+            return self::FAILURE;
+        }
 
         /** @var array $selected */
-        $selected =
-            $this->choice('Please choose a role for the user', $roles->pluck('name')->toArray(), null, null, true);
+        $selected = $this->selectedRoles($roles);
 
         $roles = $roles->filter(function ($role) use ($selected) {
-            return in_array($role->name, $selected);
+            return in_array($role->name, $selected) || in_array($role->slug, $selected);
         });
 
-        $user = new AdminUser(compact('username', 'password', 'name'));
+        if ($roles->isEmpty()) {
+            $this->error('Selected roles not found.');
+
+            return self::FAILURE;
+        }
+
+        $password = bcrypt($password);
+        $user = new $userModel(compact('username', 'password', 'name'));
 
         $user->save();
 
         $user->roles()->attach($roles);
 
         $this->info("User [$name] created successfully.");
+
+        return self::SUCCESS;
+    }
+
+    /**
+     * 解析角色选项，非交互模式支持 role slug/name，交互模式沿用角色名称选择。
+     */
+    protected function selectedRoles($roles): array
+    {
+        if ($this->option('roles')) {
+            // 命令行参数更适合脚本调用，按逗号拆分后去掉空值。
+            return collect(explode(',', $this->option('roles')))->map(fn($role) => trim($role))->filter()->all();
+        }
+
+        return $this->choice('Please choose a role for the user', $roles->pluck('name')->toArray(), null, null, true);
     }
 }

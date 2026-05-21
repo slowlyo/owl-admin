@@ -5,16 +5,30 @@ namespace Slowlyo\OwlAdmin\Console;
 use Illuminate\Console\Command;
 use Slowlyo\OwlAdmin\Services\AdminApiService;
 use Slowlyo\OwlAdmin\Services\AdminCodeGeneratorService;
+use Slowlyo\OwlAdmin\Support\Apis\AdminBaseApi;
 use Slowlyo\OwlAdmin\Support\CodeGenerator\ControllerGenerator;
+use Throwable;
 
 class GenRouteCommand extends Command
 {
-    protected $signature = 'admin:gen-route {--excluded=}';
+    protected $signature = 'admin:gen-route {--excluded=} {--dry-run : Preview generated route file without writing it}';
 
     protected $description = 'Generate admin route file.';
 
-    public function handle(): void
+    /**
+     * 生成后台路由文件，dry-run 模式只输出预览，避免自动化场景误覆盖 routes/admin.php。
+     */
+    public function handle(): int
     {
+        try {
+            [$routes, $stats] = $this->buildRoutes();
+        } catch (Throwable $e) {
+            // 路由生成依赖代码生成器和动态 API 表，数据库异常时输出摘要即可。
+            $this->error($e->getMessage());
+
+            return self::FAILURE;
+        }
+
         $content = <<<EOF
 <?php
 
@@ -39,20 +53,54 @@ _content_
 });
 EOF;
 
+        $content = str_replace('_content_', $routes, $content);
 
+        $this->table(['Type', 'Count'], [
+            ['generated', $stats['generated']],
+            ['skipped', $stats['skipped']],
+        ]);
+
+        if ($this->option('dry-run')) {
+            // dry-run 用于确认最终文件内容，不能写入磁盘。
+            $this->line($content);
+
+            return self::SUCCESS;
+        }
+
+        file_put_contents(base_path('routes/admin.php'), $content);
+
+        $this->info('Route file generated successfully.');
+
+        return self::SUCCESS;
+    }
+
+    /**
+     * 汇总代码生成器和动态 API 路由，并对无法生成的记录给出明确 warning。
+     */
+    protected function buildRoutes(): array
+    {
         $excluded = $this->option('excluded');
         if ($excluded) {
             $excluded = explode(',', $excluded);
         }
 
         $routes = '';
+        $stats = [
+            'generated' => 0,
+            'skipped'   => 0,
+        ];
 
         // 代码生成器
         AdminCodeGeneratorService::make()->query()
             ->when($excluded, fn($query, $excluded) => $query->whereNotIn('id', $excluded))
             ->get()
-            ->map(function ($item) use (&$routes) {
-                if (!$item->menu_info['enabled']) return;
+            ->each(function ($item) use (&$routes, &$stats) {
+                if (!$item->menu_info['enabled']) {
+                    // 未启用的菜单不生成资源路由，和后台代码生成器开关保持一致。
+                    $stats['skipped']++;
+
+                    return;
+                }
 
                 $_route      = ltrim($item->menu_info['route'], '/');
                 $_controller = '\\' . str_replace('/', '\\', $item->controller_name);
@@ -60,9 +108,15 @@ EOF;
                 try {
                     require_once ControllerGenerator::guessClassFileName($_controller);
                 } catch (\Throwable $e) {
+                    // 控制器文件不存在时继续处理其他记录，避免单条脏数据中断整次生成。
+                    $this->warn("Controller file missing for [{$item->title}]: {$item->controller_name}");
                 }
 
                 if (!@class_exists($_controller)) {
+                    // 类加载失败时不能生成路由，否则运行期会直接 fatal。
+                    $this->warn("Controller class missing for [{$item->title}]: {$_controller}");
+                    $stats['skipped']++;
+
                     return;
                 }
 
@@ -71,23 +125,47 @@ EOF;
     \$router->resource('{$_route}', {$_controller}::class);
 
 EOF;
+                $stats['generated']++;
             });
 
         // api
-        AdminApiService::make()->query()->where('enabled', 1)->get()->map(function ($item) use (&$routes) {
+        AdminApiService::make()->query()->where('enabled', 1)->get()->each(function ($item) use (&$routes, &$stats) {
             $_route = ltrim($item->path, '/');
+
+            if (!$this->validApiTemplate($item->template, $item->title)) {
+                $stats['skipped']++;
+
+                return;
+            }
 
             $routes .= <<<EOF
     // {$item->title}
     \$router->{$item->method}('{$_route}', [\Slowlyo\OwlAdmin\Controllers\AdminApiController::class, 'index']);
 
 EOF;
+            $stats['generated']++;
         });
 
-        $content = str_replace('_content_', $routes, $content);
+        return [$routes, $stats];
+    }
 
-        file_put_contents(base_path('routes/admin.php'), $content);
+    /**
+     * 校验动态 API 模板，缺失或类型不对时跳过，避免生成无法执行的路由。
+     */
+    protected function validApiTemplate(string $template, string $title): bool
+    {
+        if (!class_exists($template)) {
+            $this->warn("API template missing for [{$title}]: {$template}");
 
-        $this->info('Route file generated successfully.');
+            return false;
+        }
+
+        if (!(new \ReflectionClass($template))->isSubclassOf(AdminBaseApi::class)) {
+            $this->warn("API template invalid for [{$title}]: {$template}");
+
+            return false;
+        }
+
+        return true;
     }
 }

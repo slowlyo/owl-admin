@@ -8,7 +8,10 @@ use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 class InitDbCommand extends Command
 {
-    protected $signature = 'admin-module:init-db {module*}';
+    protected $signature = 'admin-module:init-db
+        {module*}
+        {--force : Confirm rebuilding module database tables}
+        {--seed-only : Only refill initial data without recreating tables}';
 
     protected $description = 'Init Admin Module Database';
 
@@ -16,7 +19,10 @@ class InitDbCommand extends Command
 
     protected string $directory;
 
-    public function handle(): void
+    /**
+     * 初始化模块数据库；默认拒绝无确认重建表，避免误删模块数据。
+     */
+    public function handle(): int
     {
         $modules = $this->checkOption();
 
@@ -24,15 +30,31 @@ class InitDbCommand extends Command
             $this->module = $module;
 
             $this->output->title('Init Module: ' . $module);
+
+            if (!$this->option('seed-only') && !$this->option('force') && !$this->confirm("This will rebuild module [{$module}] tables, continue?")) {
+                // initSchema 会先 drop 再 create，必须让用户明确确认。
+                $this->warn("Skipped module [{$module}].");
+
+                continue;
+            }
+
             $this->initDB();
         }
+
+        return self::SUCCESS;
     }
 
+    /**
+     * 初始化模块数据表和默认数据，seed-only 模式只重填默认数据。
+     */
     public function initDB()
     {
         $prefix = rtrim($this->getLowerName(), '_') . '_';
 
-        Database::make($prefix)->initSchema();
+        if (!$this->option('seed-only')) {
+            Database::make($prefix)->initSchema();
+        }
+
         Database::make($prefix)->fillInitialData();
     }
 

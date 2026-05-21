@@ -9,17 +9,38 @@ use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 class UpdateCommand extends Command
 {
-    protected $signature = 'admin:update {--v=}';
+    protected $signature = 'admin:update
+        {--v= : Run one version update}
+        {--yes : Confirm update all}
+        {--list : List available version updates}
+        {--dry-run : Preview update scope without running it}';
 
     protected $description = 'Handle admin update.';
 
     protected bool $updateAll = false;
 
-    public function handle(): void
+    /**
+     * 执行框架升级脚本，支持列表和预览模式，方便自动化前确认升级范围。
+     */
+    public function handle(): int
     {
-        $this->checkVersion();
+        if ($this->option('list')) {
+            $this->listVersions();
 
-        if ($this->updateAll = $this->confirm('Do you want to update all?')) {
+            return self::SUCCESS;
+        }
+
+        if ($this->checkVersion() !== null) {
+            return self::SUCCESS;
+        }
+
+        if ($this->option('dry-run')) {
+            $this->line('Will run all version updates: ' . implode(', ', $this->versionMethods()));
+
+            return self::SUCCESS;
+        }
+
+        if ($this->updateAll = ($this->option('yes') || $this->confirm('Do you want to update all?'))) {
             $this->call('admin:publish', [
                 '--assets' => true,
                 '--lang'   => true,
@@ -28,9 +49,7 @@ class UpdateCommand extends Command
             ]);
 
             // execute all version update order by version number
-            collect(get_class_methods($this))
-                ->filter(fn($method) => Str::startsWith($method, 'version'))
-                ->sort()
+            collect($this->versionMethods())
                 ->each(function ($method) {
                     $this->$method();
                 });
@@ -39,6 +58,8 @@ class UpdateCommand extends Command
         } else {
             $this->info('Update canceled.');
         }
+
+        return self::SUCCESS;
     }
 
     public function checkVersion()
@@ -51,6 +72,16 @@ class UpdateCommand extends Command
 
         $func = 'version' . $version;
 
+        if ($this->option('dry-run')) {
+            if (method_exists($this, $func)) {
+                $this->line("Will run {$func}.");
+            } else {
+                $this->error('Version not found.');
+            }
+
+            return self::SUCCESS;
+        }
+
         if (method_exists($this, $func)) {
             $this->$func();
 
@@ -59,12 +90,32 @@ class UpdateCommand extends Command
             $this->error('Version not found.');
         }
 
-        exit;
+        return self::SUCCESS;
     }
 
     public function schema()
     {
-        return Schema::connection(config('admin.database.connection'));
+        return Schema::connection(config('admin.database.connection') ?: config('database.default'));
+    }
+
+    /**
+     * 输出当前类中可执行的版本升级脚本，便于升级前核对范围。
+     */
+    protected function listVersions(): void
+    {
+        $this->table(['Version Method'], collect($this->versionMethods())->map(fn($method) => [$method])->all());
+    }
+
+    /**
+     * 获取按版本顺序排列的升级方法，所有批量升级统一使用这份顺序。
+     */
+    protected function versionMethods(): array
+    {
+        return collect(get_class_methods($this))
+            ->filter(fn($method) => preg_match('/^version\d+$/', $method))
+            ->sort()
+            ->values()
+            ->all();
     }
 
     public function version257()

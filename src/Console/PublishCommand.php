@@ -19,6 +19,8 @@ class PublishCommand extends Command
      */
     protected $signature = 'admin:publish
     {--force : Overwrite any existing files}
+    {--yes : Confirm destructive asset cleanup}
+    {--dry-run : Preview publish tags without writing files}
     {--lang : Publish language files}
     {--views : Publish views files}
     {--assets : Publish assets files}
@@ -57,6 +59,21 @@ class PublishCommand extends Command
         }
 
         $tags = $this->getTags();
+
+        if ($this->option('dry-run')) {
+            $this->table(['Vendor Publish Tags', 'Internal Tags'], [
+                [implode(', ', $tags) ?: '-', implode(', ', $this->tags) ?: '-'],
+            ]);
+
+            return self::SUCCESS;
+        }
+
+        if ($this->option('force') && in_array('admin-assets', $tags) && !$this->option('yes') && !$this->confirm('This will delete public/admin-assets before publishing, continue?')) {
+            // 静态资源目录会被整体删除后重发，取消时必须阻断后续发布。
+            $this->warn('Publish canceled.');
+
+            return self::SUCCESS;
+        }
 
         foreach ($tags as $tag) {
             if($tag == 'admin-assets' && $this->option('force')) {

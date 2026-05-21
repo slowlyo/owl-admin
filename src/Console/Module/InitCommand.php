@@ -8,7 +8,7 @@ use Slowlyo\OwlAdmin\Support\Cores\Database;
 
 class InitCommand extends Command
 {
-    protected $signature = 'admin-module:init {module*}';
+    protected $signature = 'admin-module:init {module*} {--force : Confirm module database table creation}';
 
     protected $description = 'Init Admin Module';
 
@@ -16,7 +16,10 @@ class InitCommand extends Command
 
     protected string $directory;
 
-    public function handle(): void
+    /**
+     * 初始化模块文件和数据库，新模块首次创建时仍允许直接执行，force 用于脚本化确认。
+     */
+    public function handle(): int
     {
         $modules = $this->checkOption();
 
@@ -24,9 +27,19 @@ class InitCommand extends Command
             $this->module = $module;
 
             $this->output->title('Init Module: ' . $module);
+
+            if (!$this->option('force') && !$this->confirm("This will create module [{$module}] tables and files, continue?")) {
+                // 模块初始化包含建表和写文件，用户取消时不能继续生成半成品。
+                $this->warn("Skipped module [{$module}].");
+
+                continue;
+            }
+
             $this->initDB();
             $this->initAdminDirectory();
         }
+
+        return self::SUCCESS;
     }
 
     public function initDB()
