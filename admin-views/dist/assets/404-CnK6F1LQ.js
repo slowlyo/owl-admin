@@ -1,0 +1,1 @@
+import{t as e}from"./result-C175aF6V.js";import{Zo as t,us as n,v as r,xo as i,y as a}from"./index-Dw7KvkYM.js";var o=n(r()),s=()=>{let{t:n}=a(),r=t();return(0,o.jsx)(e,{status:`404`,title:`404`,subTitle:n(`not_found.title`),extra:(0,o.jsx)(i,{type:`primary`,onClick:()=>r.replace(`/`),children:n(`not_found.back_home`)})})};export{s as default};
