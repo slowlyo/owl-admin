@@ -119,7 +119,48 @@ php artisan admin:publish
 php artisan admin:install
 ```
 
-##### 5. 运行项目
+##### 5. 安装 AI 编辑器开发资料（可选）
+
+如果你希望在 `Codex`、`Cursor`、`Claude Code`、`Trae` 等 AI 编辑器中开发 Owl Admin 项目，可以执行：
+
+```shell
+php artisan admin:ai-install
+```
+
+该命令会在项目根目录生成 `.agents` 目录：
+
+- `.agents/skills`：Codex、Cursor 等支持 Agent Skills 的工具可直接读取
+- `.agents/adapters`：提供 Claude Code、Cursor、Trae 等编辑器的规则适配文件
+- `.agents/README.md`：说明不同编辑器如何使用这些文件
+
+内置 skills 覆盖后台业务开发、amis 页面、扩展多模块、代码生成器、动态 API、安装升级命令、前端资源、框架原理、助手函数、组件管道、系统设置、动态页面、开发示例和常见问题等场景，并按主题合并为少量入口，减少 AI 选择噪音。
+
+常用编辑器复制方式：
+
+```shell
+# Cursor 项目规则
+mkdir -p .cursor/rules
+cp .agents/adapters/cursor/owl-admin.mdc .cursor/rules/owl-admin.mdc
+
+# Claude Code 项目规则
+cp .agents/adapters/CLAUDE.md CLAUDE.md
+
+# Claude Code Agent Skills
+mkdir -p .claude/skills
+cp -R .agents/skills/* .claude/skills/
+
+# Trae 项目规则
+mkdir -p .trae/rules
+cp .agents/adapters/trae/owl-admin.md .trae/rules/owl-admin.md
+```
+
+如果本地已调整过 `.agents` 文件，可使用 `--force` 覆盖：
+
+```shell
+php artisan admin:ai-install --force
+```
+
+##### 6. 运行项目
 
 启动服务, 访问 `/admin` 路由即可 <br>
 _初始账号密码都是 `admin`_
