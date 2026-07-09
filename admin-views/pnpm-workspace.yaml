@@ -1,0 +1,8 @@
+overrides:
+  vite: npm:rolldown-vite@7.3.0
+
+blockExoticSubdeps: false
+
+allowBuilds:
+  canvas: false
+  es5-ext: false

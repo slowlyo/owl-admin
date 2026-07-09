@@ -16,7 +16,7 @@ import useStorage from '@/utils/useStorage'
 import zhCN from 'antd/locale/zh_CN'
 import enUS from 'antd/locale/en_US'
 import {dynamicAssetsHandler} from '@/utils/dynamicAssets'
-import {registerCustomComponents} from '@/components/AmisRender/CustomComponents'
+import {registerCustomComponents, setAmisDisplayTimeZone} from '@/components/AmisRender/CustomComponents'
 
 // 应用初始化
 const useSetup = (store) => {
@@ -38,6 +38,9 @@ const useSetup = (store) => {
                 type: 'update-settings',
                 payload: {settings: res.data},
             })
+
+            // 自定义 amis schema filter 注册早于接口返回，设置加载后需要同步最新时区。
+            setAmisDisplayTimeZone(res.data?.system_theme_setting?.timeZone)
 
             localStorage.setItem(getCacheKey('locale'), res.data.locale)
             setLang(res.data.locale == 'zh_CN' ? 'zh-CN' : 'en-US')

@@ -18,6 +18,7 @@ const defaultSettings = {
     enableTab: false,
     tabIcon: true,
     accordionMenu: false,
+    timeZone: 'Asia/Shanghai',
 }
 
 // 默认 token

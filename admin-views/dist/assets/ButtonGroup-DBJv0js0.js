@@ -1,1 +1,0 @@
-import{Ar as e,Ho as t,Uo as n,z as r}from"./index-Dw7KvkYM.js";var i=function(r){n(i,r);function i(){return r!==null&&r.apply(this,arguments)||this}return i=t([e({type:`button-group`})],i),i}(r);export{i as ButtonGroupRenderer,r as default};

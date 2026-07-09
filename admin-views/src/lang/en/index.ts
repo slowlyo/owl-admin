@@ -68,6 +68,7 @@ export default {
         keep_alive: 'Global Keep Alive',
         dark_theme: 'Dark Theme',
         accordion_menu: 'Accordion Menu',
+        time_zone: 'Time Zone',
         locale: 'Language',
         locale_en: 'English',
         locale_zh_CN: '简体中文'

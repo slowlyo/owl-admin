@@ -23,6 +23,25 @@ import {saveSettings} from '@/service/api'
 import {useCallback, useMemo, useState} from 'react'
 import SimpleBar from 'simplebar-react'
 import {AnimatePresence, motion} from 'framer-motion'
+import {setAmisDisplayTimeZone} from '@/components/AmisRender/CustomComponents'
+
+const DEFAULT_TIME_ZONE = 'Asia/Shanghai'
+const fallbackTimeZones = ['Asia/Shanghai', 'UTC', 'Asia/Tokyo', 'Asia/Singapore', 'Europe/London', 'America/New_York']
+
+/**
+ * 获取浏览器支持的时区列表，旧环境不支持 Intl.supportedValuesOf 时使用常用时区兜底。
+ */
+const getTimeZoneOptions = () => {
+    try {
+        const timeZoneGetter = (Intl as any).supportedValuesOf
+        const timeZones = typeof timeZoneGetter === 'function' ? timeZoneGetter('timeZone') : fallbackTimeZones
+
+        return timeZones.map((timeZone) => ({label: timeZone, value: timeZone}))
+    } catch (e) {
+        // 旧浏览器或运行环境缺少时区数据时，保留可用的最小配置入口。
+        return fallbackTimeZones.map((timeZone) => ({label: timeZone, value: timeZone}))
+    }
+}
 
 // 定义系统主题设置接口
 interface SystemThemeSetting {
@@ -42,6 +61,7 @@ interface SystemThemeSetting {
     animateOutDuration: number;
     keepAlive: boolean;
     accordionMenu: boolean;
+    timeZone: string;
     followSystemTheme?: boolean;
 }
 
@@ -124,6 +144,10 @@ const SettingPanel = () => {
     const handleChange = useCallback((key: keyof SystemThemeSetting, value: any) => {
         if (key === 'themeColor') setThemeColor(value);
         if (key === 'darkTheme') setDarkTheme(value);
+        if (key === 'timeZone') {
+            // amis 日期渲染器使用内存里的时区值，切换配置时需要同步更新。
+            setAmisDisplayTimeZone(value);
+        }
 
         const system_theme_setting = { 
             ...settings.system_theme_setting,
@@ -183,6 +207,7 @@ const SettingPanel = () => {
     // 缓存动画选项，避免重复计算
     const inAnimateOptions = useMemo(() => getAnimateOptions('in'), [getAnimateOptions]);
     const outAnimateOptions = useMemo(() => getAnimateOptions('out'), [getAnimateOptions]);
+    const timeZoneOptions = useMemo(() => getTimeZoneOptions(), []);
 
     // 当前布局配置
     const { layoutMode } = settings.system_theme_setting;
@@ -288,6 +313,15 @@ const SettingPanel = () => {
                         <Checkbox onChange={(e) => handleChange('tabIcon', e.target.checked)}
                                   checked={settings.system_theme_setting.tabIcon}>{t('theme_setting.tab_icon')}</Checkbox>
                     </Space>
+                </SettingItem>
+
+                {/* 时区 */}
+                <SettingItem label={t('theme_setting.time_zone')}>
+                    <Select showSearch
+                            optionFilterProp="label"
+                            options={timeZoneOptions}
+                            value={settings.system_theme_setting.timeZone || DEFAULT_TIME_ZONE}
+                            onChange={(value) => handleChange('timeZone', value)}/>
                 </SettingItem>
 
                 {/* 进场动画 */}

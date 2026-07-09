@@ -68,6 +68,7 @@ export default {
         keep_alive: '全局页面缓存',
         dark_theme: '深色主题',
         accordion_menu: '手风琴菜单',
+        time_zone: '时区',
         locale: '语言',
         locale_en: 'English',
         locale_zh_CN: '简体中文'

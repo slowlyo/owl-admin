@@ -17,9 +17,9 @@ class AdminMenuController extends AdminController
     protected string $serviceName = AdminMenuService::class;
 
     /**
-     * 刷新路由事件
+     * 菜单变更后延后刷新前端路由，避免 amis 表格或弹窗还在收尾时被路由重建提前销毁。
      */
-    private array $refreshRouteEvent = ['actions' => [ ['actionType' => 'custom', 'script' => 'window.$owl.refreshRoutes()'] ]];
+    private array $refreshRouteEvent = ['actions' => [ ['actionType' => 'custom', 'script' => 'window.setTimeout(() => window.$owl.refreshRoutes(), 0)'] ]];
 
     public function list()
     {
