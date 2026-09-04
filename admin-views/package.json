@@ -14,7 +14,7 @@
     "@loadable/component": "^5.16.4",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-react": "^1.0.6",
-    "ahooks": "^3.8.4",
+    "ahooks": "^3.9.7",
     "amis": "6.13.0",
     "amis-core": "6.13.0",
     "amis-editor": "6.13.0",
