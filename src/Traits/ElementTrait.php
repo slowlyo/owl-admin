@@ -421,7 +421,7 @@ trait ElementTrait
         // 按钮点击事件
         $event = fn($script) => ['click' => ['actions' => [['actionType' => 'custom', 'script' => $script]]]];
         // 导出处理动作
-        $doAction = "doAction([{actionType:'setValue',componentId:'export-action',args:{value:{showExportLoading:true}}},{actionType:'ajax',args:{api:{url:url.toString(),method:'get'}}},{actionType:'setValue',componentId:'export-action',args:{value:{showExportLoading:false}}},{actionType:'custom',expression:'\${event.data.responseResult.responseStatus===0}',script:'window.open(\'{$downloadPath}?path=\'+event.data.responseResult.responseData.path)'}])";
+        $doAction = "doAction([{actionType:'setValue',componentId:'export-action',args:{value:{showExportLoading:true}}},{actionType:'ajax',args:{api:{url:url.toString(),method:'get'}}},{actionType:'setValue',componentId:'export-action',args:{value:{showExportLoading:false}}},{actionType:'custom',expression:'\${event.data.responseResult.responseStatus===0}',script:'let res=event.data.responseResult.responseData;window.open(\'{$downloadPath}?path=\'+encodeURIComponent(res.path)+\'&expires=\'+encodeURIComponent(res.expires)+\'&signature=\'+encodeURIComponent(res.signature))'}])";
         // 按钮
         $buttons = [
             // 导出全部

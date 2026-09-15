@@ -106,7 +106,35 @@ trait UploadTrait
         $partNumber = request('partNumber');
         $file       = request()->file('file');
 
-        $path = 'chunk/' . $uploadId;
+        if (
+            !is_string($uploadId) ||
+            !Str::isUuid($uploadId) ||
+            str_contains($uploadId, '..') ||
+            str_contains($uploadId, "\0") ||
+            str_contains($uploadId, '/') ||
+            str_contains($uploadId, '\\') ||
+            !cache()->has($uploadId)
+        ) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        if (
+            !is_numeric($partNumber) ||
+            (int) $partNumber < 0 ||
+            str_contains((string) $partNumber, '..') ||
+            str_contains((string) $partNumber, "\0") ||
+            str_contains((string) $partNumber, '/') ||
+            str_contains((string) $partNumber, '\\')
+        ) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        if (!$file || !$file->isValid()) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        $partNumber = (string) (int) $partNumber;
+        $path       = 'chunk/' . $uploadId;
 
         $file->storeAs($path, $partNumber, 'public');
 
@@ -122,30 +150,136 @@ trait UploadTrait
         $uploadId = request('uploadId');
         $type     = request('t', 'uploads');
 
-        $ext      = pathinfo($fileName, PATHINFO_EXTENSION);
+        if (
+            !is_string($uploadId) ||
+            !Str::isUuid($uploadId) ||
+            str_contains($uploadId, '..') ||
+            str_contains($uploadId, "\0") ||
+            str_contains($uploadId, '/') ||
+            str_contains($uploadId, '\\') ||
+            !cache()->has($uploadId)
+        ) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        if (
+            !is_string($type) ||
+            str_contains($type, '..') ||
+            str_contains($type, "\0") ||
+            str_contains($type, '/') ||
+            str_contains($type, '\\') ||
+            !preg_match('/^[a-zA-Z0-9_-]+$/', $type)
+        ) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        $allowedTypes = array_unique(array_filter(array_merge(
+            ['uploads', 'images', 'files', 'rich', 'image', 'file', 'video', 'videos', 'audio', 'audios'],
+            array_keys((array) Admin::config('admin.upload.directory', [])),
+            array_values((array) Admin::config('admin.upload.directory', []))
+        )));
+
+        if (!in_array($type, $allowedTypes, true)) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        if (
+            !is_string($fileName) ||
+            trim($fileName) === '' ||
+            str_contains($fileName, "\0")
+        ) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        $fileName = basename($fileName);
+        if (
+            str_contains($fileName, '..') ||
+            str_contains($fileName, "\0") ||
+            str_contains($fileName, '/') ||
+            str_contains($fileName, '\\')
+        ) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        $dangerousExts = [
+            'php', 'php3', 'php4', 'php5', 'php7', 'php8', 'pht', 'phtml', 'phar', 'phps',
+            'htaccess', 'htpasswd', 'sh', 'bash', 'cgi', 'pl', 'py', 'asp', 'aspx', 'jsp',
+            'jspx', 'env', 'cer', 'exe', 'bat', 'cmd', 'vbs',
+        ];
+
+        if (
+            $ext === '' ||
+            !preg_match('/^[a-zA-Z0-9]+$/', $ext) ||
+            in_array($ext, $dangerousExts, true) ||
+            str_starts_with(strtolower($fileName), '.ht') ||
+            str_starts_with(strtolower($fileName), '.env')
+        ) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        if (!is_array($partList) || empty($partList)) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        $baseDir  = realpath(storage_path('app/public')) ?: storage_path('app/public');
         $path     = $type . '/' . $uploadId . '.' . $ext;
         $fullPath = storage_path('app/public/' . $path);
 
         make_dir(dirname($fullPath));
+        $targetDir = realpath(dirname($fullPath));
+        if (!$targetDir || !str_starts_with($targetDir, realpath(storage_path('app/public')) ?: storage_path('app/public'))) {
+            return $this->response()->fail('分片上传失败');
+        }
+
+        file_put_contents($fullPath, '');
 
         for ($i = 0; $i < count($partList); $i++) {
-            $partNumber = $partList[$i]['partNumber'];
-            $eTag       = $partList[$i]['eTag'];
+            $partNumber = $partList[$i]['partNumber'] ?? null;
+            $eTag       = $partList[$i]['eTag'] ?? null;
 
-            $partPath = 'chunk/' . $uploadId . '/' . $partNumber;
-
-            $partETag = md5(Storage::disk('public')->get($partPath));
-
-            if ($eTag != $partETag) {
+            if (
+                !is_numeric($partNumber) ||
+                (int) $partNumber < 0 ||
+                str_contains((string) $partNumber, '..') ||
+                str_contains((string) $partNumber, "\0") ||
+                str_contains((string) $partNumber, '/') ||
+                str_contains((string) $partNumber, '\\')
+            ) {
+                @unlink($fullPath);
                 return $this->response()->fail('分片上传失败');
             }
 
-            file_put_contents($fullPath, Storage::disk('public')->get($partPath), FILE_APPEND);
+            $partNumber = (int) $partNumber;
+            $partPath   = 'chunk/' . $uploadId . '/' . $partNumber;
+
+            if (!Storage::disk('public')->exists($partPath)) {
+                @unlink($fullPath);
+                return $this->response()->fail('分片上传失败');
+            }
+
+            $partContent = Storage::disk('public')->get($partPath);
+            $partETag    = md5($partContent);
+
+            if (!is_string($eTag) || !hash_equals(strtolower($eTag), strtolower($partETag))) {
+                @unlink($fullPath);
+                return $this->response()->fail('分片上传失败');
+            }
+
+            file_put_contents($fullPath, $partContent, FILE_APPEND);
         }
 
         clearstatcache();
 
+        $realFullPath = realpath($fullPath);
+        $publicDir    = realpath(storage_path('app/public'));
+        if (!$realFullPath || !$publicDir || !str_starts_with($realFullPath, $publicDir . DIRECTORY_SEPARATOR)) {
+            @unlink($fullPath);
+            return $this->response()->fail('分片上传失败');
+        }
+
         app('files')->deleteDirectory(storage_path('app/public/chunk/' . $uploadId));
+        cache()->forget($uploadId);
 
         return $this->response()->success(['value' => $path], '上传成功');
     }

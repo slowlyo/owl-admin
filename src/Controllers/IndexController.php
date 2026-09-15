@@ -9,6 +9,7 @@ use Slowlyo\OwlAdmin\Models\Extension;
 use Illuminate\Support\Facades\Storage;
 use Slowlyo\OwlAdmin\Services\AdminPageService;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 
 class IndexController extends AdminController
 {
@@ -60,6 +61,13 @@ class IndexController extends AdminController
      */
     public function saveSettings(Request $request)
     {
+        if (Admin::config('admin.auth.enable', true) && Admin::guard()->guest()) {
+            return $this->response()
+                ->additional(['code' => Response::HTTP_UNAUTHORIZED])
+                ->doNotDisplayToast()
+                ->fail(admin_trans('admin.please_login'));
+        }
+
         $data          = $request->all();
         $currentModule = Admin::currentModule(true);
 
@@ -85,7 +93,26 @@ class IndexController extends AdminController
      */
     public function downloadExport(Request $request)
     {
-        $path = $request->input('path');
+        $path      = (string) $request->input('path');
+        $expires   = (string) $request->input('expires');
+        $signature = (string) $request->input('signature');
+
+        if (!$path || !$expires || !$signature || str_contains($path, "\0")) {
+            abort(404);
+        }
+
+        if (strtolower(pathinfo($path, PATHINFO_EXTENSION)) !== 'xlsx') {
+            abort(404);
+        }
+
+        if (!is_numeric($expires) || (int) $expires < time()) {
+            abort(403);
+        }
+
+        $expectedSignature = hash_hmac('sha256', "{$path}|{$expires}", (string) config('app.key'));
+        if (!hash_equals($expectedSignature, $signature)) {
+            abort(403);
+        }
 
         try {
             Storage::exists($path);
@@ -93,11 +120,15 @@ class IndexController extends AdminController
             abort(404);
         }
 
-        $path = storage_path('app/' . $path);
+        $baseDir  = realpath(storage_path('app'));
+        $filePath = storage_path('app/' . $path);
+        $realPath = realpath($filePath);
 
-        if (!file_exists($path)) abort(404);
+        if (!$baseDir || !$realPath || !str_starts_with($realPath, $baseDir . DIRECTORY_SEPARATOR) || !file_exists($realPath)) {
+            abort(404);
+        }
 
-        return response()->download($path)->deleteFileAfterSend();
+        return response()->download($realPath)->deleteFileAfterSend();
     }
 
     /**

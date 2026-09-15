@@ -43,7 +43,10 @@ trait ExportTrait
             admin_abort(admin_trans('admin.action_failed'));
         }
 
-        return $this->response()->success(compact('path'));
+        $expires   = time() + 300;
+        $signature = hash_hmac('sha256', "{$path}|{$expires}", (string) config('app.key'));
+
+        return $this->response()->success(compact('path', 'expires', 'signature'));
     }
 
     /**
