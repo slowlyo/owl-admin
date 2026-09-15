@@ -4,6 +4,7 @@ namespace Slowlyo\OwlAdmin\Controllers;
 
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Support\Captcha;
 use Illuminate\Support\Facades\Validator;
@@ -20,13 +21,22 @@ class AuthController extends AdminController
     public function login(Request $request)
     {
         if (Admin::config('admin.auth.login_captcha')) {
-            if (!$request->has('captcha')) {
+            $sysCaptcha = $request->input('sys_captcha');
+            $captcha    = $request->input('captcha');
+
+            if (!is_string($sysCaptcha) || trim($sysCaptcha) === '' || !is_string($captcha) || trim($captcha) === '') {
                 return $this
                     ->response()
                     ->fail(admin_trans('admin.required', ['attribute' => admin_trans('admin.captcha')]));
             }
 
-            if (strtolower(cache()->pull($request->sys_captcha)) != strtolower($request->captcha)) {
+            $cachedCaptcha = cache()->pull($sysCaptcha);
+
+            if (!is_string($cachedCaptcha) || trim($cachedCaptcha) === '') {
+                return $this->response()->fail(admin_trans('admin.captcha_error'));
+            }
+
+            if (!hash_equals(strtolower($cachedCaptcha), strtolower(trim($captcha)))) {
                 return $this->response()->fail(admin_trans('admin.captcha_error'));
             }
         }
@@ -220,7 +230,7 @@ JS,
         $captcha = new Captcha();
 
         $captcha_img = $captcha->showImg();
-        $sys_captcha = uniqid('captcha:');
+        $sys_captcha = 'captcha:' . Str::random(40);
 
         cache()->put($sys_captcha, $captcha->getCaptcha(), 600);
 

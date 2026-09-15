@@ -41,9 +41,9 @@ class Route
             'as'         => $prefix,
         ], function (Router $router) use ($config) {
             $router->get('login', [AuthController::class, 'loginPage']);
-            $router->post('login', [AuthController::class, 'login']);
+            $router->post('login', [AuthController::class, 'login'])->middleware('throttle:10,1');
             $router->get('logout', [AuthController::class, 'logout']);
-            $router->get('captcha', [AuthController::class, 'reloadCaptcha']);
+            $router->get('captcha', [AuthController::class, 'reloadCaptcha'])->middleware('throttle:30,1');
             $router->get('current-user', [AuthController::class, 'currentUser']);
 
             $router->get('menus', [IndexController::class, 'menus']);

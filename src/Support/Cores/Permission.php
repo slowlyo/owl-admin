@@ -54,6 +54,12 @@ class Permission
             ->map(fn($path) => $this->pathFormatting($path))
             ->contains(fn($except) => $request->is($except == '/' ? $except : trim($except, '/')));
 
+        $settingsPath = $this->pathFormatting('_settings');
+        $formattedSettings = $settingsPath == '/' ? $settingsPath : trim($settingsPath, '/');
+        if ($excepted && $request->is($formattedSettings) && in_array(strtoupper($request->method()), ['POST', 'PUT', 'PATCH'])) {
+            $excepted = false;
+        }
+
         return !$excepted && Admin::guard()->guest();
     }
 
