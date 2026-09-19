@@ -67,6 +67,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      pdfjs-dist:
+        specifier: 4.3.136
+        version: 4.3.136
       query-string:
         specifier: ^8.2.0
         version: 8.2.0
