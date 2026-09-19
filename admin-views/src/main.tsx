@@ -13,11 +13,15 @@ import { ConfigProvider, theme } from "antd";
 import useSetup from "@/hooks/useSetup";
 import useTheme from "@/hooks/useTheme";
 import { AlertComponent, ToastComponent } from "amis-ui";
-import { addApiResponseAdaptor } from 'amis-core'
+import { addApiResponseAdaptor, setGlobalOptions, supportsMjs } from 'amis-core'
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { wrapPayloadIfAmbiguous } from '@/utils/amisAdaptor'
 
 // 创建 store
 const store = createStore(rootReducer);
+
+// 使用构建产物中的 PDF.js Worker，避免依赖外部静态资源
+setGlobalOptions({pdfjsWorkerSrc: supportsMjs() ? pdfWorker : ''})
 
 // 全局修正 AMis 响应适配，避免业务字段 status/no 触发 fetchFailed
 addApiResponseAdaptor((payload: any) => wrapPayloadIfAmbiguous(payload))
