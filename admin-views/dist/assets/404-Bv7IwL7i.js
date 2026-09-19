@@ -1,1 +1,0 @@
-import{t as e}from"./result-CZdtwJqd.js";import{Vo as t,es as n,f as r,ho as i,p as a}from"./index-C-FP07Yr.js";var o=n(r()),s=()=>{let{t:n}=a(),r=t();return(0,o.jsx)(e,{status:`404`,title:`404`,subTitle:n(`not_found.title`),extra:(0,o.jsx)(i,{type:`primary`,onClick:()=>r.replace(`/`),children:n(`not_found.back_home`)})})};export{s as default};
