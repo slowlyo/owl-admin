@@ -1,6 +1,6 @@
 import React from 'react'
 import {Editor} from 'amis-editor'
-import {amisRequest} from '@/service/api'
+import {amisRequest, isBinaryAmisRequest} from '@/service/api'
 import {useHistory} from 'react-router'
 import clipboard from '@/utils/clipboard'
 import 'amis-editor-core/lib/style.css'
@@ -35,8 +35,14 @@ function AmisEditor({onChange, preview, defaultSchema}: {onChange: (val) => void
 
     const env = {
         enableAMISDebug: getSetting('show_development_tools'),
-        fetcher: async ({url, method, data}) => {
-            const res = await amisRequest(url, method, data)
+        fetcher: async (api) => {
+            const res = await amisRequest(api)
+
+            // 编辑器预览中的二进制组件与正式渲染保持相同响应语义。
+            if (isBinaryAmisRequest(api)) {
+                return toAxiosLike(res)
+            }
+
             return wrapAxiosLikeIfAmbiguous(toAxiosLike(res))
         },
         updateLocation: (location, replace) => {

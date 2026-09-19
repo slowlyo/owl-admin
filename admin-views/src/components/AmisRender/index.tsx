@@ -2,7 +2,7 @@ import React, {useCallback, useMemo} from 'react'
 import './style/index.less'
 import {render as renderAmis, RenderOptions} from 'amis'
 import {toast} from 'amis-ui'
-import {amisRequest} from '@/service/api'
+import {amisRequest, isBinaryAmisRequest} from '@/service/api'
 import {useHistory} from 'react-router'
 import clipboard from '@/utils/clipboard'
 import useSetting from '@/hooks/useSetting'
@@ -26,8 +26,14 @@ const AmisRender = ({schema, className = ''}) => {
 
     const props = useMemo(() => ({locale: localeValue, location: history.location}), [localeValue, history.location])
 
-    const fetcher = useCallback(async ({url, method, data}) => {
-        const res = await amisRequest(url, method, data)
+    const fetcher = useCallback(async (api) => {
+        const res = await amisRequest(api)
+
+        // 二进制数据不参与 JSON 歧义字段判断，避免读取 ArrayBuffer 或 Blob 的业务字段。
+        if (isBinaryAmisRequest(api)) {
+            return toAxiosLike(res)
+        }
+
         return wrapAxiosLikeIfAmbiguous(toAxiosLike(res))
     }, [])
 
