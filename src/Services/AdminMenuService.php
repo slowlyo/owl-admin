@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Facades\DB;
 use Slowlyo\OwlAdmin\Models\AdminMenu;
+use Slowlyo\OwlAdmin\Support\Cores\Database;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -140,7 +141,11 @@ class AdminMenuService extends AdminService
 
         $list = collect($this->refreshOrder($ids))->transform(fn($i) => $i * 10)->all();
 
-        $sql = 'update ' . $this->getModel()->getTable() . ' set custom_order = case id ';
+        $connection = $this->getModel()->getConnectionName();
+        // getTable() 不含连接 prefix，手拼 SQL 时需通过 getTableName 解析真实表名
+        $table = Database::getTableName($this->getModel()->getTable(), false, $connection);
+
+        $sql = 'update ' . $table . ' set custom_order = case id ';
 
         $params = [];
         foreach ($list as $k => $v) {
@@ -149,7 +154,7 @@ class AdminMenuService extends AdminService
             $sql .= " when ? then ? ";
         }
 
-        return DB::update($sql . ' else custom_order end', $params);
+        return DB::connection($connection)->update($sql . ' else custom_order end', $params);
     }
 
     public function refreshOrder($list)

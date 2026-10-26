@@ -29,6 +29,10 @@
         "ext-zip": "*",
         "ext-gd": "*"
     },
+    "require-dev": {
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.0|^12.0"
+    },
     "autoload": {
         "psr-4": {
             "Slowlyo\\OwlAdmin\\": "src/"
@@ -36,6 +40,14 @@
         "files": [
             "src/Support/helpers.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Slowlyo\\OwlAdmin\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
     },
     "extra": {
         "laravel": {
