@@ -182,15 +182,13 @@ class Generator
                             
                         case 'sqlite':
                             // SQLite: 先获取所有表，然后批量查询每个表的结构
-                            $tables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(PDO::FETCH_COLUMN);
-                            
-                            // 移除表前缀
-                            $tables = array_map(function ($tableName) use ($prefix) {
-                                return $this->normalizeTableName($tableName, $prefix);
-                            }, $tables);
-                            
-                            foreach ($tables as $table) {
-                                $stmt = $pdo->prepare("PRAGMA table_info(`{$table}`)");
+                            $physicalTables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(PDO::FETCH_COLUMN);
+
+                            foreach ($physicalTables as $physicalTable) {
+                                $table = $this->normalizeTableName($physicalTable, $prefix);
+                                // PRAGMA 必须使用库里的真实表名（含 prefix），逻辑表名仅用于结果分组
+                                $pragmaTable = str_replace('"', '""', $physicalTable);
+                                $stmt = $pdo->prepare("PRAGMA table_info(\"{$pragmaTable}\")");
                                 $stmt->execute();
                                 $columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
