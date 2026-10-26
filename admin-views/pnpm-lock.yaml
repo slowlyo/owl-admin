@@ -54,7 +54,7 @@ importers:
         version: 6.13.0(@types/react@17.0.83)(amis-core@6.13.0(@types/react@17.0.83)(amis-formula@6.9.0)(react-dom@17.0.2(react@17.0.2))(react-is@18.3.1)(react@17.0.2))(amis-formula@6.9.0)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(supports-color@8.1.1)
       antd:
         specifier: ^5.23.4
-        version: 5.23.4(moment@2.30.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        version: 5.23.4(moment@2.31.0)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       axios:
         specifier: ^0.24.0
         version: 0.24.0(debug@4.4.0(supports-color@8.1.1))
@@ -2577,8 +2577,8 @@ packages:
   moment-timezone@0.5.48:
     resolution: {integrity: sha512-f22b8LV1gbTO2ms2j2z13MuPogNoh5UzxL3nzNAYKGraILnbGc9NEE6dyiiiLv46DGRb8A4kg8UKWLjPthxBHw==}
 
-  moment@2.30.1:
-    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+  moment@2.31.0:
+    resolution: {integrity: sha512-0acOTfMiWOheYS4eoWb80yYMb/JLvVv9SHbs2PehaDzfUG0Bw855SKyk0IKTnPGa5+U2bmi3W68l1+sGLX/pvw==}
 
   monaco-editor@0.30.1:
     resolution: {integrity: sha512-B/y4+b2O5G2gjuxIFtCE2EkM17R2NM7/3F8x0qcPsqy4V83bitJTIO4TIeZpYlzu/xy6INiY/+84BEm6+7Cmzg==}
@@ -5024,7 +5024,7 @@ snapshots:
       mobx: 4.15.7
       mobx-react: 6.3.1(mobx@4.15.7)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       mobx-state-tree: 3.17.3(mobx@4.15.7)
-      moment: 2.30.1
+      moment: 2.31.0
       papaparse: 5.5.3
       path-to-regexp: 6.2.0
       qs: 6.9.7
@@ -5094,7 +5094,7 @@ snapshots:
   amis-formula@6.9.0:
     dependencies:
       lodash: 4.17.21
-      moment: 2.30.1
+      moment: 2.31.0
       tslib: 2.8.1
 
   amis-postcss@1.0.0: {}
@@ -5129,7 +5129,7 @@ snapshots:
       mobx: 4.15.7
       mobx-react: 6.3.1(mobx@4.15.7)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       mobx-state-tree: 3.17.3(mobx@4.15.7)
-      moment: 2.30.1
+      moment: 2.31.0
       monaco-editor: 0.30.1
       prop-types: 15.8.1
       rc-input-number: 7.4.2(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -5184,7 +5184,7 @@ snapshots:
       mobx: 4.15.7
       mobx-react: 6.3.1(mobx@4.15.7)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       mobx-state-tree: 3.17.3(mobx@4.15.7)
-      moment: 2.30.1
+      moment: 2.31.0
       moment-timezone: 0.5.48
       mpegts.js: 1.8.0
       office-viewer: 0.3.13(echarts@5.5.1)
@@ -5218,7 +5218,7 @@ snapshots:
 
   ansi-styles@6.2.1: {}
 
-  antd@5.23.4(moment@2.30.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  antd@5.23.4(moment@2.31.0)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
     dependencies:
       '@ant-design/colors': 7.2.0
       '@ant-design/cssinjs': 1.23.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -5250,7 +5250,7 @@ snapshots:
       rc-motion: 2.9.5(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       rc-notification: 5.6.2(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       rc-pagination: 5.1.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      rc-picker: 4.9.2(dayjs@1.11.13)(moment@2.30.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      rc-picker: 4.9.2(dayjs@1.11.13)(moment@2.31.0)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       rc-progress: 4.0.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       rc-rate: 2.13.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       rc-resize-observer: 1.4.3(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -6899,9 +6899,9 @@ snapshots:
 
   moment-timezone@0.5.48:
     dependencies:
-      moment: 2.30.1
+      moment: 2.31.0
 
-  moment@2.30.1: {}
+  moment@2.31.0: {}
 
   monaco-editor@0.30.1: {}
 
@@ -7371,7 +7371,7 @@ snapshots:
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
 
-  rc-picker@4.9.2(dayjs@1.11.13)(moment@2.30.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  rc-picker@4.9.2(dayjs@1.11.13)(moment@2.31.0)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
     dependencies:
       '@babel/runtime': 7.26.7
       '@rc-component/trigger': 2.2.6(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -7383,7 +7383,7 @@ snapshots:
       react-dom: 17.0.2(react@17.0.2)
     optionalDependencies:
       dayjs: 1.11.13
-      moment: 2.30.1
+      moment: 2.31.0
 
   rc-progress@3.4.2(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
     dependencies:
