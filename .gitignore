@@ -1,1 +1,4 @@
 .idea/
+/vendor/
+/.phpunit.cache/
+composer.phar
