@@ -58,5 +58,10 @@
                 "OwlAdmin": "Slowlyo\\OwlAdmin\\Facades\\OwlAdmin"
             }
         }
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.0"
+        }
     }
 }
