@@ -119,6 +119,10 @@ class AdminPermissionService extends AdminService
                 continue;
             }
 
+            if (!$this->isMassAssignableColumn($model, $k)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 

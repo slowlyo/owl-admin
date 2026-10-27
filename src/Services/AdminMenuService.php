@@ -112,6 +112,10 @@ class AdminMenuService extends AdminService
                 continue;
             }
 
+            if (!$this->isMassAssignableColumn($model, $k)) {
+                continue;
+            }
+
             $v = $k == 'parent_id' ? intval($v) : $v;
 
             $model->setAttribute($k, $v);

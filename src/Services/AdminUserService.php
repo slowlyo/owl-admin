@@ -110,7 +110,20 @@ class AdminUserService extends AdminService
     {
         $this->passwordHandler($data, $primaryKey);
 
-        return parent::update($primaryKey, $data);
+        $password = Arr::pull($data, 'password');
+
+        $result = parent::update($primaryKey, $data);
+
+        if ($result && filled($password)) {
+            $model = $this->getCurrentModel();
+
+            if ($model) {
+                $model->setAttribute('password', $password);
+                $model->save();
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -207,6 +220,7 @@ class AdminUserService extends AdminService
         $columns = $this->getTableColumns();
 
         $roles = Arr::pull($data, 'roles');
+        $password = Arr::pull($data, 'password');
         $this->assertCurrentUserCanAssignRoles($this->normalizeRoleIds($roles));
 
         foreach ($data as $k => $v) {
@@ -214,7 +228,15 @@ class AdminUserService extends AdminService
                 continue;
             }
 
+            if (!$this->isMassAssignableColumn($model, $k)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
+        }
+
+        if (filled($password)) {
+            $model->setAttribute('password', $password);
         }
 
         if ($model->save()) {

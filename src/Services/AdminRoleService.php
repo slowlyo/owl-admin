@@ -63,6 +63,10 @@ class AdminRoleService extends AdminService
                 continue;
             }
 
+            if (!$this->isMassAssignableColumn($model, $k)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
         }
 
@@ -79,6 +83,10 @@ class AdminRoleService extends AdminService
 
         foreach ($data as $k => $v) {
             if (!in_array($k, $columns)) {
+                continue;
+            }
+
+            if (!$this->isMassAssignableColumn($model, $k)) {
                 continue;
             }
 
