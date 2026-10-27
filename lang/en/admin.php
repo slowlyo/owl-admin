@@ -182,6 +182,7 @@ return [
         'username_already_exists' => 'Username already exists',
         'cannot_delete'           => 'Cannot delete super administrator',
         'roles_not_assignable'    => 'You are not allowed to assign the selected roles.',
+        'cannot_manage'           => 'You are not allowed to manage this administrator.',
     ],
 
     'admin_roles' => 'Admin Roles',
