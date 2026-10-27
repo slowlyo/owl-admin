@@ -182,6 +182,7 @@ return [
         'username_already_exists' => '用户名已存在',
         'cannot_delete'           => '不可删除超级管理员',
         'roles_not_assignable'    => '无权分配所选角色',
+        'cannot_manage'           => '无权管理该管理员',
     ],
 
     'admin_roles' => '角色',

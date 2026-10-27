@@ -34,8 +34,15 @@ class AdminUserService extends AdminService
      */
     public function getEditData($id)
     {
-        $adminUser = parent::getEditData($id)->makeHidden('password');
+        $this->assertCurrentUserCanManageUserIds([$id]);
 
+        $adminUser = parent::getEditData($id);
+
+        if ($adminUser === null) {
+            return null;
+        }
+
+        $adminUser->makeHidden('password');
         $adminUser->load('roles');
 
         return $adminUser;
@@ -67,6 +74,8 @@ class AdminUserService extends AdminService
      */
     public function update($primaryKey, $data)
     {
+        $this->assertCurrentUserCanManageUserIds([$primaryKey]);
+
         $this->checkUsernameUnique($data['username'], $primaryKey);
         $this->passwordHandler($data);
 
@@ -145,12 +154,7 @@ class AdminUserService extends AdminService
             ->with('roles')
             ->select(['id', 'name', 'username', 'avatar', 'enabled', 'created_at']);
 
-        // 非超级管理员只能看到自己拥有的角色
-        if (!Admin::user()->isAdministrator()) {
-            $query->whereHas('roles', function ($query) {
-                $query->whereIn('id', Admin::user()->roles()->pluck('id'));
-            });
-        }
+        $this->applyNonAdministratorUserScope($query);
 
         // 用户名搜索
         if ($username = request()->username) {
@@ -285,15 +289,68 @@ class AdminUserService extends AdminService
      */
     public function delete(string $ids)
     {
+        $idList = collect(explode(',', $ids))->filter(fn ($id) => filled($id))->values()->all();
+
+        $this->assertCurrentUserCanManageUserIds($idList);
+
         $exists = $this
             ->query()
-            ->whereIn($this->primaryKey(), explode(',', $ids))
+            ->whereIn($this->primaryKey(), $idList)
             ->whereHas('roles', fn($q) => $q->where('slug', AdminRole::SuperAdministrator))
             ->exists();
 
         admin_abort_if($exists, admin_trans('admin.admin_user.cannot_delete'));
 
         return parent::delete($ids);
+    }
+
+    /**
+     * 非超级管理员的用户可见/可操作范围：与列表一致，仅能管理与自己角色有交集且非超管角色的账号。
+     */
+    protected function applyNonAdministratorUserScope(Builder $query): Builder
+    {
+        $currentUser = Admin::user();
+        if ($currentUser === null || $currentUser->isAdministrator()) {
+            return $query;
+        }
+
+        $query->whereHas('roles', function ($query) use ($currentUser) {
+            $query->whereIn('id', $currentUser->roles()->pluck('id'));
+        })->whereDoesntHave('roles', fn ($q) => $q->where('slug', AdminRole::SuperAdministrator));
+
+        return $query;
+    }
+
+    /**
+     * 单条或批量操作前校验目标用户是否落在当前操作者的可管理范围内。
+     *
+     * @param array<int|string> $ids
+     */
+    protected function assertCurrentUserCanManageUserIds(array $ids): void
+    {
+        $ids = array_values(array_filter($ids, fn ($id) => $id !== null && $id !== ''));
+        if ($ids === []) {
+            return;
+        }
+
+        $currentUser = Admin::user();
+        if ($currentUser === null || $currentUser->isAdministrator()) {
+            return;
+        }
+
+        $manageableIds = $this->applyNonAdministratorUserScope($this->query())
+            ->whereIn($this->primaryKey(), $ids)
+            ->pluck($this->primaryKey())
+            ->map(fn ($id) => (string) $id)
+            ->all();
+
+        $requestedIds = array_map(fn ($id) => (string) $id, $ids);
+        $unauthorizedIds = array_diff($requestedIds, $manageableIds);
+
+        admin_abort_if(
+            $unauthorizedIds !== [],
+            admin_trans('admin.admin_user.cannot_manage')
+        );
     }
 
     /**
