@@ -203,6 +203,7 @@ class AdminUserService extends AdminService
         $columns = $this->getTableColumns();
 
         $roles = Arr::pull($data, 'roles');
+        $password = Arr::pull($data, 'password');
         $this->assertCurrentUserCanAssignRoles($this->normalizeRoleIds($roles));
 
         foreach ($data as $k => $v) {
@@ -210,7 +211,15 @@ class AdminUserService extends AdminService
                 continue;
             }
 
+            if (!$this->isMassAssignableColumn($model, $k)) {
+                continue;
+            }
+
             $model->setAttribute($k, $v);
+        }
+
+        if (filled($password)) {
+            $model->setAttribute('password', $password);
         }
 
         if ($model->save()) {

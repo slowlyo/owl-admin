@@ -398,6 +398,51 @@ abstract class AdminService
     }
 
     /**
+     * 禁止通过 CRUD 请求批量写入的列（仍可通过服务内显式 setAttribute 赋值，如密码哈希）。
+     *
+     * @param Model $model
+     *
+     * @return array<int, string>
+     */
+    protected function massAssignmentDeniedColumns(Model $model): array
+    {
+        $denied = [
+            'remember_token',
+            'email_verified_at',
+            'password',
+        ];
+
+        if ($keyName = $model->getKeyName()) {
+            $denied[] = $keyName;
+        }
+
+        if ($model->usesTimestamps()) {
+            if ($createdAt = $model->getCreatedAtColumn()) {
+                $denied[] = $createdAt;
+            }
+
+            if ($updatedAt = $model->getUpdatedAtColumn()) {
+                $denied[] = $updatedAt;
+            }
+        }
+
+        return array_values(array_unique($denied));
+    }
+
+    /**
+     * 判断请求数据中的列是否允许经 fillModelFromData 写入模型。
+     *
+     * @param Model $model
+     * @param string $column
+     *
+     * @return bool
+     */
+    protected function isMassAssignableColumn(Model $model, string $column): bool
+    {
+        return !in_array($column, $this->massAssignmentDeniedColumns($model), true);
+    }
+
+    /**
      * 给模型填充允许写入的字段，统一新增和修改的数据过滤规则。
      *
      * @param Model $model
@@ -410,6 +455,11 @@ abstract class AdminService
         foreach ($data as $k => $v) {
             if (!$this->hasColumn($k)) {
                 // 请求里可能包含 amis 动作参数或前端辅助字段，非表字段不能写入模型。
+                continue;
+            }
+
+            if (!$this->isMassAssignableColumn($model, $k)) {
+                // 敏感列或主键不能由客户端批量赋值，避免绕过模型的 fillable/guarded。
                 continue;
             }
 
