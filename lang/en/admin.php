@@ -181,6 +181,7 @@ return [
         'old_password_error'      => 'Old password error',
         'username_already_exists' => 'Username already exists',
         'cannot_delete'           => 'Cannot delete super administrator',
+        'roles_not_assignable'    => 'You are not allowed to assign the selected roles.',
     ],
 
     'admin_roles' => 'Admin Roles',

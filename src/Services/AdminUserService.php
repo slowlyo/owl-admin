@@ -203,6 +203,7 @@ class AdminUserService extends AdminService
         $columns = $this->getTableColumns();
 
         $roles = Arr::pull($data, 'roles');
+        $this->assertCurrentUserCanAssignRoles($this->normalizeRoleIds($roles));
 
         foreach ($data as $k => $v) {
             if (!in_array($k, $columns)) {
@@ -213,12 +214,66 @@ class AdminUserService extends AdminService
         }
 
         if ($model->save()) {
-            $model->roles()->sync(Arr::has($roles, '0.id') ? Arr::pluck($roles, 'id') : $roles);
+            $roleIds = $this->normalizeRoleIds($roles);
+            if ($roleIds !== null) {
+                $model->roles()->sync($roleIds);
+            }
 
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * 将请求中的 roles 字段统一为角色 ID 列表，便于授权校验与 sync 共用同一套解析规则。
+     *
+     * @param mixed $roles
+     * @return array<int, mixed>|null 未传 roles 时返回 null，表示不改动现有关联
+     */
+    protected function normalizeRoleIds($roles): ?array
+    {
+        if ($roles === null) {
+            return null;
+        }
+
+        if (is_array($roles) && Arr::has($roles, '0.id')) {
+            return Arr::pluck($roles, 'id');
+        }
+
+        return is_array($roles) ? $roles : [$roles];
+    }
+
+    /**
+     * 非超级管理员只能为自己已拥有的角色做绑定，策略与 roleOptions 一致，防止越权提权。
+     *
+     * @param array<int, mixed>|null $roleIds
+     */
+    protected function assertCurrentUserCanAssignRoles(?array $roleIds): void
+    {
+        if ($roleIds === null) {
+            return;
+        }
+
+        $roleIds = array_values(array_filter($roleIds, fn ($id) => $id !== null && $id !== ''));
+        if ($roleIds === []) {
+            return;
+        }
+
+        $currentUser = Admin::user();
+        if ($currentUser === null || $currentUser->isAdministrator()) {
+            return;
+        }
+
+        $assignableRoleIds = $currentUser->roles()->pluck('id')->map(fn ($id) => (int) $id)->all();
+        $requestedRoleIds  = array_map(fn ($id) => (int) $id, $roleIds);
+
+        $unauthorizedRoleIds = array_diff($requestedRoleIds, $assignableRoleIds);
+
+        admin_abort_if(
+            $unauthorizedRoleIds !== [],
+            admin_trans('admin.admin_user.roles_not_assignable')
+        );
     }
 
     /**

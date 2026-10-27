@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Tests;
 
+use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Slowlyo\OwlAdmin\AdminServiceProvider;
 
@@ -9,10 +10,14 @@ abstract class TestCase extends BaseTestCase
 {
     /**
      * 注册包内 ServiceProvider，供 Testbench 启动最小 Laravel 环境。
+     * Sanctum 负责注册 admin guard 使用的 sanctum 驱动，与宿主应用一致。
      */
     protected function getPackageProviders($app): array
     {
-        return [AdminServiceProvider::class];
+        return [
+            AdminServiceProvider::class,
+            SanctumServiceProvider::class,
+        ];
     }
 
     /**
