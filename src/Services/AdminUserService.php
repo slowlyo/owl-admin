@@ -101,7 +101,20 @@ class AdminUserService extends AdminService
     {
         $this->passwordHandler($data, $primaryKey);
 
-        return parent::update($primaryKey, $data);
+        $password = Arr::pull($data, 'password');
+
+        $result = parent::update($primaryKey, $data);
+
+        if ($result && filled($password)) {
+            $model = $this->getCurrentModel();
+
+            if ($model) {
+                $model->setAttribute('password', $password);
+                $model->save();
+            }
+        }
+
+        return $result;
     }
 
     /**

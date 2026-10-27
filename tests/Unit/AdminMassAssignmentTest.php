@@ -2,6 +2,7 @@
 
 namespace Slowlyo\OwlAdmin\Tests\Unit;
 
+use Illuminate\Support\Facades\Hash;
 use Slowlyo\OwlAdmin\Admin;
 use Slowlyo\OwlAdmin\Models\AdminRole;
 use Slowlyo\OwlAdmin\Models\AdminUser;
@@ -136,7 +137,7 @@ class AdminMassAssignmentTest extends TestCase
         $this->assertNotSame(8888, (int) $created->getKey());
         $this->assertNull($created->remember_token);
         $this->assertSame(0, (int) $created->enabled);
-        $this->assertTrue(\Illuminate\Support\Facades\Hash::check('password', $created->password));
+        $this->assertTrue(Hash::check('password', $created->password));
     }
 
     /**
@@ -169,5 +170,49 @@ class AdminMassAssignmentTest extends TestCase
         $user = AdminUser::query()->find($targetId);
         $this->assertSame('Victim Updated', $user->name);
         $this->assertSame('legitimate-token', $user->remember_token);
+    }
+
+    /**
+     * 个人设置更新应能写入经 passwordHandler 哈希后的密码。
+     */
+    public function test_update_user_setting_persists_hashed_password(): void
+    {
+        $this->actingAsSuperAdmin();
+
+        $service = new AdminUserService();
+
+        $this->assertTrue($service->updateUserSetting(1, [
+            'username'         => 'super',
+            'name'             => 'Super Renamed',
+            'password'         => 'new-secret',
+            'confirm_password' => 'new-secret',
+            'old_password'     => 'password',
+        ]));
+
+        $user = AdminUser::query()->find(1);
+        $this->assertSame('Super Renamed', $user->name);
+        $this->assertTrue(Hash::check('new-secret', $user->password));
+        $this->assertFalse(Hash::check('password', $user->password));
+    }
+
+    /**
+     * 个人设置更新仍应拒绝 remember_token 批量写入。
+     */
+    public function test_update_user_setting_rejects_remember_token(): void
+    {
+        $this->actingAsSuperAdmin();
+
+        AdminUser::query()->whereKey(1)->update(['remember_token' => 'keep-me']);
+
+        $service = new AdminUserService();
+
+        $this->assertTrue($service->updateUserSetting(1, [
+            'username'       => 'super',
+            'name'           => 'Super',
+            'remember_token' => 'profile-attacker-token',
+        ]));
+
+        $user = AdminUser::query()->find(1);
+        $this->assertSame('keep-me', $user->remember_token);
     }
 }
