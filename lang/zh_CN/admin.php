@@ -181,6 +181,7 @@ return [
         'old_password_error'      => '原密码错误',
         'username_already_exists' => '用户名已存在',
         'cannot_delete'           => '不可删除超级管理员',
+        'roles_not_assignable'    => '无权分配所选角色',
     ],
 
     'admin_roles' => '角色',
