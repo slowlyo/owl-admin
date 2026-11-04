@@ -3,6 +3,7 @@
 namespace Slowlyo\OwlAdmin\Support\Cores;
 
 use Slowlyo\OwlAdmin\Admin;
+use Slowlyo\OwlAdmin\Support\PathGuard;
 use Slowlyo\OwlAdmin\Support\Apis\{AggregateApi,
     DataListApi,
     DataCreateApi,
@@ -65,6 +66,40 @@ class Api
      */
     public static function path($file = '')
     {
-        return app_path('/ApiTemplates') . ($file ? '/' . ltrim($file, '/') : '');
+        $base = app_path('ApiTemplates');
+
+        if ($file === '' || $file === null) {
+            return $base;
+        }
+
+        $file = str_replace('\\', '/', (string) $file);
+
+        if (
+            str_contains($file, '..') ||
+            str_contains($file, '/') ||
+            str_contains($file, "\0")
+        ) {
+            return $base . '/.invalid';
+        }
+
+        return $base . '/' . $file;
+    }
+
+    /**
+     * 根据类短名生成模板文件路径，并校验落在 ApiTemplates 目录内。
+     */
+    public static function templateFilePath(string $classShortName): string
+    {
+        if (!PathGuard::isValidPhpClassShortName($classShortName)) {
+            return '';
+        }
+
+        $file = self::path($classShortName . '.php');
+
+        if (!PathGuard::isPathInsideDirectory($file, self::path())) {
+            return '';
+        }
+
+        return $file;
     }
 }
