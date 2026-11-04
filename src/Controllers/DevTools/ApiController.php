@@ -5,6 +5,7 @@ namespace Slowlyo\OwlAdmin\Controllers\DevTools;
 use Slowlyo\OwlAdmin\Admin;
 use Illuminate\Support\Str;
 use Slowlyo\OwlAdmin\Support\Cores\Api;
+use Slowlyo\OwlAdmin\Support\PathGuard;
 use Slowlyo\OwlAdmin\Services\AdminApiService;
 use Slowlyo\OwlAdmin\Support\Apis\AdminBaseApi;
 use Slowlyo\OwlAdmin\Controllers\AdminController;
@@ -114,7 +115,9 @@ class ApiController extends AdminController
 
         admin_abort_if(!$className, admin_trans('admin.apis.template_format_error'));
 
-        $file = Api::path($className . '.php');
+        $file = Api::templateFilePath(trim($className));
+
+        admin_abort_if($file === '', admin_trans('admin.apis.template_format_error'));
 
         admin_abort_if(is_file($file) && !request('overlay'), admin_trans('admin.apis.template_exists'));
 
@@ -123,6 +126,10 @@ class ApiController extends AdminController
 
             if (!is_dir($dir)) {
                 app('files')->makeDirectory($dir, 0755, true);
+            }
+
+            if (!PathGuard::isRealPathInsideDirectory($dir, Api::path())) {
+                admin_abort(admin_trans('admin.apis.template_format_error'));
             }
 
             app('files')->put($file, $template);

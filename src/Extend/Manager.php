@@ -11,6 +11,7 @@ use RecursiveDirectoryIterator;
 use Slowlyo\OwlAdmin\Support\Zip;
 use Illuminate\Support\Collection;
 use Slowlyo\OwlAdmin\Support\Helper;
+use Slowlyo\OwlAdmin\Support\PathGuard;
 use Illuminate\Filesystem\Filesystem;
 use Slowlyo\OwlAdmin\Support\Composer;
 use Illuminate\Contracts\Container\Container;
@@ -414,7 +415,16 @@ class Manager
 
             $composerProperty = Composer::parse($directory . '/composer.json');
 
-            $extensionDir = admin_extension_path($composerProperty->name);
+            if (!PathGuard::isValidComposerPackageName((string) $composerProperty->name)) {
+                throw new RuntimeException(sprintf('Invalid extension package name "%s".', $composerProperty->name));
+            }
+
+            $extensionsRoot = admin_extension_path();
+            $extensionDir   = admin_extension_path($composerProperty->name);
+
+            if (!PathGuard::isPathInsideDirectory($extensionDir, $extensionsRoot)) {
+                throw new RuntimeException(sprintf('Invalid extension install path for package "%s".', $composerProperty->name));
+            }
 
             if (!$force && is_dir($extensionDir)) {
                 throw new RuntimeException(sprintf('The extension [%s] already exist!', $composerProperty->name));
@@ -422,6 +432,10 @@ class Manager
 
             if (!is_dir($extensionDir)) {
                 $this->files->makeDirectory($extensionDir, 0755, true);
+            }
+
+            if (!PathGuard::isRealPathInsideDirectory($extensionDir, $extensionsRoot)) {
+                throw new RuntimeException(sprintf('Invalid extension install path for package "%s".', $composerProperty->name));
             }
 
             $this->files->copyDirectory($directory, $extensionDir);
