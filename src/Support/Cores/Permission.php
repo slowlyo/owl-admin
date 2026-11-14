@@ -95,9 +95,10 @@ class Permission
             return false;
         }
 
+        // 开发工具可写入 PHP 文件(代码生成/API 模板等)，不再整体豁免权限校验，
+        // 仍按下方的超级管理员/权限判定放行，避免低权限用户绕过授权。
         $excepted = collect(Admin::config('admin.auth.except', []))
             ->merge($this->permissionExcept)
-            ->merge(Admin::config('admin.show_development_tools') ? ['/dev_tools*'] : [])
             ->map(fn($path) => $this->pathFormatting($path))
             ->contains(fn($except) => $request->is($except == '/' ? $except : trim($except, '/')));
 
